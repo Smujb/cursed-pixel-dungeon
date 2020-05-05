@@ -29,7 +29,7 @@ package com.shatteredpixel.yasd.general.levels.rooms.secret;
 
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.GamesInProgress;
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.levels.rooms.special.SpecialRoom;
 import com.watabou.utils.Bundle;
@@ -134,7 +134,7 @@ public abstract class SecretRoom extends SpecialRoom {
 			regionSecretsThisRun = bundle.getIntArray(REGIONS);
 		} else {
 			initForRun();
-			MainGame.reportException(new Exception("secrets array didn't exist!"));
+			CPDGame.reportException(new Exception("secrets array didn't exist!"));
 		}
 	}
 	

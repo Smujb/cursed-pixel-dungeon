@@ -42,8 +42,6 @@ import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfRepair;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
-import com.shatteredpixel.yasd.general.items.weapon.Weapon.Enchantment;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
@@ -116,13 +114,13 @@ public class Statue extends Mob implements Callback {
 			switch (type) {
 				case 0: default:
 					item = ((KindofMisc) Generator.random(Generator.Category.RING));
-					if (belongings.getEquippedItemsOFType(Ring.class).size() < 3) {
+					if (belongings.getMiscsOfType(Ring.class).size() < 3) {
 						con = true;
 					}
 					break;
 				case 2: case 3:
 					item = ((KindofMisc) Generator.random(Generator.Category.WAND));
-					if (belongings.getEquippedItemsOFType(Wand.class).size() < 3) {
+					if (belongings.getMiscsOfType(Wand.class).size() < 3) {
 						con = true;
 					}
 					break;
@@ -187,7 +185,7 @@ public class Statue extends Mob implements Callback {
 
 	private Wand wandToAttack(Char enemy) {
 		if (enemy != null ) {
-			ArrayList<KindofMisc> Wands = belongings.getEquippedItemsOFType(Wand.class);
+			ArrayList<KindofMisc> Wands = belongings.getMiscsOfType(Wand.class);
 			ArrayList<Wand> UsableWands = new ArrayList<>();
 			for (int i = 0; i < Wands.size(); i++) {
 				Wand Wand = ((Wand) Wands.get(i));
@@ -237,7 +235,7 @@ public class Statue extends Mob implements Callback {
 	protected boolean doAttack( Char enemy ) {
 		if (Dungeon.level.adjacent( pos, enemy.pos )) {
 			return super.doAttack( enemy );
-		} else if (belongings.getEquippedItemsOFType(Wand.class).size() > 0) {
+		} else if (belongings.getMiscsOfType(Wand.class).size() > 0) {
 			wandZap(enemy);
 			return true;
 		} else {

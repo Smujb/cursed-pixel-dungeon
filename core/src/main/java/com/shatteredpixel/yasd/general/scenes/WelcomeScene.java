@@ -27,9 +27,9 @@
 
 package com.shatteredpixel.yasd.general.scenes;
 
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Chrome;
-import com.shatteredpixel.yasd.general.YASDSettings;
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Rankings;
 import com.shatteredpixel.yasd.general.effects.BannerSprites;
 import com.shatteredpixel.yasd.general.effects.Fireball;
@@ -46,16 +46,16 @@ import com.watabou.utils.FileUtils;
 
 public class WelcomeScene extends PixelScene {
 
-	private static int LATEST_UPDATE = MainGame.v0_3_3;
+	private static int LATEST_UPDATE = CPDGame.v0_3_3;
 
 	@Override
 	public void create() {
 		super.create();
 
-		final int previousVersion = YASDSettings.version();
+		final int previousVersion = CPDSettings.version();
 
-		if (MainGame.versionCode == previousVersion) {
-			MainGame.switchNoFade(TitleScene.class);
+		if (CPDGame.versionCode == previousVersion) {
+			CPDGame.switchNoFade(TitleScene.class);
 			return;
 		}
 
@@ -103,11 +103,11 @@ public class WelcomeScene extends PixelScene {
 			protected void onClick() {
 				super.onClick();
 				if (previousVersion == 0){
-					YASDSettings.version(MainGame.versionCode);
+					CPDSettings.version(CPDGame.versionCode);
 					WelcomeScene.this.add(new WndStartGame(1, false));
 				} else {
 					updateVersion(previousVersion);
-					MainGame.switchScene(TitleScene.class);
+					CPDGame.switchScene(TitleScene.class);
 				}
 			}
 		};
@@ -119,7 +119,7 @@ public class WelcomeScene extends PixelScene {
 				protected void onClick() {
 					super.onClick();
 					updateVersion(previousVersion);
-					MainGame.switchScene(ChangesScene.class);
+					CPDGame.switchScene(ChangesScene.class);
 				}
 			};
 			okay.setRect(title.x, h-25, (title.width()/2)-2, 21);
@@ -139,7 +139,7 @@ public class WelcomeScene extends PixelScene {
 		String message;
 		if (previousVersion == 0) {
 			message = Messages.get(this, "welcome_msg");
-		} else if (previousVersion <= MainGame.versionCode) {
+		} else if (previousVersion <= CPDGame.versionCode) {
 			if (previousVersion < LATEST_UPDATE){
 				message = Messages.get(this, "update_intro");
 				message += "\n\n" + Messages.get(this, "update_msg");
@@ -172,7 +172,7 @@ public class WelcomeScene extends PixelScene {
 			}
 		}
 		
-		YASDSettings.version(MainGame.versionCode);
+		CPDSettings.version(CPDGame.versionCode);
 	}
 
 	private void placeTorch( float x, float y ) {

@@ -29,12 +29,12 @@ package com.shatteredpixel.yasd.general.windows;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Difficulty;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.YASDSettings;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.GamesInProgress;
 import com.shatteredpixel.yasd.general.LevelHandler;
-import com.shatteredpixel.yasd.general.MainGame;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.journal.Journal;
@@ -71,12 +71,12 @@ public class WndStartGame extends Window {
 		Journal.loadGlobal();
 
 		if (!longPress) {
-			YASDSettings.testing(false);
+			CPDSettings.testing(false);
 		}
 
 		if (GamesInProgress.selectedClass == null) {
 			HeroClass cl = null;
-			switch (YASDSettings.lastClass()) {
+			switch (CPDSettings.lastClass()) {
 				case 0:
 					cl = HeroClass.WARRIOR;
 					break;
@@ -129,10 +129,10 @@ public class WndStartGame extends Window {
 				GamesInProgress.curSlot = slot;
 				Dungeon.hero = null;
 				ActionIndicator.action = null;
-				Dungeon.difficulty = Difficulty.fromInt(YASDSettings.difficulty());//I could just call YASDSettings.difficulty() every time I want to check difficulty, but that would mean that changing it on separate runs would interfere with each other.
-				YASDSettings.lastClass(GamesInProgress.selectedClass);
-				if (YASDSettings.intro()) {
-					YASDSettings.intro( false );
+				Dungeon.difficulty = Difficulty.fromInt(CPDSettings.difficulty());//I could just call YASDSettings.difficulty() every time I want to check difficulty, but that would mean that changing it on separate runs would interfere with each other.
+				CPDSettings.lastClass(GamesInProgress.selectedClass);
+				if (CPDSettings.intro()) {
+					CPDSettings.intro( false );
 					Game.switchScene( IntroScene.class );
 				} else {
 					LevelHandler.doInit();
@@ -155,22 +155,22 @@ public class WndStartGame extends Window {
 				Messages.get(this, "easy"), Messages.get(this, "hard"), 1, Difficulty.maxDiff()) {
 			@Override
 			protected void onChange() {
-				YASDSettings.difficulty(getSelectedValue());
+				CPDSettings.difficulty(getSelectedValue());
 			}
 		};
-		difficulty.setSelectedValue(YASDSettings.difficulty());
+		difficulty.setSelectedValue(CPDSettings.difficulty());
 		difficulty.setRect(0, start.bottom() + GAP_TINY, WIDTH, SLIDER_HEIGHT);
 		add(difficulty);
 
 		if (DeviceCompat.isDebug() || Badges.isUnlocked(Badges.Badge.VICTORY)){
 			IconButton challengeButton = new IconButton(
-					Icons.get( YASDSettings.challenges() > 0 ? Icons.CHALLENGE_ON :Icons.CHALLENGE_OFF)){
+					Icons.get( CPDSettings.challenges() > 0 ? Icons.CHALLENGE_ON :Icons.CHALLENGE_OFF)){
 				@Override
 				protected void onClick() {
-					MainGame.scene().addToFront(new WndChallenges(YASDSettings.challenges(), true) {
+					CPDGame.scene().addToFront(new WndChallenges(CPDSettings.challenges(), true) {
 						public void onBackPressed() {
 							super.onBackPressed();
-							icon( Icons.get( YASDSettings.challenges() > 0 ?
+							icon( Icons.get( CPDSettings.challenges() > 0 ?
 									Icons.CHALLENGE_ON :Icons.CHALLENGE_OFF ) );
 						}
 					} );
@@ -190,7 +190,7 @@ public class WndStartGame extends Window {
 			
 		} else {
 			Dungeon.challenges = 0;
-			YASDSettings.challenges(0);
+			CPDSettings.challenges(0);
 		}
 
 		int bottom = (int) difficulty.bottom();
@@ -201,11 +201,11 @@ public class WndStartGame extends Window {
 				@Override
 				protected void onClick() {
 					super.onClick();
-					YASDSettings.testing(checked());
+					CPDSettings.testing(checked());
 				}
 			};
 			BoxTesting.setRect(0, difficulty.bottom(), WIDTH, 20);
-			BoxTesting.checked(YASDSettings.testing());
+			BoxTesting.checked(CPDSettings.testing());
 			add(BoxTesting);
 		}
 		
@@ -259,7 +259,7 @@ public class WndStartGame extends Window {
 		protected void onClick() {
 			super.onClick();
 			if(cl.locked()){
-				MainGame.scene().addToFront( new WndMessage(cl.unlockMsg()));
+				CPDGame.scene().addToFront( new WndMessage(cl.unlockMsg()));
 			} else {
 				GamesInProgress.selectedClass = cl;
 			}
@@ -293,7 +293,7 @@ public class WndStartGame extends Window {
 				@Override
 				protected void onClick() {
 					if (cl == null) return;
-					MainGame.scene().addToFront(new WndMessage(Messages.get(cl, cl.name() + "_desc_item")));
+					CPDGame.scene().addToFront(new WndMessage(Messages.get(cl, cl.name() + "_desc_item")));
 				}
 			};
 			heroItem.setSize(BTN_SIZE, BTN_SIZE);
@@ -303,7 +303,7 @@ public class WndStartGame extends Window {
 				@Override
 				protected void onClick() {
 					if (cl == null) return;
-					MainGame.scene().addToFront(new WndMessage(Messages.get(cl, cl.name() + "_desc_loadout")));
+					CPDGame.scene().addToFront(new WndMessage(Messages.get(cl, cl.name() + "_desc_loadout")));
 				}
 			};
 			heroLoadout.setSize(BTN_SIZE, BTN_SIZE);
@@ -313,7 +313,7 @@ public class WndStartGame extends Window {
 				@Override
 				protected void onClick() {
 					if (cl == null) return;
-					MainGame.scene().addToFront(new WndMessage(Messages.get(cl, cl.name() + "_desc_misc")));
+					CPDGame.scene().addToFront(new WndMessage(Messages.get(cl, cl.name() + "_desc_misc")));
 				}
 			};
 			heroMisc.setSize(BTN_SIZE, BTN_SIZE);
@@ -327,7 +327,7 @@ public class WndStartGame extends Window {
 					for (HeroSubClass sub : cl.subClasses()){
 						msg += "\n\n" + sub.desc();
 					}
-					MainGame.scene().addToFront(new WndMessage(msg));
+					CPDGame.scene().addToFront(new WndMessage(msg));
 				}
 			};
 			heroSubclass.setSize(BTN_SIZE, BTN_SIZE);

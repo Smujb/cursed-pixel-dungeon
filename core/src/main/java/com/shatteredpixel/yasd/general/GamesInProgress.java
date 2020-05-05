@@ -34,8 +34,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.FileUtils;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -128,14 +126,14 @@ public class GamesInProgress {
 				Dungeon.preview(info, bundle);
 				
 				//saves from before 0.6.5c are not supported
-				if (info.version < MainGame.v0_6_5c) {
+				if (info.version < CPDGame.v0_6_5c) {
 					info = null;
 				}
 
 			} catch (IOException e) {
 				info = null;
 			} catch (Exception e){
-				MainGame.reportException( e );
+				CPDGame.reportException( e );
 				info = null;
 			}
 			

@@ -137,11 +137,7 @@ public class MassGraveRoom extends SpecialRoom {
 
 		@Override
 		public String desc(int tileX, int tileY) {
-			if (Dungeon.hero.morale > Dungeon.hero.MAX_MORALE/2) {
-				return Messages.get(this, "desc");
-			} else {
-				return Messages.get(this, "desc_low_morale");
-			}
+			return Messages.get(this, "desc");
 		}
 	}
 }

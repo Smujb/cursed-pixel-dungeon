@@ -29,7 +29,7 @@ package com.shatteredpixel.yasd.general.scenes;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.glwrap.Blending;
@@ -81,7 +81,7 @@ public class TextScene extends PixelScene {
 			onFinish = new Callback() {
 				@Override
 				public void call() {
-					MainGame.switchScene(GameScene.class);
+					CPDGame.switchScene(GameScene.class);
 				}
 			};
 		}
@@ -218,7 +218,7 @@ public class TextScene extends PixelScene {
 		TextScene.continueText = continueText;
 		TextScene.autoFinish = autoFinish;
 
-		MainGame.switchScene(TextScene.class);
+		CPDGame.switchScene(TextScene.class);
 	}
 
 	private void fadeOut() {

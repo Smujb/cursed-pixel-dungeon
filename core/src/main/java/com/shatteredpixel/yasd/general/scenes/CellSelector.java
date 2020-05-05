@@ -28,8 +28,8 @@
 package com.shatteredpixel.yasd.general.scenes;
 
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.YASDSettings;
-import com.shatteredpixel.yasd.general.YASDAction;
+import com.shatteredpixel.yasd.general.CPDSettings;
+import com.shatteredpixel.yasd.general.CPDAction;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
@@ -123,7 +123,7 @@ public class CellSelector extends ScrollArea {
 	private float zoom( float value ) {
 
 		value = GameMath.gate( PixelScene.minZoom, value, PixelScene.maxZoom );
-		YASDSettings.zoom((int) (value - PixelScene.defaultZoom));
+		CPDSettings.zoom((int) (value - PixelScene.defaultZoom));
 		camera.zoom( value );
 
 		//Resets character sprite towerPositions with the new camera zoom
@@ -226,7 +226,7 @@ public class CellSelector extends ScrollArea {
 		
 	}
 
-	private GameAction heldAction = YASDAction.NONE;
+	private GameAction heldAction = CPDAction.NONE;
 	private int heldTurns = 0;
 
 	private Signal.Listener<KeyEvent> keyListener = new Signal.Listener<KeyEvent>() {
@@ -234,15 +234,15 @@ public class CellSelector extends ScrollArea {
 		public boolean onSignal(KeyEvent event) {
 			GameAction action = KeyBindings.getActionForKey( event );
 			if (!event.pressed){
-				if (heldAction != YASDAction.NONE && heldAction == action) {
+				if (heldAction != CPDAction.NONE && heldAction == action) {
 					resetKeyHold();
 					return true;
 				} else {
-					if (action == YASDAction.ZOOM_IN){
+					if (action == CPDAction.ZOOM_IN){
 						zoom( camera.zoom+1 );
 						return true;
 
-					} else if (action == YASDAction.ZOOM_OUT){
+					} else if (action == CPDAction.ZOOM_OUT){
 						zoom( camera.zoom-1 );
 						return true;
 					}
@@ -258,14 +258,14 @@ public class CellSelector extends ScrollArea {
 
 	private boolean moveFromAction(GameAction action){
 		int cell = Dungeon.hero.pos;
-		if (action == YASDAction.N)  cell += -Dungeon.level.width();
-		if (action == YASDAction.NE) cell += +1-Dungeon.level.width();
-		if (action == YASDAction.E)  cell += +1;
-		if (action == YASDAction.SE) cell += +1+Dungeon.level.width();
-		if (action == YASDAction.S)  cell += +Dungeon.level.width();
-		if (action == YASDAction.SW) cell += -1+Dungeon.level.width();
-		if (action == YASDAction.W)  cell += -1;
-		if (action == YASDAction.NW) cell += -1-Dungeon.level.width();
+		if (action == CPDAction.N)  cell += -Dungeon.level.width();
+		if (action == CPDAction.NE) cell += +1-Dungeon.level.width();
+		if (action == CPDAction.E)  cell += +1;
+		if (action == CPDAction.SE) cell += +1+Dungeon.level.width();
+		if (action == CPDAction.S)  cell += +Dungeon.level.width();
+		if (action == CPDAction.SW) cell += -1+Dungeon.level.width();
+		if (action == CPDAction.W)  cell += -1;
+		if (action == CPDAction.NW) cell += -1-Dungeon.level.width();
 
 		if (cell != Dungeon.hero.pos){
 			//each step when keyboard moving takes 0.15s, 0.125s, 0.1s, 0.1s, ...
@@ -281,7 +281,7 @@ public class CellSelector extends ScrollArea {
 	}
 
 	public void processKeyHold(){
-		if (heldAction != YASDAction.NONE){
+		if (heldAction != CPDAction.NONE){
 			enabled = true;
 			heldTurns++;
 			moveFromAction(heldAction);
@@ -289,7 +289,7 @@ public class CellSelector extends ScrollArea {
 	}
 
 	public void resetKeyHold(){
-		heldAction = YASDAction.NONE;
+		heldAction = CPDAction.NONE;
 		heldTurns = 0;
 		CharSprite.setMoveInterval( CharSprite.DEFAULT_MOVE_INTERVAL );
 	}

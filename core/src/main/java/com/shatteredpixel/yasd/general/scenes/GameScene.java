@@ -29,12 +29,12 @@ package com.shatteredpixel.yasd.general.scenes;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.Lore;
-import com.shatteredpixel.yasd.general.MainGame;
 import com.shatteredpixel.yasd.general.Statistics;
-import com.shatteredpixel.yasd.general.YASDSettings;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
@@ -175,16 +175,16 @@ public class GameScene extends PixelScene {
 	public void create() {
 		
 		if (Dungeon.hero == null){
-			MainGame.switchNoFade(TitleScene.class);
+			CPDGame.switchNoFade(TitleScene.class);
 			return;
 		}
 
 		Music.INSTANCE.play( Assets.TUNE, true );
 
-		YASDSettings.lastClass(Dungeon.hero.heroClass.ordinal());
+		CPDSettings.lastClass(Dungeon.hero.heroClass.ordinal());
 		
 		super.create();
-		Camera.main.zoom( GameMath.gate(minZoom, defaultZoom + YASDSettings.zoom(), maxZoom));
+		Camera.main.zoom( GameMath.gate(minZoom, defaultZoom + CPDSettings.zoom(), maxZoom));
 
 		scene = this;
 
@@ -359,7 +359,7 @@ public class GameScene extends PixelScene {
 				ScrollOfTeleportation.appear(Dungeon.hero, Dungeon.hero.pos);
 				break;
 			case DESCEND:
-				if (Dungeon.bossLevel(Dungeon.depth -1) && YASDSettings.cutscenes()) {
+				if (Dungeon.bossLevel(Dungeon.depth -1) && CPDSettings.cutscenes()) {
 					Lore.showChapter(Dungeon.level);
 				}
 				/*
@@ -515,7 +515,7 @@ public class GameScene extends PixelScene {
 				try {
 					GameScene.class.wait(5000);
 				} catch (InterruptedException e) {
-					MainGame.reportException(e);
+					CPDGame.reportException(e);
 				}
 				synchronized (actorThread) {
 					if (Actor.processing()) {
@@ -550,7 +550,7 @@ public class GameScene extends PixelScene {
 			Badges.saveGlobal();
 			Journal.saveGlobal();
 		} catch (IOException e) {
-			MainGame.reportException(e);
+			CPDGame.reportException(e);
 		}
 	}
 
@@ -640,9 +640,9 @@ public class GameScene extends PixelScene {
 
 		if (scene == null) return;
 
-		float tagLeft = YASDSettings.flipTags() ? 0 : uiCamera.width - scene.attack.width();
+		float tagLeft = CPDSettings.flipTags() ? 0 : uiCamera.width - scene.attack.width();
 
-		if (YASDSettings.flipTags()) {
+		if (CPDSettings.flipTags()) {
 			scene.log.setRect(scene.attack.width(), scene.toolbar.top()-2, uiCamera.width - scene.attack.width(), 0);
 		} else {
 			scene.log.setRect(0, scene.toolbar.top()-2, uiCamera.width - scene.attack.width(),  0 );

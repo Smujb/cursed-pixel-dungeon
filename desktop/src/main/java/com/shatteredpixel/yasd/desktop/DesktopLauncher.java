@@ -36,8 +36,8 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Preferences;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.SharedLibraryLoader;
 import com.shatteredpixel.yasd.UpdateImpl;
-import com.shatteredpixel.yasd.general.MainGame;
-import com.shatteredpixel.yasd.general.YASDSettings;
+import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.services.Updates;
 import com.watabou.noosa.Game;
 import com.watabou.utils.FileUtils;
@@ -123,17 +123,17 @@ public class DesktopLauncher {
 
         //copy over prefs from old file location from legacy desktop codebase
         FileHandle oldPrefs = new Lwjgl3FileHandle(basePath + "pd-prefs", Files.FileType.External);
-        FileHandle newPrefs = new Lwjgl3FileHandle(basePath + YASDSettings.DEFAULT_PREFS_FILE, Files.FileType.External);
+        FileHandle newPrefs = new Lwjgl3FileHandle(basePath + CPDSettings.DEFAULT_PREFS_FILE, Files.FileType.External);
         if (oldPrefs.exists() && !newPrefs.exists()){
             oldPrefs.copyTo(newPrefs);
         }
 
         config.setPreferencesConfig( basePath, Files.FileType.External );
-        YASDSettings.set( new Lwjgl3Preferences( YASDSettings.DEFAULT_PREFS_FILE, basePath) );
+        CPDSettings.set( new Lwjgl3Preferences( CPDSettings.DEFAULT_PREFS_FILE, basePath) );
         FileUtils.setDefaultFileProperties( Files.FileType.External, basePath );
 
         config.setWindowSizeLimits( 480, 320, -1, -1 );
-        Point p = YASDSettings.windowResolution();
+        Point p = CPDSettings.windowResolution();
         config.setWindowedMode( p.x, p.y );
         config.setAutoIconify( true );
 
@@ -143,6 +143,6 @@ public class DesktopLauncher {
 
         config.setWindowIcon( "icon_16.png", "icon_32.png", "icon_64.png", "icon_128.png", "icon_256.png" );
 
-        new Lwjgl3Application(new MainGame(new DesktopPlatformSupport()), config);
+        new Lwjgl3Application(new CPDGame(new DesktopPlatformSupport()), config);
     }
 }

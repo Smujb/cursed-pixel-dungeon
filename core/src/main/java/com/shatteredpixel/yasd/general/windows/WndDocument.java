@@ -28,7 +28,7 @@
 package com.shatteredpixel.yasd.general.windows;
 
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.journal.Document;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
@@ -137,7 +137,7 @@ public class WndDocument extends Window {
 		
 		public boolean onClick( float x, float y ) {
 			if (inside( x, y ) && found) {
-				MainGame.scene().addToFront( new WndStory( doc.pageBody(page) ));
+				CPDGame.scene().addToFront( new WndStory( doc.pageBody(page) ));
 				return true;
 			} else {
 				return false;

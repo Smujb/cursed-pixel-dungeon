@@ -33,7 +33,7 @@ import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.GamesInProgress;
 import com.shatteredpixel.yasd.general.LevelHandler;
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -560,7 +560,7 @@ public abstract class Level implements Bundlable {
 		version = bundle.getInt( VERSION );
 		
 		//saves from before 0.6.5c are not supported
-		if (version < MainGame.v0_6_5c){
+		if (version < CPDGame.v0_6_5c){
 			throw new RuntimeException("old save");
 		}
 
@@ -718,7 +718,7 @@ public abstract class Level implements Bundlable {
 	}
 
 	public void addMob(Mob mob) {
-		if (MainGame.scene() instanceof GameScene && Dungeon.level == this) {
+		if (CPDGame.scene() instanceof GameScene && Dungeon.level == this) {
 			GameScene.add(mob);
 		} else {
 			mobs.add(mob);
@@ -1287,7 +1287,7 @@ public abstract class Level implements Bundlable {
 			heap.drop(item);
 		}
 
-		if (Dungeon.level != null && MainGame.scene() instanceof GameScene) {
+		if (Dungeon.level != null && CPDGame.scene() instanceof GameScene) {
 			pressCell( cell );
 		}
 		
@@ -1720,12 +1720,7 @@ public abstract class Level implements Bundlable {
 			case CHASM:
 				return Messages.get(Level.class, "chasm_desc");
 			case WATER:
-				if (Dungeon.hero.morale > Dungeon.hero.MAX_MORALE/2f) {
-					return Messages.get(Level.class, "water_desc");
-				} else {
-					return Messages.get(Level.class, "water_desc_low_morale");
-				}
-
+				return Messages.get(Level.class, "water_desc");
 			case ENTRANCE:
 				return Messages.get(Level.class, "entrance_desc");
 			case EXIT:

@@ -377,8 +377,8 @@ public abstract class Char extends Actor {
 			}
 
 			if (hasBelongings()) {
-				if (belongings.miscs[0] instanceof MissileWeapon) {//Missile Weapons are always equipped in slot 1
-					dmg = ((MissileWeapon) belongings.miscs[0]).damageRoll(this);
+				if (belongings.getWeapon() instanceof MissileWeapon) {//Missile Weapons are always equipped in slot 1
+					dmg = belongings.getWeapon().damageRoll(this);
 				}
 			}
 			int dr = enemy.drRoll(this.elementalType());

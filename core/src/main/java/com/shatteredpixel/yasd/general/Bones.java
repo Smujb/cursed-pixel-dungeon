@@ -71,7 +71,7 @@ public class Bones {
 		try {
 			FileUtils.bundleToFile( BONES_FILE, bundle );
 		} catch (IOException e) {
-			MainGame.reportException(e);
+			CPDGame.reportException(e);
 		}
 	}
 

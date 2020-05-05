@@ -192,11 +192,11 @@ public class Dungeon {
 	public static void init() {
 
 		version = Game.versionCode;
-		challenges = YASDSettings.challenges();
+		challenges = CPDSettings.challenges();
 
 		seed = DungeonSeed.randomSeed();
 
-		testing = YASDSettings.testing();
+		testing = CPDSettings.testing();
 
 		Actor.clear();
 		Actor.resetNextID();
@@ -457,7 +457,7 @@ public class Dungeon {
 		try {
 			saveAll();
 		} catch (IOException e) {
-			MainGame.reportException(e);
+			CPDGame.reportException(e);
 			/*This only catches IO errors. Yes, this means things can go wrong, and they can go wrong catastrophically.
 			But when they do the user will get a nice 'report this issue' dialogue, and I can fix the bug.*/
 		}
@@ -597,7 +597,7 @@ public class Dungeon {
 			
 		} catch (IOException e) {
 			GamesInProgress.setUnknown( save );
-			MainGame.reportException(e);
+			CPDGame.reportException(e);
 		}
 	}
 	
@@ -634,7 +634,7 @@ public class Dungeon {
 
 		difficulty = bundle.contains(DIFFICULTY) ? bundle.getEnum(DIFFICULTY, Difficulty.class) : Difficulty.fromInt(bundle.getInt(_DIFFICULTY));
 
-		testing = bundle.contains(TESTING) ? YASDSettings.testing() : bundle.getBoolean(TESTING);
+		testing = bundle.contains(TESTING) ? CPDSettings.testing() : bundle.getBoolean(TESTING);
 
 		key = bundle.contains(KEY) ? bundle.getString(KEY) : keyForDepth();
 

@@ -29,8 +29,8 @@ package com.shatteredpixel.yasd.general.messages;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.I18NBundle;
-import com.shatteredpixel.yasd.general.MainGame;
-import com.shatteredpixel.yasd.general.YASDSettings;
+import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.CPDSettings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,7 +73,7 @@ public class Messages {
 	};
 
 	static{
-		setup(YASDSettings.language());
+		setup(CPDSettings.language());
 	}
 
 	public static void setup( Languages lang ){
@@ -157,7 +157,7 @@ public class Messages {
 		try {
 			return String.format(Locale.ENGLISH, format, args);
 		} catch (IllegalFormatException e) {
-			MainGame.reportException( e );
+			CPDGame.reportException( e );
 			return format;
 		}
 	}

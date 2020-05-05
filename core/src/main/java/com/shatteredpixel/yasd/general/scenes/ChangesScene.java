@@ -28,8 +28,8 @@
 package com.shatteredpixel.yasd.general.scenes;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Chrome;
-import com.shatteredpixel.yasd.general.MainGame;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.Archs;
 import com.shatteredpixel.yasd.general.ui.ExitButton;
@@ -165,7 +165,7 @@ public class ChangesScene extends PixelScene {
 				super.onClick();
 				if (changesSelected != 0) {
 					changesSelected = 0;
-					MainGame.seamlessResetScene();
+					CPDGame.seamlessResetScene();
 				}
 			}
 		};
@@ -179,7 +179,7 @@ public class ChangesScene extends PixelScene {
 				super.onClick();
 				if (changesSelected != 1) {
 					changesSelected = 1;
-					MainGame.seamlessResetScene();
+					CPDGame.seamlessResetScene();
 				}
 			}
 		};
@@ -210,7 +210,7 @@ public class ChangesScene extends PixelScene {
 	
 	@Override
 	protected void onBackPressed() {
-		MainGame.switchScene(TitleScene.class);
+		CPDGame.switchScene(TitleScene.class);
 	}
 
 }

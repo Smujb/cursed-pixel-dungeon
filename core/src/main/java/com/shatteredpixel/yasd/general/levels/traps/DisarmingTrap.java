@@ -83,11 +83,7 @@ public class DisarmingTrap extends Trap{
 					PathFinder.buildDistanceMap(pos, Dungeon.level.passable());
 				} while (cell == -1 || PathFinder.distance[cell] < 10 || PathFinder.distance[cell] > 20);
 
-				for (int i = 0; i < hero.belongings.miscs.length; i++) {
-					if (hero.belongings.miscs[i] == weapon) {
-						hero.belongings.miscs[i] = null;
-					}
-				}
+				hero.belongings.setWeapon(null);
 				Dungeon.quickslot.clearItem(weapon);
 				weapon.updateQuickslot();
 

@@ -28,7 +28,7 @@
 package com.shatteredpixel.yasd.general.levels.rooms.special;
 
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Shopkeeper;
@@ -109,7 +109,7 @@ public class ShopRoom extends SpecialRoom {
 
 		Mob shopkeeper = Mob.create(Shopkeeper.class, level);
 		shopkeeper.pos = pos;
-		if (MainGame.scene() instanceof GameScene) {
+		if (CPDGame.scene() instanceof GameScene) {
 			GameScene.add(shopkeeper);
 		} else {
 			level.mobs.add(shopkeeper);

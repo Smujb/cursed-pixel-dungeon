@@ -32,7 +32,7 @@ import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -247,10 +247,10 @@ public abstract class Mob extends Char {
 		try {
 			mob = type.newInstance();
 		} catch (InstantiationException e) {
-			MainGame.reportException(e);
+			CPDGame.reportException(e);
 			throw new RuntimeException(e.getCause());
 		} catch (IllegalAccessException e) {
-			MainGame.reportException(e);
+			CPDGame.reportException(e);
 			throw new RuntimeException(e.getCause());
 		}
 		mob.level = level;
@@ -804,7 +804,7 @@ public abstract class Mob extends Char {
 	
 	@Override
 	public int defenseProc(Char enemy, int damage) {
-		if (enemy instanceof Hero && ((Hero) enemy).belongings.miscs[0] instanceof MissileWeapon){
+		if (enemy instanceof Hero && ((Hero) enemy).belongings.getWeapon() instanceof MissileWeapon){
 			hitWithRanged = true;
 		}
 

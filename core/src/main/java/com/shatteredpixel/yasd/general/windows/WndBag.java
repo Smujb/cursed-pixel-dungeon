@@ -30,7 +30,7 @@ package com.shatteredpixel.yasd.general.windows;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.YASDAction;
+import com.shatteredpixel.yasd.general.CPDAction;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
@@ -72,8 +72,6 @@ import com.watabou.noosa.ColorBlock;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
-
-import org.jetbrains.annotations.NotNull;
 
 public class WndBag extends WndTabbed {
 	
@@ -200,7 +198,7 @@ public class WndBag extends WndTabbed {
 	}
 
 	public boolean onSignal(KeyEvent event) {
-		if (event.pressed && KeyBindings.getActionForKey( event ) == YASDAction.INVENTORY) {
+		if (event.pressed && KeyBindings.getActionForKey( event ) == CPDAction.INVENTORY) {
 			hide();
 			return true;
 		} else {

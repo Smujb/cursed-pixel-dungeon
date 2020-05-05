@@ -59,7 +59,7 @@ public class Lore {
 			TextScene.init(text, null, level.loadImg(), 5, 0.67f, new Callback() {
 				@Override
 				public void call() {
-					MainGame.switchScene(GameScene.class);
+					CPDGame.switchScene(GameScene.class);
 				}
 			}, null, false);
 		}

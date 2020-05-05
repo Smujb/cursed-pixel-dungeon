@@ -50,9 +50,6 @@ public class Starflower extends Plant {
 			Buff.prolong(ch, Bless.class, Bless.DURATION);
 			if (ch instanceof Hero && ((Hero) ch).subClass == HeroSubClass.WARDEN){
 				Buff.prolong(ch, Recharging.class, Bless.DURATION);
-				if (ch instanceof Hero) {
-					((Hero)ch).gainMorale(Random.Float()+0.5f);//5% to 15% Morale gain
-				}
 			}
 		}
 

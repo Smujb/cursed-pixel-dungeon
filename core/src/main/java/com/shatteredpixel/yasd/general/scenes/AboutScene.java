@@ -27,7 +27,7 @@
 
 package com.shatteredpixel.yasd.general.scenes;
 
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.ui.Archs;
 import com.shatteredpixel.yasd.general.ui.ExitButton;
@@ -171,6 +171,6 @@ public class AboutScene extends PixelScene {
 	
 	@Override
 	protected void onBackPressed() {
-		MainGame.switchScene(TitleScene.class);
+		CPDGame.switchScene(TitleScene.class);
 	}
 }

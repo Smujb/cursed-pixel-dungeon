@@ -120,7 +120,7 @@ public class Belongings implements Iterable<Item> {
 		return false;
 	}
 
-	public ArrayList<KindofMisc> getEquippedItemsOFType( Class type ) {//Find equipped items of a certain kind
+	public ArrayList<KindofMisc> getMiscsOfType(Class type ) {//Find equipped items of a certain kind
 		ArrayList<KindofMisc> items = new ArrayList<>();
 		for (KindofMisc misc : miscs) {
 			if (type.isInstance(misc)) {

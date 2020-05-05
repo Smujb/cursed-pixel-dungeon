@@ -39,7 +39,7 @@ import com.shatteredpixel.yasd.general.sprites.HeroSprite;
 import com.shatteredpixel.yasd.general.windows.WndGame;
 import com.shatteredpixel.yasd.general.windows.WndHero;
 import com.shatteredpixel.yasd.general.windows.WndJournal;
-import com.shatteredpixel.yasd.general.YASDAction;
+import com.shatteredpixel.yasd.general.CPDAction;
 import com.watabou.input.GameAction;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Camera;
@@ -64,7 +64,7 @@ public class StatusPane extends Component {
 	private Image shieldedHP;
 	private Image hp;
 	private Image air;
-	private Image morale;
+	private Image mana;
 	private Image exp;
 	private Image difficulty;
 	private Emitter bubbles;
@@ -104,7 +104,7 @@ public class StatusPane extends Component {
 			}
 			@Override
 			public GameAction keyAction() {
-				return YASDAction.HERO_INFO;
+				return CPDAction.HERO_INFO;
 			}
 		}.setRect( 0, 1, 30, 30 ));
 
@@ -143,8 +143,8 @@ public class StatusPane extends Component {
 		bubbles.on = false;
 		add( bubbles );
 
-		morale = new Image( Assets.MORALE_BAR );
-		add( morale );
+		mana = new Image( Assets.MORALE_BAR );
+		add(mana);
 
 		exp = new Image( Assets.XP_BAR );
 		add( exp );
@@ -192,10 +192,10 @@ public class StatusPane extends Component {
 		compass.y = avatar.y + avatar.height / 2f - compass.origin.y;
 		PixelScene.align(compass);
 
-		hp.x = shieldedHP.x = rawShielding.x = morale.x = 30;
+		hp.x = shieldedHP.x = rawShielding.x = mana.x = 30;
 		hp.y = shieldedHP.y = rawShielding.y = 4;
 
-		morale.y = 11;
+		mana.y = 11;
 
 		air.x = 1;
 		air.y = 30;
@@ -235,8 +235,6 @@ public class StatusPane extends Component {
 		float health = Dungeon.hero.HP;
 		float shield = Dungeon.hero.shielding();
 		float max = Dungeon.hero.HT;
-		float maxMorale = Dungeon.hero.MAX_MORALE;
-		float moraleAmt = Dungeon.hero.morale;
 
 		if (!Dungeon.hero.isAlive()) {
 			avatar.tint(0x000000, 0.5f);
@@ -251,7 +249,7 @@ public class StatusPane extends Component {
 		hp.scale.x = Math.max( 0, (health-shield)/max);
 		shieldedHP.scale.x = health/max;
 		rawShielding.scale.x = shield/max;
-		morale.scale.x = moraleAmt/maxMorale;
+		mana.scale.x = 1f;//TODO
 
 		air.scale.x = LimitedAir.percentage(Dungeon.hero);
 
@@ -315,7 +313,7 @@ public class StatusPane extends Component {
 
 		@Override
 		public GameAction keyAction() {
-			return YASDAction.JOURNAL;
+			return CPDAction.JOURNAL;
 		}
 
 		@Override

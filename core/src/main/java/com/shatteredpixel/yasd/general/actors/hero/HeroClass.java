@@ -34,6 +34,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.BrokenSeal;
 import com.shatteredpixel.yasd.general.items.DeveloperItem;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.alcohol.Beer;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
@@ -148,8 +149,8 @@ public enum HeroClass {
 	}
 
 	private static void initWarrior( Hero hero ) {
-		(hero.belongings.miscs[0] = new Basic()).identify();
-		(hero.belongings.miscs[1] = new ChainArmor()).identify();
+		hero.belongings.setWeapon((KindOfWeapon) new Basic().identify());
+		(hero.belongings.armor = new ChainArmor()).identify();
 		ThrowingStone stones = new ThrowingStone();
 		stones.quantity(3).collect();
 		Dungeon.quickslot.setSlot(0, stones);
@@ -170,8 +171,8 @@ public enum HeroClass {
 		
 		staff = new MagesStaff(new WandOfMagicMissile());
 
-		(hero.belongings.miscs[0] = staff).identify();
-		(hero.belongings.miscs[1] = new MageArmor()).identify();
+		hero.belongings.setWeapon((KindOfWeapon) staff.identify());
+		(hero.belongings.armor = new MageArmor()).identify();
 		hero.belongings.getWeapon().activate(hero);
 
 		Dungeon.quickslot.setSlot(0, staff);
@@ -185,9 +186,8 @@ public enum HeroClass {
 	}
 
 	private static void initRogue( Hero hero ) {
-		(hero.belongings.miscs[0] = new Sneak()).identify();
-		(hero.belongings.miscs[1] = new RogueArmor()).identify();
-		//TODO Add another unique item for Rogue
+		hero.belongings.setWeapon((KindOfWeapon) new Sneak().identify());
+		(hero.belongings.armor = new RogueArmor()).identify();
 		//CloakOfShadows cloak = new CloakOfShadows();
 		//(hero.belongings.miscs[2] = cloak).identify();
 		//hero.belongings.miscs[2].activate( hero );
@@ -208,8 +208,8 @@ public enum HeroClass {
 
 	private static void initHuntress( Hero hero ) {
 
-		(hero.belongings.miscs[0] = new Fist()).identify();
-		(hero.belongings.miscs[1] = new HuntressArmor()).identify();
+		hero.belongings.setWeapon((KindOfWeapon) new Fist().identify());
+		(hero.belongings.armor = new HuntressArmor()).identify();
 		SpiritBow bow = new SpiritBow();
 		bow.identify().collect();
 

@@ -39,7 +39,7 @@ import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PlatformSupport;
 
-public class MainGame extends Game {
+public class CPDGame extends Game {
 	
 	//variable constants for specific older versions of shattered, used for data conversion
 	//versions older than v0.6.5c are no longer supported, and data from them is ignored
@@ -73,7 +73,7 @@ public class MainGame extends Game {
 	public static final int v0_3_2  = 429;
 	public static final int v0_3_3  = 430;
 	
-	public MainGame(PlatformSupport platform ) {
+	public CPDGame(PlatformSupport platform ) {
 		super( sceneClass == null ? WelcomeScene.class : sceneClass, platform );
 		
 		//v0.7.0
@@ -162,12 +162,12 @@ public class MainGame extends Game {
 		super.create();
 
 		updateSystemUI();
-		YASDAction.loadBindings();
+		CPDAction.loadBindings();
 		
-		Music.INSTANCE.enable( YASDSettings.music() );
-		Music.INSTANCE.volume( YASDSettings.musicVol()/10f );
-		Sample.INSTANCE.enable( YASDSettings.soundFx() );
-		Sample.INSTANCE.volume( YASDSettings.SFXVol()/10f );
+		Music.INSTANCE.enable( CPDSettings.music() );
+		Music.INSTANCE.volume( CPDSettings.musicVol()/10f );
+		Sample.INSTANCE.enable( CPDSettings.soundFx() );
+		Sample.INSTANCE.volume( CPDSettings.SFXVol()/10f );
 
 		Sample.INSTANCE.load(
 				Assets.SND_CLICK,

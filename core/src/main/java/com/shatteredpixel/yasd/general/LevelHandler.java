@@ -43,7 +43,6 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.FileUtils;
 
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
@@ -181,9 +180,9 @@ public class LevelHandler {
 		TextScene.init(Messages.get(Mode.class, Mode.CONTINUE.name()), Messages.get(LevelHandler.class, "continue"), Dungeon.newLevel( Dungeon.keyForDepth(), false).loadImg(), getSpeed(), 0.67f, new Callback() {
 			@Override
 			public void call() {
-				MainGame.switchScene(GameScene.class);
+				CPDGame.switchScene(GameScene.class);
 			}
-		}, getThread(), YASDSettings.fastInterlevelScene());
+		}, getThread(), CPDSettings.fastInterlevelScene());
 	}
 
 	public static void doInit() {
@@ -194,7 +193,7 @@ public class LevelHandler {
 		TextScene.init(Messages.get(Mode.class, Mode.DESCEND.name()), Messages.get(LevelHandler.class, "continue"), Dungeon.newLevel( Dungeon.keyForDepth(), false).loadImg(), getSpeed(), 0.67f, new Callback() {
 			@Override
 			public void call() {
-				MainGame.switchScene(GameScene.class);
+				CPDGame.switchScene(GameScene.class);
 			}
 		}, new Thread() {
 			@Override
@@ -205,7 +204,7 @@ public class LevelHandler {
 					throw new RuntimeException(e);
 				}
 			}
-		}, YASDSettings.fastInterlevelScene());
+		}, CPDSettings.fastInterlevelScene());
 	}
 
 	public static void move(String key, String msg, Mode mode, int depth, int pos) {
@@ -216,9 +215,9 @@ public class LevelHandler {
 		TextScene.init(msg, Messages.get(LevelHandler.class, "continue"), Dungeon.newLevel( Dungeon.keyForDepth(), false).loadImg(), getSpeed(), 0.67f, new Callback() {
 			@Override
 			public void call() {
-				MainGame.switchScene(GameScene.class);
+				CPDGame.switchScene(GameScene.class);
 			}
-		}, getThread(), YASDSettings.fastInterlevelScene());
+		}, getThread(), CPDSettings.fastInterlevelScene());
 	}
 
 	public static void resetMode() {

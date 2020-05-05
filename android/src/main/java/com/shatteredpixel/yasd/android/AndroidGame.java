@@ -38,8 +38,8 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.rohitss.uceh.UCEHandler;
 import com.shatteredpixel.yasd.UpdateImpl;
-import com.shatteredpixel.yasd.general.YASDSettings;
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.services.Updates;
 import com.watabou.noosa.Game;
 import com.watabou.utils.FileUtils;
@@ -79,11 +79,11 @@ public class AndroidGame extends AndroidApplication {
 		// so that we don't need to rely on Gdx.app, which isn't initialized yet.
 		// Note that we use a different prefs name on android for legacy purposes,
 		// this is the default prefs filename given to an android app (.xml is automatically added to it)
-		YASDSettings.set(instance.getPreferences("ShatteredPixelDungeon"));
+		CPDSettings.set(instance.getPreferences("ShatteredPixelDungeon"));
 		
 		//set desired orientation (if it exists) before initializing the app.
-		if (YASDSettings.landscape() != null) {
-			AndroidGame.instance.setRequestedOrientation( YASDSettings.landscape() ?
+		if (CPDSettings.landscape() != null) {
+			AndroidGame.instance.setRequestedOrientation( CPDSettings.landscape() ?
 					ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE :
 					ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT );
 		}
@@ -104,8 +104,8 @@ public class AndroidGame extends AndroidApplication {
 		
 		support.updateSystemUI();
 
-		MainGame mainGame = new MainGame(support);
-		initialize(mainGame, config);
+		CPDGame cpdGame = new CPDGame(support);
+		initialize(cpdGame, config);
 		
 		view = (GLSurfaceView)graphics.getView();
 	}

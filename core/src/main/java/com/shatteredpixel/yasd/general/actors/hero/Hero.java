@@ -30,14 +30,14 @@ package com.shatteredpixel.yasd.general.actors.hero;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Bones;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.GamesInProgress;
 import com.shatteredpixel.yasd.general.LevelHandler;
-import com.shatteredpixel.yasd.general.MainGame;
-import com.shatteredpixel.yasd.general.YASDSettings;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.blobs.Alchemy;
@@ -45,7 +45,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Amok;
 import com.shatteredpixel.yasd.general.actors.buffs.Awareness;
 import com.shatteredpixel.yasd.general.actors.buffs.Barkskin;
 import com.shatteredpixel.yasd.general.actors.buffs.Berserk;
-import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Bless;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Combo;
@@ -142,9 +141,6 @@ public class Hero extends Char {
 		immunities.add(Amok.class);
 	}
 
-	public final float MAX_MORALE = 10f;
-	public float morale = MAX_MORALE;
-
 	public static final int STARTING_STR = 10;
 
 	private int Power      = 1;
@@ -180,8 +176,6 @@ public class Hero extends Char {
 	//This list is maintained so that some logic checks can be skipped
 	// for enemies we know we aren't seeing normally, resulting in better performance
 
-	public class Morale{}
-
 	public ArrayList<Mob> mindVisionEnemies = new ArrayList<>();
 	
 	public Hero() {
@@ -204,73 +198,6 @@ public class Hero extends Char {
 		HT = 20 + 5*(lvl-1) + HTBoost;
 		heal(HT-preHT);
 		super.updateHT(boostHP);
-	}
-
-	private void moraleCheck() {
-		if (morale > MAX_MORALE*0.67) {
-			return;
-
-		} else if (morale > MAX_MORALE*0.33) {
-			int choice = Random.Int(5) + 1;
-			String messageTitle = "low_morale_" + choice;
-			GLog.w(Messages.get(Hero.class, messageTitle));
-
-		} else {
-			int choice = Random.Int(5) + 1;
-			String messageTitle = "very_low_morale_" + choice;
-			GLog.w(Messages.get(Hero.class, messageTitle));
-
-		}
-	}
-
-	public void loseMorale(float Amount) {
-		loseMorale(Amount, true);
-	}
-
-	public void loseMorale(float Amount, boolean say) {
-		if (!Constants.MORALE) {
-			return;
-		}
-		/*float difficultyMultiplier;
-		switch (Dungeon.difficulty) {
-			case 1:// -33% Morale loss in Easy
-				difficultyMultiplier = 0.67f;
-				break;
-			case 2:
-			default://Normal Morale loss in Medium
-				difficultyMultiplier = 1f;
-				break;
-			case 3://+50% Morale loss in Hard
-				difficultyMultiplier = 1.5f;
-				break;
-
-		}*/
-		Amount *= Dungeon.difficulty.moraleFactor();
-		morale -= Amount;
-		morale = Math.max(morale, 0);
-		if (buff(Drunk.class) == null) {//Can't lose Morale when drunk
-			if (this.sprite != null) {
-				this.sprite.showStatus(CharSprite.NEGATIVE, Messages.get(Morale.class, "loss"));
-			}
-			if (say) {
-				moraleCheck();
-			}
-			if (morale == 0f & isAlive()) {
-				Buff.affect(this, Bleeding.class).set(Math.max(1, this.HP / 6));
-				morale += Random.Float() + 2;
-			}
-		}
-	}
-
-	public void gainMorale(float Amount) {
-		if (!Constants.MORALE) {
-			return;
-		}
-		morale += Amount;
-		morale = Math.min(morale, MAX_MORALE);
-		if (this.sprite != null) {
-			this.sprite.showStatus(CharSprite.NEUTRAL, Messages.get(Morale.class, "gain"));
-		}
 	}
 
 	public int getPower() {
@@ -367,9 +294,6 @@ public class Hero extends Char {
 		
 		bundle.put( HTBOOST, HTBoost );
 
-		//Morale
-		bundle.put( MORALE, morale );
-
 
 		//Hero stats
 		bundle.put( POWER, Power );
@@ -395,9 +319,6 @@ public class Hero extends Char {
 		exp = bundle.getInt( EXPERIENCE );
 		
 		HTBoost = bundle.getInt(HTBOOST);
-
-		//Morale
-		morale = bundle.getFloat(MORALE);
 
 		//Hero stats
 		Power = bundle.getInt( POWER );
@@ -480,16 +401,13 @@ public class Hero extends Char {
 	@Override
 	public int attackSkill( Char target ) {
 		attackSkill = 9 + getPerception();
-		float moraleMultiplier = (float) ((morale - MAX_MORALE) * 0.04);
-		return (int) (super.attackSkill(target)*(1+moraleMultiplier));
+		return super.attackSkill(target);
 	}
 
 	@Override
 	public int defenseSkill( Char enemy ) {
 		defenseSkill = 3 + getEvasion();
-		float moraleMultiplier = (float) ((morale - MAX_MORALE) * 0.04);
-		//GLog.w(String.valueOf(evasion));
-		return (int) (super.defenseSkill(enemy)*(1+moraleMultiplier));
+		return super.defenseSkill(enemy);
 	}
 
 	@Override
@@ -746,7 +664,7 @@ public class Hero extends Char {
 				Alchemy.alchPos = dst;
 				AlchemyScene.setProvider( alch );
 			}
-			MainGame.switchScene(AlchemyScene.class);
+			CPDGame.switchScene(AlchemyScene.class);
 			return false;
 
 		} else if (getCloser( dst )) {
@@ -1006,13 +924,8 @@ public class Hero extends Char {
 			if (shake > 0.5f) {
 				float divisor = 3 + 12*((HP + shielding()) / (float)(HT + shielding()));
 				GameScene.flash( (int)(0xFF/divisor) << 16 );
-				if (YASDSettings.vibrate()) {
-					MainGame.vibrate(Math.min(250, (int) (shake * 50)));
-				}
-				if (shake > 1f) {
-					loseMorale(shake * 0.33f);
-				} else {
-					loseMorale(shake * 0.33f, false);
+				if (CPDSettings.vibrate()) {
+					CPDGame.vibrate(Math.min(250, (int) (shake * 50)));
 				}
 			}
 		}
@@ -1158,7 +1071,7 @@ public class Hero extends Char {
 			
 			float speed = speed();
 			if (Dungeon.isChallenged(Challenges.COLLAPSING_FLOOR) & (Dungeon.level.map[pos] == Terrain.EMPTY || Dungeon.level.map[pos] == Terrain.EMPTY_SP || Dungeon.level.map[pos] == Terrain.EMBERS)) {
-				if (MainGame.scene() instanceof GameScene) {
+				if (CPDGame.scene() instanceof GameScene) {
 					if (!isFlying()) {
 						Dungeon.level.set(pos, Terrain.CHASM);
 					}
@@ -1310,12 +1223,10 @@ public class Hero extends Char {
 				GLog.p( Messages.get(this, "new_level"), lvl );
 				sprite.showStatus( CharSprite.POSITIVE, Messages.get(Hero.class, "level_up") );
 				Sample.INSTANCE.play( Assets.SND_LEVELUP );
-				float missingMoralePercent = (float) (1f - (morale/MAX_MORALE)*0.1);
-				gainMorale(missingMoralePercent*0.5f);//Gains more Morale on level up when on low Morale (up to 1)
 			}
 
 			DistributionPoints += 3;
-			MainGame.runOnRenderThread(new Callback() {
+			CPDGame.runOnRenderThread(new Callback() {
 				@Override
 				public void call() {
 					WndHero window = new WndHero();

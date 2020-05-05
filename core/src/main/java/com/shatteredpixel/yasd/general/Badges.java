@@ -207,7 +207,7 @@ public class Badges {
 					badges.add( Badge.valueOf( names[i] ) );
 				}
 			} catch (Exception e) {
-				MainGame.reportException(e);
+				CPDGame.reportException(e);
 			}
 		}
 	
@@ -254,7 +254,7 @@ public class Badges {
 				FileUtils.bundleToFile(BADGES_FILE, bundle);
 				saveNeeded = false;
 			} catch (IOException e) {
-				MainGame.reportException(e);
+				CPDGame.reportException(e);
 			}
 		}
 	}

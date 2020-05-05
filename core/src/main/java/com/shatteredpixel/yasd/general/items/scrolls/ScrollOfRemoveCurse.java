@@ -76,10 +76,6 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 			GLog.p( Messages.get(this, "cleansed") );
 		} else {
 			GLog.i( Messages.get(this, "not_cleansed") );
-			if (Dungeon.hero.morale < Dungeon.hero.MAX_MORALE/2) {
-				GLog.n(Messages.get(this, "not_cleansed_low_morale"));
-				Dungeon.hero.loseMorale(0.2f);
-			}
 		}
 	}
 

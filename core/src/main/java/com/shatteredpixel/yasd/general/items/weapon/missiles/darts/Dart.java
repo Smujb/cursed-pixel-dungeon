@@ -54,7 +54,6 @@ public class Dart extends MissileWeapon {
 		//infinite, even with penalties
 		baseUses = 1000;
 	}
-	public int CurrentCrossbow = 0;
 
 	protected static final String AC_TIP = "TIP";
 	
@@ -96,28 +95,13 @@ public class Dart extends MissileWeapon {
 	}
 	
 	private static Projectile bow;
-	
-	private ArrayList<KindofMisc> getCrossbows(){
-		return Dungeon.hero.belongings.getEquippedItemsOFType( Projectile.class );
-	}
 
 	private Projectile getCrossbow() {
-		resetCrossbow();
-		if (numberOfBows() > 0) {
-			return ((Projectile) getCrossbows().get(CurrentCrossbow));
+		if (curUser.belongings.getWeapon() instanceof Projectile) {
+			return ((Projectile) curUser.belongings.getWeapon());
 		} else {
 			return null;
 		}
-	}
-
-	private void resetCrossbow() {
-		if (CurrentCrossbow > this.getCrossbows().size() - 1) {
-			CurrentCrossbow = 0;
-		}
-	}
-
-	private int numberOfBows() {
-		return getCrossbows().size();
 	}
 	
 	@Override
@@ -140,17 +124,7 @@ public class Dart extends MissileWeapon {
 	}
 
 	@Override
-	public float castDelay(Char user, int dst) {
-		int bows = numberOfBows();
-		if (bows <= 0) {
-			bows = 1;
-		}
-		return super.castDelay(user, dst)/bows;
-	}
-
-	@Override
 	protected void onThrow(int cell) {
-		CurrentCrossbow += 1;
 		bow = getCrossbow();
 		super.onThrow(cell);
 	}

@@ -34,93 +34,92 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.FileUtils;
 
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
-public class YASDAction extends GameAction {
+public class CPDAction extends GameAction {
 
 	//--Existing actions from GameAction
 	public static final GameAction NONE  = GameAction.NONE;
 	public static final GameAction BACK  = GameAction.BACK;
 	//--
 
-	protected YASDAction( String name ){
+	protected CPDAction(String name ){
 		super( name );
 	}
 
-	public static final GameAction HERO_INFO   = new YASDAction("hero_info");
-	public static final GameAction JOURNAL     = new YASDAction("journal");
+	public static final GameAction HERO_INFO   = new CPDAction("hero_info");
+	public static final GameAction JOURNAL     = new CPDAction("journal");
 
-	public static final GameAction WAIT        = new YASDAction("wait");
-	public static final GameAction SEARCH      = new YASDAction("search");
+	public static final GameAction WAIT        = new CPDAction("wait");
+	public static final GameAction SEARCH      = new CPDAction("search");
 
-	public static final GameAction INVENTORY   = new YASDAction("inventory");
-	public static final GameAction QUICKSLOT_1 = new YASDAction("quickslot_1");
-	public static final GameAction QUICKSLOT_2 = new YASDAction("quickslot_2");
-	public static final GameAction QUICKSLOT_3 = new YASDAction("quickslot_3");
-	public static final GameAction QUICKSLOT_4 = new YASDAction("quickslot_4");
+	public static final GameAction INVENTORY   = new CPDAction("inventory");
+	public static final GameAction QUICKSLOT_1 = new CPDAction("quickslot_1");
+	public static final GameAction QUICKSLOT_2 = new CPDAction("quickslot_2");
+	public static final GameAction QUICKSLOT_3 = new CPDAction("quickslot_3");
+	public static final GameAction QUICKSLOT_4 = new CPDAction("quickslot_4");
 
-	public static final GameAction TAG_ATTACK  = new YASDAction("tag_attack");
-	public static final GameAction TAG_DANGER  = new YASDAction("tag_danger");
-	public static final GameAction TAG_ACTION  = new YASDAction("tag_action");
-	public static final GameAction TAG_LOOT    = new YASDAction("tag_loot");
-	public static final GameAction TAG_RESUME  = new YASDAction("tag_resume");
+	public static final GameAction TAG_ATTACK  = new CPDAction("tag_attack");
+	public static final GameAction TAG_DANGER  = new CPDAction("tag_danger");
+	public static final GameAction TAG_ACTION  = new CPDAction("tag_action");
+	public static final GameAction TAG_LOOT    = new CPDAction("tag_loot");
+	public static final GameAction TAG_RESUME  = new CPDAction("tag_resume");
 
-	public static final GameAction ZOOM_IN     = new YASDAction("zoom_in");
-	public static final GameAction ZOOM_OUT    = new YASDAction("zoom_out");
+	public static final GameAction ZOOM_IN     = new CPDAction("zoom_in");
+	public static final GameAction ZOOM_OUT    = new CPDAction("zoom_out");
 
-	public static final GameAction N           = new YASDAction("n");
-	public static final GameAction E           = new YASDAction("e");
-	public static final GameAction S           = new YASDAction("s");
-	public static final GameAction W           = new YASDAction("w");
-	public static final GameAction NE          = new YASDAction("ne");
-	public static final GameAction SE          = new YASDAction("se");
-	public static final GameAction SW          = new YASDAction("sw");
-	public static final GameAction NW          = new YASDAction("nw");
+	public static final GameAction N           = new CPDAction("n");
+	public static final GameAction E           = new CPDAction("e");
+	public static final GameAction S           = new CPDAction("s");
+	public static final GameAction W           = new CPDAction("w");
+	public static final GameAction NE          = new CPDAction("ne");
+	public static final GameAction SE          = new CPDAction("se");
+	public static final GameAction SW          = new CPDAction("sw");
+	public static final GameAction NW          = new CPDAction("nw");
 
 	private static final LinkedHashMap<Integer, GameAction> defaultBindings = new LinkedHashMap<>();
 	static {
-		defaultBindings.put( Input.Keys.ESCAPE,      YASDAction.BACK );
-		defaultBindings.put( Input.Keys.BACKSPACE,   YASDAction.BACK );
+		defaultBindings.put( Input.Keys.ESCAPE,      CPDAction.BACK );
+		defaultBindings.put( Input.Keys.BACKSPACE,   CPDAction.BACK );
 
-		defaultBindings.put( Input.Keys.H,           YASDAction.HERO_INFO );
-		defaultBindings.put( Input.Keys.J,           YASDAction.JOURNAL );
+		defaultBindings.put( Input.Keys.H,           CPDAction.HERO_INFO );
+		defaultBindings.put( Input.Keys.J,           CPDAction.JOURNAL );
 
-		defaultBindings.put( Input.Keys.SPACE,       YASDAction.WAIT );
-		defaultBindings.put( Input.Keys.S,           YASDAction.SEARCH );
+		defaultBindings.put( Input.Keys.SPACE,       CPDAction.WAIT );
+		defaultBindings.put( Input.Keys.S,           CPDAction.SEARCH );
 
-		defaultBindings.put( Input.Keys.I,           YASDAction.INVENTORY );
-		defaultBindings.put( Input.Keys.Q,           YASDAction.QUICKSLOT_1 );
-		defaultBindings.put( Input.Keys.W,           YASDAction.QUICKSLOT_2 );
-		defaultBindings.put( Input.Keys.E,           YASDAction.QUICKSLOT_3 );
-		defaultBindings.put( Input.Keys.R,           YASDAction.QUICKSLOT_4 );
+		defaultBindings.put( Input.Keys.I,           CPDAction.INVENTORY );
+		defaultBindings.put( Input.Keys.Q,           CPDAction.QUICKSLOT_1 );
+		defaultBindings.put( Input.Keys.W,           CPDAction.QUICKSLOT_2 );
+		defaultBindings.put( Input.Keys.E,           CPDAction.QUICKSLOT_3 );
+		defaultBindings.put( Input.Keys.R,           CPDAction.QUICKSLOT_4 );
 
-		defaultBindings.put( Input.Keys.A,           YASDAction.TAG_ATTACK );
-		defaultBindings.put( Input.Keys.TAB,         YASDAction.TAG_DANGER );
-		defaultBindings.put( Input.Keys.D,           YASDAction.TAG_ACTION );
-		defaultBindings.put( Input.Keys.ENTER,       YASDAction.TAG_LOOT );
-		defaultBindings.put( Input.Keys.T,           YASDAction.TAG_RESUME );
+		defaultBindings.put( Input.Keys.A,           CPDAction.TAG_ATTACK );
+		defaultBindings.put( Input.Keys.TAB,         CPDAction.TAG_DANGER );
+		defaultBindings.put( Input.Keys.D,           CPDAction.TAG_ACTION );
+		defaultBindings.put( Input.Keys.ENTER,       CPDAction.TAG_LOOT );
+		defaultBindings.put( Input.Keys.T,           CPDAction.TAG_RESUME );
 
-		defaultBindings.put( Input.Keys.PLUS,        YASDAction.ZOOM_IN );
-		defaultBindings.put( Input.Keys.EQUALS,      YASDAction.ZOOM_IN );
-		defaultBindings.put( Input.Keys.MINUS,       YASDAction.ZOOM_OUT );
+		defaultBindings.put( Input.Keys.PLUS,        CPDAction.ZOOM_IN );
+		defaultBindings.put( Input.Keys.EQUALS,      CPDAction.ZOOM_IN );
+		defaultBindings.put( Input.Keys.MINUS,       CPDAction.ZOOM_OUT );
 
-		defaultBindings.put( Input.Keys.UP,          YASDAction.N );
-		defaultBindings.put( Input.Keys.RIGHT,       YASDAction.E );
-		defaultBindings.put( Input.Keys.DOWN,        YASDAction.S );
-		defaultBindings.put( Input.Keys.LEFT,        YASDAction.W );
+		defaultBindings.put( Input.Keys.UP,          CPDAction.N );
+		defaultBindings.put( Input.Keys.RIGHT,       CPDAction.E );
+		defaultBindings.put( Input.Keys.DOWN,        CPDAction.S );
+		defaultBindings.put( Input.Keys.LEFT,        CPDAction.W );
 
-		defaultBindings.put( Input.Keys.NUMPAD_5,    YASDAction.WAIT );
-		defaultBindings.put( Input.Keys.NUMPAD_8,    YASDAction.N );
-		defaultBindings.put( Input.Keys.NUMPAD_9,    YASDAction.NE );
-		defaultBindings.put( Input.Keys.NUMPAD_6,    YASDAction.E );
-		defaultBindings.put( Input.Keys.NUMPAD_3,    YASDAction.SE );
-		defaultBindings.put( Input.Keys.NUMPAD_2,    YASDAction.S );
-		defaultBindings.put( Input.Keys.NUMPAD_1,    YASDAction.SW );
-		defaultBindings.put( Input.Keys.NUMPAD_4,    YASDAction.W );
-		defaultBindings.put( Input.Keys.NUMPAD_7,    YASDAction.NW );
+		defaultBindings.put( Input.Keys.NUMPAD_5,    CPDAction.WAIT );
+		defaultBindings.put( Input.Keys.NUMPAD_8,    CPDAction.N );
+		defaultBindings.put( Input.Keys.NUMPAD_9,    CPDAction.NE );
+		defaultBindings.put( Input.Keys.NUMPAD_6,    CPDAction.E );
+		defaultBindings.put( Input.Keys.NUMPAD_3,    CPDAction.SE );
+		defaultBindings.put( Input.Keys.NUMPAD_2,    CPDAction.S );
+		defaultBindings.put( Input.Keys.NUMPAD_1,    CPDAction.SW );
+		defaultBindings.put( Input.Keys.NUMPAD_4,    CPDAction.W );
+		defaultBindings.put( Input.Keys.NUMPAD_7,    CPDAction.NW );
 	}
 
 
@@ -131,8 +130,8 @@ public class YASDAction extends GameAction {
 
 	//hard bindings for android devices
 	static {
-		KeyBindings.addHardBinding( Input.Keys.BACK, YASDAction.BACK );
-		KeyBindings.addHardBinding( Input.Keys.MENU, YASDAction.INVENTORY );
+		KeyBindings.addHardBinding( Input.Keys.BACK, CPDAction.BACK );
+		KeyBindings.addHardBinding( Input.Keys.MENU, CPDAction.INVENTORY );
 	}
 
 	//we only save/loads keys which differ from the default configuration.

@@ -27,8 +27,8 @@
 
 package com.shatteredpixel.yasd.general.windows;
 
-import com.shatteredpixel.yasd.general.MainGame;
-import com.shatteredpixel.yasd.general.YASDAction;
+import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.CPDAction;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
@@ -121,7 +121,7 @@ public class WndKeyBindings extends Window {
 		RedButton btnDefaults = new RedButton(Messages.get(this, "default"), 9){
 			@Override
 			protected void onClick() {
-				changedBindings = YASDAction.getDefaults();
+				changedBindings = CPDAction.getDefaults();
 				for (BindingItem i : listItems){
 					int key1 = 0;
 					int key2 = 0;
@@ -142,7 +142,7 @@ public class WndKeyBindings extends Window {
 			@Override
 			protected void onClick() {
 				KeyBindings.setAllBindings(changedBindings);
-				YASDAction.saveBindings();
+				CPDAction.saveBindings();
 				hide();
 			}
 		};
@@ -265,11 +265,11 @@ public class WndKeyBindings extends Window {
 			if (inside(x, y)){
 				//assigning second key
 				if (x >= this.x + 3*width()/4 && key1 != 0) {
-					MainGame.scene().addToFront( new WndChangeBinding(gameAction, this, false, key2, key1));
+					CPDGame.scene().addToFront( new WndChangeBinding(gameAction, this, false, key2, key1));
 
 					//assigning first key
 				} else if (x >= this.x + width()/2){
-					MainGame.scene().addToFront( new WndChangeBinding(gameAction, this, true, key1, key2));
+					CPDGame.scene().addToFront( new WndChangeBinding(gameAction, this, true, key1, key2));
 
 				}
 				return true;

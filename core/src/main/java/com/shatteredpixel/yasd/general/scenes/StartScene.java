@@ -28,9 +28,9 @@
 package com.shatteredpixel.yasd.general.scenes;
 
 import com.shatteredpixel.yasd.general.Badges;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Chrome;
 import com.shatteredpixel.yasd.general.GamesInProgress;
-import com.shatteredpixel.yasd.general.MainGame;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.journal.Journal;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -120,7 +120,7 @@ public class StartScene extends PixelScene {
 	
 	@Override
 	protected void onBackPressed() {
-		MainGame.switchScene( TitleScene.class );
+		CPDGame.switchScene( TitleScene.class );
 	}
 	
 	private static class SaveSlotButton extends Button {
@@ -265,9 +265,9 @@ public class StartScene extends PixelScene {
 		@Override
 		protected void onClick() {
 			if (newGame) {
-				MainGame.scene().add( new WndStartGame(slot, false));
+				CPDGame.scene().add( new WndStartGame(slot, false));
 			} else {
-				MainGame.scene().add( new WndGameInProgress(slot));
+				CPDGame.scene().add( new WndGameInProgress(slot));
 			}
 		}
 	}

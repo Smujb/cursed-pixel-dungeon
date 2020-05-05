@@ -27,7 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.spells;
 
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -50,7 +50,7 @@ public class Alchemize extends Spell implements AlchemyScene.AlchemyProvider {
 		detach( curUser.belongings.backpack );
 		updateQuickslot();
 		AlchemyScene.setProvider(this);
-		MainGame.switchScene(AlchemyScene.class);
+		CPDGame.switchScene(AlchemyScene.class);
 	}
 	
 	@Override

@@ -27,9 +27,9 @@
 
 package com.shatteredpixel.yasd.general.ui;
 
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.LevelHandler;
-import com.shatteredpixel.yasd.general.MainGame;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.watabou.noosa.Image;
@@ -83,7 +83,7 @@ public class DiveIndicator extends Tag {
 			PixelScene.align(icon);
 
 		} catch (Exception e) {
-			MainGame.reportException(e);
+			CPDGame.reportException(e);
 		}
 	}
 

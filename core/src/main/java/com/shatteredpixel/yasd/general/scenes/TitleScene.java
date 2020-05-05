@@ -28,9 +28,9 @@
 package com.shatteredpixel.yasd.general.scenes;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Chrome;
 import com.shatteredpixel.yasd.general.GamesInProgress;
-import com.shatteredpixel.yasd.general.MainGame;
 import com.shatteredpixel.yasd.general.effects.BannerSprites;
 import com.shatteredpixel.yasd.general.effects.Fireball;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -111,7 +111,7 @@ public class TitleScene extends PixelScene {
 				if (GamesInProgress.checkAll().size() == 0){
 					TitleScene.this.add( new WndStartGame(1, false) );
 				} else {
-					MainGame.switchScene( StartScene.class );
+					CPDGame.switchScene( StartScene.class );
 				}
 			}
 			
@@ -143,7 +143,7 @@ public class TitleScene extends PixelScene {
 		TitleButton btnRankings = new TitleButton(Messages.get(this, "rankings")){
 			@Override
 			protected void onClick() {
-				MainGame.switchScene( RankingsScene.class );
+				CPDGame.switchScene( RankingsScene.class );
 			}
 		};
 		btnRankings.icon(Icons.get(Icons.RANKINGS));
@@ -152,7 +152,7 @@ public class TitleScene extends PixelScene {
 		TitleButton btnBadges = new TitleButton(Messages.get(this, "badges")){
 			@Override
 			protected void onClick() {
-				MainGame.switchScene( BadgesScene.class );
+				CPDGame.switchScene( BadgesScene.class );
 			}
 		};
 		btnBadges.icon(Icons.get(Icons.BADGES));
@@ -162,7 +162,7 @@ public class TitleScene extends PixelScene {
 			@Override
 			protected void onClick() {
 				ChangesScene.changesSelected = 0;
-				MainGame.switchScene( ChangesScene.class );
+				CPDGame.switchScene( ChangesScene.class );
 			}
 		};
 		btnChanges.icon(Icons.get(Icons.CHANGES));
@@ -171,7 +171,7 @@ public class TitleScene extends PixelScene {
 		TitleButton btnAbout = new TitleButton(Messages.get(this, "about")){
 			@Override
 			protected void onClick() {
-				MainGame.switchScene( AboutScene.class );
+				CPDGame.switchScene( AboutScene.class );
 			}
 		};
 		btnAbout.icon(Icons.get(Icons.YENDOR));

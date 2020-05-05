@@ -28,9 +28,9 @@
 package com.shatteredpixel.yasd.general.items.wands;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
-import com.shatteredpixel.yasd.general.MainGame;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
@@ -99,7 +99,7 @@ public class WandOfFlow extends DamageWand {
                 WandOfBlastWave.throwChar(ch, trajectory, 2);
                 //Buff.affect(ch, Wet.class, Wet.DURATION);
             } catch (Exception e) {
-                MainGame.reportException(e);
+                CPDGame.reportException(e);
             }
         }
     }

@@ -28,10 +28,10 @@
 package com.shatteredpixel.yasd.general.items.artifacts;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
-import com.shatteredpixel.yasd.general.MainGame;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.blobs.CorrosiveGas;
@@ -250,7 +250,7 @@ public class DriedRose extends Artifact {
 					ghostID = 0;
 				}
 			} catch ( ClassCastException e ){
-				MainGame.reportException(e);
+				CPDGame.reportException(e);
 				ghostID = 0;
 			}
 		}
@@ -772,7 +772,7 @@ public class DriedRose extends Artifact {
 					yell( Messages.get( this, "dialogue_halls_" + variant ));
 					break;
 			}
-			if (MainGame.scene() instanceof GameScene) {
+			if (CPDGame.scene() instanceof GameScene) {
 				Sample.INSTANCE.play( Assets.SND_GHOST );
 			}
 		}

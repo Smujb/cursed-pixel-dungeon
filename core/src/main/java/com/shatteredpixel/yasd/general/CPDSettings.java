@@ -37,7 +37,7 @@ import com.watabou.utils.Point;
 
 import java.util.Locale;
 
-public class YASDSettings extends com.watabou.utils.GameSettings {
+public class CPDSettings extends com.watabou.utils.GameSettings {
 	
 	//Version info
 	
@@ -66,7 +66,7 @@ public class YASDSettings extends com.watabou.utils.GameSettings {
 	public static void fullscreen( boolean value ) {
 		put( KEY_FULLSCREEN, value );
 		
-		MainGame.updateSystemUI();
+		CPDGame.updateSystemUI();
 	}
 	
 	public static boolean fullscreen() {
@@ -75,7 +75,7 @@ public class YASDSettings extends com.watabou.utils.GameSettings {
 	
 	public static void landscape( boolean value ){
 		put( KEY_LANDSCAPE, value );
-		((MainGame) MainGame.instance).updateDisplaySize();
+		((CPDGame) CPDGame.instance).updateDisplaySize();
 	}
 
 	//can return null because we need to directly handle the case of landscape not being set
@@ -90,7 +90,7 @@ public class YASDSettings extends com.watabou.utils.GameSettings {
 	
 	public static void powerSaver( boolean value ){
 		put( KEY_POWER_SAVER, value );
-		((MainGame) MainGame.instance).updateDisplaySize();
+		((CPDGame) CPDGame.instance).updateDisplaySize();
 	}
 	
 	public static boolean powerSaver(){

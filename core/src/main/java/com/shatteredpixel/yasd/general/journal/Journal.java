@@ -27,7 +27,7 @@
 
 package com.shatteredpixel.yasd.general.journal;
 
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.FileUtils;
 
@@ -75,7 +75,7 @@ public class Journal {
 			FileUtils.bundleToFile( JOURNAL_FILE, bundle );
 			saveNeeded = false;
 		} catch (IOException e) {
-			MainGame.reportException(e);
+			CPDGame.reportException(e);
 		}
 		
 	}

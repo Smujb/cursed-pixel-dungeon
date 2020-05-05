@@ -114,10 +114,6 @@ public abstract class EquipableItem extends Item {
 
 		if (cursed && hero.buff(MagicImmune.class) == null) {
 			GLog.w(Messages.get(EquipableItem.class, "unequip_cursed"));
-			if (hero instanceof Hero) {
-				((Hero) hero).loseMorale(2f);
-			}
-
 			return false;
 		}
 

@@ -29,7 +29,7 @@ package com.shatteredpixel.yasd.general.windows;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -215,7 +215,7 @@ public class WndHero extends WndTabbed {
 			RedButton btnInfo = new RedButton(Messages.get(this, "info")) {
 				@Override
 				protected void onClick() {
-					MainGame.scene().addToFront(new WndTitledMessage( HeroSprite.avatar(hero.heroClass, 6 ), Messages.get(AbilitiesTab.class, "info_title"), Messages.get(AbilitiesTab.class, "info_desc")));
+					CPDGame.scene().addToFront(new WndTitledMessage( HeroSprite.avatar(hero.heroClass, 6 ), Messages.get(AbilitiesTab.class, "info_title"), Messages.get(AbilitiesTab.class, "info_desc")));
 				}
 			};
 			btnInfo.setRect(WIDTH*0.1f, pos, WIDTH*0.8f, BTN_HEIGHT);
@@ -279,7 +279,7 @@ public class WndHero extends WndTabbed {
 			else statSlot( Messages.get(this, "health"), (hero.HP) + "/" + hero.HT );
 			statSlot( Messages.get(this, "exp"), hero.exp + "/" + hero.maxExp() );
 
-			statSlot( Messages.get(this, "morale"), ((int) ((hero.morale / hero.MAX_MORALE)*100) + "%") );
+			//statSlot( Messages.get(this, "morale"), ((int) ((hero.morale / hero.MAX_MORALE)*100) + "%") );
 
 			pos += GAP;
 

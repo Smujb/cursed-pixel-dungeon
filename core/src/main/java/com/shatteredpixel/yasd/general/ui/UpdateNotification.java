@@ -29,7 +29,7 @@ package com.shatteredpixel.yasd.general.ui;
 
 import com.shatteredpixel.yasd.AvailableUpdateData;
 import com.shatteredpixel.yasd.general.Chrome;
-import com.shatteredpixel.yasd.general.MainGame;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.services.Updates;
 import com.shatteredpixel.yasd.general.windows.WndOptions;
@@ -63,7 +63,7 @@ public class UpdateNotification extends StyledButton {
 	@Override
 	protected void onClick() {
 		if (Updates.updateAvailable()){
-			MainGame.scene().addToFront( new WndUpdate( Updates.updateData() ) );
+			CPDGame.scene().addToFront( new WndUpdate( Updates.updateData() ) );
 		}
 	}
 
