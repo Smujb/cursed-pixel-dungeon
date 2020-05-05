@@ -47,13 +47,15 @@ public abstract class KindofMisc extends EquipableItem {
 		final KindofMisc[] miscs = hero.belongings.miscs;
 		if (!hero.belongings.canEquip(this)) {
 
+			String[] miscNames = new String[miscs.length];
+			for (int i = 0; i < miscs.length; i++) {
+				miscNames[i] = miscs[i].toString();
+			}
 
 			GameScene.show(
 					new WndOptions(Messages.get(KindofMisc.class, "unequip_title"),
 							Messages.get(KindofMisc.class, "unequip_message"),
-							Messages.titleCase(miscs[0].toString()),
-							Messages.titleCase(miscs[1].toString()),
-							Messages.titleCase(miscs[2].toString())) {
+							miscNames) {
 
 						@Override
 						protected void onSelect(int index) {
