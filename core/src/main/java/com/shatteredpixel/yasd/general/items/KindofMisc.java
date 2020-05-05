@@ -53,9 +53,7 @@ public abstract class KindofMisc extends EquipableItem {
 							Messages.get(KindofMisc.class, "unequip_message"),
 							Messages.titleCase(miscs[0].toString()),
 							Messages.titleCase(miscs[1].toString()),
-							Messages.titleCase(miscs[2].toString()),
-							Messages.titleCase(miscs[3].toString()),
-							Messages.titleCase(miscs[4].toString())) {
+							Messages.titleCase(miscs[2].toString())) {
 
 						@Override
 						protected void onSelect(int index) {
