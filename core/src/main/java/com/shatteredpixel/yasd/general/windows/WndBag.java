@@ -238,14 +238,11 @@ public class WndBag extends WndTabbed {
 		
 		// Equipped items
 		Belongings stuff = Dungeon.hero.belongings;
+		placeItem(stuff.getWeapon() != null ? stuff.getWeapon() : new Placeholder( ItemSpriteSheet.WEAPON_HOLDER ));
+		placeItem(stuff.armor != null ? stuff.armor : new Placeholder( ItemSpriteSheet.ARMOR_HOLDER ));
 		for (KindofMisc item : stuff.miscs) {
 			placeItem(item != null ? item : new Placeholder( ItemSpriteSheet.RING_HOLDER ));
 		}
-		/*placeItem( stuff.miscs[0] != null ? stuff.miscs[0] : new Placeholder( ItemSpriteSheet.RING_HOLDER ) );
-		placeItem( stuff.miscs[1] != null ? stuff.miscs[1] : new Placeholder( ItemSpriteSheet.RING_HOLDER ) );
-		placeItem( stuff.miscs[2] != null ? stuff.miscs[2] : new Placeholder( ItemSpriteSheet.RING_HOLDER ) );
-		placeItem( stuff.miscs[3] != null ? stuff.miscs[3] : new Placeholder( ItemSpriteSheet.RING_HOLDER ) );
-		placeItem( stuff.miscs[4] != null ? stuff.miscs[4] : new Placeholder( ItemSpriteSheet.RING_HOLDER ) );*/
 
 		// Items in the bag
 		for (Item item : container.items.toArray(new Item[0])) {
