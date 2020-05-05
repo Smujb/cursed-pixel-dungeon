@@ -33,10 +33,12 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.MainGame;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.buffs.Healing;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.BrokenSeal;
+import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.armor.curses.AntiEntropy;
@@ -74,7 +76,7 @@ import com.watabou.utils.Reflection;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Armor extends KindofMisc {
+public class Armor extends EquipableItem {
 
 	public float EVA = 1f;
 	public float STE = 1f;
@@ -284,19 +286,53 @@ public class Armor extends KindofMisc {
 	}
 
 	@Override
-	public boolean doEquip(Hero hero) {
-		boolean equipped = super.doEquip(hero);
-		((HeroSprite) hero.sprite).updateArmor();
-		return equipped;
+	public boolean doEquip( Hero hero ) {
+
+		detach(hero.belongings.backpack);
+
+		if (hero.belongings.armor == null || hero.belongings.armor.doUnequip( hero, true, false )) {
+
+			hero.belongings.armor = this;
+
+			cursedKnown = true;
+			if (cursed) {
+				equipCursed( hero );
+				GLog.n( Messages.get(Armor.class, "equip_cursed") );
+			}
+
+			((HeroSprite)hero.sprite).updateArmor();
+			activate(hero);
+
+			hero.spendAndNext( time2equip( hero ) );
+			return true;
+
+		} else {
+
+			collect( hero.belongings.backpack, hero );
+			return false;
+
+		}
 	}
 
 	@Override
-	public boolean doUnequip(Char ch, boolean collect, boolean single) {
-		boolean equipped = super.doUnequip(ch, collect, single);
-		if (ch instanceof Hero) {
-			((HeroSprite)ch.sprite).updateArmor();
+	public boolean doUnequip( Char ch, boolean collect, boolean single ) {
+		if (super.doUnequip( ch, collect, single )) {
+
+			ch.belongings.armor = null;
+			if (ch instanceof Hero) {
+				((HeroSprite) ch.sprite).updateArmor();
+			}
+
+			BrokenSeal.WarriorShield sealBuff = ch.buff(BrokenSeal.WarriorShield.class);
+			if (sealBuff != null) sealBuff.setArmor(null);
+
+			return true;
+
+		} else {
+
+			return false;
+
 		}
-		return equipped;
 	}
 
 	@Override

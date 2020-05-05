@@ -133,17 +133,21 @@ public class Belongings implements Iterable<Item> {
 	public boolean shoot(Char enemy, MissileWeapon wep) {
 
 		//temporarily set the hero's weapon to the missile weapon being used
-		KindofMisc equipped = miscs[0];
-		miscs[0] = wep;
+		KindOfWeapon equipped = weapon;
+		weapon = wep;
 		boolean hit = owner.attack(enemy);
 		Invisibility.dispel();
-		miscs[0] = equipped;
+		weapon = equipped;
 
 		return hit;
 	}
 
 	public KindOfWeapon getWeapon() {
 	    return weapon;
+	}
+
+	public void setWeapon(KindOfWeapon weapon) {
+		this.weapon = weapon;
 	}
 
 	public float accuracyFactor(float accuracy, Char target) {
