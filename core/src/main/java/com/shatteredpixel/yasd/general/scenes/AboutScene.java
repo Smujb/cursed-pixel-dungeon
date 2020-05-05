@@ -6,7 +6,7 @@
  *  * Shattered Pixel Dungeon
  *  * Copyright (C) 2014-2019 Evan Debenham
  *  *
- *  * Yet Another Shattered Dungeon
+ *  * Cursed Pixel Dungeon
  *  * Copyright (C) 2014-2020 Samuel Braithwaite
  *  *
  *  * This program is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@ public class AboutScene extends PixelScene {
 
 	private static final String LNK_SHPX = "ShatteredPixel.com";
 
-	private static final String TTL_YASD = "Yet Another Shattered Dungeon";
+	private static final String TTL_YASD = "Cursed Pixel Dungeon";
 
 	private static final String TXT_YASD =
 			"Code: Smujamesb (Modified from Shattered Pixel Dungeon)\n" +
