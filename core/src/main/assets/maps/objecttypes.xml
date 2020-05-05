@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="Item" color="#0000ff">
+  <property name="className" type="string" default="Key"/>
+  <property name="quantity" type="string" default="1"/>
+ </objecttype>
+ <objecttype name="Mob" color="#ffaa00">
+  <property name="className" type="string" default="Rat"/>
+  <property name="level" type="int" default="-1"/>
+  <property name="number" type="int" default="1"/>
+ </objecttype>
+</objecttypes>

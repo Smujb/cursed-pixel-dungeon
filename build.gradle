@@ -1,0 +1,62 @@
+
+/*
+ *
+ *  * Pixel Dungeon
+ *  * Copyright (C) 2012-2015 Oleg Dolya
+ *  *
+ *  * Shattered Pixel Dungeon
+ *  * Copyright (C) 2014-2019 Evan Debenham
+ *  *
+ *  * Yet Another Shattered Dungeon
+ *  * Copyright (C) 2014-2020 Samuel Braithwaite
+ *  *
+ *  * This program is free software: you can redistribute it and/or modify
+ *  * it under the terms of the GNU General Public License as published by
+ *  * the Free Software Foundation, either version 3 of the License, or
+ *  * (at your option) any later version.
+ *  *
+ *  * This program is distributed in the hope that it will be useful,
+ *  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  * GNU General Public License for more details.
+ *  *
+ *  * You should have received a copy of the GNU General Public License
+ *  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
+ *
+ */
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.6.3'
+    }
+}
+
+allprojects {
+    ext {
+        appName = 'Cursed Pixel Dungeon'
+        appPackageName = 'com.smujamesb.cursedpixeldungeon'
+
+        appVersionCode = 1
+        appVersionName = '0.3.0'
+        appJavaCompatibility = 1.8
+
+        appAndroidCompileSDK = 29
+        appAndroidMinSDK = 14
+        appAndroidTargetSDK = 29
+
+        gdxVersion = '1.9.10'
+    }
+    version = appVersionName
+
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+
+}

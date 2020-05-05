@@ -1,0 +1,85 @@
+/*
+ *
+ *   Pixel Dungeon
+ *   Copyright (C) 2012-2015 Oleg Dolya
+ *
+ *   Shattered Pixel Dungeon
+ *   Copyright (C) 2014-2019 Evan Debenham
+ *
+ *   Yet Another Shattered Dungeon
+ *   Copyright (C) 2014-2020 Samuel Braithwaite
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
+ *
+ */
+
+package com.shatteredpixel.yasd.general.levels.interactive;
+
+import com.shatteredpixel.yasd.general.Badges;
+import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.GamesInProgress;
+import com.shatteredpixel.yasd.general.LevelHandler;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.items.Amulet;
+import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
+import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.plants.Swiftthistle;
+import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.scenes.SurfaceScene;
+import com.shatteredpixel.yasd.general.windows.WndMessage;
+import com.watabou.noosa.Game;
+import com.watabou.utils.Callback;
+
+public class Entrance extends InteractiveCell {
+	@Override
+	public void interact(Hero hero) {
+		ascend(hero);
+	}
+
+	public static void ascend(Hero hero) {
+		if (Dungeon.depth == 1) {
+
+			if (hero.belongings.getItem(Amulet.class) == null) {
+				Game.runOnRenderThread(new Callback() {
+					@Override
+					public void call() {
+						GameScene.show(new WndMessage(Messages.get(hero, "leave")));
+					}
+				});
+				hero.ready();
+			} else {
+				Badges.silentValidateHappyEnd();
+				if (!Dungeon.testing) {
+					Dungeon.win(Amulet.class);
+					Game.switchScene(SurfaceScene.class);
+				}
+				Dungeon.deleteGame(GamesInProgress.curSlot, true);
+			}
+
+		} else {
+
+			hero.curAction = null;
+
+			Buff buff = hero.buff(TimekeepersHourglass.timeFreeze.class);
+			if (buff != null) buff.detach();
+			buff = hero.buff(Swiftthistle.TimeBubble.class);
+			if (buff != null) buff.detach();
+
+			LevelHandler.ascend();
+
+		}
+	}
+}

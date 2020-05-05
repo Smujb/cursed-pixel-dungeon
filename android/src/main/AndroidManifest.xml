@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*
+  ~  * Pixel Dungeon
+  ~  * Copyright (C) 2012-2015 Oleg Dolya
+  ~  *
+  ~  * Shattered Pixel Dungeon
+  ~  * Copyright (C) 2014-2019 Evan Debenham
+  ~  *
+  ~  * Yet Another Shattered Dungeon
+  ~  * Copyright (C) 2014-2020 Samuel Braithwaite
+  ~  *
+  ~  * This program is free software: you can redistribute it and/or modify
+  ~  * it under the terms of the GNU General Public License as published by
+  ~  * the Free Software Foundation, either version 3 of the License, or
+  ~  * (at your option) any later version.
+  ~  *
+  ~  * This program is distributed in the hope that it will be useful,
+  ~  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~  * GNU General Public License for more details.
+  ~  *
+  ~  * You should have received a copy of the GNU General Public License
+  ~  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+  ~  */
+  ~
+  -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.shatteredpixel.yasd.android"
+	android:installLocation="auto">
+	
+	<uses-feature android:glEsVersion="0x00020000"/>
+
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+	<!-- Note that the game doesn't truly support small screen resolutions,
+		it instead forces downscaling to work on these displays.-->
+	<supports-screens
+		android:smallScreens="true"
+		android:normalScreens="true"
+		android:largeScreens="true"
+		android:xlargeScreens="true"/>
+
+	<application
+		android:icon="@mipmap/ic_launcher"
+		android:label="${appName}"
+		android:theme="@android:style/Theme.Black.NoTitleBar"
+		android:resizeableActivity="true"
+		android:allowBackup="true"
+		android:fullBackupOnly="true"
+		android:backupAgent="com.shatteredpixel.yasd.android.AndroidBackupHandler">
+		<activity
+			android:label="${appName}"
+			android:name="com.shatteredpixel.yasd.android.AndroidLauncher">
+			<intent-filter >
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity
+			android:label="${appName}"
+			android:name="com.shatteredpixel.yasd.android.AndroidGame"
+			android:screenOrientation="nosensor"
+			android:configChanges="keyboard|keyboardHidden|orientation">
+		</activity>
+
+	</application>
+
+</manifest>
