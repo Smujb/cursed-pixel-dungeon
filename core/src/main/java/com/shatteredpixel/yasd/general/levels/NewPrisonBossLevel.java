@@ -71,6 +71,8 @@ import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 import com.watabou.utils.Rect;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.CHASM;
@@ -144,7 +146,7 @@ public class NewPrisonBossLevel extends Level {
 	}
 	
 	@Override
-	public void restoreFromBundle( Bundle bundle ) {
+	public void restoreFromBundle(@NotNull Bundle bundle ) {
 		super.restoreFromBundle(bundle);
 		state = bundle.getEnum( STATE, State.class );
 		

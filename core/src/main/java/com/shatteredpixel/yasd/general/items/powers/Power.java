@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public abstract class Power extends Item {
 
-	protected abstract Class<? extends Buff> passiveBuff();
+	protected Class<? extends Buff> passiveBuff = null;
 
 	private static final String AC_ACTIVATE = "activate";
 
@@ -36,16 +36,16 @@ public abstract class Power extends Item {
 	@Override
 	public boolean collect(Bag container, Char ch) {
 		boolean collect = super.collect(container, ch);
-		if (collect && passiveBuff() != null) {
-			Buff.affect(ch, passiveBuff());
+		if (collect && passiveBuff != null) {
+			Buff.affect(ch, passiveBuff);
 		}
 		return collect;
 	}
 
 	@Override
 	public void doDrop(@NotNull Hero hero) {
-		if (passiveBuff() != null) {
-			Buff buff = hero.buff(passiveBuff());
+		if (passiveBuff != null) {
+			Buff buff = hero.buff(passiveBuff);
 			if (buff != null) {
 				buff.detach();
 			}

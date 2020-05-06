@@ -73,6 +73,8 @@ import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 
+import org.jetbrains.annotations.NotNull;
+
 public class WndBag extends WndTabbed {
 	
 	//only one wnditem can appear at a time
@@ -336,7 +338,7 @@ public class WndBag extends WndTabbed {
 		}
 		
 		@Override
-		public boolean isEquipped( Char hero ) {
+		public boolean isEquipped(@NotNull Char hero ) {
 			return true;
 		}
 	}

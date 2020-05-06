@@ -114,23 +114,24 @@ public class Assets {
 	public static final String DM100	= "dm100.png";
 	public static final String PYLON	= "pylon.png";
 	public static final String DM200	= "dm200.png";
+	public static final String LITTOWER = "littower.png";
 
 	public static final String ITEMS	        = "items.png";
 	public static final String TERRAIN_FEATURES	= "terrain_features.png";
 
-
-	public static final String LITTOWER = "littower.png";
 	public static final String TILES_SEWERS	= "tiles_sewers.png";
 	public static final String TILES_PRISON	= "tiles_prison.png";
 	public static final String TILES_CAVES	= "tiles_caves.png";
 	public static final String TILES_CITY	= "tiles_city.png";
 	public static final String TILES_HALLS	= "tiles_halls.png";
+	public static final String TILES_HEAVEN = "tiles_heaven.png";
 	
 	public static final String WATER_SEWERS	= "water0.png";
 	public static final String WATER_PRISON	= "water1.png";
 	public static final String WATER_CAVES	= "water2.png";
 	public static final String WATER_CITY	= "water3.png";
 	public static final String WATER_HALLS	= "water4.png";
+	public static final String WATER_HEAVEN  = "water_heaven.png";
 	public static final String ACID         = "acid.png";
 	
 	public static final String LOADING_SEWERS	= "loading_sewers.png";

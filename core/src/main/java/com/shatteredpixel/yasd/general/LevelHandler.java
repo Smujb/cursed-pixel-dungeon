@@ -167,7 +167,11 @@ public class LevelHandler {
 	}
 
 	public static void returnTo(int depth, int pos) {
-		move(Dungeon.keyForDepth(depth), Messages.get(Mode.class, Mode.RETURN.name()), Mode.RETURN, depth, pos);
+		returnTo(Dungeon.keyForDepth(), depth, pos);
+	}
+
+	public static void returnTo(String key, int depth, int pos) {
+		move(key, Messages.get(Mode.class, Mode.RETURN.name()), Mode.RETURN, depth, pos);
 	}
 
 	public static void dive(int pos) {

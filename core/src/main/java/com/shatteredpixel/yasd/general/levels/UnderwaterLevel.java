@@ -47,6 +47,8 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 //FIXME kinda poorly coded, may rewrite
@@ -240,7 +242,7 @@ public class UnderwaterLevel extends Level {
 	}
 
 	@Override
-	public void restoreFromBundle( Bundle bundle) {
+	public void restoreFromBundle(@NotNull Bundle bundle) {
 		super.restoreFromBundle(bundle);
 		tilesTex = bundle.getString(TILE_TEX);
 		waterTex = bundle.getString(WATER_TEX);

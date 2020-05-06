@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
-import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -281,8 +280,6 @@ public class MeleeWeapon extends Weapon {
 	@Override
 	public void restoreFromBundle(  Bundle bundle) {
 		super.restoreFromBundle(bundle);
-		if (Dungeon.version >= CPDGame.v0_2_0) {//Support older saves
-			tier = bundle.getInt(TIER);
-		}
+		tier = bundle.getInt(TIER);
 	}
 }

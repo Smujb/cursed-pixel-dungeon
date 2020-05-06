@@ -40,38 +40,8 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PlatformSupport;
 
 public class CPDGame extends Game {
-	
-	//variable constants for specific older versions of shattered, used for data conversion
-	//versions older than v0.6.5c are no longer supported, and data from them is ignored
-	public static final int v0_6_5c = 264;
-	public static final int v0_2_0  = 400;
-	public static final int v0_2_1  = 401;
-	public static final int v0_2_2  = 402;
-	public static final int v0_2_3  = 403;
-	public static final int v0_2_4  = 404;
-	public static final int v0_2_5  = 405;
-	public static final int v0_2_6  = 406;
-	public static final int v0_2_7  = 407;
-	public static final int v0_2_8  = 409;
-	public static final int v0_2_10  = 411;
-	public static final int v0_2_11  = 412;
-	public static final int v0_2_12  = 413;
-	public static final int v0_2_13  = 414;
-	public static final int v0_2_14  = 415;
-	public static final int v0_2_15  = 416;
-	public static final int v0_2_16  = 417;
-	public static final int v0_2_17  = 418;
-	public static final int v0_2_18  = 419;
-	public static final int v0_2_19  = 422;
-	public static final int v0_2_20  = 423;
-	public static final int v0_2_21  = 424;
-	public static final int v0_2_21B  = 425;
-	public static final int v0_2_22  = 426;
 
-	public static final int v0_3_0  = 427;
-	public static final int v0_3_1  = 428;
-	public static final int v0_3_2  = 429;
-	public static final int v0_3_3  = 430;
+	public static final int v0_3_0 = 1;
 	
 	public CPDGame(PlatformSupport platform ) {
 		super( sceneClass == null ? WelcomeScene.class : sceneClass, platform );

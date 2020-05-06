@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.items.armor;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
@@ -70,6 +69,8 @@ import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -161,9 +162,8 @@ public class Armor extends EquipableItem {
 		
 		augment = bundle.getEnum(AUGMENT, Augment.class);
 
-		if (Dungeon.version >= CPDGame.v0_2_0) {//Support older saves
-			tier = bundle.getInt(TIER);
-		}
+		tier = bundle.getInt(TIER);
+
 	}
 
 	@Override
@@ -203,6 +203,10 @@ public class Armor extends EquipableItem {
 		}
 	}
 
+	@Override
+	public boolean isEquipped(@NotNull Char owner) {
+		return owner.belongings.armor == this;
+	}
 
 	@Override
 	public void activate(Char ch) {

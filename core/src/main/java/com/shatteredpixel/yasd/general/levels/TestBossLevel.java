@@ -185,7 +185,7 @@ public class TestBossLevel extends Level {
 	}
 
 	@Override
-	public void restoreFromBundle( Bundle bundle) {
+	public void restoreFromBundle(@NotNull Bundle bundle) {
 		super.restoreFromBundle(bundle);
 		bossSpawned = bundle.getBoolean(BOSS);
 	}

@@ -68,6 +68,31 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfPurity;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfStrength;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfToxicGas;
+import com.shatteredpixel.yasd.general.items.potions.brews.BlizzardBrew;
+import com.shatteredpixel.yasd.general.items.potions.brews.CausticBrew;
+import com.shatteredpixel.yasd.general.items.potions.brews.InfernalBrew;
+import com.shatteredpixel.yasd.general.items.potions.brews.ShockingBrew;
+import com.shatteredpixel.yasd.general.items.potions.elixirs.Elixir;
+import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfArcaneArmor;
+import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfDragonsBlood;
+import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfIcyTouch;
+import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
+import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfToxicEssence;
+import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfAdrenalineSurge;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfCleansing;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfCorrosiveGas;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfDragonsBreath;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfEarthenArmor;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfHolyFuror;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfMagicalSight;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfShielding;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfShroudingFog;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfSnapFreeze;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfStamina;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfStormClouds;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfEvasion;
@@ -92,6 +117,30 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTerror;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfAffection;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfAntiMagic;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfConfusion;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfDivination;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfEnchantment;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfForesight;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfMysticalEnergy;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPassage;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPetrification;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPolymorph;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPrismaticImage;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
+import com.shatteredpixel.yasd.general.items.spells.Alchemize;
+import com.shatteredpixel.yasd.general.items.spells.AquaBlast;
+import com.shatteredpixel.yasd.general.items.spells.CurseInfusion;
+import com.shatteredpixel.yasd.general.items.spells.FeatherFall;
+import com.shatteredpixel.yasd.general.items.spells.MagicalInfusion;
+import com.shatteredpixel.yasd.general.items.spells.MagicalPorter;
+import com.shatteredpixel.yasd.general.items.spells.PhaseShift;
+import com.shatteredpixel.yasd.general.items.spells.ReclaimTrap;
+import com.shatteredpixel.yasd.general.items.spells.Recycle;
+import com.shatteredpixel.yasd.general.items.spells.Spell;
+import com.shatteredpixel.yasd.general.items.spells.WildEnergy;
 import com.shatteredpixel.yasd.general.items.stones.Runestone;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfAffection;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfAugmentation;
@@ -201,9 +250,13 @@ public class Generator {
 		FOOD	( 0,    Food.class ),
 
 		POTION	( 20,   Potion.class ),
+		POTION_EXOTIC	( 1,   ExoticPotion.class ),
+		ELIXIR( 1,   Elixir.class ),
 		SEED	( 0,    Plant.Seed.class ), //dropped by grass
 		
 		SCROLL	( 20,   Scroll.class ),
+		SPELL ( 0,   Spell.class ),
+		SCROLL_EXOTIC (1,   ExoticScroll.class),
 		STONE   ( 2,    Runestone.class),
 		
 		GOLD	( 18,   Gold.class );
@@ -250,6 +303,37 @@ public class Generator {
 					PotionOfPurity.class,
 					PotionOfExperience.class};
 			POTION.probs = new float[]{ 0, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1 };
+
+			POTION_EXOTIC.classes = new Class<?>[]{
+					PotionOfAdrenalineSurge.class, //2 drop every chapter, see Dungeon.posNeeded()
+					PotionOfShielding.class,
+					PotionOfMagicalSight.class,
+					PotionOfSnapFreeze.class,
+					PotionOfDragonsBreath.class,
+					PotionOfCorrosiveGas.class,
+					PotionOfStamina.class,
+					PotionOfShroudingFog.class,
+					PotionOfStormClouds.class,
+					PotionOfEarthenArmor.class,
+					PotionOfCleansing.class,
+					PotionOfHolyFuror.class};
+			POTION_EXOTIC.probs = new float[]{ 2, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1 };
+
+			ELIXIR.classes = new Class<?>[] {
+					BlizzardBrew.class,
+					CausticBrew.class,
+					InfernalBrew.class,
+					ShockingBrew.class,
+					ElixirOfAquaticRejuvenation.class,
+					ElixirOfArcaneArmor.class,
+					ElixirOfDragonsBlood.class,
+					ElixirOfHoneyedHealing.class,
+					ElixirOfIcyTouch.class,
+					ElixirOfMight.class,
+					ElixirOfToxicEssence.class
+			};
+
+			ELIXIR.probs = new float[] {1,1,1,1,1,1,1,1,1,1,1};
 			
 			SEED.classes = new Class<?>[]{
 					Rotberry.Seed.class, //quest item
@@ -265,6 +349,20 @@ public class Generator {
 					Swiftthistle.Seed.class,
 					Starflower.Seed.class};
 			SEED.probs = new float[]{ 0, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 1 };
+
+			SPELL.classes = new Class<?>[]{
+					CurseInfusion.class,
+					MagicalInfusion.class,
+					MagicalPorter.class,
+					PhaseShift.class,
+					WildEnergy.class,
+					AquaBlast.class,
+					FeatherFall.class,
+					ReclaimTrap.class,
+					Alchemize.class,
+					Recycle.class
+			};
+			SPELL.probs = new float[]{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 			
 			SCROLL.classes = new Class<?>[]{
 					ScrollOfUpgrade.class, //3 drop every chapter, see Dungeon.souNeeded()
@@ -281,6 +379,22 @@ public class Generator {
 					ScrollOfTransmutation.class
 			};
 			SCROLL.probs = new float[]{ 0, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1 };
+
+			SCROLL_EXOTIC.classes = new Class<?>[]{
+					ScrollOfEnchantment.class,
+					ScrollOfDivination.class,
+					ScrollOfAntiMagic.class,
+					ScrollOfPrismaticImage.class,
+					ScrollOfMysticalEnergy.class,
+					ScrollOfPassage.class,
+					ScrollOfAffection.class,
+					ScrollOfForesight.class,
+					ScrollOfConfusion.class,
+					ScrollOfPsionicBlast.class,
+					ScrollOfPetrification.class,
+					ScrollOfPolymorph.class
+			};
+			SCROLL_EXOTIC.probs = SCROLL.probs.clone();
 			
 			STONE.classes = new Class<?>[]{
 					StoneOfEnchantment.class,   //1 drops per chapter, can rarely find more

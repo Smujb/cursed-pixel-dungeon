@@ -66,6 +66,8 @@ import com.shatteredpixel.yasd.general.levels.traps.WornDartTrap;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -502,7 +504,7 @@ public abstract class RegularLevel extends Level {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void restoreFromBundle( Bundle bundle ) {
+	public void restoreFromBundle(@NotNull Bundle bundle ) {
 		super.restoreFromBundle( bundle );
 		
 		rooms = new ArrayList<>( (Collection<Room>) ((Collection<?>) bundle.getCollection( "rooms" )) );

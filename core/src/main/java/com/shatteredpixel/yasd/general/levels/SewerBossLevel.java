@@ -51,6 +51,7 @@ import com.watabou.noosa.Group;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -207,7 +208,7 @@ public class SewerBossLevel extends SewerLevel {
 	}
 	
 	@Override
-	public void restoreFromBundle( Bundle bundle ) {
+	public void restoreFromBundle(@NotNull Bundle bundle ) {
 		super.restoreFromBundle( bundle );
 		stairs = (Entrance) bundle.get( STAIRS );
 		roomExit = roomEntrance;

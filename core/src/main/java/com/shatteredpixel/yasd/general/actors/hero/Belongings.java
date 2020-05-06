@@ -97,23 +97,13 @@ public class Belongings implements Iterable<Item> {
 	//########################## Stuff for handling chars with belongings ##########################
 	//##############################################################################################
 
-	private ArrayList<Integer> availibleSlots(KindofMisc misc) {
-		ArrayList<Integer> slots = new ArrayList<>();
-		slots.add(0);
-		slots.add(1);
-		slots.add(2);
-		slots.add(3);
-		slots.add(4);
-		return slots;
+	public boolean canEquip(int slot) {//Use for setting specific properties for each slot.
+		return miscs[slot] == null;
 	}
 
-	public boolean canEquip(KindofMisc misc, int slot) {//Use for setting specific properties for each slot.
-		return miscs[slot] == null && availibleSlots(misc).contains(slot);
-	}
-
-	public boolean canEquip(KindofMisc misc) {//Use for setting specific properties for each slot.
+	public boolean canEquip() {//Use for setting specific properties for each slot.
 		for (int i = 0; i < miscs.length; i++) {
-			if (canEquip(misc, i)) {
+			if (canEquip(i)) {
 				return true;
 			}
 		}
@@ -531,7 +521,7 @@ public class Belongings implements Iterable<Item> {
 		
 		private Iterator<Item> backpackIterator = backpack.iterator();
 		
-		private Item[] equipped = { miscs[0], miscs[1],  miscs[2], miscs[3], miscs[4]};
+		private Item[] equipped = { weapon, armor, miscs[0], miscs[1],  miscs[2] };
 		private int backpackIndex = equipped.length;
 		
 		@Override
@@ -563,22 +553,19 @@ public class Belongings implements Iterable<Item> {
 		public void remove() {
 			switch (index) {
 				case 0:
-					equipped[0] = miscs[0] = null;
+					equipped[0] = weapon = null;
 					break;
 				case 1:
-					equipped[1] = miscs[1] = null;
+					equipped[1] = armor = null;
 					break;
 				case 2:
-					equipped[2] = miscs[2] = null;
+					equipped[2] = miscs[0] = null;
 					break;
 				case 3:
-					equipped[3] = miscs[3] = null;
+					equipped[3] = miscs[1] = null;
 					break;
 				case 4:
-					equipped[4] = miscs[4] = null;
-					break;
-				case 5:
-					equipped[5] = miscs[5] = null;
+					equipped[4] = miscs[2] = null;
 					break;
 				default:
 					backpackIterator.remove();

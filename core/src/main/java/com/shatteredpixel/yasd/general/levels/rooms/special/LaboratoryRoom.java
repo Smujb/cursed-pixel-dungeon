@@ -130,7 +130,7 @@ public class LaboratoryRoom extends SpecialRoom {
 
 		Item prize = level.findPrizeItem( Potion.class );
 		if (prize == null)
-			prize = Generator.random( Random.oneOf( Generator.Category.POTION, Generator.Category.STONE, Generator.Category.ALCOHOL ));
+			prize = Generator.random( Random.oneOf( Generator.Category.POTION, Generator.Category.STONE ));
 
 		return prize;
 	}

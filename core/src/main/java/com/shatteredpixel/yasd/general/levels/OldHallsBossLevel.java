@@ -50,6 +50,8 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
+import org.jetbrains.annotations.NotNull;
+
 import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY;
 import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY_DECO;
 import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY_SP;
@@ -113,7 +115,7 @@ public class OldHallsBossLevel extends Level {
 	}
 	
 	@Override
-	public void restoreFromBundle( Bundle bundle ) {
+	public void restoreFromBundle(@NotNull Bundle bundle ) {
 		super.restoreFromBundle( bundle );
 		stairs = (Entrance) bundle.get( STAIRS );
 		enteredArena = bundle.getBoolean( ENTERED );

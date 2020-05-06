@@ -60,6 +60,7 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.Reflection;
 
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -473,8 +474,8 @@ public class Item implements Bundlable {
 	}
 
 
-	public boolean isEquipped( Char owner ) {
-		return owner.belongings.miscs[0] == this || owner.belongings.miscs[1] == this || owner.belongings.miscs[2] == this || owner.belongings.miscs[3] == this || owner.belongings.miscs[4] == this;
+	public boolean isEquipped(@NotNull Char owner ) {
+		return false;
 	}
 
 	public Item identify() {

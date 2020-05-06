@@ -555,14 +555,9 @@ public abstract class Level implements Bundlable {
 	}
 	
 	@Override
-	public void restoreFromBundle( Bundle bundle ) {
+	public void restoreFromBundle(@NotNull Bundle bundle ) {
 
 		version = bundle.getInt( VERSION );
-		
-		//saves from before 0.6.5c are not supported
-		if (version < CPDGame.v0_6_5c){
-			throw new RuntimeException("old save");
-		}
 
 		setSize( bundle.getInt(WIDTH), bundle.getInt(HEIGHT));
 		

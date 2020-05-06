@@ -45,7 +45,7 @@ public abstract class KindofMisc extends EquipableItem {
 	@Override
 	public boolean doEquip(final Hero hero) {
 		final KindofMisc[] miscs = hero.belongings.miscs;
-		if (!hero.belongings.canEquip(this)) {
+		if (!hero.belongings.canEquip()) {
 
 			String[] miscNames = new String[miscs.length];
 			for (int i = 0; i < miscs.length; i++) {
@@ -85,7 +85,7 @@ public abstract class KindofMisc extends EquipableItem {
 		} else {
 
 			for (int i = 0; i < miscs.length; i++) {
-				if (hero.belongings.canEquip(this, i)) {
+				if (hero.belongings.canEquip(i)) {
 					hero.belongings.miscs[i] = this;
 					break;
 				}
@@ -129,7 +129,7 @@ public abstract class KindofMisc extends EquipableItem {
 	}
 
 	@Override
-	public boolean isEquipped( Char owner ) {
+	public boolean isEquipped(@NotNull Char owner ) {
 		for (int i = 0; i < Constants.MISC_SLOTS; i++) {
 			if (owner.belongings.miscs[i] == this) {
 				return true;

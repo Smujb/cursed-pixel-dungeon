@@ -124,11 +124,6 @@ public class GamesInProgress {
 				info = new Info();
 				info.slot = slot;
 				Dungeon.preview(info, bundle);
-				
-				//saves from before 0.6.5c are not supported
-				if (info.version < CPDGame.v0_6_5c) {
-					info = null;
-				}
 
 			} catch (IOException e) {
 				info = null;

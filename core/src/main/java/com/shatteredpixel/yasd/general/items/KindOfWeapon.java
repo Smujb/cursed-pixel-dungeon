@@ -37,6 +37,8 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
+import org.jetbrains.annotations.NotNull;
+
 abstract public class KindOfWeapon extends EquipableItem {
 	
 	protected static final float TIME_TO_EQUIP = 1f;
@@ -95,6 +97,11 @@ abstract public class KindOfWeapon extends EquipableItem {
 			return false;
 
 		}
+	}
+
+	@Override
+	public boolean isEquipped(@NotNull Char owner) {
+		return owner.belongings.getWeapon() == this;
 	}
 
 	abstract public int min(float lvl);
