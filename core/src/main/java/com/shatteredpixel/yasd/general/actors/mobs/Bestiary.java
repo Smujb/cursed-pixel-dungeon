@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.actors.mobs;
 
+import com.shatteredpixel.yasd.general.levels.GrindLevel;
 import com.watabou.utils.Random;
 
 public class Bestiary {
@@ -48,6 +49,10 @@ public class Bestiary {
 				cl = Monk.Senior.class;
 			} else if (cl == Scorpio.class) {
 				cl = Scorpio.Acidic.class;
+			} else if (cl == GrindLevel.BlueGuardian.class) {
+				cl = GrindLevel.PurpleGuardian.class;
+			} else if (cl == GrindLevel.RedGuardian.class) {
+				cl = GrindLevel.OrangeGuardian.class;
 			}
 		}
 		return cl;

@@ -89,6 +89,12 @@ public class GrindLevel extends RegularLevel {
 	}
 
 	@Override
+	protected int standardRooms() {
+		//5 to 7, average 5.57
+		return 5+Random.chances(new float[]{4, 2, 1});
+	}
+
+	@Override
 	protected Painter painter() {
 		return new SewerPainter();
 	}
@@ -106,6 +112,31 @@ public class GrindLevel extends RegularLevel {
 	public void restoreFromBundle(@NotNull Bundle bundle) {
 		super.restoreFromBundle(bundle);
 		spawn = bundle.getInt(SPAWN);
+	}
+
+	@Override
+	public Class<?>[] mobClasses() {
+		return new Class[] {
+				RedGuardian.class,
+				BlueGuardian.class,
+				GreenGuardian.class,
+				YellowGuardian.class
+		};
+	}
+
+	@Override
+	public float[] mobChances() {
+		return new float[] {
+				3,
+				1,
+				2,
+				3
+		};
+	}
+
+	@Override
+	public int nMobs() {
+		return 5;
 	}
 
 	public static class Guardian extends Mob {
