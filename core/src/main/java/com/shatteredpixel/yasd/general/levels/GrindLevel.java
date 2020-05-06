@@ -25,9 +25,14 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class GrindLevel extends RegularLevel {
+
+	public int spawn;
+	public static String SPAWN = "spawn";
 
 	@Override
 	public float respawnTime() {//Respawn time depends on current number of mobs.
@@ -41,6 +46,18 @@ public class GrindLevel extends RegularLevel {
 	}
 
 	@Override
+	public void create(String key) {
+		super.create(key);
+		spawn = getEntrance().centerCell(this);
+		clearExitEntrance();
+	}
+
+	@Override
+	public int getEntrancePos() {
+		return spawn;
+	}
+
+	@Override
 	protected Class<?>[] trapClasses() {
 		return new Class<?>[]{ WornDartTrap.class };
 	}
@@ -51,8 +68,9 @@ public class GrindLevel extends RegularLevel {
 	}
 
 	@Override
+	//For now. Reworked tiles are needed.
 	public String tilesTex() {
-		return Assets.TILES_HEAVEN;
+		return Assets.TILES_SEWERS;
 	}
 
 	@Override
@@ -77,6 +95,18 @@ public class GrindLevel extends RegularLevel {
 
 	@Override
 	protected void createItems() {}//Does nothing. Prevents Ghost from spawning, also makes sense that all loot is supposed to come from killing Guardians.
+
+	@Override
+	public void storeInBundle(Bundle bundle) {
+		super.storeInBundle(bundle);
+		bundle.put(SPAWN, spawn);
+	}
+
+	@Override
+	public void restoreFromBundle(@NotNull Bundle bundle) {
+		super.restoreFromBundle(bundle);
+		spawn = bundle.getInt(SPAWN);
+	}
 
 	public static class Guardian extends Mob {
 
