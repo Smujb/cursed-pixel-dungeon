@@ -197,7 +197,7 @@ public abstract class Mob extends Char {
 	}
 
 	private int normalHP(int level) {
-		return 12 * (level + 1);
+		return 6 + 12 * level;
 	}
 
 	private int normalAttackSkill(int level) {

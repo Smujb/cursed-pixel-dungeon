@@ -5,8 +5,6 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Gold;
@@ -21,7 +19,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.StatueSprite;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
@@ -186,8 +183,6 @@ public class GrindLevel extends RegularLevel {
 
 	public static class GreenGuardian extends Guardian {
 
-		private boolean canParalyze = true;
-		private final String CAN_PARALYZE = "can_paralyze";
 		{
 			spriteClass = GreenGuardianSprite.class;
 			evasionFactor = 0.5f;
@@ -196,24 +191,8 @@ public class GrindLevel extends RegularLevel {
 		}
 
 		@Override
-		public int attackProc(Char enemy, int damage) {
-			if (canParalyze & Random.Int(3) == 0) {
-				Buff.affect(enemy, Paralysis.class, Paralysis.DURATION/2f);
-				canParalyze = false;
-			}
-			return super.attackProc(enemy, damage);
-		}
-
-		@Override
-		public void storeInBundle(Bundle bundle) {
-			bundle.put( CAN_PARALYZE, canParalyze );
-			super.storeInBundle(bundle);
-		}
-
-		@Override
-		public void restoreFromBundle(Bundle bundle) {
-			canParalyze = bundle.getBoolean( CAN_PARALYZE );
-			super.restoreFromBundle(bundle);
+		public Element elementalType() {
+			return Element.STONE;
 		}
 	}
 	public static class RedGuardian extends Guardian {
@@ -326,17 +305,19 @@ public class GrindLevel extends RegularLevel {
 		}
 	}
 
-	public static class OrangeGuardian extends RedGuardian implements Callback {
+	public static class OrangeGuardian extends RedGuardian {
 		{
 			spriteClass = OrangeGuardianSprite.class;
 			baseSpeed = 1f;
 			resistances.put(Element.FIRE, 0.3f);
 			lootAmt = 4;//Rare variant
+
+			range = 4;
 		}
 
 		@Override
-		public void call() {
-			next();
+		public Element elementalType() {
+			return Element.FIRE;
 		}
 	}
 

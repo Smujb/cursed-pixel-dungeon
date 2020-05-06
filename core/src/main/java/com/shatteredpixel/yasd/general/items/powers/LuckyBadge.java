@@ -38,9 +38,10 @@ public class LuckyBadge extends Power {
 	//Testing
 	public Type type = Type.GRIND;
 
-	private static int dropsToRare = Integer.MIN_VALUE;
+	private static int dropsToRare = 0;
 	private static float dropsToUpgrade = 40;
-	private static final float dropsIncreases = 40;
+
+	private static final float INCREASE_PER_DROP = 40;
 
 	private int returnPos = -1;
 	private String returnKey = null;
@@ -48,14 +49,14 @@ public class LuckyBadge extends Power {
 
 	@Override
 	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions(hero);
-		if (!(Dungeon.key.equals(AC_GRIND) || Dungeon.key.equals(AC_HOME))) {
+		ArrayList<String> actions = new ArrayList<>();
+		if (Dungeon.key.equals(AC_GRIND) || Dungeon.key.equals(AC_HOME)) {
+			actions.add(AC_RETURN);
+		} else {
 			if (type == Type.GRIND) {
 				actions.add(AC_GRIND);
 			}
 			actions.add(AC_HOME);
-		} else {
-			actions.add(AC_RETURN);
 		}
 		return actions;
 	}
@@ -108,7 +109,7 @@ public class LuckyBadge extends Power {
 		do {
 			if ((dropsToUpgrade < 1) || (Random.Int((int) dropsToUpgrade) == 0)) {
 				item = new ScrollOfUpgrade();
-				dropsToUpgrade += dropsIncreases;
+				dropsToUpgrade += INCREASE_PER_DROP;
 			} else {
 				if (Random.Int(dropsToRare) == 0 & !latestDropWasRare) {// 1/10 chance
 					item = genRareDrop();
