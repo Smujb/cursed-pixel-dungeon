@@ -44,6 +44,7 @@ import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
+import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.journal.Notes;
@@ -51,6 +52,7 @@ import com.shatteredpixel.yasd.general.levels.CavesLevel;
 import com.shatteredpixel.yasd.general.levels.CityLevel;
 import com.shatteredpixel.yasd.general.levels.DeadEndLevel;
 import com.shatteredpixel.yasd.general.levels.FirstLevel;
+import com.shatteredpixel.yasd.general.levels.GrindLevel;
 import com.shatteredpixel.yasd.general.levels.HallsLevel;
 import com.shatteredpixel.yasd.general.levels.LastLevel;
 import com.shatteredpixel.yasd.general.levels.Level;
@@ -286,6 +288,8 @@ public class Dungeon {
 		staticLevels.put("sewers - 0", FirstLevel.class);
 		//Amulet depth
 		staticLevels.put( LAST_ID, LastLevel.class );
+		//Grind level
+		staticLevels.put( LuckyBadge.AC_GRIND, GrindLevel.class );
 		//testing stuff
 		staticLevels.put("test boss", TestBossLevel.class);
 		staticLevels.put("test", TilemapTest.class);

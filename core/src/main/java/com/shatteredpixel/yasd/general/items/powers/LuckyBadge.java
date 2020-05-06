@@ -20,6 +20,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Random;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class LuckyBadge extends Power {
 	public static final String AC_GRIND = "grind";
@@ -28,17 +29,30 @@ public class LuckyBadge extends Power {
 
 	public enum Type {NONE, GRIND, SPEED}
 
-	public Type type = Type.NONE;
+	//Testing
+	public Type type = Type.GRIND;
 
-	private float triesToDrop = Float.MIN_VALUE;
-	private int dropsToRare = Integer.MIN_VALUE;
-	private static float dropsToUpgrade = 20;
-	private static final float dropsIncreases = 26;
+	private static int dropsToRare = Integer.MIN_VALUE;
+	private static float dropsToUpgrade = 40;
+	private static final float dropsIncreases = 40;
 
 	private int returnPos = -1;
 	private String returnKey = null;
 	private static boolean latestDropWasRare = false;
 
+	@Override
+	public ArrayList<String> actions(Hero hero) {
+		ArrayList<String> actions = super.actions(hero);
+		if (!(Dungeon.key.equals(AC_GRIND) || Dungeon.key.equals(AC_HOME))) {
+			if (type == Type.GRIND) {
+				actions.add(AC_GRIND);
+			}
+			actions.add(AC_HOME);
+		} else {
+			actions.add(AC_RETURN);
+		}
+		return actions;
+	}
 
 	@Override
 	public void execute(Hero hero, String action) {
@@ -85,33 +99,29 @@ public class LuckyBadge extends Power {
 	public static Item tryForBonusDrop(Char target) {
 
 		Item item;
-		if ((dropsToUpgrade < 1) || (Random.Int((int) dropsToUpgrade) == 0)) {
-			item = new ScrollOfUpgrade();
-			dropsToUpgrade += dropsIncreases;
-		} else {
-			if (Random.Int(10) == 0 & !latestDropWasRare) {// 1/10 chance
-				Item i;
-				do {
-					i = genRareDrop();
-				} while (Challenges.isItemBlocked(i));
-				item = i;
-				latestDropWasRare = true;
-				dropsToUpgrade -= 3;
+		do {
+			if ((dropsToUpgrade < 1) || (Random.Int((int) dropsToUpgrade) == 0)) {
+				item = new ScrollOfUpgrade();
+				dropsToUpgrade += dropsIncreases;
 			} else {
-				Item i;
-				do {
-					i = genStandardDrop();
-				} while (Challenges.isItemBlocked(i));
-				item = i;
-				dropsToUpgrade--;
-			}
+				if (Random.Int(dropsToRare) == 0 & !latestDropWasRare) {// 1/10 chance
+					item = genRareDrop();
+					latestDropWasRare = true;
+					dropsToUpgrade -= 3;
+					dropsToRare += 10;
+				} else {
+					item = genStandardDrop();
+					dropsToUpgrade--;
+					dropsToRare--;
+				}
 
-		}
+			}
+		} while (Challenges.isItemBlocked(item));
 
 		return item;
 	}
 
-	public static Item genStandardDrop(){
+	private static Item genStandardDrop(){
 		float roll = Random.Float();
 		if (roll < 0.3f){ //30% chance
 			Item result = new Gold().random();
@@ -156,7 +166,7 @@ public class LuckyBadge extends Power {
 		}
 	}
 
-	public static Item genRareDrop(){
+	private static Item genRareDrop(){
 		float roll = Random.Float();
 		if (roll < 0.3f){ //30% chance
 			Item result = new Gold().random();

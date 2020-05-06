@@ -86,7 +86,7 @@ public class GrindLevel extends RegularLevel {
 			EXP = 0;
 			state = WANDERING;
 		}
-		int lootAmt = 1;
+		int lootAmt = 2;
 
 		@Override
 		public String description() {
@@ -182,7 +182,7 @@ public class GrindLevel extends RegularLevel {
 			baseSpeed = 0.5f;
 			evasionFactor = 0.5f;
 			drFactor = 2f;
-			lootAmt = 2;
+			lootAmt = 4;
 			resistances.put(Element.SPIRIT, 0.5f);
 		}
 	}
@@ -190,7 +190,7 @@ public class GrindLevel extends RegularLevel {
 	public static class PurpleGuardian extends BlueGuardian {
 		{
 			spriteClass = PurpleGuardianSprite.class;
-			lootAmt = 3;//Tanky and rare so 1 (normal) +1 (tanky) +1 (rare)
+			lootAmt = 6;//Tanky and rare so 1 (normal) +1 (tanky) +1 (rare)
 		}
 
 		@Override
@@ -270,7 +270,7 @@ public class GrindLevel extends RegularLevel {
 			spriteClass = OrangeGuardianSprite.class;
 			baseSpeed = 1f;
 			resistances.put(Element.FIRE, 0.3f);
-			lootAmt = 2;//Rare variant
+			lootAmt = 4;//Rare variant
 		}
 
 		@Override
