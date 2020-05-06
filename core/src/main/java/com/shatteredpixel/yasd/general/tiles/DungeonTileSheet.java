@@ -104,15 +104,6 @@ public class DungeonTileSheet {
 		return !terrain.waterStitchable() && terrain != Terrain.CHASM;
 	}
 
-	public static int stitchDeepWaterTile(KindOfTerrain top, KindOfTerrain right, KindOfTerrain bottom, KindOfTerrain left) {
-		int result = DEEP_WATER;//Deep water will ALWAYS be surrounded on all 4 sides by water.
-		if (top != Terrain.DEEP_WATER)     result += 1;
-		if (right != Terrain.DEEP_WATER)   result += 2;
-		if (bottom != Terrain.DEEP_WATER)  result += 4;
-		if (left != Terrain.DEEP_WATER)    result += 8;
-		return result;
-	}
-
 
 	public static boolean floorTile(KindOfTerrain tile){
 		return tile == Terrain.WATER || directVisuals.get(tile, CHASM) < CHASM;

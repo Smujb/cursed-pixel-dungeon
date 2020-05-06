@@ -82,7 +82,6 @@ public class UnderwaterLevel extends Level {
 		maxScaleFactor = level.maxScaleFactor;
 		_width = level.width();
 		_height = level.height();
-		lightLocations = level.getTileLocations(Terrain.DEEP_WATER);
 		chasmLocations = level.getTileLocations(Terrain.CHASM);
 		return this;
 	}
@@ -90,11 +89,6 @@ public class UnderwaterLevel extends Level {
 	@Override
 	public boolean liquid(int pos) {
 		return super.liquid(pos) || passable(pos);
-	}
-
-	@Override
-	public boolean deepWater(int pos) {
-		return lightLocations.contains(pos);
 	}
 
 	@Override

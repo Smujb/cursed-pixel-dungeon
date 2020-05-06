@@ -28,12 +28,12 @@
 package com.shatteredpixel.yasd.general.levels;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.GamesInProgress;
 import com.shatteredpixel.yasd.general.LevelHandler;
-import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -121,7 +121,6 @@ import com.shatteredpixel.yasd.general.plants.Swiftthistle;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.tiles.CustomTilemap;
-import com.shatteredpixel.yasd.general.tiles.DungeonTileSheet;
 import com.shatteredpixel.yasd.general.utils.BArray;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.Game;
@@ -147,7 +146,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.CHASM;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.DEEP_WATER;
 import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.DOOR;
 import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMBERS;
 import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY;
@@ -833,24 +831,6 @@ public abstract class Level implements Bundlable {
 		}
 	}
 
-	public KindOfTerrain swapWaterAlts(int pos) {
-		int above = pos + PathFinder.CIRCLE4[0];
-		int right = pos + PathFinder.CIRCLE4[1];
-		int below = pos + PathFinder.CIRCLE4[2];
-		int left = pos + PathFinder.CIRCLE4[3];
-		try {
-			if (map[pos] == WATER &&
-					DungeonTileSheet.deepWaterStitchable(map[above]) &
-							DungeonTileSheet.deepWaterStitchable(map[below]) &
-							DungeonTileSheet.deepWaterStitchable(map[left]) &
-							DungeonTileSheet.deepWaterStitchable(map[right])) {
-				return DEEP_WATER;
-
-			}
-		} catch (IndexOutOfBoundsException ignored) {}
-		return map[pos];
-	}
-
 	public int width() {
 		return width;
 	}
@@ -1209,10 +1189,6 @@ public abstract class Level implements Bundlable {
 			
 			discoverable[i] = d;
 		}
-	}
-
-	public boolean deepWater(int pos) {
-		return map[pos] == DEEP_WATER;
 	}
 
 	public int getPos(int x, int y) {

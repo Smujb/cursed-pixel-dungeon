@@ -30,11 +30,11 @@ package com.shatteredpixel.yasd.general.scenes;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.Lore;
 import com.shatteredpixel.yasd.general.Statistics;
-import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
@@ -84,7 +84,6 @@ import com.shatteredpixel.yasd.general.ui.AttackIndicator;
 import com.shatteredpixel.yasd.general.ui.Banner;
 import com.shatteredpixel.yasd.general.ui.BusyIndicator;
 import com.shatteredpixel.yasd.general.ui.CharHealthIndicator;
-import com.shatteredpixel.yasd.general.ui.DiveIndicator;
 import com.shatteredpixel.yasd.general.ui.GameLog;
 import com.shatteredpixel.yasd.general.ui.LootIndicator;
 import com.shatteredpixel.yasd.general.ui.QuickSlotButton;
@@ -169,7 +168,6 @@ public class GameScene extends PixelScene {
 	private LootIndicator loot;
 	private ActionIndicator action;
 	private ResumeIndicator resume;
-	private DiveIndicator dive;
 	
 	@Override
 	public void create() {
@@ -327,10 +325,6 @@ public class GameScene extends PixelScene {
 		resume = new ResumeIndicator();
 		resume.camera = uiCamera;
 		add( resume );
-
-		dive = new DiveIndicator();
-		dive.camera = uiCamera;
-		add( dive );
 
 		log = new GameLog();
 		log.camera = uiCamera;
@@ -603,21 +597,18 @@ public class GameScene extends PixelScene {
 		if (tagAttack != attack.active ||
 				tagLoot != loot.visible ||
 				tagAction != action.visible ||
-				tagDive != dive.visible ||
 				tagResume != resume.visible) {
 
 			//we only want to change the layout when new tags pop in, not when existing ones leave.
 			boolean tagAppearing = (attack.active && !tagAttack) ||
 									(loot.visible && !tagLoot) ||
 									(action.visible && !tagAction) ||
-									(dive.visible && !tagDive) ||
 									(resume.visible && !tagResume);
 
 			tagAttack = attack.active;
 			tagLoot = loot.visible;
 			tagAction = action.visible;
 			tagResume = resume.visible;
-			tagDive = dive.visible;
 
 			if (tagAppearing) layoutTags();
 		}
@@ -634,7 +625,6 @@ public class GameScene extends PixelScene {
 	private boolean tagLoot      = false;
 	private boolean tagAction    = false;
 	private boolean tagResume    = false;
-	private boolean tagDive      = false;
 
 	public static void layoutTags() {
 
@@ -649,12 +639,6 @@ public class GameScene extends PixelScene {
 		}
 
 		float pos = scene.toolbar.top();
-
-		if (scene.tagDive){
-			scene.dive.setPos( tagLeft, pos - scene.dive.height());
-			scene.dive.flip(tagLeft == 0);
-			pos = scene.dive.top();
-		}
 
 		if (scene.tagAttack){
 			scene.attack.setPos( tagLeft, pos - scene.attack.height());
