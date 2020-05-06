@@ -27,8 +27,8 @@
 
 package com.shatteredpixel.yasd.general.levels.rooms.special;
 
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Shopkeeper;
@@ -38,8 +38,6 @@ import com.shatteredpixel.yasd.general.items.Honeypot;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.MerchantsBeacon;
 import com.shatteredpixel.yasd.general.items.Torch;
-import com.shatteredpixel.yasd.general.items.alcohol.Beer;
-import com.shatteredpixel.yasd.general.items.alcohol.Whiskey;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
@@ -238,8 +236,6 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add(new StoneOfRepair());
 		
 		itemsToSpawn.add( TippedDart.randomTipped(2) );
-
-		itemsToSpawn.add( Random.oneOf(new Whiskey(), new Beer()));
 
 		itemsToSpawn.add( new MerchantsBeacon() );
 

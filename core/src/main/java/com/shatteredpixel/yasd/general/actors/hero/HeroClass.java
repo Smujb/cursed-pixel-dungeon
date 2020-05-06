@@ -35,7 +35,6 @@ import com.shatteredpixel.yasd.general.items.BrokenSeal;
 import com.shatteredpixel.yasd.general.items.DeveloperItem;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
-import com.shatteredpixel.yasd.general.items.alcohol.Beer;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
@@ -123,7 +122,6 @@ public enum HeroClass {
 		}
 		new ScrollOfIdentify().identify().collect();
 		new StoneOfRepair().collect();
-		new Beer().collect();
 		if (Dungeon.testing) {
 			initTest(hero);
 		}
