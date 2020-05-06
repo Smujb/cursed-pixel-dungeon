@@ -79,8 +79,6 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -259,9 +257,7 @@ public class Potion extends Item {
 			GameScene.show(new WndItem(null, this, true) );
 			
 		} else*/ if (action.equals( AC_DRINK )) {
-			if (Dungeon.underwater()) {
-				GLog.i(Messages.get(this, "underwater"));
-			} else if (isKnown() && mustThrowPots.contains(getClass())) {
+			if (isKnown() && mustThrowPots.contains(getClass())) {
 
 				GameScene.show(
 						new WndOptions(Messages.get(Potion.class, "harmful"),

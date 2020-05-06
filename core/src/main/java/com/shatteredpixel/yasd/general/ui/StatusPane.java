@@ -28,9 +28,9 @@
 package com.shatteredpixel.yasd.general.ui;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.CPDAction;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Statistics;
-import com.shatteredpixel.yasd.general.actors.buffs.LimitedAir;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -39,7 +39,6 @@ import com.shatteredpixel.yasd.general.sprites.HeroSprite;
 import com.shatteredpixel.yasd.general.windows.WndGame;
 import com.shatteredpixel.yasd.general.windows.WndHero;
 import com.shatteredpixel.yasd.general.windows.WndJournal;
-import com.shatteredpixel.yasd.general.CPDAction;
 import com.watabou.input.GameAction;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Camera;
@@ -63,7 +62,7 @@ public class StatusPane extends Component {
 	private Image rawShielding;
 	private Image shieldedHP;
 	private Image hp;
-	private Image air;
+	private Image stamina;
 	private Image mana;
 	private Image exp;
 	private Image difficulty;
@@ -133,15 +132,8 @@ public class StatusPane extends Component {
 		hp = new Image( Assets.HP_BAR );
 		add( hp );
 
-		air = new Image( Assets.MORALE_BAR, 0, 0, 21, 3 );
-		add( air );
-
-		bubbles = new Emitter();
-		bubbles.pos(air);
-		bubbles.pour(Speck.factory(Speck.BUBBLE), Math.max(0.05f, LimitedAir.percentage(Dungeon.hero)));
-		bubbles.autoKill = false;
-		bubbles.on = false;
-		add( bubbles );
+		stamina = new Image( Assets.MORALE_BAR, 0, 0, 21, 3 );
+		add(stamina);
 
 		mana = new Image( Assets.MORALE_BAR );
 		add(mana);
@@ -197,8 +189,8 @@ public class StatusPane extends Component {
 
 		mana.y = 11;
 
-		air.x = 1;
-		air.y = 30;
+		stamina.x = 1;
+		stamina.y = 30;
 
 		bossHP.setPos( 6 + (width - bossHP.width())/2, 20);
 
@@ -249,9 +241,9 @@ public class StatusPane extends Component {
 		hp.scale.x = Math.max( 0, (health-shield)/max);
 		shieldedHP.scale.x = health/max;
 		rawShielding.scale.x = shield/max;
-		mana.scale.x = 1f;//TODO
+		mana.scale.x = 1f;//TODO Mana
 
-		air.scale.x = LimitedAir.percentage(Dungeon.hero);
+		stamina.scale.x = 1f;//TODO Stamina
 
 		exp.scale.x = (width / exp.width) * Dungeon.hero.exp / Dungeon.hero.maxExp();
 

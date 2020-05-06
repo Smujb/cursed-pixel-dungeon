@@ -60,7 +60,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Hex;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.Levitation;
 import com.shatteredpixel.yasd.general.actors.buffs.LifeLink;
-import com.shatteredpixel.yasd.general.actors.buffs.LimitedAir;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicalSleep;
 import com.shatteredpixel.yasd.general.actors.buffs.MindVision;
 import com.shatteredpixel.yasd.general.actors.buffs.Momentum;
@@ -242,7 +241,6 @@ public abstract class Char extends Actor {
 			fieldOfView = new boolean[Dungeon.level.length()];
 		}
 		Dungeon.level.updateFieldOfView(this, fieldOfView);
-		LimitedAir.updateBuff(this);
 		return false;
 	}
 
@@ -1157,7 +1155,7 @@ public abstract class Char extends Actor {
 		UNDEAD,
 		DEMONIC,
 		INORGANIC ( new HashSet<Element>(),
-				new HashSet<Class>( Arrays.asList(Bleeding.class, ToxicGas.class, Poison.class, LimitedAir.class) )),
+				new HashSet<Class>( Arrays.asList(Bleeding.class, ToxicGas.class, Poison.class) )),
 
 		BLOB_IMMUNE ( new HashSet<Element>(),
 				new HashSet<Class>( Arrays.asList(Blob.class) )),
@@ -1175,7 +1173,7 @@ public abstract class Char extends Actor {
 				new HashSet<Class>()),
 
 		LARGE,
-		WATERY(new HashSet<Element>(Arrays.asList(Element.WATER)), new HashSet<>(Arrays.asList(Wet.class, LimitedAir.class))),
+		WATERY(new HashSet<Element>(Arrays.asList(Element.WATER)), new HashSet<>(Arrays.asList(Wet.class))),
 		IMMOVABLE,
 		IGNORES_INVISIBLE;
 

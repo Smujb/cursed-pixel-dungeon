@@ -174,11 +174,6 @@ public class LevelHandler {
 		move(key, Messages.get(Mode.class, Mode.RETURN.name()), Mode.RETURN, depth, pos);
 	}
 
-	public static void dive(int pos) {
-		Dungeon.underwater = !Dungeon.underwater;
-		move(Dungeon.keyForDepth(), Messages.get(Mode.class, Mode.RETURN.name()), Mode.RETURN, Dungeon.depth, pos);
-	}
-
 	public static void doRestore() {
 		mode = Mode.CONTINUE;
 		TextScene.init(Messages.get(Mode.class, Mode.CONTINUE.name()), Messages.get(LevelHandler.class, "continue"), Dungeon.newLevel( Dungeon.keyForDepth(), false).loadImg(), getSpeed(), 0.67f, new Callback() {

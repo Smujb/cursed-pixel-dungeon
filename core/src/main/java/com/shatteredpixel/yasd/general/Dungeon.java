@@ -69,7 +69,6 @@ import com.shatteredpixel.yasd.general.levels.PrisonLevel;
 import com.shatteredpixel.yasd.general.levels.SewerBossLevel;
 import com.shatteredpixel.yasd.general.levels.SewerLevel;
 import com.shatteredpixel.yasd.general.levels.TestBossLevel;
-import com.shatteredpixel.yasd.general.levels.UnderwaterLevel;
 import com.shatteredpixel.yasd.general.levels.rooms.secret.SecretRoom;
 import com.shatteredpixel.yasd.general.levels.rooms.special.SpecialRoom;
 import com.shatteredpixel.yasd.general.levels.tiled.TilemapTest;
@@ -222,7 +221,6 @@ public class Dungeon {
 		
 		depth = 1;
 		key = keyForDepth();
-		underwater = false;
 
 		gold = 0;
 
@@ -324,9 +322,6 @@ public class Dungeon {
 		} else if (depth == Constants.MAX_DEPTH) {
 			key = LAST_ID;
 		}
-		if (underwater) {
-			key = UNDERWATER_ID + key;
-		}
 		return key;
 	}
 	
@@ -353,15 +348,6 @@ public class Dungeon {
 		}
 		if (levelClass != null) {
 			level = Reflection.newInstance(levelClass);
-		}
-
-		//Underwater levels.
-		if (key.contains(UNDERWATER_ID)) {
-			Level surface = LevelHandler.getLevel(key.replace(UNDERWATER_ID, ""), GamesInProgress.curSlot);
-			if (surface == null) {
-				surface = newLevel(key.replace(UNDERWATER_ID, ""), true);
-			}
-			level = new UnderwaterLevel().setParent(surface);
 		}
 
 		//Can return null if there's no level set for that location - but only if create is disabled.
@@ -548,7 +534,6 @@ public class Dungeon {
 			bundle.put( GOLD, gold );
 			bundle.put(YPOS, depth);
 			bundle.put( KEY, key == null || key.isEmpty() ? keyForDepth() : key );
-			bundle.put( UNDERWATER, underwater );
 			bundle.put( DIFFICULTY, difficulty );
 			bundle.put( TESTING, testing );
 
@@ -642,7 +627,6 @@ public class Dungeon {
 
 		key = bundle.contains(KEY) ? bundle.getString(KEY) : keyForDepth();
 
-		underwater = bundle.getBoolean(UNDERWATER);
 		//xPos = bundle.contains(XPOS) ? bundle.getInt(XPOS) : 0;
 
 		Actor.restoreNextID( bundle );

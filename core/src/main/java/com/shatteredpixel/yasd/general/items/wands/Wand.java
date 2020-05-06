@@ -44,7 +44,6 @@ import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
-import com.shatteredpixel.yasd.general.items.armor.MageArmor;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -183,11 +182,6 @@ public abstract class Wand extends KindofMisc {
 
 		if (owner.buff(MagicImmune.class) != null){
 			GLog.w( Messages.get(this, "no_magic") );
-			return false;
-		}
-
-		if (Dungeon.underwater()) {
-			GLog.w( Messages.get(this, "underwater") );
 			return false;
 		}
 

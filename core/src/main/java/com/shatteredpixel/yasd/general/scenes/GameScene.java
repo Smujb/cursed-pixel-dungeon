@@ -278,11 +278,6 @@ public class GameScene extends PixelScene {
 			addBlobSprite( blob );
 		}
 
-		if (Dungeon.underwater()) {
-			water.alpha(0.5f);
-			addToFront(water);
-		}
-
 		fog = new FogOfWar( Dungeon.level.width(), Dungeon.level.height() );
 		add( fog );
 

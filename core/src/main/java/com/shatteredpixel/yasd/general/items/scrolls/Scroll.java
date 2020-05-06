@@ -58,8 +58,6 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Reflection;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -183,9 +181,7 @@ public abstract class Scroll extends Item {
 			
 			if (hero.buff(MagicImmune.class) != null){
 				GLog.w( Messages.get(this, "no_magic") );
-			} else if (Dungeon.underwater()) {
-				GLog.w( Messages.get(this, "underwater") );
-			}else if (hero.buff( Blindness.class ) != null) {
+			} if (hero.buff( Blindness.class ) != null) {
 				GLog.w( Messages.get(this, "blinded") );
 			} else if (hero.buff(UnstableSpellbook.bookRecharge.class) != null
 					&& hero.buff(UnstableSpellbook.bookRecharge.class).isCursed()

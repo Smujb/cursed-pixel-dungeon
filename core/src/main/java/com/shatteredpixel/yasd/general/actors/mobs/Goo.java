@@ -120,11 +120,6 @@ public class Goo extends Mob {
 				BossHealthBar.bleed(false);
 				((GooSprite)sprite).spray(false);
 			}
-			if (Dungeon.underwater()) {
-				heal(3);
-			} else {
-				heal(1);
-			}
 		}
 		
 		if (state != SLEEPING){
@@ -135,15 +130,6 @@ public class Goo extends Mob {
 		sprite.idle();
 
 		return super.act();
-	}
-
-	@Override
-	public float speed() {
-		float speed = super.speed();
-		if (Dungeon.underwater()) {
-			speed *= 2;
-		}
-		return speed;
 	}
 
 	@Override
