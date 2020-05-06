@@ -17,12 +17,18 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class LuckyBadge extends Power {
+
+	{
+		image = ItemSpriteSheet.BADGE;
+	}
+
 	public static final String AC_GRIND = "grind";
 	public static final String AC_HOME = "home";
 	public static final String AC_RETURN = "return";
