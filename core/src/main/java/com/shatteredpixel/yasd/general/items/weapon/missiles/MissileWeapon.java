@@ -127,11 +127,11 @@ abstract public class MissileWeapon extends Weapon {
 	public int STRReq(int lvl){
 		lvl = Math.max(0, lvl);
 		//strength req decreases at +1,+3,+6,+10,etc.
-		int strPerTier = 3;
+		int strPerTier = 2;
 		if (Dungeon.hero.heroClass == HeroClass.HUNTRESS) {
-			strPerTier = 2;
+			strPerTier = 1;
 		}
-		return (6 + tier * strPerTier) - (int)(Math.sqrt(8 * lvl + 1) - 1)/2;
+		return (6 + tier * strPerTier) + lvl;
 	}
 	
 	@Override

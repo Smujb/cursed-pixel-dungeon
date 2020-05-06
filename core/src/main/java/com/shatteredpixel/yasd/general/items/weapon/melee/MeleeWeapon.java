@@ -67,8 +67,7 @@ public class MeleeWeapon extends Weapon {
 
 	public int STRReq(int lvl){
 		lvl = Math.max(0, lvl);
-		//Str req is 7 + tier * 3, so 10 for T1, 13 for T2, 16 for T3, etc, and is decreased by 1 per upgrade.
-		return  (7 + Math.round(tier * 3)) - lvl;
+		return  (6 + Math.round(tier * 2)) + lvl;
 	}
 
 	@Override

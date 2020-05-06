@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.windows;
 
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.ClassArmor;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
@@ -716,13 +715,9 @@ public class WndJournal extends WndTabbed {
 			
 			public boolean onClick( float x, float y ) {
 				if (inside( x, y ) && seen) {
-					if (item instanceof ClassArmor){
-						GameScene.show(new WndTitledMessage(new Image(icon),
-								Messages.titleCase(item.trueName()), item.desc()));
-					} else {
-						GameScene.show(new WndTitledMessage(new Image(icon),
-								Messages.titleCase(item.trueName()), item.info()));
-					}
+					GameScene.show(new WndTitledMessage(new Image(icon),
+							Messages.titleCase(item.trueName()), item.info()));
+
 					return true;
 				} else {
 					return false;

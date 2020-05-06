@@ -548,12 +548,9 @@ public class Armor extends EquipableItem {
 		return Math.max(STRReq(level()),10);
 	}
 
-
 	public int STRReq(int lvl){
 		lvl = Math.max(0, lvl);
-
-		//strength req decreases at +1,+3,+6,+10,etc.
-		return (7 + Math.round(tier * 3)) - lvl;
+		return  (6 + Math.round(tier * 2)) + lvl;
 	}
 	
 	@Override

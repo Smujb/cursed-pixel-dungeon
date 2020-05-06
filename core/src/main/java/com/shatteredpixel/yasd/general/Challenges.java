@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general;
 import com.shatteredpixel.yasd.general.items.Dewdrop;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.items.armor.ClassArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
 import com.shatteredpixel.yasd.general.items.food.Blandfruit;
@@ -81,7 +80,7 @@ public class Challenges {
 		}
 
 		if (Dungeon.isChallenged(NO_ARMOR)){
-			if (item instanceof Armor && !(item instanceof ClothArmor || item instanceof ClassArmor)) {
+			if (item instanceof Armor && !(item instanceof ClothArmor)) {
 				return true;
 			}
 		}
