@@ -58,8 +58,6 @@ import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class MagesStaff extends MeleeWeapon {
@@ -83,6 +81,15 @@ public class MagesStaff extends MeleeWeapon {
 		bones = false;
 
 		damageMultiplier = 0.8f;
+	}
+
+	@Override
+	public int upgradeLimit() {
+		int limit = super.upgradeLimit();
+		if (Dungeon.hero.subClass == HeroSubClass.BATTLEMAGE) {
+			return (int) (limit * (4/3f));
+		}
+		return limit;
 	}
 
 	public MagesStaff() {

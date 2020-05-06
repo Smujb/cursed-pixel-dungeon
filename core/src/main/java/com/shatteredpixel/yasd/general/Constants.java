@@ -40,10 +40,10 @@ public class Constants {
     public static final boolean DEGRADATION = true;
 
     //Number of upgrades Curse Infusion adds.
-    public static final int CURSE_INFUSION_BONUS_AMT = 1;
+    public static final int CURSE_INFUSION_BONUS_AMT = 3;
 
     //Default Upgrade Limit. Set to -1 to remove the limit.
-    public static final int UPGRADE_LIMIT = 3;
+    public static final int UPGRADE_LIMIT = 15;
 
     //Wand charges cap.
     public static final int WAND_CHARGE_CAP = 10;
@@ -65,8 +65,8 @@ public class Constants {
     //
 
 
-    //Chapter length. WIP.
-    public static final int CHAPTER_LENGTH = 6;
+    //Chapter length.
+    public static final int CHAPTER_LENGTH = 4;
 
     //Number of chapters.
     public static final int NUM_CHAPTERS = 5;
