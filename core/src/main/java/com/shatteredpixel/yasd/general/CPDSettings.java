@@ -183,6 +183,7 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 	public static final String KEY_CHALLENGES	= "challenges";
 	public static final String KEY_INTRO		= "intro";
 	public static final String KEY_TESTING		= "testing";
+	public static final String KEY_CHAPTER		= "testing";
 	
 	public static void intro( boolean value ) {
 		put( KEY_INTRO, value );
@@ -234,7 +235,15 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 	public static void testing( boolean value ) {
 		put( KEY_TESTING, value);
 	}
-	
+
+	public static void storyChapter(StoryChapter value) {
+		put(KEY_CHAPTER, value.name());
+	}
+
+	public static StoryChapter storyChapter() {
+		return Enum.valueOf(StoryChapter.class, getString(KEY_CHAPTER, StoryChapter.FIRST.name()));
+	}
+
 	//Audio
 	
 	public static final String KEY_MUSIC		= "music";

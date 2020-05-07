@@ -29,8 +29,10 @@ package com.shatteredpixel.yasd.general.scenes;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Chrome;
 import com.shatteredpixel.yasd.general.GamesInProgress;
+import com.shatteredpixel.yasd.general.StoryChapter;
 import com.shatteredpixel.yasd.general.effects.BannerSprites;
 import com.shatteredpixel.yasd.general.effects.Fireball;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -42,7 +44,7 @@ import com.shatteredpixel.yasd.general.ui.LanguageButton;
 import com.shatteredpixel.yasd.general.ui.SettingsButton;
 import com.shatteredpixel.yasd.general.ui.StyledButton;
 import com.shatteredpixel.yasd.general.ui.UpdateNotification;
-import com.shatteredpixel.yasd.general.windows.WndSettings;
+import com.shatteredpixel.yasd.general.windows.WndOptions;
 import com.shatteredpixel.yasd.general.windows.WndStartGame;
 import com.watabou.glwrap.Blending;
 import com.watabou.noosa.BitmapText;
@@ -132,14 +134,20 @@ public class TitleScene extends PixelScene {
 
 		 */
 		
-		TitleButton btnSettings = new TitleButton(Messages.get(this, "settings")){
+		TitleButton btnChapter = new TitleButton(Messages.get(this, "chapter")){
 			@Override
 			protected void onClick() {
-				parent.add( new WndSettings() );
+				parent.add( new WndOptions(Messages.get(TitleScene.this, "chapter"), Messages.get(TitleScene.this, "desc"), StoryChapter.strValues()) {
+					@Override
+					protected void onSelect(int index) {
+						super.onSelect(index);
+						CPDSettings.storyChapter(StoryChapter.values()[index]);
+					}
+				});
 			}
 		};
-		btnSettings.icon(Icons.get(Icons.PREFS));
-		add(btnSettings);
+		btnChapter.icon(Icons.get(Icons.CHALLENGE_ON));
+		add(btnChapter);
 		
 		TitleButton btnRankings = new TitleButton(Messages.get(this, "rankings")){
 			@Override
@@ -186,7 +194,7 @@ public class TitleScene extends PixelScene {
 		if (landscape()) {
 			btnPlay.setRect(title.x-50, topRegion+GAP, ((title.width()+100)/2)-1, BTN_HEIGHT);
 			align(btnPlay);
-			btnSettings.setRect(btnPlay.right()+2, btnPlay.top(), btnPlay.width(), BTN_HEIGHT);
+			btnChapter.setRect(btnPlay.right()+2, btnPlay.top(), btnPlay.width(), BTN_HEIGHT);
 			btnRankings.setRect(btnPlay.left() + (btnPlay.width()*.33f)+1, btnPlay.bottom()+ GAP, (btnPlay.width()*.67f)-1, BTN_HEIGHT);
 			btnBadges.setRect(btnRankings.right()+2, btnRankings.top(), btnRankings.width(), BTN_HEIGHT);
 			btnChanges.setRect(btnRankings.left(), btnRankings.bottom() + GAP, btnRankings.width(), BTN_HEIGHT);
@@ -198,7 +206,7 @@ public class TitleScene extends PixelScene {
 			btnBadges.setRect(btnRankings.right()+2, btnRankings.top(), btnRankings.width(), BTN_HEIGHT);
 			btnChanges.setRect(btnRankings.left(), btnRankings.bottom()+ GAP, btnRankings.width(), BTN_HEIGHT);
 			btnAbout.setRect(btnChanges.right()+2, btnChanges.top(), btnChanges.width(), BTN_HEIGHT);
-			btnSettings.setRect(btnPlay.left(), btnAbout.bottom()+ GAP, btnPlay.width(), BTN_HEIGHT);
+			btnChapter.setRect(btnPlay.left(), btnAbout.bottom()+ GAP, btnPlay.width(), BTN_HEIGHT);
 		}
 
 		BitmapText version = new BitmapText( "v" + Game.version, pixelFont);
