@@ -69,7 +69,7 @@ public class WandOfFlow extends DamageWand {
 
     @Override
     public float max(float lvl) {
-        return 6 + lvl*3;
+        return 6 + lvl*6;
     }
 
     @Override

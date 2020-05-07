@@ -53,8 +53,6 @@ import com.watabou.utils.ColorMath;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -140,12 +138,12 @@ public class WandOfRegrowth extends Wand {
 	}
 	
 	private int chargeLimit( int heroLevel ){
-		if (actualLevel() >= 9){
+		if (level() >= 9){
 			return Integer.MAX_VALUE;
 		} else {
 			//4 charges per hero level at +0, with another 2-4 each upgrade from +1 to +9.
 			//then +7 at +10, +16 at +11, and infinite at +12.
-			return Math.round(((4 + 2*actualLevel())*heroLevel) * (11f/12f + 1f/(12f-actualLevel())));
+			return Math.round(((4 + 2*level())*heroLevel) * (11f/12f + 1f/(12f-level())));
 		}
 	}
 

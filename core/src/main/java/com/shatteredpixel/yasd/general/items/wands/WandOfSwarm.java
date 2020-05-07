@@ -44,7 +44,7 @@ public class WandOfSwarm extends DamageWand {
     }
     @Override
     public float max(float lvl){
-        return 5+3*lvl;
+        return 5+6*lvl;
     }
 
     @Override

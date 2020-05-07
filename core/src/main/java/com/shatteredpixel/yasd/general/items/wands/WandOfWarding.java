@@ -78,7 +78,7 @@ public class WandOfWarding extends DamageWand {
 		for (Buff buff : curUser.buffs()){
 			if (buff instanceof Wand.Charger){
 				if (((Charger) buff).wand() instanceof WandOfWarding){
-					maxWardEnergy += 3 + ((Charger) buff).wand().actualLevel()*3;
+					maxWardEnergy += 3 + ((Charger) buff).wand().level()*3;
 				}
 			}
 		}
@@ -112,9 +112,9 @@ public class WandOfWarding extends DamageWand {
 		} else if (ch != null){
 			if (ch instanceof Ward){
 				if (wardAvailable) {
-					((Ward) ch).upgrade((int)actualLevel());
+					((Ward) ch).upgrade((int)level());
 				} else {
-					((Ward) ch).wandHeal( (int)actualLevel() );
+					((Ward) ch).wandHeal( (int)level() );
 				}
 				ch.sprite.emitter().burst(MagicMissile.WardParticle.UP, ((Ward) ch).tier);
 			} else {
@@ -125,7 +125,7 @@ public class WandOfWarding extends DamageWand {
 		} else if (canPlaceWard(bolt.collisionPos)){
 			Ward ward = Mob.create(Ward.class);
 			ward.pos = bolt.collisionPos;
-			ward.wandLevel = (int)actualLevel();
+			ward.wandLevel = (int)level();
 			GameScene.add(ward, 1f);
 			Dungeon.level.occupyCell(ward);
 			ward.sprite.emitter().burst(MagicMissile.WardParticle.UP, ward.tier);
@@ -196,7 +196,7 @@ public class WandOfWarding extends DamageWand {
 	}
 
 	private static float realMax(float lvl) {
-		return 8 + 4 * lvl;
+		return 8 + 8 * lvl;
 	}
 
 	@Override
@@ -212,7 +212,7 @@ public class WandOfWarding extends DamageWand {
 	@Override
 	public String statsDesc() {
 		if (levelKnown)
-			return Messages.get(this, "stats_desc", (int)(actualLevel()+3));
+			return Messages.get(this, "stats_desc", (int)(level()+3));
 		else
 			return Messages.get(this, "stats_desc", 3);
 	}

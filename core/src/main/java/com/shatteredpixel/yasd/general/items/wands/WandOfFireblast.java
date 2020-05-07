@@ -68,7 +68,7 @@ public class WandOfFireblast extends DamageWand {
 	//1x/2x/3x damage
 	@Override
 	public float max(float lvl){
-		return (6+2*lvl) * chargesPerCast();
+		return (6+4*lvl) * chargesPerCast();
 	}
 
 	//the actual affected cells

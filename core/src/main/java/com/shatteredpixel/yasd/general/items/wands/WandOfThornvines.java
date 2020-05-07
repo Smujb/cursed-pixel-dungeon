@@ -88,7 +88,7 @@ public class WandOfThornvines extends Wand {
 
 
         if (findThornVine() == null) {
-            new ThornVine().spawnAt(bolt.collisionPos, actualLevel(), curCharges, curUser);
+            new ThornVine().spawnAt(bolt.collisionPos, level(), curCharges, curUser);
         }
     }
 

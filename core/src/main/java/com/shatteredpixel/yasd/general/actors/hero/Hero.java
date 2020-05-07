@@ -146,6 +146,7 @@ public class Hero extends Char {
 	private int Focus      = 1;
 	private int Perception = 1;
 	private int Evasion    = 1;
+	//private int [TBA]      = 1;
 	public  int DistributionPoints = 0;
 
 	private static final float TIME_TO_REST		    = 1f;
@@ -167,6 +168,9 @@ public class Hero extends Char {
 
 	public int lvl = 1;
 	public int exp = 0;
+
+	private int maxMP = 5;
+	public int mp = maxMP;
 	
 	public int HTBoost = 0;
 	
@@ -194,9 +198,15 @@ public class Hero extends Char {
 	@Override
 	public void updateHT(boolean boostHP) {
 		int preHT = HT;
-		HT = 20 + 5*(lvl-1) + HTBoost;
+		HT = 20 + 10*(lvl-1) + HTBoost;
 		heal(HT-preHT);
 		super.updateHT(boostHP);
+	}
+
+	public void updateMP() {
+		int oldMax = maxMP;
+		maxMP = 5 + Focus;
+		mp += (maxMP - oldMax);
 	}
 
 	public int getPower() {

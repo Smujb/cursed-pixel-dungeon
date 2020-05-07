@@ -88,6 +88,6 @@ public class WandOfLifeDrain extends DamageWand {
     }
     @Override
     public float max(float lvl){
-        return (6+2*lvl) * chargesPerCast();
+        return (6+4*lvl) * chargesPerCast();
     }
 }

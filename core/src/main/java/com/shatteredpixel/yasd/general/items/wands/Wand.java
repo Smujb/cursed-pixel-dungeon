@@ -92,22 +92,6 @@ public abstract class Wand extends KindofMisc {
 		bones = true;
 	}
 
-	private float effectiveness(Hero hero) {
-		return level() + hero.getFocus()/6f;
-	}
-
-	public float actualLevel() {
-		float level;
-		if (curUser instanceof Hero) {
-			level = effectiveness((Hero) curUser);
-		} else {
-			level = 2*level();
-		}
-		return level;
-	}
-
-
-
 	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions(hero);

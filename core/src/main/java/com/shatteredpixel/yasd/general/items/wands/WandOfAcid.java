@@ -56,7 +56,7 @@ public class WandOfAcid extends DamageWand {
 
     @Override
     public float max(float lvl) {
-        return 8 + lvl * 4;
+        return 8 + lvl * 8;
     }
 
     @Override

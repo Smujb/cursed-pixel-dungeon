@@ -58,7 +58,7 @@ public class WandOfDarkness extends Wand {
 
     @Override
     public void onZap(Ballistica bolt) {
-        float level = actualLevel();
+        float level = level();
         int pos = bolt.collisionPos;
         for( int i : PathFinder.NEIGHBOURS9) {
             if (!Dungeon.level.solid(pos + i)) {

@@ -55,7 +55,7 @@ public class WandOfDamnation extends Wand {
         if (ch instanceof Mob) {
             enemy = ((Mob)ch);
 
-            float corruptingPower = 3 + actualLevel();
+            float corruptingPower = 3 + level();
 
             float enemyResist = enemy.corruptionResistance();
 

@@ -64,7 +64,7 @@ public class WandOfDisintegration extends DamageWand {
 
 	@Override
 	public float max(float lvl){
-		return 8+4*lvl;
+		return 8+8*lvl;
 	}
 	
 	@Override

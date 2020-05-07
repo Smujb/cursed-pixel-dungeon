@@ -54,7 +54,7 @@ public class WandOfPlasmaBolt extends DamageWand {
 
     @Override
     public float max(float lvl) {
-        return 16 + 8*lvl;
+        return 16 + 16*lvl;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class WandOfPlasmaBolt extends DamageWand {
                 processSoulMark(ch, chargesPerCast());
                 hit(ch);
 
-                ch.sprite.burst(0xFFFFFFFF, (int) actualLevel() / 2 + 2);
+                ch.sprite.burst(0xFFFFFFFF, (int) level() / 2 + 2);
             } else {
                 String defense = ch.defenseVerb();
                 ch.sprite.showStatus( CharSprite.NEUTRAL, defense );
