@@ -157,7 +157,7 @@ public class Assets {
 	public static final String PIXELFONT    = "pixel_font.png";
 
 	public static final String THEME	= "main.mp3";
-	public static final String TUNE		= "game.ogg";
+	public static final String TUNE		= "theme.mp3";
 	public static final String HAPPY	= "surface.ogg";
 	
 	public static final String SND_CLICK	= "snd_click.mp3";
