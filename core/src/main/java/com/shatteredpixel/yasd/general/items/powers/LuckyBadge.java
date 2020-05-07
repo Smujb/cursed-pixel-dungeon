@@ -118,7 +118,7 @@ public class LuckyBadge extends Power {
 				item = new ScrollOfUpgrade();
 				dropsToUpgrade += INCREASE_PER_DROP;
 			} else {
-				if (Random.Int(dropsToRare) == 0 & !latestDropWasRare) {// 1/10 chance
+				if ((dropsToRare <= 0 || Random.Int(dropsToRare) == 0) & !latestDropWasRare) {// 1/10 chance
 					item = genRareDrop();
 					latestDropWasRare = true;
 					dropsToUpgrade -= 3;
