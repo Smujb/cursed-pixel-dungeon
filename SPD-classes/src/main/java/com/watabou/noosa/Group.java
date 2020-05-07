@@ -47,6 +47,17 @@ public class Group extends Gizmo {
 		members = new ArrayList<>();
 		length = 0;
 	}
+
+	protected void alphaAll(float tint) {
+		for (Gizmo g : members) {
+			if (g instanceof Visual) {
+				Visual v = ((Visual)g);
+				v.am = tint;
+			} else if (g instanceof Group) {
+				((Group)g).alphaAll(tint);
+			}
+		}
+	}
 	
 	@Override
 	public synchronized void destroy() {

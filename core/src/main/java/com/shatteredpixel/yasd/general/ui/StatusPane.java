@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDAction;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Statistics;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -132,10 +133,10 @@ public class StatusPane extends Component {
 		hp = new Image( Assets.HP_BAR );
 		add( hp );
 
-		stamina = new Image( Assets.MORALE_BAR, 0, 0, 21, 3 );
+		stamina = new Image( Assets.STAMINA );
 		add(stamina);
 
-		mana = new Image( Assets.MORALE_BAR );
+		mana = new Image( Assets.MANA_BAR);
 		add(mana);
 
 		exp = new Image( Assets.XP_BAR );
@@ -143,9 +144,6 @@ public class StatusPane extends Component {
 
 		bossHP = new BossHealthBar();
 		add( bossHP );
-
-		//airBar = new AirBar();
-		//add( airBar );
 
 		level = new BitmapText( PixelScene.pixelFont);
 		level.hardlight( 0xFFEBA4 );
@@ -194,8 +192,6 @@ public class StatusPane extends Component {
 
 		bossHP.setPos( 6 + (width - bossHP.width())/2, 20);
 
-		//airBar.setPos( 6 + (width - bossHP.width())/2, 20);
-
 		depth.x = width - 35.5f - depth.width() / 2f;
 		depth.y = 8f - depth.baseLine() / 2f;
 		PixelScene.align(depth);
@@ -222,13 +218,20 @@ public class StatusPane extends Component {
 
 	@Override
 	public void update() {
-		super.update();
-		
-		float health = Dungeon.hero.HP;
-		float shield = Dungeon.hero.shielding();
-		float max = Dungeon.hero.HT;
+		if (Dungeon.hero.ready) {
+			alphaAll(1f);
+		} else {
+			alphaAll(2/3f);
+		}
 
-		if (!Dungeon.hero.isAlive()) {
+		super.update();
+
+		Hero hero = Dungeon.hero;
+		float health = hero.HP;
+		float shield = hero.shielding();
+		float max = hero.HT;
+
+		if (!hero.isAlive()) {
 			avatar.tint(0x000000, 0.5f);
 		} else if ((health/max) < 0.3f) {
 			warning += Game.elapsed * 5f *(0.4f - (health/max));
@@ -241,7 +244,7 @@ public class StatusPane extends Component {
 		hp.scale.x = Math.max( 0, (health-shield)/max);
 		shieldedHP.scale.x = health/max;
 		rawShielding.scale.x = shield/max;
-		mana.scale.x = 1f;//TODO Mana
+		mana.scale.x = hero.mp/(float)hero.getMaxMP();
 
 		stamina.scale.x = 1f;//TODO Stamina
 

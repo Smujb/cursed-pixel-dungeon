@@ -169,7 +169,7 @@ public class Hero extends Char {
 	public int lvl = 1;
 	public int exp = 0;
 
-	private int maxMP = 5;
+	private int maxMP = 10;
 	public int mp = maxMP;
 	
 	public int HTBoost = 0;
@@ -205,8 +205,21 @@ public class Hero extends Char {
 
 	public void updateMP() {
 		int oldMax = maxMP;
-		maxMP = 5 + Focus;
+		maxMP = 10 + Focus;
 		mp += (maxMP - oldMax);
+	}
+
+	public int getMaxMP() {
+		return maxMP;
+	}
+
+	public boolean useMP(int amount) {
+		if (mp >= amount) {
+			mp -= amount;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public int getPower() {

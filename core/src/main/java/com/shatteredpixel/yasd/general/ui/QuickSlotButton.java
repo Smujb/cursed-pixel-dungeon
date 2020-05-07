@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.ui;
 
+import com.shatteredpixel.yasd.general.CPDAction;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -38,7 +39,6 @@ import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.utils.BArray;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.shatteredpixel.yasd.general.windows.WndBag.Listener;
-import com.shatteredpixel.yasd.general.CPDAction;
 import com.watabou.input.GameAction;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Button;
