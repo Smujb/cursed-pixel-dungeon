@@ -130,9 +130,6 @@ public class TitleScene extends PixelScene {
 		};
 		btnPlay.icon(Icons.get(Icons.ENTER));
 		add(btnPlay);
-		/*@Override
-
-		 */
 		
 		TitleButton btnChapter = new TitleButton(Messages.get(this, "chapter")){
 			@Override
