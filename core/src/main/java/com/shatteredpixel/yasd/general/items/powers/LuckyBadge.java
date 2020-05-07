@@ -27,6 +27,8 @@ public class LuckyBadge extends Power {
 
 	{
 		image = ItemSpriteSheet.BADGE;
+
+		cursed = false;
 	}
 
 	public static final String AC_GRIND = "grind";
@@ -37,15 +39,20 @@ public class LuckyBadge extends Power {
 
 	//Testing
 	public Type type = Type.GRIND;
+	private static final float INCREASE_PER_DROP = 40;
 
 	private static int dropsToRare = 0;
-	private static float dropsToUpgrade = 40;
+	private static float dropsToUpgrade = INCREASE_PER_DROP;
 
-	private static final float INCREASE_PER_DROP = 40;
 
 	private int returnPos = -1;
 	private String returnKey = null;
 	private static boolean latestDropWasRare = false;
+
+	@Override
+	public boolean isIdentified() {
+		return true;
+	}
 
 	@Override
 	public ArrayList<String> actions(Hero hero) {
