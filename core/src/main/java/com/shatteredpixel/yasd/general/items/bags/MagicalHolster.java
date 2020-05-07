@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.bags;
 
+import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.bombs.Bomb;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
@@ -37,8 +38,8 @@ public class MagicalHolster extends Bag {
 
 	{
 		image = ItemSpriteSheet.HOLSTER;
-		
-		size = 20;
+
+		size = Belongings.BACKPACK_SIZE;
 	}
 
 	public static final float HOLSTER_SCALE_FACTOR = 0.85f;

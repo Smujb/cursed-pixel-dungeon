@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.bags;
 
+import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -36,7 +37,7 @@ public class PotionBandolier extends Bag {
 	{
 		image = ItemSpriteSheet.BANDOLIER;
 
-		size = 20;
+		size = Belongings.BACKPACK_SIZE;
 	}
 
 	@Override

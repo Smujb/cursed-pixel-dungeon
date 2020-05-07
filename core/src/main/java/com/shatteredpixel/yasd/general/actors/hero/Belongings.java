@@ -73,7 +73,7 @@ import java.util.Iterator;
 
 public class Belongings implements Iterable<Item> {
 
-	public static final int BACKPACK_SIZE	= 20;
+	public static final int BACKPACK_SIZE	= 40;
 	
 	private Char owner;
 	

@@ -40,6 +40,7 @@ import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
 import com.shatteredpixel.yasd.general.items.armor.MageArmor;
 import com.shatteredpixel.yasd.general.items.armor.RogueArmor;
+import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.bags.PotionBandolier;
 import com.shatteredpixel.yasd.general.items.bags.ScrollHolder;
 import com.shatteredpixel.yasd.general.items.bags.VelvetPouch;
@@ -122,6 +123,24 @@ public enum HeroClass {
 			new SmallRation().collect();
 		}
 
+		new PotionBandolier().collect();
+		Dungeon.LimitedDrops.POTION_BANDOLIER.drop();
+
+		new ScrollHolder().collect();
+		Dungeon.LimitedDrops.SCROLL_HOLDER.drop();
+
+		new VelvetPouch().collect();
+		Dungeon.LimitedDrops.VELVET_POUCH.drop();
+
+		new MagicalHolster().collect();
+		Dungeon.LimitedDrops.MAGICAL_HOLSTER.drop();
+
+
+		//TODO add these bags
+		//new PowerHolder().collect();
+
+		//new FoodHolder().collect();
+
 		new LuckyBadge().collect();
 
 		new ScrollOfIdentify().identify().collect();
@@ -160,9 +179,6 @@ public enum HeroClass {
 
 		new BrokenSeal().collect();
 		
-		new PotionBandolier().collect();
-		Dungeon.LimitedDrops.POTION_BANDOLIER.drop();
-		
 		new PotionOfHealing().identify();
 		new ScrollOfRage().identify();
 		hero.setPower(5);
@@ -179,9 +195,6 @@ public enum HeroClass {
 		hero.belongings.getWeapon().activate(hero);
 
 		Dungeon.quickslot.setSlot(0, staff);
-
-		new ScrollHolder().collect();
-		Dungeon.LimitedDrops.SCROLL_HOLDER.drop();
 		
 		new ScrollOfUpgrade().identify();
 		new PotionOfLiquidFlame().identify();
@@ -200,9 +213,6 @@ public enum HeroClass {
 
 		//Dungeon.quickslot.setSlot(0, cloak);
 		Dungeon.quickslot.setSlot(1, knives);
-
-		new VelvetPouch().collect();
-		Dungeon.LimitedDrops.VELVET_POUCH.drop();
 		
 		new ScrollOfMagicMapping().identify();
 		new PotionOfInvisibility().identify();
@@ -217,9 +227,6 @@ public enum HeroClass {
 		bow.identify().collect();
 
 		Dungeon.quickslot.setSlot(0, bow);
-
-		new VelvetPouch().collect();
-		Dungeon.LimitedDrops.VELVET_POUCH.drop();
 		
 		new PotionOfMindVision().identify();
 		new ScrollOfLullaby().identify();
