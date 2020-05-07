@@ -188,6 +188,7 @@ public class WndHero extends WndTabbed {
 				@Override
 				protected void increaseStat() {
 					Dungeon.hero.increaseFocus();
+
 				}
 			};
 			add( btnFocus );

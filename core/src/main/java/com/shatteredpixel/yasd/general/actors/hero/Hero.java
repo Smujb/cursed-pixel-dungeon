@@ -266,6 +266,7 @@ public class Hero extends Char {
 
 	public void setFocus(int focus) {
 		Focus = focus;
+		updateMP();
 	}
 
 	public void increaseFocus() {
@@ -291,7 +292,8 @@ public class Hero extends Char {
 	private static final String LEVEL		= "lvl";
 	private static final String EXPERIENCE	= "exp";
 	private static final String HTBOOST     = "htboost";
-	private static final String MORALE      = "morale";
+	private static final String MANA        = "mp";
+	private static final String MAX_MANA    = "max_mp";
 	private static final String POWER       = "power";
 	private static final String FOCUS       = "focus";
 	private static final String PERCEPTION  = "expertise";
@@ -316,6 +318,8 @@ public class Hero extends Char {
 		
 		bundle.put( HTBOOST, HTBoost );
 
+		bundle.put(MANA, mp);
+		bundle.put(MAX_MANA, maxMP);
 
 		//Hero stats
 		bundle.put( POWER, Power );
@@ -341,6 +345,9 @@ public class Hero extends Char {
 		exp = bundle.getInt( EXPERIENCE );
 		
 		HTBoost = bundle.getInt(HTBOOST);
+
+		mp = bundle.getInt(MANA);
+		maxMP = bundle.getInt(MAX_MANA);
 
 		//Hero stats
 		Power = bundle.getInt( POWER );
