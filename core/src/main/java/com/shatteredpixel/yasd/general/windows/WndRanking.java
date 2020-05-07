@@ -34,6 +34,7 @@ import com.shatteredpixel.yasd.general.Rankings;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.HeroSprite;
@@ -243,20 +244,15 @@ public class WndRanking extends WndTabbed {
 			super();
 			
 			Belongings stuff = Dungeon.hero.belongings;
-			if (stuff.miscs[0] != null) {
-				addItem( stuff.miscs[0] );
-			}
-			if (stuff.miscs[1] != null) {
-				addItem( stuff.miscs[1] );
-			}
-			if (stuff.miscs[2] != null) {
-				addItem( stuff.miscs[2] );
-			}
-			if (stuff.miscs[3] != null) {
-				addItem( stuff.miscs[3] );
-			}
-			if (stuff.miscs[4] != null) {
-				addItem( stuff.miscs[4] );
+
+			addItem(stuff.getWeapon());
+
+			addItem(stuff.armor);
+
+			for (KindofMisc misc : stuff.miscs) {
+				if (misc != null) {
+					addItem(misc);
+				}
 			}
 
 			pos = 0;

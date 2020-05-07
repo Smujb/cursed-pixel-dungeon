@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.items.scrolls;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -84,6 +85,11 @@ public abstract class InventoryScroll extends Scroll {
 			InventoryScroll parent = (InventoryScroll) source;
 			
 			if (item != null) {
+
+				if (curUser instanceof Hero && !((Hero) curUser).useMP(mpCost)) {
+					parent.collect( curUser.belongings.backpack, curUser);
+					return;
+				}
 				
 				parent.onItemSelected( item );
 				parent.readAnimation();

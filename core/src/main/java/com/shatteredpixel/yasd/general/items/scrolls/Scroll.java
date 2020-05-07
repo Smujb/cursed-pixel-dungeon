@@ -68,6 +68,8 @@ public abstract class Scroll extends Item {
 	
 	protected static final float TIME_TO_READ	= 1f;
 
+	protected int mpCost = 0;
+
 	protected Integer initials;
 
 	private static final Class<?>[] scrolls = {
@@ -178,21 +180,23 @@ public abstract class Scroll extends Item {
 		super.execute( hero, action );
 
 		if (action.equals( AC_READ )) {
-			
-			if (hero.buff(MagicImmune.class) != null){
-				GLog.w( Messages.get(this, "no_magic") );
-			} if (hero.buff( Blindness.class ) != null) {
-				GLog.w( Messages.get(this, "blinded") );
+
+			if (hero.buff(MagicImmune.class) != null) {
+				GLog.w(Messages.get(this, "no_magic"));//InventoryScroll uses Mana in onSelect.
+			} else if (!(hero.useMP(mpCost) || this instanceof InventoryScroll)) {
+				GLog.w(Messages.get(this, "no_mana"));
+			} else if (hero.buff(Blindness.class) != null) {
+				GLog.w(Messages.get(this, "blinded"));
 			} else if (hero.buff(UnstableSpellbook.bookRecharge.class) != null
 					&& hero.buff(UnstableSpellbook.bookRecharge.class).isCursed()
-					&& !(this instanceof ScrollOfRemoveCurse || this instanceof ScrollOfAntiMagic)){
-				GLog.n( Messages.get(this, "cursed") );
+					&& !(this instanceof ScrollOfRemoveCurse || this instanceof ScrollOfAntiMagic)) {
+				GLog.n(Messages.get(this, "cursed"));
 			} else {
 				curUser = hero;
-				detach( hero.belongings.backpack );
+				detach(hero.belongings.backpack);
 				doRead();
 			}
-			
+
 		}
 	}
 	
