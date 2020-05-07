@@ -35,6 +35,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.GamesInProgress;
 import com.shatteredpixel.yasd.general.LevelHandler;
+import com.shatteredpixel.yasd.general.StoryChapter;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.journal.Journal;
@@ -131,11 +132,13 @@ public class WndStartGame extends Window {
 				ActionIndicator.action = null;
 				Dungeon.difficulty = Difficulty.fromInt(CPDSettings.difficulty());//I could just call YASDSettings.difficulty() every time I want to check difficulty, but that would mean that changing it on separate runs would interfere with each other.
 				CPDSettings.lastClass(GamesInProgress.selectedClass);
-				if (CPDSettings.intro()) {
-					CPDSettings.intro( false );
-					Game.switchScene( IntroScene.class );
-				} else {
-					LevelHandler.doInit();
+				if (CPDSettings.storyChapter() == StoryChapter.FIRST) {
+					if (CPDSettings.intro()) {
+						CPDSettings.intro(false);
+						Game.switchScene(IntroScene.class);
+					} else {
+						LevelHandler.doInit();
+					}
 				}
 			}
 			

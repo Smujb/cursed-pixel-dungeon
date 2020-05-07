@@ -52,14 +52,11 @@ public class GamesInProgress {
 	public static HeroClass selectedClass;
 
 	private static String gameFolder() {
-		return DATA_FOLDER;
+		return DATA_FOLDER + CPDSettings.storyChapter().toFile();
 	}
 
 	private static final String DATA_FOLDER = "data/";
 	private static final String SLOT_FOLDER = "slot%d";
-	private static final String XPOS = "xPos%d";
-	private static final String YPOS = "depth%d";
-	private static final String ZPOS = "zPos%d.dat";
 	private static final String GAME_FILE	= "game.dat";
 	
 	public static boolean gameExists( int slot ){
@@ -69,23 +66,11 @@ public class GamesInProgress {
 	public static String slotFolder(int slot ){
 		return gameFolder() + Messages.format(SLOT_FOLDER, slot);
 	}
-
-	/*public static String xFolder(int x ){
-		return Messages.format(XPOS, x);
-	}
-
-	public static String yFolder(int y ){
-		return Messages.format(YPOS, y);
-	}*/
 	
 
 	public static String gameFile(int slot ){
 		return slotFolder(slot) + "/" + GAME_FILE;
 	}
-
-	/*public static String depthFile( int slot, int x, int y, int z ) {
-		return slotFolder(slot) + "/" + xFolder(x) + "/" + yFolder(y) + "/"  + Messages.format(ZPOS, z);
-	}*/
 	
 	public static int firstEmpty(){
 		for (int i = 1; i <= MAX_SLOTS; i++){
