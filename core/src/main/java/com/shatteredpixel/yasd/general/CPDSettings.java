@@ -35,6 +35,8 @@ import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Point;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Locale;
 
 public class CPDSettings extends com.watabou.utils.GameSettings {
@@ -236,12 +238,16 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 		put( KEY_TESTING, value);
 	}
 
-	public static void storyChapter(StoryChapter value) {
+	public static void storyChapter(@NotNull StoryChapter value) {
 		put(KEY_CHAPTER, value.name());
 	}
 
 	public static StoryChapter storyChapter() {
-		return Enum.valueOf(StoryChapter.class, getString(KEY_CHAPTER, StoryChapter.FIRST.name()));
+		try {
+			return Enum.valueOf(StoryChapter.class, getString(KEY_CHAPTER, StoryChapter.FIRST.name()));
+		} catch (Exception e) {
+			return StoryChapter.FIRST;
+		}
 	}
 
 	//Audio

@@ -137,7 +137,7 @@ public class TitleScene extends PixelScene {
 		TitleButton btnChapter = new TitleButton(Messages.get(this, "chapter")){
 			@Override
 			protected void onClick() {
-				parent.add( new WndOptions(Messages.get(TitleScene.this, "chapter"), Messages.get(TitleScene.this, "chapter_desc", CPDSettings.storyChapter()), StoryChapter.strValues()) {
+				parent.add( new WndOptions(Messages.get(TitleScene.this, "chapter"), Messages.get(TitleScene.this, "chapter_desc", CPDSettings.storyChapter().displayName()), StoryChapter.strValues()) {
 					@Override
 					protected void onSelect(int index) {
 						super.onSelect(index);

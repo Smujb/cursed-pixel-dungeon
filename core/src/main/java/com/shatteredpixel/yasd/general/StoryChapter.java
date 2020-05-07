@@ -17,7 +17,7 @@ public enum StoryChapter {
 	SECOND,
 	THIRD;
 
-	public String getName() {
+	public String displayName() {
 		return Messages.get(StoryChapter.class, this.toString());
 	}
 
@@ -34,7 +34,7 @@ public enum StoryChapter {
 		ArrayList<String> values = new ArrayList<>();
 		for (StoryChapter chapter : values()) {
 			if (chapter.unlocked()) {
-				values.add(chapter.getName());
+				values.add(chapter.displayName());
 			}
 		}
 		return values.toArray(new String[0]);
