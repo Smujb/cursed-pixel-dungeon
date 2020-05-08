@@ -154,14 +154,15 @@ public class GrindLevel extends RegularLevel {
 			return Messages.get(Guardian.class,"desc") + "\n\n" + super.description();
 		}
 
-		int getScaleFactor() {
-			return Math.min(30,Math.max(0, Dungeon.hero.lvl-1));
-		}
-
 		public Guardian() {
 			super();
-			HP = HT = 20 + 6 * getScaleFactor();
 			aggro(Dungeon.hero);
+		}
+
+		@Override
+		protected void onCreate() {
+			super.onCreate();
+			HP = HT/= 2;
 		}
 
 		@Override
