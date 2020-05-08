@@ -183,7 +183,7 @@ public abstract class Scroll extends Item {
 
 			if (hero.buff(MagicImmune.class) != null) {
 				GLog.w(Messages.get(this, "no_magic"));//InventoryScroll uses Mana in onSelect.
-			} else if (!(hero.useMP(mpCost) || this instanceof InventoryScroll)) {
+			} else if (!(hero.useMP(mpCost) || (isKnown() && this instanceof InventoryScroll))) {
 				GLog.w(Messages.get(this, "no_mana"));
 			} else if (hero.buff(Blindness.class) != null) {
 				GLog.w(Messages.get(this, "blinded"));
@@ -244,7 +244,7 @@ public abstract class Scroll extends Item {
 	@Override
 	public String info() {
 		return isKnown() ?
-			desc() :
+				(desc() + (mpCost > 0 ? Messages.get(this, "cost", mpCost) : "")) :
 			Messages.get(this, "unknown_desc");
 	}
 

@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.shatteredpixel.yasd.general.windows.WndOptions;
 import com.watabou.noosa.audio.Sample;
@@ -86,7 +87,9 @@ public abstract class InventoryScroll extends Scroll {
 			
 			if (item != null) {
 
-				if (curUser instanceof Hero && !((Hero) curUser).useMP(mpCost)) {
+				//If the scroll was identified by use, mana will already have been consumed.
+				if (curUser instanceof Hero && !((Hero) curUser).useMP(mpCost) && !identifiedByUse) {
+					GLog.w(Messages.get(this, "no_mana"));
 					parent.collect( curUser.belongings.backpack, curUser);
 					return;
 				}

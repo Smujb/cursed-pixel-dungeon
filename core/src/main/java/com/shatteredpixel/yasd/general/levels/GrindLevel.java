@@ -13,6 +13,7 @@ import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.painters.SewerPainter;
+import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.traps.WornDartTrap;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -46,6 +47,8 @@ public class GrindLevel extends RegularLevel {
 	public void create(String key) {
 		super.create(key);
 		spawn = getEntrance().centerCell(this);
+		map[getEntrancePos()] = Terrain.PEDESTAL;
+		map[getExitPos()] = Terrain.EMPTY;
 		clearExitEntrance();
 	}
 

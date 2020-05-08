@@ -45,6 +45,7 @@ public class ScrollOfIdentify extends InventoryScroll {
 		initials = 0;
 		mode = WndBag.Mode.UNIDENTIFED;
 
+		mpCost = 4;
 		bones = true;
 	}
 	
