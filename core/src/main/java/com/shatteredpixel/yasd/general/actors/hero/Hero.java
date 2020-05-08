@@ -173,6 +173,10 @@ public class Hero extends Char {
 
 	private int maxMP = 10;
 	public int mp = maxMP;
+
+	//TODO - what should stamina scale with? What should use it?
+	private int maxStamina = 10;
+	public int stamina = maxStamina;
 	
 	public int HTBoost = 0;
 	
@@ -189,6 +193,10 @@ public class Hero extends Char {
 		
 		HP = HT = 20;
 		STR = STARTING_STR;
+
+		updateMP();
+		updateStamina();
+		updateHT(true);
 		
 		visibleEnemies = new ArrayList<>();
 	}
@@ -205,7 +213,7 @@ public class Hero extends Char {
 		super.updateHT(boostHP);
 	}
 
-	public void updateMP() {
+	private void updateMP() {
 		int oldMax = maxMP;
 		maxMP = 10 + Focus;
 		mp += (maxMP - oldMax);
@@ -221,6 +229,29 @@ public class Hero extends Char {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	private void updateStamina() {
+		int oldMax = maxStamina;
+		maxStamina = 10;
+		stamina += (maxStamina - oldMax);
+	}
+
+	public int maxStamina() {
+		return maxStamina;
+	}
+
+	public void useStamina(int amount) {
+		stamina -= amount;
+		if (stamina < 0) {
+			int damage = -stamina*(HT/40);
+			stamina = 0;
+			damage(damage, new DamageSrc(Element.META));
+			if (!isAlive()){
+				Dungeon.fail( getClass() );
+				GLog.n( Messages.get( this, "exhausted") );
+			}
 		}
 	}
 
