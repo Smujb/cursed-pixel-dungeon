@@ -40,6 +40,8 @@ public class ScrollOfPassage extends ExoticScroll {
 	
 	{
 		initials = 8;
+
+		mpCost = 4;
 	}
 	
 	@Override
@@ -59,6 +61,7 @@ public class ScrollOfPassage extends ExoticScroll {
 		buff = Dungeon.hero.buff(Swiftthistle.TimeBubble.class);
 		if (buff != null) buff.detach();
 
+		//TODO return to surface
 		LevelHandler.returnTo(Math.max(1, (Dungeon.depth - 1 - (Dungeon.depth -2)%5)), -1);
 	}
 }

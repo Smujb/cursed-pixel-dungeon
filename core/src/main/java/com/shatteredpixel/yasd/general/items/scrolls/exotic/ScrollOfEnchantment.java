@@ -45,6 +45,8 @@ public class ScrollOfEnchantment extends ExoticScroll {
 	
 	{
 		initials = 11;
+
+		mpCost = 5;
 	}
 	
 	@Override

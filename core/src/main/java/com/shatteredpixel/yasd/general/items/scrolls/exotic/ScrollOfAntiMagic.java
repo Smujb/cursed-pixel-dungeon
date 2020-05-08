@@ -36,6 +36,8 @@ public class ScrollOfAntiMagic extends ExoticScroll {
 	
 	{
 		initials = 7;
+
+		mpCost = 9;
 	}
 	
 	@Override

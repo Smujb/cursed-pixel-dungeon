@@ -41,6 +41,8 @@ public class ScrollOfPrismaticImage extends ExoticScroll {
 	
 	{
 		initials = 3;
+
+		mpCost = 13;
 	}
 	
 	@Override

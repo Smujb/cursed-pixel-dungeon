@@ -57,6 +57,8 @@ public class ScrollOfTeleportation extends Scroll {
 
 	{
 		initials = 8;
+
+		mpCost = 2;
 	}
 
 	@Override

@@ -44,6 +44,8 @@ public class ScrollOfRecharging extends Scroll {
 
 	{
 		initials = 6;
+
+		mpCost = 7;
 	}
 
 	@Override

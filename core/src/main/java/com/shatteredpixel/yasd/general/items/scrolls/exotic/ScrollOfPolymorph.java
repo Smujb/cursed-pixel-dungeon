@@ -45,6 +45,8 @@ public class ScrollOfPolymorph extends ExoticScroll {
 	
 	{
 		initials = 10;
+
+		mpCost = 5;
 	}
 	
 	@Override

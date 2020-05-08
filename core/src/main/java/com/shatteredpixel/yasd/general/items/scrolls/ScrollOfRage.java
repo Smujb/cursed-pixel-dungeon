@@ -43,6 +43,8 @@ public class ScrollOfRage extends Scroll {
 
 	{
 		initials = 5;
+
+		mpCost = 1;
 	}
 
 	@Override

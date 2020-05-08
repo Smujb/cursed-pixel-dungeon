@@ -42,6 +42,8 @@ public class ScrollOfConfusion extends ExoticScroll {
 	
 	{
 		initials = 5;
+
+		mpCost = 10;
 	}
 	
 	@Override

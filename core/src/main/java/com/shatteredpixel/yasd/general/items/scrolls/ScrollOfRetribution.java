@@ -43,6 +43,8 @@ public class ScrollOfRetribution extends Scroll {
 
 	{
 		initials = 4;
+
+		mpCost = 3;
 	}
 	
 	@Override

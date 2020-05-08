@@ -378,7 +378,7 @@ public class Generator {
 					ScrollOfTerror.class,
 					ScrollOfTransmutation.class
 			};
-			SCROLL.probs = new float[]{ 0, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1 };
+			SCROLL.probs = new float[]{ 1, 6, 2, 3, 3, 3, 2, 2, 2, 2, 2, 1 };
 
 			SCROLL_EXOTIC.classes = new Class<?>[]{
 					ScrollOfEnchantment.class,

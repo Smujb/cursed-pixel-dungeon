@@ -106,7 +106,7 @@ public class WndSettings extends WndTabbed {
 
 	}
 
-	private class DisplayTab extends Group {
+	private static class DisplayTab extends Group {
 
 		public DisplayTab() {
 			super();

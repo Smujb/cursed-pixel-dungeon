@@ -46,6 +46,8 @@ public class ScrollOfMagicMapping extends Scroll {
 
 	{
 		initials = 2;
+
+		mpCost = 6;
 	}
 
 	@Override

@@ -42,6 +42,8 @@ public class ScrollOfLullaby extends Scroll {
 
 	{
 		initials = 1;
+
+		mpCost = 8;
 	}
 
 	@Override

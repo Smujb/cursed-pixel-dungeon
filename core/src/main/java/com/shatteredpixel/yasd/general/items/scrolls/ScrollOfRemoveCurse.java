@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.scrolls;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
@@ -50,6 +49,8 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 	{
 		initials = 7;
 		mode = WndBag.Mode.UNCURSABLE;
+
+		mpCost = 9;
 	}
 	
 	@Override
