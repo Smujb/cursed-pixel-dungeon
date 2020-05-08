@@ -107,11 +107,6 @@ public class Armor extends EquipableItem {
 		}
 	}
 
-	@Override
-	public boolean canDegrade() {
-		return Constants.DEGRADATION;
-	}
-
 	public Augment augment = Augment.NONE;
 	
 	public Glyph glyph;

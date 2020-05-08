@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.missiles;
 
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -80,21 +79,6 @@ abstract public class MissileWeapon extends Weapon {
 	@Override
 	public boolean breaksArmor(Char owner) {
 		return owner instanceof  Hero && ((Hero)owner).subClass == HeroSubClass.SNIPER;
-	}
-
-	@Override
-	public float degradedPercent() {
-		return durability / MAX_DURABILITY;
-	}
-
-	@Override
-	public boolean canDegrade() {
-		return true;
-	}
-
-	@Override
-	public void fullyRepair() {
-		durability = MAX_DURABILITY;
 	}
 
 	@Override

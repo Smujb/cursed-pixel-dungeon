@@ -31,7 +31,6 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
-import com.shatteredpixel.yasd.general.ui.HealthBar;
 import com.shatteredpixel.yasd.general.ui.ItemSlot;
 import com.shatteredpixel.yasd.general.ui.RedButton;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
@@ -87,18 +86,9 @@ public class WndItem extends Window {
 		} else if (item.levelKnown && item.level() < 0) {
 			titlebar.color( ItemSlot.DEGRADED );
 		}
-		if (item.canDegrade()) {
-			HealthBar health = new HealthBar();
-			health.level(item.degradedPercent());
-			float w = width - GAP;
 
-			health.setRect(GAP, titlebar.bottom() + GAP, w, health.height());
-			add(health);
+		info.setPos(titlebar.left(), titlebar.bottom() + GAP);
 
-			info.setPos(titlebar.left(), health.bottom() + GAP);
-		} else {
-			info.setPos(titlebar.left(), titlebar.bottom() + GAP);
-		}
 		add( info );
 	
 		float y = info.top() + info.height() + GAP;

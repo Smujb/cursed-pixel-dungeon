@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.items;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -86,8 +85,7 @@ public class Item implements Bundlable {
 
 	public static final float MAXIMUM_DURABILITY = 1000;
 	public float curDurability = MAXIMUM_DURABILITY;
-	public boolean saidAlmostBreak = false;
-	
+
 	public boolean stackable = false;
 	protected int quantity = 1;
 	public boolean dropsDownHeap = false;
@@ -112,66 +110,6 @@ public class Item implements Bundlable {
 			return Generator.Category.order( lhs ) - Generator.Category.order( rhs );
 		}
 	};
-
-	public boolean canDegrade() {
-		return false;
-	}
-
-	public float degradedPercent() {
-		return curDurability/MAXIMUM_DURABILITY;
-	}
-
-	public void fullyRepair() {
-		if (!Dungeon.isChallenged(Challenges.NO_REPAIR)) {
-			curDurability = MAXIMUM_DURABILITY;
-		} else {
-			curDurability += MAXIMUM_DURABILITY/2;
-			curDurability = Math.min(curDurability,MAXIMUM_DURABILITY);
-		}
-		saidAlmostBreak = false;
-	}
-
-	public final void use() {
-		use(defaultDegradeAmount());
-	}
-
-	public final void use(float amount) {
-		use(amount, false);
-	}
-
-	public void use(float amount, boolean override) {
-		if (curUser == null) {//curUser may be null if activate() has not yet been called (such as on game start). This prevents the next check from throwing an error.
-			curUser = Dungeon.hero;
-		}
-		if (level() < 0 | !(isEquipped(curUser) | override) | cursed) {//Unequipped items should never degrade, as they should not be usable. Exception is the Wand imbued in the Mage's staff, this workaround is made for that.
-			return;
-		}
-		curDurability -= amount;
-		if (curDurability <= 0) {
-			GLog.n(Messages.get(this,"broken"),this.name());
-			Sample.INSTANCE.play(Assets.SND_DEGRADE);
-			fullyRepair();
-			if (level > 0) {
-				degrade();
-			} else {
-				curse();
-				/*cursed = true;
-				if (this instanceof MeleeWeapon) {
-					((MeleeWeapon)this).enchant(Weapon.Enchantment.randomCurse());
-				} else if (this instanceof Armor) {
-					((Armor)this).inscribe(Armor.Glyph.randomCurse());
-				}*/
-			}
-
-		} else if (curDurability <= MAXIMUM_DURABILITY*0.2f & !saidAlmostBreak) {
-			GLog.w(Messages.get(this,"almost_break",this.name()));
-			saidAlmostBreak = true;
-		}
-	}
-
-	public int defaultDegradeAmount() {
-		return Dungeon.difficulty.degradationAmount();
-	}
 
 	public void curse() {
 		cursed = true;
@@ -411,8 +349,6 @@ public class Item implements Bundlable {
 		this.level++;
 
 		updateQuickslot();
-
-		fullyRepair();
 		
 		return this;
 	}

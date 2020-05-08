@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -46,11 +45,6 @@ public class MeleeWeapon extends Weapon {
 
 	public boolean dualWieldpenalty = false;
 	public boolean sneakBenefit = false;
-
-	@Override
-	public boolean canDegrade() {
-		return Constants.DEGRADATION;
-	}
 
 	@Override
 	public int min(float lvl) {
@@ -125,11 +119,6 @@ public class MeleeWeapon extends Weapon {
 			multiplier *= 0.6f;
 		}
 		return multiplier;
-	}
-
-	@Override
-	public void use(float amount, boolean override) {
-		super.use(amount*DLY, override);
 	}
 
 	@Override

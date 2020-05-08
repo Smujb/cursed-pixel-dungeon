@@ -192,9 +192,6 @@ public class Belongings implements Iterable<Item> {
 		int dmg;
 		KindOfWeapon wep = getWeapon();
 		if (wep != null) {
-			if (wep instanceof MeleeWeapon) {
-				wep.use();
-			}
 			dmg = wep.damageRoll(owner);
 			//if (!(wep instanceof MissileWeapon)) dmg += RingOfForce.armedDamageBonus(owner);
 		} else {

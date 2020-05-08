@@ -96,17 +96,6 @@ public class MagesStaff extends MeleeWeapon {
 		wand = null;
 	}
 
-	@Override
-	public void fullyRepair() {
-		wand.fullyRepair();
-		super.fullyRepair();
-	}
-
-	@Override
-	public int defaultDegradeAmount() {
-		return (int) (super.defaultDegradeAmount()/1.5f);
-	}
-
 	public MagesStaff(Wand wand){
 		this();
 		wand.identify();
@@ -156,8 +145,6 @@ public class MagesStaff extends MeleeWeapon {
 				return;
 			}
 
-			use();
-
 			wand.cursed = cursed || hasCurseEnchant();
 			wand.execute(hero, Wand.AC_ZAP_OVERRIDE);
 		}
@@ -174,12 +161,6 @@ public class MagesStaff extends MeleeWeapon {
 		}
 
 		return super.proc(attacker, defender, damage);
-	}
-
-	@Override
-	public void use(float amount, boolean override) {
-		super.use(amount, override);
-		wand.use(amount, true);
 	}
 
 	@Override
@@ -243,8 +224,6 @@ public class MagesStaff extends MeleeWeapon {
 		}
 		
 		Badges.validateItemLevelAquired(this);
-
-		this.fullyRepair();
 
 		return this;
 	}

@@ -103,11 +103,6 @@ public abstract class Wand extends KindofMisc {
 	}
 
 	@Override
-	public int defaultDegradeAmount() {
-		return (int) (super.defaultDegradeAmount()*1.5f);
-	}
-
-	@Override
 	public void execute(Hero hero, String action) {
 
 		super.execute(hero, action);
@@ -125,11 +120,6 @@ public abstract class Wand extends KindofMisc {
 			//curItem = this;
 			GameScene.selectCell(zapper);
 		}
-	}
-
-	@Override
-	public boolean canDegrade() {
-		return Constants.DEGRADATION;
 	}
 
 	@Override
@@ -357,8 +347,6 @@ public abstract class Wand extends KindofMisc {
 		
 		if (curUser instanceof Hero && ((Hero)curUser).heroClass == HeroClass.MAGE) levelKnown = true;
 		updateQuickslot();
-
-		use(defaultDegradeAmount()*1.5f);
 
 		curUser.spendAndNext( TIME_TO_ZAP );
 	}

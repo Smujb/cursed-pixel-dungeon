@@ -36,8 +36,6 @@ import com.shatteredpixel.yasd.general.effects.BlobEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
-import com.shatteredpixel.yasd.general.items.armor.LightArmor;
 import com.shatteredpixel.yasd.general.items.food.ChargrilledMeat;
 import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.food.MysteryMeat;
@@ -133,8 +131,6 @@ public class Fire extends Blob {
 			return null;
 		} else if (item instanceof MysteryMeat) {
 			return new ChargrilledMeat();
-		} else if (item instanceof ClothArmor || item instanceof LightArmor) {
-			item.use(item.defaultDegradeAmount()*5, true);//Don't get rid of it, simply degrade it.
 		}
 		return item;
 	}
