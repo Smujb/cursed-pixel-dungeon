@@ -41,7 +41,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfPurity;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfStrength;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfMana;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfToxicGas;
 import com.shatteredpixel.yasd.general.plants.Plant;
 import com.watabou.utils.Reflection;
@@ -64,8 +64,8 @@ public class ExoticPotion extends Potion {
 		regToExo.put(PotionOfToxicGas.class, PotionOfCorrosiveGas.class);
 		exoToReg.put(PotionOfCorrosiveGas.class, PotionOfToxicGas.class);
 		
-		regToExo.put(PotionOfStrength.class, PotionOfAdrenalineSurge.class);
-		exoToReg.put(PotionOfAdrenalineSurge.class, PotionOfStrength.class);
+		regToExo.put(PotionOfMana.class, PotionOfAdrenalineSurge.class);
+		exoToReg.put(PotionOfAdrenalineSurge.class, PotionOfMana.class);
 		
 		regToExo.put(PotionOfFrost.class, PotionOfSnapFreeze.class);
 		exoToReg.put(PotionOfSnapFreeze.class, PotionOfFrost.class);

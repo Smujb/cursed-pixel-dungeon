@@ -41,7 +41,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfPurity;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfStrength;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfMana;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfToxicGas;
 import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
@@ -101,7 +101,7 @@ public class StoneOfIntuition extends InventoryStone {
 			PotionOfMindVision.class,
 			PotionOfParalyticGas.class,
 			PotionOfPurity.class,
-			PotionOfStrength.class,
+			PotionOfMana.class,
 			PotionOfToxicGas.class
 	};
 	

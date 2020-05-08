@@ -28,8 +28,10 @@
 package com.shatteredpixel.yasd.general.items.potions;
 
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.utils.GLog;
 
-public class PotionOfStrength extends Potion {
+public class PotionOfMana extends Potion {
 
 	{
 		initials = 10;
@@ -39,7 +41,10 @@ public class PotionOfStrength extends Potion {
 	public void apply( Hero hero ) {
 		setKnown();
 
-		hero.DistributionPoints += 5;
+		GLog.p(Messages.get(this, "refresh_mp"));
+		hero.mp = hero.maxMP();
+
+		//hero.DistributionPoints += 5;
 	}
 
 	@Override

@@ -44,7 +44,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfPurity;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfStrength;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfMana;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfToxicGas;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -55,8 +55,6 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Reflection;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -143,7 +141,7 @@ public class Blandfruit extends Food {
 		if (potionAttrib instanceof PotionOfHealing){
 			name = Messages.get(this, "sunfruit");
 			potionGlow = new ItemSprite.Glowing( 0x2EE62E );
-		} else if (potionAttrib instanceof PotionOfStrength){
+		} else if (potionAttrib instanceof PotionOfMana){
 			name = Messages.get(this, "rotfruit");
 			potionGlow = new ItemSprite.Glowing( 0xCC0022 );
 		} else if (potionAttrib instanceof PotionOfParalyticGas){

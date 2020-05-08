@@ -99,7 +99,7 @@ public class Potion extends Item {
 			PotionOfExperience.class,
 			PotionOfToxicGas.class,
 			PotionOfLiquidFlame.class,
-			PotionOfStrength.class,
+			PotionOfMana.class,
 			PotionOfParalyticGas.class,
 			PotionOfLevitation.class,
 			PotionOfMindVision.class,
@@ -468,7 +468,7 @@ public class Potion extends Item {
 			types.put(Fadeleaf.Seed.class,      PotionOfMindVision.class);
 			types.put(Firebloom.Seed.class,     PotionOfLiquidFlame.class);
 			types.put(Icecap.Seed.class,        PotionOfFrost.class);
-			types.put(Rotberry.Seed.class,      PotionOfStrength.class);
+			types.put(Rotberry.Seed.class,      PotionOfMana.class);
 			types.put(Sorrowmoss.Seed.class,    PotionOfToxicGas.class);
 			types.put(Starflower.Seed.class,    PotionOfExperience.class);
 			types.put(Stormvine.Seed.class,     PotionOfLevitation.class);

@@ -66,7 +66,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfPurity;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfStrength;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfMana;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfToxicGas;
 import com.shatteredpixel.yasd.general.items.potions.brews.BlizzardBrew;
 import com.shatteredpixel.yasd.general.items.potions.brews.CausticBrew;
@@ -290,7 +290,7 @@ public class Generator {
 			GOLD.probs = new float[]{ 1 };
 			
 			POTION.classes = new Class<?>[]{
-					PotionOfStrength.class, //2 drop every chapter, see Dungeon.posNeeded()
+					PotionOfMana.class, //2 drop every chapter, see Dungeon.posNeeded()
 					PotionOfHealing.class,
 					PotionOfMindVision.class,
 					PotionOfFrost.class,
@@ -302,7 +302,7 @@ public class Generator {
 					PotionOfParalyticGas.class,
 					PotionOfPurity.class,
 					PotionOfExperience.class};
-			POTION.probs = new float[]{ 0, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1 };
+			POTION.probs = new float[]{ 3, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1 };
 
 			POTION_EXOTIC.classes = new Class<?>[]{
 					PotionOfAdrenalineSurge.class, //2 drop every chapter, see Dungeon.posNeeded()
