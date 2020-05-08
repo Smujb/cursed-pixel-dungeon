@@ -116,7 +116,7 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public int upgradeLimit() {
-		return Constants.UPGRADE_LIMIT/3;
+		return -1;
 	}
 
 	@Override

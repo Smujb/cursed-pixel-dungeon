@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.items;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Challenges;
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -38,10 +37,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
-import com.shatteredpixel.yasd.general.items.wands.Wand;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.journal.Catalog;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -455,18 +451,19 @@ public class Item implements Bundlable {
 	}
 
 	public boolean isUpgradable() {
-		if (Constants.UPGRADE_LIMIT == -1) {
+		if (upgradeLimit() == -1) {
 			return true;
 		}
 		return level() < upgradeLimit();
 	}
 
 	public int upgradeLimit() {
-		int limit = Constants.UPGRADE_LIMIT;
+		/*int limit = Constants.UPGRADE_LIMIT;
 		if ((this instanceof Armor && ((Armor)this).curseInfusionBonus) || (this instanceof MeleeWeapon && ((MeleeWeapon)this).curseInfusionBonus) || (this instanceof Wand && ((Wand)this).curseInfusionBonus)) {
 			limit++;
 		}
-		return limit;
+		 */
+		return -1;
 	}
 	
 	public boolean isIdentified() {

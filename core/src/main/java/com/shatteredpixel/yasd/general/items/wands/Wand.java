@@ -466,6 +466,19 @@ public abstract class Wand extends KindofMisc {
 					return;
 				}
 
+				if (curUser instanceof Hero) {
+					Hero hero = ((Hero)curUser);
+					int chance = level()*2 - hero.getFocus();
+					if (chance > 0 && Random.Int(chance/2) != 0) {
+						if (curWand.cursed && hero.useMP(chance)) {
+							GLog.i( Messages.get(Wand.class, "miscast", curWand.name()) );
+						} else {
+							GLog.i( Messages.get(Wand.class, "backfire", curWand.name()) );
+							return;
+						}
+					}
+				}
+
 				curUser.sprite.zap(cell);
 
 				//attempts to target the cell aimed at if something is there, otherwise targets the collision pos.
