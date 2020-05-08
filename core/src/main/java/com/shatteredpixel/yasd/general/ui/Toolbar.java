@@ -260,9 +260,9 @@ public class Toolbar extends Component {
 	public void update() {
 		super.update();
 		if (Dungeon.hero.ready) {
-			alphaAll(1f);
+			setAlphaAll(1f);
 		} else {
-			alphaAll(2/3f);
+			multiplyAlphaAll(0.9f);
 		}
 		
 		if (lastEnabled != (Dungeon.hero.ready && Dungeon.hero.isAlive())) {

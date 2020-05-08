@@ -218,11 +218,6 @@ public class StatusPane extends Component {
 
 	@Override
 	public void update() {
-		if (Dungeon.hero.ready) {
-			alphaAll(1f);
-		} else {
-			alphaAll(2/3f);
-		}
 
 		super.update();
 

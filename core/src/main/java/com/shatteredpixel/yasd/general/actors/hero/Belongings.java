@@ -375,17 +375,20 @@ public class Belongings implements Iterable<Item> {
 		
 		backpack.clear();
 		backpack.restoreFromBundle( bundle );
-
-		weapon.activate( owner );
-		armor.activate( owner );
+		armor = (Armor) bundle.get(ARMOR);
+		weapon = (KindOfWeapon) bundle.get(WEAPON);
+		if (weapon != null) {
+			weapon.activate( owner );
+		}
+		if (armor != null) {
+			armor.activate( owner );
+		}
 		for (int i = 0; i < Constants.MISC_SLOTS; i++) {//Restore all miscs
 			miscs[i] = (KindofMisc) bundle.get(MISC + i);
 			if (miscs[i] != null) {
 				miscs[i].activate( owner );
 			}
 		}
-		armor = (Armor) bundle.get(ARMOR);
-		weapon = (KindOfWeapon) bundle.get(WEAPON);
 	}
 	
 	public static void preview( GamesInProgress.Info info, Bundle bundle ) {

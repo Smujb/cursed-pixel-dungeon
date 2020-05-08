@@ -48,13 +48,24 @@ public class Group extends Gizmo {
 		length = 0;
 	}
 
-	protected void alphaAll(float tint) {
+	protected void multiplyAlphaAll(float tint) {
 		for (Gizmo g : members) {
 			if (g instanceof Visual) {
 				Visual v = ((Visual)g);
-				v.am = tint;
+				v.am *= tint;
 			} else if (g instanceof Group) {
-				((Group)g).alphaAll(tint);
+				((Group)g).multiplyAlphaAll(tint);
+			}
+		}
+	}
+
+	protected void setAlphaAll(float alpha) {
+		for (Gizmo g : members) {
+			if (g instanceof Visual) {
+				Visual v = ((Visual)g);
+				v.am = alpha;
+			} else if (g instanceof Group) {
+				((Group)g).setAlphaAll(1f);
 			}
 		}
 	}
