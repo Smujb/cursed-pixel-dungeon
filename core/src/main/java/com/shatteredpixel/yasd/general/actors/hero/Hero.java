@@ -212,7 +212,7 @@ public class Hero extends Char {
 		mp += (maxMP - oldMax);
 	}
 
-	public int getMaxMP() {
+	public int maxMP() {
 		return maxMP;
 	}
 

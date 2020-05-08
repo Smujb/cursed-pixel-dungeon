@@ -14,7 +14,7 @@ public class MpRegen extends Buff {
 	public boolean act() {
 		if (target.isAlive() && target instanceof Hero) {
 			Hero hero = ((Hero)target);
-			if (hero.mp < hero.getMaxMP() && !hero.isStarving()) {
+			if (hero.mp < hero.maxMP() && !hero.isStarving()) {
 				LockedFloor lock = hero.buff(LockedFloor.class);
 				if ((lock == null || lock.regenOn()) && hero.buff(MagicImmune.class) == null) {
 					hero.mp++;

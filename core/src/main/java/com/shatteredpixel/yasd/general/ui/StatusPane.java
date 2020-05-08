@@ -244,7 +244,7 @@ public class StatusPane extends Component {
 		hp.scale.x = Math.max( 0, (health-shield)/max);
 		shieldedHP.scale.x = health/max;
 		rawShielding.scale.x = shield/max;
-		mana.scale.x = hero.mp/(float)hero.getMaxMP();
+		mana.scale.x = hero.mp/(float)hero.maxMP();
 
 		stamina.scale.x = 1f;//TODO Stamina
 
