@@ -42,8 +42,6 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -54,7 +52,7 @@ public class Ring extends KindofMisc {
 	
 	private static final Class<?>[] rings = {
 		RingOfPerception.class,
-		//_Unused.class,
+		//RingOfAttunement.class,
 		RingOfElements.class,
 		RingOfEvasion.class,
 		RingOfFuror.class,

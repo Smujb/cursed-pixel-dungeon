@@ -32,7 +32,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 
 import java.text.DecimalFormat;
 
-public class _Unused extends Ring {
+public class RingOfAttunement extends Ring {
 	
 	public String statsInfo() {
 		if (isIdentified()){
@@ -44,13 +44,13 @@ public class _Unused extends Ring {
 	
 	@Override
 	protected RingBuff buff( ) {
-		return new Evasion();
+		return new Attunement();
 	}
 	
-	public static float evasionMultiplier( Char target ){
-		return (float) Math.pow( 1.15, getBonus(target, Evasion.class));
+	public static int attunementBonus(Char target ){
+		return 2 * getBonus(target, Attunement.class);
 	}
 
-	public class Evasion extends RingBuff {
+	public class Attunement extends RingBuff {
 	}
 }

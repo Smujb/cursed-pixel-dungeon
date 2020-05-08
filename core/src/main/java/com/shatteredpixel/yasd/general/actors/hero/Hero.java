@@ -87,6 +87,7 @@ import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfStrength;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
+import com.shatteredpixel.yasd.general.items.rings.RingOfAttunement;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfEvasion;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
@@ -148,7 +149,7 @@ public class Hero extends Char {
 	private int Focus      = 1;
 	private int Perception = 1;
 	private int Evasion    = 1;
-	//private int [TBA]      = 1;
+	private int Attunement = 1;
 	public  int DistributionPoints = 0;
 
 	private static final float TIME_TO_REST		    = 1f;
@@ -248,6 +249,10 @@ public class Hero extends Char {
 		return evasion;
 	}
 
+	public int getAttunement() {
+		return Attunement + RingOfAttunement.attunementBonus(this);
+	}
+
 	public void setPower(int power) {
 		Power = power;
 		Dungeon.hero.STR();
@@ -281,6 +286,14 @@ public class Hero extends Char {
 
 	public void increaseEvasion() {
 		setEvasion(Evasion +1);
+	}
+
+	public void setAttunement(int attunement) {
+		Attunement = attunement;
+	}
+
+	public void increaseAttunement() {
+		setAttunement(Attunement +1);
 	}
 
 	@Override
