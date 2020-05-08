@@ -55,10 +55,12 @@ import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.MindVision;
 import com.shatteredpixel.yasd.general.actors.buffs.Momentum;
+import com.shatteredpixel.yasd.general.actors.buffs.MpRegen;
 import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
 import com.shatteredpixel.yasd.general.actors.buffs.Preparation;
 import com.shatteredpixel.yasd.general.actors.buffs.Regeneration;
 import com.shatteredpixel.yasd.general.actors.buffs.SnipersMark;
+import com.shatteredpixel.yasd.general.actors.buffs.StaminaRegen;
 import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.CheckedCell;
@@ -400,6 +402,8 @@ public class Hero extends Char {
 	public void live() {
 		Buff.affect( this, Regeneration.class );
 		Buff.affect( this, Hunger.class );
+		Buff.affect( this, MpRegen.class );
+		Buff.affect( this, StaminaRegen.class );
 	}
 	
 	public int tier() {
