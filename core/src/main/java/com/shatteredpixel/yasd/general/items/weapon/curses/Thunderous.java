@@ -10,6 +10,7 @@ import com.shatteredpixel.yasd.general.items.weapon.enchantments.Shocking;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Callback;
 
 import java.util.ArrayList;
 
@@ -41,7 +42,12 @@ public class Thunderous extends Weapon.Enchantment {
 					ch.damage(Math.round(hero.maxMP() * 3), new Char.DamageSrc(Element.SHOCK, this).ignoreDefense());
 				}
 
-				attacker.sprite.parent.addToFront(new Lightning(arcs, null));
+				attacker.sprite.parent.addToFront(new Lightning(arcs, new Callback() {
+					@Override
+					public void call() {
+						Camera.main.shake(3, 0.2f);
+					}
+				}));
 				Sample.INSTANCE.play(Assets.SND_LIGHTNING);
 
 				Camera.main.shake(5, 0.2f);
