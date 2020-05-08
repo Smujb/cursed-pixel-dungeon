@@ -49,7 +49,7 @@ public class Regeneration extends Buff {
 				LockedFloor lock = target.buff(LockedFloor.class);
 				if (target.HP > 0 && (lock == null || lock.regenOn())) {
 					target.heal(1);
-					if (target.HP == regencap()) {
+					if (target.HP == regencap() && target instanceof Hero) {
 						((Hero) target).resting = false;
 					}
 				}
