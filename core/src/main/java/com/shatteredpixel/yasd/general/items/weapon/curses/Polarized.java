@@ -39,10 +39,10 @@ public class Polarized extends Weapon.Enchantment {
 	@Override
 	public int proc( Weapon weapon, Char attacker, Char defender, int damage ) {
 		
-		if (Random.Int(2) == 0){
-			return Math.round(1.5f*damage);
-		} else {
+		if (Random.Int(3) == 0){
 			return 0;
+		} else {
+			return (int) (damage*1.8f);
 		}
 		
 	}

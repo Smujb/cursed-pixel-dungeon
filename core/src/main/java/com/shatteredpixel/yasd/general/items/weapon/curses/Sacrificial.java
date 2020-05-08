@@ -27,11 +27,12 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.curses;
 
+import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
-import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
+import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Random;
 
 public class Sacrificial extends Weapon.Enchantment {
@@ -41,10 +42,20 @@ public class Sacrificial extends Weapon.Enchantment {
 	@Override
 	public int proc(Weapon weapon, Char attacker, Char defender, int damage ) {
 
-		if (Random.Int(12) == 0){
-			Buff.affect(attacker, Bleeding.class).set(Math.max(1, attacker.HP/6));
+		if (Random.Int(3) == 0) {
+			int procDMG = defender.HP;
+			if (Math.round(procDMG/2f) >= attacker.HP) {//Use Math.round rather than integer division so that odd damage doesn't have a small chance of killing the player
+				procDMG = (attacker.HP - 1)*2;
+			}
+			if (procDMG > 0) {
+				GLog.n(Messages.get(this,"proc"));
+				attacker.damage(procDMG / 2, new Char.DamageSrc(Element.SPIRIT, this));
+				if (defender.properties().contains(Char.Property.BOSS)) {
+					procDMG /= 2;//Doesn't one shot bosses
+				}
+				defender.damage(procDMG, new Char.DamageSrc(Element.SPIRIT, this));
+			}
 		}
-
 		return damage;
 	}
 

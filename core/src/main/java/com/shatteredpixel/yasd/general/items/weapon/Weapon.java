@@ -206,7 +206,7 @@ abstract public class Weapon extends KindOfWeapon {
 		}
 
 		if (hasEnchant(Wayward.class, owner))
-			encumbrance = Math.max(2, encumbrance+2);
+			return 0;
 
 		float ACC = this.ACC;
 

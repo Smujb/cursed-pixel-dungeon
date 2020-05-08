@@ -28,9 +28,12 @@
 package com.shatteredpixel.yasd.general.items.weapon.curses;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.Random;
 
 public class Fragile extends Weapon.Enchantment {
 
@@ -41,6 +44,10 @@ public class Fragile extends Weapon.Enchantment {
 	public int proc( Weapon weapon, Char attacker, Char defender, int damage ) {
 		//degrades from 100% to 25% damage over 150 hits
 		damage *= (1f - hits*0.005f);
+		float chance = hits/150f;
+		if (Random.Float() > chance) {
+			Buff.affect(defender, Paralysis.class, Paralysis.DURATION);
+		}
 		if (hits < 150) hits++;
 		return damage;
 	}
