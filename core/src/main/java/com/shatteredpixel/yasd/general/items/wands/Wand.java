@@ -468,9 +468,10 @@ public abstract class Wand extends KindofMisc {
 
 				if (curUser instanceof Hero) {
 					Hero hero = ((Hero)curUser);
-					int chance = level()*2 - hero.getFocus();
-					if (chance > 0 && Random.Int(chance/2) != 0) {
-						if (curWand.cursed && hero.useMP(chance)) {
+					int diff = level()*2 - hero.getFocus();
+					float miscastChance = (float) Math.pow(0.9f, diff);
+					if (diff > 0 && Random.Int(diff/2) != 0) {
+						if (curWand.cursed && hero.useMP(diff)) {
 							GLog.i( Messages.get(Wand.class, "miscast", curWand.name()) );
 						} else {
 							GLog.i( Messages.get(Wand.class, "backfire", curWand.name()) );

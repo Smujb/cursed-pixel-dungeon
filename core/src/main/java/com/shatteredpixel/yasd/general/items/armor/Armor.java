@@ -346,7 +346,9 @@ public class Armor extends EquipableItem {
 		if (seal != null) {
 			lvl += seal.level();
 		}
-		lvl = Math.min(upgradeLimit(), lvl);
+		if (upgradeLimit() > 0) {
+			lvl = Math.min(upgradeLimit(), lvl);
+		}
 		return lvl;
 	}
 	
