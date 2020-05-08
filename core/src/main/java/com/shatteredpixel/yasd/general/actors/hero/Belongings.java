@@ -378,6 +378,9 @@ public class Belongings implements Iterable<Item> {
 		
 		backpack.clear();
 		backpack.restoreFromBundle( bundle );
+
+		weapon.activate( owner );
+		armor.activate( owner );
 		for (int i = 0; i < Constants.MISC_SLOTS; i++) {//Restore all miscs
 			miscs[i] = (KindofMisc) bundle.get(MISC + i);
 			if (miscs[i] != null) {
