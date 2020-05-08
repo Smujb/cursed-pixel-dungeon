@@ -185,7 +185,7 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 	public static final String KEY_CHALLENGES	= "challenges";
 	public static final String KEY_INTRO		= "intro";
 	public static final String KEY_TESTING		= "testing";
-	public static final String KEY_CHAPTER		= "testing";
+	public static final String KEY_CHAPTER		= "chapter";
 	
 	public static void intro( boolean value ) {
 		put( KEY_INTRO, value );
