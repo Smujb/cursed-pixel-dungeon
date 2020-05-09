@@ -72,19 +72,20 @@ import com.watabou.utils.DeviceCompat;
 
 import org.jetbrains.annotations.Contract;
 
+import java.util.ArrayList;
+
 public enum HeroClass {
 
-	WARRIOR( "warrior", HeroSubClass.BERSERKER, HeroSubClass.GLADIATOR ),
-	MAGE( "mage", HeroSubClass.BATTLEMAGE, HeroSubClass.WARLOCK ),
-	ROGUE( "rogue", HeroSubClass.ASSASSIN, HeroSubClass.FREERUNNER ),
-	HUNTRESS( "huntress", HeroSubClass.SNIPER, HeroSubClass.WARDEN );
+	WARRIOR( "warrior"),
+	MAGE( "mage"),
+	ROGUE( "rogue"),
+	HUNTRESS( "huntress"),
+	PRIESTESS( "priestess");
 
 	private String title;
-	private HeroSubClass[] subClasses;
 
-	HeroClass( String title, HeroSubClass...subClasses ) {
+	HeroClass(String title) {
 		this.title = title;
-		this.subClasses = subClasses;
 	}
 
 	public void initHero( Hero hero ) {
@@ -241,7 +242,45 @@ public enum HeroClass {
 	}
 	
 	public HeroSubClass[] subClasses() {
-		return subClasses;
+		ArrayList<HeroSubClass> subClasses = new ArrayList<>();
+		switch (this) {
+			case MAGE:
+				subClasses.add(HeroSubClass.BATTLEMAGE);//NORMAL
+				subClasses.add(HeroSubClass.WARLOCK);//MAGE + WARRIOR
+				subClasses.add(HeroSubClass.NECROMANCER);//MAGE + PRIESTESS
+				subClasses.add(HeroSubClass.WARDEN);//MAGE + HUNTRESS
+				subClasses.add(HeroSubClass.ENCHANTER);//MAGE + ROGUE
+				break;
+			case WARRIOR:
+				subClasses.add(HeroSubClass.BERSERKER);//NORMAL
+				subClasses.add(HeroSubClass.GLADIATOR);//WARRIOR + HUNTRESS
+				subClasses.add(HeroSubClass.WARLOCK);//WARRIOR + MAGE
+				subClasses.add(HeroSubClass.BRAWLER);//WARRIOR + ROGUE
+				subClasses.add(HeroSubClass.PALADIN);//WARRIOR + PRIESTESS
+				break;
+			case ROGUE:
+				subClasses.add(HeroSubClass.ASSASSIN);//NORMAL
+				subClasses.add(HeroSubClass.FREERUNNER);//ROGUE + HUNTRESS
+				subClasses.add(HeroSubClass.BRAWLER);//ROGUE + WARRIOR
+				subClasses.add(HeroSubClass.ENCHANTER);//ROGUE + MAGE
+				subClasses.add(HeroSubClass.CULTIST);//ROGUE + PRIESTESS
+				break;
+			case HUNTRESS:
+				subClasses.add(HeroSubClass.SNIPER);//NORMAL
+				subClasses.add(HeroSubClass.WARDEN);//HUNTRESS + MAGE
+				subClasses.add(HeroSubClass.GLADIATOR);//HUNTRESS + WARRIOR
+				subClasses.add(HeroSubClass.FREERUNNER);//HUNTRESS + ROGUE
+				subClasses.add(HeroSubClass.VALKYRIE);//HUNTRESS + PRIESTESS
+				break;
+			case PRIESTESS:
+				subClasses.add(HeroSubClass.MEDIC);//NORMAL
+				subClasses.add(HeroSubClass.NECROMANCER);//PRIESTESS + MAGE
+				subClasses.add(HeroSubClass.VALKYRIE);//PRIESTESS + HUNTRESS
+				subClasses.add(HeroSubClass.PALADIN);//PRIESTESS + WARRIOR
+				subClasses.add(HeroSubClass.CULTIST);//PRIESTESS + ROGUE
+				break;
+		}
+		return subClasses.toArray(new HeroSubClass[0]);
 	}
 	
 	public String spritesheet() {

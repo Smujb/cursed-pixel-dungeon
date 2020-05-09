@@ -33,18 +33,27 @@ import com.watabou.utils.Bundle;
 public enum HeroSubClass {
 
 	NONE( null ),
-	
+
 	GLADIATOR( "gladiator" ),
 	BERSERKER( "berserker" ),
-	
+
 	WARLOCK( "warlock" ),
 	BATTLEMAGE( "battlemage" ),
-	
+
 	ASSASSIN( "assassin" ),
 	FREERUNNER( "freerunner" ),
-	
+
 	SNIPER( "sniper" ),
-	WARDEN( "warden" );
+	WARDEN( "warden" ),
+
+	BRAWLER("brawler"),
+	CULTIST("cultist"),
+	ENCHANTER("enchanter"),
+	PALADIN("paladin"),
+	VALKYRIE("valkyrie"),
+
+	NECROMANCER("necromancer"),
+	MEDIC("medic");
 	
 	private String title;
 	
