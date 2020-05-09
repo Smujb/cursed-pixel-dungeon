@@ -746,7 +746,7 @@ public abstract class Mob extends Char {
 			spend( attackDelay() );
 			return false;
 		} else {
-			attack( enemy );
+			attack( enemy);
 			spend( attackDelay() );
 			return true;
 		}
@@ -769,7 +769,7 @@ public abstract class Mob extends Char {
 	
 	@Override
 	public void onAttackComplete() {
-		attack( enemy );
+		attack( enemy);
 		super.onAttackComplete();
 	}
 	

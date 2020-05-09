@@ -25,7 +25,7 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.ui;
+package com.shatteredpixel.yasd.general.ui.attack;
 
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -33,6 +33,9 @@ import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.CPDAction;
+import com.shatteredpixel.yasd.general.ui.DangerIndicator;
+import com.shatteredpixel.yasd.general.ui.Tag;
+import com.shatteredpixel.yasd.general.ui.TargetHealthIndicator;
 import com.watabou.input.GameAction;
 import com.watabou.noosa.Game;
 import com.watabou.utils.Random;
@@ -50,6 +53,8 @@ public class AttackIndicator extends Tag {
 	private static AttackIndicator instance;
 	
 	private CharSprite sprite = null;
+
+	public Char.AttackType type = Char.AttackType.NORMAL;
 	
 	private static Mob lastTarget;
 	private ArrayList<Mob> candidates = new ArrayList<>();
@@ -180,6 +185,7 @@ public class AttackIndicator extends Tag {
 		if (enabled) {
 			if (Dungeon.hero.handle( lastTarget.pos )) {
 				Dungeon.hero.next();
+				Dungeon.hero.nextAttack = type;
 			}
 		}
 	}

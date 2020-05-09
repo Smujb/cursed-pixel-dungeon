@@ -44,7 +44,7 @@ import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.ActionIndicator;
-import com.shatteredpixel.yasd.general.ui.AttackIndicator;
+import com.shatteredpixel.yasd.general.ui.attack.AttackIndicator;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.Image;

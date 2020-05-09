@@ -77,6 +77,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Vulnerable;
 import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.buffs.Wet;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.Surprise;
@@ -99,6 +100,7 @@ import com.shatteredpixel.yasd.general.levels.traps.GrimTrap;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Earthroot;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
+import com.shatteredpixel.yasd.general.ui.attack.AttackIndicator;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
@@ -160,13 +162,15 @@ public abstract class Char extends Actor {
 		FURY {
 		},
 		BLOCK {
-		};
+		},
+		CRUSH;
 
 		public int staminaCost() {
 			switch (this) {
 				case NORMAL: default:
 					return 0;
 				case SPIN:
+				case CRUSH:
 					return 3;
 				case FURY:
 					return 7;
@@ -175,7 +179,43 @@ public abstract class Char extends Actor {
 			}
 		}
 
-		public boolean attack(Char attacker, Char defender) {
+		public AttackIndicator indicator() {
+			return new AttackIndicator() {
+				{
+					type = AttackType.this;
+				}
+			};
+		}
+
+		public boolean attackProc(Char attacker, Char defender, int damage, DamageSrc src) {
+			if (attacker instanceof Hero) {
+				((Hero) attacker).useStamina(staminaCost());
+			}
+			switch (this) {
+				default:
+					break;
+				case SPIN:
+					damage *= 0.5f;
+					for (int pos : PathFinder.NEIGHBOURS8) {
+						Char ch = Actor.findChar(attacker.pos+pos);
+						if (ch != null && ch != defender) {
+							ch.damage(damage, src);
+						}
+					}
+					break;
+				case FURY:
+					//TODO
+					damage *= 0.5f;
+					break;
+				case BLOCK:
+					//TODO
+					return true;
+				case CRUSH:
+					damage *= 1.2f;
+					src.ignoreDefense();
+					break;
+			}
+			defender.damage( damage, src );
 			return true;
 		}
 
@@ -377,6 +417,9 @@ public abstract class Char extends Actor {
 		return attack(enemy, false);
 	}
 
+	//Temporary variable to ensure the next attack is the type wanted.
+	public AttackType nextAttack = AttackType.NORMAL;
+
 	public boolean attack(Char enemy, boolean guaranteed) {
 
 		if (enemy == null || enemy == this) return false;
@@ -408,11 +451,10 @@ public abstract class Char extends Actor {
 					dmg = belongings.getWeapon().damageRoll(this);
 				}
 			}
-			int dr = enemy.drRoll(this.elementalType());
+			DamageSrc src = defaultSrc();
 			if (hasBelongings() && belongings.getWeapon() != null && belongings.getWeapon().breaksArmor(this)) {
-				dr = 0;
+				src.ignoreDefense();
 			}
-			dmg -= dr;
 			if (dmg < 0) {
 				dmg = 0;
 			}
@@ -424,8 +466,8 @@ public abstract class Char extends Actor {
 				enemy.die(new DamageSrc(Element.META));
 				return true;
 			}
-			//Actually damage them. Ignore defense as DR roll is automatically processed earlier.
-			enemy.damage( dmg, defaultSrc().ignoreDefense() );
+			//Actually damage them.
+			nextAttack.attackProc(this, enemy, dmg, src);
 
 			if (buff(FireImbue.class) != null)
 				buff(FireImbue.class).proc(enemy);

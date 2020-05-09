@@ -182,7 +182,8 @@ public abstract class Scroll extends Item {
 		if (action.equals( AC_READ )) {
 
 			if (hero.buff(MagicImmune.class) != null) {
-				GLog.w(Messages.get(this, "no_magic"));//InventoryScroll uses Mana in onSelect.
+				GLog.w(Messages.get(this, "no_magic"));
+			//InventoryScroll uses Mana in onSelect.
 			} else if (!((isKnown() && this instanceof InventoryScroll) || hero.useMP(mpCost))) {
 				GLog.w(Messages.get(this, "no_mana"));
 			} else if (hero.buff(Blindness.class) != null) {

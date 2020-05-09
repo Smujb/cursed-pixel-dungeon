@@ -293,13 +293,13 @@ public class Toolbar extends Component {
 			return Messages.get(Toolbar.class, "examine_prompt");
 		}
 	};
-	
+
 	private static class Tool extends Button {
-		
+
 		private static final int BGCOLOR = 0x7B8073;
-		
+
 		private Image base;
-		
+
 		public Tool( int x, int y, int width, int height ) {
 			super();
 
@@ -313,34 +313,30 @@ public class Toolbar extends Component {
 			this.width = width;
 			this.height = height;
 		}
-		
+
 		@Override
 		protected void createChildren() {
 			super.createChildren();
-			
+
 			base = new Image( Assets.TOOLBAR );
 			add( base );
 		}
-		
+
 		@Override
 		protected void layout() {
 			super.layout();
-			
+
 			base.x = x;
 			base.y = y;
 		}
-		
+
 		@Override
 		protected void onPointerDown() {
 			base.brightness( 1.4f );
 		}
-		
+
 		@Override
 		protected void onPointerUp() {
-			updateTansparency();
-		}
-
-		private void updateTansparency() {
 			if (active) {
 				base.resetColor();
 			} else {
@@ -348,9 +344,13 @@ public class Toolbar extends Component {
 			}
 		}
 
-		public void enable(boolean value ) {
+		public void enable( boolean value ) {
 			if (value != active) {
-				updateTansparency();
+				if (value) {
+					base.resetColor();
+				} else {
+					base.tint( BGCOLOR, 0.7f );
+				}
 				active = value;
 			}
 		}

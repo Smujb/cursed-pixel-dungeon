@@ -109,7 +109,7 @@ import com.shatteredpixel.yasd.general.plants.Swiftthistle;
 import com.shatteredpixel.yasd.general.scenes.AlchemyScene;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
-import com.shatteredpixel.yasd.general.ui.AttackIndicator;
+import com.shatteredpixel.yasd.general.ui.attack.AttackIndicator;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.shatteredpixel.yasd.general.ui.QuickSlotButton;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -1481,7 +1481,7 @@ public class Hero extends Char {
 		
 		AttackIndicator.target(enemy);
 		
-		boolean hit = attack( enemy );
+		boolean hit = attack( enemy);
 
 		if (subClass == HeroSubClass.GLADIATOR){
 			if (hit) {

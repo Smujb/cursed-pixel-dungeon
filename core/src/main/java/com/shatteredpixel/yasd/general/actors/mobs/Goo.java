@@ -177,7 +177,7 @@ public class Goo extends Mob {
 				else
 					sprite.attack( enemy.pos );
 			} else {
-				attack( enemy );
+				attack( enemy);
 			}
 
 			spend( attackDelay() );
@@ -209,8 +209,8 @@ public class Goo extends Mob {
 	}
 
 	@Override
-	public boolean attack( Char enemy, boolean guaranteed ) {
-		boolean result = super.attack( enemy, guaranteed );
+	public boolean attack(Char enemy, boolean guaranteed) {
+		boolean result = super.attack( enemy, guaranteed);
 		pumpedUp = 0;
 		return result;
 	}
