@@ -182,20 +182,20 @@ public class Belongings implements Iterable<Item> {
 
 	public int drRoll() {
 		int dr = 0;
-		int armDr = 0;
 		if (armor != null) {
-			armDr = armor.DRRoll();
+			dr += armor.DRRoll();
+			if (owner.STR() < armor.STRReq()) {
+				dr -= 2 * (armor.STRReq() - owner.STR());
+			}
 		}
-		if (owner.STR() < armor.STRReq()) {
-			armDr -= 2 * (armor.STRReq() - owner.STR());
-		}
-		if (armDr > 0) dr += armDr;
 
-		int wepDr = Random.NormalIntRange(0, weapon.defenseFactor(owner));
-		if (weapon instanceof MeleeWeapon & owner.STR() < ((MeleeWeapon) weapon).STRReq()) {
-			wepDr -= 2 * (((MeleeWeapon) weapon).STRReq() - owner.STR());
+		if (getWeapon() != null) {
+			int wepDr = Random.NormalIntRange(0, getWeapon().defenseFactor(owner));
+			if (weapon instanceof MeleeWeapon & owner.STR() < ((MeleeWeapon) weapon).STRReq()) {
+				wepDr -= 2 * (((MeleeWeapon) weapon).STRReq() - owner.STR());
+			}
+			if (wepDr > 0) dr += wepDr;
 		}
-		if (wepDr > 0) dr += wepDr;
 
 		return dr;
 	}
