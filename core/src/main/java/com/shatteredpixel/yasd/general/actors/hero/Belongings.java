@@ -68,6 +68,9 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -80,6 +83,8 @@ public class Belongings implements Iterable<Item> {
 	public Bag backpack;
 
 	private KindOfWeapon weapon;
+
+	@Nullable
 	public Armor armor;
 	public KindofMisc[] miscs = new KindofMisc[Constants.MISC_SLOTS];
 
@@ -132,11 +137,12 @@ public class Belongings implements Iterable<Item> {
 		return hit;
 	}
 
+	@Nullable
 	public KindOfWeapon getWeapon() {
 	    return weapon;
 	}
 
-	public void setWeapon(KindOfWeapon weapon) {
+	public void setWeapon(@Nullable KindOfWeapon weapon) {
 		this.weapon = weapon;
 	}
 
@@ -159,7 +165,10 @@ public class Belongings implements Iterable<Item> {
 
 	public int magicalDR() {
 		int dr = 0;
-		int armDr = armor.magicalDRRoll();
+		int armDr = 0;
+		if (armor != null) {
+			 armDr = armor.magicalDRRoll();
+		}
 		if (owner.STR() < armor.STRReq()) {
 			armDr -= 2 * (armor.STRReq() - owner.STR());
 		}
@@ -173,7 +182,10 @@ public class Belongings implements Iterable<Item> {
 
 	public int drRoll() {
 		int dr = 0;
-		int armDr = armor.DRRoll();
+		int armDr = 0;
+		if (armor != null) {
+			armDr = armor.DRRoll();
+		}
 		if (owner.STR() < armor.STRReq()) {
 			armDr -= 2 * (armor.STRReq() - owner.STR());
 		}
@@ -213,7 +225,9 @@ public class Belongings implements Iterable<Item> {
 	}
 
 	public int defenseProc(Char enemy, int damage) {
-		damage = armor.proc(enemy, owner, damage);
+		if (armor != null) {
+			damage = armor.proc(enemy, owner, damage);
+		}
 		return damage;
 	}
 
@@ -229,7 +243,9 @@ public class Belongings implements Iterable<Item> {
 	}
 
 	public int magicalDefenseProc(Char enemy, int damage) {
-		damage = armor.magicalProc(enemy, owner, damage);
+		if (armor != null) {
+			damage = armor.magicalProc(enemy, owner, damage);
+		}
 		return damage;
 	}
 
@@ -295,9 +311,9 @@ public class Belongings implements Iterable<Item> {
 		speed *= RingOfHaste.speedMultiplier(owner);
 		Armor CurArmour = armor;
 		//speed *= CurArmour.speedMultiplier(ownerID);
-		int aEnc = CurArmour.STRReq() - owner.STR();
-		if (aEnc > 0) speed /= Math.pow(1.2, aEnc);
 		if (armor != null) {
+			int aEnc = CurArmour.STRReq() - owner.STR();
+			if (aEnc > 0) speed /= Math.pow(1.2, aEnc);
 			if (CurArmour.hasGlyph(Swiftness.class, owner)) {
 				boolean enemyNear = false;
 				for (Char ch : Actor.chars()) {
@@ -517,6 +533,7 @@ public class Belongings implements Iterable<Item> {
 		return count;
 	}
 
+	@NotNull
 	@Override
 	public Iterator<Item> iterator() {
 		return new ItemIterator();
