@@ -259,11 +259,6 @@ public class Toolbar extends Component {
 	@Override
 	public void update() {
 		super.update();
-		if (Dungeon.hero.ready) {
-			setAlphaAll(1f);
-		} else {
-			multiplyAlphaAll(0.9f);
-		}
 		
 		if (lastEnabled != (Dungeon.hero.ready && Dungeon.hero.isAlive())) {
 			lastEnabled = (Dungeon.hero.ready && Dungeon.hero.isAlive());
@@ -342,20 +337,20 @@ public class Toolbar extends Component {
 		
 		@Override
 		protected void onPointerUp() {
+			updateTansparency();
+		}
+
+		private void updateTansparency() {
 			if (active) {
 				base.resetColor();
 			} else {
 				base.tint( BGCOLOR, 0.7f );
 			}
 		}
-		
-		public void enable( boolean value ) {
+
+		public void enable(boolean value ) {
 			if (value != active) {
-				if (value) {
-					base.resetColor();
-				} else {
-					base.tint( BGCOLOR, 0.7f );
-				}
+				updateTansparency();
 				active = value;
 			}
 		}

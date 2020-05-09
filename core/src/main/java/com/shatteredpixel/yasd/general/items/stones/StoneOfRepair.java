@@ -27,13 +27,9 @@
 
 package com.shatteredpixel.yasd.general.items.stones;
 
-import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
-import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
-import com.watabou.noosa.audio.Sample;
 
 public class StoneOfRepair extends InventoryStone {
 
@@ -42,16 +38,9 @@ public class StoneOfRepair extends InventoryStone {
 		image = ItemSpriteSheet.STONE_REPAIR;
 	}
 
-	private final float TIME_TO_REPAIR = 3f;
-
 	@Override
 	protected void onItemSelected(Item item) {
-		curUser.sprite.centerEmitter().start( Speck.factory( Speck.REPAIR ), 0.05f, 10 );
-		curUser.spend( TIME_TO_REPAIR );
-		curUser.busy();
-		curUser.sprite.operate( curUser.pos );
-		Sample.INSTANCE.play( Assets.SND_EVOKE );
-		GLog.n("WIP");
+
 	}
 
 	@Override

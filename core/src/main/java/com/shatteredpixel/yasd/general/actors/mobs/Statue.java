@@ -41,7 +41,6 @@ import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
-import com.shatteredpixel.yasd.general.items.stones.StoneOfRepair;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.journal.Notes;
@@ -67,10 +66,6 @@ public class Statue extends Mob implements Callback {
 		properties.add(Property.INORGANIC);
 
 		STR = Integer.MAX_VALUE;
-
-		loot = new  StoneOfRepair();
-
-		lootChance = 1f;//Guaranteed in Animated Statues
 
 		belongings = new Belongings(this);
 	}
