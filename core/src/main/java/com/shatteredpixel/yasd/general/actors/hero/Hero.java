@@ -235,6 +235,9 @@ public class Hero extends Char {
 	private void updateStamina() {
 		int oldMax = maxStamina;
 		maxStamina = 10;
+		if (subClass == HeroSubClass.GLADIATOR) {
+			maxStamina += 5;
+		}
 		stamina += (maxStamina - oldMax);
 	}
 
@@ -249,11 +252,13 @@ public class Hero extends Char {
 			stamina = 0;
 			damage(damage, new DamageSrc(Element.META));
 			if (!isAlive()){
-				Dungeon.fail( getClass() );
+				Dungeon.fail( Stamina.class );
 				GLog.n( Messages.get( this, "exhausted") );
 			}
 		}
 	}
+
+	private static class Stamina {};
 
 	public int getPower() {
 		return Power + RingOfPower.powerBonus(this);

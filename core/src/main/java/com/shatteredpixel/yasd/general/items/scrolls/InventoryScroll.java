@@ -89,7 +89,7 @@ public abstract class InventoryScroll extends Scroll {
 
 				//If the scroll was identified by use, mana will already have been consumed.
 				if (curUser instanceof Hero && !((Hero) curUser).useMP(mpCost) && !identifiedByUse) {
-					GLog.w(Messages.get(this, "no_mana"));
+					GLog.w(Messages.get(InventoryScroll.this, "no_mana"));
 					parent.collect( curUser.belongings.backpack, curUser);
 					return;
 				}

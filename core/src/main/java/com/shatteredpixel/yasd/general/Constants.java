@@ -28,18 +28,8 @@
 package com.shatteredpixel.yasd.general;
 
 public class Constants {
-    /*
-    Purpose of this file is to have constants that can be used to quickly tweak in-game things.
-    Makes modding easier and also helps me in future.
 
-    (I may rework some of my other mods off this in the future as I'm quite happy with engine functionality atm)
-     */
-    //
-    //############################## EQUIPMENT STUFF ##############################
-    //
-    public static final boolean DEGRADATION = true;
-
-    //Number of upgrades Curse Infusion adds.
+	//Number of upgrades Curse Infusion adds.
     public static final int CURSE_INFUSION_BONUS_AMT = 3;
 
     //Default Upgrade Limit. Set to -1 to remove the limit.
@@ -57,8 +47,6 @@ public class Constants {
     //
     //Number of misc slots for char.
     public static final int MISC_SLOTS = 3;
-
-    public static final boolean MORALE = true;
 
     //
     //############################## DUNGEON STUFF ##############################
