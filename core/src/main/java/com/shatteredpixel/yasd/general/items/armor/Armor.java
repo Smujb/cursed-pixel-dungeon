@@ -420,16 +420,18 @@ public class Armor extends EquipableItem {
 	}
 
 	@Override
-	public void curse() {
+	public Item curse() {
 		super.curse();
 		inscribe(Glyph.randomCurse());
+		return this;
 	}
 
 	@Override
-	public void uncurse() {
+	public Item uncurse() {
 		if (hasCurseGlyph()) {
 			inscribe(null);
 		}
+		return this;
 	}
 
 	@Override

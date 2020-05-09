@@ -271,21 +271,22 @@ public class Belongings implements Iterable<Item> {
 		//evasion *= _Unused.evasionMultiplier(owner);
 		Armor CurArmour = armor;
 		//evasion *= CurArmour.evasionMultiplier(ownerID);
-		if (CurArmour.hasGlyph(Stone.class, owner) && !((Stone) CurArmour.glyph).testingEvasion()) {
-			return 0;
+		if (CurArmour != null) {
+			if (CurArmour.hasGlyph(Stone.class, owner) && !((Stone) CurArmour.glyph).testingEvasion()) {
+				return 0;
+			}
+			int aEnc = CurArmour.STRReq() - owner.STR();
+			if (aEnc > 0) evasion /= Math.pow(1.5, aEnc);
+
+			Momentum momentum = owner.buff(Momentum.class);
+			if (momentum != null) {
+				evasion += momentum.evasionBonus(Math.max(0, -aEnc));
+
+			}
+			evasion += CurArmour.augment.evasionFactor(CurArmour.level());
+
+			evasion *= CurArmour.EVA;
 		}
-		int aEnc = CurArmour.STRReq() - owner.STR();
-		if (aEnc > 0) evasion /= Math.pow(1.5, aEnc);
-
-		Momentum momentum = owner.buff(Momentum.class);
-		if (momentum != null) {
-			evasion += momentum.evasionBonus(Math.max(0, -aEnc));
-
-		}
-		evasion += CurArmour.augment.evasionFactor(CurArmour.level());
-
-		evasion *= CurArmour.EVA;
-
 
 		return evasion;
 	}
@@ -296,26 +297,27 @@ public class Belongings implements Iterable<Item> {
 		//speed *= CurArmour.speedMultiplier(ownerID);
 		int aEnc = CurArmour.STRReq() - owner.STR();
 		if (aEnc > 0) speed /= Math.pow(1.2, aEnc);
-
-		if (CurArmour.hasGlyph(Swiftness.class, owner)) {
-			boolean enemyNear = false;
-			for (Char ch : Actor.chars()) {
-				if (Dungeon.level.adjacent(ch.pos, owner.pos) && owner.alignment != ch.alignment) {
-					enemyNear = true;
-					break;
+		if (armor != null) {
+			if (CurArmour.hasGlyph(Swiftness.class, owner)) {
+				boolean enemyNear = false;
+				for (Char ch : Actor.chars()) {
+					if (Dungeon.level.adjacent(ch.pos, owner.pos) && owner.alignment != ch.alignment) {
+						enemyNear = true;
+						break;
+					}
 				}
+				if (!enemyNear) speed *= (1.2f + 0.04f * CurArmour.level());
+			} else if (CurArmour.hasGlyph(Flow.class, owner) && Dungeon.level.liquid(owner.pos)) {
+				speed *= 2f;
 			}
-			if (!enemyNear) speed *= (1.2f + 0.04f * CurArmour.level());
-		} else if (CurArmour.hasGlyph(Flow.class, owner) && Dungeon.level.liquid(owner.pos)) {
-			speed *= 2f;
-		}
 
-		if (CurArmour.hasGlyph(Bulk.class, owner) &&
-				(Dungeon.level.map[owner.pos] == Terrain.DOOR
-						|| Dungeon.level.map[owner.pos] == Terrain.OPEN_DOOR)) {
-			speed /= 3f;
+			if (CurArmour.hasGlyph(Bulk.class, owner) &&
+					(Dungeon.level.map[owner.pos] == Terrain.DOOR
+							|| Dungeon.level.map[owner.pos] == Terrain.OPEN_DOOR)) {
+				speed /= 3f;
+			}
+			speed *= CurArmour.speedFactor;
 		}
-		speed *= CurArmour.speedFactor;
 
 
 		return speed;
@@ -324,20 +326,22 @@ public class Belongings implements Iterable<Item> {
 	public float affectStealth(float stealth) {
 		Armor CurArmour = armor;
 		//sneakSkill *= CurArmour.stealthMultiplier(ownerID);
-
-		if (CurArmour.hasGlyph(Obfuscation.class, owner)) {
-			stealth += 1 + CurArmour.level() / 3f;
-		}
-		int penalty = CurArmour.tier;
-
-		if (owner instanceof Hero) {
-			if (((Hero) owner).heroClass == HeroClass.ROGUE) {
-				penalty /= 2;
+		if (CurArmour != null) {
+			if (CurArmour.hasGlyph(Obfuscation.class, owner)) {
+				stealth += 1 + CurArmour.level() / 3f;
 			}
-		}
-		stealth -= penalty;
+			int penalty = CurArmour.tier;
 
-		stealth *= CurArmour.STE;
+
+			if (owner instanceof Hero) {
+				if (((Hero) owner).heroClass == HeroClass.ROGUE) {
+					penalty /= 2;
+				}
+			}
+			stealth -= penalty;
+
+			stealth *= CurArmour.STE;
+		}
 
 		return stealth;
 	}

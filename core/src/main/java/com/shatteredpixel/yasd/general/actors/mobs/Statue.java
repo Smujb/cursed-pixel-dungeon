@@ -35,7 +35,9 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.items.Ankh;
+import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Generator;
+import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
@@ -83,6 +85,10 @@ public class Statue extends Mob implements Callback {
 	public Statue() {
 		super();
 
+		belongings.setWeapon((KindOfWeapon) Generator.randomWeapon().level(0).uncurse().identify());
+
+		belongings.armor = (Armor) Generator.randomArmor().level(0).uncurse().identify();
+
 		for (int i = 0; i < belongings.miscs.length; i++) {
 			belongings.miscs[i] = newItem();
 			belongings.miscs[i].activate(this);
@@ -106,6 +112,7 @@ public class Statue extends Mob implements Callback {
 		}
 	}
 
+	@NotNull
 	private KindofMisc newItem() {
 		boolean con = false;
 		KindofMisc item;
@@ -134,14 +141,22 @@ public class Statue extends Mob implements Callback {
 	}
 
 	protected void upgradeItems() {
-		int sous = (Dungeon.depth /Constants.CHAPTER_LENGTH)*Constants.SOU_PER_CHAPTER;//(Dungeon.depth/5 [chapter]) * 3 [3 SoU per chapter]
-		KindofMisc Item;
-		if (belongings.miscs.length > 0) {
+		int sous = Dungeon.getScaleFactor();
+		EquipableItem item;
+		if (belongings.miscs.length > 0 || belongings.getWeapon() != null || belongings.armor != null) {
 			do {
 				do {
-					Item = Random.element(belongings.miscs);
-				} while (Item == null || !Item.isUpgradable());//If the item is not upgradeable (An artifact or +3) chose another. Also, if it is null (nothing equipped in that slot)
-				Item.upgrade();
+					item = null;
+					int slot = Random.Int(belongings.miscs.length + 2);
+					if (slot < belongings.miscs.length) {
+						item = belongings.miscs[slot];
+					} else if (slot == belongings.miscs.length + 1) {
+						item = belongings.getWeapon();
+					} else if (slot == belongings.miscs.length + 2) {
+						item = belongings.armor;
+					}
+				} while (item == null || !item.isUpgradable());//If the item is not upgradeable (An artifact or +3) chose another. Also, if it is null (nothing equipped in that slot)
+				item.upgrade();
 				sous--;
 			} while (sous > 0);
 		}

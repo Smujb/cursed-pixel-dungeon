@@ -136,16 +136,18 @@ abstract public class Weapon extends KindOfWeapon {
 	}
 
 	@Override
-	public void curse() {
+	public Item curse() {
 		super.curse();
 		enchant(Enchantment.randomCurse());
+		return this;
 	}
 
 	@Override
-	public void uncurse() {
+	public Item uncurse() {
 		if (hasCurseEnchant()) {
 			enchant(null);
 		}
+		return this;
 	}
 
 	@Override

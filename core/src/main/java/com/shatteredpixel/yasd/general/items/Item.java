@@ -111,12 +111,14 @@ public class Item implements Bundlable {
 		}
 	};
 
-	public void curse() {
+	public Item curse() {
 		cursed = true;
+		return this;
 	}
 
-	public void uncurse() {
+	public Item uncurse() {
 		cursed = false;
+		return this;
 	}
 	
 	public ArrayList<String> actions( Hero hero ) {
