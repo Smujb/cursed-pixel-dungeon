@@ -8,13 +8,13 @@ public class StaminaRegen extends Buff {
 		actPriority = HERO_PRIO - 1;
 	}
 
-	private static final float REGENERATION_DELAY = 20;
-
 	@Override
 	public boolean act() {
-		if (target.isAlive() && target instanceof Hero) {
-			//TODO
-			spend( REGENERATION_DELAY );
+		if (target.isAlive() && target instanceof Hero && !((Hero) target).isStarving()) {
+			if (((Hero) target).stamina < ((Hero) target).maxStamina()) {
+				((Hero) target).stamina++;
+			}
+			spend( TICK );
 		} else {
 			diactivate();
 		}

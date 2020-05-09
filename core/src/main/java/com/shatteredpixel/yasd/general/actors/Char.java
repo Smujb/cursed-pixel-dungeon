@@ -152,6 +152,31 @@ public abstract class Char extends Actor {
 
 	public Alignment alignment;
 
+	public enum AttackType {
+		NORMAL {
+		},
+		SPIN {
+		},
+		FURY {
+		};
+
+		public int staminaCost() {
+			switch (this) {
+				case NORMAL: default:
+					return 0;
+				case SPIN:
+					return 3;
+				case FURY:
+					return 7;
+			}
+		}
+
+		public boolean attack(Char attacker, Char defender) {
+			return true;
+		}
+
+	}
+
 	public int viewDistance = 8;
 
 	public boolean[] fieldOfView = null;
