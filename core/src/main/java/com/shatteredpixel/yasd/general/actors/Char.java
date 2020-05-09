@@ -158,6 +158,8 @@ public abstract class Char extends Actor {
 		SPIN {
 		},
 		FURY {
+		},
+		BLOCK {
 		};
 
 		public int staminaCost() {
@@ -168,6 +170,8 @@ public abstract class Char extends Actor {
 					return 3;
 				case FURY:
 					return 7;
+				case BLOCK:
+					return 10;
 			}
 		}
 
