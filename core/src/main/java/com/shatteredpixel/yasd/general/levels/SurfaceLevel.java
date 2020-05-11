@@ -18,10 +18,6 @@ public class SurfaceLevel extends TiledMapLevel {
 
 	private static final String MAP_NAME = "maps/surface.tmx";
 
-	public SurfaceLevel() {
-		super(MAP_NAME);
-	}
-
 	@Override
 	public String tilesTex() {
 		return Assets.TILES_SEWERS;
@@ -46,6 +42,16 @@ public class SurfaceLevel extends TiledMapLevel {
 		return true;
 	}
 
+	@Override
+	protected String mapName() {
+		return MAP_NAME;
+	}
+
+	@Override
+	public int getEntrancePos() {
+		return getPos(41, 5);
+	}
+
 	private void placeNpc() {
 
 		Mob shopkeeper = new Shopkeeper();
@@ -58,23 +64,8 @@ public class SurfaceLevel extends TiledMapLevel {
 		return null;
 	}
 
-	@Override
-	protected void createMobs() {
-	}
-
 	public Actor respawner() {
 		return null;
-	}
-
-	@Override
-	protected void createItems() {
-		//drop( new Energize(), 23 + 8 * width ).type = Heap.Type.FOR_SALE;
-		//drop( new WaterPump(), 24 + 8 * width ).type = Heap.Type.FOR_SALE;
-		//drop( new PoisonBurst(), 25 + 8 * width ).type = Heap.Type.FOR_SALE;
-		//drop( new BubbleShield(), 26 + 8 * width ).type = Heap.Type.FOR_SALE;
-		//drop( new Telekinesis(), 27 + 8 * width ).type = Heap.Type.FOR_SALE;
-		//drop( new Greed(), 28 + 8 * width ).type = Heap.Type.FOR_SALE;
-		//drop( new Surprise(), 29 + 8 * width ).type = Heap.Type.FOR_SALE;
 	}
 
 	@Override

@@ -33,14 +33,11 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.levels.interactive.Entrance;
-import com.shatteredpixel.yasd.general.levels.interactive.Exit;
 import com.shatteredpixel.yasd.general.levels.interactive.InteractiveArea;
 import com.shatteredpixel.yasd.general.levels.interactive.LevelSwitchArea;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
@@ -48,7 +45,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Random;
 
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -73,8 +69,8 @@ public class MapHandler {
 		areas = map.getLayers().get(AREAS_LAYER).getObjects();
 	}
 
-	public static boolean build( Level level, String mapName) {
-		loadMap(new TmxMapLoader().load(mapName));
+	public static boolean build( Level level, Map map) {
+		loadMap(map);
 		int width = tiles.getWidth();
 		int height = tiles.getHeight();
 		level.setSize(width, height);
@@ -90,9 +86,9 @@ public class MapHandler {
 					int tileId = tile.getId();
 					toSet = mapToTerrain(tileId);
 					if (toSet == Terrain.ENTRANCE) {
-						level.interactiveAreas.add(new Entrance().setPos(level, pos));
+						level.setEntrance(pos);
 					} else if (toSet == Terrain.EXIT || toSet == Terrain.LOCKED_EXIT || toSet == Terrain.UNLOCKED_EXIT) {
-						level.interactiveAreas.add(new Exit().setPos(level, pos));
+						level.setExit(pos);
 					}
 				}
 				level.set(pos, toSet);
@@ -122,8 +118,8 @@ public class MapHandler {
 	private static final String KEY_LEVEL = "level";
 	private static final String NAME_MOB = "com.shatteredpixel.yasd.general.actors.mobs.";
 
-	public static void createMobs( Level level, String mapName) {
-		loadMap(new TmxMapLoader().load(mapName));
+	public static void createMobs( Level level, Map map) {
+		loadMap(map);
 		for (int i = 0; i < mobs.getCount(); i++) {
 			if (mobs.get(i) instanceof RectangleMapObject) {
 				RectangleMapObject object = (RectangleMapObject) mobs.get(i);
@@ -165,12 +161,12 @@ public class MapHandler {
 		}
 	}
 
-	//Ues the same KEY_NAME and KEY_NUMBER
+	//Uses the same KEY_NAME and KEY_NUMBER
 	private static final String KEY_TYPE = "heapType";
 	private static final String NAME_ITEM = "com.shatteredpixel.yasd.general.items.";
 
-	public static void createItems( Level level, String mapName) {
-		loadMap(new TmxMapLoader().load(mapName));
+	public static void createItems( Level level, Map map) {
+		loadMap(map);
 		Dungeon.key = level.key;//Ensures keys load correctly.
 		for (int i = 0; i < items.getCount(); i++) {
 			if (items.get(i) instanceof RectangleMapObject) {
@@ -218,8 +214,9 @@ public class MapHandler {
 	private static final String KEY_KEY = "key";
 	private static final String KEY_MESSAGE = "message";
 
-	public static void createAreas( Level level, String mapName) {
-		loadMap(new TmxMapLoader().load(mapName));
+	public static void createAreas( Level level, Map map) {
+		loadMap(map);
+		level.interactiveAreas = new ArrayList<>();
 		for (int i = 0; i < areas.getCount(); i++) {
 			if (areas.get(i) instanceof RectangleMapObject) {
 				RectangleMapObject object = (RectangleMapObject) areas.get(i);

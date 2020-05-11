@@ -32,8 +32,6 @@ import com.shatteredpixel.yasd.general.levels.Level;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public abstract class InteractiveArea implements Bundlable {
@@ -69,6 +67,10 @@ public abstract class InteractiveArea implements Bundlable {
 
 	public static <T extends InteractiveArea> ArrayList<T> getAreas(Level level, Class<T> areaClass) {
 		ArrayList<T> list = new ArrayList<>();
+		if (level.interactiveAreas == null) {
+			level.interactiveAreas = new ArrayList<>();
+			return list;
+		}
 		for (InteractiveArea area : level.interactiveAreas) {
 			if (areaClass.isInstance(area)) {
 				list.add((T) area);

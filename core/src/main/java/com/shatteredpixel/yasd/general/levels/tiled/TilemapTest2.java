@@ -33,7 +33,7 @@ public class TilemapTest2 extends TiledMapLevel {
 	private static final String MAP_NAME = "maps/dungeon2_test.tmx";
 
 	public TilemapTest2() {
-		super(MAP_NAME);
+		super();
 	}
 
 	@Override
@@ -49,5 +49,10 @@ public class TilemapTest2 extends TiledMapLevel {
 	@Override
 	public String loadImg() {
 		return Assets.LOADING_PRISON;
+	}
+
+	@Override
+	protected String mapName() {
+		return MAP_NAME;
 	}
 }

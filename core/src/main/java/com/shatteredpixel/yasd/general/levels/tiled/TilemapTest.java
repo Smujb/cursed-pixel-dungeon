@@ -34,7 +34,7 @@ public class TilemapTest extends TiledMapLevel {
 	private static final String MAP_NAME = "maps/sewerdungeon-test.tmx";
 
 	TilemapTest() {
-		super(MAP_NAME);
+		super();
 	}
 
 	@Override
@@ -52,4 +52,8 @@ public class TilemapTest extends TiledMapLevel {
 		return Assets.LOADING_SEWERS;
 	}
 
+	@Override
+	protected String mapName() {
+		return MAP_NAME;
+	}
 }

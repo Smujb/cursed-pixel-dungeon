@@ -241,7 +241,7 @@ public class LevelHandler {
 		Dungeon.depth = depth;
 		if (mode.equals(Mode.RESURRECT) & Dungeon.hero != null & Dungeon.level != null) {
 			if (Dungeon.level.locked) {
-				Dungeon.hero.resurrect( Dungeon.key);
+				Dungeon.hero.resurrect( Dungeon.key );
 			} else {
 				Dungeon.hero.resurrect( null );
 				Dungeon.resetLevel();

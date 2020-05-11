@@ -27,34 +27,39 @@
 
 package com.shatteredpixel.yasd.general.levels.tiled;
 
+import com.badlogic.gdx.maps.Map;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.shatteredpixel.yasd.general.MapHandler;
 import com.shatteredpixel.yasd.general.levels.Level;
 
 public abstract class TiledMapLevel extends Level {
-	//No need to bundle, as after create() is called this is no longer needed.
-	private String name;
 
-	public TiledMapLevel(String filename) {
-		name = filename;
-	}
+	private Map map;
 
 	@Override
 	protected boolean build() {
-		return MapHandler.build(this, name);
+		setMap();
+		return MapHandler.build(this, map);
+	}
+
+	protected abstract String mapName();
+
+	public void setMap() {
+		map = new TmxMapLoader().load(mapName());
 	}
 
 	@Override
-	protected void createMobs() {
-		MapHandler.createMobs(this, name);
+	protected final void createMobs() {
+		MapHandler.createMobs(this, map);
 	}
 
 	@Override
-	protected void createItems() {
-		MapHandler.createItems(this, name);
+	protected final void createItems() {
+		MapHandler.createItems(this, map);
 	}
 
 	@Override
-	protected void createAreas() {
-		MapHandler.createAreas(this, name);
+	protected final void createAreas() {
+		MapHandler.createAreas(this, map);
 	}
 }
