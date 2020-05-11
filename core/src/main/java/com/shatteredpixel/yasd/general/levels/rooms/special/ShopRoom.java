@@ -186,10 +186,10 @@ public class ShopRoom extends SpecialRoom {
 		if (weapon.hasCurseEnchant()) {
 			weapon.enchant(Weapon.Enchantment.random());
 		}
+		weapon.setTier(Math.min(5, Random.Int(minTier, maxTier)));
 		if (weapon.tier < 1) {
 			weapon.setTier(1);
 		}
-		weapon.setTier(Math.min(5, Random.Int(minTier, maxTier)));
 		if (weapon.tier == minTier & weapon.isUpgradable()) {//Extra upgrade if possible and Armour is at minimum amount
 			weapon.upgrade();
 		} else if (weapon.tier == maxTier & weapon.level() > 1) {
