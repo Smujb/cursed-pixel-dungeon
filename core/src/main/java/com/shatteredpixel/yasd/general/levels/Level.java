@@ -843,17 +843,11 @@ public abstract class Level implements Bundlable {
 		return length;
 	}
 	
-	public String tilesTex() {
-		return null;
-	}
+	public abstract String tilesTex();
 	
-	public String waterTex() {
-		return null;
-	}
+	public abstract String waterTex();
 
-	public String loadImg() {
-		return null;
-	}
+	public abstract String loadImg();
 	
 	abstract protected boolean build();
 	

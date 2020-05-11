@@ -50,7 +50,7 @@ public class Entrance extends InteractiveCell {
 	}
 
 	public static void ascend(Hero hero) {
-		if (Dungeon.depth == 1) {
+		if (Dungeon.depth < 1) {
 
 			if (hero.belongings.getItem(Amulet.class) == null) {
 				Game.runOnRenderThread(new Callback() {

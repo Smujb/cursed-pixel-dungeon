@@ -68,6 +68,7 @@ import com.shatteredpixel.yasd.general.levels.OldPrisonBossLevel;
 import com.shatteredpixel.yasd.general.levels.PrisonLevel;
 import com.shatteredpixel.yasd.general.levels.SewerBossLevel;
 import com.shatteredpixel.yasd.general.levels.SewerLevel;
+import com.shatteredpixel.yasd.general.levels.SurfaceLevel;
 import com.shatteredpixel.yasd.general.levels.TestBossLevel;
 import com.shatteredpixel.yasd.general.levels.rooms.secret.SecretRoom;
 import com.shatteredpixel.yasd.general.levels.rooms.special.SpecialRoom;
@@ -219,7 +220,7 @@ public class Dungeon {
 		quickslot.reset();
 		QuickSlotButton.reset();
 		
-		depth = 1;
+		depth = 0;
 		key = keyForDepth();
 
 		gold = 0;
@@ -272,7 +273,7 @@ public class Dungeon {
 	private static final String CITY_ID = "city";
 	private static final String HALLS_ID = "halls";
 	private static final String LAST_ID = "last";
-	private static final String UNDERWATER_ID = "(underwater) ";
+	private static final String SURFACE_ID = "surface";
 
 	public static HashMap<String, Class<? extends Level>> staticLevels = new HashMap<>();
 	static {
@@ -288,6 +289,8 @@ public class Dungeon {
 		staticLevels.put( LAST_ID, LastLevel.class );
 		//Grind level
 		staticLevels.put( LuckyBadge.AC_GRIND, GrindLevel.class );
+		//Surface level
+		staticLevels.put(SURFACE_ID, SurfaceLevel.class);
 		//testing stuff
 		staticLevels.put("test boss", TestBossLevel.class);
 		staticLevels.put("test", TilemapTest.class);
@@ -309,7 +312,9 @@ public class Dungeon {
 		String key = "none";
 		int depthInChapter = (depth-1)%Constants.CHAPTER_LENGTH;
 		String depthMarker = " - " + depthInChapter;
-		if (depth <= Constants.CHAPTER_LENGTH) {
+		if (depth == 0) {
+			key = SURFACE_ID;
+		} else if (depth <= Constants.CHAPTER_LENGTH) {
 			key = SEWERS_ID + depthMarker;
 		} else if (depth <= Constants.CHAPTER_LENGTH * 2) {
 			key = PRISON_ID + depthMarker;
