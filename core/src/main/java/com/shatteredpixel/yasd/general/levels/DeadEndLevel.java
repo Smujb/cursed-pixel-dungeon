@@ -52,7 +52,12 @@ public class DeadEndLevel extends Level {
 	public String waterTex() {
 		return Assets.WATER_HALLS;
 	}
-	
+
+	@Override
+	public String loadImg() {
+		return Assets.LOADING_HALLS;
+	}
+
 	@Override
 	protected boolean build() {
 		

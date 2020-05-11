@@ -110,7 +110,12 @@ public class OldPrisonBossLevel extends Level {
 	public String waterTex() {
 		return Assets.WATER_PRISON;
 	}
-	
+
+	@Override
+	public String loadImg() {
+		return Assets.LOADING_PRISON;
+	}
+
 	private static final String STATE	        = "state";
 	private static final String TENGU	        = "tengu";
 	private static final String STORED_ITEMS    = "storeditems";

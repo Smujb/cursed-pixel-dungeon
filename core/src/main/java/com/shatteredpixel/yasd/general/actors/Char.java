@@ -890,9 +890,11 @@ public abstract class Char extends Actor {
 			total = healAmt;
 		}
 		if (total > 0) {
-			sprite.emitter().start(Speck.factory(Speck.HEALING), 0.4f, 1);
-			if (display) {
-				sprite.showStatus(CharSprite.POSITIVE, "+%dHP", total);
+			if (sprite != null) {
+				sprite.emitter().start(Speck.factory(Speck.HEALING), 0.4f, 1);
+				if (display) {
+					sprite.showStatus(CharSprite.POSITIVE, "+%dHP", total);
+				}
 			}
 			HP += amount;
 			if (shield && shieldAmt > 0) {

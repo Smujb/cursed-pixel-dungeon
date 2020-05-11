@@ -71,6 +71,11 @@ public class TestBossLevel extends Level {
 	}
 
 	@Override
+	public String loadImg() {
+		return Assets.LOADING_CITY;
+	}
+
+	@Override
 	protected boolean build() {
 
 		setSize(48, 48);
