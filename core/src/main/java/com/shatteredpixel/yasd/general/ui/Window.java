@@ -43,6 +43,11 @@ import com.watabou.utils.Signal;
 
 public class Window extends Group implements Signal.Listener<KeyEvent> {
 
+	//Default width, button height and gap
+	protected static final int WIDTH		= 120;
+	protected static final int BTN_HEIGHT	= 20;
+	protected static final float GAP		= 2;
+
 	protected int width;
 	protected int height;
 

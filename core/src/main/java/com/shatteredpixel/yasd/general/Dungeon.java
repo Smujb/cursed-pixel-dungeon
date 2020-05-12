@@ -190,6 +190,8 @@ public class Dungeon {
 	public static Difficulty difficulty = Difficulty.MEDIUM;
 
 	public static long seed;
+
+	public static ArrayList<Integer> portalDepths;
 	
 	public static void init() {
 
@@ -199,6 +201,8 @@ public class Dungeon {
 		seed = DungeonSeed.randomSeed();
 
 		testing = CPDSettings.testing();
+
+		portalDepths = new ArrayList<>();
 
 		Actor.clear();
 		Actor.resetNextID();
@@ -398,7 +402,7 @@ public class Dungeon {
 	
 	@Contract(pure = true)
 	public static boolean shopOnLevel() {
-		return bossLevel(depth +1) & depth + 1 != Constants.CHAPTER_LENGTH*4;
+		return bossLevel(depth - 1) & depth - 1 != Constants.CHAPTER_LENGTH*4;
 	}
 	
 	@Contract(pure = true)
@@ -522,12 +526,11 @@ public class Dungeon {
 	private static final String BADGES		= "badges";
 	static final String _DIFFICULTY = "difficulty";
 	private static final String DIFFICULTY = "difficulty-level";
-	private static final String LEVELSLOADED= "levels-loaded";
 	private static final String YPOS 		= "depth";
-	private static final String UNDERWATER 		= "underwater";
 	private static final String KEY 		= "key";
 	private static final String TESTING 	= "testing";
-	
+	private static final String PORTALS 	= "portal%d";
+
 	public static void saveGame( int save ) {
 		try {
 			Bundle bundle = new Bundle();
@@ -542,6 +545,10 @@ public class Dungeon {
 			bundle.put( KEY, key == null || key.isEmpty() ? keyForDepth() : key );
 			bundle.put( DIFFICULTY, difficulty );
 			bundle.put( TESTING, testing );
+
+			for (int portalDepth : portalDepths) {
+				bundle.put(Messages.format(PORTALS, portalDepth), portalDepth);
+			}
 
 			for (int d : droppedItems.keyArray()) {
 				bundle.put(Messages.format(DROPPED, d), droppedItems.get(d));
@@ -709,6 +716,15 @@ public class Dungeon {
 		
 		Statistics.restoreFromBundle( bundle );
 		Generator.restoreFromBundle( bundle );
+
+		portalDepths = new ArrayList<>();
+		for (int loop = 0; loop < Constants.MAX_DEPTH; loop++) {
+			String key = Messages.format(PORTALS, loop);
+			if (bundle.contains(key)) {
+				portalDepths.add(bundle.getInt(key));
+			}
+			loop++;
+		}
 
 		droppedItems = new SparseArray<>();
 		portedItems = new SparseArray<>();

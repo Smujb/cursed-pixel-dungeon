@@ -35,7 +35,6 @@ public class SurfaceLevel extends TiledMapLevel {
 
 	@Override
 	protected boolean build() {
-
 		super.build();
 
 		placeNpc();
@@ -45,11 +44,6 @@ public class SurfaceLevel extends TiledMapLevel {
 	@Override
 	protected String mapName() {
 		return MAP_NAME;
-	}
-
-	@Override
-	public int getEntrancePos() {
-		return getPos(41, 5);
 	}
 
 	private void placeNpc() {

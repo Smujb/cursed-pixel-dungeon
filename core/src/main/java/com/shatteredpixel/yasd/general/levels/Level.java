@@ -785,7 +785,7 @@ public abstract class Level implements Bundlable {
 				interactiveAreas.remove(entrance);
 			}
 		} while (entrance != null);
-		if (pos > 0 && pos < map.length) {
+		if (pos > 0) {
 			interactiveAreas.add(new Entrance().setPos(this, pos));
 			map[pos] = Terrain.ENTRANCE;
 		}
@@ -799,7 +799,7 @@ public abstract class Level implements Bundlable {
 				interactiveAreas.remove(exit);
 			}
 		} while (exit != null);
-		if (pos > 0 && pos < map.length) {
+		if (pos > 0) {
 			interactiveAreas.add(new Exit().setPos(this, pos));
 			map[pos] = Terrain.EXIT;
 		}

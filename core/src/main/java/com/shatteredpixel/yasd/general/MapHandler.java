@@ -38,6 +38,8 @@ import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.levels.Level;
+import com.shatteredpixel.yasd.general.levels.interactive.Entrance;
+import com.shatteredpixel.yasd.general.levels.interactive.Exit;
 import com.shatteredpixel.yasd.general.levels.interactive.InteractiveArea;
 import com.shatteredpixel.yasd.general.levels.interactive.LevelSwitchArea;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
@@ -86,9 +88,9 @@ public class MapHandler {
 					int tileId = tile.getId();
 					toSet = mapToTerrain(tileId);
 					if (toSet == Terrain.ENTRANCE) {
-						level.setEntrance(pos);
+						level.interactiveAreas.add(new Entrance().setPos(level, pos));
 					} else if (toSet == Terrain.EXIT || toSet == Terrain.LOCKED_EXIT || toSet == Terrain.UNLOCKED_EXIT) {
-						level.setExit(pos);
+						level.interactiveAreas.add(new Exit().setPos(level, pos));
 					}
 				}
 				level.set(pos, toSet);
@@ -216,7 +218,6 @@ public class MapHandler {
 
 	public static void createAreas( Level level, Map map) {
 		loadMap(map);
-		level.interactiveAreas = new ArrayList<>();
 		for (int i = 0; i < areas.getCount(); i++) {
 			if (areas.get(i) instanceof RectangleMapObject) {
 				RectangleMapObject object = (RectangleMapObject) areas.get(i);

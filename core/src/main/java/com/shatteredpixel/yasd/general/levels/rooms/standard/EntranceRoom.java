@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.levels.rooms.standard;
 
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.actors.mobs.npcs.Portal;
 import com.shatteredpixel.yasd.general.items.journal.GuidePage;
 import com.shatteredpixel.yasd.general.journal.Document;
 import com.shatteredpixel.yasd.general.levels.Level;
@@ -62,6 +63,16 @@ public class EntranceRoom extends StandardRoom {
 			int cell = level.pointToCell(random(2));
 			level.setEntrance(cell);
 		} while (level.findMob(level.getEntrancePos()) != null);
+
+		if (Dungeon.shopOnLevel()) {
+			int npcCell;
+			do {
+				npcCell = level.pointToCell(random(1));
+			} while (level.findMob(npcCell) != null);
+			Portal portal = new Portal();
+			portal.pos = npcCell;
+			level.mobs.add(portal);
+		}
 
 		//use a separate generator here so meta progression doesn't affect levelgen
 		Random.pushGenerator();

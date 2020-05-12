@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.levels.interactive;
 
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.levels.Level;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 
@@ -67,13 +68,10 @@ public abstract class InteractiveArea implements Bundlable {
 
 	public static <T extends InteractiveArea> ArrayList<T> getAreas(Level level, Class<T> areaClass) {
 		ArrayList<T> list = new ArrayList<>();
-		if (level.interactiveAreas == null) {
-			level.interactiveAreas = new ArrayList<>();
-			return list;
-		}
 		for (InteractiveArea area : level.interactiveAreas) {
 			if (areaClass.isInstance(area)) {
 				list.add((T) area);
+				GLog.n("dd");
 			}
 		}
 		return list;

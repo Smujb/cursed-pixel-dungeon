@@ -174,6 +174,10 @@ public class LevelHandler {
 		move(key, Messages.get(Mode.class, Mode.RETURN.name()), Mode.RETURN, depth, pos);
 	}
 
+	public static void portSurface() {
+		move(Dungeon.keyForDepth(0), Messages.get(Mode.class, Mode.RETURN.name()), Mode.ASCEND, 0, -1);
+	}
+
 	public static void doRestore() {
 		mode = Mode.CONTINUE;
 		TextScene.init(Messages.get(Mode.class, Mode.CONTINUE.name()), Messages.get(LevelHandler.class, "continue"), Dungeon.newLevel( Dungeon.keyForDepth(), false).loadImg(), getSpeed(), 0.67f, new Callback() {
@@ -186,7 +190,7 @@ public class LevelHandler {
 
 	public static void doInit() {
 		mode = Mode.DESCEND;
-		depth = 1;
+		depth = 0;
 		pos = -1;
 		key = Dungeon.keyForDepth();
 		TextScene.init(Messages.get(Mode.class, Mode.DESCEND.name()), Messages.get(LevelHandler.class, "continue"), Dungeon.newLevel( Dungeon.keyForDepth(), false).loadImg(), getSpeed(), 0.67f, new Callback() {
@@ -230,7 +234,7 @@ public class LevelHandler {
 		Dungeon.init();
 		GameLog.wipe();
 		LevelHandler.key = Dungeon.keyForDepth();
-		switchDepth(1, Mode.DESCEND, Dungeon.keyForDepth());
+		switchDepth(0, Mode.DESCEND, Dungeon.keyForDepth());
 	}
 
 	private static void switchDepth(int depth, final Mode mode, String key) throws IOException {
