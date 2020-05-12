@@ -27,11 +27,18 @@ public class Blink extends Power {
 			level = ((Hero)curUser).getFocus();
 		}
 
-		int cell = shot.collisionPos;
+		int dist = Math.min(shot.dist, level);
 
-		if (Actor.findChar(cell) != null || !curUser.canOccupy(Dungeon.level, cell) || Dungeon.level.solid(cell)) {
-			cell = shot.path.get(shot.dist-1);
-		}
+		int cell;
+
+		int num = 0;
+		do {
+			cell = shot.path.get(dist - num);
+			num++;
+			if (dist-num < 0) {
+				return;
+			}
+		} while (Actor.findChar(cell) != null || !curUser.canOccupy(Dungeon.level, cell) || Dungeon.level.solid(cell));
 
 		curUser.sprite.visible = true;
 		appear(Dungeon.hero, cell);
