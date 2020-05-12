@@ -60,6 +60,7 @@
   <object id="1" type="Mob" x="672" y="48" width="16" height="16">
    <properties>
     <property name="className" value="npcs.Portal"/>
+    <property name="level" type="int" value="1"/>
     <property name="number" type="int" value="1"/>
    </properties>
   </object>

@@ -21,7 +21,7 @@ public class Portal extends NPC {
 	@Override
 	protected void onAdd() {
 		super.onAdd();
-		if (!Dungeon.portalDepths.contains(Dungeon.depth)) {
+		if (!Dungeon.portalDepths.contains(Dungeon.depth) && normal()) {
 			Dungeon.portalDepths.add(Dungeon.depth);
 		}
 	}
@@ -50,18 +50,18 @@ public class Portal extends NPC {
 		CPDGame.runOnRenderThread(new Callback() {
 			@Override
 			public void call() {
-				CPDGame.scene().addToFront(new WndPortal());
+				CPDGame.scene().addToFront(new WndPortal(Portal.this));
 			}
 		});
 		return true;
 	}
 
 	private static class WndPortal extends Window {
-		WndPortal() {
+		WndPortal(Portal portal) {
 			super();
 
 			IconTitle titlebar = new IconTitle();
-			titlebar.label(Messages.get(this, "teleport"));
+			titlebar.label(Messages.get(this, "title"));
 			titlebar.setRect(0, 0, WIDTH, 0);
 			add( titlebar );
 
@@ -72,16 +72,44 @@ public class Portal extends NPC {
 			message.setPos(0, titlebar.bottom() + GAP);
 			add( message );
 
-			RedButton btnPort = new RedButton( Messages.get(this, "teleport") ) {
-				@Override
-				protected void onClick() {
-					LevelHandler.portSurface();
+			int bottom = (int) message.bottom();
+			if (portal.normal()) {
+				RedButton btnPort = new RedButton(Messages.get(this, "teleport")) {
+					@Override
+					protected void onClick() {
+						LevelHandler.portSurface();
+					}
+				};
+				btnPort.setRect(0, message.top() + message.height() + GAP, WIDTH, BTN_HEIGHT);
+				add(btnPort);
+				bottom = (int) btnPort.bottom();
+			} else {
+				if (Dungeon.portalDepths.size() < 1) {
+					RenderedTextBlock msgNoDepths = PixelScene.renderTextBlock( Messages.get(this, "none"), 6 );
+					msgNoDepths.maxWidth(WIDTH);
+					msgNoDepths.setPos(0, bottom + GAP);
+					add( msgNoDepths );
+					bottom = (int) msgNoDepths.bottom();
+				} else {
+					for (int depth : Dungeon.portalDepths) {
+						//Ignore the one on depth 0.
+						if (depth == 0) {
+							continue;
+						}
+						RedButton button = new RedButton(Messages.get(this, "teleport_depth", depth)) {
+							@Override
+							protected void onClick() {
+								LevelHandler.returnTo(depth, -1);
+							}
+						};
+						button.setRect(0, bottom + GAP, WIDTH, BTN_HEIGHT);
+						add(button);
+						bottom = (int) button.bottom();
+					}
 				}
-			};
-			btnPort.setRect(0, message.top() + message.height() + GAP, WIDTH, BTN_HEIGHT);
-			add( btnPort );
+			}
 
-			resize(WIDTH, (int) btnPort.bottom());
+			resize(WIDTH, bottom);
 		}
 	}
 }

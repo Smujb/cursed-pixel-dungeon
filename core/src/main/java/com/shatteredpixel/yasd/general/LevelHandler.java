@@ -167,7 +167,7 @@ public class LevelHandler {
 	}
 
 	public static void returnTo(int depth, int pos) {
-		returnTo(Dungeon.keyForDepth(), depth, pos);
+		returnTo(Dungeon.keyForDepth(depth), depth, pos);
 	}
 
 	public static void returnTo(String key, int depth, int pos) {
