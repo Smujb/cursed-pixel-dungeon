@@ -6,7 +6,7 @@ import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
-import com.shatteredpixel.yasd.general.sprites.RatSprite;
+import com.shatteredpixel.yasd.general.sprites.StatueSprite;
 import com.shatteredpixel.yasd.general.ui.RedButton;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.shatteredpixel.yasd.general.ui.Window;
@@ -15,7 +15,7 @@ import com.watabou.utils.Callback;
 
 public class Portal extends NPC {
 	{
-		spriteClass = RatSprite.class;
+		spriteClass = StatueSprite.class;
 	}
 
 	@Override
