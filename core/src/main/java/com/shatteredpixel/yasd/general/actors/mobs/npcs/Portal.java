@@ -16,8 +16,6 @@ import com.watabou.utils.Callback;
 public class Portal extends NPC {
 	{
 		spriteClass = RatSprite.class;
-
-		HP = HT = 1;
 	}
 
 	@Override
@@ -26,6 +24,15 @@ public class Portal extends NPC {
 		if (!Dungeon.portalDepths.contains(Dungeon.depth)) {
 			Dungeon.portalDepths.add(Dungeon.depth);
 		}
+	}
+
+	private boolean normal() {
+		return Dungeon.depth != 0;
+	}
+
+	@Override
+	public String description() {
+		return normal() ? super.description() : Messages.get(this, "desc_surface");
 	}
 
 	@Override
@@ -46,7 +53,7 @@ public class Portal extends NPC {
 				CPDGame.scene().addToFront(new WndPortal());
 			}
 		});
-		return super.interact(ch);
+		return true;
 	}
 
 	private static class WndPortal extends Window {
@@ -54,7 +61,7 @@ public class Portal extends NPC {
 			super();
 
 			IconTitle titlebar = new IconTitle();
-			titlebar.label(Messages.get(this, "title"));
+			titlebar.label(Messages.get(this, "teleport"));
 			titlebar.setRect(0, 0, WIDTH, 0);
 			add( titlebar );
 
@@ -73,6 +80,8 @@ public class Portal extends NPC {
 			};
 			btnPort.setRect(0, message.top() + message.height() + GAP, WIDTH, BTN_HEIGHT);
 			add( btnPort );
+
+			resize(WIDTH, (int) btnPort.bottom());
 		}
 	}
 }
