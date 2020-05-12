@@ -487,7 +487,7 @@ public class Belongings implements Iterable<Item> {
 	}
 	
 	public void uncurseEquipped() {
-		ScrollOfRemoveCurse.uncurse( owner, miscs[0], miscs[1], miscs[2], miscs[3], miscs[4]);
+		ScrollOfRemoveCurse.uncurse( owner, miscs[0], miscs[1], miscs[2]);
 	}
 	
 	public Item randomUnequipped() {

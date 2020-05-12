@@ -72,6 +72,16 @@ public abstract class Power extends Item {
 		curUser.spendAndNext( TIME_TO_ZAP );
 	}
 
+	@Override
+	public boolean isIdentified() {
+		return true;
+	}
+
+	@Override
+	public boolean isUpgradable() {
+		return false;
+	}
+
 	private CellSelector.Listener zapper = new  CellSelector.Listener(this) {
 
 		@Override
