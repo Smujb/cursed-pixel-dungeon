@@ -58,7 +58,6 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRage;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.spells.CurseInfusion;
-import com.shatteredpixel.yasd.general.items.stones.StoneOfRepair;
 import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Basic;
@@ -147,7 +146,6 @@ public enum HeroClass {
 		new LuckyBadge().collect();
 
 		new ScrollOfIdentify().identify().collect();
-		new StoneOfRepair().collect();
 
 		if (Dungeon.testing) {
 			initTest(hero);

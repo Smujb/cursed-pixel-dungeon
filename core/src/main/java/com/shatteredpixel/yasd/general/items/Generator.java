@@ -400,7 +400,7 @@ public class Generator {
 					StoneOfEnchantment.class,   //1 drops per chapter, can rarely find more
 					StoneOfAugmentation.class,  //1 is sold in each shop, can rarely find more
 					StoneOfIntuition.class,     //1 additional stone is also dropped on floors 1-3
-					StoneOfRepair.class,		//2-3 are sold in each shop, can rarely find more
+					StoneOfRepair.class,		//Impossible to obtain atm, will be reworked later TODO
 					StoneOfAffection.class,
 					StoneOfBlast.class,
 					StoneOfBlink.class,
@@ -410,7 +410,7 @@ public class Generator {
 					StoneOfFlock.class,
 					StoneOfShock.class
 			};
-			STONE.probs = new float[]{ 1, 1, 10, 2, 10, 10, 10, 10, 10, 10, 10, 10 };
+			STONE.probs = new float[]{ 1, 1, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10 };
 
 			WAND.classes = new Class<?>[]{
 					WandOfMagicMissile.class,

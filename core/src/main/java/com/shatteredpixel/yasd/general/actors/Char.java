@@ -1317,7 +1317,7 @@ public abstract class Char extends Actor {
 			return this;
 		}
 
-		boolean ignores() {
+		public boolean ignores() {
 			return ignores;
 		}
 	}

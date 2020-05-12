@@ -985,12 +985,12 @@ public class Hero extends Char {
 
 		damage = super.defenseProc(enemy,damage);
 
-		damageMorale(damage);
+		//damageMorale(damage);
 		
 		return damage;
 	}
 
-	private void damageMorale(int dmg) {
+	private void processShake(int dmg) {
 		float shake;
 		if (dmg <= 0) {
 			return;
@@ -1015,6 +1015,10 @@ public class Hero extends Char {
 		if (!(src.getCause() instanceof Hunger || src.getCause() instanceof Viscosity.DeferedDamage) && damageInterrupt) {
 			interrupt();
 			resting = false;
+		}
+
+		if (!src.ignores()) {
+			processShake(dmg);
 		}
 
 		super.damage( dmg, src );
