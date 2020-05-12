@@ -1,18 +1,34 @@
 package com.shatteredpixel.yasd.general.items.powers;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
+import com.shatteredpixel.yasd.general.items.wands.Wand;
+import com.shatteredpixel.yasd.general.mechanics.Ballistica;
+import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.scenes.CellSelector;
+import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.ui.QuickSlotButton;
+import com.shatteredpixel.yasd.general.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.Callback;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 public abstract class Power extends Item {
+	{
+		defaultAction = AC_ACTIVATE;
+	}
 
 	protected Class<? extends Buff> passiveBuff = null;
 
@@ -21,6 +37,7 @@ public abstract class Power extends Item {
 	private static final float TIME_TO_ZAP = 1.0f;
 
 	protected int mp_cost = -1;
+	protected int collisionProperties = Ballistica.STOP_TARGET | Ballistica.STOP_TERRAIN;
 
 	int charge = 0;
 	float partialCharge = 0;
@@ -31,6 +48,86 @@ public abstract class Power extends Item {
 		ArrayList<String> actions = new ArrayList<>();
 		actions.add(AC_ACTIVATE);
 		return actions;
+	}
+
+	@Override
+	public void execute(Hero hero, String action) {
+		super.execute(hero, action);
+		if (action.equals(AC_ACTIVATE)) {
+			if (mp_cost == -1 || hero.useMP(mp_cost)) {
+				activatePower(hero);
+			}
+		}
+	}
+
+	private void activatePower(Hero hero) {
+		if (usesTargeting) {
+			GameScene.selectCell(zapper);
+		} else {
+			onUse(hero);
+		}
+	}
+
+	protected void onUse(Hero hero) {
+		curUser.spendAndNext( TIME_TO_ZAP );
+	}
+
+	private CellSelector.Listener zapper = new  CellSelector.Listener(this) {
+
+		@Override
+		public void onSelect( Integer target ) {
+
+			if (target != null) {
+
+				//FIXME this safety check shouldn't be necessary
+				//it would be better to eliminate the curItem static variable.
+				final Power curPower = ((Power)source);
+
+				final Ballistica shot = new Ballistica(curUser.pos, target, curPower.collisionProperties);
+				int cell = shot.collisionPos;
+
+				if (target == curUser.pos || cell == curUser.pos) {
+					GLog.i(Messages.get(Wand.class, "self_target"));
+					return;
+				} else if (curUser.buff(MagicImmune.class) != null) {
+					GLog.w(Messages.get(Wand.class, "no_magic"));
+					return;
+				}
+
+				curUser.sprite.zap(cell);
+
+				//attempts to target the cell aimed at if something is there, otherwise targets the collision pos.
+				if (Actor.findChar(target) != null) {
+					QuickSlotButton.target(Actor.findChar(target));
+				} else {
+					QuickSlotButton.target(Actor.findChar(cell));
+				}
+
+				curPower.fx(shot, new Callback() {
+					public void call() {
+						curPower.onZap(shot);
+						curUser.spendAndNext(TIME_TO_ZAP);
+					}
+				});
+
+			}
+		}
+
+		@Override
+		public String prompt() {
+			return Messages.get(Wand.class, "prompt");
+		}
+	};
+
+	public void onZap(Ballistica shot) {}
+
+	public void fx(Ballistica shot, Callback callback) {
+		MagicMissile.boltFromChar( curUser.sprite.parent,
+				MagicMissile.MAGIC_MISSILE,
+				curUser.sprite,
+				shot.collisionPos,
+				callback);
+		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
 
 	@Override
@@ -73,5 +170,9 @@ public abstract class Power extends Item {
 		if (chargeCap > 0)  charge = Math.min( chargeCap, bundle.getInt( CHARGE ));
 		else                charge = bundle.getInt( CHARGE );
 		partialCharge = bundle.getFloat( PARTIALCHARGE );
+	}
+
+	abstract static class PowerBuff extends Buff {
+
 	}
 }
