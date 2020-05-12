@@ -29,8 +29,10 @@ package com.shatteredpixel.yasd.general.levels.tiled;
 
 import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.MapHandler;
 import com.shatteredpixel.yasd.general.levels.Level;
+import com.watabou.utils.Callback;
 
 public abstract class TiledMapLevel extends Level {
 
@@ -38,7 +40,22 @@ public abstract class TiledMapLevel extends Level {
 
 	@Override
 	protected boolean build() {
-		setMap();
+		final Level _this = this;
+		CPDGame.runOnRenderThread(new Callback() {
+			public void call() {
+				setMap();
+				synchronized (_this) {
+					_this.notify();
+				}
+			}
+		});
+		synchronized (this) {
+			try {
+				this.wait();
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
+		}
 		return MapHandler.build(this, map);
 	}
 
