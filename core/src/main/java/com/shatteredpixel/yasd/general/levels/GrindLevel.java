@@ -321,7 +321,7 @@ public class GrindLevel extends RegularLevel {
 
 		@Override
 		public Element elementalType() {
-			return Element.FIRE;
+			return Element.DESTRUCTION;
 		}
 	}
 
