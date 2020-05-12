@@ -38,6 +38,7 @@ import com.shatteredpixel.yasd.general.actors.mobs.Thief;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Ghost;
 import com.shatteredpixel.yasd.general.effects.Ripple;
 import com.shatteredpixel.yasd.general.items.DewVial;
+import com.shatteredpixel.yasd.general.items.powers.Alchemy;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.painters.SewerPainter;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
@@ -61,8 +62,6 @@ import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.ColorMath;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
-
-import org.jetbrains.annotations.NotNull;
 
 import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WALL_DECO;
 
@@ -170,6 +169,7 @@ public class SewerLevel extends RegularLevel {
 	protected void createItems() {
 		if (!Dungeon.LimitedDrops.DEW_VIAL.dropped()) {
 			addItemToSpawn( new DewVial() );
+			addItemToSpawn( new Alchemy() );
 			Dungeon.LimitedDrops.DEW_VIAL.drop();
 		}
 

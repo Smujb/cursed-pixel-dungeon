@@ -50,6 +50,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
+import com.shatteredpixel.yasd.general.items.powers.Blink;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfLullaby;
@@ -195,7 +196,9 @@ public enum HeroClass {
 
 		hero.belongings.setWeapon((KindOfWeapon) staff.identify());
 		(hero.belongings.armor = new MageArmor()).identify();
-		hero.belongings.getWeapon().activate(hero);
+		staff.activate(hero);
+
+		new Blink().collect();
 
 		Dungeon.quickslot.setSlot(0, staff);
 		
