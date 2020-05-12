@@ -197,9 +197,6 @@ public class MagesStaff extends MeleeWeapon {
 
 		//syncs the level of the two items.
 		int targetLevel = Math.max(this.level() - (curseInfusionBonus ? Constants.CURSE_INFUSION_BONUS_AMT : 0), wand.level());
-		if (targetLevel > upgradeLimit()) {
-			targetLevel = upgradeLimit();
-		}
 		//if the staff's level is being overridden by the wand, preserve 1 upgrade
 		if (wand.level() >= this.level() && this.level() > (curseInfusionBonus ? Constants.CURSE_INFUSION_BONUS_AMT : 0)) targetLevel++;
 		if (owner instanceof Hero && wand.isEquipped(owner)) {
