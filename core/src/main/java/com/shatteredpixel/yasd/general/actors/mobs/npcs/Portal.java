@@ -24,12 +24,7 @@ public class Portal extends NPC {
 	protected void onAdd() {
 		super.onAdd();
 		if (!Dungeon.portalDepths.contains(Dungeon.depth)) {
-			CPDGame.runOnRenderThread(new Callback() {
-				@Override
-				public void call() {
-					Dungeon.portalDepths.add(Dungeon.depth);
-				}
-			});
+			Dungeon.portalDepths.add(Dungeon.depth);
 		}
 	}
 
@@ -45,7 +40,12 @@ public class Portal extends NPC {
 
 	@Override
 	public boolean interact(Char ch) {
-		CPDGame.scene().addToFront(new WndPortal());
+		CPDGame.runOnRenderThread(new Callback() {
+			@Override
+			public void call() {
+				CPDGame.scene().addToFront(new WndPortal());
+			}
+		});
 		return super.interact(ch);
 	}
 
