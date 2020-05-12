@@ -64,7 +64,7 @@ public abstract class TiledMapLevel extends Level {
 
 	protected abstract String mapName();
 
-	public void setMap() {
+	private void setMap() {
 		map = new TmxMapLoader().load(mapName());
 	}
 
