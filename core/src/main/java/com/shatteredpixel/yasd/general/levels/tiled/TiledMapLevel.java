@@ -40,7 +40,9 @@ public abstract class TiledMapLevel extends Level {
 
 	@Override
 	protected boolean build() {
+		//FIXME this is a horrible solution, but it may be the only option on current engine. I should possibly look into refactoring code around creating levels.
 		final Level _this = this;
+		//Setup map to be loaded on render thread
 		CPDGame.runOnRenderThread(new Callback() {
 			public void call() {
 				setMap();
@@ -49,6 +51,7 @@ public abstract class TiledMapLevel extends Level {
 				}
 			}
 		});
+		//Pause the current thread until map is loaded. This *must* be executed after the previous line.
 		synchronized (this) {
 			try {
 				this.wait();
