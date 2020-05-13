@@ -249,11 +249,13 @@ abstract public class MissileWeapon extends Weapon {
 		usages *= RingOfSharpshooting.durabilityMultiplier( Dungeon.hero );
 		
 		//when upgraded, items just last forever.
-		if (level() > 0) return 0;
+		if (baseUses >= INFINITE_USES) return 0;
 		
 		//add a tiny amount to account for rounding error for calculations like 1/3
 		return (MAX_DURABILITY/usages) + 0.001f;
 	}
+
+	protected static final int INFINITE_USES = 100_000_000;
 	
 	protected void decrementDurability(){
 		//if this getWeapons was thrown from a source stack, degrade that stack.

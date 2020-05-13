@@ -32,7 +32,6 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Projectile;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -52,7 +51,7 @@ public class Dart extends MissileWeapon {
 		tier = 1;
 
 		//infinite, even with penalties
-		baseUses = 1000;
+		baseUses = INFINITE_USES;
 	}
 
 	protected static final String AC_TIP = "TIP";
