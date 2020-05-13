@@ -113,7 +113,7 @@ public class TitleScene extends PixelScene {
 			int ready = 0;
 			@Override
 			protected void onClick() {
-				if (GamesInProgress.checkAll().size() == 0 || ready > 4){
+				if (GamesInProgress.checkAll().size() == 0 || ready > 0){
 					TitleScene.this.add( new WndStartGame(1, ready > 4));
 				} else {
 					CPDGame.switchScene( StartScene.class );
