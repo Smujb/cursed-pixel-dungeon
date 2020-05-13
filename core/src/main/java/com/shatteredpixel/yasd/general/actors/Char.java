@@ -1048,7 +1048,7 @@ public abstract class Char extends Actor {
 			if (alreadySeen) {
 				perception *= 4;
 			}
-			float stealth = defender.sneakSkill();
+			float stealth = defender.sneakSkill(this);
 			//Enforced here so we don't get division by zero error
 			if (stealth == 0) {
 				return 0f;
@@ -1067,7 +1067,7 @@ public abstract class Char extends Actor {
 		return affectNoticeSkill(enemy, perception);
 	}
 
-	public float sneakSkill() {
+	public float sneakSkill(Char enemy) {
 		float stealth = this.sneakSkill;
 		if (hasBelongings()) {
 			stealth = belongings.affectStealth(stealth);

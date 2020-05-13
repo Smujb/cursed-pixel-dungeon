@@ -317,9 +317,9 @@ public abstract class Mob extends Char {
 	}
 
 	@Override
-	public float sneakSkill() {
+	public float sneakSkill(Char enemy) {
 		if (hasBelongings()) {
-			return super.sneakSkill();
+			return super.sneakSkill(enemy);
 		} else {
 			return (affectSneakSkill(normalStealth(level) * stealthFactor));
 		}

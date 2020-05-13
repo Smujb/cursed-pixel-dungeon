@@ -37,6 +37,7 @@ import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.items.Ankh;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Generator;
+import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
@@ -54,6 +55,7 @@ import com.watabou.utils.Random;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Statue extends Mob implements Callback {
 	
@@ -92,8 +94,26 @@ public class Statue extends Mob implements Callback {
 		upgradeItems();
 		
 		HP = HT = 15 + Dungeon.getScaleFactor() * 5;
-		defenseSkill = sneakSkill = 4 + Dungeon.getScaleFactor();
-		attackSkill  = noticeSkill = 10 + Dungeon.getScaleFactor();
+	}
+
+	@Override
+	public float sneakSkill(Char enemy) {
+		return defenseSkill(enemy);
+	}
+
+	@Override
+	public float noticeSkill(Char enemy) {
+		return attackSkill(enemy);
+	}
+
+	@Override
+	public int defenseSkill(Char enemy) {
+		return 4 + Dungeon.getScaleFactor();
+	}
+
+	@Override
+	public int attackSkill(Char target) {
+		return 10 + Dungeon.getScaleFactor();
 	}
 
 	@Override
@@ -233,15 +253,6 @@ public class Statue extends Mob implements Callback {
 		super.damage( dmg, src);
 	}
 
-	/*protected void zap(Char enemy) {
-		if (enemy != null ) {
-			Wand WandToZap = wandToAttack(enemy);
-			if (WandToZap != null) {
-				WandToZap.zap(enemy.pos);
-			}
-		}
-	}*/
-
 	protected boolean doAttack( Char enemy ) {
 		if (Dungeon.level.adjacent( pos, enemy.pos )) {
 			return super.doAttack( enemy );
@@ -259,9 +270,12 @@ public class Statue extends Mob implements Callback {
 	}
 
 	public void dropGear() {
-		for (int i=0; i < belongings.miscs.length; i++) {
-			if (belongings.miscs[i] != null) {
-				Dungeon.level.drop(belongings.miscs[i].identify(), pos).sprite.drop();
+		ArrayList<Item> items = new ArrayList<>(Arrays.asList(belongings.miscs));
+		items.add(belongings.getWeapon());
+		items.add(belongings.armor);
+		for (Item item : items) {
+			if (item != null) {
+				Dungeon.level.drop(item.identify(), pos).sprite.drop();
 			}
 		}
 	}

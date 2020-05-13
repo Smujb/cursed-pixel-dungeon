@@ -674,8 +674,8 @@ public class DriedRose extends Artifact {
 		}
 		
 		@Override
-		public float sneakSkill() {
-			float stealth = super.sneakSkill();
+		public float sneakSkill(Char enemy) {
+			float stealth = super.sneakSkill(enemy);
 			
 		//	if (rose != null && rose.armor != null){
 		//		stealth = rose.armor.stealthFactor(this, stealth);
