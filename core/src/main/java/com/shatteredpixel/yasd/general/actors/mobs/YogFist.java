@@ -110,7 +110,7 @@ public abstract class YogFist extends Mob {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
-		return isNearYog();
+		return isNearYog() || super.isInvulnerable(effect);
 	}
 
 	@Override

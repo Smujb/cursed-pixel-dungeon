@@ -408,7 +408,7 @@ public class NewDM300 extends Mob {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
-		return supercharged;
+		return supercharged || super.isInvulnerable(effect);
 	}
 
 	@Override

@@ -342,7 +342,7 @@ public class DwarfKing extends Mob {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
-		return phase == 2 && effect != KingDamager.class;
+		return phase == 2 && effect != KingDamager.class || super.isInvulnerable(effect);
 	}
 
 	@Override

@@ -84,6 +84,7 @@ import com.shatteredpixel.yasd.general.effects.Surprise;
 import com.shatteredpixel.yasd.general.effects.Wound;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
+import com.shatteredpixel.yasd.general.items.powers.BubbleShield;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRetribution;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
@@ -1210,6 +1211,11 @@ public abstract class Char extends Actor {
 	//similar to isImmune, but only factors in damage.
 	//Is used in AI decision-making
 	public boolean isInvulnerable( Class effect ){
+		BubbleShield.BubbleShieldBuff shield = buff(BubbleShield.BubbleShieldBuff.class);
+		if ( shield != null ) {
+			shield.detach();
+			return true;
+		}
 		return false;
 	}
 

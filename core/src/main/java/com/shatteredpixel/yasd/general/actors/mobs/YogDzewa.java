@@ -278,7 +278,7 @@ public class YogDzewa extends Mob {
 	}
 
 	public boolean isInvulnerable(Class effect) {
-		return phase == 0 || findFist() != null;
+		return phase == 0 || findFist() != null || super.isInvulnerable(effect);
 	}
 
 	@Override

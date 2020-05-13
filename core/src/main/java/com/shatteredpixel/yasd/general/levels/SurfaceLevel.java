@@ -3,7 +3,6 @@ package com.shatteredpixel.yasd.general.levels;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
-import com.shatteredpixel.yasd.general.actors.mobs.npcs.Shopkeeper;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.tiled.TiledMapLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -34,23 +33,8 @@ public class SurfaceLevel extends TiledMapLevel {
 	}
 
 	@Override
-	protected boolean build() {
-		super.build();
-
-		placeNpc();
-		return true;
-	}
-
-	@Override
 	protected String mapName() {
 		return MAP_NAME;
-	}
-
-	private void placeNpc() {
-
-		Mob shopkeeper = new Shopkeeper();
-		shopkeeper.pos = 24 + 10 * width;
-		mobs.add( shopkeeper );
 	}
 
 	@Override

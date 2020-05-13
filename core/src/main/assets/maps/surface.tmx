@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="2">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="5">
  <tileset firstgid="1" source="default_tileset.tsx"/>
  <layer id="1" name="tiles" width="50" height="50">
   <data encoding="csv">
@@ -55,11 +55,26 @@
 13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13
 </data>
  </layer>
- <objectgroup id="2" name="items"/>
+ <objectgroup id="2" name="items">
+  <object id="4" name="Bubble" type="Item" x="560" y="256" width="16" height="16">
+   <properties>
+    <property name="className" value="powers.BubbleShield"/>
+    <property name="heapType" value="FOR_SALE"/>
+    <property name="number" type="int" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup id="3" name="mobs">
   <object id="1" type="Mob" x="672" y="48" width="16" height="16">
    <properties>
     <property name="className" value="npcs.Portal"/>
+    <property name="level" type="int" value="1"/>
+    <property name="number" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="3" name="Shopkeeper" type="Mob" x="656" y="304" width="32" height="32">
+   <properties>
+    <property name="className" value="npcs.Shopkeeper"/>
     <property name="level" type="int" value="1"/>
     <property name="number" type="int" value="1"/>
    </properties>
