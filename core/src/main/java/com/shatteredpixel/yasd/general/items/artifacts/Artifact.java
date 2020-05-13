@@ -38,8 +38,6 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
-import org.jetbrains.annotations.NotNull;
-
 public class Artifact extends KindofMisc {
 
 	protected Buff passiveBuff;
@@ -66,30 +64,22 @@ public class Artifact extends KindofMisc {
 	@Override
 	public boolean doEquip( final Hero hero ) {
 
-		if ((hero.belongings.miscs[0] != null && hero.belongings.miscs[0].getClass() == this.getClass())
-				|| (hero.belongings.miscs[1] != null && hero.belongings.miscs[1].getClass() == this.getClass())
-				|| (hero.belongings.miscs[2] != null && hero.belongings.miscs[2].getClass() == this.getClass())
-				|| (hero.belongings.miscs[3] != null && hero.belongings.miscs[3].getClass() == this.getClass())
-				|| (hero.belongings.miscs[4] != null && hero.belongings.miscs[4].getClass() == this.getClass())){
+		for (KindofMisc misc : hero.belongings.miscs) {
+			if (misc != null && misc.getClass() == this.getClass()) {
+				GLog.w(Messages.get(Artifact.class, "cannot_wear_two"));
+				return false;
+			}
+		}
+		if (super.doEquip(hero)) {
 
-			GLog.w( Messages.get(Artifact.class, "cannot_wear_two") );
-			return false;
+			identify();
+			return true;
 
 		} else {
 
-			if (super.doEquip( hero )){
-
-				identify();
-				return true;
-
-			} else {
-
-				return false;
-
-			}
+			return false;
 
 		}
-
 	}
 
 	public void activate( Char ch ) {
