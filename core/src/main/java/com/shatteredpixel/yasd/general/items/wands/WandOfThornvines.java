@@ -222,7 +222,7 @@ public class WandOfThornvines extends Wand {
                 }
 
                 TV.HP = TV.HT = setHP();
-                TV.HP *= (charges/((float) new WandOfThornvines().initialCharges())+level);
+                TV.HP *= (charges/((float) new WandOfThornvines().initialCharges()+level));
                 GameScene.add(TV);
                 TV.state = TV.HUNTING;
 
