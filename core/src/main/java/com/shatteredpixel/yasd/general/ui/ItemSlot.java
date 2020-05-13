@@ -30,14 +30,12 @@ package com.shatteredpixel.yasd.general.ui;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.keys.Key;
 import com.shatteredpixel.yasd.general.items.keys.SkeletonKey;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
-import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -203,28 +201,7 @@ public class ItemSlot extends Button {
 
 		topLeft.text( item.status() );
 
-		boolean isArmor = item instanceof Armor;
-		boolean isWeapon = item instanceof Weapon;
 		if (item.topRightStatus(item.levelKnown) != null) {
-
-			/*if (item.levelKnown || (isWeapon && !(item instanceof MeleeWeapon))) {
-
-				int str = isArmor ? ((Armor)item).STRReq() : ((Weapon)item).STRReq();
-				topRight.text( Messages.format( TXT_STRENGTH, str ) );
-				if (str > Dungeon.hero.STR()) {
-					topRight.hardlight( DEGRADED );
-				} else {
-					topRight.resetColor();
-				}
-
-			} else {
-
-				topRight.text( Messages.format( TXT_TYPICAL_STR, isArmor ?
-						((Armor)item).STRReq(0) :
-						((Weapon)item).STRReq(0) ) );
-				topRight.hardlight( WARNING );
-
-			}*/
 			topRight.text(item.topRightStatus(item.levelKnown));
 			if (item.levelKnown) {
 				if (!item.canTypicallyUse(Dungeon.hero)) {
