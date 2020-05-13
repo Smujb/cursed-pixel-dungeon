@@ -191,7 +191,7 @@ public class MagesStaff extends MeleeWeapon {
 		if (wand != null) wand.stopCharging();
 	}
 
-	public Item imbueWand(Wand wand, Char owner){
+	public Item imbueWand(Wand wand, Char owner) {
 
 		this.wand = null;
 
@@ -275,11 +275,9 @@ public class MagesStaff extends MeleeWeapon {
 		String info = super.info();
 
 		if (wand == null){
-			//FIXME this is removed because of journal stuff, and is generally unused.
-			//perhaps reword to fit in journal better
-			//info += "\n\n" + Messages.get(this, "no_wand");
+			info += "\n\n" + Messages.get(this, "no_wand");
 		} else {
-			info += "\n\n" + Messages.get(this, "has_wand", Messages.get(wand, "name")) + " " + wand.statsDesc();
+			info += "\n\n" + Messages.get(this, "has_wand", Messages.get(wand, "name")) + " " + wand.statsDesc() + wand.descFocusReq();
 		}
 
 		return info;

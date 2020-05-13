@@ -247,6 +247,18 @@ public abstract class Wand extends KindofMisc {
 			desc += "\n\n" + Messages.get(Wand.class, "not_cursed");
 		}
 
+		if (levelKnown) {
+			desc += descFocusReq();
+		}
+
+		return desc;
+	}
+
+	public String descFocusReq() {
+		String desc = "\n\n" + Messages.get(this, "focus_req", focusReq());
+		if (focusReq() > Dungeon.hero.getFocus()) {
+			desc += " " + Messages.get(this, "not_focused", this.name());
+		}
 		return desc;
 	}
 
@@ -435,6 +447,32 @@ public abstract class Wand extends KindofMisc {
 		usesLeftToID = USES_TO_ID;
 		availableUsesToID = USES_TO_ID/2f;
 	}
+
+	private int focusReq(int level) {
+		return level*3;
+	}
+
+	private int focusReq() {
+		return focusReq(level());
+	}
+
+	private static final String TXT_FOCUS = ":%d";
+
+	@Override
+	public String topRightStatus(boolean known) {
+		if (!known) {
+			return null;
+		}
+		return Messages.format(TXT_FOCUS, focusReq());
+	}
+
+	@Override
+	public boolean canTypicallyUse(Char ch) {
+		if (ch instanceof Hero) {
+			return ((Hero) ch).getFocus() >= focusReq();
+		}
+		return true;
+	}
 	
 	private CellSelector.Listener zapper = new CellSelector.Listener(this) {
 		
@@ -456,7 +494,7 @@ public abstract class Wand extends KindofMisc {
 
 				if (curUser instanceof Hero) {
 					Hero hero = ((Hero)curUser);
-					int diff = level()*3 - hero.getFocus();
+					int diff = curWand.focusReq() - hero.getFocus();
 					float miscastChance = (float) Math.pow(0.9f, diff);
 					if (diff > 0 && Random.Float() > miscastChance) {
 						if (hero.useMP(diff)) {
