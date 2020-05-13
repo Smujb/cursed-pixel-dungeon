@@ -215,7 +215,7 @@ public class Hero extends Char {
 
 	private void updateMP() {
 		int oldMax = maxMP;
-		maxMP = 10 + Focus;
+		maxMP = 10 + getFocus();
 		mp += (maxMP - oldMax);
 	}
 
