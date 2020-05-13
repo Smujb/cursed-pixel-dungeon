@@ -165,6 +165,10 @@ public class ShopRoom extends SpecialRoom {
 			armor.inscribe(Armor.Glyph.random());
 		}
 		armor.setTier(Math.min(5, Random.Int(minTier, maxTier)));
+		int typicalStr = Dungeon.getScaleFactor()/2;
+		do {
+			armor.upgrade();
+		} while (armor.STRReq() < typicalStr - 3 + Random.Int(6));
 		if (armor.tier < 1) {
 			armor.setTier(1);
 		}
@@ -187,6 +191,10 @@ public class ShopRoom extends SpecialRoom {
 			weapon.enchant(Weapon.Enchantment.random());
 		}
 		weapon.setTier(Math.min(5, Random.Int(minTier, maxTier)));
+		int typicalStr = Dungeon.getScaleFactor()/2;
+		do {
+			weapon.upgrade();
+		} while (weapon.STRReq() < typicalStr - 3 + Random.Int(6));
 		if (weapon.tier < 1) {
 			weapon.setTier(1);
 		}
