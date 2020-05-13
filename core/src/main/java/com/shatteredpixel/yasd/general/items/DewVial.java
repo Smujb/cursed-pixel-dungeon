@@ -28,9 +28,12 @@
 package com.shatteredpixel.yasd.general.items;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.actors.blobs.Blob;
+import com.shatteredpixel.yasd.general.actors.blobs.StormCloud;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -38,15 +41,14 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.GameMath;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class DewVial extends Item {
 
 	private static final int MAX_VOLUME	= 20;
 
-	private static final String AC_DRINK	= "DRINK";
+	private static final String AC_DRINK	= "drink";
+	private static final String AC_WATER	= "water";
 
 	private static final float TIME_TO_DRINK = 1f;
 
@@ -81,6 +83,7 @@ public class DewVial extends Item {
 		ArrayList<String> actions = super.actions( hero );
 		if (volume > 0) {
 			actions.add( AC_DRINK );
+			actions.add( AC_WATER );
 		}
 		return actions;
 	}
@@ -88,43 +91,56 @@ public class DewVial extends Item {
 	@Override
 	public void execute( final Hero hero, String action ) {
 
-		super.execute( hero, action );
+		super.execute(hero, action);
 
-		if (action.equals( AC_DRINK )) {
+		if (action.equals(AC_DRINK)) {
 
 			if (volume > 0) {
-				
-				float missingHealthPercent = 1f - (hero.HP / (float)hero.HT);
-				
+
+				float missingHealthPercent = 1f - (hero.HP / (float) hero.HT);
+
 				//trimming off 0.01 drops helps with floating point errors
-				int dropsNeeded = (int)Math.ceil((missingHealthPercent / 0.05f) - 0.01f);
-				dropsNeeded = (int)GameMath.gate(1, dropsNeeded, volume);
-				
+				int dropsNeeded = (int) Math.ceil((missingHealthPercent / 0.05f) - 0.01f);
+				dropsNeeded = (int) GameMath.gate(1, dropsNeeded, volume);
+
 				//20 drops for a full heal normally
-				int heal = Math.round( hero.HT * 0.05f * dropsNeeded );
-				
-				int effect = Math.min( hero.HT - hero.HP, heal );
+				int heal = Math.round(hero.HT * 0.05f * dropsNeeded);
+
+				int effect = Math.min(hero.HT - hero.HP, heal);
 				if (effect > 0) {
 					hero.HP += effect;
-					hero.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 + dropsNeeded/5 );
-					hero.sprite.showStatus( CharSprite.POSITIVE, Messages.get(this, "value", effect) );
+					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1 + dropsNeeded / 5);
+					hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "value", effect));
 				}
 
 				volume -= dropsNeeded;
 
-				hero.spend( TIME_TO_DRINK );
+				hero.spend(TIME_TO_DRINK);
 				hero.busy();
 
-				Sample.INSTANCE.play( Assets.SND_DRINK );
-				hero.sprite.operate( hero.pos );
+				Sample.INSTANCE.play(Assets.SND_DRINK);
+				hero.sprite.operate(hero.pos);
 
 				updateQuickslot();
 
 
 			} else {
-				GLog.w( Messages.get(this, "empty") );
+				GLog.w(Messages.get(this, "empty"));
 			}
 
+		} else if (action.equals(AC_WATER)) {
+			if (volume > 0) {
+				int dropsNeeded = Math.min(volume, 5);
+				GameScene.add(Blob.seed(hero.pos, 20 * dropsNeeded, StormCloud.class));
+				hero.spend(TIME_TO_DRINK);
+				hero.busy();
+				volume -= dropsNeeded;
+				hero.sprite.operate(hero.pos);
+
+				updateQuickslot();
+			} else {
+				GLog.w(Messages.get(this, "empty"));
+			}
 		}
 	}
 
