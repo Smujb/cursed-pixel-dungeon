@@ -282,11 +282,11 @@ public class Dungeon {
 	public static HashMap<String, Class<? extends Level>> staticLevels = new HashMap<>();
 	static {
 		//Bosses
-		staticLevels.put("sewers - 5", SewerBossLevel.class);
-		staticLevels.put("prison - 5", NewPrisonBossLevel.class);
-		staticLevels.put("caves - 5", NewCavesBossLevel.class);
-		staticLevels.put("city - 5", NewCityBossLevel.class);
-		staticLevels.put("halls - 5", NewHallsBossLevel.class);
+		staticLevels.put("sewers - 3", SewerBossLevel.class);
+		staticLevels.put("prison - 3", NewPrisonBossLevel.class);
+		staticLevels.put("caves - 3", NewCavesBossLevel.class);
+		staticLevels.put("city - 3", NewCityBossLevel.class);
+		staticLevels.put("halls - 3", NewHallsBossLevel.class);
 		//First level spawns different mobs and rooms. Might rework later.
 		staticLevels.put("sewers - 0", FirstLevel.class);
 		//Amulet depth
