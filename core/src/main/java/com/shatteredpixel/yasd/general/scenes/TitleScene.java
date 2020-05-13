@@ -110,11 +110,10 @@ public class TitleScene extends PixelScene {
 		
 		TitleButton btnPlay = new TitleButton(Messages.get(this, "enter")){
 
-			int ready = 0;
 			@Override
 			protected void onClick() {
-				if (GamesInProgress.checkAll().size() == 0 || ready > 0){
-					TitleScene.this.add( new WndStartGame(1, ready > 4));
+				if (GamesInProgress.checkAll().size() == 0){
+					TitleScene.this.add( new WndStartGame(1, false));
 				} else {
 					CPDGame.switchScene( StartScene.class );
 				}
@@ -123,9 +122,8 @@ public class TitleScene extends PixelScene {
 			@Override
 			protected boolean onLongClick() {
 				//making it easier to start runs quickly while debugging
-				if (DeviceCompat.isDebug()) {
-					//TitleScene.this.add( new WndStartGame(1, true) );
-					ready++;
+				if (DeviceCompat.isDebug() && DeviceCompat.isDesktop()) {
+					TitleScene.this.add( new WndStartGame(1, true) );
 					return false;
 				}
 				return super.onLongClick();
