@@ -111,40 +111,46 @@ public class Golem extends Mob {
 		return super.act();
 	}
 
-	public void teleportEnemy(Char enemy){
+	private void zapEnemy(Char enemy) {
 		MagicMissile.boltFromChar(sprite.parent,
-				MagicMissile.TOXIC_VENT,
+				MagicMissile.BEACON,
 				sprite,
 				enemy.pos,
 				new Callback() {
 					@Override
 					public void call() {
-						spend(TICK);
-
-						int bestPos = enemy.pos;
-						for (int i : PathFinder.NEIGHBOURS8){
-							if (Dungeon.level.passable(pos + i)
-									&& Actor.findChar(pos+i) == null
-									&& Dungeon.level.trueDistance(pos+i, enemy.pos) > Dungeon.level.trueDistance(bestPos, enemy.pos)){
-								bestPos = pos+i;
-							}
-						}
-
-						if (enemy.buff(MagicImmune.class) != null){
-							bestPos = enemy.pos;
-						}
-
-						if (bestPos != enemy.pos){
-							ScrollOfTeleportation.appear(enemy, bestPos);
-							if (enemy instanceof Hero){
-								((Hero) enemy).interrupt();
-								Dungeon.observe();
-							}
-						}
-
-						enemyTeleCooldown = 20;
+						teleportEnemy(enemy);
 					}
 				});
+	}
+
+	private void teleportEnemy(Char enemy) {
+		spend(TICK);
+
+		int bestPos = enemy.pos;
+		for (int i : PathFinder.NEIGHBOURS8){
+			if (Dungeon.level.passable(pos + i)
+					&& Actor.findChar(pos+i) == null
+					&& Dungeon.level.trueDistance(pos+i, enemy.pos) > Dungeon.level.trueDistance(bestPos, enemy.pos)){
+				bestPos = pos+i;
+			}
+		}
+
+		if (enemy.buff(MagicImmune.class) != null){
+			bestPos = enemy.pos;
+		}
+
+		if (bestPos != enemy.pos){
+			ScrollOfTeleportation.appear(enemy, bestPos);
+			if (enemy instanceof Hero){
+				((Hero) enemy).interrupt();
+				Dungeon.observe();
+			}
+		}
+
+		enemyTeleCooldown = 20;
+
+		next();
 	}
 
 	private class Wandering extends Mob.Wandering{
@@ -185,10 +191,10 @@ public class Golem extends Mob {
 				if (enemyTeleCooldown <= 0 && Random.Int(100/distance(enemy)) == 0
 						&& !Char.hasProp(enemy, Property.IMMOVABLE)){
 					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
-						sprite.zap( enemy.pos );
+						teleportEnemy(enemy);
 						return false;
 					} else {
-						teleportEnemy(enemy);
+						zapEnemy(enemy);
 						return true;
 					}
 
@@ -198,10 +204,10 @@ public class Golem extends Mob {
 
 				} else if (enemyTeleCooldown <= 0 && !Char.hasProp(enemy, Property.IMMOVABLE)) {
 					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
-						sprite.zap( enemy.pos );
+						teleportEnemy(enemy);
 						return false;
 					} else {
-						teleportEnemy(enemy);
+						zapEnemy(enemy);
 						return true;
 					}
 
