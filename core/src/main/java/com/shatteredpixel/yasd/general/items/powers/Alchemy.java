@@ -13,6 +13,8 @@ public class Alchemy extends Power {
 
 	{
 		image = ItemSpriteSheet.ARTIFACT_TOOLKIT;
+
+		timeToUse = 0f;
 	}
 
 	protected WndBag.Mode mode = WndBag.Mode.POTION;

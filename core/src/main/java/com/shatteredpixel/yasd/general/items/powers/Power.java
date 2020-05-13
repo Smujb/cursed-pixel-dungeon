@@ -34,7 +34,7 @@ public abstract class Power extends Item {
 
 	private static final String AC_ACTIVATE = "activate";
 
-	private static final float TIME_TO_ZAP = 1.0f;
+	protected float timeToUse = 1.0f;
 
 	protected int mp_cost = -1;
 	protected int collisionProperties = Ballistica.STOP_TARGET | Ballistica.STOP_TERRAIN;
@@ -69,7 +69,9 @@ public abstract class Power extends Item {
 	}
 
 	protected void onUse(Hero hero) {
-		curUser.spendAndNext( TIME_TO_ZAP );
+		if (timeToUse > 0) {
+			curUser.spendAndNext(timeToUse);
+		}
 	}
 
 	@Override
@@ -116,7 +118,7 @@ public abstract class Power extends Item {
 				curPower.fx(shot, new Callback() {
 					public void call() {
 						curPower.onZap(shot);
-						curUser.spendAndNext(TIME_TO_ZAP);
+						curUser.spendAndNext(timeToUse);
 					}
 				});
 

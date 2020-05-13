@@ -4,6 +4,7 @@ import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.StatueSprite;
@@ -14,9 +15,23 @@ import com.shatteredpixel.yasd.general.windows.IconTitle;
 import com.watabou.utils.Callback;
 
 public class Portal extends NPC {
+
 	{
 		spriteClass = StatueSprite.class;
 	}
+
+	@Override
+	protected boolean act() {
+
+		throwItem();
+
+		sprite.turnTo( pos, Dungeon.hero.pos );
+		spend( TICK );
+		return true;
+	}
+
+	@Override
+	public void add(Buff buff) {}
 
 	@Override
 	protected void onAdd() {
