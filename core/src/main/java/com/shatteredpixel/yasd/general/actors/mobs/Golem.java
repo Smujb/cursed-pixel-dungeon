@@ -35,6 +35,7 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Imp;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
+import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.sprites.GolemSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
@@ -189,7 +190,7 @@ public class Golem extends Mob {
 				int oldPos = pos;
 
 				if (enemyTeleCooldown <= 0 && Random.Int(100/distance(enemy)) == 0
-						&& !Char.hasProp(enemy, Property.IMMOVABLE)){
+						&& !Char.hasProp(enemy, Property.IMMOVABLE) && Ballistica.canHit(Golem.this, enemy, Ballistica.PROJECTILE)){
 					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
 						teleportEnemy(enemy);
 						return false;
@@ -202,7 +203,7 @@ public class Golem extends Mob {
 					spend( 1 / speed() );
 					return moveSprite( oldPos,  pos );
 
-				} else if (enemyTeleCooldown <= 0 && !Char.hasProp(enemy, Property.IMMOVABLE)) {
+				} else if (enemyTeleCooldown <= 0 && !Char.hasProp(enemy, Property.IMMOVABLE) && Ballistica.canHit(Golem.this, enemy, Ballistica.PROJECTILE)) {
 					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
 						teleportEnemy(enemy);
 						return false;
