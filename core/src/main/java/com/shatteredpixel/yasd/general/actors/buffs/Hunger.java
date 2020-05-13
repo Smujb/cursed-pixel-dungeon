@@ -71,7 +71,7 @@ public class Hunger extends Buff implements Hero.Doom {
 	@Override
 	public boolean act() {
 
-		if (Dungeon.level.locked || target.buff(WellFed.class) != null){
+		if (Dungeon.level.locked || target.buff(WellFed.class) != null || Dungeon.depth == 0) {
 			spend(STEP);
 			return true;
 		}

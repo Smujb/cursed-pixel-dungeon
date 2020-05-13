@@ -44,9 +44,9 @@ public class LuckyBadge extends Power {
 	private static int dropsToRare = 0;
 	private static float dropsToUpgrade = INCREASE_PER_DROP;
 
-
 	private int returnPos = -1;
 	private String returnKey = null;
+	private int returnDepth = -1;
 	private static boolean latestDropWasRare = false;
 
 	@Override
@@ -75,18 +75,24 @@ public class LuckyBadge extends Power {
 			case AC_GRIND:
 				returnKey = Dungeon.key;
 				returnPos = hero.pos;
-				LevelHandler.move(AC_GRIND, Messages.get(this, "grind"), LevelHandler.Mode.RETURN, Dungeon.depth, -1);
+				returnDepth = Dungeon.depth;
+				LevelHandler.move(AC_GRIND, Messages.get(this, "grind"), LevelHandler.Mode.RETURN, 0, -1);
 				break;
 			case AC_HOME:
 				returnKey = Dungeon.key;
 				returnPos = hero.pos;
-				LevelHandler.move(AC_HOME, Messages.get(this, "home"), LevelHandler.Mode.RETURN, Dungeon.depth, -1);
+				returnDepth = Dungeon.depth;
+				LevelHandler.move(AC_HOME, Messages.get(this, "home"), LevelHandler.Mode.RETURN, 0, -1);
 				break;
 			case AC_RETURN:
 				if (returnKey == null) {
 					returnKey = Dungeon.keyForDepth();
 				}
-				LevelHandler.returnTo(returnKey, Dungeon.depth, returnPos);
+				if (returnDepth < 0) {
+					returnDepth = 0;
+				}
+				LevelHandler.returnTo(returnKey, returnDepth, returnPos);
+				returnDepth = -1;
 				returnPos = -1;
 				returnKey = null;
 				break;
