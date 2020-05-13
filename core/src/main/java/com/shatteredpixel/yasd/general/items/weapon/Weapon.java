@@ -237,11 +237,26 @@ abstract public class Weapon extends KindOfWeapon {
 	}
 
 	public int STRReq(){
-		return STRReq(level());
+		return STRReq(Math.max(0, level()));
 	}
 
 	public abstract int STRReq(int lvl);
-	
+
+	private static final String TXT_STRENGTH	= ":%d";
+	private static final String TXT_TYPICAL_STR	= "%d+";
+
+	@Override
+	public String topRightStatus(boolean known) {
+		String baseText = known ? TXT_STRENGTH : TXT_TYPICAL_STR;
+		int str = known ? STRReq() : STRReq(0);
+		return Messages.format(baseText, str);
+	}
+
+	@Override
+	public boolean canTypicallyUse(Char ch) {
+		return ch.STR() >= STRReq();
+	}
+
 	@Override
 	public int level() {
 		return super.level() + (curseInfusionBonus ? Constants.CURSE_INFUSION_BONUS_AMT : 0);

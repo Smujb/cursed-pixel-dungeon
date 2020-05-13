@@ -120,6 +120,14 @@ public class Item implements Bundlable {
 		cursed = false;
 		return this;
 	}
+
+	public String topRightStatus(boolean known) {
+		return null;
+	}
+
+	public boolean canTypicallyUse(Char ch) {
+		return true;
+	}
 	
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = new ArrayList<>();

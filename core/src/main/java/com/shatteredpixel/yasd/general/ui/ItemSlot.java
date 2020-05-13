@@ -38,7 +38,6 @@ import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -65,8 +64,7 @@ public class ItemSlot extends Button {
 	protected Image      bottomRightIcon;
 	protected boolean    iconVisible = true;
 	
-	private static final String TXT_STRENGTH	= ":%d";
-	private static final String TXT_TYPICAL_STR	= "%d?";
+
 	private static final String TXT_KEY_DEPTH	= "\u007F%d";
 
 	private static final String TXT_LEVEL	= "%+d";
@@ -207,9 +205,9 @@ public class ItemSlot extends Button {
 
 		boolean isArmor = item instanceof Armor;
 		boolean isWeapon = item instanceof Weapon;
-		if (isArmor || isWeapon) {
+		if (item.topRightStatus(item.levelKnown) != null) {
 
-			if (item.levelKnown || (isWeapon && !(item instanceof MeleeWeapon))) {
+			/*if (item.levelKnown || (isWeapon && !(item instanceof MeleeWeapon))) {
 
 				int str = isArmor ? ((Armor)item).STRReq() : ((Weapon)item).STRReq();
 				topRight.text( Messages.format( TXT_STRENGTH, str ) );
@@ -226,6 +224,16 @@ public class ItemSlot extends Button {
 						((Weapon)item).STRReq(0) ) );
 				topRight.hardlight( WARNING );
 
+			}*/
+			topRight.text(item.topRightStatus(item.levelKnown));
+			if (item.levelKnown) {
+				if (!item.canTypicallyUse(Dungeon.hero)) {
+					topRight.hardlight( DEGRADED );
+				} else {
+					topRight.resetColor();
+				}
+			} else {
+				topRight.hardlight( WARNING );
 			}
 			topRight.measure();
 
