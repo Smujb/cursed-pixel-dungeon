@@ -410,7 +410,7 @@ public class Hero extends Char {
 
 	@Override
 	public int STR() {
-		STR = 10 + getPower()/2;
+		STR = 10 + getPower()/3;
 		return super.STR();
 	}
 
