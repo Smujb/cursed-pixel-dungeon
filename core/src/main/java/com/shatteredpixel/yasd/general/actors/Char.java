@@ -731,6 +731,7 @@ public abstract class Char extends Actor {
 		if ( buff( Stamina.class ) != null) speed *= 1.5f;
 		if ( buff( Adrenaline.class ) != null) speed *= 2f;
 		if ( buff( Haste.class ) != null) speed *= 3f;
+		if ( buff(Greed.GreedBuff.class) != null ) speed *= 2f;
 		if (hasBelongings()) {
 			speed = belongings.affectSpeed(speed);
 		}
