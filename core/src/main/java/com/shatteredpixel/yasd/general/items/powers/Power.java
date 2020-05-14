@@ -90,7 +90,7 @@ public abstract class Power extends Item {
 		return false;
 	}
 
-	private CellSelector.Listener zapper = new  CellSelector.Listener(this) {
+	protected CellSelector.Listener zapper = new  CellSelector.Listener(this) {
 
 		@Override
 		public void onSelect( Integer target ) {

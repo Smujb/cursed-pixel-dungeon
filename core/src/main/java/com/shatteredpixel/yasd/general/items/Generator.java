@@ -97,6 +97,7 @@ import com.shatteredpixel.yasd.general.items.powers.Alchemy;
 import com.shatteredpixel.yasd.general.items.powers.Blink;
 import com.shatteredpixel.yasd.general.items.powers.BubbleShield;
 import com.shatteredpixel.yasd.general.items.powers.Energize;
+import com.shatteredpixel.yasd.general.items.powers.HeroicLeap;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.powers.Power;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
@@ -303,6 +304,7 @@ public class Generator {
 					Blink.class,
 					BubbleShield.class,
 					Energize.class,
+					HeroicLeap.class,
 					LuckyBadge.class
 			};
 
@@ -311,6 +313,7 @@ public class Generator {
 					1,
 					1,
 					1,
+					0,
 					0
 			};
 			

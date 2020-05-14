@@ -56,6 +56,14 @@ public class Greed extends Power {
 		@Override
 		public boolean attachTo(@NotNull Char target) {
 			factor = target.hpPercent();
+			if (target.properties().contains(Char.Property.MINIBOSS)) {
+				factor *= 2;
+			} else if (target.properties().contains(Char.Property.BOSS)) {
+				factor *= 5;
+			}
+			if (target.properties().contains(Char.Property.IMMOVABLE)) {
+				factor = Math.min(factor, 1f);
+			}
 			return super.attachTo(target);
 		}
 
