@@ -42,6 +42,7 @@ import com.shatteredpixel.yasd.general.items.armor.MageArmor;
 import com.shatteredpixel.yasd.general.items.armor.RogueArmor;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.bags.PotionBandolier;
+import com.shatteredpixel.yasd.general.items.bags.PowerHolder;
 import com.shatteredpixel.yasd.general.items.bags.ScrollHolder;
 import com.shatteredpixel.yasd.general.items.bags.VelvetPouch;
 import com.shatteredpixel.yasd.general.items.food.Food;
@@ -137,9 +138,7 @@ public enum HeroClass {
 		new MagicalHolster().collect();
 		Dungeon.LimitedDrops.MAGICAL_HOLSTER.drop();
 
-
-		//TODO add these bags
-		//new PowerHolder().collect();
+		new PowerHolder().collect();
 
 		//new FoodHolder().collect();
 
