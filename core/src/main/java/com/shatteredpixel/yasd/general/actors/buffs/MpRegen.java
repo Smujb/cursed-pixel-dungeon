@@ -20,7 +20,7 @@ public class MpRegen extends Buff {
 					hero.mp++;
 				}
 			}
-			spend( REGENERATION_DELAY );
+			spend( REGENERATION_DELAY/(hero.mp/10f));
 		} else {
 			diactivate();
 		}
