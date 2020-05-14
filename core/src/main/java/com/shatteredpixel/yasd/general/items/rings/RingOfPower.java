@@ -89,7 +89,7 @@ public class RingOfPower extends Ring {
 	}
 
 	public static int powerBonus(Char target ){
-		return 2 * getBonus(target, PowerBuff.class);
+		return getBonus(target, PowerBuff.class);
 	}
 
 	public class PowerBuff extends RingBuff {}

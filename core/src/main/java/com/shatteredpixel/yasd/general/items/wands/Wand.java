@@ -449,7 +449,7 @@ public abstract class Wand extends KindofMisc {
 	}
 
 	private int focusReq(int level) {
-		return level*3;
+		return level*2;
 	}
 
 	private int focusReq() {
