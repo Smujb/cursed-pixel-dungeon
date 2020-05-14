@@ -364,20 +364,17 @@ public class Hero extends Char {
 	
 	@Override
 	public void storeInBundle( Bundle bundle ) {
-
-		super.storeInBundle( bundle );
-		
 		heroClass.storeInBundle( bundle );
 		subClass.storeInBundle( bundle );
-		
+
 		bundle.put( ATTACK, attackSkill );
 		bundle.put( DEFENSE, defenseSkill );
-		
+
 		bundle.put( STRENGTH, STR );
-		
+
 		bundle.put( LEVEL, lvl );
 		bundle.put( EXPERIENCE, exp );
-		
+
 		bundle.put( HTBOOST, HTBoost );
 
 		bundle.put(MANA, mp);
@@ -389,23 +386,22 @@ public class Hero extends Char {
 		bundle.put( PERCEPTION, Perception );
 		bundle.put( EVASION, Evasion );
 		bundle.put( DISTRIBUTIONPOINTS, DistributionPoints );
+		super.storeInBundle( bundle );
 	}
 	
 	@Override
 	public void restoreFromBundle( Bundle bundle ) {
-		super.restoreFromBundle( bundle );
-		
 		heroClass = HeroClass.restoreInBundle( bundle );
 		subClass = HeroSubClass.restoreInBundle( bundle );
-		
+
 		attackSkill = bundle.getInt( ATTACK );
 		defenseSkill = bundle.getInt( DEFENSE );
-		
+
 		STR = bundle.getInt( STRENGTH );
-		
+
 		lvl = bundle.getInt( LEVEL );
 		exp = bundle.getInt( EXPERIENCE );
-		
+
 		HTBoost = bundle.getInt(HTBOOST);
 
 		mp = bundle.getInt(MANA);
@@ -417,6 +413,7 @@ public class Hero extends Char {
 		Perception = bundle.getInt( PERCEPTION );
 		Evasion = bundle.getInt( EVASION );
 		DistributionPoints = bundle.getInt( DISTRIBUTIONPOINTS );
+		super.restoreFromBundle( bundle );
 	}
 
 
