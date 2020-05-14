@@ -42,6 +42,7 @@ import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.bags.PotionBandolier;
+import com.shatteredpixel.yasd.general.items.bags.PowerHolder;
 import com.shatteredpixel.yasd.general.items.bags.ScrollHolder;
 import com.shatteredpixel.yasd.general.items.bags.VelvetPouch;
 import com.shatteredpixel.yasd.general.items.food.Food;
@@ -165,7 +166,8 @@ public class WndBag extends WndTabbed {
 			stuff.getItem( VelvetPouch.class ),
 			stuff.getItem( ScrollHolder.class ),
 			stuff.getItem( PotionBandolier.class ),
-			stuff.getItem( MagicalHolster.class )};
+			stuff.getItem( MagicalHolster.class ),
+			stuff.getItem( PowerHolder.class )};
 
 		for (Bag b : bags) {
 			if (b != null) {

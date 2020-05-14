@@ -63,10 +63,10 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLevitation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfMana;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfPurity;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfMana;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfToxicGas;
 import com.shatteredpixel.yasd.general.items.potions.brews.BlizzardBrew;
 import com.shatteredpixel.yasd.general.items.potions.brews.CausticBrew;
@@ -93,6 +93,12 @@ import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfShroudingFog
 import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfSnapFreeze;
 import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfStamina;
 import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfStormClouds;
+import com.shatteredpixel.yasd.general.items.powers.Alchemy;
+import com.shatteredpixel.yasd.general.items.powers.Blink;
+import com.shatteredpixel.yasd.general.items.powers.BubbleShield;
+import com.shatteredpixel.yasd.general.items.powers.Energize;
+import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
+import com.shatteredpixel.yasd.general.items.powers.Power;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfEvasion;
@@ -258,6 +264,8 @@ public class Generator {
 		SPELL ( 0,   Spell.class ),
 		SCROLL_EXOTIC (1,   ExoticScroll.class),
 		STONE   ( 2,    Runestone.class),
+
+		POWER (0, Power.class),
 		
 		GOLD	( 18,   Gold.class );
 		
@@ -288,6 +296,23 @@ public class Generator {
 			GOLD.classes = new Class<?>[]{
 					Gold.class };
 			GOLD.probs = new float[]{ 1 };
+
+
+			POWER.classes = new Class<?>[] {
+					Alchemy.class,
+					Blink.class,
+					BubbleShield.class,
+					Energize.class,
+					LuckyBadge.class
+			};
+
+			POWER.probs = new float[] {
+					1,
+					1,
+					1,
+					1,
+					0
+			};
 			
 			POTION.classes = new Class<?>[]{
 					PotionOfMana.class, //2 drop every chapter, see Dungeon.posNeeded()

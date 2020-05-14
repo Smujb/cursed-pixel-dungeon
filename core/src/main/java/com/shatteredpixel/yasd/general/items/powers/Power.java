@@ -26,8 +26,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public abstract class Power extends Item {
+
 	{
 		defaultAction = AC_ACTIVATE;
+
+		unique = true;
 	}
 
 	protected Class<? extends Buff> passiveBuff = null;
@@ -54,21 +57,24 @@ public abstract class Power extends Item {
 	public void execute(Hero hero, String action) {
 		super.execute(hero, action);
 		if (action.equals(AC_ACTIVATE)) {
-			if (mp_cost == -1 || hero.useMP(mp_cost)) {
-				activatePower(hero);
-			}
+			activatePower(hero);
 		}
 	}
 
 	private void activatePower(Hero hero) {
 		if (usesTargeting) {
 			GameScene.selectCell(zapper);
-		} else {
+		} else if (mp_cost == -1 || hero.useMP(mp_cost)) {
 			onUse(hero);
 		}
+		GLog.n(Messages.get(this, "no_mp"));
 	}
 
 	protected void onUse(Hero hero) {
+		spendTime();
+	}
+
+	private void spendTime() {
 		if (timeToUse > 0) {
 			curUser.spendAndNext(timeToUse);
 		}
@@ -104,6 +110,10 @@ public abstract class Power extends Item {
 				} else if (curUser.buff(MagicImmune.class) != null) {
 					GLog.w(Messages.get(Wand.class, "no_magic"));
 					return;
+				} else if (curUser instanceof Hero && !((Hero) curUser).useMP(curPower.mp_cost)) {
+					GLog.n(Messages.get(this, "no_mp"));
+					curPower.spendTime();
+					return;
 				}
 
 				curUser.sprite.zap(cell);
@@ -118,7 +128,7 @@ public abstract class Power extends Item {
 				curPower.fx(shot, new Callback() {
 					public void call() {
 						curPower.onZap(shot);
-						curUser.spendAndNext(timeToUse);
+						curPower.spendTime();
 					}
 				});
 
