@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.actors;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.Statistics;
@@ -42,6 +43,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Barkskin;
 import com.shatteredpixel.yasd.general.actors.buffs.Barrier;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Bless;
+import com.shatteredpixel.yasd.general.actors.buffs.Blindness;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Burning;
 import com.shatteredpixel.yasd.general.actors.buffs.Charm;
@@ -602,6 +604,9 @@ public abstract class Char extends Actor {
 		return damage;
 	}
 
+	public int miscSlots() {
+		return Constants.MISC_SLOTS;
+	}
 
 	//FIXME possibly migrate this to a seperate class and use static vars?
 	//Used for central stuff that should apply to char and mob alike
@@ -640,6 +645,9 @@ public abstract class Char extends Actor {
 	protected final float affectNoticeSkill(Char enemy, float noticeSkill) {
 		if (this.buff(MindVision.class) != null) {
 			noticeSkill *= 2;
+		}
+		if (buff(Blindness.class) != null) {
+			noticeSkill /= 2;
 		}
 		return noticeSkill;
 	}

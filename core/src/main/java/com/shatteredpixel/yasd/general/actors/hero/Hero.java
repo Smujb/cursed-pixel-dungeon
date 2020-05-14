@@ -415,6 +415,15 @@ public class Hero extends Char {
 	}
 
 	@Override
+	public int miscSlots() {
+		int slots = super.miscSlots();
+		if (heroClass == HeroClass.ROGUE) {
+			slots++;
+		}
+		return slots;
+	}
+
+	@Override
 	public float sneakSkill(Char enemy) {
 		sneakSkill = 9 + getEvasion();
 		return super.sneakSkill(enemy);

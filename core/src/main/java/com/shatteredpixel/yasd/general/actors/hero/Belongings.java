@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.actors.hero;
 
 import com.shatteredpixel.yasd.general.Badges;
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.GamesInProgress;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -86,7 +85,7 @@ public class Belongings implements Iterable<Item> {
 
 	@Nullable
 	public Armor armor;
-	public KindofMisc[] miscs = new KindofMisc[Constants.MISC_SLOTS];
+	public KindofMisc[] miscs;
 
 	public Belongings( Char owner ) {
 		this.owner = owner;
@@ -96,6 +95,8 @@ public class Belongings implements Iterable<Item> {
 			size = BACKPACK_SIZE;
 		}};
 		backpack.owner = owner;
+
+		miscs = new KindofMisc[owner.miscSlots()];
 	}
 
 	//##############################################################################################
@@ -384,7 +385,7 @@ public class Belongings implements Iterable<Item> {
 	public void storeInBundle( Bundle bundle ) {
 		
 		backpack.storeInBundle( bundle );
-		for (int i = 0; i < Constants.MISC_SLOTS; i++) {//Store all miscs
+		for (int i = 0; i < owner.miscSlots(); i++) {//Store all miscs
 			bundle.put( MISC + i, miscs[i]);
 		}
 		bundle.put(ARMOR, armor);
@@ -403,7 +404,7 @@ public class Belongings implements Iterable<Item> {
 		if (armor != null) {
 			armor.activate( owner );
 		}
-		for (int i = 0; i < Constants.MISC_SLOTS; i++) {//Restore all miscs
+		for (int i = 0; i < owner.miscSlots(); i++) {//Restore all miscs
 			miscs[i] = (KindofMisc) bundle.get(MISC + i);
 			if (miscs[i] != null) {
 				miscs[i].activate( owner );
@@ -472,7 +473,7 @@ public class Belongings implements Iterable<Item> {
 	}
 	
 	public void observe() {
-		for (int i = 0; i < Constants.MISC_SLOTS; i++) {//Restore all miscs
+		for (int i = 0; i < owner.miscSlots(); i++) {//Restore all miscs
 			if (miscs[i] != null) {
 				miscs[i].identify();
 				Badges.validateItemLevelAquired(miscs[i]);
@@ -513,7 +514,7 @@ public class Belongings implements Iterable<Item> {
 			}
 		}
 
-		for (int i = 0; i < Constants.MISC_SLOTS; i++) {//Restore all miscs
+		for (int i = 0; i < owner.miscSlots(); i++) {//Restore all miscs
 			if (miscs[i] != null) {
 				miscs[i].cursed = false;
 				miscs[i].activate( owner );
