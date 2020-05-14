@@ -99,7 +99,15 @@ import com.shatteredpixel.yasd.general.items.powers.BubbleShield;
 import com.shatteredpixel.yasd.general.items.powers.Energize;
 import com.shatteredpixel.yasd.general.items.powers.HeroicLeap;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
+import com.shatteredpixel.yasd.general.items.powers.MoltenEarth;
+import com.shatteredpixel.yasd.general.items.powers.PoisonBurst;
 import com.shatteredpixel.yasd.general.items.powers.Power;
+import com.shatteredpixel.yasd.general.items.powers.RaiseDead;
+import com.shatteredpixel.yasd.general.items.powers.SmokeBomb;
+import com.shatteredpixel.yasd.general.items.powers.SpectralBlades;
+import com.shatteredpixel.yasd.general.items.powers.Surprise;
+import com.shatteredpixel.yasd.general.items.powers.Telekinesis;
+import com.shatteredpixel.yasd.general.items.powers.WaterPump;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfEvasion;
@@ -305,7 +313,15 @@ public class Generator {
 					BubbleShield.class,
 					Energize.class,
 					HeroicLeap.class,
-					LuckyBadge.class
+					LuckyBadge.class,
+					MoltenEarth.class,
+					PoisonBurst.class,
+					RaiseDead.class,
+					SmokeBomb.class,
+					SpectralBlades.class,
+					Surprise.class,
+					Telekinesis.class,
+					WaterPump.class
 			};
 
 			POWER.probs = new float[] {
@@ -314,7 +330,15 @@ public class Generator {
 					1,
 					1,
 					0,
-					0
+					0,
+					0,
+					1,
+					0,
+					0,
+					0,
+					1,
+					1,
+					1
 			};
 			
 			POTION.classes = new Class<?>[]{
