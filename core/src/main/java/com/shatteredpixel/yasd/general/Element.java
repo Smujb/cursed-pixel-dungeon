@@ -201,10 +201,6 @@ public enum Element {
 		if (attacker.alignment == Char.Alignment.ENEMY) {
 			damage *= Dungeon.difficulty.mobDamageFactor();
 		}
-
-		if (Dungeon.hero.fieldOfView[defender.pos] || Dungeon.hero.fieldOfView[attacker.pos]) {
-			Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
-		}
 		return damage;
 	}
 

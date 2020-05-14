@@ -464,11 +464,14 @@ public abstract class Char extends Actor {
 			// If the enemy is already dead, interrupt the attack.
 			// This matters as defence procs can sometimes inflict self-damage, such as armour glyphs.
 			if (!enemy.isAlive()) {
-				enemy.die(new DamageSrc(Element.META));
 				return true;
 			}
 			//Actually damage them.
 			nextAttack.attackProc(this, enemy, dmg, src);
+
+			if (Dungeon.hero.fieldOfView[enemy.pos] || Dungeon.hero.fieldOfView[pos]) {
+				Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));
+			}
 
 			if (buff(FireImbue.class) != null)
 				buff(FireImbue.class).proc(enemy);
@@ -783,6 +786,12 @@ public abstract class Char extends Actor {
 
 		if(isInvulnerable(src.getClass())){
 			sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "invulnerable"));
+			return;
+		}
+
+		BubbleShield.BubbleShieldBuff shield = buff(BubbleShield.BubbleShieldBuff.class);
+		if ( shield != null ) {
+			shield.detach();
 			return;
 		}
 
@@ -1211,11 +1220,6 @@ public abstract class Char extends Actor {
 	//similar to isImmune, but only factors in damage.
 	//Is used in AI decision-making
 	public boolean isInvulnerable( Class effect ){
-		BubbleShield.BubbleShieldBuff shield = buff(BubbleShield.BubbleShieldBuff.class);
-		if ( shield != null ) {
-			shield.detach();
-			return true;
-		}
 		return false;
 	}
 
