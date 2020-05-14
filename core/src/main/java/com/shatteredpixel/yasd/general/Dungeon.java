@@ -191,7 +191,7 @@ public class Dungeon {
 
 	public static long seed;
 
-	public static ArrayList<Integer> portalDepths;
+	public static boolean[] portalDepths;
 	
 	public static void init() {
 
@@ -202,7 +202,7 @@ public class Dungeon {
 
 		testing = CPDSettings.testing();
 
-		portalDepths = new ArrayList<>();
+		portalDepths = new boolean[Constants.MAX_DEPTH];
 
 		Actor.clear();
 		Actor.resetNextID();
@@ -529,7 +529,7 @@ public class Dungeon {
 	private static final String YPOS 		= "depth";
 	private static final String KEY 		= "key";
 	private static final String TESTING 	= "testing";
-	private static final String PORTALS 	= "portal%d";
+	private static final String PORTALS 	= "portals";
 
 	public static void saveGame( int save ) {
 		try {
@@ -546,9 +546,7 @@ public class Dungeon {
 			bundle.put( DIFFICULTY, difficulty );
 			bundle.put( TESTING, testing );
 
-			for (int portalDepth : portalDepths) {
-				bundle.put(Messages.format(PORTALS, portalDepth), portalDepth);
-			}
+			bundle.put(PORTALS, portalDepths);
 
 			for (int d : droppedItems.keyArray()) {
 				bundle.put(Messages.format(DROPPED, d), droppedItems.get(d));
@@ -717,14 +715,7 @@ public class Dungeon {
 		Statistics.restoreFromBundle( bundle );
 		Generator.restoreFromBundle( bundle );
 
-		portalDepths = new ArrayList<>();
-		for (int loop = 0; loop < Constants.MAX_DEPTH; loop++) {
-			String key = Messages.format(PORTALS, loop);
-			if (bundle.contains(key)) {
-				portalDepths.add(bundle.getInt(key));
-			}
-			loop++;
-		}
+		portalDepths = bundle.getBooleanArray(PORTALS);
 
 		droppedItems = new SparseArray<>();
 		portedItems = new SparseArray<>();

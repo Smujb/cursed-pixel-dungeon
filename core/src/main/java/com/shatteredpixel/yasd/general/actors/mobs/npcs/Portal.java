@@ -36,8 +36,8 @@ public class Portal extends NPC {
 	@Override
 	protected void onAdd() {
 		super.onAdd();
-		if (!Dungeon.portalDepths.contains(Dungeon.depth) && normal()) {
-			Dungeon.portalDepths.add(Dungeon.depth);
+		if (!Dungeon.portalDepths[Dungeon.depth] && normal()) {
+			Dungeon.portalDepths[Dungeon.depth] = true;
 		}
 	}
 
@@ -102,27 +102,30 @@ public class Portal extends NPC {
 				add(btnPort);
 				bottom = (int) btnPort.bottom();
 			} else {
-				if (Dungeon.portalDepths.size() < 1) {
+				if (Dungeon.portalDepths.length < 1) {
 					RenderedTextBlock msgNoDepths = PixelScene.renderTextBlock( Messages.get(this, "none"), 6 );
 					msgNoDepths.maxWidth(WIDTH);
 					msgNoDepths.setPos(0, bottom + GAP);
 					add( msgNoDepths );
 					bottom = (int) msgNoDepths.bottom();
 				} else {
-					for (int depth : Dungeon.portalDepths) {
-						//Ignore the one on depth 0.
-						if (depth == 0) {
-							continue;
-						}
-						RedButton button = new RedButton(Messages.get(this, "teleport_depth", depth)) {
-							@Override
-							protected void onClick() {
-								LevelHandler.returnTo(depth, -1);
+					for (int depth = 0; depth < Dungeon.portalDepths.length; depth++) {
+						if (Dungeon.portalDepths[depth]) {
+							//Ignore the one on depth 0.
+							if (depth == 0) {
+								continue;
 							}
-						};
-						button.setRect(0, bottom + GAP, WIDTH, BTN_HEIGHT);
-						add(button);
-						bottom = (int) button.bottom();
+							int finalDepth = depth;
+							RedButton button = new RedButton(Messages.get(this, "teleport_depth", finalDepth)) {
+								@Override
+								protected void onClick() {
+									LevelHandler.returnTo(finalDepth, -1);
+								}
+							};
+							button.setRect(0, bottom + GAP, WIDTH, BTN_HEIGHT);
+							add(button);
+							bottom = (int) button.bottom();
+						}
 					}
 				}
 			}
