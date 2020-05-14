@@ -40,8 +40,6 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class Gold extends Item {
@@ -98,7 +96,11 @@ public class Gold extends Item {
 	
 	@Override
 	public Item random() {
-		quantity = Random.Int( 30 + Dungeon.getScaleFactor() * 10, 60 + Dungeon.getScaleFactor() * 20 );
+		return random(1);
+	}
+
+	public Item random(float factor) {
+		quantity = (int) (Random.Int( 30 + Dungeon.getScaleFactor() * 10, 60 + Dungeon.getScaleFactor() * 20 ) * factor);
 		return this;
 	}
 	
