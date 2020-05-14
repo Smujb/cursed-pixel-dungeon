@@ -29,6 +29,8 @@ public class LuckyBadge extends Power {
 		image = ItemSpriteSheet.BADGE;
 
 		cursed = false;
+
+		defaultAction = AC_INFO;
 	}
 
 	public static final String AC_GRIND = "grind";
