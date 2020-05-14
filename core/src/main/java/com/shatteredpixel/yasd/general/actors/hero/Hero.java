@@ -109,9 +109,9 @@ import com.shatteredpixel.yasd.general.plants.Swiftthistle;
 import com.shatteredpixel.yasd.general.scenes.AlchemyScene;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
-import com.shatteredpixel.yasd.general.ui.attack.AttackIndicator;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.shatteredpixel.yasd.general.ui.QuickSlotButton;
+import com.shatteredpixel.yasd.general.ui.attack.AttackIndicator;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndHero;
 import com.shatteredpixel.yasd.general.windows.WndTradeItem;
@@ -329,6 +329,18 @@ public class Hero extends Char {
 
 	public void increaseAttunement() {
 		setAttunement(Attunement +1);
+	}
+
+	public void increasePoints(int increase) {
+		DistributionPoints += increase;
+		CPDGame.runOnRenderThread(new Callback() {
+			@Override
+			public void call() {
+				WndHero window = new WndHero();
+				window.switchToAbilities();
+				GameScene.show(window);
+			}
+		});
 	}
 
 	@Override
@@ -1316,18 +1328,10 @@ public class Hero extends Char {
 				sprite.showStatus( CharSprite.POSITIVE, Messages.get(Hero.class, "level_up") );
 				Sample.INSTANCE.play( Assets.SND_LEVELUP );
 			}
+			increasePoints(3);
 
-			DistributionPoints += 3;
-			CPDGame.runOnRenderThread(new Callback() {
-				@Override
-				public void call() {
-					WndHero window = new WndHero();
-					window.switchToAbilities();
-					GameScene.show(window);
-				}
-			});
 			Item.updateQuickslot();
-			
+
 			Badges.validateLevelReached();
 		}
 	}

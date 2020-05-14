@@ -64,7 +64,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
-public class YogDzewa extends Mob {
+public class YogDzewa extends Boss {
 
 	{
 		spriteClass = YogSprite.class;

@@ -65,7 +65,7 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 import com.watabou.utils.RectF;
 
-public class NewDM300 extends Mob {
+public class NewDM300 extends Boss {
 
 	{
 		spriteClass = DM300Sprite.class;

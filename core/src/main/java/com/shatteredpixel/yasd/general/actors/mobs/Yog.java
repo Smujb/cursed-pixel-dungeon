@@ -64,12 +64,10 @@ import com.watabou.utils.Random;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Yog extends Mob {
+public class Yog extends Boss {
 	
 	{
 		spriteClass = YogSprite.class;
-
-		//HP = HT = 600;
 		
 		EXP = 50;
 		

@@ -60,7 +60,7 @@ import com.watabou.utils.Random;
 
 import org.jetbrains.annotations.NotNull;
 
-public class King extends Mob {
+public class King extends Boss {
 	
 	private static final int MAX_ARMY_SIZE = 5;
 	

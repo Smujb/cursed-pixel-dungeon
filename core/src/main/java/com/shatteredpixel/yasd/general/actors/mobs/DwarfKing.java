@@ -69,7 +69,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 
-public class DwarfKing extends Mob {
+public class DwarfKing extends Boss {
 
 	{
 		spriteClass = KingSprite.class;

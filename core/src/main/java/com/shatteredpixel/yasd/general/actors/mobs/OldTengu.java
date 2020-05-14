@@ -50,7 +50,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.TenguSprite;
 import com.shatteredpixel.yasd.general.ui.BossHealthBar;
-import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
@@ -58,7 +57,7 @@ import com.watabou.utils.Random;
 import org.jetbrains.annotations.NotNull;
 
 //Exists to support pre-0.7.5 saves
-public class OldTengu extends Mob {
+public class OldTengu extends Boss {
 	
 	{
 		spriteClass = TenguSprite.class;
