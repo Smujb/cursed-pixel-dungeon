@@ -79,6 +79,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Vulnerable;
 import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.buffs.Wet;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.Surprise;
@@ -184,6 +185,13 @@ public abstract class Char extends Actor {
 
 		public AttackIndicator indicator() {
 			return new AttackIndicator();
+		}
+
+		public int proc(Char attacker, int damage, DamageSrc src) {
+			if (attacker instanceof Hero && staminaCost() > 0) {
+				((Hero)attacker).useStamina(staminaCost());
+			}
+			return damage;
 		}
 	}
 
@@ -380,10 +388,10 @@ public abstract class Char extends Actor {
 	}
 
 	public final boolean attack(Char enemy) {
-		return attack(enemy, false);
+		return attack(enemy, false, AttackType.NORMAL);
 	}
 
-	public boolean attack(Char enemy, boolean guaranteed) {
+	public boolean attack(Char enemy, boolean guaranteed, AttackType type) {
 
 		if (enemy == null || enemy == this) return false;
 
@@ -428,6 +436,7 @@ public abstract class Char extends Actor {
 			if (!enemy.isAlive()) {
 				return true;
 			}
+			dmg = type.proc(this, dmg, src);
 			enemy.damage( dmg, src );
 
 			if (Dungeon.hero.fieldOfView[enemy.pos] || Dungeon.hero.fieldOfView[pos]) {

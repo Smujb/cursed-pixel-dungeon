@@ -94,11 +94,11 @@ public abstract class YogFist extends Mob {
 	}
 
 	@Override
-	public boolean attack(Char enemy, boolean guaranteed) {
+	public boolean attack(Char enemy, boolean guaranteed, AttackType type) {
 		if (!Dungeon.level.adjacent(pos, enemy.pos)) {
 			incrementRangedCooldown();
 		}
-		return super.attack(enemy, guaranteed);
+		return super.attack(enemy, guaranteed, type);
 	}
 
 	boolean invulnWarned = false;
