@@ -923,20 +923,14 @@ public class Hero extends Char {
 	
 	private boolean actAttack(@NotNull HeroAction.Attack action ) {
 
-		enemy = action.target;
-
-		return doAttack(enemy, AttackType.NORMAL);
+		return doAttack(action.target, AttackType.NORMAL);
 	}
 
 	public boolean doAttack(Char enemy, AttackType type) {
+		this.enemy = enemy;
 		if (enemy.isAlive() && canAttack( enemy ) && !isCharmedBy( enemy )) {
 
-			sprite.attack(enemy.pos, new Callback() {
-				@Override
-				public void call() {
-					onAttackComplete(type);
-				}
-			});
+			sprite.attack(enemy.pos, type);
 
 			return false;
 
@@ -1495,9 +1489,6 @@ public class Hero extends Char {
 	}
 	
 	@Override
-	public void onAttackComplete() {
-		onAttackComplete(AttackType.NORMAL);
-	}
 	public void onAttackComplete(AttackType type) {
 		
 		AttackIndicator.target(enemy);
@@ -1518,7 +1509,7 @@ public class Hero extends Char {
 
 		curAction = null;
 
-		super.onAttackComplete();
+		super.onAttackComplete(type);
 	}
 	
 	@Override

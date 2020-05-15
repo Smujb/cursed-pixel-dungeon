@@ -33,11 +33,9 @@ import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
-import com.shatteredpixel.yasd.general.CPDAction;
 import com.shatteredpixel.yasd.general.ui.DangerIndicator;
 import com.shatteredpixel.yasd.general.ui.Tag;
 import com.shatteredpixel.yasd.general.ui.TargetHealthIndicator;
-import com.watabou.input.GameAction;
 import com.watabou.noosa.Game;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
@@ -49,7 +47,7 @@ public class AttackIndicator extends Tag {
 	private static final float ENABLED	= 1.0f;
 	private static final float DISABLED	= 0.3f;
 
-	private static float delay;
+	private float delay;
 
 	private CharSprite sprite = null;
 	
@@ -65,12 +63,6 @@ public class AttackIndicator extends Tag {
 		visible( false );
 		enable( false );
 	}
-
-	@Override
-	public GameAction keyAction() {
-		return CPDAction.TAG_ATTACK;
-	}
-
 
 	@Override
 	protected void createChildren() {
@@ -127,7 +119,8 @@ public class AttackIndicator extends Tag {
 				lastTarget = null;
 			} else {
 				active = true;
-				lastTarget = Random.element( candidates );
+				//lastTarget = Random.element( candidates );
+				AttackIndicator.target(Random.element(candidates));
 				updateImage();
 				flash();
 			}
@@ -175,7 +168,7 @@ public class AttackIndicator extends Tag {
 			sprite.visible = value;
 		}
 	}
-	
+
 	@Override
 	protected void onClick() {
 
@@ -184,8 +177,10 @@ public class AttackIndicator extends Tag {
 	public static void target( Char target ) {
 		lastTarget = (Mob)target;
 
-		for (AttackIndicator indicator : GameScene.attacks()) {
-			indicator.updateImage();
+		if (lastTarget != null) {
+			for (AttackIndicator indicator : GameScene.attacks()) {
+				indicator.updateImage();
+			}
 		}
 		
 		TargetHealthIndicator.instance.target( target );

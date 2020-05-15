@@ -182,8 +182,8 @@ public class Mimic extends Mob {
 	}
 
 	@Override
-	public void onAttackComplete() {
-		super.onAttackComplete();
+	public void onAttackComplete(AttackType type) {
+		super.onAttackComplete(type);
 		if (alignment == Alignment.NEUTRAL){
 			alignment = Alignment.ENEMY;
 			Dungeon.hero.spendAndNext(1f);

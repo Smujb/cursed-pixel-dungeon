@@ -196,6 +196,7 @@ public abstract class Char extends Actor {
 			switch (this) {
 				case CRUSH:
 					src.ignoreDefense();
+					damage *= 1.5f;
 					break;
 				case FURY:
 					damage /= 2;
@@ -1115,7 +1116,11 @@ public abstract class Char extends Actor {
 		// so calling next() here isn't necessary (see Actor.process)
 	}
 
-	public void onAttackComplete() {
+	public final void onAttackComplete() {
+		onAttackComplete(AttackType.NORMAL);
+	}
+
+	public void onAttackComplete(AttackType type) {
 		next();
 	}
 

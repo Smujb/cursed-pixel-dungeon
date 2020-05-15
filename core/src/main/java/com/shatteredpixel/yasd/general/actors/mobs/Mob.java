@@ -28,11 +28,11 @@
 package com.shatteredpixel.yasd.general.actors.mobs;
 
 import com.shatteredpixel.yasd.general.Badges;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
-import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -768,9 +768,9 @@ public abstract class Mob extends Char {
 	}*/
 	
 	@Override
-	public void onAttackComplete() {
+	public void onAttackComplete(AttackType type) {
 		attack( enemy);
-		super.onAttackComplete();
+		super.onAttackComplete(type);
 	}
 	
 	@Override
