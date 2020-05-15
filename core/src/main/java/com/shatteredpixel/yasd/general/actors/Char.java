@@ -79,7 +79,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Vulnerable;
 import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.buffs.Wet;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
-import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.Surprise;
@@ -184,45 +183,8 @@ public abstract class Char extends Actor {
 		}
 
 		public AttackIndicator indicator() {
-			return new AttackIndicator() {
-				{
-					type = AttackType.this;
-				}
-			};
+			return new AttackIndicator();
 		}
-
-		public boolean attackProc(Char attacker, Char defender, int damage, DamageSrc src) {
-			if (attacker instanceof Hero) {
-				((Hero) attacker).useStamina(staminaCost());
-			}
-			switch (this) {
-				default:
-					break;
-				case SPIN:
-					damage *= 0.5f;
-					for (int pos : PathFinder.NEIGHBOURS8) {
-						Char ch = Actor.findChar(attacker.pos+pos);
-						if (ch != null && ch != defender) {
-							ch.damage(damage, src);
-						}
-					}
-					break;
-				case FURY:
-					//TODO
-					damage *= 0.5f;
-					break;
-				case BLOCK:
-					//TODO
-					return true;
-				case CRUSH:
-					damage *= 1.2f;
-					src.ignoreDefense();
-					break;
-			}
-			defender.damage( damage, src );
-			return true;
-		}
-
 	}
 
 	public int viewDistance = 8;
@@ -421,9 +383,6 @@ public abstract class Char extends Actor {
 		return attack(enemy, false);
 	}
 
-	//Temporary variable to ensure the next attack is the type wanted.
-	public AttackType nextAttack = AttackType.NORMAL;
-
 	public boolean attack(Char enemy, boolean guaranteed) {
 
 		if (enemy == null || enemy == this) return false;
@@ -469,8 +428,7 @@ public abstract class Char extends Actor {
 			if (!enemy.isAlive()) {
 				return true;
 			}
-			//Actually damage them.
-			nextAttack.attackProc(this, enemy, dmg, src);
+			enemy.damage( dmg, src );
 
 			if (Dungeon.hero.fieldOfView[enemy.pos] || Dungeon.hero.fieldOfView[pos]) {
 				Sample.INSTANCE.play(Assets.SND_HIT, 1, 1, Random.Float(0.8f, 1.25f));

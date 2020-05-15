@@ -53,10 +53,8 @@ public class AttackIndicator extends Tag {
 	private static AttackIndicator instance;
 	
 	private CharSprite sprite = null;
-
-	public Char.AttackType type = Char.AttackType.NORMAL;
 	
-	private static Mob lastTarget;
+	static Mob lastTarget;
 	private ArrayList<Mob> candidates = new ArrayList<>();
 	
 	public AttackIndicator() {
@@ -165,7 +163,7 @@ public class AttackIndicator extends Tag {
 		PixelScene.align(sprite);
 	}
 	
-	private boolean enabled = true;
+	protected boolean enabled = true;
 	private synchronized void enable( boolean value ) {
 		enabled = value;
 		if (sprite != null) {
@@ -182,12 +180,7 @@ public class AttackIndicator extends Tag {
 	
 	@Override
 	protected void onClick() {
-		if (enabled) {
-			if (Dungeon.hero.handle( lastTarget.pos )) {
-				Dungeon.hero.next();
-				Dungeon.hero.nextAttack = type;
-			}
-		}
+
 	}
 	
 	public static void target( Char target ) {
