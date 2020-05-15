@@ -11,11 +11,15 @@ import com.watabou.utils.PathFinder;
 
 public class SpinAttackIndicator extends AttackIndicator {
 
+	public SpinAttackIndicator() {
+		color(0x00FF00);
+	}
+
 	@Override
 	protected void onClick() {
 		if (enabled && lastTarget != null) {
 			final Hero hero = Dungeon.hero;
-			hero.sprite.centerEmitter().start( Speck.factory( Speck.REPAIR ), 0.02f, 20 );
+			hero.sprite.centerEmitter().start(Speck.factory(Speck.REPAIR), 0.02f, 20);
 			hero.sprite.attack(lastTarget.pos, new Callback() {
 				@Override
 				public void call() {
@@ -26,7 +30,7 @@ public class SpinAttackIndicator extends AttackIndicator {
 						}
 					}
 					Invisibility.dispel();
-					hero.spendAndNext( hero.attackDelay() );
+					hero.spendAndNext(hero.attackDelay());
 				}
 			});
 		}

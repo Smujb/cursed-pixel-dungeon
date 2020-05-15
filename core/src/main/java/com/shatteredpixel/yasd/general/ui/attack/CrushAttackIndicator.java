@@ -6,6 +6,11 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.watabou.utils.Callback;
 
 public class CrushAttackIndicator extends AttackIndicator {
+
+	public CrushAttackIndicator() {
+		color(0x0000FF);
+	}
+
 	@Override
 	protected void onClick() {
 		if (enabled && lastTarget != null) {

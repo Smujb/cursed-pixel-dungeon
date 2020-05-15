@@ -44,6 +44,10 @@ public class Tag extends Button {
 	public Tag( int color ) {
 		super();
 		
+		color(color);
+	}
+
+	public void color(int color) {
 		this.r = (color >> 16) / 255f;
 		this.g = ((color >> 8) & 0xFF) / 255f;
 		this.b = (color & 0xFF) / 255f;
