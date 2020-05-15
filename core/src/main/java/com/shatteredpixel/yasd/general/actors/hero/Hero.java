@@ -234,10 +234,10 @@ public class Hero extends Char {
 
 	private void updateStamina() {
 		int oldMax = maxStamina;
-		maxStamina = 10;
-		if (subClass == HeroSubClass.GLADIATOR) {
+		maxStamina = 10 + getEvasion()/3;
+		/*if (subClass == HeroSubClass.GLADIATOR) {
 			maxStamina += 5;
-		}
+		}*/
 		stamina += (maxStamina - oldMax);
 	}
 
@@ -1635,12 +1635,12 @@ public class Hero extends Char {
 
 							//unintentional trap detection scales from 40% at floor 0 to 30% at floor 25
 						} else if (Dungeon.level.traps.containsKey(p)) {
-							chance = 0.4f - (Dungeon.depth / 250f);
+							chance = 0.4f - (Dungeon.depth-(getPerception()/2f) / 250f);
 							//GLog.p("trap");
 
 							//unintentional door detection scales from 20% at floor 0 to 0% at floor 20
 						} else {
-							chance = 0.2f - (Dungeon.depth / 100f);
+							chance = 0.2f - (Dungeon.depth-(getPerception()/2f) / 100f);
 							//GLog.p("door/wall");
 
 						}
