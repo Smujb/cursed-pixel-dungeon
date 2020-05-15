@@ -93,6 +93,7 @@ import com.shatteredpixel.yasd.general.ui.Toast;
 import com.shatteredpixel.yasd.general.ui.Toolbar;
 import com.shatteredpixel.yasd.general.ui.Window;
 import com.shatteredpixel.yasd.general.ui.attack.AttackIndicator;
+import com.shatteredpixel.yasd.general.ui.attack.NormalAttackIndicator;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.shatteredpixel.yasd.general.windows.WndBag.Mode;
@@ -305,7 +306,7 @@ public class GameScene extends PixelScene {
 		toolbar.setRect( 0,uiCamera.height - toolbar.height(), uiCamera.width, toolbar.height() );
 		add( toolbar );
 		
-		attack = new AttackIndicator();
+		attack = new NormalAttackIndicator();
 		attack.camera = uiCamera;
 		add( attack );
 

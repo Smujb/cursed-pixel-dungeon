@@ -34,9 +34,11 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.scenes.WelcomeScene;
+import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.GameMath;
 import com.watabou.utils.PlatformSupport;
 
 public class CPDGame extends Game {
@@ -125,6 +127,15 @@ public class CPDGame extends Game {
 		com.watabou.utils.Bundle.addAlias(
 				Brute.ArmoredBrute.class,
 				"com.shatteredpixel.yasd.general.actors.mobs.Brute.Shielded");
+	}
+
+	public static void shake(float amount) {
+		Camera.main.shake(GameMath.gate(0.5f, amount*2, 10), 0.2f);
+		if (amount > 0.5f) {
+			if (CPDSettings.vibrate()) {
+				CPDGame.vibrate(Math.min(250, (int) (amount * 50)));
+			}
+		}
 	}
 	
 	@Override

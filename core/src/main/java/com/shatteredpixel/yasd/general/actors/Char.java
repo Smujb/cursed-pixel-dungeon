@@ -104,7 +104,6 @@ import com.shatteredpixel.yasd.general.levels.traps.GrimTrap;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Earthroot;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
-import com.shatteredpixel.yasd.general.ui.attack.AttackIndicator;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
@@ -172,24 +171,33 @@ public abstract class Char extends Actor {
 		public int staminaCost() {
 			switch (this) {
 				case NORMAL: default:
-					return 0;
+					return 2;
 				case SPIN:
+					return 5;
 				case CRUSH:
-					return 3;
-				case FURY:
 					return 7;
+				case FURY:
+					return 9;
 				case BLOCK:
 					return 10;
 			}
 		}
 
-		public AttackIndicator indicator() {
-			return new AttackIndicator();
-		}
+		/*public AttackIndicator indicator() {
+			return
+		}*/
 
 		public int proc(Char attacker, int damage, DamageSrc src) {
 			if (attacker instanceof Hero && staminaCost() > 0) {
 				((Hero)attacker).useStamina(staminaCost());
+			}
+			switch (this) {
+				case CRUSH:
+					src.ignoreDefense();
+					break;
+				case FURY:
+					damage /= 2;
+					break;
 			}
 			return damage;
 		}

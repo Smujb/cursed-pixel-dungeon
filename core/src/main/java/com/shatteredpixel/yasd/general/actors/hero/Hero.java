@@ -31,7 +31,6 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Bones;
 import com.shatteredpixel.yasd.general.CPDGame;
-import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
@@ -120,7 +119,6 @@ import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
-import com.watabou.utils.GameMath;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
@@ -1017,14 +1015,11 @@ public class Hero extends Char {
 		shake = ((float) dmg / (float) effectiveHP) * 4f;
 
 		if (shake > 0) {
-			Camera.main.shake(GameMath.gate(0.5f, shake*2, 10), 0.2f);
 			if (shake > 0.5f) {
-				float divisor = 3 + 12*((HP + shielding()) / (float)(HT + shielding()));
-				GameScene.flash( (int)(0xFF/divisor) << 16 );
-				if (CPDSettings.vibrate()) {
-					CPDGame.vibrate(Math.min(250, (int) (shake * 50)));
-				}
+				float divisor = 3 + 12 * ((HP + shielding()) / (float) (HT + shielding()));
+				GameScene.flash((int) (0xFF / divisor) << 16);
 			}
+			CPDGame.shake(shake);
 		}
 	}
 	
