@@ -13,7 +13,7 @@ public class CrushAttackIndicator extends AttackIndicator {
 				@Override
 				public void call() {
 					CPDGame.shake(3);
-					Dungeon.hero.attack(lastTarget, true, Char.AttackType.CRUSH);
+					Dungeon.hero.doAttack(lastTarget, Char.AttackType.CRUSH);
 				}
 			});
 		}

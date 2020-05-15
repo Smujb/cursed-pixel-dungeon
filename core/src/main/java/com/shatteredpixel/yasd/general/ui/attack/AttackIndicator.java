@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.ui.attack;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.CPDAction;
@@ -49,9 +50,7 @@ public class AttackIndicator extends Tag {
 	private static final float DISABLED	= 0.3f;
 
 	private static float delay;
-	
-	private static AttackIndicator instance;
-	
+
 	private CharSprite sprite = null;
 	
 	static Mob lastTarget;
@@ -59,8 +58,7 @@ public class AttackIndicator extends Tag {
 	
 	public AttackIndicator() {
 		super( DangerIndicator.COLOR );
-		
-		instance = this;
+
 		lastTarget = null;
 		
 		setSize( 24, 24 );
@@ -185,12 +183,22 @@ public class AttackIndicator extends Tag {
 	
 	public static void target( Char target ) {
 		lastTarget = (Mob)target;
-		instance.updateImage();
+
+		for (AttackIndicator indicator : GameScene.attacks()) {
+			indicator.updateImage();
+		}
 		
 		TargetHealthIndicator.instance.target( target );
 	}
+
+
+	public static void updateStates() {
+		for (AttackIndicator indicator : GameScene.attacks()) {
+			indicator.updateState();
+		}
+	}
 	
-	public static void updateState() {
-		instance.checkEnemies();
+	private void updateState() {
+		checkEnemies();
 	}
 }

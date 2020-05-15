@@ -188,8 +188,10 @@ public abstract class Char extends Actor {
 		}*/
 
 		public int proc(Char attacker, int damage, DamageSrc src) {
-			if (attacker instanceof Hero && staminaCost() > 0) {
-				((Hero)attacker).useStamina(staminaCost());
+			int cost = staminaCost();
+			if (attacker instanceof Hero && cost > 0) {
+				cost *= attacker.attackDelay();
+				((Hero)attacker).useStamina(cost);
 			}
 			switch (this) {
 				case CRUSH:

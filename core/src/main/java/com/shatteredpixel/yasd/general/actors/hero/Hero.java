@@ -248,7 +248,7 @@ public class Hero extends Char {
 		if (stamina < 0) {
 			int damage = (int) (-stamina*(HT/40));
 			stamina = 0;
-			damage(damage, new DamageSrc(Element.META));
+			damage(damage, new DamageSrc(Element.META).ignoreDefense());
 			if (!isAlive()){
 				Dungeon.fail( Stamina.class );
 				GLog.n( Messages.get( this, "exhausted") );
@@ -631,7 +631,7 @@ public class Hero extends Char {
 		damageInterrupt = true;
 		ready = true;
 
-		AttackIndicator.updateState();
+		AttackIndicator.updateStates();
 		
 		GameScene.ready();
 	}
@@ -925,9 +925,18 @@ public class Hero extends Char {
 
 		enemy = action.target;
 
+		return doAttack(enemy, AttackType.NORMAL);
+	}
+
+	public boolean doAttack(Char enemy, AttackType type) {
 		if (enemy.isAlive() && canAttack( enemy ) && !isCharmedBy( enemy )) {
-			
-			sprite.attack( enemy.pos );
+
+			sprite.attack(enemy.pos, new Callback() {
+				@Override
+				public void call() {
+					onAttackComplete(type);
+				}
+			});
 
 			return false;
 
@@ -1487,10 +1496,13 @@ public class Hero extends Char {
 	
 	@Override
 	public void onAttackComplete() {
+		onAttackComplete(AttackType.NORMAL);
+	}
+	public void onAttackComplete(AttackType type) {
 		
 		AttackIndicator.target(enemy);
 		
-		boolean hit = attack( enemy);
+		boolean hit = attack( enemy, false, type );
 
 		if (subClass == HeroSubClass.GLADIATOR){
 			if (hit) {
