@@ -54,7 +54,7 @@ public class Constants {
 
 
     //Chapter length.
-    public static final int CHAPTER_LENGTH = 4;
+    public static final int CHAPTER_LENGTH = 5;
 
     //Number of chapters.
     public static final int NUM_CHAPTERS = 5;
