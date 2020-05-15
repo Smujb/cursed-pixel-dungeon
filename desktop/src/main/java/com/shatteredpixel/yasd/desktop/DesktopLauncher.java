@@ -111,14 +111,14 @@ public class DesktopLauncher {
         String basePath = "";
         if (SharedLibraryLoader.isWindows) {
             if (System.getProperties().getProperty("os.name").equals("Windows XP")) {
-                basePath = "Application Data/.smujb/Yet Another Shattered Dungeon/";
+                basePath = "Application Data/.smujb/Cursed Pixel Dungeon/";
             } else {
-                basePath = "AppData/Roaming/.smujb/Yet Another Shattered Dungeon/";
+                basePath = "AppData/Roaming/.smujb/Cursed Pixel Dungeon/";
             }
         } else if (SharedLibraryLoader.isMac) {
-            basePath = "Library/Application Support/Yet Another Shattered Dungeon/";
+            basePath = "Library/Application Support/Cursed Pixel Dungeon/";
         } else if (SharedLibraryLoader.isLinux) {
-            basePath = ".smujb/yet-another-shattered-dungeon/";
+            basePath = ".smujb/cursed-pixel-dungeon/";
         }
 
         //copy over prefs from old file location from legacy desktop codebase
