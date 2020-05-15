@@ -48,7 +48,7 @@ public class RingOfAttunement extends Ring {
 	}
 	
 	public static int attunementBonus(Char target ){
-		return getBonus(target, Attunement.class);
+		return getBonus(target, Attunement.class)/3;
 	}
 
 	public class Attunement extends RingBuff {

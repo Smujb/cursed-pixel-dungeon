@@ -31,7 +31,6 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.sun.istack.internal.NotNull;
 import com.watabou.glscripts.Script;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.glwrap.Blending;
@@ -73,7 +72,6 @@ public class Game implements ApplicationListener {
 	// callback to perform logic during scene change
 	protected SceneChangeCallback onChange;
 	// New scene class
-	@NotNull
 	protected static Class<? extends Scene> sceneClass;
 	
 	public static float timeScale = 1f;

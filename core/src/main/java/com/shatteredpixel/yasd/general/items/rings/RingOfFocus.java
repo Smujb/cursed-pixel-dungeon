@@ -46,7 +46,7 @@ public class RingOfFocus extends Ring {
 	}
 
 	public static int focusBonus(Char target ) {
-		return getBonus(target, FocusBuff.class);
+		return getBonus(target, FocusBuff.class)/3;
 	}
 
 	public class FocusBuff extends RingBuff {}

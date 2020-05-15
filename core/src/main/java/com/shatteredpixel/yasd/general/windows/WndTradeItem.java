@@ -153,7 +153,7 @@ public class WndTradeItem extends Window {
 			boolean steal = true;
 			float chance = 1f;
 			if (shopkeeper != null) {
-				chance = 1f - shopkeeper.noticeChance(Dungeon.hero, true);
+				chance = shopkeeper.noticeChance(Dungeon.hero, true);
 				steal = shopkeeper.notice(Dungeon.hero, true);
 			}
 			boolean finalSteal = steal;

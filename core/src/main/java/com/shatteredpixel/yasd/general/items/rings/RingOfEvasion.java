@@ -34,7 +34,7 @@ public class RingOfEvasion extends Ring {
 
 	@Override
 	protected RingBuff buff( ) {
-		return new LuckBuff();
+		return new EvasionBuff();
 	}
 
 	public String statsInfo() {
@@ -46,8 +46,8 @@ public class RingOfEvasion extends Ring {
 	}
 
 	public static int evasionBonus(Char target ){
-		return getBonus(target, LuckBuff.class);
+		return getBonus(target, EvasionBuff.class)/3;
 	}
 
-	public class LuckBuff extends RingBuff {}
+	public class EvasionBuff extends RingBuff {}
 }

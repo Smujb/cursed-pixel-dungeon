@@ -404,6 +404,7 @@ public class Belongings implements Iterable<Item> {
 		if (armor != null) {
 			armor.activate( owner );
 		}
+		miscs = new KindofMisc[owner.miscSlots()];
 		for (int i = 0; i < owner.miscSlots(); i++) {//Restore all miscs
 			miscs[i] = (KindofMisc) bundle.get(MISC + i);
 			if (miscs[i] != null) {

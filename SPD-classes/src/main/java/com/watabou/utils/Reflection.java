@@ -29,6 +29,7 @@ package com.watabou.utils;
 
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.ReflectionException;
+import com.sun.istack.internal.NotNull;
 import com.watabou.noosa.Game;
 
 //wrapper for LibGDX reflection
@@ -42,7 +43,7 @@ public class Reflection {
 		return ClassReflection.isStaticClass(cls);
 	}
 	
-	public static <T> T newInstance( Class<T> cls ){
+	public static <T> T newInstance( @NotNull Class<T> cls ){
 		try {
 			return ClassReflection.newInstance(cls);
 		} catch (ReflectionException e) {
