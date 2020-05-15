@@ -176,7 +176,7 @@ public class Hero extends Char {
 
 	//TODO - what should stamina scale with? What should use it?
 	private int maxStamina = 10;
-	public int stamina = maxStamina;
+	public float stamina = maxStamina;
 	
 	public int HTBoost = 0;
 	
@@ -248,7 +248,7 @@ public class Hero extends Char {
 	public void useStamina(int amount) {
 		stamina -= amount;
 		if (stamina < 0) {
-			int damage = -stamina*(HT/40);
+			int damage = (int) (-stamina*(HT/40));
 			stamina = 0;
 			damage(damage, new DamageSrc(Element.META));
 			if (!isAlive()){
