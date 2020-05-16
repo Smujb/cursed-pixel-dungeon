@@ -25,17 +25,15 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.levels.tiled;
+package com.shatteredpixel.yasd.general.levels.chapters.sewers;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.levels.tiled.TiledMapLevel;
+import com.watabou.noosa.Group;
 
-public class TilemapTest extends TiledMapLevel {
+public class SewerDungeon extends TiledMapLevel {
 
-	private static final String MAP_NAME = "maps/sewerdungeon-test.tmx";
-
-	TilemapTest() {
-		super();
-	}
+	private static final String MAP_NAME = "maps/sewer_dungeon.tmx";
 
 	@Override
 	public String tilesTex() {
@@ -55,5 +53,12 @@ public class TilemapTest extends TiledMapLevel {
 	@Override
 	protected String mapName() {
 		return MAP_NAME;
+	}
+
+	@Override
+	public Group addVisuals() {
+		Group group = super.addVisuals();
+		SewerLevel.addSewerVisuals(this, group);
+		return group;
 	}
 }

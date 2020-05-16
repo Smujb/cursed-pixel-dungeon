@@ -72,7 +72,7 @@ import com.shatteredpixel.yasd.general.levels.SurfaceLevel;
 import com.shatteredpixel.yasd.general.levels.TestBossLevel;
 import com.shatteredpixel.yasd.general.levels.rooms.secret.SecretRoom;
 import com.shatteredpixel.yasd.general.levels.rooms.special.SpecialRoom;
-import com.shatteredpixel.yasd.general.levels.tiled.TilemapTest;
+import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerDungeon;
 import com.shatteredpixel.yasd.general.levels.tiled.TilemapTest2;
 import com.shatteredpixel.yasd.general.mechanics.ShadowCaster;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -282,11 +282,13 @@ public class Dungeon {
 	public static HashMap<String, Class<? extends Level>> staticLevels = new HashMap<>();
 	static {
 		//Bosses
-		staticLevels.put("sewers - 3", SewerBossLevel.class);
-		staticLevels.put("prison - 3", NewPrisonBossLevel.class);
-		staticLevels.put("caves - 3", NewCavesBossLevel.class);
-		staticLevels.put("city - 3", NewCityBossLevel.class);
-		staticLevels.put("halls - 3", NewHallsBossLevel.class);
+		staticLevels.put("sewers - 4", SewerBossLevel.class);
+		staticLevels.put("prison - 4", NewPrisonBossLevel.class);
+		staticLevels.put("caves - 4", NewCavesBossLevel.class);
+		staticLevels.put("city - 4", NewCityBossLevel.class);
+		staticLevels.put("halls - 4", NewHallsBossLevel.class);
+		//Dungeon levels
+		staticLevels.put("sewers - 3", SewerDungeon.class);
 		//First level spawns different mobs and rooms. Might rework later.
 		staticLevels.put("sewers - 0", FirstLevel.class);
 		//Amulet depth
@@ -297,7 +299,7 @@ public class Dungeon {
 		staticLevels.put(SURFACE_ID, SurfaceLevel.class);
 		//testing stuff
 		staticLevels.put("test boss", TestBossLevel.class);
-		staticLevels.put("test", TilemapTest.class);
+		//staticLevels.put("test", TilemapTest.class);
 		staticLevels.put("test 2", TilemapTest2.class);
 		staticLevels.put("old tengu", OldPrisonBossLevel.class);
 		staticLevels.put("old dm300", OldCavesBossLevel.class);
