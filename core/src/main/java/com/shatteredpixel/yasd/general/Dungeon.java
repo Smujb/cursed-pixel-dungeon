@@ -52,6 +52,7 @@ import com.shatteredpixel.yasd.general.levels.DeadEndLevel;
 import com.shatteredpixel.yasd.general.levels.GrindLevel;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.LootLevel;
+import com.shatteredpixel.yasd.general.levels.SurfaceLevel;
 import com.shatteredpixel.yasd.general.levels.TestBossLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.caves.CavesLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.caves.NewCavesBossLevel;
@@ -295,7 +296,7 @@ public class Dungeon {
 		//Grind level
 		staticLevels.put( LuckyBadge.AC_GRIND, GrindLevel.class );
 		//Surface level
-		staticLevels.put(SURFACE_ID, TilemapTest2.class);
+		staticLevels.put(SURFACE_ID, SurfaceLevel.class);
 		//testing stuff
 		staticLevels.put("test boss", TestBossLevel.class);
 		//staticLevels.put("test", TilemapTest.class);
