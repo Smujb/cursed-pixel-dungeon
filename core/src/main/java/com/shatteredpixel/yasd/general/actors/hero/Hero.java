@@ -354,6 +354,8 @@ public class Hero extends Char {
 	private static final String HTBOOST     = "htboost";
 	private static final String MANA        = "mp";
 	private static final String MAX_MANA    = "max_mp";
+	private static final String STAMINA        = "stamina";
+	private static final String MAX_STAMINA    = "max_stamina";
 	private static final String POWER       = "power";
 	private static final String FOCUS       = "focus";
 	private static final String PERCEPTION  = "expertise";
@@ -377,6 +379,8 @@ public class Hero extends Char {
 
 		bundle.put(MANA, mp);
 		bundle.put(MAX_MANA, maxMP);
+		bundle.put(STAMINA, stamina);
+		bundle.put(MAX_STAMINA, maxStamina);
 
 		//Hero stats
 		bundle.put( POWER, Power );
@@ -404,6 +408,8 @@ public class Hero extends Char {
 
 		mp = bundle.getInt(MANA);
 		maxMP = bundle.getInt(MAX_MANA);
+		stamina = bundle.getInt(STAMINA);
+		maxStamina = bundle.getInt(MAX_STAMINA);
 
 		//Hero stats
 		Power = bundle.getInt( POWER );
