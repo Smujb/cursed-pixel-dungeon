@@ -271,7 +271,7 @@ public class Preparation extends Buff implements ActionIndicator.Action {
 				
 				//just attack them then!
 				if (Dungeon.hero.canAttack(enemy)){
-					Dungeon.hero.curAction = new HeroAction.Attack( enemy );
+					Dungeon.hero.curAction = new HeroAction.Attack( enemy, Char.AttackType.NORMAL );
 					Dungeon.hero.next();
 					return;
 				}
@@ -313,7 +313,7 @@ public class Preparation extends Buff implements ActionIndicator.Action {
 				CellEmitter.get( Dungeon.hero.pos ).burst( Speck.factory( Speck.WOOL ), 6 );
 				Sample.INSTANCE.play( Assets.SND_PUFF );
 
-				Dungeon.hero.curAction = new HeroAction.Attack( enemy );
+				Dungeon.hero.curAction = new HeroAction.Attack( enemy, Char.AttackType.NORMAL );
 				Dungeon.hero.next();
 			}
 		}

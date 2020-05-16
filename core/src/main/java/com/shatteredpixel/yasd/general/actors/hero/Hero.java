@@ -923,7 +923,7 @@ public class Hero extends Char {
 	
 	private boolean actAttack(@NotNull HeroAction.Attack action ) {
 
-		return doAttack(action.target, AttackType.NORMAL);
+		return doAttack(action.target, action.type);
 	}
 
 	public boolean doAttack(Char enemy, AttackType type) {
@@ -1224,7 +1224,7 @@ public class Hero extends Char {
 			if (ch.alignment != Alignment.ENEMY && ch.buff(Amok.class) == null) {
 				curAction = new HeroAction.Interact(ch);
 			} else {
-				curAction = new HeroAction.Attack(ch);
+				curAction = new HeroAction.Attack(ch, AttackType.NORMAL);
 			}
 
 		} else if ((heap = Dungeon.level.heaps.get(cell)) != null

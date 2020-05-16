@@ -171,7 +171,8 @@ public class AttackIndicator extends Tag {
 
 	@Override
 	protected void onClick() {
-
+		super.onClick();
+		Dungeon.hero.busy();
 	}
 	
 	public static void target( Char target ) {

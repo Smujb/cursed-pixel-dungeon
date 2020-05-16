@@ -20,6 +20,7 @@ public class SpinAttackIndicator extends AttackIndicator {
 		if (enabled && lastTarget != null) {
 			final Hero hero = Dungeon.hero;
 			hero.sprite.centerEmitter().start(Speck.factory(Speck.REPAIR), 0.02f, 20);
+			hero.busy();
 			hero.sprite.attack(lastTarget.pos, new Callback() {
 				@Override
 				public void call() {
@@ -31,6 +32,7 @@ public class SpinAttackIndicator extends AttackIndicator {
 					}
 					Invisibility.dispel();
 					hero.spendAndNext(hero.attackDelay());
+					hero.ready();
 				}
 			});
 		}
