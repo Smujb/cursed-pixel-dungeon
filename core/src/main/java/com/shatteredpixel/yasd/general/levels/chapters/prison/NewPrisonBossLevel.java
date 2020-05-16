@@ -25,7 +25,7 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.levels;
+package com.shatteredpixel.yasd.general.levels.chapters.prison;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Bones;
@@ -45,6 +45,8 @@ import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.keys.IronKey;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.HeavyBoomerang;
+import com.shatteredpixel.yasd.general.levels.Level;
+import com.shatteredpixel.yasd.general.levels.Patch;
 import com.shatteredpixel.yasd.general.levels.features.Maze;
 import com.shatteredpixel.yasd.general.levels.interactive.Entrance;
 import com.shatteredpixel.yasd.general.levels.interactive.Exit;

@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.levels.builders.Builder;
 import com.shatteredpixel.yasd.general.levels.builders.LineBuilder;
+import com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel;
 import com.shatteredpixel.yasd.general.levels.painters.CityPainter;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.rooms.Room;
@@ -166,9 +167,9 @@ public class LastShopLevel extends RegularLevel {
 	public String tileName( Terrain tile ) {
 		switch (tile) {
 			case WATER:
-				return Messages.get(CityLevel.class, "water_name");
+				return Messages.get(com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel.class, "water_name");
 			case HIGH_GRASS:
-				return Messages.get(CityLevel.class, "high_grass_name");
+				return Messages.get(com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel.class, "high_grass_name");
 			default:
 				return super.tileName( tile );
 		}
@@ -178,19 +179,19 @@ public class LastShopLevel extends RegularLevel {
 	public String tileDesc( Terrain tile) {
 		switch (tile) {
 			case ENTRANCE:
-				return Messages.get(CityLevel.class, "entrance_desc");
+				return Messages.get(com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel.class, "entrance_desc");
 			case EXIT:
-				return Messages.get(CityLevel.class, "exit_desc");
+				return Messages.get(com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel.class, "exit_desc");
 			case WALL_DECO:
 			case EMPTY_DECO:
-				return Messages.get(CityLevel.class, "deco_desc");
+				return Messages.get(com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel.class, "deco_desc");
 			case EMPTY_SP:
-				return Messages.get(CityLevel.class, "sp_desc");
+				return Messages.get(com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel.class, "sp_desc");
 			case STATUE:
 			case STATUE_SP:
-				return Messages.get(CityLevel.class, "statue_desc");
+				return Messages.get(com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel.class, "statue_desc");
 			case BOOKSHELF:
-				return Messages.get(CityLevel.class, "bookshelf_desc");
+				return Messages.get(com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel.class, "bookshelf_desc");
 			default:
 				return super.tileDesc( tile );
 		}

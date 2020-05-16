@@ -42,7 +42,7 @@ import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
-import com.shatteredpixel.yasd.general.levels.SewerLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.GhostSprite;

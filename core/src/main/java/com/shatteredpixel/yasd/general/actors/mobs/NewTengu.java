@@ -56,7 +56,7 @@ import com.shatteredpixel.yasd.general.items.TomeOfMastery;
 import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
 import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.levels.NewPrisonBossLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.prison.NewPrisonBossLevel;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;

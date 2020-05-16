@@ -27,12 +27,12 @@
 
 package com.shatteredpixel.yasd.general;
 
-import com.shatteredpixel.yasd.general.levels.CavesLevel;
-import com.shatteredpixel.yasd.general.levels.CityLevel;
-import com.shatteredpixel.yasd.general.levels.FirstLevel;
-import com.shatteredpixel.yasd.general.levels.HallsLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.caves.CavesLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.sewers.FirstLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.halls.HallsLevel;
 import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.levels.PrisonLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.prison.PrisonLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.TextScene;

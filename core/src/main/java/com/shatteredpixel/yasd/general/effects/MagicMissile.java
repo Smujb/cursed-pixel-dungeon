@@ -36,7 +36,7 @@ import com.shatteredpixel.yasd.general.effects.particles.PoisonParticle;
 import com.shatteredpixel.yasd.general.effects.particles.RainbowParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.effects.particles.SmokeParticle;
-import com.shatteredpixel.yasd.general.levels.SewerLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.tiles.DungeonTilemap;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;

@@ -44,7 +44,7 @@ import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Lightning;
 import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
-import com.shatteredpixel.yasd.general.levels.NewCavesBossLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.caves.NewCavesBossLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.PylonSprite;

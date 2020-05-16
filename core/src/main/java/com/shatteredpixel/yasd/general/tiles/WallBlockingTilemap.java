@@ -28,7 +28,7 @@
 package com.shatteredpixel.yasd.general.tiles;
 
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.levels.NewHallsBossLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.halls.NewHallsBossLevel;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.Tilemap;
 

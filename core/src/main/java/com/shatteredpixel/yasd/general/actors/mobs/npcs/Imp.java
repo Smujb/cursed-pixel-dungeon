@@ -37,7 +37,7 @@ import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.quest.DwarfToken;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.journal.Notes;
-import com.shatteredpixel.yasd.general.levels.CityLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ImpSprite;

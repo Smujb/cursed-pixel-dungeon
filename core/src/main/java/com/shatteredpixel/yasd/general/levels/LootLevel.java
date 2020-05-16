@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.actors.mobs.Eye;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 
 public class LootLevel extends SewerLevel {
 

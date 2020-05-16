@@ -25,7 +25,7 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.levels;
+package com.shatteredpixel.yasd.general.levels.chapters.halls;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Bones;
@@ -39,6 +39,8 @@ import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.levels.Level;
+import com.shatteredpixel.yasd.general.levels.Patch;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.messages.Messages;

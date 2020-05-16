@@ -69,6 +69,7 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfIntuition;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
+import com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
 import com.shatteredpixel.yasd.general.levels.features.Door;
 import com.shatteredpixel.yasd.general.levels.interactive.AscendArea;
@@ -197,8 +198,8 @@ public abstract class Level implements Bundlable {
 	public boolean[] heroFOV;
 
 
-	int minScaleFactor = 0;
-	int maxScaleFactor = -1;
+	protected int minScaleFactor = 0;
+	protected int maxScaleFactor = -1;
 	//By default, scales with hero level and has max and min defined within the individual levels. -1 max gives no limit.
 	public int getScaleFactor() {
 		int level;
@@ -806,7 +807,7 @@ public abstract class Level implements Bundlable {
 	}
 
 	//Clears exits/entrances. This is used mainly in PrisonBossLevel
-	void clearExitEntrance() {
+	protected void clearExitEntrance() {
 		setEntrance(-1);
 		setExit(-1);
 	}

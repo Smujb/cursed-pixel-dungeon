@@ -3,6 +3,7 @@ package com.shatteredpixel.yasd.general.levels;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.tiled.TiledMapLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -49,7 +50,7 @@ public class SurfaceLevel extends TiledMapLevel {
 	@Override
 	public String tileName( Terrain tile ) {
 		if (tile == Terrain.WATER) {
-			return Messages.get(SewerLevel.class, "water_name");
+			return Messages.get(com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel.class, "water_name");
 		}
 		return super.tileName(tile);
 	}
@@ -58,9 +59,9 @@ public class SurfaceLevel extends TiledMapLevel {
 	public String tileDesc(Terrain tile) {
 		switch (tile) {
 			case EMPTY_DECO:
-				return Messages.get(SewerLevel.class, "empty_deco_desc");
+				return Messages.get(com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel.class, "empty_deco_desc");
 			case BOOKSHELF:
-				return Messages.get(SewerLevel.class, "bookshelf_desc");
+				return Messages.get(com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel.class, "bookshelf_desc");
 			default:
 				return super.tileDesc( tile );
 		}

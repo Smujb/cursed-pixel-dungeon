@@ -25,7 +25,7 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.levels;
+package com.shatteredpixel.yasd.general.levels.chapters.caves;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Bones;
@@ -46,6 +46,9 @@ import com.shatteredpixel.yasd.general.effects.particles.BlastParticle;
 import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel;
+import com.shatteredpixel.yasd.general.levels.Level;
+import com.shatteredpixel.yasd.general.levels.Patch;
 import com.shatteredpixel.yasd.general.levels.interactive.DescendArea;
 import com.shatteredpixel.yasd.general.levels.painters.CavesPainter;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;

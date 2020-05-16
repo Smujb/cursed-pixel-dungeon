@@ -25,7 +25,7 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.levels;
+package com.shatteredpixel.yasd.general.levels.chapters.caves;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
@@ -35,6 +35,8 @@ import com.shatteredpixel.yasd.general.actors.mobs.DM200;
 import com.shatteredpixel.yasd.general.actors.mobs.Shaman;
 import com.shatteredpixel.yasd.general.actors.mobs.Spinner;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Blacksmith;
+import com.shatteredpixel.yasd.general.levels.Level;
+import com.shatteredpixel.yasd.general.levels.RegularLevel;
 import com.shatteredpixel.yasd.general.levels.painters.CavesPainter;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.rooms.Room;
@@ -58,8 +60,6 @@ import com.watabou.noosa.Group;
 import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -231,7 +231,7 @@ public class CavesLevel extends RegularLevel {
 		return visuals;
 	}
 	
-	public static void addCavesVisuals( Level level, Group group ) {
+	public static void addCavesVisuals(Level level, Group group ) {
 		for (int i=0; i < level.length(); i++) {
 			if (level.map[i] == WALL_DECO) {
 				group.add( new Vein( i ) );

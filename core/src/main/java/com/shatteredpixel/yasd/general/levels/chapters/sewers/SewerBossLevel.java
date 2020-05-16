@@ -25,7 +25,7 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.levels;
+package com.shatteredpixel.yasd.general.levels.chapters.sewers;
 
 import com.shatteredpixel.yasd.general.Bones;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -34,6 +34,7 @@ import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.actors.mobs.Slime;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.levels.chapters.prison.PrisonLevel;
 import com.shatteredpixel.yasd.general.levels.builders.Builder;
 import com.shatteredpixel.yasd.general.levels.builders.FigureEightBuilder;
 import com.shatteredpixel.yasd.general.levels.interactive.Entrance;

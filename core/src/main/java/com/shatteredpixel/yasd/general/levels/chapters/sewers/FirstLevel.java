@@ -25,7 +25,7 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.levels;
+package com.shatteredpixel.yasd.general.levels.chapters.sewers;
 
 import com.shatteredpixel.yasd.general.actors.mobs.Rat;
 import com.shatteredpixel.yasd.general.actors.mobs.Snake;

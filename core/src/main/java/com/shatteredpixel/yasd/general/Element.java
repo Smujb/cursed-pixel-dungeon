@@ -52,7 +52,7 @@ import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
-import com.shatteredpixel.yasd.general.levels.SewerLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;

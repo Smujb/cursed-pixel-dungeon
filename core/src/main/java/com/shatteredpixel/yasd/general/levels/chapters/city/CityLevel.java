@@ -25,20 +25,20 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.levels;
+package com.shatteredpixel.yasd.general.levels.chapters.city;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.mobs.Elemental;
-import com.shatteredpixel.yasd.general.actors.mobs.Eye;
-import com.shatteredpixel.yasd.general.actors.mobs.Scorpio;
-import com.shatteredpixel.yasd.general.actors.mobs.Succubus;
-import com.shatteredpixel.yasd.general.items.Torch;
-import com.shatteredpixel.yasd.general.levels.painters.HallsPainter;
+import com.shatteredpixel.yasd.general.actors.mobs.Ghoul;
+import com.shatteredpixel.yasd.general.actors.mobs.Golem;
+import com.shatteredpixel.yasd.general.actors.mobs.Monk;
+import com.shatteredpixel.yasd.general.actors.mobs.Warlock;
+import com.shatteredpixel.yasd.general.actors.mobs.npcs.Imp;
+import com.shatteredpixel.yasd.general.levels.Level;
+import com.shatteredpixel.yasd.general.levels.RegularLevel;
+import com.shatteredpixel.yasd.general.levels.painters.CityPainter;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
-import com.shatteredpixel.yasd.general.levels.rooms.Room;
-import com.shatteredpixel.yasd.general.levels.rooms.special.DemonSpawnerRoom;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.traps.BlazingTrap;
 import com.shatteredpixel.yasd.general.levels.traps.CorrosionTrap;
@@ -48,7 +48,6 @@ import com.shatteredpixel.yasd.general.levels.traps.DisintegrationTrap;
 import com.shatteredpixel.yasd.general.levels.traps.DistortionTrap;
 import com.shatteredpixel.yasd.general.levels.traps.FlashingTrap;
 import com.shatteredpixel.yasd.general.levels.traps.FrostTrap;
-import com.shatteredpixel.yasd.general.levels.traps.GrimTrap;
 import com.shatteredpixel.yasd.general.levels.traps.GuardianTrap;
 import com.shatteredpixel.yasd.general.levels.traps.PitfallTrap;
 import com.shatteredpixel.yasd.general.levels.traps.RockfallTrap;
@@ -58,88 +57,57 @@ import com.shatteredpixel.yasd.general.levels.traps.WarpingTrap;
 import com.shatteredpixel.yasd.general.levels.traps.WeakeningTrap;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.tiles.DungeonTilemap;
-import com.watabou.glwrap.Blending;
-import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
+import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
-import java.util.ArrayList;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WALL_DECO;
 
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WATER;
-
-public class HallsLevel extends RegularLevel {
+public class CityLevel extends RegularLevel {
 
 	{
-		
-		viewDistance = Math.min( Constants.MAX_DEPTH - Dungeon.depth, viewDistance );
-		
-		color1 = 0x801500;
-		color2 = 0xa68521;
+		color1 = 0x4b6636;
+		color2 = 0xf2f2f2;
 
-		minScaleFactor = 25;
-		maxScaleFactor = 30;
+		minScaleFactor = 19;
+		maxScaleFactor = 24;
 	}
-
-	@Override
-	protected ArrayList<Room> initRooms() {
-		ArrayList<Room> rooms = super.initRooms();
-
-		rooms.add(new DemonSpawnerRoom());
-		if (Dungeon.depth == 24){
-			rooms.add(new DemonSpawnerRoom());
-		}
-
-		return rooms;
-	}
-
-	@Override
-	public int nMobs() {
-		//remove one mob to account for ripper demon spawners
-		return super.nMobs()-1;
-	}
-
+	
 	@Override
 	protected int standardRooms() {
-		//8 to 10, average 8.67
-		return 8+Random.chances(new float[]{3, 2, 1});
+		//7 to 10, average 7.9
+		return 7+Random.chances(new float[]{4, 3, 2, 1});
 	}
 	
 	@Override
 	protected int specialRooms() {
-		//2 to 3, average 2.5
-		return 2 + Random.chances(new float[]{1, 1});
+		//2 to 3, average 2.33
+		return 2 + Random.chances(new float[]{2, 1});
 	}
-	
-	@Override
-	protected Painter painter() {
-		return new HallsPainter()
-				.setWater(feeling == Feeling.WATER ? 0.70f : 0.15f, 6)
-				.setGrass(feeling == Feeling.GRASS ? 0.65f : 0.10f, 3)
-				.setTraps(nTraps(), trapClasses(), trapChances());
-	}
-	
-	@Override
-	public void create(String key) {
-		addItemToSpawn( new Torch() );
-		addItemToSpawn( new Torch() );
-		super.create(key);
-	}
-	
+
 	@Override
 	public String tilesTex() {
-		return Assets.TILES_HALLS;
+		return Assets.TILES_CITY;
 	}
 	
 	@Override
 	public String waterTex() {
-		return Assets.WATER_HALLS;
+		return Assets.WATER_CITY;
 	}
 
 	@Override
 	public String loadImg() {
-		return Assets.LOADING_HALLS;
+		return Assets.LOADING_CITY;
+	}
+
+	@Override
+	protected Painter painter() {
+		return new CityPainter()
+				.setWater(feeling == Feeling.WATER ? 0.90f : 0.30f, 4)
+				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 3)
+				.setTraps(nTraps(), trapClasses(), trapChances());
 	}
 
 	@Override
@@ -147,7 +115,7 @@ public class HallsLevel extends RegularLevel {
 		return new Class[]{
 				FrostTrap.class, StormTrap.class, CorrosionTrap.class, BlazingTrap.class, DisintegrationTrap.class,
 				RockfallTrap.class, FlashingTrap.class, GuardianTrap.class, WeakeningTrap.class,
-				DisarmingTrap.class, SummoningTrap.class, WarpingTrap.class, CursingTrap.class, GrimTrap.class, PitfallTrap.class, DistortionTrap.class };
+				DisarmingTrap.class, SummoningTrap.class, WarpingTrap.class, CursingTrap.class, PitfallTrap.class, DistortionTrap.class };
 	}
 
 	@Override
@@ -155,16 +123,17 @@ public class HallsLevel extends RegularLevel {
 		return new float[]{
 				4, 4, 4, 4, 4,
 				2, 2, 2, 2,
-				1, 1, 1, 1, 1, 1, 1 };
+				1, 1, 1, 1, 1, 1 };
 	}
 
 	@Override
 	public Class<?>[] mobClasses() {
 		return new Class[] {
-				Eye.class,
-				Succubus.class,
-				Elemental.class,
-				Scorpio.class
+				Warlock.class,
+				Monk.class,
+				Elemental.random(),
+				Golem.class,
+				Ghoul.class
 		};
 	}
 
@@ -172,21 +141,22 @@ public class HallsLevel extends RegularLevel {
 	public float[] mobChances() {
 		return new float[] {
 				3,
-				5,
-				1,
-				2
+				3,
+				4,
+				2,
+				4
 		};
 	}
 
 	@Override
 	protected float[] connectionRoomChances() {
 		return new float[]{
-				15,
-				4,
 				0,
-				2,
+				0,
+				18,
 				3,
-				2,
+				3,
+				1,
 				1};
 	}
 
@@ -200,10 +170,10 @@ public class HallsLevel extends RegularLevel {
 				0,
 				0,
 				0,
-				0,
-				0,
 				15,
 				5,
+				0,
+				0,
 				1,
 				1,
 				1,
@@ -217,17 +187,19 @@ public class HallsLevel extends RegularLevel {
 	}
 
 	@Override
+	protected void createMobs() {
+		Imp.Quest.spawn( this );
+		
+		super.createMobs();
+	}
+	
+	@Override
 	public String tileName( Terrain tile ) {
 		switch (tile) {
 			case WATER:
-				return Messages.get(HallsLevel.class, "water_name");
-			case GRASS:
-				return Messages.get(HallsLevel.class, "grass_name");
+				return Messages.get(CityLevel.class, "water_name");
 			case HIGH_GRASS:
-				return Messages.get(HallsLevel.class, "high_grass_name");
-			case STATUE:
-			case STATUE_SP:
-				return Messages.get(HallsLevel.class, "statue_name");
+				return Messages.get(CityLevel.class, "high_grass_name");
 			default:
 				return super.tileName( tile );
 		}
@@ -236,13 +208,20 @@ public class HallsLevel extends RegularLevel {
 	@Override
 	public String tileDesc( Terrain tile) {
 		switch (tile) {
-			case WATER:
-				return Messages.get(HallsLevel.class, "water_desc");
+			case ENTRANCE:
+				return Messages.get(CityLevel.class, "entrance_desc");
+			case EXIT:
+				return Messages.get(CityLevel.class, "exit_desc");
+			case WALL_DECO:
+			case EMPTY_DECO:
+				return Messages.get(CityLevel.class, "deco_desc");
+			case EMPTY_SP:
+				return Messages.get(CityLevel.class, "sp_desc");
 			case STATUE:
 			case STATUE_SP:
-				return Messages.get(HallsLevel.class, "statue_desc");
+				return Messages.get(CityLevel.class, "statue_desc");
 			case BOOKSHELF:
-				return Messages.get(HallsLevel.class, "bookshelf_desc");
+				return Messages.get(CityLevel.class, "bookshelf_desc");
 			default:
 				return super.tileDesc( tile );
 		}
@@ -251,73 +230,57 @@ public class HallsLevel extends RegularLevel {
 	@Override
 	public Group addVisuals() {
 		super.addVisuals();
-		addHallsVisuals( this, visuals );
+		addCityVisuals( this, visuals );
 		return visuals;
 	}
-	
-	public static void addHallsVisuals( Level level, Group group ) {
+
+	public static void addCityVisuals(Level level, Group group ) {
 		for (int i=0; i < level.length(); i++) {
-			if (level.map[i] == WATER) {
-				group.add( new Stream( i ) );
+			if (level.map[i] == WALL_DECO) {
+				group.add( new Smoke( i ) );
 			}
 		}
 	}
 	
-	private static class Stream extends Group {
+	static class Smoke extends Emitter {
 		
 		private int pos;
 		
-		private float delay;
+		private static final Emitter.Factory factory = new Factory() {
+			
+			@Override
+			public void emit( Emitter emitter, int index, float x, float y ) {
+				SmokeParticle p = (SmokeParticle)emitter.recycle( SmokeParticle.class );
+				p.reset( x, y );
+			}
+		};
 		
-		public Stream( int pos ) {
+		public Smoke( int pos ) {
 			super();
 			
 			this.pos = pos;
 			
-			delay = Random.Float( 2 );
+			PointF p = DungeonTilemap.tileCenterToWorld( pos );
+			pos( p.x - 6, p.y - 4, 12, 12 );
+			
+			pour( factory, 0.2f );
 		}
 		
 		@Override
 		public void update() {
-
-			if (!Dungeon.level.liquid(pos)){
-				killAndErase();
-				return;
-			}
-			
 			if (visible = (pos < Dungeon.level.heroFOV.length && Dungeon.level.heroFOV[pos])) {
-				
 				super.update();
-				
-				if ((delay -= Game.elapsed) <= 0) {
-					
-					delay = Random.Float( 2 );
-					
-					PointF p = DungeonTilemap.tileToWorld( pos );
-					((FireParticle)recycle( FireParticle.class )).reset(
-						p.x + Random.Float( DungeonTilemap.SIZE ),
-						p.y + Random.Float( DungeonTilemap.SIZE ) );
-				}
 			}
-		}
-		
-		@Override
-		public void draw() {
-			Blending.setLightMode();
-			super.draw();
-			Blending.setNormalMode();
 		}
 	}
 	
-	public static class FireParticle extends PixelParticle.Shrinking {
+	public static final class SmokeParticle extends PixelParticle {
 		
-		public FireParticle() {
+		public SmokeParticle() {
 			super();
 			
-			color( 0xEE7722 );
-			lifespan = 1f;
-			
-			acc.set( 0, +80 );
+			color( 0x000000 );
+			speed.set( Random.Float( -2, 4 ), -Random.Float( 3, 6 ) );
 		}
 		
 		public void reset( float x, float y ) {
@@ -326,17 +289,15 @@ public class HallsLevel extends RegularLevel {
 			this.x = x;
 			this.y = y;
 			
-			left = lifespan;
-			
-			speed.set( 0, -40 );
-			size = 4;
+			left = lifespan = 2f;
 		}
 		
 		@Override
 		public void update() {
 			super.update();
 			float p = left / lifespan;
-			am = p > 0.8f ? (1 - p) * 5 : 1;
+			am = p > 0.8f ? 1 - p : p * 0.25f;
+			size( 6 - p * 3 );
 		}
 	}
 }

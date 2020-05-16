@@ -49,7 +49,7 @@ import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
 import com.shatteredpixel.yasd.general.items.quest.MetalShard;
 import com.shatteredpixel.yasd.general.items.wands.WandOfBlastWave;
-import com.shatteredpixel.yasd.general.levels.NewCavesBossLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.caves.NewCavesBossLevel;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;

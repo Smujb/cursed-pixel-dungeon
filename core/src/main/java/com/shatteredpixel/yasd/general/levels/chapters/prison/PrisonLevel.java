@@ -25,7 +25,7 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.levels;
+package com.shatteredpixel.yasd.general.levels.chapters.prison;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
@@ -35,6 +35,8 @@ import com.shatteredpixel.yasd.general.actors.mobs.DM100;
 import com.shatteredpixel.yasd.general.actors.mobs.Skeleton;
 import com.shatteredpixel.yasd.general.actors.mobs.Swarm;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Wandmaker;
+import com.shatteredpixel.yasd.general.levels.Level;
+import com.shatteredpixel.yasd.general.levels.RegularLevel;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.watabou.noosa.Halo;
 import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
@@ -59,8 +61,6 @@ import com.watabou.noosa.Group;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 

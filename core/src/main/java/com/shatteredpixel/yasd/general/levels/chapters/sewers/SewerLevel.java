@@ -25,7 +25,7 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.levels;
+package com.shatteredpixel.yasd.general.levels.chapters.sewers;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
@@ -39,6 +39,8 @@ import com.shatteredpixel.yasd.general.actors.mobs.npcs.Ghost;
 import com.shatteredpixel.yasd.general.effects.Ripple;
 import com.shatteredpixel.yasd.general.items.DewVial;
 import com.shatteredpixel.yasd.general.items.powers.Alchemy;
+import com.shatteredpixel.yasd.general.levels.Level;
+import com.shatteredpixel.yasd.general.levels.RegularLevel;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.painters.SewerPainter;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;

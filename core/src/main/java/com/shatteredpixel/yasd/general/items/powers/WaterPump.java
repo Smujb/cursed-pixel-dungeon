@@ -5,7 +5,7 @@ import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
-import com.shatteredpixel.yasd.general.levels.SewerLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.Camera;

@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.actors.mobs.Brute;
 import com.shatteredpixel.yasd.general.items.rings.RingOfEvasion;
 import com.shatteredpixel.yasd.general.items.rings.RingOfPerception;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
+import com.shatteredpixel.yasd.general.levels.chapters.prison.OldPrisonBossLevel;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.scenes.WelcomeScene;
@@ -117,7 +118,7 @@ public class CPDGame extends Game {
 				com.shatteredpixel.yasd.general.levels.rooms.sewerboss.SewerBossEntranceRoom.class,
 				"com.shatteredpixel.yasd.general.levels.rooms.standard.SewerBossEntranceRoom" );
 		com.watabou.utils.Bundle.addAlias(
-				com.shatteredpixel.yasd.general.levels.OldPrisonBossLevel.class,
+				OldPrisonBossLevel.class,
 				"com.shatteredpixel.yasd.general.levels.PrisonBossLevel" );
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.actors.mobs.OldTengu.class,

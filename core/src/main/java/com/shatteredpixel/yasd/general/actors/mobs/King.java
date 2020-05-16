@@ -47,7 +47,7 @@ import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
 import com.shatteredpixel.yasd.general.items.keys.SkeletonKey;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Grim;
-import com.shatteredpixel.yasd.general.levels.OldCityBossLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.city.OldCityBossLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.KingSprite;
