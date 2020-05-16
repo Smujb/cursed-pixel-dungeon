@@ -933,10 +933,9 @@ public class Hero extends Char {
 
 	public boolean doAttack(Char enemy, AttackType type) {
 
-		useStamina(type.staminaCost());
-
 		this.enemy = enemy;
 		if (enemy.isAlive() && canAttack( enemy ) && !isCharmedBy( enemy )) {
+			useStamina(type.staminaCost());
 
 			sprite.attack(enemy.pos, type);
 
