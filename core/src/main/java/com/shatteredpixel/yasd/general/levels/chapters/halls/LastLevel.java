@@ -264,7 +264,7 @@ public class LastLevel extends Level {
 							data[i] += 8;
 						}
 
-						if (map[cell] != Terrain.CHASM && map[cell+Dungeon.level.width] == Terrain.CHASM) {
+						if (map[cell] != Terrain.CHASM && map[cell+Dungeon.level.width()] == Terrain.CHASM) {
 							data[i+tileW] = 6;
 						}
 

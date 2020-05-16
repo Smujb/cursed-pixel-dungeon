@@ -37,17 +37,19 @@ import com.shatteredpixel.yasd.general.actors.mobs.TestBoss;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.levels.rooms.standard.EmptyRoom;
-import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
-import com.watabou.noosa.Group;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import org.jetbrains.annotations.NotNull;
 
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.*;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.DOOR;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.ENTRANCE;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WALL;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WATER;
 
 public class TestBossLevel extends Level {
 
@@ -159,13 +161,6 @@ public class TestBossLevel extends Level {
 			default:
 				return super.tileDesc(tile);
 		}
-	}
-
-	@Override
-	public Group addVisuals() {
-		super.addVisuals();
-		SewerLevel.addSewerVisuals(this, visuals);
-		return visuals;
 	}
 
 	@Override

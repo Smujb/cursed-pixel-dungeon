@@ -537,7 +537,7 @@ public class NewCityBossLevel extends Level {
 			int cell = (this.tileX + tileX) + (this.tileY + tileY)*tileW;
 
 			//demon halls tiles
-			if (cell < Dungeon.level.width*22){
+			if (cell < Dungeon.level.width()*22){
 				if (Dungeon.level.map[cell] == Terrain.STATUE){
 					return Messages.get(HallsLevel.class, "statue_name");
 				}
@@ -559,7 +559,7 @@ public class NewCityBossLevel extends Level {
 			int cell = (this.tileX + tileX) + (this.tileY + tileY)*tileW;
 
 			//demon halls tiles
-			if (cell < Dungeon.level.width*22){
+			if (cell < Dungeon.level.width()*22){
 				if (Dungeon.level.map[cell] == Terrain.EXIT){
 					return Messages.get(HallsLevel.class, "exit_desc");
 				} else if (Dungeon.level.map[cell] == Terrain.STATUE){

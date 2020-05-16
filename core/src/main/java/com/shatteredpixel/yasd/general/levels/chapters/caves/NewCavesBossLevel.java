@@ -691,7 +691,7 @@ public class NewCavesBossLevel extends Level {
 									data[i] = -1;
 								}
 							} else if (Dungeon.level.adjacent(k, j)) {
-								int w = Dungeon.level.width;
+								int w = Dungeon.level.width();
 								data[i] = 54 + (j % w + 8 * (j / w)) - (k % w + 8 * (k / w));
 							}
 						}

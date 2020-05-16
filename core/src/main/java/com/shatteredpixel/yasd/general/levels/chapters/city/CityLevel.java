@@ -242,7 +242,7 @@ public class CityLevel extends RegularLevel {
 		}
 	}
 	
-	static class Smoke extends Emitter {
+	public static class Smoke extends Emitter {
 		
 		private int pos;
 		

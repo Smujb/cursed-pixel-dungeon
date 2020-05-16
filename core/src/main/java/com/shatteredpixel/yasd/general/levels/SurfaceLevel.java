@@ -3,11 +3,9 @@ package com.shatteredpixel.yasd.general.levels;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
-import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.tiled.TiledMapLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.watabou.noosa.Group;
 
 public class SurfaceLevel extends TiledMapLevel {
 
@@ -65,13 +63,6 @@ public class SurfaceLevel extends TiledMapLevel {
 			default:
 				return super.tileDesc( tile );
 		}
-	}
-
-	@Override
-	public Group addVisuals() {
-		super.addVisuals();
-		SewerLevel.addSewerVisuals(this, visuals);
-		return visuals;
 	}
 
 
