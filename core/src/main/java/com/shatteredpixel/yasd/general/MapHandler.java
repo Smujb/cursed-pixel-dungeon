@@ -216,6 +216,7 @@ public class MapHandler {
 	private static final String KEY_KEY = "key";
 	private static final String KEY_MESSAGE = "message";
 
+	//FIXME seems to give wrong result in some cases.
 	public static void createAreas( Level level, Map map) {
 		loadMap(map);
 		for (int i = 0; i < areas.getCount(); i++) {
@@ -256,7 +257,11 @@ public class MapHandler {
 						}
 						area = switchArea.initVars(key, message, pos, depth);
 					}
-					area.setPos((int) rect.x/TILE_WIDTH, level.height()-(int) rect.y/TILE_WIDTH, Math.max(1, (int) rect.width/TILE_WIDTH), Math.max(1, (int) rect.height/TILE_WIDTH));
+					int x = Math.round(rect.x/TILE_WIDTH);
+					int y = Math.round(rect.y/TILE_WIDTH);
+					int width = Math.max(1, Math.round(rect.width/TILE_WIDTH));
+					int height = Math.max(1, Math.round(rect.height/TILE_WIDTH));
+					area.setPos(x, level.height()+2-y, width, height);
 					level.interactiveAreas.add(area);
 				}
 			}

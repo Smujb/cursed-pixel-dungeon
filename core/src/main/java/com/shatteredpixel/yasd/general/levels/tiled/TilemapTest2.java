@@ -38,17 +38,17 @@ public class TilemapTest2 extends TiledMapLevel {
 
 	@Override
 	public String tilesTex() {
-		return Assets.TILES_PRISON;
+		return Assets.TILES_SEWERS;
 	}
 
 	@Override
 	public String waterTex() {
-		return Assets.WATER_PRISON;
+		return Assets.WATER_SEWERS;
 	}
 
 	@Override
 	public String loadImg() {
-		return Assets.LOADING_PRISON;
+		return Assets.LOADING_SEWERS;
 	}
 
 	@Override
