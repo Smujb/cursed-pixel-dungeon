@@ -45,6 +45,9 @@ import com.watabou.utils.Point;
 
 import org.lwjgl.util.tinyfd.TinyFileDialogs;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -82,9 +85,13 @@ public class DesktopLauncher {
 
                 TinyFileDialogs.tinyfd_messageBox(title + " Has Crashed!",
                         title + " has run into an error it can't recover from and has crashed, sorry about that!\n\n" +
-                              //  "If you could, please email this error message to the developer (Evan@ShatteredPixel.com):\n\n" +
+                                "The error has been copied to your clipboard. If you can, please post it on my Discord.\n\n" +
                                 exceptionMsg,
                         "ok", "error", false );
+                String myString = exceptionMsg;
+                StringSelection stringSelection = new StringSelection(myString);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(stringSelection, null);
                 Gdx.app.exit();
             }
         });
