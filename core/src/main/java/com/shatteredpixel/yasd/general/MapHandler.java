@@ -242,7 +242,7 @@ public class MapHandler {
 						if (properties.containsKey(KEY_POS) && properties.get(KEY_POS) instanceof Integer) {
 							pos = (int) properties.get(KEY_POS);
 						}
-						int depth = 1;
+						int depth = -1;
 						if (properties.containsKey(KEY_DEPTH) && properties.get(KEY_DEPTH) instanceof Integer) {
 							depth = (int) properties.get(KEY_DEPTH);
 						}

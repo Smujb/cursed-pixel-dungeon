@@ -364,9 +364,12 @@ public class NewPrisonBossLevel extends Level {
 			i += 14;
 			cell += width();
 		}
-		
-		int exit = pointToCell(levelExit);
-		interactiveAreas.add(new Exit().setPos(this, exit));
+
+		for (int pos = 0; pos < length(); pos++) {
+			if (map[pos] == EXIT) {
+				interactiveAreas.add(new Exit().setPos(this, pos));
+			}
+		}
 	}
 	
 	//keep track of removed items as the level is changed. Dump them back into the level at the end.

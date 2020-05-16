@@ -30,7 +30,7 @@ package com.shatteredpixel.yasd.general.levels.tiled;
 import com.shatteredpixel.yasd.general.Assets;
 
 public class TilemapTest2 extends TiledMapLevel {
-	private static final String MAP_NAME = "maps/dungeon2_test.tmx";
+	private static final String MAP_NAME = "maps/sewer_dungeon.tmx";
 
 	public TilemapTest2() {
 		super();

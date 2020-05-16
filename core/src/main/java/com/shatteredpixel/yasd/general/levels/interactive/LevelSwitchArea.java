@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.levels.interactive;
 
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -52,6 +53,10 @@ public class LevelSwitchArea extends InteractiveArea {
 	@Override
 	public void interact(Hero hero) {
 		hero.curAction = null;
+
+		if (depth == -1) {
+			depth = Dungeon.depth;
+		}
 
 		Buff buff = hero.buff(TimekeepersHourglass.timeFreeze.class);
 		if (buff != null) buff.detach();
