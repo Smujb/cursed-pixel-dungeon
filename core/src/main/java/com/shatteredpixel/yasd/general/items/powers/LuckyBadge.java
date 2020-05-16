@@ -41,7 +41,7 @@ public class LuckyBadge extends Power {
 
 	//Testing
 	public Type type = Type.GRIND;
-	private static final float INCREASE_PER_DROP = 40;
+	private static final float INCREASE_PER_DROP = 25;
 
 	private static int dropsToRare = 0;
 	private static float dropsToUpgrade = INCREASE_PER_DROP;
