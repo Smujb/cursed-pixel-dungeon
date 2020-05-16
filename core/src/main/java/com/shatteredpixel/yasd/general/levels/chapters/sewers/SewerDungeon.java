@@ -33,7 +33,7 @@ import com.watabou.noosa.Group;
 
 public class SewerDungeon extends TiledMapLevel {
 
-	private static final String MAP_NAME = "maps/sewer_dungeon.tmx";
+	private static final String MAP_NAME = "maps/sewer_dungeon_old.tmx";
 
 	@Override
 	public String tilesTex() {

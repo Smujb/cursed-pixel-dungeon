@@ -237,6 +237,9 @@ public abstract class Level implements Bundlable {
 
 	//NOTE: to avoid lag I recommend using passable(pos), losBlocking(pos), etc instead of passable()[pos], losBlocking()[pos], etc when possible.
 	public boolean passable(int pos) {
+		if (edge(pos)) {
+			return false;
+		}
 		return map[pos].passable() & !avoid(pos);
 	}
 
@@ -250,6 +253,9 @@ public abstract class Level implements Bundlable {
 	}
 
 	public boolean losBlocking(int pos) {
+		if (edge(pos)) {
+			return true;
+		}
 		if (Blob.volumeAt(this, pos, DarkGas.class) > 0 || Blob.volumeAt(this, pos, SmokeScreen.class) > 0) {
 			return true;
 		}
@@ -295,6 +301,9 @@ public abstract class Level implements Bundlable {
 	}
 
 	public boolean solid(int pos) {
+		if (edge(pos)) {
+			return true;
+		}
 		if (Blob.volumeAt(this, pos, Web.class) > 0) {
 			return true;
 		}
@@ -1144,21 +1153,26 @@ public abstract class Level implements Bundlable {
 
 	public void buildFlagMaps() {
 		
-		int lastRow = length() - width();
+		/*int lastRow = length() - width();
 		for (int i=0; i < width(); i++) {
 			map[i] = WALL;
 			map[lastRow + i] = WALL;
 		}
+
 		for (int i=width(); i < lastRow; i += width()) {
 			map[i] = WALL;
 			map[i + width()-1] = WALL;
-		}
-
-		/*for (int i=0; i < length(); i++) {
-			openSpace[i] = !solid(i) &&
-					(!solid(i - 1) || !solid(i + 1)) &&
-					(!solid(i - width()) || !solid(i + width()));
 		}*/
+	}
+
+	public boolean edge(int pos) {
+		int lastRow = length() - width();
+		if (pos < width || pos > lastRow && pos < length()) {
+			return true;
+		} else if ( pos % width == 0 || pos % width == width - 1) {
+			return true;
+		}
+		return false;
 	}
 
 	public void destroy( int pos ) {
