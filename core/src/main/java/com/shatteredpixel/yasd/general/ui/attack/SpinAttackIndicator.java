@@ -31,6 +31,7 @@ public class SpinAttackIndicator extends AttackIndicator {
 						}
 					}
 					Invisibility.dispel();
+					hero.useStamina(Char.AttackType.SPIN.staminaCost());
 					hero.spendAndNext(hero.attackDelay());
 					hero.ready();
 				}

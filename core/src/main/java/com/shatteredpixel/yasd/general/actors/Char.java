@@ -79,7 +79,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Vulnerable;
 import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.buffs.Wet;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
-import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.Surprise;
@@ -187,12 +186,7 @@ public abstract class Char extends Actor {
 			return
 		}*/
 
-		public int proc(Char attacker, int damage, DamageSrc src) {
-			int cost = staminaCost();
-			if (attacker instanceof Hero && cost > 0) {
-				cost *= attacker.attackDelay();
-				((Hero)attacker).useStamina(cost);
-			}
+		public int proc(int damage, DamageSrc src) {
 			switch (this) {
 				case CRUSH:
 					src.ignoreDefense();
@@ -447,7 +441,7 @@ public abstract class Char extends Actor {
 			if (!enemy.isAlive()) {
 				return true;
 			}
-			dmg = type.proc(this, dmg, src);
+			dmg = type.proc(dmg, src);
 			enemy.damage( dmg, src );
 
 			if (Dungeon.hero.fieldOfView[enemy.pos] || Dungeon.hero.fieldOfView[pos]) {

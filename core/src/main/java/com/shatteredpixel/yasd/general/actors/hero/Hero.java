@@ -928,11 +928,13 @@ public class Hero extends Char {
 	}
 	
 	private boolean actAttack(@NotNull HeroAction.Attack action ) {
-
 		return doAttack(action.target, action.type);
 	}
 
 	public boolean doAttack(Char enemy, AttackType type) {
+
+		useStamina(type.staminaCost());
+
 		this.enemy = enemy;
 		if (enemy.isAlive() && canAttack( enemy ) && !isCharmedBy( enemy )) {
 
