@@ -18,6 +18,7 @@ import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.text.DecimalFormat;
@@ -45,6 +46,10 @@ public class LuckyBadge extends Power {
 
 	private static int dropsToRare = 0;
 	private static float dropsToUpgrade = INCREASE_PER_DROP;
+
+	private static final String RETURN_POS = "returnPos";
+	private static final String RETURN_DEPTH = "returnDepth";
+	private static final String RETURN_KEY = "returnKey";
 
 	private int returnPos = -1;
 	private String returnKey = null;
@@ -99,6 +104,22 @@ public class LuckyBadge extends Power {
 				returnKey = null;
 				break;
 		}
+	}
+
+	@Override
+	public void storeInBundle(Bundle bundle) {
+		super.storeInBundle(bundle);
+		bundle.put(RETURN_KEY, returnKey);
+		bundle.put(RETURN_POS, returnPos);
+		bundle.put(RETURN_DEPTH, returnDepth);
+	}
+
+	@Override
+	public void restoreFromBundle(Bundle bundle) {
+		super.restoreFromBundle(bundle);
+		returnKey = bundle.getString(RETURN_KEY);
+		returnPos = bundle.getInt(RETURN_POS);
+		returnDepth = bundle.getInt(RETURN_DEPTH);
 	}
 
 	@Override
