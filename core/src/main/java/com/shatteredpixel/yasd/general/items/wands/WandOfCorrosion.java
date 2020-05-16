@@ -61,7 +61,7 @@ public class WandOfCorrosion extends Wand {
 		int level = level();
 		CorrosiveGas gas = Blob.seed(bolt.collisionPos, 50 + 5 * level, CorrosiveGas.class);
 		CellEmitter.center(bolt.collisionPos).burst( CorrosionParticle.SPLASH, 10 );
-		gas.setStrength(2 + level*2);
+		gas.setStrength(2 + level);
 		GameScene.add(gas);
 
 		for (int i : PathFinder.NEIGHBOURS9) {

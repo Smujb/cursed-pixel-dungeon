@@ -54,7 +54,7 @@ public class WandOfPlasmaBolt extends DamageWand {
 
     @Override
     public float max(float lvl) {
-        return 16 + 16*lvl;
+        return 12 + 12*lvl;
     }
 
     @Override

@@ -88,21 +88,6 @@ public class WandOfTransfusion extends Wand {
 				float healing = selfDmg + 3*level();
 
 				ch.heal((int) healing, true);
-
-				/*float shielding = (ch.HP + healing) - ch.HT;
-				if (shielding > 0){
-					healing -= shielding;
-					Buff.affect(ch, Barrier.class).setShield((int)shielding);
-				} else {
-					shielding = 0;
-				}
-
-
-
-				ch.HP += healing;
-				
-				ch.sprite.emitter().burst(Speck.factory(Speck.HEALING), 2 + (int)level() / 2);
-				ch.sprite.showStatus(CharSprite.POSITIVE, "+%dHP", (int) (healing + shielding));*/
 				
 				if (!freeCharge) {
 					damageHero(selfDmg);

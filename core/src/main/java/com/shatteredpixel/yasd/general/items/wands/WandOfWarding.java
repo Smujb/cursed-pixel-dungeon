@@ -196,7 +196,7 @@ public class WandOfWarding extends DamageWand {
 	}
 
 	private static float realMax(float lvl) {
-		return 8 + 8 * lvl;
+		return 8 + 7 * lvl;
 	}
 
 	@Override

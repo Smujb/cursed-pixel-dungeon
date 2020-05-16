@@ -67,7 +67,7 @@ public class WandOfPrismaticLight extends DamageWand {
 	}
 	@Override
 	public float max(float lvl){
-		return 5+6*lvl;
+		return 5+4*lvl;
 	}
 
 	@Override

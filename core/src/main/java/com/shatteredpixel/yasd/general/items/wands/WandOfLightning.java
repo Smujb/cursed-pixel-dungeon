@@ -70,7 +70,7 @@ public class WandOfLightning extends DamageWand {
 
 	@Override
 	public float max(float lvl){
-		return 10+12*lvl;
+		return 10+9*lvl;
 	}
 	
 	@Override
