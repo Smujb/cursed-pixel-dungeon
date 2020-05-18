@@ -70,10 +70,11 @@ import com.shatteredpixel.yasd.general.levels.chapters.prison.PrisonLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.FirstLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerBossLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerDungeon;
+import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerDungeonEast;
+import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerDungeonPlaceholder;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.levels.rooms.secret.SecretRoom;
 import com.shatteredpixel.yasd.general.levels.rooms.special.SpecialRoom;
-import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerDungeonEast;
 import com.shatteredpixel.yasd.general.mechanics.ShadowCaster;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -291,7 +292,8 @@ public class Dungeon {
 		
 		//Dungeon levels
 		//Sewers
-		staticLevels.put("sewers - 3", SewerDungeon.class);
+		staticLevels.put("sewers - 3", SewerDungeonPlaceholder.class);
+		staticLevels.put("sewer dungeon main", SewerDungeon.class);
 		staticLevels.put("sewer dungeon east", SewerDungeonEast.class);
 		
 		
