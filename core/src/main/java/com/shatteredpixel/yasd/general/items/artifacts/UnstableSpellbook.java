@@ -54,8 +54,6 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -183,7 +181,6 @@ public class UnstableSpellbook extends Artifact {
 
 		@Override
 		public boolean act() {
-			curUser = Dungeon.hero;
 			scroll.anonymize();
 			scroll.doRead();
 			detach();

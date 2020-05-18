@@ -77,7 +77,7 @@ public abstract class InventoryScroll extends Scroll {
 	
 	protected abstract void onItemSelected( Item item );
 	
-	private static boolean identifiedByUse = false;
+	private boolean identifiedByUse = false;
 
 	protected WndBag.Listener itemSelector = new WndBag.Listener(this) {
 		@Override
@@ -87,9 +87,9 @@ public abstract class InventoryScroll extends Scroll {
 			
 			if (item != null) {
 
-				//If the scroll was identified by use, mana will already have been consumed.
-				if (curUser instanceof Hero && !((Hero) curUser).useMP(mpCost) && !identifiedByUse) {
-					GLog.w(Messages.get(InventoryScroll.this, "no_mana"));
+				//If the scroll was identified by use, mana will already have been consumed. Anonymous scrolls are called by the Spellbook and Catalysts.
+				if (!parent.anonymous && !parent.identifiedByUse && parent.curUser instanceof Hero && !((Hero) parent.curUser).useMP(mpCost) ) {
+					GLog.w(Messages.get(parent, "no_mana"));
 					parent.collect( curUser.belongings.backpack, curUser);
 					return;
 				}

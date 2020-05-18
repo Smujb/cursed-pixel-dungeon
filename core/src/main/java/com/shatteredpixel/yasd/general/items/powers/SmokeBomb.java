@@ -31,7 +31,7 @@ public class SmokeBomb extends Power {
 		GameScene.selectCell( teleporter );
 	}
 
-	private static CellSelector.Listener teleporter = new  CellSelector.Listener() {
+	private CellSelector.Listener teleporter = new CellSelector.Listener() {
 
 		@Override
 		public void onSelect( Integer target ) {

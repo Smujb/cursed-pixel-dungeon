@@ -227,8 +227,6 @@ public class WandOfWarding extends DamageWand {
 		{
 			spriteClass = WardSprite.class;
 
-			alignment = curUser.alignment;
-
 			properties.add(Char.Property.IMMOVABLE);
 
 			viewDistance = 3;
@@ -417,7 +415,7 @@ public class WandOfWarding extends DamageWand {
 			if (c != Dungeon.hero){
 				return true;
 			}
-			if (alignment == curUser.alignment) {
+			if (alignment == c.alignment) {
 				Game.runOnRenderThread(new Callback() {
 					@Override
 					public void call() {
