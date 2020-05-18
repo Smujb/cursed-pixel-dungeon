@@ -46,10 +46,15 @@ import com.shatteredpixel.yasd.general.effects.particles.ElmoParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.Torch;
 import com.shatteredpixel.yasd.general.items.armor.glyphs.Viscosity;
 import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
+import com.shatteredpixel.yasd.general.items.powers.HeroicLeap;
+import com.shatteredpixel.yasd.general.items.powers.MoltenEarth;
+import com.shatteredpixel.yasd.general.items.powers.RaiseDead;
+import com.shatteredpixel.yasd.general.items.powers.SmokeBomb;
+import com.shatteredpixel.yasd.general.items.powers.SpectralBlades;
+import com.shatteredpixel.yasd.general.items.quest.MetalShard;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.levels.chapters.city.NewCityBossLevel;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -409,6 +414,28 @@ public class DwarfKing extends Boss {
 
 		super.die( cause );
 
+		Item item;
+		switch (Dungeon.hero.heroClass) {
+			case MAGE:
+				item = new MoltenEarth();
+				break;
+			case ROGUE:
+				item = new SmokeBomb();
+				break;
+			case WARRIOR: default:
+				item = new HeroicLeap();
+				break;
+			case HUNTRESS:
+				item = new SpectralBlades();
+				break;
+			case PRIESTESS:
+				item = new RaiseDead();
+				break;
+		}
+		if (Dungeon.hero.belongings.getItem(item.getClass()) != null) {
+			item = new MetalShard();
+		}
+
 		if (Dungeon.level.solid(pos)) {
 			Heap h = Dungeon.level.heaps.get(pos);
 			if (h != null) {
@@ -417,10 +444,10 @@ public class DwarfKing extends Boss {
 				}
 				h.destroy();
 			}
-			Dungeon.level.drop(new Torch(), pos + Dungeon.level.width()).sprite.drop(pos);
+			Dungeon.level.drop(item, pos + Dungeon.level.width()).sprite.drop(pos);
 		} else {
 			//if the king is on his throne, drop the toolkit below
-			Dungeon.level.drop(new Torch(), pos).sprite.drop();
+			Dungeon.level.drop(item, pos).sprite.drop();
 		}
 
 		Badges.validateBossSlain();
