@@ -10,11 +10,16 @@ public class StaminaRegen extends Buff {
 
 	@Override
 	public boolean act() {
-		if (target.isAlive() && target instanceof Hero && !((Hero) target).isStarving()) {
+		if (target.isAlive() && target instanceof Hero) {
 			Hero hero = (Hero) target;
+
+			float increase = 1f;
+			if (hero.isStarving()) {
+				increase /= 2f;
+			}
 			int max = hero.maxStamina();
 			if (hero.stamina < max) {
-				hero.stamina = Math.min(max, hero.stamina + 1);
+				hero.stamina = Math.min(max, hero.stamina + increase);
 			}
 		}
 		spend( TICK );
