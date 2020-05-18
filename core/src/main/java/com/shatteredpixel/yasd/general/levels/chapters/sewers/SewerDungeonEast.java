@@ -25,14 +25,15 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.levels.tiled;
+package com.shatteredpixel.yasd.general.levels.chapters.sewers;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.levels.tiled.TiledMapLevel;
 
-public class TilemapTest2 extends TiledMapLevel {
-	private static final String MAP_NAME = "maps/sewer_dungeon.tmx";
+public class SewerDungeonEast extends TiledMapLevel {
+	private static final String MAP_NAME = "maps/sewer_dungeon/sewer_dungeon_east.tmx";
 
-	public TilemapTest2() {
+	public SewerDungeonEast() {
 		super();
 	}
 
