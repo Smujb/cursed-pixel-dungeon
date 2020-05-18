@@ -190,7 +190,8 @@ public class Statue extends Mob implements Callback {
 
 				if (closest == -1){
 					sprite.centerEmitter().burst(MagicMissile.WardParticle.FACTORY, 8);
-					return;
+					spend(TICK);
+					next();
 				} else {
 					wand.zap(closest);
 				}
@@ -199,8 +200,6 @@ public class Statue extends Mob implements Callback {
 			}
 
 		}
-		spend(1f);
-		next();
 	}
 
 	@Override
