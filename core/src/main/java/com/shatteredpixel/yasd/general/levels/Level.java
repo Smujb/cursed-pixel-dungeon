@@ -197,7 +197,6 @@ public abstract class Level implements Bundlable {
 	
 	public boolean[] heroFOV;
 
-
 	protected int minScaleFactor = 0;
 	protected int maxScaleFactor = -1;
 	//By default, scales with hero level and has max and min defined within the individual levels. -1 max gives no limit.

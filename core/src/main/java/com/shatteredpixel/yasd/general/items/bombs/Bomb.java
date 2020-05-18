@@ -40,6 +40,7 @@ import com.shatteredpixel.yasd.general.effects.particles.SmokeParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.Recipe;
+import com.shatteredpixel.yasd.general.items.bags.BombBag;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfFrost;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
@@ -75,13 +76,14 @@ public class Bomb extends Item {
 		defaultAction = AC_LIGHTTHROW;
 		usesTargeting = true;
 
+		necessaryBag = BombBag.class;
+
 		stackable = true;
 	}
 
 	public Fuse fuse;
 
-	//FIXME using a static variable for this is kinda gross, should be a better way
-	private static boolean lightingFuse = false;
+	private boolean lightingFuse = false;
 
 	private static final String AC_LIGHTTHROW = "LIGHTTHROW";
 

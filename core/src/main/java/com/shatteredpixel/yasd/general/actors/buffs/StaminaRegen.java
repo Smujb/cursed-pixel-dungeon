@@ -16,10 +16,8 @@ public class StaminaRegen extends Buff {
 			if (hero.stamina < max) {
 				hero.stamina = Math.min(max, hero.stamina + 1);
 			}
-			spend( TICK );
-		} else {
-			diactivate();
 		}
+		spend( TICK );
 		return true;
 	}
 }

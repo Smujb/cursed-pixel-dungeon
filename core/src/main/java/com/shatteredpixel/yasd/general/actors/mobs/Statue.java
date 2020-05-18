@@ -186,7 +186,7 @@ public class Statue extends Mob implements Callback {
 			}
 			wand.activate(this);
 			if (wand instanceof WandOfWarding) {//Wand of Warding cannot zap directly
-				int closest = findClosest(enemy, this.pos);
+				int closest = findClosest(enemy, pos);
 
 				if (closest == -1){
 					sprite.centerEmitter().burst(MagicMissile.WardParticle.FACTORY, 8);

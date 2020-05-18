@@ -78,7 +78,7 @@ public class Item implements Bundlable {
 	public String defaultAction = AC_INFO;
 	public boolean usesTargeting;
 
-	public Class<? extends Bag> necessaryBag = null;
+	protected Class<? extends Bag> necessaryBag = null;
 	
 	protected String name = Messages.get(this, "name");
 	public int image = 0;

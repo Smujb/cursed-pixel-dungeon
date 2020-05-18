@@ -261,7 +261,7 @@ public class MapHandler {
 					int y = Math.round(rect.y/TILE_WIDTH);
 					int width = Math.max(1, Math.round(rect.width/TILE_WIDTH));
 					int height = Math.max(1, Math.round(rect.height/TILE_WIDTH));
-					area.setPos(x, level.height()+2-y, width, height);
+					area.setPos(x, level.height()-y, width, height);
 					level.interactiveAreas.add(area);
 				}
 			}
