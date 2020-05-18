@@ -62,18 +62,6 @@
     <property name="key" value="sewers - 4"/>
    </properties>
   </object>
-  <object id="2" name="To East side" type="Interactive Area" x="384" y="256" width="32" height="48">
-   <properties>
-    <property name="className" value="LevelSwitchArea"/>
-    <property name="key" value="sewers - 4"/>
-   </properties>
-  </object>
-  <object id="3" name="To East side" type="Interactive Area" x="336" y="48" width="32" height="48">
-   <properties>
-    <property name="className" value="LevelSwitchArea"/>
-    <property name="key" value="sewers - 4"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup id="3" name="mobs"/>
  <objectgroup id="4" name="items"/>

@@ -28,8 +28,6 @@
 package com.shatteredpixel.yasd.general.levels.tiled;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
-import com.watabou.noosa.Group;
 
 public class TilemapTest2 extends TiledMapLevel {
 	private static final String MAP_NAME = "maps/sewer_dungeon.tmx";
@@ -56,16 +54,5 @@ public class TilemapTest2 extends TiledMapLevel {
 	@Override
 	protected String mapName() {
 		return MAP_NAME;
-	}
-
-	@Override
-	public Group addVisuals() {
-		Group group = super.addVisuals();
-		for (int i = 0; i < length(); i++) {
-			if (findArea(i) != null) {
-				group.add( new SewerLevel.Sink( i ) );
-			}
-		}
-		return group;
 	}
 }
