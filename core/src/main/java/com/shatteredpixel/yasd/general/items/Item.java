@@ -589,26 +589,28 @@ public class Item implements Bundlable {
 							enemy.sprite,
 							this,
 							new Callback() {
-						@Override
-						public void call() {
-							curUser = user;
-							Item.this.detach(user.belongings.backpack).onThrow(cell);
-							user.spendAndNext(delay);
-						}
-					});
+								@Override
+								public void call() {
+									Item.this.detach(user.belongings.backpack);
+									Item.this.curUser = user;
+									Item.this.onThrow(cell);
+									user.spendAndNext(delay);
+								}
+							});
 		} else {
 			((MissileSprite) user.sprite.parent.recycle(MissileSprite.class)).
 					reset(user.sprite,
 							cell,
 							this,
 							new Callback() {
-						@Override
-						public void call() {
-							curUser = user;
-							Item.this.detach(user.belongings.backpack).onThrow(cell);
-							user.spendAndNext(delay);
-						}
-					});
+								@Override
+								public void call() {
+									Item.this.detach(user.belongings.backpack);
+									Item.this.curUser = user;
+									Item.this.onThrow(cell);
+									user.spendAndNext(delay);
+								}
+							});
 		}
 	}
 	
