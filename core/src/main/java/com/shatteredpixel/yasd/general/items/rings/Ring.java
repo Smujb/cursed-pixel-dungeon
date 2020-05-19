@@ -320,6 +320,18 @@ public class Ring extends KindofMisc {
 		}
 		return bonus;
 	}
+
+	protected static float multiplier(int level) {
+		return (float) (1f - Math.pow(0.9f, level));
+	}
+
+	protected static float multiplier(Char target, Class<?extends RingBuff> type) {
+		return multiplier(getBonus(target, type));
+	}
+
+	protected final float soloMultiplier() {
+		return multiplier(soloBonus());
+	}
 	
 	public int soloBonus(){
 		if (cursed){

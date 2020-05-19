@@ -28,26 +28,18 @@
 package com.shatteredpixel.yasd.general.items.rings;
 
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.messages.Messages;
 
-public class RingOfEvasion extends Ring {
+public class RingOfEvasion extends HeroStatRing {
 
 	@Override
 	protected RingBuff buff( ) {
-		return new EvasionBuff();
+		return new Evasion();
 	}
 
-	public String statsInfo() {
-		if (isIdentified()){
-			return Messages.get(this, "stats", soloBonus() * 2);
-		} else {
-			return Messages.get(this, "typical_stats", 2);
-		}
+	public static int statBonus(Char target) {
+		return statBonus(target, Evasion.class);
 	}
 
-	public static int evasionBonus(Char target ){
-		return getBonus(target, EvasionBuff.class)/3;
+	public class Evasion extends RingBuff {
 	}
-
-	public class EvasionBuff extends RingBuff {}
 }

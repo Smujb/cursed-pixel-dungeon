@@ -28,27 +28,16 @@
 package com.shatteredpixel.yasd.general.items.rings;
 
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.messages.Messages;
 
-import java.text.DecimalFormat;
-
-public class RingOfAttunement extends Ring {
-	
-	public String statsInfo() {
-		if (isIdentified()){
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (Math.pow(1.15f, soloBonus()) - 1f)));
-		} else {
-			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(15f));
-		}
-	}
+public class RingOfAttunement extends HeroStatRing {
 	
 	@Override
 	protected RingBuff buff( ) {
 		return new Attunement();
 	}
-	
-	public static int attunementBonus(Char target ){
-		return getBonus(target, Attunement.class)/3;
+
+	public static int statBonus(Char target) {
+		return statBonus(target, Attunement.class);
 	}
 
 	public class Attunement extends RingBuff {

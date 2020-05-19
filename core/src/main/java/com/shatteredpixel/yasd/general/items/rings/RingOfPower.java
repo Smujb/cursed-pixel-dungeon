@@ -31,9 +31,8 @@ package com.shatteredpixel.yasd.general.items.rings;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.messages.Messages;
 
-public class RingOfPower extends Ring {
+public class RingOfPower extends HeroStatRing {
 
 	@Override
 	public boolean doEquip(Hero hero) {
@@ -80,16 +79,9 @@ public class RingOfPower extends Ring {
 		return new PowerBuff();
 	}
 
-	public String statsInfo() {
-		if (isIdentified()){
-			return Messages.get(this, "stats", soloBonus() * 2);
-		} else {
-			return Messages.get(this, "typical_stats", 2);
-		}
-	}
 
-	public static int powerBonus(Char target ){
-		return getBonus(target, PowerBuff.class)/3;
+	public static int statBonus(Char target ){
+		return statBonus(target, PowerBuff.class);
 	}
 
 	public class PowerBuff extends RingBuff {}

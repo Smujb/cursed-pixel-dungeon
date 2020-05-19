@@ -28,25 +28,16 @@
 package com.shatteredpixel.yasd.general.items.rings;
 
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.messages.Messages;
 
-public class RingOfFocus extends Ring {
+public class RingOfFocus extends HeroStatRing {
 
 	@Override
 	protected RingBuff buff( ) {
 		return new FocusBuff();
 	}
 
-	public String statsInfo() {
-		if (isIdentified()){
-			return Messages.get(this, "stats", soloBonus() * 2);
-		} else {
-			return Messages.get(this, "typical_stats", 2);
-		}
-	}
-
-	public static int focusBonus(Char target ) {
-		return getBonus(target, FocusBuff.class)/3;
+	public static int statBonus(Char target) {
+		return statBonus(target, FocusBuff.class);
 	}
 
 	public class FocusBuff extends RingBuff {}

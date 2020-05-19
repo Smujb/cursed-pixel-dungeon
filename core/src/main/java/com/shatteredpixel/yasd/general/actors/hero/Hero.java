@@ -259,11 +259,11 @@ public class Hero extends Char {
 	private static class Stamina {};
 
 	public int getPower() {
-		return Power + RingOfPower.powerBonus(this);
+		return Power + RingOfPower.statBonus(this);
 	}
 
 	public int getPerception() {
-		int perception = Perception + RingOfPerception.perceptionBonus(this);
+		int perception = Perception + RingOfPerception.statBonus(this);
 		if (buff(Drunk.class) != null) {
 			perception /= 2;
 		}
@@ -271,11 +271,11 @@ public class Hero extends Char {
 	}
 
 	public int getFocus() {
-		return Focus + RingOfFocus.focusBonus(this);
+		return Focus + RingOfFocus.statBonus(this);
 	}
 
 	public int getEvasion() {
-		int evasion = Evasion + RingOfEvasion.evasionBonus(this);
+		int evasion = Evasion + RingOfEvasion.statBonus(this);
 		if (buff(Drunk.class) != null) {
 			evasion /= 2;
 		}
@@ -283,7 +283,7 @@ public class Hero extends Char {
 	}
 
 	public int getAttunement() {
-		return Attunement + RingOfAttunement.attunementBonus(this);
+		return Attunement + RingOfAttunement.statBonus(this);
 	}
 
 	public void setPower(int power) {
