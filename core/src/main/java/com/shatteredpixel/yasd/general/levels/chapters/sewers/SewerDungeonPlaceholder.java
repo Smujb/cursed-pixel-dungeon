@@ -4,7 +4,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.levels.tiled.TiledMapLevel;
 
 public class SewerDungeonPlaceholder extends TiledMapLevel {
-	private static final String MAP_NAME = "maps/sewer_dungeon.tmx";
+	private static final String MAP_NAME = "maps/sewer_dungeon_old.tmx";
 
 	@Override
 	public String tilesTex() {
