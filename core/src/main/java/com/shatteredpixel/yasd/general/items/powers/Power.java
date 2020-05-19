@@ -46,6 +46,10 @@ public abstract class Power extends Item {
 	float partialCharge = 0;
 	int chargeCap = 100;
 
+	public CorruptedSpell corruptedVersion() {
+		return null;
+	}
+
 	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = new ArrayList<>();
@@ -61,13 +65,14 @@ public abstract class Power extends Item {
 		}
 	}
 
-	private void activatePower(Hero hero) {
+	protected void activatePower(Hero hero) {
 		if (usesTargeting) {
 			GameScene.selectCell(zapper);
-		} else if (mp_cost == -1 || hero.useMP(mp_cost)) {
+		} else if (mp_cost == -1 || use()) {
 			onUse(hero);
+		} else {
+			GLog.n(Messages.get(this, "no_mp"));
 		}
-		GLog.n(Messages.get(this, "no_mp"));
 	}
 
 	protected void onUse(Hero hero) {
@@ -90,6 +95,10 @@ public abstract class Power extends Item {
 		return false;
 	}
 
+	protected boolean use() {
+		return curUser instanceof Hero && ((Hero) curUser).useMP(mp_cost);
+	}
+
 	protected CellSelector.Listener zapper = new  CellSelector.Listener(this) {
 
 		@Override
@@ -110,7 +119,7 @@ public abstract class Power extends Item {
 				} else if (curUser.buff(MagicImmune.class) != null) {
 					GLog.w(Messages.get(Wand.class, "no_magic"));
 					return;
-				} else if (curUser instanceof Hero && !((Hero) curUser).useMP(curPower.mp_cost)) {
+				} else if (!curPower.use()) {
 					GLog.n(Messages.get(this, "no_mp"));
 					curPower.spendTime();
 					return;

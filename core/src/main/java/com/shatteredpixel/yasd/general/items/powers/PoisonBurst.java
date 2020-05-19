@@ -43,5 +43,39 @@ public class PoisonBurst extends Power {
 				callback);
 		Sample.INSTANCE.play( Assets.SND_ZAP );
 	}
+
+	@Override
+	public CorruptedSpell corruptedVersion() {
+		return new CorruptedPoisonBurst();
+	}
+
+	public static class CorruptedPoisonBurst extends CorruptedSpell {
+		{
+			image = ItemSpriteSheet.POISONBURST;
+			hp_cost = 20;
+
+			usesTargeting = true;
+		}
+
+		@Override
+		public void onZap(Ballistica shot) {
+			super.onZap(shot);
+			Char ch = Actor.findChar(shot.collisionPos);
+			if (ch != null && curUser instanceof Hero) {
+				ch.damage(Random.NormalIntRange(1, ((Hero) curUser).maxMP()), new Char.DamageSrc(Element.TOXIC, this));
+				Buff.affect(ch, Poison.class).set( 6 + Dungeon.getScaleFactor() );
+			}
+		}
+
+		@Override
+		public void fx(Ballistica shot, Callback callback) {
+			MagicMissile.boltFromChar( curUser.sprite.parent,
+					MagicMissile.POISON,
+					curUser.sprite,
+					shot.collisionPos,
+					callback);
+			Sample.INSTANCE.play( Assets.SND_ZAP );
+		}
+	}
 }
 
