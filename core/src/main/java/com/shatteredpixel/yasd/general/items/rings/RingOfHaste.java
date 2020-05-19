@@ -36,9 +36,9 @@ public class RingOfHaste extends Ring {
 	
 	public String statsInfo() {
 		if (isIdentified()){
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (Math.pow(1.2f, soloBonus()) - 1f)));
+			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (2f * soloMultiplier())));
 		} else {
-			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(20f));
+			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format((2f * multiplier(0))));
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class RingOfHaste extends Ring {
 	}
 	
 	public static float speedMultiplier( Char target ){
-		return (float)Math.pow(1.2, getBonus(target, Haste.class));
+		return 1 + 2f * multiplier(target, Haste.class);
 	}
 	
 	public class Haste extends RingBuff {

@@ -88,11 +88,6 @@ public class Ring extends KindofMisc {
 	//rings cannot be 'used' like other equipment, so they ID purely based on exp
 	private float levelsToID = 1;
 
-	@Override
-	public int upgradeLimit() {
-		return 15;
-	}
-
 	@SuppressWarnings("unchecked")
 	public static void initGems() {
 		handler = new ItemStatusHandler<>( (Class<? extends Ring>[])rings, gems );

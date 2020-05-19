@@ -33,12 +33,12 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import java.text.DecimalFormat;
 
 public class RingOfFuror extends Ring {
-	
+
 	public String statsInfo() {
 		if (isIdentified()){
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (Math.pow(1.105f, soloBonus()) - 1f)));
+			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (2f * soloMultiplier())));
 		} else {
-			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(10.5f));
+			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format((2f * multiplier(0))));
 		}
 	}
 
@@ -48,7 +48,7 @@ public class RingOfFuror extends Ring {
 	}
 	
 	public static float attackDelayMultiplier(Char target ){
-		return 1f / (float)Math.pow(1.105, getBonus(target, Furor.class));
+		return 1 + 2f * multiplier(target, Furor.class);
 	}
 
 	public class Furor extends RingBuff {
