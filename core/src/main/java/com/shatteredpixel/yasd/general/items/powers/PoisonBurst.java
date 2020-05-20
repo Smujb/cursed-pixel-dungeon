@@ -69,12 +69,7 @@ public class PoisonBurst extends Power {
 
 		@Override
 		public void fx(Ballistica shot, Callback callback) {
-			MagicMissile.boltFromChar( curUser.sprite.parent,
-					MagicMissile.POISON,
-					curUser.sprite,
-					shot.collisionPos,
-					callback);
-			Sample.INSTANCE.play( Assets.SND_ZAP );
+			new PoisonBurst().fx(shot, callback);
 		}
 	}
 }

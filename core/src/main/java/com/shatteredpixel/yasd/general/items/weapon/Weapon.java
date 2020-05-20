@@ -351,7 +351,7 @@ abstract public class Weapon extends KindOfWeapon {
 
 	@Override
 	public ItemSprite.Glowing glowing() {
-		return enchantment != null && (cursedKnown || !enchantment.curse()) ? enchantment.glowing() : null;
+		return enchantment != null && cursedKnown ? enchantment.glowing() : null;
 	}
 
 	public static abstract class Enchantment implements Bundlable {

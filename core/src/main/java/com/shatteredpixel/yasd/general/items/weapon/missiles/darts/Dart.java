@@ -74,8 +74,8 @@ public class Dart extends MissileWeapon {
 	@Override
 	public int min(float lvl) {
 		int base = 1 + Dungeon.getScaleFactor()/2;
-		if (bow != null){
-			return  bow.min(lvl);  //+1 per level or bow level
+		if (getCrossbow() != null){
+			return  getCrossbow().min(lvl);  //+1 per level or bow level
 		} else {
 			return  Math.round(base +     //1 base, down from 2
 					lvl);    //scaling unchanged
@@ -85,15 +85,13 @@ public class Dart extends MissileWeapon {
 	@Override
 	public int max(float lvl) {
 		int base = 2 + Dungeon.getScaleFactor();
-		if (bow != null){
-			return bow.max(lvl);  //+3 per bow level, +2 per level (default scaling +2)
+		if (getCrossbow() != null){
+			return getCrossbow().max(lvl);  //+3 per bow level, +2 per level (default scaling +2)
 		} else {
 			return  Math.round(base +     //2 base, down from 5
 					2*lvl);  //scaling unchanged
 		}
 	}
-	
-	private static Projectile bow;
 
 	private Projectile getCrossbow() {
 		if (curUser.belongings.getWeapon() instanceof Projectile) {
@@ -105,7 +103,7 @@ public class Dart extends MissileWeapon {
 	
 	@Override
 	public boolean hasEnchant(Class<? extends Enchantment> type, Char owner) {
-		if (bow != null && bow.hasEnchant(type, owner)){
+		if (getCrossbow() != null && getCrossbow().hasEnchant(type, owner)){
 			return true;
 		} else {
 			return super.hasEnchant(type, owner);
@@ -114,24 +112,13 @@ public class Dart extends MissileWeapon {
 	
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
-		if (bow != null && bow.enchantment != null && attacker.buff(MagicImmune.class) == null){
-			level(bow.level());
-			damage = bow.enchantment.proc(this, attacker, defender, damage);
+
+		if (getCrossbow() != null && getCrossbow().enchantment != null && attacker.buff(MagicImmune.class) == null){
+			level(getCrossbow().level());
+			damage = getCrossbow().enchantment.proc(this, attacker, defender, damage);
 			level(0);
 		}
 		return super.proc(attacker, defender, damage);
-	}
-
-	@Override
-	protected void onThrow(int cell) {
-		bow = getCrossbow();
-		super.onThrow(cell);
-	}
-	
-	@Override
-	public String info() {
-		bow = getCrossbow();
-		return super.info();
 	}
 	
 	@Override

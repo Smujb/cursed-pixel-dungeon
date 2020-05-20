@@ -59,7 +59,6 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRage;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
-import com.shatteredpixel.yasd.general.items.spells.CurseInfusion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Basic;
@@ -68,6 +67,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sneak;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
+import com.shatteredpixel.yasd.general.items.weapon.missiles.darts.Dart;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.DeviceCompat;
@@ -155,7 +155,8 @@ public enum HeroClass {
 	}
 
 	public static void initTest(Hero hero) {
-		new CurseInfusion().quantity(100).collect();
+		//new CurseInfusion().quantity(100).collect();
+		new Dart().quantity(2).collect(hero.belongings.backpack, hero);
 		new DeveloperItem().collect(hero.belongings.backpack, hero);
 	}
 
