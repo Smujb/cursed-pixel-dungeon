@@ -201,7 +201,7 @@ public class ItemSlot extends Button {
 
 		topLeft.text( item.status() );
 
-		if (item.topRightStatus(item.levelKnown) != null) {
+		if (item != null && item.topRightStatus(item.levelKnown) != null) {
 			topRight.text(item.topRightStatus(item.levelKnown));
 			if (item.levelKnown) {
 				if (!item.canTypicallyUse(Dungeon.hero)) {
