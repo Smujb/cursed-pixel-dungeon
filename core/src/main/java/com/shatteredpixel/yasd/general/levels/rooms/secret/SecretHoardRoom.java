@@ -73,7 +73,7 @@ public class SecretHoardRoom extends SecretRoom {
 		}
 		
 		for (Point p : getPoints()){
-			if (Random.Int(2) == 0 && level.map[level.pointToCell(p)] == Terrain.EMPTY){
+			if (Random.Int(2) == 0 && level.getTerrain(level.pointToCell(p)) == Terrain.EMPTY){
 				level.setTrap(Reflection.newInstance(trapClass).reveal(), level.pointToCell(p));
 				//Painter.set(level, p, Terrain.TRAP);
 			}

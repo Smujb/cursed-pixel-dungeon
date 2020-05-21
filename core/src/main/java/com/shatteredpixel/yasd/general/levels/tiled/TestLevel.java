@@ -22,7 +22,7 @@ public class TestLevel extends Level {
 	@Override
 	protected boolean build() {
 		setSize(32, 32);
-		map = basicMap(length());
+		setMap(basicMap(length()));
 		return true;
 	}
 

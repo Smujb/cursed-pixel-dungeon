@@ -205,31 +205,31 @@ public abstract class RegularPainter extends Painter {
 
 				switch (d.type) {
 					case EMPTY:
-						l.map[door] = Terrain.EMPTY;
+						l.set(door, Terrain.EMPTY);
 						break;
 					case TUNNEL:
-						l.map[door] = l.tunnelTile();
+						l.set(door, l.tunnelTile());
 						break;
 					case UNLOCKED:
-						l.map[door] = Terrain.DOOR;
+						l.set(door, Terrain.DOOR);
 						break;
 					case HIDDEN:
-						l.map[door] = Terrain.SECRET_DOOR;
+						l.set(door, Terrain.SECRET_DOOR);
 						break;
 					case BARRICADE:
-						l.map[door] = Terrain.BARRICADE;
+						l.set(door, Terrain.BARRICADE);
 						break;
 					case LOCKED:
-						l.map[door] = Terrain.LOCKED_DOOR;
+						l.set(door, Terrain.LOCKED_DOOR);
 						break;
 					case BRONZE:
-						l.map[door] = Terrain.BRONZE_LOCKED_DOOR;
+						l.set(door, Terrain.BRONZE_LOCKED_DOOR);
 						break;
 					case CRACKED:
-						l.map[door] = Terrain.CRACKED_WALL;
+						l.set(door, Terrain.CRACKED_WALL);
 						break;
 					case CRACKED_SECRET:
-						l.map[door] = Terrain.SECRET_CRACKED_WALL;
+						l.set(door, Terrain.SECRET_CRACKED_WALL);
 						break;
 				}
 			}
@@ -297,15 +297,15 @@ public abstract class RegularPainter extends Painter {
 			for (Room r : rooms){
 				for (Point p : r.waterPlaceablePoints()){
 					int i = l.pointToCell(p);
-					if (lake[i] && l.map[i] == Terrain.EMPTY){
-						l.map[i] = l.waterTile();
+					if (lake[i] && l.getTerrain(i) == Terrain.EMPTY){
+						l.set(i, l.waterTile());
 					}
 				}
 			}
 		} else {
 			for (int i = 0; i < l.length(); i ++) {
-				if (lake[i] && l.map[i] == Terrain.EMPTY){
-					l.map[i] = l.waterTile();
+				if (lake[i] && l.getTerrain(i) == Terrain.EMPTY){
+					l.set(i, l.waterTile());
 				}
 			}
 		}
@@ -322,14 +322,14 @@ public abstract class RegularPainter extends Painter {
 			for (Room r : rooms){
 				for (Point p : r.grassPlaceablePoints()){
 					int i = l.pointToCell(p);
-					if (grass[i] && l.map[i] == Terrain.EMPTY){
+					if (grass[i] && l.getTerrain(i) == Terrain.EMPTY){
 						grassCells.add(i);
 					}
 				}
 			}
 		} else {
 			for (int i = 0; i < l.length(); i ++) {
-				if (grass[i] && l.map[i] == Terrain.EMPTY){
+				if (grass[i] && l.getTerrain(i) == Terrain.EMPTY){
 					grassCells.add(i);
 				}
 			}
@@ -340,7 +340,7 @@ public abstract class RegularPainter extends Painter {
 		//low smoothing, or very low fill, will begin to push the ratio down, normally to 50-30%
 		for (int i : grassCells) {
 			if (l.heaps.get(i) != null || l.findMob(i) != null) {
-				l.map[i] = l.grassTile(false);
+				l.set(i, l.grassTile(false));
 				continue;
 			}
 			
@@ -352,7 +352,7 @@ public abstract class RegularPainter extends Painter {
 					}
 				} catch (IndexOutOfBoundsException ignored) {}
 			}
-			l.map[i] = l.grassTile(Random.Float() < count / 12f);
+			l.set(i, l.grassTile(Random.Float() < count / 12f));
 
 		}
 	}
@@ -364,7 +364,7 @@ public abstract class RegularPainter extends Painter {
 			for (Room r : rooms){
 				for (Point p : r.trapPlaceablePoints()){
 					int i = l.pointToCell(p);
-					if (l.map[i] == Terrain.EMPTY){
+					if (l.getTerrain(i) == Terrain.EMPTY){
 						validCells.add(i);
 					}
 				}

@@ -58,7 +58,7 @@ public class BlacksmithRoom extends StandardRoom {
 			int pos;
 			do {
 				pos = level.pointToCell(random());
-			} while (level.map[pos] != Terrain.EMPTY_SP);
+			} while (level.getTerrain(pos) != Terrain.EMPTY_SP);
 			level.drop(
 				Generator.random( Random.oneOf(
 					Generator.Category.ARMOR,
@@ -80,7 +80,7 @@ public class BlacksmithRoom extends StandardRoom {
 
 		for(Point p : getPoints()) {
 			int cell = level.pointToCell(p);
-			if (level.map[cell] == Terrain.EMPTY){
+			if (level.getTerrain(cell) == Terrain.EMPTY){
 				level.setTrap(new BurningTrap().reveal(), cell);
 			}
 		}

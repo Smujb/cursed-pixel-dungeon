@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.levels.traps;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.watabou.noosa.audio.Sample;
@@ -70,8 +71,13 @@ public abstract class Trap implements Bundlable {
 	public boolean canBeHidden = true;
 	public boolean canBeSearched = true;
 
-	public Trap set(int pos){
+	public final Trap set(int pos){
+		return set(pos, Dungeon.level);
+	}
+
+	public Trap set(int pos, Level level){
 		this.pos = pos;
+		level.onModify();
 		return this;
 	}
 
@@ -96,6 +102,7 @@ public abstract class Trap implements Bundlable {
 			if (Dungeon.level.heroFOV[pos]) {
 				Sample.INSTANCE.play(Assets.SND_TRAP);
 			}
+			Dungeon.level.onModify();
 			disarm();
 			reveal();
 			activate();

@@ -153,8 +153,8 @@ public enum Element {
 			case EARTH:
 				int grassCells = 0;
 				for (int i : PathFinder.NEIGHBOURS9) {
-					if (Dungeon.level.map[attacker.pos+i] == Terrain.FURROWED_GRASS
-							|| Dungeon.level.map[attacker.pos+i] == Terrain.HIGH_GRASS){
+					if (Dungeon.level.getTerrain(attacker.pos+i) == Terrain.FURROWED_GRASS
+							|| Dungeon.level.getTerrain(attacker.pos+i) == Terrain.HIGH_GRASS){
 						grassCells++;
 					}
 				}

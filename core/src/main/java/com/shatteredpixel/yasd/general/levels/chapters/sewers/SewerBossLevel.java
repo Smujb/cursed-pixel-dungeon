@@ -195,8 +195,8 @@ public class SewerBossLevel extends SewerLevel {
 	@Override
 	public Group addVisuals() {
 		super.addVisuals();
-		if (map[getExitPos()-1] != Terrain.WALL_DECO) visuals.add(new PrisonLevel.Torch(getExitPos()-1));
-		if (map[getExitPos()+1] != Terrain.WALL_DECO) visuals.add(new PrisonLevel.Torch(getExitPos()+1));
+		if (getTerrain(getExitPos()-1) != Terrain.WALL_DECO) visuals.add(new PrisonLevel.Torch(getExitPos()-1));
+		if (getTerrain(getExitPos()+1) != Terrain.WALL_DECO) visuals.add(new PrisonLevel.Torch(getExitPos()+1));
 		return visuals;
 	}
 	

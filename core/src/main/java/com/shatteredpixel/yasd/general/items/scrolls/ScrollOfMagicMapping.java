@@ -54,7 +54,7 @@ public class ScrollOfMagicMapping extends Scroll {
 	public void doRead() {
 		
 		int length = Dungeon.level.length();
-		KindOfTerrain[] map = Dungeon.level.map;
+		KindOfTerrain[] map = Dungeon.level.getMap();
 		boolean[] mapped = Dungeon.level.mapped;
 		boolean[] discoverable = Dungeon.level.discoverable;
 		

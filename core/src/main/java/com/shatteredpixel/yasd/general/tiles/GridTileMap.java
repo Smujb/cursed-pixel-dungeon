@@ -37,7 +37,7 @@ public class GridTileMap extends DungeonTilemap {
 	public GridTileMap() {
 		super("visual_grid.png");
 
-		map( Dungeon.level.map, Dungeon.level.width() );
+		map( Dungeon.level.getMap(), Dungeon.level.width() );
 	}
 
 	private int gridSetting = -1;

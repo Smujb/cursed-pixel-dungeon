@@ -131,7 +131,7 @@ public class OldDM300 extends Boss {
 			
 			if (Dungeon.level.liquid()[cell]) {
 				GameScene.ripple( cell );
-			} else if (Dungeon.level.map[cell] == Terrain.EMPTY) {
+			} else if (Dungeon.level.getTerrain(cell) == Terrain.EMPTY) {
 				Dungeon.level.set( cell, Terrain.EMPTY_DECO );
 				GameScene.updateMap( cell );
 			}

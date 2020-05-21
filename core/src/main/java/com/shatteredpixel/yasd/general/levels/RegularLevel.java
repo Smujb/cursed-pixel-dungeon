@@ -228,8 +228,9 @@ public abstract class RegularLevel extends Level {
 		}
 
 		for (Mob m : mobs){
-			if (map[m.pos] == Terrain.HIGH_GRASS || map[m.pos] == Terrain.FURROWED_GRASS) {
-				map[m.pos] = Terrain.GRASS;
+			if (getTerrain(m.pos) == Terrain.HIGH_GRASS || getTerrain(m.pos) == Terrain.FURROWED_GRASS) {
+				//map[m.pos] = Terrain.GRASS;
+				set(m.pos, Terrain.GRASS);
 			}
 		}
 
@@ -301,8 +302,8 @@ public abstract class RegularLevel extends Level {
 			if (toDrop == null) continue;
 
 			int cell = randomDropCell();
-			if (map[cell] == Terrain.HIGH_GRASS || map[cell] == Terrain.FURROWED_GRASS) {
-				map[cell] = Terrain.GRASS;
+			if (getTerrain(cell) == Terrain.HIGH_GRASS || getTerrain(cell) == Terrain.FURROWED_GRASS) {
+				set(cell, Terrain.GRASS);
 			}
 
 			Heap.Type type;
@@ -352,8 +353,8 @@ public abstract class RegularLevel extends Level {
 		for (Item item : itemsToSpawn) {
 			int cell = randomDropCell();
 			drop( item, cell ).type = Heap.Type.HEAP;
-			if (map[cell] == Terrain.HIGH_GRASS || map[cell] == Terrain.FURROWED_GRASS) {
-				map[cell] = Terrain.GRASS;
+			if (getTerrain(cell) == Terrain.HIGH_GRASS || getTerrain(cell) == Terrain.FURROWED_GRASS) {
+				set(cell, Terrain.GRASS);
 			}
 		}
 
@@ -363,8 +364,8 @@ public abstract class RegularLevel extends Level {
 		Item item = Bones.get();
 		if (item != null) {
 			int cell = randomDropCell();
-			if (map[cell] == Terrain.HIGH_GRASS || map[cell] == Terrain.FURROWED_GRASS) {
-				map[cell] = Terrain.GRASS;
+			if (getTerrain(cell) == Terrain.HIGH_GRASS || getTerrain(cell) == Terrain.FURROWED_GRASS) {
+				set(cell, Terrain.GRASS);
 			}
 			drop( item, cell ).setHauntedIfCursed().type = Heap.Type.REMAINS;
 		}
@@ -380,8 +381,8 @@ public abstract class RegularLevel extends Level {
 						item = new DriedRose.Petal();
 						int cell = randomDropCell();
 						drop(item, cell).type = Heap.Type.HEAP;
-						if (map[cell] == Terrain.HIGH_GRASS || map[cell] == Terrain.FURROWED_GRASS) {
-							map[cell] = Terrain.GRASS;
+						if (getTerrain(cell) == Terrain.HIGH_GRASS || getTerrain(cell) == Terrain.FURROWED_GRASS) {
+							set(cell, Terrain.GRASS);
 						}
 						rose.droppedPetals++;
 					}
@@ -409,8 +410,8 @@ public abstract class RegularLevel extends Level {
 			GuidePage p = new GuidePage();
 			p.page(missingPages.get(0));
 			int cell = randomDropCell();
-			if (map[cell] == Terrain.HIGH_GRASS || map[cell] == Terrain.FURROWED_GRASS) {
-				map[cell] = Terrain.GRASS;
+			if (getTerrain(cell) == Terrain.HIGH_GRASS || getTerrain(cell) == Terrain.FURROWED_GRASS) {
+				set(cell, Terrain.GRASS);
 			}
 			drop( p, cell );
 		}

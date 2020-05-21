@@ -270,7 +270,7 @@ public class NewDM300 extends Boss {
 
 		Camera.main.shake( supercharged ? 3 : 1, 0.25f );
 
-		if (Dungeon.level.map[step] == Terrain.INTERACTION && state == HUNTING) {
+		if (Dungeon.level.getTerrain(step) == Terrain.INTERACTION && state == HUNTING) {
 
 			//don't gain energy from cells that are energized
 			if (NewCavesBossLevel.PylonEnergy.volumeAt(pos, NewCavesBossLevel.PylonEnergy.class) > 0){
@@ -530,7 +530,7 @@ public class NewDM300 extends Boss {
 				Sample.INSTANCE.play( Assets.SND_ROCKS );
 
 				for (int i : PathFinder.NEIGHBOURS9){
-					if (Dungeon.level.map[pos+i] == Terrain.WALL || Dungeon.level.map[pos+i] == Terrain.WALL_DECO){
+					if (Dungeon.level.getTerrain(pos+i) == Terrain.WALL || Dungeon.level.getTerrain(pos+i) == Terrain.WALL_DECO){
 						Dungeon.level.set(pos+i, Terrain.EMPTY_DECO);
 						GameScene.updateMap(pos+i);
 					}

@@ -620,7 +620,7 @@ public class Hero extends Char {
 			}
 		}
 		
-		if( subClass == HeroSubClass.WARDEN && Dungeon.level.map[pos] == Terrain.FURROWED_GRASS){
+		if( subClass == HeroSubClass.WARDEN && Dungeon.level.getTerrain(pos) == Terrain.FURROWED_GRASS){
 			Buff.affect(this, Barkskin.class).set( lvl + 5, 1 );
 		}
 		
@@ -887,7 +887,7 @@ public class Hero extends Char {
 		if (Dungeon.level.adjacent( pos, doorCell )) {
 			
 			boolean hasKey = false;
-			KindOfTerrain door = Dungeon.level.map[doorCell];
+			KindOfTerrain door = Dungeon.level.getTerrain(doorCell);
 			
 			if (door == Terrain.LOCKED_DOOR
 					&& Notes.keyCount(new IronKey(Dungeon.key)) > 0) {
@@ -1176,7 +1176,7 @@ public class Hero extends Char {
 		if (step != -1) {
 			
 			float speed = speed();
-			if (Dungeon.isChallenged(Challenges.COLLAPSING_FLOOR) & (Dungeon.level.map[pos] == Terrain.EMPTY || Dungeon.level.map[pos] == Terrain.EMPTY_SP || Dungeon.level.map[pos] == Terrain.EMBERS)) {
+			if (Dungeon.isChallenged(Challenges.COLLAPSING_FLOOR) & (Dungeon.level.getTerrain(pos) == Terrain.EMPTY || Dungeon.level.getTerrain(pos) == Terrain.EMPTY_SP || Dungeon.level.getTerrain(pos) == Terrain.EMBERS)) {
 				if (CPDGame.scene() instanceof GameScene) {
 					if (!isFlying()) {
 						Dungeon.level.set(pos, Terrain.CHASM);
@@ -1222,7 +1222,7 @@ public class Hero extends Char {
 		Heap heap;
 		InteractiveArea area = Dungeon.level.findArea(cell);
 		//TODO: replace this with an InteractiveArea
-		if (Dungeon.level.map[cell] == Terrain.ALCHEMY && cell != pos) {
+		if (Dungeon.level.getTerrain(cell) == Terrain.ALCHEMY && cell != pos) {
 
 			curAction = new HeroAction.Alchemy(cell);
 
@@ -1253,7 +1253,7 @@ public class Hero extends Char {
 					curAction = new HeroAction.OpenChest(cell);
 			}
 
-		} else if (Dungeon.level.map[cell] == Terrain.LOCKED_DOOR || Dungeon.level.map[cell] == Terrain.LOCKED_EXIT || Dungeon.level.map[cell] == Terrain.BRONZE_LOCKED_DOOR) {
+		} else if (Dungeon.level.getTerrain(cell) == Terrain.LOCKED_DOOR || Dungeon.level.getTerrain(cell) == Terrain.LOCKED_EXIT || Dungeon.level.getTerrain(cell) == Terrain.BRONZE_LOCKED_DOOR) {
 
 			curAction = new HeroAction.Unlock(cell);
 
@@ -1410,7 +1410,7 @@ public class Hero extends Char {
 	public static void reallyDie( DamageSrc cause ) {
 		
 		int length = Dungeon.level.length();
-		KindOfTerrain[] map = Dungeon.level.map;
+		KindOfTerrain[] map = Dungeon.level.getMap();
 		boolean[] visited = Dungeon.level.visited;
 		boolean[] discoverable = Dungeon.level.discoverable;
 		
@@ -1525,7 +1525,7 @@ public class Hero extends Char {
 		if (curAction instanceof HeroAction.Unlock) {
 
 			int doorCell = ((HeroAction.Unlock)curAction).dst;
-			KindOfTerrain door = Dungeon.level.map[doorCell];
+			KindOfTerrain door = Dungeon.level.getTerrain(doorCell);
 			
 			if (Dungeon.level.distance(pos, doorCell) <= 1) {
 				boolean hasKey = false;
@@ -1652,7 +1652,7 @@ public class Hero extends Char {
 						
 						if (Random.Float() < chance) {
 						
-							KindOfTerrain oldValue = Dungeon.level.map[p];
+							KindOfTerrain oldValue = Dungeon.level.getTerrain(p);
 							
 							GameScene.discoverTile( p, oldValue );
 							

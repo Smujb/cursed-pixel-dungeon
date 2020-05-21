@@ -236,7 +236,7 @@ public class CityLevel extends RegularLevel {
 
 	public static void addCityVisuals(Level level, Group group ) {
 		for (int i=0; i < level.length(); i++) {
-			if (level.map[i] == WALL_DECO) {
+			if (level.getTerrain(i) == WALL_DECO) {
 				group.add( new Smoke( i ) );
 			}
 		}

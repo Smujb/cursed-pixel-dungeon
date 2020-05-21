@@ -213,7 +213,7 @@ public class OldTengu extends Boss {
 					trapPos = Random.Int( level.length() );
 				} while (tries-- > 0 && !level.traps.containsKey(pos));
 				
-				if (level.map[trapPos] == Terrain.EMPTY && (level.trap(trapPos) == null || !level.trap(trapPos).active)) {
+				if (level.getTerrain(trapPos) == Terrain.EMPTY && (level.trap(trapPos) == null || !level.trap(trapPos).active)) {
 					level.setTrap( new  GrippingTrap().reveal(), trapPos );
 					ScrollOfMagicMapping.discover( trapPos );
 				}

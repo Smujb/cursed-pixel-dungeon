@@ -156,14 +156,14 @@ public abstract class YogFist extends Mob {
 
 			boolean result = super.act();
 
-			if (Dungeon.level.map[pos] == Terrain.WATER){
+			if (Dungeon.level.getTerrain(pos) == Terrain.WATER){
 				Dungeon.level.set( pos, Terrain.EMPTY);
 				GameScene.updateMap( pos );
 				CellEmitter.get( pos ).burst( Speck.factory( Speck.STEAM ), 10 );
 			}
 
 			int cell = pos + PathFinder.NEIGHBOURS8[Random.Int(8)];
-			if (Dungeon.level.map[cell] == Terrain.WATER){
+			if (Dungeon.level.getTerrain(cell) == Terrain.WATER){
 				Dungeon.level.set( cell, Terrain.EMPTY);
 				GameScene.updateMap( cell );
 				CellEmitter.get( cell ).burst( Speck.factory( Speck.STEAM ), 10 );
@@ -202,7 +202,7 @@ public abstract class YogFist extends Mob {
 			boolean result = super.act();
 
 			int cell = pos + PathFinder.NEIGHBOURS9[Random.Int(9)];
-			if (Dungeon.level.map[cell] == Terrain.GRASS){
+			if (Dungeon.level.getTerrain(cell) == Terrain.GRASS){
 				Dungeon.level.set( cell, Terrain.FURROWED_GRASS);
 				GameScene.updateMap( cell );
 				CellEmitter.get( cell ).burst( LeafParticle.GENERAL, 10 );
@@ -225,8 +225,8 @@ public abstract class YogFist extends Mob {
 		public void damage(int dmg, DamageSrc src) {
 			int grassCells = 0;
 			for (int i : PathFinder.NEIGHBOURS9) {
-				if (Dungeon.level.map[pos+i] == Terrain.FURROWED_GRASS
-						|| Dungeon.level.map[pos+i] == Terrain.HIGH_GRASS){
+				if (Dungeon.level.getTerrain(pos+i) == Terrain.FURROWED_GRASS
+						|| Dungeon.level.getTerrain(pos+i) == Terrain.HIGH_GRASS){
 					grassCells++;
 				}
 			}
@@ -275,7 +275,7 @@ public abstract class YogFist extends Mob {
 		private boolean canSpreadGrass(int cell){
 			int yogPos = Dungeon.level.getExitPos() + Dungeon.level.width()*3;
 			return Dungeon.level.distance(cell, yogPos) > 4 && !Dungeon.level.solid(cell)
-					&& !(Dungeon.level.map[cell] == Terrain.FURROWED_GRASS || Dungeon.level.map[cell] == Terrain.HIGH_GRASS);
+					&& !(Dungeon.level.getTerrain(cell) == Terrain.FURROWED_GRASS || Dungeon.level.getTerrain(cell) == Terrain.HIGH_GRASS);
 		}
 
 	}

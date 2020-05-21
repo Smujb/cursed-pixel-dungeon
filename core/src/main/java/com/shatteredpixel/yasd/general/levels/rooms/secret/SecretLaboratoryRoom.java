@@ -85,7 +85,7 @@ public class SecretLaboratoryRoom extends SecretRoom {
 			int pos;
 			do {
 				pos = level.pointToCell(random());
-			} while (level.map[pos] != Terrain.EMPTY_SP || level.heaps.get( pos ) != null);
+			} while (level.getTerrain(pos) != Terrain.EMPTY_SP || level.heaps.get( pos ) != null);
 			
 			Class<?extends Potion> potionCls = Random.chances(chances);
 			chances.put(potionCls, 0f);

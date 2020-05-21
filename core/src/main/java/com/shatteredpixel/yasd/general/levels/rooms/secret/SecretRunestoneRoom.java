@@ -74,17 +74,17 @@ public class SecretRunestoneRoom extends SecretRoom {
 		
 		do{
 			dropPos = level.pointToCell(random());
-		} while (level.map[dropPos] != Terrain.EMPTY);
+		} while (level.getTerrain(dropPos) != Terrain.EMPTY);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
 		
 		do{
 			dropPos = level.pointToCell(random());
-		} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get(dropPos) != null);
+		} while (level.getTerrain(dropPos) != Terrain.EMPTY || level.heaps.get(dropPos) != null);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
 		
 		do{
 			dropPos = level.pointToCell(random());
-		} while (level.map[dropPos] != Terrain.EMPTY_SP);
+		} while (level.getTerrain(dropPos) != Terrain.EMPTY_SP);
 		level.drop( new StoneOfEnchantment(), dropPos);
 		
 		entrance.set(Door.Type.HIDDEN);
@@ -102,6 +102,6 @@ public class SecretRunestoneRoom extends SecretRoom {
 	
 	@Override
 	public boolean canPlaceCharacter(Point p, Level l) {
-		return super.canPlaceCharacter(p, l) && l.map[l.pointToCell(p)] != Terrain.EMPTY_SP;
+		return super.canPlaceCharacter(p, l) && l.getTerrain(l.pointToCell(p)) != Terrain.EMPTY_SP;
 	}
 }

@@ -139,7 +139,7 @@ public class NewCityBossLevel extends Level {
 	public void restoreFromBundle(@NotNull Bundle bundle ) {
 		super.restoreFromBundle( bundle );
 		impShop = (ImpShopRoom) bundle.get( IMP_SHOP );
-		if (map[topDoor] != Terrain.LOCKED_DOOR && Imp.Quest.isCompleted() && !impShop.shopSpawned()){
+		if (getTerrain(topDoor) != Terrain.LOCKED_DOOR && Imp.Quest.isCompleted() && !impShop.shopSpawned()){
 			spawnShop();
 		}
 	}
@@ -296,7 +296,7 @@ public class NewCityBossLevel extends Level {
 
 		super.occupyCell( ch );
 
-		if (map[bottomDoor] != Terrain.LOCKED_DOOR && map[topDoor] == Terrain.LOCKED_DOOR
+		if (getTerrain(bottomDoor) != Terrain.LOCKED_DOOR && getTerrain(topDoor) == Terrain.LOCKED_DOOR
 				&& ch.pos < bottomDoor && ch == Dungeon.hero) {
 
 			seal();
@@ -413,7 +413,7 @@ public class NewCityBossLevel extends Level {
 			Tilemap v = super.create();
 			int[] data = new int[tileW*tileH];
 
-			KindOfTerrain[] map = Dungeon.level.map;
+			KindOfTerrain[] map = Dungeon.level.getMap();
 
 			int stairsTop = -1;
 
@@ -538,15 +538,15 @@ public class NewCityBossLevel extends Level {
 
 			//demon halls tiles
 			if (cell < Dungeon.level.width()*22){
-				if (Dungeon.level.map[cell] == Terrain.STATUE){
+				if (Dungeon.level.getTerrain(cell) == Terrain.STATUE){
 					return Messages.get(HallsLevel.class, "statue_name");
 				}
 
 				//DK arena tiles
 			} else {
-				if (Dungeon.level.map[cell] == Terrain.SIGN){
+				if (Dungeon.level.getTerrain(cell) == Terrain.SIGN){
 					return Messages.get(NewCityBossLevel.class, "throne_name");
-				} else if (Dungeon.level.map[cell] == Terrain.PEDESTAL){
+				} else if (Dungeon.level.getTerrain(cell) == Terrain.PEDESTAL){
 					return Messages.get(NewCityBossLevel.class, "summoning_name");
 				}
 			}
@@ -560,19 +560,19 @@ public class NewCityBossLevel extends Level {
 
 			//demon halls tiles
 			if (cell < Dungeon.level.width()*22){
-				if (Dungeon.level.map[cell] == Terrain.EXIT){
+				if (Dungeon.level.getTerrain(cell) == Terrain.EXIT){
 					return Messages.get(HallsLevel.class, "exit_desc");
-				} else if (Dungeon.level.map[cell] == Terrain.STATUE){
+				} else if (Dungeon.level.getTerrain(cell) == Terrain.STATUE){
 					return Messages.get(HallsLevel.class, "statue_desc");
-				} else if (Dungeon.level.map[cell] == Terrain.EMPTY_DECO){
+				} else if (Dungeon.level.getTerrain(cell) == Terrain.EMPTY_DECO){
 					return "";
 				}
 
 				//DK arena tiles
 			} else {
-				if (Dungeon.level.map[cell] == Terrain.SIGN){
+				if (Dungeon.level.getTerrain(cell) == Terrain.SIGN){
 					return Messages.get(NewCityBossLevel.class, "throne_desc");
-				} else if (Dungeon.level.map[cell] == Terrain.PEDESTAL){
+				} else if (Dungeon.level.getTerrain(cell) == Terrain.PEDESTAL){
 					return Messages.get(NewCityBossLevel.class, "summoning_desc");
 				}
 			}
@@ -595,7 +595,7 @@ public class NewCityBossLevel extends Level {
 			Tilemap v = super.create();
 			int[] data = new int[tileW*tileH];
 
-			KindOfTerrain[] map = Dungeon.level.map;
+			KindOfTerrain[] map = Dungeon.level.getMap();
 
 			int shadowTop = -1;
 

@@ -82,7 +82,7 @@ public class ImpShopRoom extends ShopRoom {
 		int pos = level.pointToCell(center());
 
 		for (Point p : getPoints()){
-			if (level.map[level.pointToCell(p)] == Terrain.PEDESTAL){
+			if (level.getTerrain(p) == Terrain.PEDESTAL){
 				pos = level.pointToCell(p);
 				break;
 			}

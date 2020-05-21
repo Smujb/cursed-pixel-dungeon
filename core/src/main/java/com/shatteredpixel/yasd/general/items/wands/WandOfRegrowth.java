@@ -78,7 +78,7 @@ public class WandOfRegrowth extends Wand {
 
 		//ignore tiles which can't have anything grow in them.
 		for (Iterator<Integer> i = affectedCells.iterator(); i.hasNext();) {
-			KindOfTerrain c = Dungeon.level.map[i.next()];
+			KindOfTerrain c = Dungeon.level.getTerrain(i.next());
 			if (!(c == Terrain.EMPTY ||
 					c == Terrain.EMBERS ||
 					c == Terrain.EMPTY_DECO ||
@@ -110,7 +110,7 @@ public class WandOfRegrowth extends Wand {
 		placePlants(numPlants, numDews, numPods, numStars);
 
 		for (int i : affectedCells){
-			KindOfTerrain c = Dungeon.level.map[i];
+			KindOfTerrain c = Dungeon.level.getTerrain(i);
 			if (c == Terrain.EMPTY ||
 					c == Terrain.EMBERS ||
 					c == Terrain.EMPTY_DECO) {
@@ -123,7 +123,7 @@ public class WandOfRegrowth extends Wand {
 			}
 			
 			if (Random.Int(50) < overLimit) {
-				if (Dungeon.level.map[i] == Terrain.GRASS) {
+				if (Dungeon.level.getTerrain(i) == Terrain.GRASS) {
 					Dungeon.level.set( i, Terrain.FURROWED_GRASS );
 					GameScene.updateMap( i );
 				}

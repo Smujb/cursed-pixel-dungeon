@@ -40,7 +40,7 @@ public class SewerPainter extends RegularPainter {
 	@Override
 	protected void decorate(Level level, ArrayList<Room> rooms) {
 		
-		KindOfTerrain[] map = level.map;
+		KindOfTerrain[] map = level.getMap();
 		int w = level.width();
 		int l = level.length();
 		

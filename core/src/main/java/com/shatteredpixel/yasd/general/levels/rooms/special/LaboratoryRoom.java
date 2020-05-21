@@ -75,7 +75,7 @@ public class LaboratoryRoom extends SpecialRoom {
 			do {
 				pos = level.pointToCell(random());
 			} while (
-				level.map[pos] != Terrain.EMPTY_SP ||
+				level.getTerrain(pos) != Terrain.EMPTY_SP ||
 				level.heaps.get( pos ) != null);
 			level.drop( prize( level ), pos );
 		}
@@ -111,7 +111,7 @@ public class LaboratoryRoom extends SpecialRoom {
 				do {
 					pos = level.pointToCell(random());
 				} while (
-						level.map[pos] != Terrain.EMPTY_SP ||
+						level.getTerrain(pos) != Terrain.EMPTY_SP ||
 								level.heaps.get(pos) != null);
 				level.drop(p, pos);
 			}

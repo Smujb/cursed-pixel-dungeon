@@ -83,8 +83,8 @@ public class LastShopLevel extends RegularLevel {
 		if (super.build()){
 			
 			for (int i=0; i < length(); i++) {
-				if (map[i] == SECRET_DOOR) {
-					map[i] = DOOR;
+				if (getTerrain(i) == SECRET_DOOR) {
+					set(i, DOOR);
 				}
 			}
 			

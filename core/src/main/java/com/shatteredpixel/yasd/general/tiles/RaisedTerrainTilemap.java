@@ -35,7 +35,7 @@ public class RaisedTerrainTilemap extends DungeonTilemap {
 	
 	public RaisedTerrainTilemap() {
 		super(Dungeon.level.tilesTex());
-		map( Dungeon.level.map, Dungeon.level.width() );
+		map( Dungeon.level.getMap(), Dungeon.level.width() );
 	}
 	
 	@Override

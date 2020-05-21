@@ -76,7 +76,7 @@ public class TrapsRoom extends SpecialRoom {
 		Door door = entrance();
 		door.set( Door.Type.REGULAR );
 		
-		Terrain lastRow = level.map[left + 1 + (top + 1) * level.width()] == Terrain.CHASM ? Terrain.CHASM : Terrain.EMPTY_SP;
+		Terrain lastRow = level.getTerrain(left + 1 + (top + 1) * level.width()) == Terrain.CHASM ? Terrain.CHASM : Terrain.EMPTY_SP;
 
 		int x = -1;
 		int y = -1;
@@ -100,7 +100,7 @@ public class TrapsRoom extends SpecialRoom {
 
 		for(Point p : getPoints()) {
 			int cell = level.pointToCell(p);
-			if (level.map[cell] == Terrain.EMPTY){
+			if (level.getTerrain(cell) == Terrain.EMPTY){
 				level.setTrap(Reflection.newInstance(trapClass).reveal(), cell);
 			}
 		}

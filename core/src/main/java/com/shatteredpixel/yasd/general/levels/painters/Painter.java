@@ -48,7 +48,7 @@ public abstract class Painter {
 	// Static methods
 
 	public static void set( Level level, int cell, KindOfTerrain value ) {
-		level.map[cell] = value;
+		level.set(cell, value);
 	}
 	
 	public static void set( Level level, int x, int y, KindOfTerrain value ) {
@@ -65,7 +65,7 @@ public abstract class Painter {
 		
 		int pos = y * width + x;
 		for (int i=y; i < y + h; i++, pos += width) {
-			Arrays.fill( level.map, pos, pos + w, value );
+			Arrays.fill( level.getMap(), pos, pos + w, value );
 		}
 	}
 	
@@ -140,7 +140,7 @@ public abstract class Painter {
 			}
 
 			int cell = x + (w - (int)rowW)/2 + ((y + i) * level.width());
-			Arrays.fill( level.map, cell, cell + (int)rowW, value );
+			Arrays.fill( level.getMap(), cell, cell + (int)rowW, value );
 
 		}
 

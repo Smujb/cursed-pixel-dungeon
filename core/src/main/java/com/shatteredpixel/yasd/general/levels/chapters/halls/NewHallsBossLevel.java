@@ -131,25 +131,25 @@ public class NewHallsBossLevel extends Level {
 
 		boolean[] patch = Patch.generate(width, height, 0.20f, 0, true);
 		for (int i = 0; i < length(); i++) {
-			if (map[i] == EMPTY && patch[i]) {
-				map[i] = STATUE;
+			if (getTerrain(i) == EMPTY && patch[i]) {
+				set(i, STATUE);
 			}
 		}
 
-		map[getEntrancePos()] = ENTRANCE;
+		set(getEntrancePos(), ENTRANCE);
 
 		Painter.fill(this, ROOM_LEFT-1, ROOM_TOP-1, 11, 11, EMPTY );
 
 		patch = Patch.generate(width, height, 0.30f, 3, true);
 		for (int i = 0; i < length(); i++) {
-			if ((map[i] == EMPTY || map[i] == STATUE) && patch[i]) {
-				map[i] = WATER;
+			if ((getTerrain(i) == EMPTY || getTerrain(i) == STATUE) && patch[i]) {
+				set(i, WATER);
 			}
 		}
 
 		for (int i = 0; i < length(); i++) {
-			if (map[i] == EMPTY && Random.Int(4) == 0) {
-				map[i] = EMPTY_DECO;
+			if (getTerrain(i) == EMPTY && Random.Int(4) == 0) {
+				set(i, EMPTY_DECO);
 			}
 		}
 
@@ -215,7 +215,7 @@ public class NewHallsBossLevel extends Level {
 	public void occupyCell( Char ch ) {
 		super.occupyCell( ch );
 
-		if (map[getEntrancePos()] == ENTRANCE && map[getEntrancePos()] != EXIT
+		if (getTerrain(getEntrancePos()) == ENTRANCE && getTerrain(getEntrancePos()) != EXIT
 				&& ch == Dungeon.hero && Dungeon.level.distance(ch.pos, getEntrancePos()) >= 2) {
 			seal();
 		}
@@ -330,7 +330,7 @@ public class NewHallsBossLevel extends Level {
 		private void updateState(){
 			if (vis != null){
 				int[] data = map.clone();
-				if (Dungeon.level.map[Dungeon.level.getExitPos()] == EXIT) {
+				if (Dungeon.level.getTerrain(Dungeon.level.getExitPos()) == EXIT) {
 					data[4] = 19;
 					data[12] = data[14] = 31;
 				}
@@ -369,7 +369,7 @@ public class NewHallsBossLevel extends Level {
 		private void updateState(){
 			if (vis != null){
 				int[] data = map.clone();
-				if (Dungeon.level.map[Dungeon.level.getExitPos()] == EXIT) {
+				if (Dungeon.level.getTerrain(Dungeon.level.getExitPos()) == EXIT) {
 					data[3] = 1;
 					data[4] = 0;
 					data[5] = 2;

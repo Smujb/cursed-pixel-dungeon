@@ -329,8 +329,8 @@ public class Belongings implements Iterable<Item> {
 			}
 
 			if (CurArmour.hasGlyph(Bulk.class, owner) &&
-					(Dungeon.level.map[owner.pos] == Terrain.DOOR
-							|| Dungeon.level.map[owner.pos] == Terrain.OPEN_DOOR)) {
+					(Dungeon.level.getTerrain(owner.pos) == Terrain.DOOR
+							|| Dungeon.level.getTerrain(owner.pos) == Terrain.OPEN_DOOR)) {
 				speed /= 3f;
 			}
 			speed *= CurArmour.speedFactor;

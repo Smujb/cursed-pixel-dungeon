@@ -51,7 +51,7 @@ public class PrisonPainter extends RegularPainter {
 		
 		int w = level.width();
 		int l = level.length();
-		KindOfTerrain[] map = level.map;
+		KindOfTerrain[] map = level.getMap();
 		
 		for (int i=w + 1; i < l - w - 1; i++) {
 			if (map[i] == Terrain.EMPTY) {

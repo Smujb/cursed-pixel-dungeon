@@ -57,7 +57,7 @@ public class HighGrass {
 		
 		Char ch = Actor.findChar(pos);
 		
-		if (level.map[pos] == Terrain.FURROWED_GRASS){
+		if (level.getTerrain(pos) == Terrain.FURROWED_GRASS){
 			if (ch instanceof Hero && ((Hero) ch).heroClass == HeroClass.HUNTRESS){
 				//Do nothing
 				freezeTrample = true;

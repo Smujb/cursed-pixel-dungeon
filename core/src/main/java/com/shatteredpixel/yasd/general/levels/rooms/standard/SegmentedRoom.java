@@ -79,8 +79,8 @@ public class SegmentedRoom extends StandardRoom {
 			do{
 				int splitX = Random.IntRange(area.left+2, area.right-2);
 				
-				if (level.map[splitX + level.width()*(area.top-1)] == Terrain.WALL
-						&& level.map[splitX + level.width()*(area.bottom+1)] == Terrain.WALL){
+				if (level.getTerrain(splitX + level.width()*(area.top-1)) == Terrain.WALL
+						&& level.getTerrain(splitX + level.width()*(area.bottom+1)) == Terrain.WALL){
 					tries = 0;
 					
 					Painter.drawLine(level, new Point(splitX, area.top), new Point(splitX, area.bottom), Terrain.WALL);
@@ -101,8 +101,8 @@ public class SegmentedRoom extends StandardRoom {
 			do{
 				int splitY = Random.IntRange(area.top+2, area.bottom-2);
 				
-				if (level.map[area.left-1 + level.width()*splitY] == Terrain.WALL
-						&& level.map[area.right+1 + level.width()*splitY] == Terrain.WALL){
+				if (level.getTerrain(area.left-1 + level.width()*splitY) == Terrain.WALL
+						&& level.getTerrain(area.right+1 + level.width()*splitY) == Terrain.WALL){
 					tries = 0;
 					
 					Painter.drawLine(level, new Point(area.left, splitY), new Point(area.right, splitY), Terrain.WALL);

@@ -46,7 +46,7 @@ public class SecretArtilleryRoom extends SecretRoom {
 			int itemPos;
 			do{
 				itemPos = level.pointToCell(random());
-			} while ( level.map[itemPos] != Terrain.EMPTY_SP
+			} while ( level.getTerrain(itemPos) != Terrain.EMPTY_SP
 					|| level.heaps.get(itemPos) != null);
 			
 			if( i == 0 ){

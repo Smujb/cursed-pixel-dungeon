@@ -78,7 +78,7 @@ public class BurnedRoom extends PatchRoom {
 						level.setTrap(trap, cell);
 						break;
 				}
-				level.map[cell] = t;
+				level.set(cell, t);
 			}
 		}
 	}

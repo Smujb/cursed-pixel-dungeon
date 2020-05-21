@@ -143,12 +143,12 @@ public class OldHallsBossLevel extends Level {
 			for (int j = 0; j < 4; j++) {
 				if (Random.Int(2) == 0) {
 					int y = Random.IntRange(top + 1, bottom - 1);
-					map[i * 4 + j + y * width()] = WALL_DECO;
+					set(i * 4 + j + y * width(), WALL_DECO);
 				}
 			}
 		}
-		
-		map[getExitPos()] = LOCKED_EXIT;
+
+		set(getExitPos(), LOCKED_EXIT);
 		
 		Painter.fill(this, ROOM_LEFT - 1, ROOM_TOP - 1,
 				ROOM_RIGHT - ROOM_LEFT + 3, ROOM_BOTTOM - ROOM_TOP + 3, WALL);
@@ -158,18 +158,18 @@ public class OldHallsBossLevel extends Level {
 		int entrance = Random.Int(ROOM_LEFT + 1, ROOM_RIGHT - 1) +
 				Random.Int(ROOM_TOP + 1, ROOM_BOTTOM - 1) * width();
 		interactiveAreas.add(new Entrance().setPos(this, entrance));
-		map[getEntrancePos()] = ENTRANCE;
+		set(getEntrancePos(), ENTRANCE);
 		
 		boolean[] patch = Patch.generate(width, height, 0.30f, 6, true);
 		for (int i = 0; i < length(); i++) {
-			if (map[i] == EMPTY && patch[i]) {
-				map[i] = WATER;
+			if (getTerrain(i) == EMPTY && patch[i]) {
+				set(i, WATER);
 			}
 		}
 		
 		for (int i = 0; i < length(); i++) {
-			if (map[i] == EMPTY && Random.Int(10) == 0) {
-				map[i] = EMPTY_DECO;
+			if (getTerrain(i) == EMPTY && Random.Int(10) == 0) {
+				set(i, EMPTY_DECO);
 			}
 		}
 		

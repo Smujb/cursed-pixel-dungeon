@@ -43,8 +43,6 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class TalismanOfForesight extends Artifact {
@@ -87,7 +85,7 @@ public class TalismanOfForesight extends Artifact {
 				charge = 0;
 				for (int i = 0; i < Dungeon.level.length(); i++) {
 
-					KindOfTerrain terr = Dungeon.level.map[i];
+					KindOfTerrain terr = Dungeon.level.getTerrain(i);
 					if (terr.secret()) {
 
 						GameScene.updateMap(i);
@@ -191,7 +189,7 @@ public class TalismanOfForesight extends Artifact {
 
 					if (Dungeon.level.heroFOV[p]
 							&& Dungeon.level.secret(p)
-							&& Dungeon.level.map[p] != Terrain.SECRET_DOOR) {
+							&& Dungeon.level.getTerrain(p) != Terrain.SECRET_DOOR) {
 						if (Dungeon.level.traps.get(p) != null && Dungeon.level.traps.get(p).canBeSearched) {
 							smthFound = true;
 						}

@@ -288,7 +288,7 @@ public class FogOfWar extends Image {
 	}
 	
 	private boolean wall(int cell) {
-		return DungeonTileSheet.wallStitcheable(Dungeon.level.map[cell]);
+		return DungeonTileSheet.wallStitcheable(Dungeon.level.getTerrain(cell));
 	}
 
 	private int getCellFog( int cell ){

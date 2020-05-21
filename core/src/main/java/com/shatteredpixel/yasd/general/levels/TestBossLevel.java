@@ -83,7 +83,7 @@ public class TestBossLevel extends Level {
 
 		setSize(48, 48);
 
-		map = LAYOUT.clone();
+		setMap(LAYOUT);
 
 		buildFlagMaps();
 		cleanWalls();

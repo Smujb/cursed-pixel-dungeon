@@ -233,7 +233,7 @@ public class CavesLevel extends RegularLevel {
 	
 	public static void addCavesVisuals(Level level, Group group ) {
 		for (int i=0; i < level.length(); i++) {
-			if (level.map[i] == WALL_DECO) {
+			if (level.getTerrain(i) == WALL_DECO) {
 				group.add( new Vein( i ) );
 			}
 		}
@@ -263,7 +263,7 @@ public class CavesLevel extends RegularLevel {
 				if ((delay -= Game.elapsed) <= 0) {
 
 					//pickaxe can remove the ore, should remove the sparkling too.
-					if (Dungeon.level.map[pos] != WALL_DECO){
+					if (Dungeon.level.getTerrain(pos) != WALL_DECO){
 						kill();
 						return;
 					}

@@ -64,7 +64,7 @@ public class AquariumRoom extends StandardRoom {
 			Piranha piranha = Mob.create(Piranha.class, level);
 			do {
 				piranha.pos = level.pointToCell(random(3));
-			} while (level.map[piranha.pos] != Terrain.WATER|| level.findMob( piranha.pos ) != null);
+			} while (level.getTerrain(piranha.pos) != Terrain.WATER|| level.findMob( piranha.pos ) != null);
 			level.mobs.add( piranha );
 		}
 		

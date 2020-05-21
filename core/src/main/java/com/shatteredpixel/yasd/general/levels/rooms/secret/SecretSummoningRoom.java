@@ -59,7 +59,7 @@ public class SecretSummoningRoom extends SecretRoom {
 		
 		for (Point p : getPoints()){
 			int cell = level.pointToCell(p);
-			if (level.map[cell] == Terrain.EMPTY){
+			if (level.getTerrain(cell) == Terrain.EMPTY){
 				level.setTrap(new SummoningTrap().hide(), cell);
 			}
 		}

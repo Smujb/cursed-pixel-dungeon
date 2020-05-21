@@ -47,8 +47,8 @@ public class GrindLevel extends RegularLevel {
 	public void create(String key) {
 		super.create(key);
 		spawn = getEntrance().centerCell(this);
-		map[getEntrancePos()] = Terrain.PEDESTAL;
-		map[getExitPos()] = Terrain.EMPTY;
+		set(getEntrancePos(), Terrain.PEDESTAL);
+		set(getExitPos(), Terrain.EMPTY);
 		clearExitEntrance();
 	}
 

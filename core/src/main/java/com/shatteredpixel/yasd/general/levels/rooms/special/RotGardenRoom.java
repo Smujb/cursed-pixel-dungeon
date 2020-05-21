@@ -89,7 +89,7 @@ public class RotGardenRoom extends SpecialRoom {
 	}
 
 	private static boolean validPlantPos(Level level, int pos){
-		if (level.map[pos] != Terrain.GRASS){
+		if (level.getTerrain(pos) != Terrain.GRASS){
 			return false;
 		}
 
@@ -107,7 +107,7 @@ public class RotGardenRoom extends SpecialRoom {
 		level.mobs.add( plant );
 
 		for(int i : PathFinder.NEIGHBOURS8) {
-			if (level.map[pos + i] == Terrain.GRASS){
+			if (level.getTerrain(pos + i) == Terrain.GRASS){
 				Painter.set(level, pos + i, Terrain.HIGH_GRASS);
 			}
 		}

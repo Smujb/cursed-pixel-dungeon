@@ -102,7 +102,7 @@ public class PoolRoom extends SpecialRoom {
 			Piranha piranha = Mob.create(Piranha.class, level);
 			do {
 				piranha.pos = level.pointToCell(random());
-			} while (level.map[piranha.pos] != Terrain.WATER|| level.findMob( piranha.pos ) != null);
+			} while (level.getTerrain(piranha.pos) != Terrain.WATER|| level.findMob( piranha.pos ) != null);
 			level.mobs.add( piranha );
 		}
 	}

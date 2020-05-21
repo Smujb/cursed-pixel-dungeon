@@ -49,8 +49,6 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Reflection;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public abstract class Plant implements Bundlable {
@@ -121,8 +119,8 @@ public abstract class Plant implements Bundlable {
 		
 		@Override
 		protected void onThrow( int cell ) {
-			if (Dungeon.level.map[cell] == Terrain.ALCHEMY
-					|| Dungeon.level.pit()[cell]
+			if (Dungeon.level.getTerrain(cell) == Terrain.ALCHEMY
+					|| Dungeon.level.pit(cell)
 					|| Dungeon.level.traps.get(cell) != null
 					|| Dungeon.isChallenged(Challenges.NO_HERBALISM)) {
 				super.onThrow( cell );
@@ -130,7 +128,7 @@ public abstract class Plant implements Bundlable {
 				Dungeon.level.plant( this, cell );
 				if (Dungeon.hero.subClass == HeroSubClass.WARDEN) {
 					for (int i : PathFinder.NEIGHBOURS8) {
-						KindOfTerrain c = Dungeon.level.map[cell + i];
+						KindOfTerrain c = Dungeon.level.getTerrain(cell + i);
 						if ( c == Terrain.EMPTY || c == Terrain.EMPTY_DECO
 								|| c == Terrain.EMBERS || c == Terrain.GRASS){
 							Dungeon.level.set(cell + i, Terrain.FURROWED_GRASS);

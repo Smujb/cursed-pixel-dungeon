@@ -60,7 +60,7 @@ public class DiamondGooRoom extends GooBossRoom {
 				Painter.set(level, curr, Terrain.EMPTY_SP);
 				curr.x += dir.x;
 				curr.y += dir.y;
-			} while (level.map[level.pointToCell(curr)] == Terrain.WALL);
+			} while (level.getTerrain(level.pointToCell(curr)) == Terrain.WALL);
 		}
 		
 		Painter.fill( level, left + width()/2 - 1, top + height()/2 - 2, 2 + width()%2, 4 + height()%2, Terrain.WATER);

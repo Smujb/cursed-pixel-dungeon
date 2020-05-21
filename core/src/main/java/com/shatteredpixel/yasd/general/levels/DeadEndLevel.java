@@ -65,21 +65,17 @@ public class DeadEndLevel extends Level {
 		
 		for (int i=2; i < SIZE; i++) {
 			for (int j=2; j < SIZE; j++) {
-				map[i * width() + j] = Terrain.EMPTY;
+				set(i * width() + j, Terrain.EMPTY);
 			}
 		}
 		
 		for (int i=1; i <= SIZE; i++) {
-			map[width() + i] =
-			map[width() * SIZE + i] =
-			map[width() * i + 1] =
-			map[width() * i + SIZE] =
-				Terrain.WATER;
+			setMultiple(Terrain.WATER, width() + i, width() * SIZE + i, width() * i + 1, width() * i + SIZE );
 		}
 		
 		//entrance = SIZE * width() + SIZE / 2 + 1;
 		interactiveAreas.add(new Entrance().setPos(this, SIZE * width() + SIZE / 2 + 1));
-		map[getEntrancePos()] = Terrain.ENTRANCE;
+		set(getEntrancePos(), Terrain.ENTRANCE);
 
 		//exit = 0;
 		

@@ -158,11 +158,11 @@ public class NewCavesBossLevel extends Level {
 
 		boolean[] patch = Patch.generate( width, height-14, 0.15f, 2, true );
 		for (int i= 14*width(); i < length(); i++) {
-			if (map[i] == EMPTY) {
+			if (getTerrain(i) == EMPTY) {
 				if (patch[i - 14*width()]){
-					map[i] = WATER;
+					set(i, WATER);
 				} else if (Random.Int(8) == 0){
-					map[i] = INTERACTION;
+					set(i, INTERACTION);
 				}
 			}
 		}
@@ -222,7 +222,7 @@ public class NewCavesBossLevel extends Level {
 	@Override
 	public int randomRespawnCell( Char ch ) {
 		//this check is mainly here for DM-300, to prevent an infinite loop
-		if (Char.hasProp(ch, Char.Property.LARGE) && map[getEntrancePos()] != Terrain.ENTRANCE){
+		if (Char.hasProp(ch, Char.Property.LARGE) && getTerrain(getEntrancePos()) != Terrain.ENTRANCE){
 			return -1;
 		}
 		int cell;
@@ -275,7 +275,7 @@ public class NewCavesBossLevel extends Level {
 		boss.state = boss.WANDERING;
 		do {
 			boss.pos = pointToCell(Random.element(mainArena.getPoints()));
-		} while (!openSpace(boss.pos) || map[boss.pos] == Terrain.EMPTY_SP);
+		} while (!openSpace(boss.pos) || getTerrain(boss.pos) == Terrain.EMPTY_SP);
 		GameScene.add( boss );
 
 		for (int i : pylonPositions) {
@@ -330,7 +330,7 @@ public class NewCavesBossLevel extends Level {
 		}
 
 		for( int i = (mainArena.top-1)*width; i <length; i++){
-			if (map[i] == INTERACTION || map[i] == WATER || map[i] == SIGN){
+			if (getTerrain(i) == INTERACTION || getTerrain(i) == WATER || getTerrain(i) == SIGN){
 				GameScene.add(Blob.seed(i, 1, PylonEnergy.class));
 			}
 		}
@@ -479,7 +479,7 @@ public class NewCavesBossLevel extends Level {
 				SW -= (width() + 8);
 			}
 
-			if (entranceTiles[i] != n) map[NW] = map[NE] = map[SE] = map[SW] = entranceTiles[i];
+			if (entranceTiles[i] != n) setMultiple(entranceTiles[i], NW, NE, SE, SW);//map[NW] = map[NE] = map[SE] = map[SW] = entranceTiles[i];
 			NW++; NE--; SW++; SE--;
 		}
 
@@ -560,7 +560,7 @@ public class NewCavesBossLevel extends Level {
 				SW -= (width() + 10);
 			}
 
-			if (cornerTiles[i] != n) map[NW] = map[NE] = map[SE] = map[SW] = cornerTiles[i];
+			if (cornerTiles[i] != n) setMultiple(cornerTiles[i], NW, NE, SE, SW);
 			NW++; NE--; SW++; SE--;
 		}
 	}
@@ -681,7 +681,7 @@ public class NewCavesBossLevel extends Level {
 				int j = Dungeon.level.width() * tileY;
 				for (int i = 0; i < data.length; i++){
 
-					if (Dungeon.level.map[j] == EMPTY_SP) {
+					if (Dungeon.level.getTerrain(j) == EMPTY_SP) {
 						for (int k : pylonPositions) {
 							if (k == j) {
 								if (Dungeon.level.locked
@@ -695,7 +695,7 @@ public class NewCavesBossLevel extends Level {
 								data[i] = 54 + (j % w + 8 * (j / w)) - (k % w + 8 * (k / w));
 							}
 						}
-					} else if (Dungeon.level.map[j] == INTERACTION){
+					} else if (Dungeon.level.getTerrain(j) == INTERACTION){
 						data[i] = 37;
 					} else if (gate.inside(Dungeon.level.cellToPoint(j))){
 						int idx = Dungeon.level.solid(j) ? 40 : 32;
@@ -718,7 +718,7 @@ public class NewCavesBossLevel extends Level {
 		@Override
 		public String name(int tileX, int tileY) {
 			int i = tileX + tileW*(tileY + this.tileY);
-			if (Dungeon.level.map[i] == INTERACTION){
+			if (Dungeon.level.getTerrain(i) == INTERACTION){
 				return Messages.get(NewCavesBossLevel.class, "wires_name");
 			} else if (gate.inside(Dungeon.level.cellToPoint(i))){
 				return Messages.get(NewCavesBossLevel.class, "gate_name");
@@ -730,7 +730,7 @@ public class NewCavesBossLevel extends Level {
 		@Override
 		public String desc(int tileX, int tileY) {
 			int i = tileX + tileW*(tileY + this.tileY);
-			if (Dungeon.level.map[i] == INTERACTION){
+			if (Dungeon.level.getTerrain(i) == INTERACTION){
 				return Messages.get(NewCavesBossLevel.class, "wires_desc");
 			} else if (gate.inside(Dungeon.level.cellToPoint(i))){
 				if (Dungeon.level.solid(i)){

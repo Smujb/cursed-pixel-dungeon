@@ -199,7 +199,7 @@ public class CursedWand {
 						if (Actor.findChar(pos) != null && bolt.dist > 1) {
 							pos = bolt.path.get(bolt.dist - 1);
 						}
-						KindOfTerrain terrain = Dungeon.level.map[pos];
+						KindOfTerrain terrain = Dungeon.level.getTerrain(pos);
 
 						if (terrain == Terrain.EMPTY ||
 								terrain == Terrain.EMBERS ||

@@ -107,7 +107,7 @@ public class Pickaxe extends Weapon {
 			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
 				
 				final int pos = hero.pos + PathFinder.NEIGHBOURS8[i];
-				if (Dungeon.level.map[pos] == Terrain.WALL_DECO) {
+				if (Dungeon.level.getTerrain(pos) == Terrain.WALL_DECO) {
 				
 					hero.spend( TIME_TO_MINE );
 					hero.busy();

@@ -105,7 +105,7 @@ public class LastLevel extends Level {
 	protected boolean build() {
 		
 		setSize(16, 64);
-		Arrays.fill( map, CHASM );
+		Arrays.fill( getMap(), CHASM );
 
 		final int MID = width/2;
 
@@ -117,14 +117,14 @@ public class LastLevel extends Level {
 		//entrance = (height-2) * width() + mid;
 		setEntrance((height-ROOM_TOP) * width() + MID);
 		Painter.fill(this, 0, height - ROOM_TOP, width, 2, Terrain.WALL);
-		map[getEntrancePos()] = ENTRANCE;
-		map[getEntrancePos()+width] = Terrain.ENTRANCE;
+		set(getEntrancePos(), ENTRANCE);
+		set(getEntrancePos() + width(), ENTRANCE);
 		Painter.fill(this, 0, height - ROOM_TOP + 2, width, 8, Terrain.EMPTY);
 		Painter.fill(this, MID-1, height - ROOM_TOP + 2, 3, 1, Terrain.ENTRANCE);
 		
 		for (int i=0; i < length(); i++) {
-			if (map[i] == Terrain.EMPTY && Random.Int( 5 ) == 0) {
-				map[i] = EMPTY_DECO;
+			if (getTerrain(i) == Terrain.EMPTY && Random.Int( 5 ) == 0) {
+				set(i, EMPTY_DECO);
 			}
 		}
 
@@ -246,7 +246,7 @@ public class LastLevel extends Level {
 			int candlesStart = Dungeon.level.getExitPos() - 3 - 3*Dungeon.level.width();
 
 			int cell = tileX + tileY * Dungeon.level.width();
-			KindOfTerrain[] map = Dungeon.level.map;
+			KindOfTerrain[] map = Dungeon.level.getMap();
 			int[] data = new int[tileW*tileH];
 			for (int i = 0; i < data.length; i++){
 				if (i % tileW == 0){

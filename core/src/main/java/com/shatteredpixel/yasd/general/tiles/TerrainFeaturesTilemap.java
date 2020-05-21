@@ -52,7 +52,7 @@ public class TerrainFeaturesTilemap extends DungeonTilemap {
 		this.plants = plants;
 		this.traps = traps;
 
-		map( Dungeon.level.map, Dungeon.level.width() );
+		map( Dungeon.level.getMap(), Dungeon.level.width() );
 
 		instance = this;
 	}

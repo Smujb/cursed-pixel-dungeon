@@ -61,7 +61,7 @@ public class PitRoom extends SpecialRoom {
 		Painter.set( level, well, Terrain.EMPTY_WELL );
 		
 		int remains = level.pointToCell(random());
-		while (level.map[remains] == Terrain.EMPTY_WELL) {
+		while (level.getTerrain(remains) == Terrain.EMPTY_WELL) {
 			remains = level.pointToCell(random());
 		}
 		

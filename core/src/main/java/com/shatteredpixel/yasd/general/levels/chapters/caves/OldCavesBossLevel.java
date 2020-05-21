@@ -149,7 +149,7 @@ public class OldCavesBossLevel extends Level {
 		int exit = space.left + space.width()/2 + (space.top - 1) * width();
 		interactiveAreas.add(new Exit().setPos(this, exit));
 
-		map[getExitPos()] = LOCKED_EXIT;
+		set(getExitPos(), LOCKED_EXIT);
 		
 		Painter.fill( this, ROOM_LEFT - 1, ROOM_TOP - 1,
 			ROOM_RIGHT - ROOM_LEFT + 3, ROOM_BOTTOM - ROOM_TOP + 3, WALL );
@@ -160,22 +160,22 @@ public class OldCavesBossLevel extends Level {
 			ROOM_RIGHT - ROOM_LEFT + 1, 1, EMPTY_DECO );
 		
 		arenaDoor = Random.Int( ROOM_LEFT, ROOM_RIGHT ) + (ROOM_BOTTOM + 1) * width();
-		map[arenaDoor] = Terrain.DOOR;
+		set(arenaDoor, Terrain.DOOR);
 		
 		int entrance = Random.Int( ROOM_LEFT + 1, ROOM_RIGHT - 1 ) +
 			Random.Int( ROOM_TOP + 1, ROOM_BOTTOM - 1 ) * width();
 		interactiveAreas.add(new Entrance().setPos(this, entrance));
-		map[getEntrancePos()] = ENTRANCE;
+		set(getEntrancePos(), ENTRANCE);
 		
 		boolean[] patch = Patch.generate( width, height, 0.30f, 6, true );
 		for (int i=0; i < length(); i++) {
-			if (map[i] == EMPTY && patch[i]) {
-				map[i] = WATER;
+			if (getTerrain(i) == EMPTY && patch[i]) {
+				set(i, WATER);
 			}
 		}
 
 		for (int i=0; i < length(); i++) {
-			if (map[i] == EMPTY && Random.Int( 6 ) == 0) {
+			if (getTerrain(i) == EMPTY && Random.Int( 6 ) == 0) {
 				//map[i] = INTERACTION;
 				Trap t = new ToxicTrap().reveal();
 				t.active = false;
@@ -184,31 +184,31 @@ public class OldCavesBossLevel extends Level {
 		}
 		
 		for (int i=width() + 1; i < length() - width(); i++) {
-			if (map[i] == EMPTY) {
+			if (getTerrain(i) == EMPTY) {
 				int n = 0;
-				if (map[i+1] == WALL) {
+				if (getTerrain(i+1) == WALL) {
 					n++;
 				}
-				if (map[i-1] == WALL) {
+				if (getTerrain(i-1) == WALL) {
 					n++;
 				}
-				if (map[i+width()] == WALL) {
+				if (getTerrain(i+width()) == WALL) {
 					n++;
 				}
-				if (map[i-width()] == WALL) {
+				if (getTerrain(i-width()) == WALL) {
 					n++;
 				}
 				if (Random.Int( 8 ) <= n) {
-					map[i] = EMPTY_DECO;
+					set(i, EMPTY_DECO);
 				}
 			}
 		}
 		
 		for (int i=0; i < length() - width(); i++) {
-			if (map[i] == WALL
-					&& DungeonTileSheet.floorTile(map[i + width()])
+			if (getTerrain(i) == WALL
+					&& DungeonTileSheet.floorTile(getTerrain(i + width()))
 					&& Random.Int( 3 ) == 0) {
-				map[i] = WALL_DECO;
+				set(i, WALL_DECO);
 			}
 		}
 		

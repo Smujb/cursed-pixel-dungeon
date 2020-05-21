@@ -196,11 +196,11 @@ public class WallBlockingTilemap extends Tilemap {
     }
 
 	private boolean wall(int cell) {
-		return DungeonTileSheet.wallStitcheable(Dungeon.level.map[cell]);
+		return DungeonTileSheet.wallStitcheable(Dungeon.level.getTerrain(cell));
 	}
 
 	private boolean door(int cell) {
-		return DungeonTileSheet.doorTile(Dungeon.level.map[cell]);
+		return DungeonTileSheet.doorTile(Dungeon.level.getTerrain(cell));
 	}
 	
 	public synchronized void updateArea(int cell, int radius){

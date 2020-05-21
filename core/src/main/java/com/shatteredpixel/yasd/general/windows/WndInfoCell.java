@@ -51,7 +51,7 @@ public class WndInfoCell extends Window {
 		
 		super();
 		
-		KindOfTerrain tile = Dungeon.level.map[cell];
+		KindOfTerrain tile = Dungeon.level.getTerrain(cell);
 		if (Dungeon.level.liquid()[cell]) {
 			tile = Terrain.WATER;
 		} else if (Dungeon.level.pit()[cell]) {

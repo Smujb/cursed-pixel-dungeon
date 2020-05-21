@@ -47,7 +47,7 @@ public class SecretGardenRoom extends SecretRoom {
 		for (int i=top + 1; i < bottom; i++) {
 			for (int j=left + 1; j < right; j++) {
 				if (grass[xyToPatchCoords(j, i)]) {
-					level.map[i * level.width() + j] = Terrain.HIGH_GRASS;
+					level.set(i * level.width() + j, Terrain.HIGH_GRASS);
 				}
 			}
 		}

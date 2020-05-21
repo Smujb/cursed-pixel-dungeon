@@ -59,7 +59,7 @@ public class CaveRoom extends PatchRoom {
 			for (int j = left + 1; j < right; j++) {
 				if (patch[xyToPatchCoords(j, i)]) {
 					int cell = i * level.width() + j;
-					level.map[cell] = Terrain.WALL;
+					level.set(cell, Terrain.WALL);
 				}
 			}
 		}

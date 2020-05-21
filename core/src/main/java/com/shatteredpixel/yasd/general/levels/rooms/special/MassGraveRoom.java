@@ -77,7 +77,7 @@ public class MassGraveRoom extends SpecialRoom {
 			int pos;
 			do {
 				pos = level.pointToCell(random());
-			} while (level.map[pos] != Terrain.EMPTY_SP || level.findMob(pos) != null);
+			} while (level.getTerrain(pos) != Terrain.EMPTY_SP || level.findMob(pos) != null);
 			skele.pos = pos;
 			level.mobs.add( skele );
 		}
@@ -96,7 +96,7 @@ public class MassGraveRoom extends SpecialRoom {
 			int pos;
 			do {
 				pos = level.pointToCell(random());
-			} while (level.map[pos] != Terrain.EMPTY_SP || level.heaps.get(pos) != null);
+			} while (level.getTerrain(pos) != Terrain.EMPTY_SP || level.heaps.get(pos) != null);
 			Heap h = level.drop(item, pos);
 			h.setHauntedIfCursed();
 			h.type = Heap.Type.SKELETON;

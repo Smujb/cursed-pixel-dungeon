@@ -52,7 +52,7 @@ public class StorageRoom extends SpecialRoom {
 			int pos;
 			do {
 				pos = level.pointToCell(random());
-			} while (level.map[pos] != floor);
+			} while (level.getTerrain(pos) != floor);
 			if (honeyPot){
 				level.drop( new Honeypot(), pos);
 				honeyPot = false;

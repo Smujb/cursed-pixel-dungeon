@@ -330,7 +330,7 @@ public class ItemSprite extends MovieClip {
 					if (water) {
 						GameScene.ripple(heap.pos);
 					} else {
-						KindOfTerrain cell = Dungeon.level.map[heap.pos];
+						KindOfTerrain cell = Dungeon.level.getTerrain(heap.pos);
 						water = (cell == Terrain.WELL || cell == Terrain.ALCHEMY);
 					}
 
