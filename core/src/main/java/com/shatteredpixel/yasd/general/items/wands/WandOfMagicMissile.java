@@ -53,7 +53,7 @@ public class WandOfMagicMissile extends DamageWand {
 
 	@Override
 	public float max(float lvl){
-		return 8+4*lvl;
+		return 8+3*lvl;
 	}
 
 	@Override
@@ -86,5 +86,4 @@ public class WandOfMagicMissile extends DamageWand {
 	protected int initialCharges() {
 		return 5;
 	}
-
 }
