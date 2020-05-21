@@ -93,6 +93,10 @@ public class Emitter extends Group {
 	}
 
 	public void start( Factory factory, float interval, int quantity ) {
+
+		if (quantity < 0 || interval < 0) {
+			return;
+		}
 		
 		this.factory = factory;
 		this.lightMode = factory.lightMode();

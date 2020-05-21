@@ -19,14 +19,15 @@ public class CPDEmitter extends Emitter {
 	@Override
 	public void start(Factory factory, float interval, int quantity) {
 		float factor = CPDSettings.particles();
-		if (factor <= 0 && importantEmitter) {
-			factor = 0.5f;
+		if (factor <= 0) {
+			if (importantEmitter) {
+				factor = 0.5f;
+			} else {
+				return;
+			}
 		}
 		if (quantity != 0) {
 			quantity *= factor;
-			if (quantity <= 0) {
-				quantity = 1;
-			}
 		}
 		if (interval != 0 && factor != 0) {
 			interval *= 1/factor;
