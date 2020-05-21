@@ -34,6 +34,7 @@ import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.effects.CPDEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
@@ -473,7 +474,7 @@ public class Item implements Bundlable {
 	}
 
 	public Emitter emitter() {
-		Emitter emitter = new Emitter();
+		Emitter emitter = new CPDEmitter();
 		if (cursed && cursedKnown) {
 			emitter.pour(ShadowParticle.CURSE, 0.15f);
 		}

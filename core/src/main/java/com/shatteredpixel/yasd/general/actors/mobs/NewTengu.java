@@ -42,6 +42,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.LockedFloor;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.effects.BlobEmitter;
+import com.shatteredpixel.yasd.general.effects.CPDEmitter;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.FloatingText;
 import com.shatteredpixel.yasd.general.effects.Lightning;
@@ -671,7 +672,7 @@ public class NewTengu extends Boss {
 			
 			@Override
 			public Emitter emitter() {
-				Emitter emitter = new Emitter();
+				Emitter emitter = new CPDEmitter(true);
 				emitter.pos(7.5f, 3.5f);
 				emitter.fillTarget = false;
 				emitter.pour(SmokeParticle.SPEW, 0.05f);
@@ -1039,7 +1040,7 @@ public class NewTengu extends Boss {
 			
 			@Override
 			public Emitter emitter() {
-				Emitter emitter = new Emitter();
+				Emitter emitter = new CPDEmitter(true);
 				emitter.pos(5, 5);
 				emitter.fillTarget = false;
 				emitter.pour(SparkParticle.FACTORY, 0.1f);

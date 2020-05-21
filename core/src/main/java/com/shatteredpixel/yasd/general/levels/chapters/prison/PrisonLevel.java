@@ -29,20 +29,20 @@ package com.shatteredpixel.yasd.general.levels.chapters.prison;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.actors.mobs.DM100;
 import com.shatteredpixel.yasd.general.actors.mobs.Guard;
 import com.shatteredpixel.yasd.general.actors.mobs.Necromancer;
-import com.shatteredpixel.yasd.general.actors.mobs.DM100;
 import com.shatteredpixel.yasd.general.actors.mobs.Skeleton;
 import com.shatteredpixel.yasd.general.actors.mobs.Swarm;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Wandmaker;
+import com.shatteredpixel.yasd.general.effects.CPDEmitter;
+import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.RegularLevel;
-import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
-import com.watabou.noosa.Halo;
-import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.painters.PrisonPainter;
 import com.shatteredpixel.yasd.general.levels.rooms.Room;
+import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.traps.AlarmTrap;
 import com.shatteredpixel.yasd.general.levels.traps.BurningTrap;
 import com.shatteredpixel.yasd.general.levels.traps.ChillingTrap;
@@ -58,13 +58,14 @@ import com.shatteredpixel.yasd.general.levels.traps.ToxicTrap;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.tiles.DungeonTilemap;
 import com.watabou.noosa.Group;
-import com.watabou.noosa.particles.Emitter;
+import com.watabou.noosa.Halo;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.*;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WALL_DECO;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WATER;
 
 public class PrisonLevel extends RegularLevel {
 
@@ -226,7 +227,7 @@ public class PrisonLevel extends RegularLevel {
 		}
 	}
 	
-	public static class Torch extends Emitter {
+	public static class Torch extends CPDEmitter {
 		
 		private int pos;
 		

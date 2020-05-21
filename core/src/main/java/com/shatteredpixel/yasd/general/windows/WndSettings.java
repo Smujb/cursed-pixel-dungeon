@@ -28,8 +28,8 @@
 package com.shatteredpixel.yasd.general.windows;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
@@ -292,16 +292,16 @@ public class WndSettings extends WndTabbed {
 			chkFlipTags.checked(CPDSettings.flipTags());
 			add(chkFlipTags);
 
-			/*OptionSlider slots = new OptionSlider(Messages.get(this, "quickslots"), "0", "4", 0, 4) {
+			OptionSlider particles = new OptionSlider(Messages.get(this, "particles"), "0", "10", 0, 10) {
 				@Override
 				protected void onChange() {
-					YASDSettings.quickSlots(getSelectedValue());
+					CPDSettings.particles(getSelectedValue());
 					Toolbar.updateLayout();
 				}
 			};
-			slots.setSelectedValue(YASDSettings.quickSlots());
-			slots.setRect(0, chkFlipTags.bottom() + GAP_TINY, WIDTH, SLIDER_HEIGHT);
-			add(slots);*/
+			particles.setSelectedValue(CPDSettings.particles());
+			particles.setRect(0, chkFlipTags.bottom() + GAP_TINY, WIDTH, SLIDER_HEIGHT);
+			add(particles);
 
 			CheckBox chkFullscreen = new CheckBox( Messages.get(this, "fullscreen") ) {
 				@Override
@@ -310,7 +310,7 @@ public class WndSettings extends WndTabbed {
 					CPDSettings.fullscreen(checked());
 				}
 			};
-			chkFullscreen.setRect( 0, chkFlipTags.bottom() + GAP_SML, WIDTH, BTN_HEIGHT );
+			chkFullscreen.setRect( 0, particles.bottom() + GAP_SML, WIDTH, BTN_HEIGHT );
 			chkFullscreen.checked(CPDSettings.fullscreen());
 			if (DeviceCompat.isDesktop()){
 				chkFullscreen.text( "Fullscreen" );

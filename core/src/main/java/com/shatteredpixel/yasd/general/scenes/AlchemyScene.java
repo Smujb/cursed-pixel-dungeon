@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Chrome;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
+import com.shatteredpixel.yasd.general.effects.CPDEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.Recipe;
@@ -227,8 +228,8 @@ public class AlchemyScene extends PixelScene {
 		add(output);
 		output.visible = false;
 		
-		bubbleEmitter = new Emitter();
-		smokeEmitter = new Emitter();
+		bubbleEmitter = new CPDEmitter();
+		smokeEmitter = new CPDEmitter();
 		bubbleEmitter.pos(0, 0, Camera.main.width, Camera.main.height);
 		smokeEmitter.pos(outputBG.x + (BTN_SIZE-16)/2f, outputBG.y + (BTN_SIZE-16)/2f, 16, 16);
 		bubbleEmitter.autoKill = false;
@@ -238,7 +239,7 @@ public class AlchemyScene extends PixelScene {
 		
 		pos += 10;
 		
-		lowerBubbles = new Emitter();
+		lowerBubbles = new CPDEmitter();
 		lowerBubbles.pos(0, pos, Camera.main.width, Math.max(0, Camera.main.height-pos));
 		add(lowerBubbles);
 		lowerBubbles.pour(Speck.factory( Speck.BUBBLE ), 0.1f );

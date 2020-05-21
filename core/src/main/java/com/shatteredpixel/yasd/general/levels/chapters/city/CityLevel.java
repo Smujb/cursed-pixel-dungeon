@@ -35,6 +35,7 @@ import com.shatteredpixel.yasd.general.actors.mobs.Golem;
 import com.shatteredpixel.yasd.general.actors.mobs.Monk;
 import com.shatteredpixel.yasd.general.actors.mobs.Warlock;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Imp;
+import com.shatteredpixel.yasd.general.effects.CPDEmitter;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.RegularLevel;
 import com.shatteredpixel.yasd.general.levels.painters.CityPainter;
@@ -242,7 +243,7 @@ public class CityLevel extends RegularLevel {
 		}
 	}
 	
-	public static class Smoke extends Emitter {
+	public static class Smoke extends CPDEmitter {
 		
 		private int pos;
 		

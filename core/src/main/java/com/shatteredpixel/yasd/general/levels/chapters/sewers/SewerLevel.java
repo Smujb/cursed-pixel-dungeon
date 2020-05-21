@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.actors.mobs.Slime;
 import com.shatteredpixel.yasd.general.actors.mobs.Snake;
 import com.shatteredpixel.yasd.general.actors.mobs.Thief;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Ghost;
+import com.shatteredpixel.yasd.general.effects.CPDEmitter;
 import com.shatteredpixel.yasd.general.effects.Ripple;
 import com.shatteredpixel.yasd.general.items.DewVial;
 import com.shatteredpixel.yasd.general.items.powers.Alchemy;
@@ -215,7 +216,7 @@ public class SewerLevel extends RegularLevel {
 		}
 	}
 	
-	public static class Sink extends Emitter {
+	public static class Sink extends CPDEmitter {
 		
 		private int pos;
 		private float rippleDelay = 0;

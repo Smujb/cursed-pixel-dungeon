@@ -66,7 +66,7 @@ public class Fireball extends Component {
 		bLight.angularSpeed = -90;
 		add( bLight );
 		
-		emitter = new Emitter();
+		emitter = new CPDEmitter(true);
 		emitter.pour( new Emitter.Factory() {
 			@Override
 			public void emit(Emitter emitter, int index, float x, float y) {

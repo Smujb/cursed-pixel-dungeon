@@ -48,7 +48,7 @@ import com.watabou.utils.ColorMath;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
-public class MagicMissile extends Emitter {
+public class MagicMissile extends CPDEmitter {
 
 	private static final float SPEED	= 200f;
 	

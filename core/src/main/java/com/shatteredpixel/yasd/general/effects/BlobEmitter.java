@@ -30,12 +30,15 @@ package com.shatteredpixel.yasd.general.effects;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.tiles.DungeonTilemap;
-import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Random;
 import com.watabou.utils.RectF;
 
-public class BlobEmitter extends Emitter {
-	
+public class BlobEmitter extends CPDEmitter {
+
+	{
+		importantEmitter = true;
+	}
+
 	private Blob blob;
 	
 	public BlobEmitter( Blob blob ) {

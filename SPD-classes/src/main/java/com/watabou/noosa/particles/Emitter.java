@@ -84,11 +84,11 @@ public class Emitter extends Group {
 		pos(target);
 	}
 	
-	public void burst( Factory factory, int quantity ) {
+	public final void burst( Factory factory, int quantity ) {
 		start( factory, 0, quantity );
 	}
 	
-	public void pour( Factory factory, float interval ) {
+	public final void pour( Factory factory, float interval ) {
 		start( factory, interval, 0 );
 	}
 

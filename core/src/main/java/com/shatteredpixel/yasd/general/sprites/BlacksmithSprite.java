@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.sprites;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.effects.CPDEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.audio.Sample;
@@ -62,7 +63,7 @@ public class BlacksmithSprite extends MobSprite {
 	public void link( Char ch ) {
 		super.link( ch );
 		
-		emitter = new Emitter();
+		emitter = new CPDEmitter();
 		emitter.autoKill = false;
 		emitter.pos( x + 7, y + 12 );
 		parent.add( emitter );

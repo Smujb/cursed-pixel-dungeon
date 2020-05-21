@@ -173,7 +173,6 @@ public class Hero extends Char {
 	private int maxMP = 10;
 	public int mp = maxMP;
 
-	//TODO - what should stamina scale with? What should use it?
 	private int maxStamina = 10;
 	public float stamina = maxStamina;
 	

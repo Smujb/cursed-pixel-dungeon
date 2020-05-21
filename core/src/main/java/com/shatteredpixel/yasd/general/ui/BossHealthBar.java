@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.ui;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.effects.CPDEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.BloodParticle;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.particles.Emitter;
@@ -80,7 +81,7 @@ public class BossHealthBar extends Component {
 		skull = new Image(asset, 5, 18, 6, 6);
 		add(skull);
 
-		blood = new Emitter();
+		blood = new CPDEmitter(true);
 		blood.pos(skull);
 		blood.pour(BloodParticle.FACTORY, 0.3f);
 		blood.autoKill = false;
