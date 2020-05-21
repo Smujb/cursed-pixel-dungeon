@@ -167,7 +167,7 @@ public abstract class Char extends Actor {
 		},
 		CRUSH;
 
-		public int staminaCost() {
+		public float staminaCost() {
 			switch (this) {
 				case NORMAL: default:
 					return 2;

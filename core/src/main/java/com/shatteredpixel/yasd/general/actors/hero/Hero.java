@@ -96,6 +96,7 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
+import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
@@ -243,7 +244,7 @@ public class Hero extends Char {
 		return maxStamina;
 	}
 
-	public void useStamina(int amount) {
+	public void useStamina(float amount) {
 		stamina -= amount;
 		if (stamina < 0) {
 			int damage = (int) (-stamina*(HT/40));
@@ -928,19 +929,8 @@ public class Hero extends Char {
 	}
 	
 	private boolean actAttack(@NotNull HeroAction.Attack action ) {
-		return doAttack(action.target, action.type);
-	}
-
-	public boolean doAttack(Char enemy, AttackType type) {
-
-		this.enemy = enemy;
-		if (enemy.isAlive() && canAttack( enemy ) && !isCharmedBy( enemy )) {
-			useStamina(type.staminaCost());
-
-			sprite.attack(enemy.pos, type);
-
+		if (doAttack(action.target, action.type)) {
 			return false;
-
 		} else {
 
 			if (fieldOfView[enemy.pos] && getCloser( enemy.pos )) {
@@ -951,8 +941,27 @@ public class Hero extends Char {
 				ready();
 				return false;
 			}
-
 		}
+	}
+
+	public boolean doAttack(Char enemy, AttackType type) {
+		this.enemy = enemy;
+		if (enemy.isAlive() && canAttack( enemy ) && !isCharmedBy( enemy )) {
+			float cost = type.staminaCost();
+			KindOfWeapon weapon = belongings.getWeapon();
+			if (weapon != null) {
+				if (weapon instanceof MeleeWeapon) {
+					cost *= ((MeleeWeapon) weapon).STRReq() / 10f;
+					cost *= ((MeleeWeapon) weapon).DLY;
+				}
+			}
+			useStamina(cost);
+
+			sprite.attack(enemy.pos, type);
+
+			return true;
+		}
+		return false;
 	}
 
 
