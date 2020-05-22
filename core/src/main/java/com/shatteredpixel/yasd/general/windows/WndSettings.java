@@ -292,7 +292,7 @@ public class WndSettings extends WndTabbed {
 			chkFlipTags.checked(CPDSettings.flipTags());
 			add(chkFlipTags);
 
-			OptionSlider particles = new OptionSlider(Messages.get(this, "particles"), "0", "10", 0, 10) {
+			OptionSlider particles = new OptionSlider(Messages.get(this, "particles"), "0", "6", 0, 6) {
 				@Override
 				protected void onChange() {
 					CPDSettings.particles(getSelectedValue());
