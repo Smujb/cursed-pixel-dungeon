@@ -218,7 +218,7 @@ public class Statue extends Mob implements Callback {
 			ArrayList<Wand> UsableWands = new ArrayList<>();
 			for (int i = 0; i < Wands.size(); i++) {
 				Wand Wand = ((Wand) Wands.get(i));
-				if (Wand.curCharges > 0) {
+				if (Wand.tryToZap(this, enemy.pos)) {
 					UsableWands.add(Wand);
 				}
 			}
