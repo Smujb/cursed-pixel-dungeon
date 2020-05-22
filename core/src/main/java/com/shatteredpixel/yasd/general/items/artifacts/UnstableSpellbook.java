@@ -181,6 +181,7 @@ public class UnstableSpellbook extends Artifact {
 
 		@Override
 		public boolean act() {
+			scroll.setUser(Dungeon.hero);
 			scroll.anonymize();
 			scroll.doRead();
 			detach();
