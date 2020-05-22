@@ -288,6 +288,7 @@ public class Item implements Bundlable {
 			split.restoreFromBundle(copy);
 			split.quantity(amount);
 			quantity -= amount;
+			split.curUser = this.curUser;
 			
 			return split;
 		}
@@ -592,9 +593,8 @@ public class Item implements Bundlable {
 							new Callback() {
 								@Override
 								public void call() {
-									Item.this.detach(user.belongings.backpack);
-									Item.this.curUser = user;
-									Item.this.onThrow(cell);
+									curUser = user;
+									Item.this.detach(user.belongings.backpack).onThrow(cell);
 									user.spendAndNext(delay);
 								}
 							});
@@ -606,9 +606,8 @@ public class Item implements Bundlable {
 							new Callback() {
 								@Override
 								public void call() {
-									Item.this.detach(user.belongings.backpack);
-									Item.this.curUser = user;
-									Item.this.onThrow(cell);
+									curUser = user;
+									Item.this.detach(user.belongings.backpack).onThrow(cell);
 									user.spendAndNext(delay);
 								}
 							});
