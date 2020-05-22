@@ -6,7 +6,7 @@
  *  * Shattered Pixel Dungeon
  *  * Copyright (C) 2014-2019 Evan Debenham
  *  *
- *  * Cursed Pixel Dungeon
+ *  * Yet Another Shattered Dungeon
  *  * Copyright (C) 2014-2020 Samuel Braithwaite
  *  *
  *  * This program is free software: you can redistribute it and/or modify
@@ -86,10 +86,6 @@ public class DM300Sprite extends MobSprite {
 		if (curAnim != charge) play(idle);
 	}
 
-	public void charge(){
-		play( charge );
-	}
-
 	public void zap( int cell ) {
 
 		turnTo( ch.pos , cell );
@@ -108,6 +104,10 @@ public class DM300Sprite extends MobSprite {
 		Sample.INSTANCE.play( Assets.SND_PUFF );
 	}
 
+	public void charge(){
+		play( charge );
+	}
+
 	public void slam( int cell ){
 		turnTo( ch.pos , cell );
 		play( slam );
@@ -115,13 +115,10 @@ public class DM300Sprite extends MobSprite {
 		Camera.main.shake( 3, 0.7f );
 	}
 
-
 	private boolean exploded = false;
 
 	@Override
 	public void onComplete( Animation anim ) {
-		
-		super.onComplete( anim );
 
 		if (anim == zap || anim == slam){
 			idle();
@@ -130,6 +127,8 @@ public class DM300Sprite extends MobSprite {
 		if (anim == slam){
 			((NewDM300)ch).onSlamComplete();
 		}
+
+		super.onComplete( anim );
 
 		if (anim == die && !exploded) {
 			exploded = true;
@@ -144,7 +143,6 @@ public class DM300Sprite extends MobSprite {
 		if (parent != null) parent.bringToFront(this);
 		super.place(cell);
 	}
-
 
 	@Override
 	public void link(Char ch) {
@@ -190,7 +188,7 @@ public class DM300Sprite extends MobSprite {
 			superchargeSparks.killAndErase();
 		}
 	}
-	
+
 	@Override
 	public int blood() {
 		return 0xFFFFFF88;

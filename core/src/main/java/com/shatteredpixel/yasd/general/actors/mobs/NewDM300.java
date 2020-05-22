@@ -1,30 +1,3 @@
-/*
- *
- *   Pixel Dungeon
- *   Copyright (C) 2012-2015 Oleg Dolya
- *
- *   Shattered Pixel Dungeon
- *   Copyright (C) 2014-2019 Evan Debenham
- *
- *   Cursed Pixel Dungeon
- *   Copyright (C) 2014-2020 Samuel Braithwaite
- *
- *   This program is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>
- *
- *
- */
-
 package com.shatteredpixel.yasd.general.actors.mobs;
 
 import com.shatteredpixel.yasd.general.Assets;
@@ -65,15 +38,17 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 import com.watabou.utils.RectF;
 
-public class NewDM300 extends Boss {
+public class NewDM300 extends Mob {
 
 	{
+		//TODO improved sprite
 		spriteClass = DM300Sprite.class;
 
-		damageFactor = 0.7f;
-		healthFactor = 1.5f;
+		healthFactor = 2f;
+		damageFactor = 2/3f;
+		drFactor = 2f;
 
-		defenseSkill = 15;
+		EXP = 30;
 
 		properties.add(Property.BOSS);
 		properties.add(Property.INORGANIC);
@@ -263,14 +238,13 @@ public class NewDM300 extends Boss {
 		return enemy;
 	}
 
-
 	@Override
 	public void move(int step) {
 		super.move(step);
 
 		Camera.main.shake( supercharged ? 3 : 1, 0.25f );
 
-		if (Dungeon.level.getTerrain(step) == Terrain.INTERACTION && state == HUNTING) {
+		if (Dungeon.level.trap(step) != null && state == HUNTING) {
 
 			//don't gain energy from cells that are energized
 			if (NewCavesBossLevel.PylonEnergy.volumeAt(pos, NewCavesBossLevel.PylonEnergy.class) > 0){
@@ -304,7 +278,6 @@ public class NewDM300 extends Boss {
 			yell(Messages.get(this, "notice"));
 			for (Char ch : Actor.chars()){
 				if (ch instanceof DriedRose.GhostHero){
-
 					((DriedRose.GhostHero) ch).sayBoss();
 				}
 			}
@@ -346,8 +319,8 @@ public class NewDM300 extends Boss {
 	}
 
 	public void dropRocks( Char target ) {
-		Dungeon.hero.interrupt();
 
+		Dungeon.hero.interrupt();
 		final int rockCenter;
 
 		if (Dungeon.level.adjacent(pos, target.pos)){
@@ -362,7 +335,6 @@ public class NewDM300 extends Boss {
 			rockCenter = target.pos;
 		}
 
-		//pick an adjacent cell to the hero as a safe cell. This cell is less likely to be in a wall or containing hazards
 		//we handle this through an actor as it gives us fine-grainted control over when the blog acts vs. when the hero acts
 		//FIXME this is really messy to just get some fine-grained control. would be nice to build this into blob functionality, or just not use blobs for this at all
 		Actor a = new Actor() {
@@ -404,11 +376,7 @@ public class NewDM300 extends Boss {
 			}
 		};
 		Actor.addDelayed(a, Math.min(target.cooldown(), 3*TICK));
-	}
 
-	@Override
-	public boolean isInvulnerable(Class effect) {
-		return supercharged || super.isInvulnerable(effect);
 	}
 
 	@Override
@@ -428,6 +396,11 @@ public class NewDM300 extends Boss {
 			supercharge();
 		}
 
+	}
+
+	@Override
+	public boolean isInvulnerable(Class effect) {
+		return supercharged;
 	}
 
 	public void supercharge(){
@@ -515,7 +488,6 @@ public class NewDM300 extends Boss {
 				return true;
 			}
 
-
 			if (!supercharged || state != HUNTING || Dungeon.level.adjacent(pos, target)){
 				return false;
 			}
@@ -570,17 +542,16 @@ public class NewDM300 extends Boss {
 	{
 		immunities.add(Sleep.class);
 
-		resistances.put(Element.SPIRIT, 0.6f);
-		resistances.put(Element.CONFUSION, 0.33f);
-		//resistances.add(Charm.class);
-		//resistances.add(Vertigo.class);
-		//resistances.add(Cripple.class);
-		//resistances.add(Chill.class);
-		//resistances.add(Frost.class);
-		//resistances.add(Roots.class);
-		//resistances.add(Slow.class);
+		/*resistances.add(Terror.class);
+		resistances.add(Charm.class);
+		resistances.add(Vertigo.class);
+		resistances.add(Cripple.class);
+		resistances.add(Chill.class);
+		resistances.add(Frost.class);
+		resistances.add(Roots.class);
+		resistances.add(Slow.class);*/
+		resistances.put(Element.CONFUSION, 0.25f);
 	}
-
 
 	public static class FallingRocks extends Blob {
 
