@@ -84,9 +84,7 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 					healAmt = (float)Math.floor(healAmt);
 				}
 				target.heal((int) healAmt, false);
-				//target.HP += healAmt;
-				//left -= healAmt;
-				//target.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
+				left -= healAmt;
 			}
 			
 			if (left <= 0){
