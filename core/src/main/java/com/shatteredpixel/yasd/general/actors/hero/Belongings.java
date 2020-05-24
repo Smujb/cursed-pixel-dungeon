@@ -81,8 +81,8 @@ public class Belongings implements Iterable<Item> {
 	
 	public Bag backpack;
 
+	@Nullable
 	private KindOfWeapon weapon;
-
 	@Nullable
 	public Armor armor;
 	public KindofMisc[] miscs;
@@ -190,8 +190,8 @@ public class Belongings implements Iterable<Item> {
 			}
 		}
 
-		if (getWeapon() != null) {
-			int wepDr = Random.NormalIntRange(0, getWeapon().defenseFactor(owner));
+		if (weapon != null) {
+			int wepDr = Random.NormalIntRange(0, weapon.defenseFactor(owner));
 			if (weapon instanceof MeleeWeapon & owner.STR() < ((MeleeWeapon) weapon).STRReq()) {
 				wepDr -= 2 * (((MeleeWeapon) weapon).STRReq() - owner.STR());
 			}
@@ -413,7 +413,7 @@ public class Belongings implements Iterable<Item> {
 		}
 	}
 	
-	public static void preview( GamesInProgress.Info info, Bundle bundle ) {
+	static void preview(GamesInProgress.Info info, Bundle bundle) {
 		if (bundle.contains( ARMOR )){
 			info.armorTier = ((Armor)bundle.get( ARMOR )).tier;
 		} else {
@@ -474,7 +474,16 @@ public class Belongings implements Iterable<Item> {
 	}
 	
 	public void observe() {
-		for (int i = 0; i < owner.miscSlots(); i++) {//Restore all miscs
+
+		if (weapon != null) {
+			weapon.identify();
+		}
+
+		if (armor != null) {
+			armor.identify();
+		}
+
+		for (int i = 0; i < owner.miscSlots(); i++) {
 			if (miscs[i] != null) {
 				miscs[i].identify();
 				Badges.validateItemLevelAquired(miscs[i]);

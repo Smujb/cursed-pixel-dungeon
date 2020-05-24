@@ -35,6 +35,7 @@ import com.shatteredpixel.yasd.general.items.BrokenSeal;
 import com.shatteredpixel.yasd.general.items.DeveloperItem;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
+import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
@@ -117,6 +118,7 @@ public enum HeroClass {
 	}
 
 	private static void initCommon( Hero hero ) {
+		hero.belongings.miscs = new KindofMisc[hero.miscSlots()];
 		Item i = new ClothArmor().identify();
 		if (!Challenges.isItemBlocked(i))
 
