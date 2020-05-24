@@ -94,7 +94,7 @@ public class Dart extends MissileWeapon {
 	}
 
 	private Projectile getCrossbow() {
-		if (curUser.belongings.getWeapon() instanceof Projectile) {
+		if (curUser != null && curUser.belongings.getWeapon() instanceof Projectile) {
 			return ((Projectile) curUser.belongings.getWeapon());
 		} else {
 			return null;
