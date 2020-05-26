@@ -6,7 +6,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.AlchemyScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
-import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.watabou.noosa.Game;
 
 public class Alchemy extends Power {
@@ -17,17 +16,13 @@ public class Alchemy extends Power {
 		timeToUse = 0f;
 	}
 
-	protected WndBag.Mode mode = WndBag.Mode.POTION;
-
-	private Energy energy = new Energy();
-
 	@Override
 	protected void onUse(Hero hero) {
 		super.onUse(hero);
 		if (cursed)                                                GLog.w( Messages.get(this, "cursed") );
 		else if (hero.visibleEnemies() > hero.mindVisionEnemies.size()) GLog.i( Messages.get(this, "enemy_near") );
 		else {
-			AlchemyScene.setProvider(energy);
+			AlchemyScene.setProvider(new Energy());
 			Game.switchScene(AlchemyScene.class);
 		}
 	}
