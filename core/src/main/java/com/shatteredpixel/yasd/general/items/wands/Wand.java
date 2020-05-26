@@ -125,7 +125,7 @@ public abstract class Wand extends KindofMisc {
 	@Override
 	public void activate(Char ch) {//When equipped, start charging
 		super.activate(ch);
-		if (ch instanceof Char) {
+		if (ch != null) {
 			curUser = ch;
 		}
 
