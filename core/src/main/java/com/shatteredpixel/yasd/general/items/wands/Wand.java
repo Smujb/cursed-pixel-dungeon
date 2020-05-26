@@ -138,6 +138,9 @@ public abstract class Wand extends KindofMisc {
 	}
 
 	public void zap(int pos) {
+		if (!(curUser instanceof Hero)) {
+			curUser.spend(TIME_TO_ZAP);
+		}
 		final Ballistica attack = new Ballistica( curUser.pos,pos, this.collisionProperties);
 		this.fx(attack, new Callback() {
 			public void call() {
@@ -356,8 +359,14 @@ public abstract class Wand extends KindofMisc {
 		}
 		
 		curCharges -= cursed ? 1 : chargesPerCast();
-		
-		if (curUser instanceof Hero && ((Hero)curUser).heroClass == HeroClass.MAGE) levelKnown = true;
+
+		if (curUser instanceof Hero) {
+			//Spend should be handled in mob code for mobs. They have to spend the turn before zapping, not after.
+			curUser.spend( TIME_TO_ZAP );
+			if (((Hero) curUser).heroClass == HeroClass.MAGE) {
+				levelKnown = true;
+			}
+		}
 		updateQuickslot();
 
 		curUser.spendAndNext( TIME_TO_ZAP );
