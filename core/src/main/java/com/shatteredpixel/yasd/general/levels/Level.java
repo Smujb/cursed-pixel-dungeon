@@ -234,7 +234,6 @@ public abstract class Level implements Bundlable {
 		return map;
 	}
 
-	//NOTE: to avoid lag I recommend using passable(pos), losBlocking(pos), etc instead of passable()[pos], losBlocking()[pos], etc when possible.
 	//Cache map flags to use later and improve performance.
 	private FlagCache passable = new FlagCache();
 	private FlagCache losBlocking = new FlagCache();
