@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.levels;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
@@ -252,12 +253,7 @@ public abstract class Level implements Bundlable {
 		public boolean[] data = null;
 
 		boolean isValid(Level level) {
-			if (data == null) {
-				return false;
-			} else if (data.length != level.getMap().length) {
-				return false;
-			}
-			return true;
+			return data != null && data.length == level.getMap().length && CPDSettings.mapCache();
 		}
 
 		void invalidate() {
