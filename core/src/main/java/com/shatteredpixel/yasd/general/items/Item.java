@@ -169,7 +169,6 @@ public class Item implements Bundlable {
 	public void execute( Hero hero, String action ) {
 		
 		curUser = hero;
-		//curItem = this;
 		
 		if (action.equals( AC_DROP )) {
 			

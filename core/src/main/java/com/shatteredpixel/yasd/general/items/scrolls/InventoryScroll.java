@@ -82,31 +82,29 @@ public abstract class InventoryScroll extends Scroll {
 	protected WndBag.Listener itemSelector = new WndBag.Listener(this) {
 		@Override
 		public void onSelect( Item item ) {
-
-			InventoryScroll parent = (InventoryScroll) source;
 			
 			if (item != null) {
 
 				//If the scroll was identified by use, mana will already have been consumed. Anonymous scrolls are called by the Spellbook and Catalysts.
-				if (!parent.anonymous && !parent.identifiedByUse && parent.curUser instanceof Hero && !((Hero) parent.curUser).useMP(mpCost) ) {
-					GLog.w(Messages.get(parent, "no_mana"));
-					parent.collect( curUser.belongings.backpack, curUser);
+				if (!anonymous && !identifiedByUse && curUser instanceof Hero && !((Hero) curUser).useMP(mpCost) ) {
+					GLog.w(Messages.get(InventoryScroll.this, "no_mana"));
+					collect( curUser.belongings.backpack, curUser);
 					return;
 				}
 				
-				parent.onItemSelected( item );
-				parent.readAnimation();
+				onItemSelected( item );
+				readAnimation();
 				
 				Sample.INSTANCE.play( Assets.SND_READ );
 				Invisibility.dispel();
 				
-			} else if (identifiedByUse && !parent.anonymous) {
+			} else if (identifiedByUse && !anonymous) {
 				
-				parent.confirmCancelation();
+				confirmCancelation();
 				
-			} else if (!parent.anonymous) {
+			} else if (!anonymous) {
 
-				parent.collect( curUser.belongings.backpack, curUser);
+				collect( curUser.belongings.backpack, curUser);
 				
 			}
 		}

@@ -163,6 +163,7 @@ public class UnstableSpellbook extends Artifact {
 						}
 					});
 				} else {
+					scroll.setUser(curUser);
 					scroll.doRead();
 				}
 				updateQuickslot();
