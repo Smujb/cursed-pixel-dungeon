@@ -1287,8 +1287,8 @@ public abstract class Level implements Bundlable {
 	}
 
 	public void set( int cell, KindOfTerrain terrain ){
-		KindOfTerrain old = map[cell];
 		if (cell < map.length) {
+			KindOfTerrain old = map[cell];
 			map[cell] = terrain;
 			if (terrain == WATER){
 				removeTrap( cell );
