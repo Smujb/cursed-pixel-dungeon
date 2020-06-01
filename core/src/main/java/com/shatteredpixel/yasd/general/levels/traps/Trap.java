@@ -77,7 +77,6 @@ public abstract class Trap implements Bundlable {
 
 	public Trap set(int pos, Level level){
 		this.pos = pos;
-		level.onModify();
 		return this;
 	}
 
@@ -102,7 +101,6 @@ public abstract class Trap implements Bundlable {
 			if (Dungeon.level.heroFOV[pos]) {
 				Sample.INSTANCE.play(Assets.SND_TRAP);
 			}
-			Dungeon.level.onModify();
 			disarm();
 			reveal();
 			activate();

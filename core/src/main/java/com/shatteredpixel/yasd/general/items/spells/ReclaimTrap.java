@@ -58,7 +58,7 @@ public class ReclaimTrap extends TargetedSpell {
 	protected void affectTarget(Ballistica bolt, Char hero) {
 		if (storedTrap == null) {
 			quantity++; //storing a trap doesn't consume the spell
-			Trap t = Dungeon.level.traps.get(bolt.collisionPos);
+			Trap t = Dungeon.level.trap(bolt.collisionPos);
 			if (t != null && t.active && t.visible) {
 				t.disarm();
 				

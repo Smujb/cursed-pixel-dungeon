@@ -218,7 +218,7 @@ public class GameScene extends PixelScene {
 		visualGrid = new GridTileMap();
 		terrain.add( visualGrid );
 
-		terrainFeatures = new TerrainFeaturesTilemap(Dungeon.level.plants, Dungeon.level.traps);
+		terrainFeatures = new TerrainFeaturesTilemap(Dungeon.level.plants, Dungeon.level.getTraps());
 		terrain.add(terrainFeatures);
 		
 		levelVisuals = Dungeon.level.addVisuals();
@@ -1117,7 +1117,7 @@ public class GameScene extends PixelScene {
 			names.add(Messages.titleCase( plant.plantName ));
 		}
 
-		Trap trap = Dungeon.level.traps.get( cell );
+		Trap trap = Dungeon.level.trap( cell );
 		if (trap != null && trap.visible) {
 			objects.add(trap);
 			names.add(Messages.titleCase( trap.name ));

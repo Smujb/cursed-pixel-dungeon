@@ -58,7 +58,7 @@ public class TerrainFeaturesTilemap extends DungeonTilemap {
 	}
 
 	public int getTileVisual(int pos, KindOfTerrain tile, boolean flat){
-		if (traps.get(pos) != null){
+		if (traps.containsKey(pos)){
 			Trap trap = traps.get(pos);
 			if (!trap.visible)
 				return -1;
@@ -69,18 +69,6 @@ public class TerrainFeaturesTilemap extends DungeonTilemap {
 		if (plants.get(pos) != null){
 			return plants.get(pos).image + 7*16;
 		}
-		//TODO Fix grass visuals
-		/*int stage = (Dungeon.depth -1)/Constants.CHAPTER_LENGTH;
-		if (Dungeon.depth == 21) stage--;
-		if (tile == Terrain.HIGH_GRASS){
-			return 9 + 16*stage + (DungeonTileSheet.tileVariance[pos] >= 50 ? 1 : 0);
-		} else if (tile == Terrain.FURROWED_GRASS){
-			return 11 + 16*stage + (DungeonTileSheet.tileVariance[pos] >= 50 ? 1 : 0);
-		} else if (tile == Terrain.GRASS) {
-			return 13 + 16*stage + (DungeonTileSheet.tileVariance[pos] >= 50 ? 1 : 0);
-		} else if (tile == Terrain.EMBERS) {
-			return 9 * (16*5) + (DungeonTileSheet.tileVariance[pos] >= 50 ? 1 : 0);
-		}*/
 
 		return -1;
 	}

@@ -95,7 +95,7 @@ public class SummoningTrap extends Trap {
 		Trap t;
 		for (Mob mob : mobs) {
 			//manually interact traps first to avoid sfx spam
-			if ((t = Dungeon.level.traps.get(mob.pos)) != null && t.active){
+			if ((t = Dungeon.level.trap(mob.pos)) != null && t.active){
 				t.disarm();
 				t.reveal();
 				t.activate();

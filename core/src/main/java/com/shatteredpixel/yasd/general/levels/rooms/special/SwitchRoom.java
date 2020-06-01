@@ -39,6 +39,6 @@ public class SwitchRoom extends SpecialRoom {
 		Painter.fill( level, this, Terrain.WALL );
 		Painter.fill( level, this, 1, Terrain.EMPTY );
 
-		level.traps.put(level.pointToCell(random()), new WornDartTrap());
+		level.setTrap(new WornDartTrap(), level.pointToCell(random()));
 	}
 }

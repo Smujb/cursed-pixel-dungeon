@@ -211,7 +211,7 @@ public class OldTengu extends Boss {
 				tries = 15;
 				do {
 					trapPos = Random.Int( level.length() );
-				} while (tries-- > 0 && !level.traps.containsKey(pos));
+				} while (tries-- > 0 && !level.hasTrap(pos));
 				
 				if (level.getTerrain(trapPos) == Terrain.EMPTY && (level.trap(trapPos) == null || !level.trap(trapPos).active)) {
 					level.setTrap( new  GrippingTrap().reveal(), trapPos );

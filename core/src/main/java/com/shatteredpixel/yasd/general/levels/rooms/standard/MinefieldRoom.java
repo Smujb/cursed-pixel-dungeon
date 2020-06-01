@@ -67,12 +67,12 @@ public class MinefieldRoom extends StandardRoom {
 			int pos;
 			do {
 				pos = level.pointToCell(random(1));
-			} while (level.traps.get(pos) != null);
+			} while (level.trap(pos) != null);
 
 			//randomly places some embers around the mines
 			for (int j = 0; j < 8; j ++){
 				int c = PathFinder.NEIGHBOURS8[Random.Int(8)];
-				if (level.traps.get(pos+c) == null && level.getTerrain(pos+c) == Terrain.EMPTY){
+				if (level.trap(pos+c) == null && level.getTerrain(pos+c) == Terrain.EMPTY){
 					Painter.set(level, pos+c, Terrain.EMBERS);
 				}
 			}

@@ -265,7 +265,7 @@ public class OldPrisonBossLevel extends Level {
 	}
 
 	private void resetTraps(){
-		traps.clear();
+		clearTraps();
 
 		for (int i = 0; i < length(); i++){
 			if (getTerrain(i) == EMPTY_SP) {
