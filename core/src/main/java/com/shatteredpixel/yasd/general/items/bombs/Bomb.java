@@ -83,7 +83,7 @@ public class Bomb extends Item {
 
 	public Fuse fuse;
 
-	private boolean lightingFuse = false;
+	private static boolean lightingFuse = false;
 
 	private static final String AC_LIGHTTHROW = "LIGHTTHROW";
 
@@ -109,15 +109,16 @@ public class Bomb extends Item {
 		if (action.equals(AC_LIGHTTHROW)) {
 			lightingFuse = true;
 			action = AC_THROW;
-		} else
+		} else {
 			lightingFuse = false;
+		}
 
 		super.execute(hero, action);
 	}
 
 	@Override
 	protected void onThrow( int cell ) {
-		if (!Dungeon.level.pit()[ cell ] && lightingFuse) {
+		if (!Dungeon.level.pit(cell) && lightingFuse) {
 			Actor.addDelayed(fuse = new Fuse().ignite(this), 2);
 		}
 		if (Actor.findChar( cell ) != null && !(Actor.findChar( cell ) instanceof Hero) ){
