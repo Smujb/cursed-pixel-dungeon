@@ -37,6 +37,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.PixmapPacker;
@@ -138,6 +139,11 @@ public class AndroidPlatformSupport extends PlatformSupport {
 				}
 			});
 		}
+	}
+
+	@Override
+	public boolean gyroscope() {
+		return Gdx.input.isPeripheralAvailable(Input.Peripheral.Gyroscope);
 	}
 	
 	public void updateSystemUI() {

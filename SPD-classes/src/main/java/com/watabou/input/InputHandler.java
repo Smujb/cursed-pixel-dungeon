@@ -38,6 +38,8 @@ public class InputHandler extends InputAdapter {
 		input.setInputProcessor( this );
 		input.setCatchKey( Input.Keys.BACK, true);
 		input.setCatchKey( Input.Keys.MENU, true);
+		input.setCatchKey( Input.Keys.VOLUME_UP, true);
+		input.setCatchKey( Input.Keys.VOLUME_DOWN, true);
 	}
 	
 	public void processAllEvents(){

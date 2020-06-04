@@ -31,6 +31,7 @@ import com.badlogic.gdx.Input;
 import com.watabou.input.GameAction;
 import com.watabou.input.KeyBindings;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.FileUtils;
 
 import org.jetbrains.annotations.Contract;
@@ -79,53 +80,57 @@ public class CPDAction extends GameAction {
 	public static final GameAction SW          = new CPDAction("sw");
 	public static final GameAction NW          = new CPDAction("nw");
 
-	private static final LinkedHashMap<Integer, GameAction> defaultBindings = new LinkedHashMap<>();
+	private static final LinkedHashMap<Integer, GameAction> defaultBindingsDesktop = new LinkedHashMap<>();
+	private static final LinkedHashMap<Integer, GameAction> defaultBindingsAndroid = new LinkedHashMap<>();
 	static {
-		defaultBindings.put( Input.Keys.ESCAPE,      CPDAction.BACK );
-		defaultBindings.put( Input.Keys.BACKSPACE,   CPDAction.BACK );
+		defaultBindingsDesktop.put( Input.Keys.ESCAPE,      CPDAction.BACK );
+		defaultBindingsDesktop.put( Input.Keys.BACKSPACE,   CPDAction.BACK );
 
-		defaultBindings.put( Input.Keys.H,           CPDAction.HERO_INFO );
-		defaultBindings.put( Input.Keys.J,           CPDAction.JOURNAL );
+		defaultBindingsDesktop.put( Input.Keys.H,           CPDAction.HERO_INFO );
+		defaultBindingsDesktop.put( Input.Keys.J,           CPDAction.JOURNAL );
 
-		defaultBindings.put( Input.Keys.SPACE,       CPDAction.WAIT );
-		defaultBindings.put( Input.Keys.S,           CPDAction.SEARCH );
+		defaultBindingsDesktop.put( Input.Keys.SPACE,       CPDAction.WAIT );
+		defaultBindingsDesktop.put( Input.Keys.S,           CPDAction.SEARCH );
 
-		defaultBindings.put( Input.Keys.I,           CPDAction.INVENTORY );
-		defaultBindings.put( Input.Keys.Q,           CPDAction.QUICKSLOT_1 );
-		defaultBindings.put( Input.Keys.W,           CPDAction.QUICKSLOT_2 );
-		defaultBindings.put( Input.Keys.E,           CPDAction.QUICKSLOT_3 );
-		defaultBindings.put( Input.Keys.R,           CPDAction.QUICKSLOT_4 );
+		defaultBindingsDesktop.put( Input.Keys.I,           CPDAction.INVENTORY );
+		defaultBindingsDesktop.put( Input.Keys.Q,           CPDAction.QUICKSLOT_1 );
+		defaultBindingsDesktop.put( Input.Keys.W,           CPDAction.QUICKSLOT_2 );
+		defaultBindingsDesktop.put( Input.Keys.E,           CPDAction.QUICKSLOT_3 );
+		defaultBindingsDesktop.put( Input.Keys.R,           CPDAction.QUICKSLOT_4 );
 
-		defaultBindings.put( Input.Keys.A,           CPDAction.TAG_ATTACK );
-		defaultBindings.put( Input.Keys.TAB,         CPDAction.TAG_DANGER );
-		defaultBindings.put( Input.Keys.D,           CPDAction.TAG_ACTION );
-		defaultBindings.put( Input.Keys.ENTER,       CPDAction.TAG_LOOT );
-		defaultBindings.put( Input.Keys.T,           CPDAction.TAG_RESUME );
+		defaultBindingsDesktop.put( Input.Keys.A,           CPDAction.TAG_ATTACK );
+		defaultBindingsDesktop.put( Input.Keys.TAB,         CPDAction.TAG_DANGER );
+		defaultBindingsDesktop.put( Input.Keys.D,           CPDAction.TAG_ACTION );
+		defaultBindingsDesktop.put( Input.Keys.ENTER,       CPDAction.TAG_LOOT );
+		defaultBindingsDesktop.put( Input.Keys.T,           CPDAction.TAG_RESUME );
 
-		defaultBindings.put( Input.Keys.PLUS,        CPDAction.ZOOM_IN );
-		defaultBindings.put( Input.Keys.EQUALS,      CPDAction.ZOOM_IN );
-		defaultBindings.put( Input.Keys.MINUS,       CPDAction.ZOOM_OUT );
+		defaultBindingsDesktop.put( Input.Keys.PLUS,        CPDAction.ZOOM_IN );
+		defaultBindingsDesktop.put( Input.Keys.EQUALS,      CPDAction.ZOOM_IN );
+		defaultBindingsDesktop.put( Input.Keys.MINUS,       CPDAction.ZOOM_OUT );
 
-		defaultBindings.put( Input.Keys.UP,          CPDAction.N );
-		defaultBindings.put( Input.Keys.RIGHT,       CPDAction.E );
-		defaultBindings.put( Input.Keys.DOWN,        CPDAction.S );
-		defaultBindings.put( Input.Keys.LEFT,        CPDAction.W );
+		defaultBindingsDesktop.put( Input.Keys.UP,          CPDAction.N );
+		defaultBindingsDesktop.put( Input.Keys.RIGHT,       CPDAction.E );
+		defaultBindingsDesktop.put( Input.Keys.DOWN,        CPDAction.S );
+		defaultBindingsDesktop.put( Input.Keys.LEFT,        CPDAction.W );
 
-		defaultBindings.put( Input.Keys.NUMPAD_5,    CPDAction.WAIT );
-		defaultBindings.put( Input.Keys.NUMPAD_8,    CPDAction.N );
-		defaultBindings.put( Input.Keys.NUMPAD_9,    CPDAction.NE );
-		defaultBindings.put( Input.Keys.NUMPAD_6,    CPDAction.E );
-		defaultBindings.put( Input.Keys.NUMPAD_3,    CPDAction.SE );
-		defaultBindings.put( Input.Keys.NUMPAD_2,    CPDAction.S );
-		defaultBindings.put( Input.Keys.NUMPAD_1,    CPDAction.SW );
-		defaultBindings.put( Input.Keys.NUMPAD_4,    CPDAction.W );
-		defaultBindings.put( Input.Keys.NUMPAD_7,    CPDAction.NW );
+		defaultBindingsDesktop.put( Input.Keys.NUMPAD_5,    CPDAction.WAIT );
+		defaultBindingsDesktop.put( Input.Keys.NUMPAD_8,    CPDAction.N );
+		defaultBindingsDesktop.put( Input.Keys.NUMPAD_9,    CPDAction.NE );
+		defaultBindingsDesktop.put( Input.Keys.NUMPAD_6,    CPDAction.E );
+		defaultBindingsDesktop.put( Input.Keys.NUMPAD_3,    CPDAction.SE );
+		defaultBindingsDesktop.put( Input.Keys.NUMPAD_2,    CPDAction.S );
+		defaultBindingsDesktop.put( Input.Keys.NUMPAD_1,    CPDAction.SW );
+		defaultBindingsDesktop.put( Input.Keys.NUMPAD_4,    CPDAction.W );
+		defaultBindingsDesktop.put( Input.Keys.NUMPAD_7,    CPDAction.NW );
+
+		defaultBindingsAndroid.put( Input.Keys.VOLUME_UP, CPDAction.TAG_DANGER );
+		defaultBindingsAndroid.put( Input.Keys.VOLUME_DOWN, CPDAction.SEARCH );
 	}
 
 
 	@Contract(" -> new")
 	public static LinkedHashMap<Integer, GameAction> getDefaults() {
-		return new LinkedHashMap<>(defaultBindings);
+		return DeviceCompat.isDesktop() ? new LinkedHashMap<>(defaultBindingsDesktop) : new LinkedHashMap<>(defaultBindingsAndroid);
 	}
 
 	//hard bindings for android devices
@@ -207,8 +212,8 @@ public class CPDAction extends GameAction {
 			int firstDef = 0;
 			int secondDef = 0;
 
-			for (int i : defaultBindings.keySet()){
-				if (defaultBindings.get(i) == a){
+			for (int i : defaultBindingsDesktop.keySet()){
+				if (defaultBindingsDesktop.get(i) == a){
 					if(firstDef == 0){
 						firstDef = i;
 					} else {

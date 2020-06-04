@@ -32,7 +32,9 @@ import android.content.pm.PackageManager;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -47,6 +49,7 @@ import com.watabou.utils.FileUtils;
 public class AndroidGame extends AndroidApplication {
 	
 	public static AndroidApplication instance;
+	public static AndroidApplicationConfiguration config;
 	protected static GLSurfaceView view;
 	
 	private AndroidPlatformSupport support;
@@ -70,6 +73,7 @@ public class AndroidGame extends AndroidApplication {
 		if (UpdateImpl.supportsUpdates()){
 			Updates.service = UpdateImpl.getUpdateService();
 		}
+
 
 		FileUtils.setDefaultFileProperties( Files.FileType.Local, "" );
 
@@ -108,6 +112,17 @@ public class AndroidGame extends AndroidApplication {
 		initialize(cpdGame, config);
 		
 		view = (GLSurfaceView)graphics.getView();
+	}
+
+	@Override
+	public View initializeForView(ApplicationListener listener) {
+		config = new AndroidApplicationConfiguration();
+		config.useGyroscope = true;  //default is false
+
+		//you may want to switch off sensors that are on by default if they are no longer needed.
+		config.useAccelerometer = false;
+		config.useCompass = false;
+		return initializeForView(listener, config);
 	}
 
 	@Override

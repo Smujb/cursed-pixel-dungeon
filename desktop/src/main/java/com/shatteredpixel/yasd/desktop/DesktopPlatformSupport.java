@@ -48,7 +48,6 @@ public class DesktopPlatformSupport extends PlatformSupport {
         return true; //no easy way to check this in desktop, just assume user doesn't care
     }
 
-
     @Override
     public void updateDisplaySize() {
         if (!CPDSettings.fullscreen()) {
@@ -69,6 +68,11 @@ public class DesktopPlatformSupport extends PlatformSupport {
                 }
             }
         } );
+    }
+
+    @Override
+    public boolean gyroscope() {
+        return false;
     }
 
     @Override
