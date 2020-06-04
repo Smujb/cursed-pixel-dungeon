@@ -362,14 +362,12 @@ public abstract class Wand extends KindofMisc {
 
 		if (curUser instanceof Hero) {
 			//Spend should be handled in mob code for mobs. They have to spend the turn before zapping, not after.
-			curUser.spend( TIME_TO_ZAP );
+			curUser.spendAndNext( TIME_TO_ZAP );
 			if (((Hero) curUser).heroClass == HeroClass.MAGE) {
 				levelKnown = true;
 			}
 		}
 		updateQuickslot();
-
-		curUser.spendAndNext( TIME_TO_ZAP );
 	}
 	
 	@Override

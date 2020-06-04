@@ -170,7 +170,7 @@ public abstract class Char extends Actor {
 		public float staminaCost() {
 			switch (this) {
 				case NORMAL: default:
-					return 2;
+					return 1;
 				case SPIN:
 					return 5;
 				case CRUSH:
@@ -181,10 +181,6 @@ public abstract class Char extends Actor {
 					return 10;
 			}
 		}
-
-		/*public AttackIndicator indicator() {
-			return
-		}*/
 
 		public int proc(int damage, DamageSrc src) {
 			switch (this) {

@@ -945,6 +945,7 @@ public class Hero extends Char {
 
 	public boolean doAttack(Char enemy, AttackType type) {
 		this.enemy = enemy;
+		StaminaRegen.regen = false;
 		if (enemy.isAlive() && canAttack( enemy ) && !isCharmedBy( enemy )) {
 			float cost = type.staminaCost();
 			KindOfWeapon weapon = belongings.getWeapon();
