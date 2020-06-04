@@ -196,7 +196,6 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Blunt;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dual;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Heavy;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Long;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Magical;
@@ -503,11 +502,11 @@ public class Generator {
 					Basic.class,
 					Blunt.class,
 					Polearm.class,
-					Heavy.class,
+					//Heavy.class,
 					Shield.class
 
 			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 4, 6, 4, 5, 4 };
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 4, 6, 4, /*5,*/ 4 };
 			
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{

@@ -157,8 +157,10 @@ public class WndJournal extends WndTabbed {
 			super();
 			
 			this.icon.copy(icon);
-			
-			label.text( "(" +  key + ") " + text );
+			if (key != null) {
+				text = "(" +  key + ") " + text;
+			}
+			label.text( text );
 			if (key == null || key.equals(Dungeon.keyForDepth())) {
 				label.hardlight(TITLE_COLOR);
 			}
@@ -687,7 +689,7 @@ public class WndJournal extends WndTabbed {
 			private boolean seen;
 			
 			public CatalogItem(Item item, boolean IDed, boolean seen ) {
-				super( new ItemSprite(item), Messages.titleCase(item.trueName()));
+				super( new ItemSprite(item), Messages.titleCase(item.name()));
 				
 				this.item = item;
 				this.seen = seen;
@@ -716,7 +718,7 @@ public class WndJournal extends WndTabbed {
 			public boolean onClick( float x, float y ) {
 				if (inside( x, y ) && seen) {
 					GameScene.show(new WndTitledMessage(new Image(icon),
-							Messages.titleCase(item.trueName()), item.info()));
+							Messages.titleCase(item.name()), item.info()));
 
 					return true;
 				} else {

@@ -43,7 +43,6 @@ public class MeleeWeapon extends Weapon {
 	public float damageMultiplier = 1f;
 	public float defenseMultiplier = 0f;
 
-	public boolean dualWieldpenalty = false;
 	public boolean sneakBenefit = false;
 
 	@Override
@@ -106,9 +105,6 @@ public class MeleeWeapon extends Weapon {
 		multiplier *= 1/ACC;
 		multiplier *= 2/RCH+1;
 		multiplier *= 1f-(defenseMultiplier/2);
-		if (dualWieldpenalty) {
-			multiplier *= 1.2f;
-		}
 		if (breaksArmor(owner)) {
 			multiplier *= 0.8f;
 		}
@@ -142,7 +138,7 @@ public class MeleeWeapon extends Weapon {
 
 		//String statsInfo = statsInfo();
 		//if (!statsInfo.equals("")) info += "\n\n" + statsInfo;
-		if (DLY != 1f | ACC != 1f | RCH != 1 | dualWieldpenalty | breaksArmor(Dungeon.hero) | !canSurpriseAttack | defenseFactor(Dungeon.hero) > 0 | sneakBenefit) {
+		if (DLY != 1f | ACC != 1f | RCH != 1 | breaksArmor(Dungeon.hero) | !canSurpriseAttack | defenseFactor(Dungeon.hero) > 0 | sneakBenefit) {
 
 			info += "\n";
 
@@ -160,10 +156,6 @@ public class MeleeWeapon extends Weapon {
 
 			if (RCH > 1) {
 				info += "\n" + Messages.get(MeleeWeapon.class, "reach_increase", RCH - 1);
-			}
-
-			if (dualWieldpenalty) {
-				info += "\n" + Messages.get(MeleeWeapon.class, "dual_wield_penalty");
 			}
 
 			if (breaksArmor(curUser)) {

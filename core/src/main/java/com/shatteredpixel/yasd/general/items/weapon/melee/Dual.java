@@ -36,11 +36,9 @@ public class Dual extends MeleeWeapon {
 		//image = ItemSpriteSheet.SAI;
 
 		tier = 1;
-		DLY = 0.33f; //3x speed
+		DLY = 0.6f; //3x speed
 
 		damageMultiplier = 0.5f;
-
-		dualWieldpenalty = true;
 	}
 
 	@Override
