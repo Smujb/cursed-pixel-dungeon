@@ -339,7 +339,7 @@ public class WndSettings extends WndTabbed {
 			chkFont.checked(CPDSettings.systemFont());
 			add(chkFont);
 
-			if (DeviceCompat.isDesktop()){
+			//if (DeviceCompat.isDesktop()){
 				RedButton btnKeyBindings = new RedButton(Messages.get(this, "key_bindings")){
 					@Override
 					protected void onClick() {
@@ -350,7 +350,7 @@ public class WndSettings extends WndTabbed {
 
 				btnKeyBindings.setRect(0, chkFont.bottom() + GAP_SML, WIDTH, BTN_HEIGHT);
 				add(btnKeyBindings);
-			}
+			//}
 		}
 
 	}

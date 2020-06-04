@@ -61,7 +61,6 @@ public class DangerIndicator extends Tag {
 		return CPDAction.TAG_DANGER;
 	}
 
-
 	@Override
 	protected void createChildren() {
 		super.createChildren();

@@ -109,7 +109,7 @@ public class AndroidGame extends AndroidApplication {
 		
 		view = (GLSurfaceView)graphics.getView();
 	}
-	
+
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);
