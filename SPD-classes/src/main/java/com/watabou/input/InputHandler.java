@@ -36,10 +36,14 @@ public class InputHandler extends InputAdapter {
 
 	public InputHandler( Input input ){
 		input.setInputProcessor( this );
+		updateEventCatching(input);
+	}
+
+	public static void updateEventCatching(Input input) {
 		input.setCatchKey( Input.Keys.BACK, true);
 		input.setCatchKey( Input.Keys.MENU, true);
-		input.setCatchKey( Input.Keys.VOLUME_UP, true);
-		input.setCatchKey( Input.Keys.VOLUME_DOWN, true);
+		input.setCatchKey( Input.Keys.VOLUME_UP, KeyBindings.isKeyBound(Input.Keys.VOLUME_UP));
+		input.setCatchKey( Input.Keys.VOLUME_DOWN, KeyBindings.isKeyBound(Input.Keys.VOLUME_DOWN));
 	}
 	
 	public void processAllEvents(){

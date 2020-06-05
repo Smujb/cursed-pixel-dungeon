@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general;
 
+import com.shatteredpixel.yasd.general.levels.SurfaceLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.caves.CavesLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.FirstLevel;
@@ -45,6 +46,7 @@ public class Lore {
 	private static final HashMap<Class<? extends Level>, String> CHAPTERS = new HashMap<>();
 
 	static {
+		CHAPTERS.put( SurfaceLevel.class, "intro" );
 		CHAPTERS.put( FirstLevel.class, "sewers" );
 		CHAPTERS.put( PrisonLevel.class, "prison" );
 		CHAPTERS.put( CavesLevel.class, "caves" );

@@ -123,8 +123,8 @@ public class CPDAction extends GameAction {
 		defaultBindingsDesktop.put( Input.Keys.NUMPAD_4,    CPDAction.W );
 		defaultBindingsDesktop.put( Input.Keys.NUMPAD_7,    CPDAction.NW );
 
-		defaultBindingsAndroid.put( Input.Keys.VOLUME_UP, CPDAction.TAG_DANGER );
-		defaultBindingsAndroid.put( Input.Keys.VOLUME_DOWN, CPDAction.SEARCH );
+		//defaultBindingsAndroid.put( Input.Keys.VOLUME_UP, CPDAction.TAG_DANGER );
+		//defaultBindingsAndroid.put( Input.Keys.VOLUME_DOWN, CPDAction.SEARCH );
 	}
 
 

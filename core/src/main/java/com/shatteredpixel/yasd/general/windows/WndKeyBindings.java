@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.windows;
 
+import com.badlogic.gdx.Gdx;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.CPDAction;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -37,6 +38,7 @@ import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.shatteredpixel.yasd.general.ui.ScrollPane;
 import com.shatteredpixel.yasd.general.ui.Window;
 import com.watabou.input.GameAction;
+import com.watabou.input.InputHandler;
 import com.watabou.input.KeyBindings;
 import com.watabou.input.KeyEvent;
 import com.watabou.noosa.ColorBlock;
@@ -142,11 +144,12 @@ public class WndKeyBindings extends Window {
 			@Override
 			protected void onClick() {
 				KeyBindings.setAllBindings(changedBindings);
+				InputHandler.updateEventCatching(Gdx.input);
 				CPDAction.saveBindings();
 				hide();
 			}
 		};
-		btnConfirm.setRect(0, height - BTN_HEIGHT, WIDTH/2, BTN_HEIGHT);
+		btnConfirm.setRect(0, height - BTN_HEIGHT, WIDTH/2f, BTN_HEIGHT);
 		add(btnConfirm);
 
 		RedButton btnCancel = new RedButton(Messages.get(this, "cancel"), 9){
@@ -155,7 +158,7 @@ public class WndKeyBindings extends Window {
 				hide(); //close and don't save
 			}
 		};
-		btnCancel.setRect(WIDTH/2 + 1, height - BTN_HEIGHT, WIDTH/2 - 1, BTN_HEIGHT);
+		btnCancel.setRect(WIDTH/2f + 1, height - BTN_HEIGHT, WIDTH/2f - 1, BTN_HEIGHT);
 		add(btnCancel);
 
 		scrollingList.setRect(0, BTN_HEIGHT +1, WIDTH, btnDefaults.top()- BTN_HEIGHT - 1);
