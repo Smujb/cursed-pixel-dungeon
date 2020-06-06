@@ -41,12 +41,12 @@ import com.watabou.utils.RectF;
 public class NewDM300 extends Mob {
 
 	{
-		//TODO improved sprite
 		spriteClass = DM300Sprite.class;
 
 		healthFactor = 2f;
 		damageFactor = 2/3f;
 		drFactor = 2f;
+		perceptionFactor = 3f;
 
 		EXP = 30;
 
@@ -222,6 +222,7 @@ public class NewDM300 extends Mob {
 				beckon(Dungeon.hero.pos);
 				state = HUNTING;
 				enemy = Dungeon.hero;
+				spend(TICK);
 			}
 
 		}
