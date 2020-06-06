@@ -72,8 +72,9 @@ public class AndroidPlatformSupport extends PlatformSupport {
 	}
 	
 	public void updateDisplaySize(){
-		if (CPDSettings.landscape() != null) {
-			AndroidGame.instance.setRequestedOrientation( PixelScene.landscape() ?
+		Boolean landscape = CPDSettings.landscape();
+		if ( landscape != null) {
+			AndroidGame.instance.setRequestedOrientation( landscape ?
 					ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE :
 					ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT );
 		}
@@ -87,8 +88,6 @@ public class AndroidPlatformSupport extends PlatformSupport {
 
 		boolean fullscreen = Build.VERSION.SDK_INT < Build.VERSION_CODES.N
 				|| !AndroidGame.instance.isInMultiWindowMode();
-
-		Boolean landscape = CPDSettings.landscape();
 
 		if (fullscreen && landscape != null
 				&& (Game.dispWidth >= Game.dispHeight) != landscape) {

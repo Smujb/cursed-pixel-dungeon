@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.sprites;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.watabou.noosa.TextureFilm;
-import com.watabou.noosa.audio.Sample;
 
 public class PHRSprite extends MobSprite {
     PHRSprite() {
@@ -52,14 +51,6 @@ public class PHRSprite extends MobSprite {
 
         play( idle );
         zap = attack.clone();
-    }
-
-    @Override
-    public void zap(int cell) {
-        turnTo( ch.pos , cell );
-        play( zap );
-
-        Sample.INSTANCE.play( Assets.SND_ZAP );
     }
 
     @Override

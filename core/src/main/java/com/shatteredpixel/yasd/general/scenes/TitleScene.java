@@ -125,7 +125,7 @@ public class TitleScene extends PixelScene {
 				//making it easier to start runs quickly while debugging
 				if (DeviceCompat.isDebug() && DeviceCompat.isDesktop()) {
 					TitleScene.this.add( new WndStartGame(1, true) );
-					return false;
+					return true;
 				}
 				return super.onLongClick();
 			}

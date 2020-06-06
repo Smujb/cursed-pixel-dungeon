@@ -113,6 +113,7 @@ public class Golem extends Mob {
 	}
 
 	private void zapEnemy(Char enemy) {
+		spend(TICK);
 		MagicMissile.boltFromChar(sprite.parent,
 				MagicMissile.BEACON,
 				sprite,
@@ -126,7 +127,6 @@ public class Golem extends Mob {
 	}
 
 	private void teleportEnemy(Char enemy) {
-		spend(TICK);
 
 		int bestPos = enemy.pos;
 		for (int i : PathFinder.NEIGHBOURS8){
@@ -193,6 +193,7 @@ public class Golem extends Mob {
 						&& !Char.hasProp(enemy, Property.IMMOVABLE) && Ballistica.canHit(Golem.this, enemy, Ballistica.PROJECTILE)){
 					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
 						teleportEnemy(enemy);
+						spend(TICK);
 						return false;
 					} else {
 						zapEnemy(enemy);
@@ -206,6 +207,7 @@ public class Golem extends Mob {
 				} else if (enemyTeleCooldown <= 0 && !Char.hasProp(enemy, Property.IMMOVABLE) && Ballistica.canHit(Golem.this, enemy, Ballistica.PROJECTILE)) {
 					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
 						teleportEnemy(enemy);
+						spend(TICK);
 						return false;
 					} else {
 						zapEnemy(enemy);
