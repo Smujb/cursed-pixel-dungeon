@@ -2,6 +2,9 @@ package com.shatteredpixel.yasd.general.actors.mobs.npcs;
 
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
+import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.HuntressNPC;
+import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.MageNPC;
+import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.RogueNPC;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.WarriorNPC;
 import com.shatteredpixel.yasd.general.sprites.HeroNPCSprite;
 
@@ -34,8 +37,11 @@ public abstract class HeroNPC extends NPC {
 			case WARRIOR:
 				return new WarriorNPC();
 			case MAGE:
+				return new MageNPC();
 			case ROGUE:
+				return new RogueNPC();
 			case HUNTRESS:
+				return new HuntressNPC();
 			case PRIESTESS:
 			default:
 				return new HeroNPC() {
