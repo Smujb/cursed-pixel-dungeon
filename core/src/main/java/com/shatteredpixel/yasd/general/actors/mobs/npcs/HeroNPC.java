@@ -1,15 +1,20 @@
 package com.shatteredpixel.yasd.general.actors.mobs.npcs;
 
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.HuntressNPC;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.MageNPC;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.RogueNPC;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.WarriorNPC;
+import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.HeroNPCSprite;
+import com.shatteredpixel.yasd.general.ui.Window;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
 
 public abstract class HeroNPC extends NPC {
 
@@ -21,6 +26,7 @@ public abstract class HeroNPC extends NPC {
 
 	@Override
 	public boolean interact(Char ch) {
+		sprite.turnTo( pos, ch.pos );
 		return true;
 	}
 
@@ -29,6 +35,16 @@ public abstract class HeroNPC extends NPC {
 
 	@Override
 	public void die(DamageSrc cause) {}
+
+	@Override
+	public String name() {
+		return heroClass().title();
+	}
+
+	@Override
+	public String description() {
+		return Messages.get(this, "desc_" + CPDSettings.storyChapter().name());
+	}
 
 	@NotNull
 	@Contract("_ -> new")
@@ -50,6 +66,17 @@ public abstract class HeroNPC extends NPC {
 						return heroClass;
 					}
 				};
+		}
+	}
+
+	public static class WndHeroNPCChat extends WndChat {
+
+		public WndHeroNPCChat(HeroClass heroClass, String message) {
+			super(heroClass.icon(), heroClass.title(), message);
+		}
+
+		public WndHeroNPCChat(HeroClass heroClass, String message, @NotNull HashMap<String, Window> options) {
+			super(heroClass.icon(), heroClass.title(), message, options);
 		}
 	}
 }
