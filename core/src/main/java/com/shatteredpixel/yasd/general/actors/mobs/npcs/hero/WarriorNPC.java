@@ -2,6 +2,7 @@ package com.shatteredpixel.yasd.general.actors.mobs.npcs.hero;
 
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.HeroNPC;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -26,6 +27,11 @@ public class WarriorNPC extends HeroNPC {
 				HashMap<String, Window> options = new HashMap<>();
 				options.put(Messages.get(WarriorNPC.this, "for_dungeon"), new WndHeroNPCChat(heroClass(), Messages.get(WarriorNPC.this, "for_dungeon_response")));
 				options.put(Messages.get(WarriorNPC.this, "for_amulet"), new WndHeroNPCChat(heroClass(), Messages.get(WarriorNPC.this, "for_amulet_response")));
+				if (ch instanceof Hero) {
+					if (((Hero) ch).heroClass == HeroClass.ROGUE) {
+						options.put(Messages.get(WarriorNPC.this, "for_reputation"), new WndHeroNPCChat(heroClass(), Messages.get(WarriorNPC.this, "for_reputation_response")));
+					}
+				}
 				GameScene.show(new WndHeroNPCChat(heroClass(), Messages.get(WarriorNPC.this, "introduction", ch.name()), options));
 			}
 		});

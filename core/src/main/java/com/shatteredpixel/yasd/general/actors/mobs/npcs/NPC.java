@@ -27,10 +27,10 @@
 
 package com.shatteredpixel.yasd.general.actors.mobs.npcs;
 
-import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.Heap;
+import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.ui.RedButton;
 import com.shatteredpixel.yasd.general.ui.Window;
 import com.shatteredpixel.yasd.general.windows.WndTitledMessage;
@@ -83,7 +83,7 @@ public abstract class NPC extends Mob {
 					@Override
 					protected void onClick() {
 						hide();
-						CPDGame.scene().addToFront(options.get(option));
+						GameScene.show(options.get(option));
 					}
 				};
 				button.setRect(0, bottom, width, BTN_HEIGHT);

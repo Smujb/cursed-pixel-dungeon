@@ -38,7 +38,7 @@ public abstract class HeroNPC extends NPC {
 
 	@Override
 	public String name() {
-		return heroClass().title();
+		return Messages.titleCase(heroClass().title());
 	}
 
 	@Override
@@ -72,11 +72,11 @@ public abstract class HeroNPC extends NPC {
 	public static class WndHeroNPCChat extends WndChat {
 
 		public WndHeroNPCChat(HeroClass heroClass, String message) {
-			super(heroClass.icon(), heroClass.title(), message);
+			super(heroClass.icon(), Messages.titleCase(heroClass.title()), message);
 		}
 
 		public WndHeroNPCChat(HeroClass heroClass, String message, @NotNull HashMap<String, Window> options) {
-			super(heroClass.icon(), heroClass.title(), message, options);
+			super(heroClass.icon(), Messages.titleCase(heroClass.title()), message, options);
 		}
 	}
 }
