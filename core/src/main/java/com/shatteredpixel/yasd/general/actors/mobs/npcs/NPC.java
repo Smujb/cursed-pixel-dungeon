@@ -27,11 +27,20 @@
 
 package com.shatteredpixel.yasd.general.actors.mobs.npcs;
 
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.Heap;
+import com.shatteredpixel.yasd.general.ui.RedButton;
+import com.shatteredpixel.yasd.general.ui.Window;
+import com.shatteredpixel.yasd.general.windows.WndTitledMessage;
+import com.watabou.noosa.Image;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
 
 public abstract class NPC extends Mob {
 
@@ -57,5 +66,31 @@ public abstract class NPC extends Mob {
 	@Override
 	public void beckon( int cell ) {
 	}
-	
+
+	public static class WndChat extends WndTitledMessage {
+
+		public WndChat(Image icon, String title, String message) {
+			this(icon, title, message, new HashMap<>());
+		}
+
+		public WndChat(Image icon, String title, String message, @NotNull final HashMap<String, Window> options) {
+			super(icon, title, message);
+
+			int bottom = height;
+
+			for (String option : options.keySet()) {
+				RedButton button = new RedButton(option) {
+					@Override
+					protected void onClick() {
+						hide();
+						CPDGame.scene().addToFront(options.get(option));
+					}
+				};
+				button.setRect(0, bottom, width, BTN_HEIGHT);
+				add(button);
+				bottom += BTN_HEIGHT;
+				resize(width, (int) button.bottom());
+			}
+		}
+	}
 }

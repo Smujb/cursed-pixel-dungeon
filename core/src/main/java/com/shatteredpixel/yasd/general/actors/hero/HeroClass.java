@@ -70,6 +70,7 @@ import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.darts.Dart;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.DeviceCompat;
 
@@ -300,6 +301,10 @@ public enum HeroClass {
 			case HUNTRESS:
 				return Assets.HUNTRESS;
 		}
+	}
+
+	public Image icon() {
+		return new Image(spritesheet(), 0, 90, 12, 15);
 	}
 	
 	public String[] perks() {

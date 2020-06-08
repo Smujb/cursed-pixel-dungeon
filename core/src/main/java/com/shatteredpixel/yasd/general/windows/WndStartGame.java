@@ -230,7 +230,7 @@ public class WndStartGame extends Window {
 			
 			this.cl = cl;
 
-			add(hero = new Image(cl.spritesheet(), 0, 90, 12, 15));
+			add(hero = cl.icon());
 			
 		}
 		
