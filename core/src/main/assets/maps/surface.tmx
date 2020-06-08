@@ -130,7 +130,7 @@
   </object>
   <object id="12" name="Shopkeeper" type="Mob" x="736" y="304" width="16" height="16">
    <properties>
-    <property name="className" value="npcs.Shopkeeper"/>
+    <property name="className" value="npcs.HeroNPC"/>
     <property name="level" type="int" value="1"/>
     <property name="number" type="int" value="1"/>
    </properties>
