@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.levels.chapters.caves;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Bones;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -196,6 +197,10 @@ public class NewCavesBossLevel extends Level {
 			if (c instanceof ArenaVisuals){
 				customArenaVisuals = (ArenaVisuals) c;
 			}
+		}
+
+		if (version <= CPDGame.v0_3_2) {
+			interactiveAreas.add(new DescendArea().setPos(15, 0, 3, 3));
 		}
 	}
 

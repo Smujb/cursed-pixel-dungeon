@@ -1245,13 +1245,13 @@ public abstract class Level implements Bundlable {
 	}
 
 	public int getPos(int x, int y) {
-		return x + y * height();
+		return x + y * width();
 	}
 
 	public int[] getXY(int pos) {
 		int[] coords = new int[2];
-		coords[0] = pos%height;
-		coords[1] = pos/height;
+		coords[0] = pos%width;
+		coords[1] = pos/width;
 		return coords;
 	}
 

@@ -1,0 +1,54 @@
+package com.shatteredpixel.yasd.general.windows.quest;
+
+import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.scenes.PixelScene;
+import com.shatteredpixel.yasd.general.ui.RedButton;
+import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
+import com.shatteredpixel.yasd.general.ui.Window;
+import com.shatteredpixel.yasd.general.windows.IconTitle;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.ui.Component;
+
+import java.util.HashMap;
+
+public class WndChat extends Window {
+
+	protected static final int WIDTH_P    = 120;
+	protected static final int WIDTH_L    = 160;
+
+	public WndChat(Image icon, String title, String message) {
+		this(icon, title, message, new HashMap<>());
+	}
+
+	public WndChat(Image icon, String title, String message, HashMap<String, Window> options) {
+		super();
+
+		Component titlebar = new IconTitle( icon, title );
+		int width = PixelScene.landscape() ? WIDTH_L : WIDTH_P;
+
+		titlebar.setRect( 0, 0, width, 0 );
+		add(titlebar);
+
+		RenderedTextBlock text = PixelScene.renderTextBlock( 6 );
+		text.text( message, width );
+		text.setPos( titlebar.left(), titlebar.bottom() + 2*GAP );
+		add( text );
+
+		int bottom = (int) (text.bottom() + GAP);
+
+		for (String option : options.keySet()) {
+			final Window window = options.get(option);
+			RedButton button = new RedButton(option) {
+				@Override
+				protected void onClick() {
+					hide();
+					CPDGame.scene().addToFront(window);
+				}
+			};
+			button.setRect(0, bottom, width, BTN_HEIGHT);
+			add(button);
+			bottom += BTN_HEIGHT;
+		}
+		resize(width, bottom);
+	}
+}

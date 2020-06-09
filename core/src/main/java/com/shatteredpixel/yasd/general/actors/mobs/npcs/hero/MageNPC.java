@@ -11,6 +11,7 @@ import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.ui.Window;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndOptions;
+import com.shatteredpixel.yasd.general.windows.quest.WndHeroNPCChat;
 import com.watabou.utils.Callback;
 
 import java.util.HashMap;
@@ -24,10 +25,10 @@ public class MageNPC extends HeroNPC {
 
 	@Override
 	public boolean interact(Char ch) {
+		HashMap<String, Window> options = new HashMap<>();
 		CPDGame.runOnRenderThread(new Callback() {
 			@Override
 			public void call() {
-				HashMap<String, Window> options = new HashMap<>();
 				options.put(Messages.get(MageNPC.this, "yes"), new WndBuyManaPotion());
 				options.put(Messages.get(MageNPC.this, "no"), new WndHeroNPCChat(heroClass(), Messages.get(MageNPC.this, "no_response")));
 				GameScene.show(new WndHeroNPCChat(heroClass(), Messages.get(MageNPC.this, "introduction", ch.name()), options));

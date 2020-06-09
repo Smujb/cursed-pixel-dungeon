@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general.actors.mobs.npcs;
 
 import com.shatteredpixel.yasd.general.CPDSettings;
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.HuntressNPC;
@@ -9,12 +10,9 @@ import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.RogueNPC;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.WarriorNPC;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.HeroNPCSprite;
-import com.shatteredpixel.yasd.general.ui.Window;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
 
 public abstract class HeroNPC extends NPC {
 
@@ -35,6 +33,26 @@ public abstract class HeroNPC extends NPC {
 
 	@Override
 	public void die(DamageSrc cause) {}
+
+	@Override
+	protected boolean act() {
+
+		throwItem();
+
+		sprite.turnTo( pos, Dungeon.hero.pos );
+		spend( TICK );
+		return true;
+	}
+
+	@Override
+	public int defenseSkill(Char enemy) {
+		return Char.INFINITE_EVASION;
+	}
+
+	@Override
+	public String defenseVerb() {
+		return "";
+	}
 
 	@Override
 	public String name() {
@@ -66,17 +84,6 @@ public abstract class HeroNPC extends NPC {
 						return heroClass;
 					}
 				};
-		}
-	}
-
-	public static class WndHeroNPCChat extends WndChat {
-
-		public WndHeroNPCChat(HeroClass heroClass, String message) {
-			super(heroClass.icon(), Messages.titleCase(heroClass.title()), message);
-		}
-
-		public WndHeroNPCChat(HeroClass heroClass, String message, @NotNull HashMap<String, Window> options) {
-			super(heroClass.icon(), Messages.titleCase(heroClass.title()), message, options);
 		}
 	}
 }
