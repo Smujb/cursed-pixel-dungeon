@@ -1,5 +1,6 @@
 package com.shatteredpixel.yasd.general.actors.mobs.npcs.hero;
 
+import com.badlogic.gdx.utils.ArrayMap;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -14,8 +15,6 @@ import com.shatteredpixel.yasd.general.windows.WndOptions;
 import com.shatteredpixel.yasd.general.windows.quest.WndHeroNPCChat;
 import com.watabou.utils.Callback;
 
-import java.util.HashMap;
-
 public class MageNPC extends HeroNPC {
 
 	@Override
@@ -25,16 +24,22 @@ public class MageNPC extends HeroNPC {
 
 	@Override
 	public boolean interact(Char ch) {
-		HashMap<String, Window> options = new HashMap<>();
+		ArrayMap<String, Class<? extends Window>> options = new ArrayMap<>();
+		options.put(Messages.get(MageNPC.this, "yes"), WndBuyManaPotion.class);
+		options.put(Messages.get(MageNPC.this, "no"), NoResponse.class);
 		CPDGame.runOnRenderThread(new Callback() {
 			@Override
 			public void call() {
-				options.put(Messages.get(MageNPC.this, "yes"), new WndBuyManaPotion());
-				options.put(Messages.get(MageNPC.this, "no"), new WndHeroNPCChat(heroClass(), Messages.get(MageNPC.this, "no_response")));
 				GameScene.show(new WndHeroNPCChat(heroClass(), Messages.get(MageNPC.this, "introduction", ch.name()), options));
 			}
 		});
 		return super.interact(ch);
+	}
+
+	public static final class NoResponse extends WndHeroNPCChat {
+		public NoResponse() {
+			super(HeroClass.MAGE, Messages.get(WarriorNPC.class, "no_response"));
+		}
 	}
 
 	private static class WndBuyManaPotion extends WndOptions {

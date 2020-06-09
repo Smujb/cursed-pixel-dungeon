@@ -1,5 +1,6 @@
 package com.shatteredpixel.yasd.general.windows.quest;
 
+import com.badlogic.gdx.utils.ArrayMap;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.ui.RedButton;
@@ -8,8 +9,7 @@ import com.shatteredpixel.yasd.general.ui.Window;
 import com.shatteredpixel.yasd.general.windows.IconTitle;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Component;
-
-import java.util.HashMap;
+import com.watabou.utils.Reflection;
 
 public class WndChat extends Window {
 
@@ -17,10 +17,10 @@ public class WndChat extends Window {
 	protected static final int WIDTH_L    = 160;
 
 	public WndChat(Image icon, String title, String message) {
-		this(icon, title, message, new HashMap<>());
+		this(icon, title, message, new ArrayMap<>());
 	}
 
-	public WndChat(Image icon, String title, String message, HashMap<String, Window> options) {
+	public WndChat(Image icon, String title, String message, ArrayMap<String, Class<? extends Window>> options) {
 		super();
 
 		Component titlebar = new IconTitle( icon, title );
@@ -36,8 +36,8 @@ public class WndChat extends Window {
 
 		int bottom = (int) (text.bottom() + GAP);
 
-		for (String option : options.keySet()) {
-			final Window window = options.get(option);
+		for (String option : options.keys()) {
+			final Window window = Reflection.forceNewInstance(options.get(option));
 			RedButton button = new RedButton(option) {
 				@Override
 				protected void onClick() {

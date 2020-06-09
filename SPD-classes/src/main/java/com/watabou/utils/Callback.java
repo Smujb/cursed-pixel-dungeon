@@ -30,5 +30,15 @@ package com.watabou.utils;
 public interface Callback {
 
 	void call();
+
+	static Callback add(Callback callback1, Callback callback2) {
+		return new Callback() {
+			@Override
+			public void call() {
+				callback1.call();
+				callback2.call();
+			}
+		};
+	}
 	
 }
