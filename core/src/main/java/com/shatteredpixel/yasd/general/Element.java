@@ -109,7 +109,7 @@ public enum Element {
 					damage *= 1.5;
 				}
 				if (defender == Dungeon.hero) {
-					GameScene.flash(0xFFFFFF);
+					GameScene.flash(0xFFFFFF, true, 1f);
 				}
 				break;
 			case SHARP:

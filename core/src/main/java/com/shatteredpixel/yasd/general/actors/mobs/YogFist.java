@@ -476,13 +476,13 @@ public abstract class YogFist extends Mob {
 				} while (Dungeon.level.heroFOV[i] || Dungeon.level.solid(i) || Actor.findChar(i) != null);
 				ScrollOfTeleportation.appear(this, i);
 				state = WANDERING;
-				GameScene.flash(0, false);
+				GameScene.flash(0, false, 1f);
 			} else if (!isAlive()){
 				Light l = Dungeon.hero.buff(Light.class);
 				if (l != null){
 					l.detach();
 				}
-				GameScene.flash(0, false);
+				GameScene.flash(0, false, 1f);
 			}
 		}
 

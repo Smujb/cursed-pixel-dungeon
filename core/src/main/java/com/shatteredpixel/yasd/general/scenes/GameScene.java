@@ -995,13 +995,13 @@ public class GameScene extends PixelScene {
 			}
 		}
 	}
-	
+
 	public static void flash( int color ) {
-		flash( color, true);
+		flash( color, true, PixelScene.DEFAULT_FADE_TIME);
 	}
 
-	public static void flash( int color, boolean lightmode ) {
-		scene.fadeIn( 0xFF000000 | color, lightmode );
+	public static void flash( int color, boolean lightmode, float time ) {
+		scene.fadeIn( 0xFF000000 | color, lightmode, time );
 	}
 	
 	public static void gameOver() {
