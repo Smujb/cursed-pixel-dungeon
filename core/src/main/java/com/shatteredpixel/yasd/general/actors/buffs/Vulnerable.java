@@ -40,7 +40,7 @@ public class Vulnerable extends FlavourBuff {
 	}
 
 	public float defenseFactor() {
-		return (float) Math.pow( 0.98, cooldown());
+		return (float) Math.min(0.5f, Math.pow( 0.99, cooldown()));
 	}
 
 	@Override
