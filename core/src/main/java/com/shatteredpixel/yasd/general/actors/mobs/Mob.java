@@ -522,7 +522,7 @@ public abstract class Mob extends Char {
 	@Override
 	public void remove( Buff buff ) {
 		super.remove( buff );
-		if (buff instanceof Terror) {
+		if (buff instanceof Terror && sprite != null) {
 			sprite.showStatus( CharSprite.NEGATIVE, Messages.get(this, "rage") );
 			state = HUNTING;
 		}
