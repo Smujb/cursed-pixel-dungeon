@@ -25,8 +25,9 @@ public class MageNPC extends HeroNPC {
 	@Override
 	public boolean interact(Char ch) {
 		ArrayMap<String, Class<? extends Window>> options = new ArrayMap<>();
-		options.put(Messages.get(MageNPC.this, "yes"), WndBuyManaPotion.class);
-		options.put(Messages.get(MageNPC.this, "no"), NoResponse.class);
+		options.put(Messages.get(MageNPC.this, "mana"), WndBuyManaPotion.class);
+		options.put(Messages.get(MageNPC.this, "advice"), Advice.class);
+		options.put(Messages.get(MageNPC.this, "nothing"), NoResponse.class);
 		CPDGame.runOnRenderThread(new Callback() {
 			@Override
 			public void call() {
@@ -42,13 +43,19 @@ public class MageNPC extends HeroNPC {
 		}
 	}
 
-	private static class WndBuyManaPotion extends WndOptions {
+	public static final class Advice extends WndHeroNPCChat {
+		public Advice() {
+			super(HeroClass.MAGE, Messages.get(WarriorNPC.class, "advice_response"));
+		}
+	}
+
+	public static class WndBuyManaPotion extends WndOptions {
 
 		public static int cost() {
 			return (50 + 20 * Dungeon.hero.lvl);
 		}
 
-		private WndBuyManaPotion() {
+		public WndBuyManaPotion() {
 			super(Messages.get(WndBuyManaPotion.class, "title"), Messages.get(WndBuyManaPotion.class, "desc", cost()), Messages.get(WndBuyManaPotion.class, "buy"));
 		}
 
