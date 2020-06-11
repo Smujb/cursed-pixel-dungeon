@@ -69,8 +69,6 @@ import com.shatteredpixel.yasd.general.levels.chapters.prison.OldPrisonBossLevel
 import com.shatteredpixel.yasd.general.levels.chapters.prison.PrisonLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.FirstLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerBossLevel;
-import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerDungeon;
-import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerDungeonEast;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.levels.rooms.secret.SecretRoom;
 import com.shatteredpixel.yasd.general.levels.rooms.special.SpecialRoom;
@@ -287,14 +285,6 @@ public class Dungeon {
 		staticLevels.put("caves - 4", NewCavesBossLevel.class);
 		staticLevels.put("city - 4", NewCityBossLevel.class);
 		staticLevels.put("halls - 4", NewHallsBossLevel.class);
-		
-		
-		//Dungeon levels
-		//Sewers
-		//staticLevels.put("sewers - 3", SewerDungeonPlaceholder.class);
-		staticLevels.put("sewer dungeon main", SewerDungeon.class);
-		staticLevels.put("sewer dungeon east", SewerDungeonEast.class);
-		
 		
 		//First level spawns different mobs and rooms. Might rework later.
 		staticLevels.put("sewers - 0", FirstLevel.class);
