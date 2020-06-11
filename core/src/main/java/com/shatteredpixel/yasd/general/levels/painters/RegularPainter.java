@@ -370,8 +370,8 @@ public abstract class RegularPainter extends Painter {
 				}
 			}
 		} else {
-			for (int i = 0; i < l.length(); i ++) {
-				if (l.passable(i) && !(l.flammable(i) || l.liquid(i))){
+			for (int i = 0; i < l.length(); i++) {
+				if (l.passable(i) && !(l.flammable(i) || l.liquid(i)) && !(l.getExitPos() == i || l.getExitPos() == i)) {
 					validCells.add(i);
 				}
 			}
