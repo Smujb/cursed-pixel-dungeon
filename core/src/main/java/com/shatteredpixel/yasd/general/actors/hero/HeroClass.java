@@ -41,7 +41,6 @@ import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
 import com.shatteredpixel.yasd.general.items.armor.MageArmor;
 import com.shatteredpixel.yasd.general.items.armor.RogueArmor;
-import com.shatteredpixel.yasd.general.items.bags.BombBag;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.bags.PotionBandolier;
 import com.shatteredpixel.yasd.general.items.bags.PowerHolder;
@@ -143,8 +142,6 @@ public enum HeroClass {
 		Dungeon.LimitedDrops.MAGICAL_HOLSTER.drop();
 
 		new PowerHolder().collect();
-
-		new BombBag().collect();
 
 		//new FoodHolder().collect();
 
