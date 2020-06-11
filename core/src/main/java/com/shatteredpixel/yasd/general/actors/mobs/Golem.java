@@ -115,7 +115,7 @@ public class Golem extends Mob {
 	private void zapEnemy(Char enemy) {
 		spend(TICK);
 		MagicMissile.boltFromChar(sprite.parent,
-				MagicMissile.BEACON,
+				MagicMissile.ELMO,
 				sprite,
 				enemy.pos,
 				new Callback() {
@@ -124,6 +124,11 @@ public class Golem extends Mob {
 						teleportEnemy(enemy);
 					}
 				});
+	}
+
+	private void quickTeleportEnemy(Char enemy) {
+		spend(TICK);
+		teleportEnemy(enemy);
 	}
 
 	private void teleportEnemy(Char enemy) {
@@ -192,11 +197,10 @@ public class Golem extends Mob {
 				if (enemyTeleCooldown <= 0 && Random.Int(100/distance(enemy)) == 0
 						&& !Char.hasProp(enemy, Property.IMMOVABLE) && Ballistica.canHit(Golem.this, enemy, Ballistica.PROJECTILE)){
 					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
-						teleportEnemy(enemy);
-						spend(TICK);
+						zapEnemy(enemy);
 						return false;
 					} else {
-						zapEnemy(enemy);
+						quickTeleportEnemy(enemy);
 						return true;
 					}
 
@@ -206,11 +210,10 @@ public class Golem extends Mob {
 
 				} else if (enemyTeleCooldown <= 0 && !Char.hasProp(enemy, Property.IMMOVABLE) && Ballistica.canHit(Golem.this, enemy, Ballistica.PROJECTILE)) {
 					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
-						teleportEnemy(enemy);
-						spend(TICK);
+						zapEnemy(enemy);
 						return false;
 					} else {
-						zapEnemy(enemy);
+						quickTeleportEnemy(enemy);
 						return true;
 					}
 
