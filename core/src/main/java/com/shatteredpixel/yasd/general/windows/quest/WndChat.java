@@ -37,10 +37,10 @@ public class WndChat extends Window {
 		int bottom = (int) (text.bottom() + GAP);
 
 		for (String option : options.keys()) {
-			final Window window = Reflection.forceNewInstance(options.get(option));
 			RedButton button = new RedButton(option) {
 				@Override
 				protected void onClick() {
+					final Window window = Reflection.forceNewInstance(options.get(option));
 					hide();
 					CPDGame.scene().addToFront(window);
 				}
