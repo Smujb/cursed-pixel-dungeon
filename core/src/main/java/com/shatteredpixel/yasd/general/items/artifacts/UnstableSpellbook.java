@@ -151,8 +151,10 @@ public class UnstableSpellbook extends Artifact {
 							if (index == 1){
 								Scroll scroll = Reflection.newInstance(ExoticScroll.regToExo.get(fScroll.getClass()));
 								charge--;
+								scroll.setUser(curUser);
 								scroll.doRead();
 							} else {
+								fScroll.setUser(curUser);
 								fScroll.doRead();
 							}
 						}
@@ -199,6 +201,7 @@ public class UnstableSpellbook extends Artifact {
 		public void restoreFromBundle( Bundle bundle) {
 			super.restoreFromBundle(bundle);
 			scroll = (Scroll)bundle.get("scroll");
+			scroll.setUser(Dungeon.hero);
 		}
 	}
 
