@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.actors.mobs;
 
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
-import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Burning;
 import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
 import com.shatteredpixel.yasd.general.sprites.BlueJellyFishSprite;
@@ -37,8 +36,6 @@ import com.shatteredpixel.yasd.general.sprites.GreenJellyFishSprite;
 import com.shatteredpixel.yasd.general.sprites.PurpleJellyFishSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
-
-import org.jetbrains.annotations.NotNull;
 
 public class JellyFish extends WaterMob {
 
@@ -54,6 +51,8 @@ public class JellyFish extends WaterMob {
 
 		damageFactor = 1.5f;
 		healthFactor = 0.5f;
+
+		range = 4;
 
 		immunities.add(Burning.class);
 		immunities.add(Vertigo.class);
@@ -106,10 +105,5 @@ public class JellyFish extends WaterMob {
 	public void restoreFromBundle( Bundle bundle){
 		super.restoreFromBundle(bundle);
 		colour = bundle.getInt(COLOUR);
-	}
-
-	@Override
-	public boolean canAttack(@NotNull Char enemy){
-		return Dungeon.level.distance(pos, enemy.pos) <= (Dungeon.level.liquid()[enemy.pos] ? 4 : 2);
 	}
 }

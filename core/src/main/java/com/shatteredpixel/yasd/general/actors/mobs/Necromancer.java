@@ -42,6 +42,7 @@ import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
+import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.NecromancerSprite;
 import com.shatteredpixel.yasd.general.sprites.SkeletonSprite;
@@ -162,7 +163,7 @@ public class Necromancer extends Mob {
 
 	@Override
 	public boolean support(Char ch) {
-		if (ch == null || ch.sprite == null || !ch.isAlive()){
+		if (ch == null || ch.sprite == null || !ch.isAlive() || !Ballistica.canHit(this, ch, shotType)) {
 			return false;
 		}
 
@@ -177,33 +178,6 @@ public class Necromancer extends Mob {
 			Buff.prolong(ch, Adrenaline.class, 3f);
 		}
 		return true;
-	}
-
-	public void onZapComplete(){
-		if (mySkeleton == null || mySkeleton.sprite == null || !mySkeleton.isAlive()){
-			return;
-		}
-		
-		//heal skeleton first
-		if (mySkeleton.HP < mySkeleton.HT){
-
-			if (sprite.visible || mySkeleton.sprite.visible) {
-				sprite.parent.add(new Beam.HealthRay(sprite.center(), mySkeleton.sprite.center()));
-			}
-			
-			mySkeleton.HP = Math.min(mySkeleton.HP + 5, mySkeleton.HT);
-			mySkeleton.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
-			
-			//otherwise give it adrenaline
-		} else if (mySkeleton.buff(Adrenaline.class) == null) {
-			if (sprite.visible || mySkeleton.sprite.visible) {
-				sprite.parent.add(new Beam.HealthRay(sprite.center(), mySkeleton.sprite.center()));
-			}
-			
-			Buff.affect(mySkeleton, Adrenaline.class, 3f);
-		}
-		
-		next();
 	}
 	
 	private class Hunting extends Mob.Hunting{
@@ -326,13 +300,6 @@ public class Necromancer extends Mob {
 							
 							ScrollOfTeleportation.appear(mySkeleton, telePos);
 							mySkeleton.teleportSpend();
-							
-							/*if (sprite != null && sprite.visible){
-								sprite.zap(telePos);
-								return false;
-							} else {
-								onZapComplete();
-							}*/
 						}
 					}
 					
@@ -341,23 +308,6 @@ public class Necromancer extends Mob {
 				} else {
 					//zap skeleton
 					doSupport(mySkeleton);
-					/*if (mySkeleton.HP < mySkeleton.HT || mySkeleton.buff(Adrenaline.class) == null) {
-						doSupport(mySkeleton);
-						if (sprite != null && sprite.visible){
-							//sprite.zap(mySkeleton.pos);
-							sprite.attack(mySkeleton.pos, new Callback() {
-								@Override
-								public void call() {
-									doSupport(mySkeleton);
-									next();
-								}
-							});
-							return false;
-						} else {
-							doSupport(mySkeleton);
-						}
-					}*/
-					
 				}
 				
 				return true;
