@@ -56,14 +56,19 @@ public class Lore {
 
 	public static void showChapter( Level level ) {
 
-		String text = Messages.get(Lore.class, CHAPTERS.get(level.getClass()));
-		if (!text.contains("missed_string")) {
+		String key = CHAPTERS.get(level.getClass());
+		if (CPDSettings.watchedCutscene(key) && !CPDSettings.cutscenes()) {
+			return;
+		}
+		String text = Messages.get(Lore.class, key);
+		if (!text.contains("missed_string") && !text.equals("TODO")) {
 			TextScene.init(text, null, level.loadImg(), 5, 0.67f, new Callback() {
 				@Override
 				public void call() {
+					CPDSettings.watchedCutscene(key, true);
 					CPDGame.switchScene(GameScene.class);
 				}
-			}, null, false);
+			}, null, false, CPDSettings.watchedCutscene(key));
 		}
 	}
 }

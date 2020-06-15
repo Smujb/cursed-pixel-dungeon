@@ -28,9 +28,12 @@
 package com.shatteredpixel.yasd.general.scenes;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.ui.BtnCallback;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
+import com.shatteredpixel.yasd.general.ui.Window;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.glwrap.Blending;
 import com.watabou.input.PointerEvent;
@@ -63,6 +66,7 @@ public class TextScene extends PixelScene {
 	private static Callback onFinish = null;
 	private static float fadeTime;
 	private static boolean autoFinish;
+	private static boolean skippable;
 
 	@Override
 	public void create() {
@@ -150,6 +154,18 @@ public class TextScene extends PixelScene {
 
 		float p = timeLeft / fadeTime;
 
+		if ((thread == null || !thread.isAlive()) && skippable) {
+			Callback callback = new Callback() {
+				@Override
+				public void call() {
+					CPDGame.switchScene(GameScene.class);
+				}
+			};
+			BtnCallback btnCallback = new BtnCallback(Messages.get(this, "skip"), callback);
+			btnCallback.setRect(4, Camera.main.height- Window.BTN_HEIGHT, btnCallback.reqWidth() + 6, Window.BTN_HEIGHT-4);
+			add(btnCallback);
+		}
+
 		switch (phase) {
 
 			case FADE_IN:
@@ -196,7 +212,7 @@ public class TextScene extends PixelScene {
 		}
 	}
 
-	public static void init(String text, String continueText, String bgTex, float scrollSpeed, float fadeTime, Callback onFinish, Thread thread, boolean autoFinish) {
+	public static void init(String text, String continueText, String bgTex, float scrollSpeed, float fadeTime, Callback onFinish, Thread thread, boolean autoFinish, boolean skippable) {
 		String firstLine = text;
 		Callback callback = onFinish;
 		if (text.contains("\n")) {
@@ -205,7 +221,7 @@ public class TextScene extends PixelScene {
 			callback = new Callback() {
 				@Override
 				public void call() {
-					init(finalText, continueText, bgTex, scrollSpeed, fadeTime, onFinish, thread, autoFinish);
+					init(finalText, continueText, bgTex, scrollSpeed, fadeTime, onFinish, thread, autoFinish, false);
 				}
 			};
 		}
@@ -217,6 +233,7 @@ public class TextScene extends PixelScene {
 		TextScene.fadeTime = fadeTime;
 		TextScene.continueText = continueText;
 		TextScene.autoFinish = autoFinish;
+		TextScene.skippable = skippable;
 
 		CPDGame.switchScene(TextScene.class);
 	}

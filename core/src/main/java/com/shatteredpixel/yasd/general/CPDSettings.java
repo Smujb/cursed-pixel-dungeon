@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.messages.Languages;
+import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.watabou.noosa.audio.Music;
@@ -64,6 +65,7 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 	private static final String KEY_GRID 	    = "visual_grid";
 	private static final String KEY_CUTSCENES 	    	= "cutscenes";
 	private static final String KEY_FAST_INTERLEVEL_SCENE 	    	= "fast-scenes";
+	private static final String KEY_CUTSCENE 	    	= "watched-cutscene-%s";
 	
 	public static void fullscreen( boolean value ) {
 		put( KEY_FULLSCREEN, value );
@@ -137,6 +139,14 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 
 	public static boolean cutscenes() {
 		return getBoolean( KEY_CUTSCENES, true );
+	}
+
+	public static void watchedCutscene(String sceneID, boolean value) {
+		put( Messages.format(KEY_CUTSCENE, sceneID), value );
+	}
+
+	public static boolean watchedCutscene(String sceneID) {
+		return getBoolean(Messages.format(KEY_CUTSCENE, sceneID), false );
 	}
 
 	public static void fastInterlevelScene( boolean value ){
