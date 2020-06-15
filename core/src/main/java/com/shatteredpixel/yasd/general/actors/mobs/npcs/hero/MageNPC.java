@@ -26,7 +26,7 @@ public class MageNPC extends HeroNPC {
 	public boolean interact(Char ch) {
 		ArrayMap<String, Class<? extends Window>> options = new ArrayMap<>();
 		options.put(Messages.get(MageNPC.this, "mana"), WndBuyManaPotion.class);
-		options.put(Messages.get(MageNPC.this, "advice"), Advice.class);
+		//options.put(Messages.get(MageNPC.this, "advice"), Advice.class);
 		options.put(Messages.get(MageNPC.this, "nothing"), NoResponse.class);
 		CPDGame.runOnRenderThread(new Callback() {
 			@Override
@@ -39,7 +39,7 @@ public class MageNPC extends HeroNPC {
 
 	public static final class NoResponse extends WndHeroNPCChat {
 		public NoResponse() {
-			super(HeroClass.MAGE, Messages.get(WarriorNPC.class, "no_response"));
+			super(HeroClass.MAGE, Messages.get(MageNPC.class, "no_response"));
 		}
 	}
 
