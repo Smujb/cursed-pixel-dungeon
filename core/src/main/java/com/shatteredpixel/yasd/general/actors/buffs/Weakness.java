@@ -43,7 +43,7 @@ public class Weakness extends FlavourBuff {
 	}
 
 	public float damageFactor() {
-		return (float) Math.min(0.5f, Math.pow( 0.99, cooldown()));
+		return (float) Math.max(0.5f, Math.pow( 0.99, cooldown()));
 	}
 
 	@Override
