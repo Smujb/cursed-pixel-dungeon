@@ -327,7 +327,7 @@ public class AlchemyScene extends PixelScene {
 							} else {
 								item = item.replaceForAlchemy();
 								if (item != null) {
-									item.detach(Dungeon.hero.belongings.backpack);
+									item = item.detach(Dungeon.hero.belongings.backpack);
 								}
 								input.item(item);
 							}

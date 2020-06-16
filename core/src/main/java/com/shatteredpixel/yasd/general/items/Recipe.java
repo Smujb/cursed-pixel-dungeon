@@ -47,6 +47,7 @@ import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfIcyTouch;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfToxicEssence;
 import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
+import com.shatteredpixel.yasd.general.items.quest.GooBlob;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.yasd.general.items.spells.Alchemize;
@@ -202,7 +203,8 @@ public abstract class Recipe {
 		new ReclaimTrap.Recipe(),
 		new Recycle.Recipe(),
 		new WildEnergy.Recipe(),
-		new StewedMeat.twoMeat()
+		new StewedMeat.twoMeat(),
+		new GooBlob.Recipe()
 	};
 	
 	private static Recipe[] threeIngredientRecipes = new Recipe[]{

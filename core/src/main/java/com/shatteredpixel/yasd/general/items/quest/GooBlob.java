@@ -27,10 +27,12 @@
 
 package com.shatteredpixel.yasd.general.items.quest;
 
+import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.buffs.Ooze;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.items.Dewdrop;
 import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfAquaticRejuvenation;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -46,12 +48,42 @@ public class GooBlob extends Food {
 	@Override
 	protected void satisfy(Hero hero) {
 		super.satisfy(hero);
-		Buff.affect(hero, Ooze.class).set(20f);
-		Buff.affect(hero, ElixirOfAquaticRejuvenation.AquaHealing.class).set(50);
+		affect(hero);
+	}
+
+	protected void affect(Char ch) {
+		Buff.affect(ch, Ooze.class).set(20f);
+		Buff.affect(ch, ElixirOfAquaticRejuvenation.AquaHealing.class).set(50);
 	}
 
 	@Override
 	public int price() {
-		return quantity * 100;
+		return quantity * 60;
+	}
+
+	public static class PurifiedGooBlob extends GooBlob {
+
+		@Override
+		protected void affect(Char ch) {
+			Buff.affect(ch, ElixirOfAquaticRejuvenation.AquaHealing.class).set(50);
+		}
+
+		@Override
+		public int price() {
+			return (int) (super.price()*1.5f);
+		}
+	}
+
+	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
+
+		{
+			inputs =  new Class[]{GooBlob.class, Dewdrop.class};
+			inQuantity = new int[]{1, 1};
+
+			cost = 3;
+
+			output = PurifiedGooBlob.class;
+			outQuantity = 1;
+		}
 	}
 }

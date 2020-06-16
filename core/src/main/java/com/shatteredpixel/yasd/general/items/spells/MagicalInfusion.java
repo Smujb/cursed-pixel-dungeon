@@ -32,13 +32,14 @@ import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
+import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
-import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfConfusion;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
+import com.watabou.utils.Random;
 
 public class MagicalInfusion extends InventorySpell {
 
@@ -49,13 +50,18 @@ public class MagicalInfusion extends InventorySpell {
 
 	@Override
 	protected void onItemSelected( Item item ) {
-
 		if (item instanceof MeleeWeapon) {
 			if (((MeleeWeapon) item).tier <= 5 ) {
 				((MeleeWeapon) item).upgradeTier(1);
 			}
 		} else if (item instanceof Armor) {
-			((Armor)item).upgradeTier(1);
+			if (((Armor) item).tier <= 5 ) {
+				((Armor) item).upgradeTier(1);
+			}
+		}
+
+		if (item.level() > 0) {
+			item.level(Random.Int(item.level()));
 		}
 
 		GLog.p( Messages.get(this, "infuse", item.name()) );
@@ -75,7 +81,7 @@ public class MagicalInfusion extends InventorySpell {
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
 
 		{
-			inputs =  new Class[]{ScrollOfUpgrade.class, ScrollOfConfusion.class};//Scroll of Upgrade + Scroll of Confusion
+			inputs =  new Class[]{ScrollOfUpgrade.class, ScrollOfTransmutation.class};//Scroll of Upgrade + Scroll of Confusion
 			inQuantity = new int[]{1, 1};
 
 			cost = 4;
@@ -83,7 +89,6 @@ public class MagicalInfusion extends InventorySpell {
 			output = MagicalInfusion.class;
 			outQuantity = 1;
 		}
-
 	}
 }
 
