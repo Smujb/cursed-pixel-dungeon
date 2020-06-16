@@ -93,6 +93,8 @@ public class NewCavesBossLevel extends Level {
 	{
 		color1 = 0x534f3e;
 		color2 = 0xb9d661;
+
+		bossLevel = true;
 	}
 
 	@Override

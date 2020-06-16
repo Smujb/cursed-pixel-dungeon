@@ -96,6 +96,8 @@ public class NewPrisonBossLevel extends Level {
 		
 		//the player should be able to see all of Tengu's arena
 		viewDistance = 12;
+
+		bossLevel = true;
 	}
 	
 	public enum State {

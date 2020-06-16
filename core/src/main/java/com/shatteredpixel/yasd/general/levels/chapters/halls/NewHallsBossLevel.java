@@ -67,6 +67,8 @@ public class NewHallsBossLevel extends Level {
 		color2 = 0xa68521;
 
 		viewDistance = Math.min(4, viewDistance);
+
+		bossLevel = true;
 	}
 
 	private static final int WIDTH = 32;

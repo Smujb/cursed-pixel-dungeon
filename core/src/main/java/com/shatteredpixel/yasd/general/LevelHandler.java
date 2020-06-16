@@ -59,7 +59,7 @@ public class LevelHandler {
 		return GamesInProgress.slotFolder(slot) + "/" + key + ".dat";
 	}
 
-	private static Level getLevel(String key) {
+	static Level getLevel(String key) {
 		return getLevel(key, GamesInProgress.curSlot);
 	}
 
@@ -98,10 +98,6 @@ public class LevelHandler {
 						restore();
 					} else {
 						switchDepth(depth, mode, key );
-					}
-
-					if (Dungeon.bossLevel()) {
-						Sample.INSTANCE.load(Assets.SND_BOSS);
 					}
 
 				} catch (Exception e) {
@@ -290,6 +286,11 @@ public class LevelHandler {
 		if (mode == Mode.FALL) {
 			Buff.affect( Dungeon.hero, Chasm.Falling.class );
 		}
+
+		if (level.bossLevel) {
+			Sample.INSTANCE.load(Assets.SND_BOSS);
+		}
+
 		Dungeon.switchLevel(level, pos);
 	}
 

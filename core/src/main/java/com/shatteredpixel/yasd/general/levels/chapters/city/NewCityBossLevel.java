@@ -81,6 +81,8 @@ public class NewCityBossLevel extends Level {
 	{
 		color1 = 0x4b6636;
 		color2 = 0xf2f2f2;
+
+		bossLevel = true;
 	}
 
 	private static int WIDTH = 15;

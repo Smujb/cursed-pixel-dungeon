@@ -74,6 +74,8 @@ public class OldPrisonBossLevel extends Level {
 	{
 		color1 = 0x6a723d;
 		color2 = 0x88924c;
+
+		bossLevel = true;
 	}
 
 	public enum State {

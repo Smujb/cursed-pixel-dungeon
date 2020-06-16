@@ -397,20 +397,21 @@ public class Dungeon {
 		Random.popGenerator();
 		return result;
 	}
-	
+
 	@Contract(pure = true)
 	public static boolean shopOnLevel() {
 		return bossLevel(depth - 1) & depth - 1 != Constants.CHAPTER_LENGTH*4;
 	}
-	
+
 	@Contract(pure = true)
 	public static boolean bossLevel() {
-		return bossLevel(depth);
+		return level != null && level.bossLevel;
 	}
-	
+
 	@Contract(pure = true)
 	public static boolean bossLevel(int depth ) {
-		return depth % Constants.CHAPTER_LENGTH == 0;
+		Level level = LevelHandler.getLevel(keyForDepth(depth));
+		return level != null && level.bossLevel;
 	}
 	
 	public static void switchLevel( final Level level, int pos ) {
