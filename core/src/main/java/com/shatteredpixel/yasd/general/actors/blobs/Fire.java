@@ -39,6 +39,7 @@ import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.food.ChargrilledMeat;
 import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.food.MysteryMeat;
+import com.shatteredpixel.yasd.general.items.quest.GooBlob;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Plant;
@@ -126,7 +127,7 @@ public class Fire extends Blob {
 
 	public static Item burnItem(Item item) {
 		if (item instanceof Scroll ||
-				item instanceof Food && !(item instanceof MysteryMeat) || //All food can burn
+				item instanceof Food && !(item instanceof MysteryMeat || item instanceof GooBlob) || //All food can burn
 				item instanceof Plant.Seed){
 			return null;
 		} else if (item instanceof MysteryMeat) {

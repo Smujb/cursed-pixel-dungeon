@@ -317,15 +317,19 @@ public class AlchemyScene extends PixelScene {
 		public void onSelect( Item item ) {
 			synchronized (inputs) {
 				if (item != null && inputs[0] != null) {
-					for (int i = 0; i < inputs.length; i++) {
-						if (inputs[i].item == null) {
+					for (ItemButton input : inputs) {
+						if (input.item == null) {
 							if (item instanceof Dart) {
-								inputs[i].item(item.detachAll(Dungeon.hero.belongings.backpack));
+								input.item(item.detachAll(Dungeon.hero.belongings.backpack));
 							} else if (item instanceof AlchemistsToolkit) {
 								clearSlots();
-								inputs[i].item(item);
+								input.item(item);
 							} else {
-								inputs[i].item(item.detach(Dungeon.hero.belongings.backpack));
+								item = item.replaceForAlchemy();
+								if (item != null) {
+									item.detach(Dungeon.hero.belongings.backpack);
+								}
+								input.item(item);
 							}
 							break;
 						}
@@ -338,10 +342,10 @@ public class AlchemyScene extends PixelScene {
 	
 	private<T extends Item> ArrayList<T> filterInput(Class<? extends T> itemClass){
 		ArrayList<T> filtered = new ArrayList<>();
-		for (int i = 0; i < inputs.length; i++){
-			Item item = inputs[i].item;
-			if (item != null && itemClass.isInstance(item)){
-				filtered.add((T)item);
+		for (ItemButton input : inputs) {
+			Item item = input.item;
+			if (item != null && itemClass.isInstance(item)) {
+				filtered.add((T) item);
 			}
 		}
 		return filtered;
@@ -543,7 +547,12 @@ public class AlchemyScene extends PixelScene {
 		}
 		
 		public void item( Item item ) {
-			slot.item( this.item = item );
+			this.item = item;
+			if (item == null) {
+				slot.item(new WndBag.Placeholder(ItemSpriteSheet.SOMETHING));
+			} else {
+				slot.item(item);
+			}
 		}
 	}
 	

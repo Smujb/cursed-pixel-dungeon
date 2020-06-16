@@ -78,6 +78,17 @@ public class DewVial extends Item {
 		volume	= bundle.getInt( VOLUME );
 	}
 
+	//If required by Alchemy, don't consume it.
+	@Override
+	public Item replaceForAlchemy() {
+		if (volume > 0) {
+			volume--;
+			return new Dewdrop();
+		} else {
+			return null;
+		}
+	}
+
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );

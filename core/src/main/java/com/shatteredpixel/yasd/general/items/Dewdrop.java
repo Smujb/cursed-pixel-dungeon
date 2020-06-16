@@ -28,7 +28,8 @@
 package com.shatteredpixel.yasd.general.items;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -42,37 +43,36 @@ public class Dewdrop extends Item {
 		stackable = true;
 		dropsDownHeap = true;
 	}
-	
+
 	@Override
-	public boolean doPickUp( Hero hero ) {
-		
-		DewVial vial = hero.belongings.getItem( DewVial.class );
-		
-		if (vial != null && !vial.isFull()){
-			
-			vial.collectDew( this );
-			
-		} else {
-			
-			//20 drops for a full heal
-			int heal = Math.round( hero.HT * 0.05f * quantity );
-			
-			int effect = Math.min( hero.HT - hero.HP, heal );
-			if (effect > 0) {
-				hero.heal(effect,false, false);
-				//hero.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
-				//hero.sprite.showStatus( CharSprite.POSITIVE, Messages.get(this, "value", effect) );
+	public boolean collect(Bag container, Char ch) {
+		if (ch.hasBelongings()) {
+			DewVial vial = ch.belongings.getItem( DewVial.class );
+
+			if (vial != null && !vial.isFull()){
+
+				vial.collectDew( this );
+
 			} else {
-				GLog.i( Messages.get(this, "already_full") );
-				return false;
+
+				//20 drops for a full heal
+				int heal = Math.round( ch.HT * 0.05f * quantity );
+
+				int effect = Math.min( ch.HT - ch.HP, heal );
+				if (effect > 0) {
+					ch.heal(effect,false, true);
+				} else {
+					GLog.i( Messages.get(this, "already_full") );
+					return false;
+				}
+
 			}
-			
+
+			Sample.INSTANCE.play( Assets.SND_DEWDROP );
+			ch.spendAndNext( TIME_TO_PICK_UP );
+			return true;
 		}
-		
-		Sample.INSTANCE.play( Assets.SND_DEWDROP );
-		hero.spendAndNext( TIME_TO_PICK_UP );
-		
-		return true;
+		return false;
 	}
 
 	@Override

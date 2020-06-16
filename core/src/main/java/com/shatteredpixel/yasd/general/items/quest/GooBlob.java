@@ -27,28 +27,31 @@
 
 package com.shatteredpixel.yasd.general.items.quest;
 
-import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
+import com.shatteredpixel.yasd.general.actors.buffs.Ooze;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.items.food.Food;
+import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfAquaticRejuvenation;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class GooBlob extends Item {
+public class GooBlob extends Food {
 	
 	{
 		image = ItemSpriteSheet.BLOB;
-		stackable = true;
+
+		energy = Hunger.HUNGRY/4f;
 	}
-	
+
 	@Override
-	public boolean isUpgradable() {
-		return false;
-	}
-	
-	@Override
-	public boolean isIdentified() {
-		return true;
+	protected void satisfy(Hero hero) {
+		super.satisfy(hero);
+		Buff.affect(hero, Ooze.class).set(20f);
+		Buff.affect(hero, ElixirOfAquaticRejuvenation.AquaHealing.class).set(50);
 	}
 
 	@Override
 	public int price() {
-		return quantity * 50;
+		return quantity * 100;
 	}
 }

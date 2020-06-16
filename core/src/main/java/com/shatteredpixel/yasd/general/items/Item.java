@@ -129,6 +129,10 @@ public class Item implements Bundlable {
 	public boolean canTypicallyUse(Char ch) {
 		return true;
 	}
+
+	public Item replaceForAlchemy() {
+		return this;
+	}
 	
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = new ArrayList<>();
