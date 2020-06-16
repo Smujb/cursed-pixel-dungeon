@@ -26,11 +26,13 @@
  */
 
 apply plugin: 'com.android.application'
+sourceCompatibility = targetCompatibility = appJavaCompatibility
 
 android {
     compileSdkVersion appAndroidCompileSDK
     compileOptions {
         compileOptions.sourceCompatibility = appJavaCompatibility
+        compileOptions.targetCompatibility = appJavaCompatibility
     }
 
 
