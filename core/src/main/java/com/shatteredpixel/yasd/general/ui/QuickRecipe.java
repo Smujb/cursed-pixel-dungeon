@@ -29,6 +29,8 @@ package com.shatteredpixel.yasd.general.ui;
 
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.items.DewVial;
+import com.shatteredpixel.yasd.general.items.Dewdrop;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.Recipe;
@@ -53,6 +55,7 @@ import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfIcyTouch;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfToxicEssence;
 import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
+import com.shatteredpixel.yasd.general.items.quest.GooBlob;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.yasd.general.items.spells.Alchemize;
@@ -89,7 +92,7 @@ public class QuickRecipe extends Component {
 	private ArrayList<Item> ingredients;
 	
 	private ArrayList<ItemSlot> inputs;
-	private QuickRecipe.arrow arrow;
+	private Arrow arrow;
 	private ItemSlot output;
 	
 	public QuickRecipe(Recipe.SimpleRecipe r){
@@ -118,6 +121,10 @@ public class QuickRecipe extends Component {
 				//if we are looking for a specific item, it must be IDed
 				if (sim.getClass() != in.getClass() || sim.isIdentified()) quantity += sim.quantity();
 			}
+
+			if (in instanceof Dewdrop) {
+				quantity = DewVial.volume();
+			}
 			
 			if (quantity < in.quantity()) {
 				curr.icon.alpha(0.3f);
@@ -129,10 +136,10 @@ public class QuickRecipe extends Component {
 		}
 		
 		if (cost > 0) {
-			arrow = new arrow(Icons.get(Icons.ARROW), cost);
+			arrow = new Arrow(Icons.get(Icons.ARROW), cost);
 			arrow.hardlightText(0x00CCFF);
 		} else {
-			arrow = new arrow(Icons.get(Icons.ARROW));
+			arrow = new Arrow(Icons.get(Icons.ARROW));
 		}
 		if (hasInputs) {
 			arrow.icon.tint(1, 1, 0, 1);
@@ -188,19 +195,19 @@ public class QuickRecipe extends Component {
 		}
 	}
 	
-	public class arrow extends IconButton {
+	public class Arrow extends IconButton {
 		
 		BitmapText text;
 		
-		public arrow(){
+		public Arrow(){
 			super();
 		}
 		
-		public arrow( Image icon ){
+		public Arrow(Image icon ){
 			super( icon );
 		}
 		
-		public arrow( Image icon, int count ){
+		public Arrow(Image icon, int count ){
 			super( icon );
 			text = new BitmapText( Integer.toString(count), PixelScene.pixelFont);
 			text.measure();
@@ -276,6 +283,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe( new MeatPie.Recipe(),
 						new ArrayList<Item>(Arrays.asList(new Pasty(), new Food(), new MysteryMeat.PlaceHolder())),
 						new MeatPie()));
+				result.add(new QuickRecipe(new GooBlob.Recipe()));
 				result.add(null);
 				result.add(null);
 				result.add(new QuickRecipe( new Blandfruit.CookFruit(),

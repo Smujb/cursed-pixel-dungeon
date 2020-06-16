@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.StormCloud;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -86,6 +87,15 @@ public class DewVial extends Item {
 			return new Dewdrop();
 		} else {
 			return null;
+		}
+	}
+
+	public static int volume() {
+		DewVial dewVial = Dungeon.hero.belongings.getItem(DewVial.class);
+		if (dewVial == null) {
+			return 0;
+		} else {
+			return dewVial.volume;
 		}
 	}
 

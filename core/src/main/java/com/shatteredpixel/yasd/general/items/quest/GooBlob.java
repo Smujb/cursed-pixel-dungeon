@@ -35,6 +35,8 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Dewdrop;
 import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class GooBlob extends Food {
@@ -71,6 +73,16 @@ public class GooBlob extends Food {
 		@Override
 		public int price() {
 			return (int) (super.price()*1.5f);
+		}
+
+		@Override
+		public ItemSprite.Glowing glowing() {
+			return new ItemSprite.Glowing(0xD4AF37);
+		}
+
+		@Override
+		public String info() {
+			return desc() + "\n\n" + Messages.get(this, "purified");
 		}
 	}
 

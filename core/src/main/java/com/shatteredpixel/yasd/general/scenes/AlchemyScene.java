@@ -446,7 +446,12 @@ public class AlchemyScene extends PixelScene {
 		int curslot = 0;
 		for (Item finding : toFind){
 			int needed = finding.quantity();
-			ArrayList<Item> found = inventory.getAllSimilar(finding);
+			ArrayList<Item> found = new ArrayList<>();
+			for (Item item : inventory) {
+				if (item.replaceForAlchemy().isSimilar(finding)) {
+					found.add(item.replaceForAlchemy());
+				}
+			}
 			while (!found.isEmpty() && needed > 0){
 				Item detached;
 				if (finding instanceof Dart) {
