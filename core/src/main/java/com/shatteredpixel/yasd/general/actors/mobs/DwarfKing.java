@@ -386,7 +386,7 @@ public class DwarfKing extends Boss {
 				}
 				for (Mob m : Dungeon.level.mobs.toArray(new Mob[0])) {
 					if (m instanceof Ghoul || m instanceof Monk || m instanceof Warlock) {
-						m.die(null);
+						m.die(new DamageSrc(Element.META));
 					}
 				}
 			}
