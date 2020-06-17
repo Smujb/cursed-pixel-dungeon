@@ -44,6 +44,7 @@ import com.shatteredpixel.yasd.general.items.food.StewedMeat;
 import com.shatteredpixel.yasd.general.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.brews.BlizzardBrew;
+import com.shatteredpixel.yasd.general.items.potions.brews.BrewOfHolyWater;
 import com.shatteredpixel.yasd.general.items.potions.brews.CausticBrew;
 import com.shatteredpixel.yasd.general.items.potions.brews.InfernalBrew;
 import com.shatteredpixel.yasd.general.items.potions.brews.ShockingBrew;
@@ -342,6 +343,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new InfernalBrew.Recipe()));
 				result.add(new QuickRecipe(new BlizzardBrew.Recipe()));
 				result.add(new QuickRecipe(new ShockingBrew.Recipe()));
+				result.add(new QuickRecipe(new BrewOfHolyWater.Recipe()));
 				result.add(null);
 				result.add(null);
 				result.add(new QuickRecipe(new ElixirOfHoneyedHealing.Recipe()));

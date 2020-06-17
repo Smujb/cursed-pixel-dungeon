@@ -78,6 +78,7 @@ public class Speck extends Image {
 	public static final int BUBBLE_PURPLE=121;
 	public static final int HALO        = 122;
 	public static final int ANGRY       = 123;
+	public static final int HOLY_WATER  = 124;
 
 	
 	private static final int SIZE = 7;
@@ -131,6 +132,7 @@ public class Speck extends Image {
 			case SMOKE:
 			case BLIZZARD:
 			case INFERNO:
+			case HOLY_WATER:
 				frame(film.get(STEAM));
 				break;
 			case CALM:
@@ -307,6 +309,13 @@ public class Speck extends Image {
 
 			case TOXIC:
 				hardlight(0x50FF60);
+				angularSpeed = 30;
+				angle = Random.Float(360);
+				lifespan = Random.Float(1f, 3f);
+				break;
+
+			case HOLY_WATER:
+				hardlight(0xADD8E6);
 				angularSpeed = 30;
 				angle = Random.Float(360);
 				lifespan = Random.Float(1f, 3f);
@@ -498,6 +507,7 @@ public class Speck extends Image {
 				case BLIZZARD:
 				case INFERNO:
 				case DUST:
+				case HOLY_WATER:
 					am = (float) Math.sqrt((p < 0.5f ? p : 1 - p) * 0.5f);
 					scale.set(1 + p);
 					break;

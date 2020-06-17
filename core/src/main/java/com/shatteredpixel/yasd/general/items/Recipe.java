@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.items.food.StewedMeat;
 import com.shatteredpixel.yasd.general.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.brews.BlizzardBrew;
+import com.shatteredpixel.yasd.general.items.potions.brews.BrewOfHolyWater;
 import com.shatteredpixel.yasd.general.items.potions.brews.CausticBrew;
 import com.shatteredpixel.yasd.general.items.potions.brews.InfernalBrew;
 import com.shatteredpixel.yasd.general.items.potions.brews.ShockingBrew;
@@ -212,7 +213,8 @@ public abstract class Recipe {
 		new ExoticPotion.PotionToExotic(),
 		new ExoticScroll.ScrollToExotic(),
 		new StewedMeat.threeMeat(),
-		new MeatPie.Recipe()
+		new MeatPie.Recipe(),
+		new BrewOfHolyWater.Recipe()
 	};
 	
 	public static Recipe findRecipe(ArrayList<Item> ingredients){
