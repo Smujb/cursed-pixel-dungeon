@@ -433,7 +433,7 @@ public class Armor extends EquipableItem {
 		if (hasCurseGlyph()) {
 			inscribe(null);
 		}
-		return this;
+		return super.uncurse();
 	}
 
 	@Override

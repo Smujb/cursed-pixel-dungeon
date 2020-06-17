@@ -147,7 +147,7 @@ abstract public class Weapon extends KindOfWeapon {
 		if (hasCurseEnchant()) {
 			enchant(null);
 		}
-		return this;
+		return super.uncurse();
 	}
 
 	@Override

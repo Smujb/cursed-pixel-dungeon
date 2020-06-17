@@ -119,6 +119,7 @@ public class Item implements Bundlable {
 
 	public Item uncurse() {
 		cursed = false;
+		updateQuickslot();
 		return this;
 	}
 
