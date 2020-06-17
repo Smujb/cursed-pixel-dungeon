@@ -56,6 +56,7 @@ import com.shatteredpixel.yasd.general.items.spells.AquaBlast;
 import com.shatteredpixel.yasd.general.items.spells.ArcaneCatalyst;
 import com.shatteredpixel.yasd.general.items.spells.BeaconOfReturning;
 import com.shatteredpixel.yasd.general.items.spells.CurseInfusion;
+import com.shatteredpixel.yasd.general.items.spells.Degrade;
 import com.shatteredpixel.yasd.general.items.spells.FeatherFall;
 import com.shatteredpixel.yasd.general.items.spells.MagicalInfusion;
 import com.shatteredpixel.yasd.general.items.spells.MagicalPorter;
@@ -205,7 +206,8 @@ public abstract class Recipe {
 		new Recycle.Recipe(),
 		new WildEnergy.Recipe(),
 		new StewedMeat.twoMeat(),
-		new GooBlob.Recipe()
+		new GooBlob.Recipe(),
+		new Degrade.Recipe()
 	};
 	
 	private static Recipe[] threeIngredientRecipes = new Recipe[]{

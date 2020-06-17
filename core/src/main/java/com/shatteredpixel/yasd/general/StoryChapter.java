@@ -7,7 +7,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public enum StoryChapter {
-	//TODO name chapters.
 	FIRST {
 		@Override
 		public boolean unlocked() {
