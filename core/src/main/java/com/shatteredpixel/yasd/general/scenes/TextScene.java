@@ -221,7 +221,7 @@ public class TextScene extends PixelScene {
 			callback = new Callback() {
 				@Override
 				public void call() {
-					init(finalText, continueText, bgTex, scrollSpeed, fadeTime, onFinish, thread, autoFinish, false);
+					init(finalText, continueText, bgTex, scrollSpeed, fadeTime, onFinish, thread, autoFinish, skippable);
 				}
 			};
 		}
