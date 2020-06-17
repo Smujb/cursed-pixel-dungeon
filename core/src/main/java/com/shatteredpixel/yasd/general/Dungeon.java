@@ -410,8 +410,10 @@ public class Dungeon {
 
 	@Contract(pure = true)
 	public static boolean bossLevel(int depth ) {
-		Level level = LevelHandler.getLevel(keyForDepth(depth));
-		return level != null && level.bossLevel;
+		//FIXME this uses the old method. New method caused some serious bugs with map flags.
+		//Level level = LevelHandler.getLevel(keyForDepth(depth));
+		//return level != null && level.bossLevel;
+		return depth % Constants.CHAPTER_LENGTH == 0;
 	}
 	
 	public static void switchLevel( final Level level, int pos ) {
