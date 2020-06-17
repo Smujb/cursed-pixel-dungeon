@@ -355,7 +355,7 @@ public class AlchemyScene extends PixelScene {
 		
 		ArrayList<Item> ingredients = filterInput(Item.class);
 		Recipe recipe = Recipe.findRecipe(ingredients);
-		
+
 		if (recipe != null){
 			int cost = recipe.cost(ingredients);
 			
@@ -446,12 +446,7 @@ public class AlchemyScene extends PixelScene {
 		int curslot = 0;
 		for (Item finding : toFind){
 			int needed = finding.quantity();
-			ArrayList<Item> found = new ArrayList<>();
-			for (Item item : inventory) {
-				if (item.replaceForAlchemy().isSimilar(finding)) {
-					found.add(item.replaceForAlchemy());
-				}
-			}
+			ArrayList<Item> found = inventory.getAlchemyInputs(finding);
 			while (!found.isEmpty() && needed > 0){
 				Item detached;
 				if (finding instanceof Dart) {

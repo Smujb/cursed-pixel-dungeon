@@ -115,11 +115,11 @@ public class QuickRecipe extends Component {
 				}
 			};
 			
-			ArrayList<Item> similar = Dungeon.hero.belongings.getAllSimilar(in);
+			ArrayList<Item> similar = Dungeon.hero.belongings.getAlchemyInputs(in);
 			int quantity = 0;
 			for (Item sim : similar) {
 				//if we are looking for a specific item, it must be IDed
-				if (sim.getClass() != in.getClass() || sim.isIdentified()) quantity += sim.quantity();
+				if (sim.isIdentified()) quantity += sim.quantity();
 			}
 
 			if (in instanceof Dewdrop) {

@@ -466,6 +466,19 @@ public class Belongings implements Iterable<Item> {
 		
 		return result;
 	}
+
+	public ArrayList<Item> getAlchemyInputs( Item similar ){
+		ArrayList<Item> result = new ArrayList<>();
+
+		for (Item item : this) {
+			Item alchemyVer = item.replaceForAlchemy();
+			if (item != similar && alchemyVer != null && similar.isSimilar(alchemyVer)) {
+				result.add(alchemyVer);
+			}
+		}
+
+		return result;
+	}
 	
 	public void identify() {
 		for (Item item : this) {

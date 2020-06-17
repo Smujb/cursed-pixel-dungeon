@@ -299,7 +299,7 @@ public class Item implements Bundlable {
 	}
 
 	@Nullable
-	public final Item detach(Bag container ) {
+	public Item detach(Bag container ) {
 		
 		if (quantity <= 0) {
 			return null;

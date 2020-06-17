@@ -83,7 +83,6 @@ public class DewVial extends Item {
 	@Override
 	public Item replaceForAlchemy() {
 		if (volume > 0) {
-			volume--;
 			return new Dewdrop();
 		} else {
 			return null;
@@ -96,6 +95,16 @@ public class DewVial extends Item {
 			return 0;
 		} else {
 			return dewVial.volume;
+		}
+	}
+
+	public static boolean useDew(int amount) {
+		DewVial dewVial = Dungeon.hero.belongings.getItem(DewVial.class);
+		if (dewVial != null) {
+			dewVial.volume--;
+			return true;
+		} else {
+			return false;
 		}
 	}
 

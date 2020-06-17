@@ -35,6 +35,8 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
+import org.jetbrains.annotations.Nullable;
+
 public class Dewdrop extends Item {
 	
 	{
@@ -73,6 +75,17 @@ public class Dewdrop extends Item {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean isIdentified() {
+		return true;
+	}
+
+	@Override
+	public @Nullable Item detach(Bag container) {
+		DewVial.useDew(1);
+		return super.detach(container);
 	}
 
 	@Override
