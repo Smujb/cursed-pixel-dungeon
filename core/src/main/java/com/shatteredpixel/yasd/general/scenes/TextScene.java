@@ -192,7 +192,7 @@ public class TextScene extends PixelScene {
 									}
 								}
 							};
-							add(hotArea);
+							addToBack(hotArea);
 						}
 					}
 				}
