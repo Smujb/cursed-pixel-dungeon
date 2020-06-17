@@ -28,12 +28,12 @@
 package com.shatteredpixel.yasd.general.items.potions;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.Barrier;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Blindness;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Cripple;
 import com.shatteredpixel.yasd.general.actors.buffs.Drowsy;
-import com.shatteredpixel.yasd.general.actors.buffs.Healing;
 import com.shatteredpixel.yasd.general.actors.buffs.Poison;
 import com.shatteredpixel.yasd.general.actors.buffs.Slow;
 import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
@@ -58,8 +58,10 @@ public class PotionOfHealing extends Potion {
 	}
 
 	public void applybuff( Char ch ) {
-		//starts out healing 30 hp, equalizes with hero health total at level 11
-		Buff.affect( ch, Healing.class ).setHeal((int)(0.8f*ch.HT + 14), 0.25f, 0);
+		//33% of missing HP is restored, another 33% is shielded.
+		int healing = (ch.HT-ch.HP)/3;
+		ch.HP += healing;
+		Buff.affect(ch, Barrier.class).setShield(healing);
 		cure( ch );
 		GLog.p( Messages.get(this, "heal") );
 	}
