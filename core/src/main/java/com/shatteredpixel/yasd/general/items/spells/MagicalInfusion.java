@@ -60,6 +60,7 @@ public class MagicalInfusion extends InventorySpell {
 			}
 		}
 
+		//Removes 1 to all upgrades randomly. Use with caution.
 		if (item.level() > 0) {
 			item.level(Random.Int(item.level()));
 		}
@@ -81,7 +82,7 @@ public class MagicalInfusion extends InventorySpell {
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
 
 		{
-			inputs =  new Class[]{ScrollOfUpgrade.class, ScrollOfTransmutation.class};//Scroll of Upgrade + Scroll of Confusion
+			inputs =  new Class[]{ScrollOfUpgrade.class, ScrollOfTransmutation.class};//Scroll of Upgrade + Scroll of Transmutation
 			inQuantity = new int[]{1, 1};
 
 			cost = 4;
