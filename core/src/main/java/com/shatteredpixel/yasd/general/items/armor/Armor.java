@@ -42,6 +42,7 @@ import com.shatteredpixel.yasd.general.items.armor.curses.AntiEntropy;
 import com.shatteredpixel.yasd.general.items.armor.curses.Bulk;
 import com.shatteredpixel.yasd.general.items.armor.curses.Corrosion;
 import com.shatteredpixel.yasd.general.items.armor.curses.Displacement;
+import com.shatteredpixel.yasd.general.items.armor.curses.Explosive;
 import com.shatteredpixel.yasd.general.items.armor.curses.Metabolism;
 import com.shatteredpixel.yasd.general.items.armor.curses.Multiplicity;
 import com.shatteredpixel.yasd.general.items.armor.curses.Overgrowth;
@@ -654,7 +655,7 @@ public class Armor extends EquipableItem {
 
 		private static final Class<?>[] curses = new Class<?>[]{
 				AntiEntropy.class, Corrosion.class, Displacement.class, Metabolism.class,
-				Multiplicity.class, Stench.class, Overgrowth.class, Bulk.class
+				Multiplicity.class, Stench.class, Overgrowth.class, Bulk.class, Explosive.class
 		};
 		
 		public abstract int proc( Armor armor, Char attacker, Char defender, int damage );

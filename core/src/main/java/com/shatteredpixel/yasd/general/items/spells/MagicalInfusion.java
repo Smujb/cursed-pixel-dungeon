@@ -60,10 +60,7 @@ public class MagicalInfusion extends InventorySpell {
 			}
 		}
 
-		//Removes 1 to all upgrades randomly. Use with caution.
-		if (item.level() > 0) {
-			item.level(Random.Int(item.level()));
-		}
+		removeUpgrades(item);
 
 		GLog.p( Messages.get(this, "infuse", item.name()) );
 
@@ -71,6 +68,13 @@ public class MagicalInfusion extends InventorySpell {
 
 		curUser.sprite.emitter().start(Speck.factory(Speck.UP), 0.2f, 3);
 		Statistics.upgradesUsed++;
+	}
+
+	protected void removeUpgrades(Item item) {
+		//Removes 1 to all upgrades randomly. Use with caution.
+		if (item.level() > 0) {
+			item.level(Random.Int(item.level()));
+		}
 	}
 
 	@Override
