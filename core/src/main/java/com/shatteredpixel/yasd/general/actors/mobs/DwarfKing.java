@@ -207,6 +207,7 @@ public class DwarfKing extends Boss {
 				spend(TICK);
 				return true;
 			} else {
+				if (summonSubject(3)) summonsMade++;
 				spend(TICK);
 				return true;
 			}

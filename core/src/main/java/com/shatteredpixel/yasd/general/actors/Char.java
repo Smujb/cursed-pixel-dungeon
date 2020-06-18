@@ -765,7 +765,7 @@ public abstract class Char extends Actor {
 	public void damage(int dmg,  DamageSrc src) {
 		dmg = Math.max(0, dmg);
 
-		if(isInvulnerable(src.getClass())){
+		if(isInvulnerable(src.getCause().getClass())){
 			sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "invulnerable"));
 			return;
 		}
