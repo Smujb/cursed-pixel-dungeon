@@ -33,6 +33,8 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 
+import java.text.DecimalFormat;
+
 public class Weakness extends FlavourBuff {
 
 	public static final float DURATION = 40f;
@@ -69,6 +71,6 @@ public class Weakness extends FlavourBuff {
 
 	@Override
 	public String desc() {
-		return Messages.get(this, "desc", damageFactor(), dispTurns());
+		return Messages.get(this, "desc", dispTurns(), new DecimalFormat("#.##").format((1f-damageFactor())*100f));
 	}
 }

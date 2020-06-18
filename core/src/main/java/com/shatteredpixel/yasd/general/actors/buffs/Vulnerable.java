@@ -30,6 +30,8 @@ package com.shatteredpixel.yasd.general.actors.buffs;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 
+import java.text.DecimalFormat;
+
 public class Vulnerable extends FlavourBuff {
 
 	public static final float DURATION = 40f;
@@ -60,7 +62,7 @@ public class Vulnerable extends FlavourBuff {
 
 	@Override
 	public String desc() {
-		return Messages.get(this, "desc", defenseFactor(), dispTurns());
+		return Messages.get(this, "desc", dispTurns(), new DecimalFormat("#.##").format((1f-defenseFactor())*100f));
 	}
 }
 
