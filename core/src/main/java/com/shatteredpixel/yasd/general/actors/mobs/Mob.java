@@ -88,6 +88,10 @@ public abstract class Mob extends Char {
 
 	protected int level = 0;
 
+	public int getLevel() {
+		return level;
+	}
+
 	public float damageFactor = 1f;
 	public float healthFactor = 1f;
 	public float drFactor = 1f;

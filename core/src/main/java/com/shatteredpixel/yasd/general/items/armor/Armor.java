@@ -34,6 +34,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.BrokenSeal;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
@@ -259,27 +260,37 @@ public class Armor extends EquipableItem {
 		return Random.NormalIntRange(DRMin(lvl), DRMax(lvl));
 	}
 
-	public final int magicalDRMax(){
-		return magicalDRMax(level());
+	private float getFocusLvl() {
+		float lvl = 0;
+		if (curUser instanceof Hero) {
+			lvl = ((Hero)curUser).getFocus();
+		} else if (curUser instanceof Mob) {
+			lvl = ((Mob)curUser).getLevel();
+		}
+		return lvl;
 	}
 
-	public int magicalDRMax(int lvl){
+	public final int magicalDRMax(){
+		return magicalDRMax(getFocusLvl());
+	}
+
+	public int magicalDRMax(float lvl){
 		return Math.round(((tier*3) + (tier * lvl)) * magicalDRFactor);
 	}
 
 	public final int magicalDRMin(){
-		return magicalDRMin(level());
+		return magicalDRMin(getFocusLvl());
 	}
 
-	public int magicalDRMin(int lvl){
+	public int magicalDRMin(float lvl){
 		return Math.round((tier + lvl) * magicalDRFactor);
 	}
 
 	public int magicalDRRoll() {
-		return magicalDRRoll(level());
+		return magicalDRRoll(getFocusLvl());
 	}
 
-	public int magicalDRRoll(int lvl) {
+	public int magicalDRRoll(float lvl) {
 		return Random.NormalIntRange(magicalDRMin(lvl), magicalDRMax(lvl));
 	}
 
