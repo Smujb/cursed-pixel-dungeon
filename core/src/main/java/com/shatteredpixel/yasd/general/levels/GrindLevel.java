@@ -11,10 +11,8 @@ import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
-import com.shatteredpixel.yasd.general.levels.painters.Painter;
-import com.shatteredpixel.yasd.general.levels.painters.SewerPainter;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
-import com.shatteredpixel.yasd.general.levels.traps.WornDartTrap;
+import com.shatteredpixel.yasd.general.levels.tiled.TiledMapLevel;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
@@ -27,7 +25,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class GrindLevel extends RegularLevel {
+public class GrindLevel extends TiledMapLevel {
+
+	{
+		viewDistance = 20;
+	}
 
 	public int spawn;
 	public static String SPAWN = "spawn";
@@ -48,7 +50,6 @@ public class GrindLevel extends RegularLevel {
 		super.create(key);
 		spawn = getEntrance().centerCell(this);
 		set(getEntrancePos(), Terrain.PEDESTAL);
-		set(getExitPos(), Terrain.EMPTY);
 		clearExitEntrance();
 	}
 
@@ -58,19 +59,9 @@ public class GrindLevel extends RegularLevel {
 	}
 
 	@Override
-	protected Class<?>[] trapClasses() {
-		return new Class<?>[]{ WornDartTrap.class };
-	}
-
-	@Override
-	protected float[] trapChances() {
-		return new float[]{1};
-	}
-
-	@Override
 	//For now. Reworked tiles are needed.
 	public String tilesTex() {
-		return Assets.TILES_SEWERS;
+		return Assets.TILES_HEAVEN;
 	}
 
 	@Override
@@ -84,23 +75,9 @@ public class GrindLevel extends RegularLevel {
 	}
 
 	@Override
-	protected int specialRooms() {
-		return 0;
+	protected String mapName() {
+		return "maps/grind-depth.tmx";
 	}
-
-	@Override
-	protected int standardRooms() {
-		//5 to 7, average 5.57
-		return 5+Random.chances(new float[]{4, 2, 1});
-	}
-
-	@Override
-	protected Painter painter() {
-		return new SewerPainter();
-	}
-
-	@Override
-	protected void createItems() {}//Does nothing. Prevents Ghost from spawning, also makes sense that all loot is supposed to come from killing Guardians.
 
 	@Override
 	public void storeInBundle(Bundle bundle) {
@@ -136,8 +113,9 @@ public class GrindLevel extends RegularLevel {
 
 	@Override
 	public int nMobs() {
-		return 5;
+		return 10;
 	}
+
 
 	public static class Guardian extends Mob {
 
