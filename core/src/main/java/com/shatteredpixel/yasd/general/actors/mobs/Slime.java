@@ -39,14 +39,13 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
-import org.jetbrains.annotations.NotNull;
-
 public class Slime extends Mob {
 	
 	{
 		spriteClass = SlimeSprite.class;
 
 		healthFactor = 1 + 2/3f;
+		damageFactor = 2/3f;
 		
 		EXP = 4;
 		maxLvl = 9;

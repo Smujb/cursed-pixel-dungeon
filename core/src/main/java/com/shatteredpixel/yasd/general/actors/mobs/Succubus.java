@@ -57,11 +57,10 @@ public class Succubus extends Mob {
 	
 	{
 		spriteClass = SuccubusSprite.class;
-		
-		//HP = HT = 80;
-		//defenseSkill = 29;
+
 		healthFactor = 0.8f;
 		damageFactor = 1.2f;
+		accuracyFactor = 1.5f;
 		perceptionFactor = 1.5f;
 		viewDistance = Light.DISTANCE;
 		

@@ -55,7 +55,7 @@ public abstract class Elemental extends Mob {
 		spriteClass = ElementalSprite.class;
 
 		healthFactor = 0.7f;
-		damageFactor = 0.8f;
+		damageFactor = 1.3f;
 
 		EXP = 10;
 

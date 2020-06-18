@@ -46,8 +46,8 @@ public class Eye extends Mob {
 		spriteClass = EyeSprite.class;
 
 
-		healthFactor = 0.6f;
-		damageFactor = 1.5f;
+		healthFactor = 1.8f;
+		damageFactor = 0.7f;
 		viewDistance = Light.DISTANCE;
 
 		EXP = 13;
@@ -72,7 +72,7 @@ public class Eye extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return beamCharged ? super.damageRoll()*3 : super.damageRoll();
+		return beamCharged ? super.damageRoll()*4 : super.damageRoll();
 	}
 	
 	private Ballistica beam;

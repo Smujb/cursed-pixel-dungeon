@@ -43,9 +43,10 @@ public class NewDM300 extends Mob {
 	{
 		spriteClass = DM300Sprite.class;
 
-		healthFactor = 2f;
+		healthFactor = 1.6f;
 		damageFactor = 2/3f;
 		drFactor = 2f;
+		elementaldrFactor = 2f;
 		perceptionFactor = 3f;
 
 		EXP = 30;

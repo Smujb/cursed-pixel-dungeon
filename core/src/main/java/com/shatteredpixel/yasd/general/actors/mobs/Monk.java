@@ -46,33 +46,17 @@ public class Monk extends Mob {
 
 
 		healthFactor = 0.8f;
-		damageFactor = 0.6f;
+		damageFactor = 0.7f;
+		attackDelay = 0.5f;
 
 		EXP = 11;
 		maxLvl = 21;
-
-		attackDelay = 0.5f;
 
 		loot = new Food();
 		lootChance = 0.083f;
 
 		properties.add(Property.UNDEAD);
 	}
-	
-	/*@Override
-	public int damageRoll() {
-		return Random.NormalIntRange( 14, 30 );
-	}
-	
-	@Override
-	public int attackSkill( Char target ) {
-		return defenseSkill;
-	}
-	
-	@Override
-	public int drRoll(Element element) {
-		return Random.NormalIntRange(0, 2);
-	}*/
 
 	@Override
 	public void rollToDropLoot() {
@@ -167,7 +151,7 @@ public class Monk extends Mob {
 
 		{
 			spriteClass = SeniorSprite.class;
-			damageFactor = 0.7f;
+			damageFactor = 0.8f;
 
 			loot = new Pasty();
 			lootChance = 0.2f;
