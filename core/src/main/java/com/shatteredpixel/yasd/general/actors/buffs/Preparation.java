@@ -132,7 +132,7 @@ public class Preparation extends Buff implements ActionIndicator.Action {
 		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 			if (mob.getEnemy() == target && mob.enemySeen) {
 				detach();
-			} else if (target.fieldOfView[mob.pos] || target.notice(mob, false)) {
+			} else if (target.fieldOfView[mob.pos] || target.notice(mob, 5)) {
 				turnsPrep++;
 				spend(TICK);
 				return true;

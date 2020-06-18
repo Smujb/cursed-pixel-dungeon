@@ -87,7 +87,7 @@ public class MeleeWeapon extends Weapon {
 				enemy = ((Mob) curUser).getEnemy();
 			}
 			if (enemy != null) {
-				bonus = 1f-enemy.noticeChance(curUser, true);
+				bonus = 1f-enemy.noticeChance(curUser, 3);
 			}
 			if (enemy instanceof Mob && ((Mob) enemy).surprisedBy(curUser) && curUser.canSurpriseAttack()) {
 				damage *= (2 + bonus);

@@ -765,7 +765,7 @@ public abstract class Char extends Actor {
 	public void damage(int dmg,  DamageSrc src) {
 		dmg = Math.max(0, dmg);
 
-		if(isInvulnerable(src.getCause().getClass())){
+		if(src.getCause() != null && isInvulnerable(src.getCause().getClass())){
 			sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "invulnerable"));
 			return;
 		}
@@ -1026,19 +1026,17 @@ public abstract class Char extends Actor {
 		}
 	}
 
-	public final boolean notice( Char defender, boolean alreadySeen) {
-		return Random.Float() < noticeChance(defender, alreadySeen);
+	public final boolean notice( Char defender, float factor) {
+		return Random.Float() < noticeChance(defender, factor);
 	}
 
-	public float noticeChance( Char defender, boolean alreadySeen) {
+	public float noticeChance( Char defender, float factor) {
 		if (Dungeon.level.distance(pos, defender.pos) < viewDistance) {
 			float perception = (noticeSkill(defender)) / ((Dungeon.level.distance(pos, defender.pos)+1)/2f);
 			if (!fieldOfView(defender.pos)) {
 				perception /= 2f;
 			}
-			if (alreadySeen) {
-				perception *= 4;
-			}
+			perception *= factor;
 			float stealth = defender.sneakSkill(this);
 			//Enforced here so we don't get division by zero error
 			if (stealth == 0) {

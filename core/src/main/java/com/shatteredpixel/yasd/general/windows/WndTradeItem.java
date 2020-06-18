@@ -153,8 +153,8 @@ public class WndTradeItem extends Window {
 			boolean steal = true;
 			float chance = 1f;
 			if (shopkeeper != null) {
-				chance = shopkeeper.noticeChance(Dungeon.hero, true);
-				steal = shopkeeper.notice(Dungeon.hero, true);
+				chance = shopkeeper.noticeChance(Dungeon.hero, 4);
+				steal = shopkeeper.notice(Dungeon.hero, 4);
 			}
 			boolean finalSteal = steal;
 			RedButton btnSteal = new RedButton(Messages.get(this, "steal", Math.min(100, (int) (chance * 100)))) {

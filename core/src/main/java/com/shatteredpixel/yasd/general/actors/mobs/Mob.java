@@ -349,7 +349,7 @@ public abstract class Mob extends Char {
 		
 		super.act();
 		
-		boolean justAlerted = alerted;
+		/*boolean justAlerted = alerted;
 		alerted = false;
 		
 		if (justAlerted){
@@ -357,7 +357,7 @@ public abstract class Mob extends Char {
 		} else {
 			sprite.hideAlert();
 			sprite.hideLost();
-		}
+		}*/
 		
 		if (paralysed > 0) {
 			enemySeen = false;
@@ -369,7 +369,7 @@ public abstract class Mob extends Char {
 
 		boolean enemyInFOV = enemy != null && Dungeon.level.distance(pos, enemy.pos) < viewDistance && (properties().contains(Property.IGNORES_INVISIBLE) | enemy.invisible <= 0);
 
-		return state.act( enemyInFOV, justAlerted );
+		return state.act( enemyInFOV, checkEnemy(enemy) );
 	}
 
 	//FIXME this is sort of a band-aid correction for allies needing more intelligent behaviour
@@ -378,7 +378,7 @@ public abstract class Mob extends Char {
 	private Char chooseAlly() {
 		ArrayList<Char> targets = new ArrayList<>();
 		for (Char ch : Actor.chars()) {
-			if (ch.alignment == this.alignment && (fieldOfView[ch.pos] || notice(ch, true))) {
+			if (ch.alignment == this.alignment && (fieldOfView[ch.pos] || threshold())) {
 				targets.add(ch);
 			}
 		}
@@ -792,18 +792,6 @@ public abstract class Mob extends Char {
 		return !seen;
 	}
 	
-	/*@Override
-	public int defenseSkill( Char enemy ) {
-
-		if ( !canBeSurpriseAttacked(enemy)
-				&& paralysed == 0
-				&& !(alignment == Alignment.ALLY && enemy == Dungeon.hero)) {
-			return this.defenseSkill;
-		} else {
-			return 0;
-		}
-	}*/
-	
 	protected boolean hitWithRanged = false;
 	
 	@Override
@@ -864,6 +852,7 @@ public abstract class Mob extends Char {
 			alerted = true;
 		}
 
+		notice();
 		
 		super.damage( dmg, src);
 	}
@@ -1057,10 +1046,6 @@ public abstract class Mob extends Char {
 
 	}
 	
-	public void notice() {
-		sprite.showAlert();
-	}
-	
 	public void yell( String str ) {
 		GLog.newLine();
 		GLog.n( "%s: \"%s\" ", Messages.titleCase(name()), str );
@@ -1073,6 +1058,59 @@ public abstract class Mob extends Char {
 
 	public interface AiState {
 		boolean act( boolean enemyInFOV, boolean justAlerted );
+		float noticeFactor();
+	}
+
+	private float suspicion = 1;
+	private static final int MAX_SUSPICION = 6;
+	private static final int SUSPICION_THRESHOLD = 3;
+
+	public void notice() {
+		enemySeen = true;
+		for (Mob mob : Dungeon.level.mobs.toArray( new  Mob[0] )) {
+			//Mobs get less suspicion increase drop-off distance on swarm intelligence.
+			float increase = SUSPICION_THRESHOLD - Dungeon.level.distance(pos, mob.pos)/(Dungeon.isChallenged(Challenges.SWARM_INTELLIGENCE) ? 5f : 3f);
+			mob.increaseSuspicion(increase);
+		}
+		increaseSuspicion(SUSPICION_THRESHOLD);
+	}
+
+	private void increaseSuspicion(float amount) {
+		suspicion += amount;
+		if (suspicion > MAX_SUSPICION) {
+			suspicion = MAX_SUSPICION;
+		}
+		if (suspicion > SUSPICION_THRESHOLD && sprite != null) {
+			sprite.showAlert();
+		}
+	}
+
+	private void decreaseSuspicion(float amount) {
+		suspicion -= amount;
+		if (suspicion < 0) {
+			suspicion = 0;
+		}
+		if (suspicion < SUSPICION_THRESHOLD && sprite != null) {
+			sprite.showLost();
+		}
+	}
+
+	private boolean checkEnemy(Char enemy) {
+		if (enemy == null) {
+			return false;
+		}
+		if (notice(enemy, state.noticeFactor())) {
+			increaseSuspicion(1);
+			return true;
+		} else {
+			//Swarm Intelligence causes mobs to forget you slower.
+			decreaseSuspicion(Dungeon.isChallenged(Challenges.SWARM_INTELLIGENCE) ? 2/3f : 1.5f);
+			return false;
+		}
+	}
+
+	private boolean threshold() {
+		return suspicion > SUSPICION_THRESHOLD;
 	}
 
 	protected class Sleeping implements AiState {
@@ -1081,7 +1119,7 @@ public abstract class Mob extends Char {
 
 		@Override
 		public boolean act( boolean enemyInFOV, boolean justAlerted ) {
-			if (enemyInFOV && notice(enemy, false)/*Random.Float( distance( enemy ) + enemy.sneakSkill() + (enemy.isFlying() ? 2 : 0) ) < 1*/) {
+			if (enemyInFOV && threshold()) {
 
 				enemySeen = true;
 
@@ -1108,6 +1146,11 @@ public abstract class Mob extends Char {
 			}
 			return true;
 		}
+
+		@Override
+		public float noticeFactor() {
+			return 3;
+		}
 	}
 
 	protected class Wandering implements AiState {
@@ -1116,7 +1159,7 @@ public abstract class Mob extends Char {
 
 		@Override
 		public boolean act( boolean enemyInFOV, boolean justAlerted ) {
-			if (enemyInFOV && (justAlerted || notice(enemy, false))) {
+			if (enemyInFOV && threshold()) {
 
 				return noticeEnemy();
 
@@ -1124,6 +1167,11 @@ public abstract class Mob extends Char {
 
 				return continueWandering();
 			}
+		}
+
+		@Override
+		public float noticeFactor() {
+			return 4;
 		}
 
 		protected boolean noticeEnemy(){
@@ -1178,7 +1226,7 @@ public abstract class Mob extends Char {
 
 		@Override
 		public boolean act( boolean enemyInFOV, boolean justAlerted ) {
-			if ( enemyInFOV && notice( enemy, false ) ) {
+			if ( enemyInFOV && threshold() ) {
 
 				enemySeen = true;
 
@@ -1218,14 +1266,14 @@ public abstract class Mob extends Char {
 		public boolean act( boolean enemyInFOV, boolean justAlerted ) {
 			enemySeen = enemyInFOV;
 
-			if (enemyInFOV && !isCharmedBy( enemy ) && canAttack( enemy )) {
+			if (enemyInFOV && !isCharmedBy( enemy ) && canAttack( enemy ) && threshold()) {
 
 				target = enemy.pos;
 				return doAttack( enemy );
 
 			} else {
 
-				if (enemyInFOV && notice(enemy, true)) {
+				if (enemyInFOV && threshold()) {
 					target = enemy.pos;
 				} else {
 					sprite.showLost();
@@ -1262,6 +1310,11 @@ public abstract class Mob extends Char {
 				}
 			}
 		}
+
+		@Override
+		public float noticeFactor() {
+			return 4;
+		}
 	}
 
 	//FIXME this works fairly well but is coded poorly. Should refactor
@@ -1296,6 +1349,11 @@ public abstract class Mob extends Char {
 			}
 		}
 
+		@Override
+		public float noticeFactor() {
+			return 3;
+		}
+
 		protected void nowhereToRun() {
 		}
 	}
@@ -1309,6 +1367,11 @@ public abstract class Mob extends Char {
 			enemySeen = false;
 			spend( TICK );
 			return true;
+		}
+
+		@Override
+		public float noticeFactor() {
+			return 0;
 		}
 	}
 	
