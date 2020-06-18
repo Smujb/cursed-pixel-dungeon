@@ -138,9 +138,8 @@ public class GrindLevel extends TiledMapLevel {
 		}
 
 		@Override
-		protected void onCreate() {
-			super.onCreate();
-			HP = HT/= 2;
+		public int defenseSkill(Char enemy) {
+			return 0;
 		}
 
 		@Override
@@ -161,13 +160,17 @@ public class GrindLevel extends TiledMapLevel {
 			beckon( Dungeon.hero.pos );
 			return super.act();
 		}
+
+		@Override
+		public int damageRoll() {
+			return (int) (super.damageRoll()*2/3f);
+		}
 	}
 
 	public static class GreenGuardian extends Guardian {
 
 		{
 			spriteClass = GreenGuardianSprite.class;
-			evasionFactor = 0.5f;
 			accuracyFactor = 2f;
 			drFactor = 2f;
 		}
@@ -184,7 +187,6 @@ public class GrindLevel extends TiledMapLevel {
 			accuracyFactor = 2f;
 			damageFactor = 0.75f;
 			drFactor = 0.5f;
-			evasionFactor = 1.5f;
 			attackDelay = 0.5f;
 			HP = HT = (int) (super.HT*0.67f);
 		}
@@ -202,7 +204,6 @@ public class GrindLevel extends TiledMapLevel {
 		{
 			spriteClass = BlueGuardianSprite.class;
 			baseSpeed = 0.5f;
-			evasionFactor = 0.5f;
 			drFactor = 2f;
 			lootAmt = 4;
 			resistances.put(Element.SPIRIT, 0.5f);
