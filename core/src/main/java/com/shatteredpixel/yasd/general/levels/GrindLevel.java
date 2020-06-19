@@ -35,11 +35,11 @@ public class GrindLevel extends TiledMapLevel {
 	@Override
 	public float respawnTime() {//Respawn time depends on current number of mobs.
 		if (mobs.size() > 6) {
-			return super.respawnTime();
+			return super.respawnTime() / 4f;
 		} else if  (mobs.size() > 2) {
-			return super.respawnTime() / 2f;
+			return super.respawnTime() / 8f;
 		} else {
-			return super.respawnTime() / 3f;
+			return 1f;
 		}
 	}
 
@@ -130,12 +130,6 @@ public class GrindLevel extends TiledMapLevel {
 			return Messages.get(Guardian.class,"desc") + "\n\n" + super.description();
 		}
 
-		@Override
-		protected void onCreate() {
-			super.onCreate();
-			HP = HT *= 1.5f;
-		}
-
 		public Guardian() {
 			super();
 			aggro(Dungeon.hero);
@@ -153,7 +147,7 @@ public class GrindLevel extends TiledMapLevel {
 				do {
 					ofs = PathFinder.NEIGHBOURS8[Random.Int(8)];
 				} while (!Dungeon.level.passable(pos + ofs));
-				Dungeon.level.drop(LuckyBadge.tryForBonusDrop(Dungeon.hero), pos + ofs ).sprite.drop( pos );
+				Dungeon.level.drop(LuckyBadge.tryForBonusDrop(), pos + ofs ).sprite.drop( pos );
 			}
 			super.die(cause);
 		}

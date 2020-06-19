@@ -31,8 +31,10 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Statistics;
+import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.artifacts.MasterThievesArmband;
+import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -63,27 +65,25 @@ public class Gold extends Item {
 	public ArrayList<String> actions( Hero hero ) {
 		return new ArrayList<>();
 	}
-	
+
 	@Override
-	public boolean doPickUp( Hero hero ) {
-		
+	public boolean collect(Bag container, Char ch) {
 		Dungeon.gold += quantity;
 		Statistics.goldCollected += quantity;
 		Badges.validateGoldCollected();
 
-		MasterThievesArmband.Thievery thievery = hero.buff(MasterThievesArmband.Thievery.class);
+		MasterThievesArmband.Thievery thievery = ch.buff(MasterThievesArmband.Thievery.class);
 		if (thievery != null)
 			thievery.collect(quantity);
 
-		GameScene.pickUp( this, hero.pos );
-		hero.sprite.showStatus( CharSprite.NEUTRAL, TXT_VALUE, quantity );
-		hero.spendAndNext( TIME_TO_PICK_UP );
-		
+		GameScene.pickUp( this, ch.pos );
+		ch.sprite.showStatus( CharSprite.NEUTRAL, TXT_VALUE, quantity );
+
 		Sample.INSTANCE.play( Assets.SND_GOLD, 1, 1, Random.Float( 0.9f, 1.1f ) );
-		
+
 		return true;
 	}
-	
+
 	@Override
 	public boolean isUpgradable() {
 		return false;

@@ -3,10 +3,10 @@ package com.shatteredpixel.yasd.general.items.powers;
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.LevelHandler;
-import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Gold;
+import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.food.MeatPie;
@@ -17,8 +17,11 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
+import com.shatteredpixel.yasd.general.sprites.MissileSprite;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 import java.text.DecimalFormat;
@@ -37,6 +40,7 @@ public class LuckyBadge extends Power {
 	public static final String AC_GRIND = "grind";
 	public static final String AC_HOME = "home";
 	public static final String AC_RETURN = "return";
+	public static final String AC_GRAB = "grab";
 
 	public enum Type {NONE, GRIND, SPEED}
 
@@ -66,6 +70,7 @@ public class LuckyBadge extends Power {
 		ArrayList<String> actions = new ArrayList<>();
 		if (Dungeon.key.equals(AC_GRIND) || Dungeon.key.equals(AC_HOME)) {
 			actions.add(AC_RETURN);
+			actions.add(AC_GRAB);
 		} else {
 			if (type == Type.GRIND) {
 				actions.add(AC_GRIND);
@@ -103,6 +108,26 @@ public class LuckyBadge extends Power {
 				returnPos = -1;
 				returnKey = null;
 				break;
+			case AC_GRAB:
+				for (Heap heap : Dungeon.level.heaps.valueList()) {
+					for (Item item : heap.items.toArray(new Item[0])) {
+						((MissileSprite) hero.sprite.parent.recycle(MissileSprite.class)).
+								reset(heap.pos,
+										hero.sprite,
+										item,
+										new Callback() {
+											@Override
+											public void call() {
+												if (item.collect(hero.belongings.backpack, hero)) {
+													GameScene.pickUp( item, hero.pos );
+												} else {
+													Dungeon.level.drop(item, hero.pos).sprite.drop(heap.pos);
+												}
+											}
+										});
+					}
+					heap.destroy();
+				}
 		}
 	}
 
@@ -139,8 +164,7 @@ public class LuckyBadge extends Power {
 		}
 	}
 
-	public static Item tryForBonusDrop(Char target) {
-
+	public static Item tryForBonusDrop() {
 		Item item;
 		do {
 			if ((dropsToUpgrade < 1) || (Random.Int((int) dropsToUpgrade) == 0)) {
