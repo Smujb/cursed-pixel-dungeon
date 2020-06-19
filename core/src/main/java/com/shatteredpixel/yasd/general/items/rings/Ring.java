@@ -130,6 +130,7 @@ public class Ring extends KindofMisc {
 	}
 	
 	public void activate( Char ch ) {
+		super.activate(ch);
 		buff = buff();
 		buff.attachTo( ch );
 	}

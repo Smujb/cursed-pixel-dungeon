@@ -37,8 +37,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public abstract class EquipableItem extends Item {
