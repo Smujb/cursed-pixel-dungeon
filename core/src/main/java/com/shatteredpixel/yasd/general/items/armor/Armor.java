@@ -276,7 +276,7 @@ public class Armor extends EquipableItem {
 	}
 
 	public int magicalDRMax(float lvl){
-		return Math.round(((tier*3) + (tier * lvl)) * magicalDRFactor);
+		return Math.round(((tier*3) + lvl*2f) * magicalDRFactor);
 	}
 
 	public final int magicalDRMin(){
@@ -284,7 +284,7 @@ public class Armor extends EquipableItem {
 	}
 
 	public int magicalDRMin(float lvl){
-		return Math.round((tier + lvl) * magicalDRFactor);
+		return Math.round((tier + lvl/2f) * magicalDRFactor);
 	}
 
 	public int magicalDRRoll() {
