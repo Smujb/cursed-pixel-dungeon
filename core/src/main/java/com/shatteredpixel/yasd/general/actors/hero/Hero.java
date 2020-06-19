@@ -99,6 +99,7 @@ import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
+import com.shatteredpixel.yasd.general.levels.GrindLevel;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
 import com.shatteredpixel.yasd.general.levels.interactive.InteractiveArea;
 import com.shatteredpixel.yasd.general.levels.terrain.KindOfTerrain;
@@ -1283,8 +1284,16 @@ public class Hero extends Char {
 
 		return true;
 	}
-	
-	public void earnExp( int exp, Class source ) {
+
+	@Override
+	public boolean canAttack(Char enemy) {
+		if (Dungeon.level instanceof GrindLevel && fieldOfView[enemy.pos]) {
+			return true;
+		}
+		return super.canAttack(enemy);
+	}
+
+	public void earnExp(int exp, Class source ) {
 		
 		this.exp += exp;
 		float percent = exp/(float)maxExp();

@@ -209,7 +209,7 @@ public abstract class RegularLevel extends Level {
 			if (tries >= 0) {
 				mobsToSpawn--;
 				mobs.add(mob);
-				//add a second mob to this room
+				//add a seLevel.java:932cond mob to this room
 				if (mobsToSpawn > 0 && Random.Int(4) == 0){
 					mob = createMob();
 

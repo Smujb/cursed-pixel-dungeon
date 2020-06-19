@@ -7,8 +7,6 @@ import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
-import com.shatteredpixel.yasd.general.items.Gold;
-import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
@@ -37,11 +35,11 @@ public class GrindLevel extends TiledMapLevel {
 	@Override
 	public float respawnTime() {//Respawn time depends on current number of mobs.
 		if (mobs.size() > 6) {
-			return super.respawnTime() / 2f;
+			return super.respawnTime();
 		} else if  (mobs.size() > 2) {
-			return super.respawnTime() / 5f;
+			return super.respawnTime() / 2f;
 		} else {
-			return super.respawnTime() / 10f;
+			return super.respawnTime() / 3f;
 		}
 	}
 
@@ -132,6 +130,12 @@ public class GrindLevel extends TiledMapLevel {
 			return Messages.get(Guardian.class,"desc") + "\n\n" + super.description();
 		}
 
+		@Override
+		protected void onCreate() {
+			super.onCreate();
+			HP = HT *= 1.5f;
+		}
+
 		public Guardian() {
 			super();
 			aggro(Dungeon.hero);
@@ -144,13 +148,12 @@ public class GrindLevel extends TiledMapLevel {
 
 		@Override
 		public void die(DamageSrc cause) {
-			for (int i = 0; i < lootAmt; i++) {
-				Item luckybadgedrop = LuckyBadge.tryForBonusDrop(Dungeon.hero);
-				if (luckybadgedrop != null) {
-					if (luckybadgedrop instanceof Gold || !luckybadgedrop.collect()) {
-						Dungeon.level.drop(luckybadgedrop, Dungeon.hero.pos).sprite.drop();
-					}
-				}
+			for (int i = 0; i < lootAmt*2; i++){
+				int ofs;
+				do {
+					ofs = PathFinder.NEIGHBOURS8[Random.Int(8)];
+				} while (!Dungeon.level.passable(pos + ofs));
+				Dungeon.level.drop(LuckyBadge.tryForBonusDrop(Dungeon.hero), pos + ofs ).sprite.drop( pos );
 			}
 			super.die(cause);
 		}
@@ -163,7 +166,12 @@ public class GrindLevel extends TiledMapLevel {
 
 		@Override
 		public int damageRoll() {
-			return (int) (super.damageRoll()*2/3f);
+			return (int) (super.damageRoll()*0.5f);
+		}
+
+		@Override
+		public int drRoll(Element element) {
+			return (int) (super.drRoll(element)*0.5f);
 		}
 	}
 

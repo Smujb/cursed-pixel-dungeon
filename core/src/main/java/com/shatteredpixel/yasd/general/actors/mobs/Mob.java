@@ -252,10 +252,10 @@ public abstract class Mob extends Char {
 			mob = type.newInstance();
 		} catch (InstantiationException e) {
 			CPDGame.reportException(e);
-			throw new RuntimeException(e.getCause());
+			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
 			CPDGame.reportException(e);
-			throw new RuntimeException(e.getCause());
+			throw new RuntimeException(e);
 		}
 		mob.level = level;
 		mob.updateHT(true);
