@@ -6,18 +6,14 @@ import com.watabou.noosa.TextureFilm;
 
 public class HeroNPCSprite extends MobSprite {
 
-	public HeroNPCSprite() {
-		super();
-	}
-
 	@Override
 	public void link(Char ch) {
 		texture( ((HeroNPC)ch).heroClass().spritesheet() );
-		update();
+		updateTextures();
 		super.link(ch);
 	}
 
-	public void update() {
+	private void updateTextures() {
 		TextureFilm film = new TextureFilm( HeroSprite.tiers(), 6, HeroSprite.FRAME_WIDTH, HeroSprite.FRAME_HEIGHT );
 		idle = new Animation( 1, true );
 		idle.frames( film, 0, 0, 0, 1, 0, 0, 1, 1 );
