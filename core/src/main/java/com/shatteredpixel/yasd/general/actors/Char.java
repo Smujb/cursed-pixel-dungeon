@@ -55,6 +55,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Drowsy;
 import com.shatteredpixel.yasd.general.actors.buffs.Drunk;
 import com.shatteredpixel.yasd.general.actors.buffs.EarthImbue;
 import com.shatteredpixel.yasd.general.actors.buffs.FireImbue;
+import com.shatteredpixel.yasd.general.actors.buffs.Focus;
 import com.shatteredpixel.yasd.general.actors.buffs.Frost;
 import com.shatteredpixel.yasd.general.actors.buffs.FrostImbue;
 import com.shatteredpixel.yasd.general.actors.buffs.Haste;
@@ -545,7 +546,13 @@ public abstract class Char extends Actor {
 	}
 
 	public String defenseVerb() {
-		return Messages.get(this, "def_verb");
+		Focus f = buff(Focus.class);
+		if (f == null || !f.parryReady()) {
+			return Messages.get(this, "def_verb");
+		} else {
+			f.resetCooldown();
+			return Messages.get(f, "parried");
+		}
 	}
 
 	public int drRoll(Element element) {
@@ -610,6 +617,10 @@ public abstract class Char extends Actor {
 		Drunk drunk = buff(Drunk.class);
 		if (drunk != null) {
 			evasion *= drunk.evasionFactor();
+		}
+		Focus f = buff(Focus.class);
+		if (f != null && f.parryReady()){
+			return INFINITE_EVASION;
 		}
 		return evasion;
 	}
