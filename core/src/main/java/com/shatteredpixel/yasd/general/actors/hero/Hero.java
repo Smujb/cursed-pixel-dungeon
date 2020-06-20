@@ -1059,11 +1059,11 @@ public class Hero extends Char {
 			resting = false;
 		}
 
-		if (!src.ignores()) {
+		super.damage( dmg, src );
+
+		if (!src.ignores() && isAlive()) {
 			processShake(dmg);
 		}
-
-		super.damage( dmg, src );
 	}
 	
 	public void checkVisibleMobs() {

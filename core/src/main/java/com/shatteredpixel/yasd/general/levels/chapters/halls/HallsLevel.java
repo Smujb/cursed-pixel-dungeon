@@ -165,7 +165,7 @@ public class HallsLevel extends RegularLevel {
 		return new Class[] {
 				Eye.class,
 				Succubus.class,
-				Elemental.class,
+				Elemental.random(),
 				Scorpio.class
 		};
 	}
