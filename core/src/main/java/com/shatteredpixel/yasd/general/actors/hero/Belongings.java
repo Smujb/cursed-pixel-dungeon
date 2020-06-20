@@ -167,11 +167,13 @@ public class Belongings implements Iterable<Item> {
 	public int magicalDR() {
 		int dr = 0;
 		int armDr = 0;
+		int armReq = 0;
 		if (armor != null) {
 			 armDr = armor.magicalDRRoll();
+			 armReq = armor.STRReq();
 		}
-		if (owner.STR() < armor.STRReq()) {
-			armDr -= 2 * (armor.STRReq() - owner.STR());
+		if (owner.STR() < armReq) {
+			armDr -= 2 * (armReq - owner.STR());
 		}
 		if (armDr > 0) dr += armDr;
 		if (armor != null && armor.hasGlyph(AntiMagic.class, owner)) {
