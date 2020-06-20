@@ -100,7 +100,6 @@ import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
-import com.shatteredpixel.yasd.general.levels.GrindLevel;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
 import com.shatteredpixel.yasd.general.levels.interactive.InteractiveArea;
 import com.shatteredpixel.yasd.general.levels.terrain.KindOfTerrain;
@@ -246,6 +245,9 @@ public class Hero extends Char {
 	}
 
 	public void useStamina(float amount) {
+		if (Dungeon.depth == 0) {
+			return;
+		}
 		stamina -= amount;
 		if (stamina < 0) {
 			int damage = (int) (-stamina*(HT/40));
@@ -1290,14 +1292,6 @@ public class Hero extends Char {
 
 
 		return true;
-	}
-
-	@Override
-	public boolean canAttack(Char enemy) {
-		if (Dungeon.level instanceof GrindLevel && fieldOfView[enemy.pos]) {
-			return true;
-		}
-		return super.canAttack(enemy);
 	}
 
 	public void earnExp(int exp, Class source ) {

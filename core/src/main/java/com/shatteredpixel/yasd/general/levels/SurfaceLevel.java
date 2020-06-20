@@ -27,6 +27,7 @@ public class SurfaceLevel extends TiledMapLevel {
 				mobs.add(npc);
 			}
 		}
+		locked = true;
 		return build;
 	}
 
