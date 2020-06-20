@@ -33,12 +33,15 @@ import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.PinCushion;
+import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Grim;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
+import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.WraithSprite;
 import com.watabou.noosa.tweeners.AlphaTweener;
 import com.watabou.utils.PathFinder;
@@ -106,6 +109,19 @@ public class Wraith extends Mob {
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	protected boolean act() {
+		if (Dungeon.hero.subClass == HeroSubClass.NECROMANCER && Random.Int(3) == 0) {
+			convert();//Switch to Ally if the hero is a Necromancer. This may take a few turns or it may be instant.
+		}
+		return super.act();
+	}
+
+	private void convert() {
+		this.alignment = Alignment.ALLY;
+		sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "converted"));
 	}
 
 	public static Wraith spawnAt( int pos ) {

@@ -51,6 +51,7 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.effects.Speck;
+import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.Soul;
@@ -885,27 +886,36 @@ public abstract class Mob extends Char {
 	
 	@Override
 	public void die( DamageSrc cause ) {
-		
-		if (hitWithRanged){
+
+		if (hitWithRanged) {
 			Statistics.thrownAssists++;
 			Badges.validateHuntressUnlock();
 		}
-		
-		if (cause.getCause() == Chasm.class){
+
+		if (cause.getCause() == Chasm.class) {
 			//50% chance to round up, 50% to round down
 			if (EXP % 2 == 1) EXP += Random.Int(2);
 			EXP /= 2;
 		}
 
-		if (alignment == Alignment.ENEMY && Dungeon.hero != null){
+		if (alignment == Alignment.ENEMY && Dungeon.hero != null) {
 			rollToDropLoot();
 		}
-		
-		if (Dungeon.hero != null && Dungeon.hero.isAlive() && !Dungeon.level.heroFOV[pos]) {
-			GLog.i( Messages.get(this, "died") );
+
+		if (Dungeon.hero != null) {
+
+			if (Dungeon.hero.isAlive() && !Dungeon.level.heroFOV[pos]) {
+				GLog.i(Messages.get(this, "died"));
+			}
+
+			if (Dungeon.hero.subClass == HeroSubClass.NECROMANCER && Random.Int(3) == 0) {
+				if (Wraith.spawnAt(pos) != null) {
+					Dungeon.hero.sprite.emitter().burst(ShadowParticle.CURSE, 6);
+				}
+			}
 		}
-		
-		super.die( cause );
+
+		super.die(cause);
 	}
 
 	protected boolean doSupport(Char ch) {

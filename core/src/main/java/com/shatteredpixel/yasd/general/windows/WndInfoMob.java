@@ -27,13 +27,18 @@
 
 package com.shatteredpixel.yasd.general.windows;
 
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.buffs.LifeLink;
+import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.shatteredpixel.yasd.general.ui.HealthBar;
+import com.shatteredpixel.yasd.general.ui.RedButton;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.watabou.noosa.ui.Component;
 
@@ -42,6 +47,21 @@ public class WndInfoMob extends WndTitledMessage {
 	public WndInfoMob( Mob mob ) {
 		
 		super( new MobTitle( mob ), mob.description() );
+		if (mob.alignment == Char.Alignment.ALLY && Dungeon.hero.subClass == HeroSubClass.NECROMANCER) {
+			int bottom = height;
+			String title = Messages.get(this, "enable_resurrection");
+			RedButton btnResurrect = new RedButton(title) {
+				@Override
+				protected void onClick() {
+					Buff.affect(mob, LifeLink.class, 20f).object = Dungeon.hero.id();
+					hide();
+				}
+			};
+			btnResurrect.setRect(0, bottom, width, BTN_HEIGHT);
+			add(btnResurrect);
+			bottom = (int) btnResurrect.bottom();
+			resize(width, bottom);
+		}
 		
 	}
 	
