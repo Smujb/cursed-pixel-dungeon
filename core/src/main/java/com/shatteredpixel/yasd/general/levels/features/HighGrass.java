@@ -112,7 +112,7 @@ public class HighGrass {
 
 				//Camouflage
 				boolean hasCamoflage = false;
-				if (hero.belongings.armor.hasGlyph(Camouflage.class, hero)) {
+				if (hero.belongings.armor != null && hero.belongings.armor.hasGlyph(Camouflage.class, hero)) {
 					hasCamoflage = true;
 				}
 
