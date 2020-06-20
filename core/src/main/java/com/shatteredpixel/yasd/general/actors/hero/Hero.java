@@ -49,6 +49,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Combo;
 import com.shatteredpixel.yasd.general.actors.buffs.Drunk;
 import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
+import com.shatteredpixel.yasd.general.actors.buffs.Focus;
 import com.shatteredpixel.yasd.general.actors.buffs.Foresight;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
@@ -540,6 +541,12 @@ public class Hero extends Char {
 
 	@Override
 	public boolean act() {
+		com.shatteredpixel.yasd.general.actors.buffs.Focus f = buff(Focus.class);
+		if (subClass == HeroSubClass.BRAWLER) {
+			Buff.affect(this, Focus.class);
+		} else if (f != null){
+			f.detach();
+		}
 
 		if (subClass == HeroSubClass.ASSASSIN && Preparation.canAttatch(this) && buff(Preparation.class) == null) {
 			Buff.affect(this, Preparation.class);

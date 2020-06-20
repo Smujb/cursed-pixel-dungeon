@@ -1,5 +1,7 @@
 package com.shatteredpixel.yasd.general.actors.buffs;
 
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
@@ -30,6 +32,10 @@ public class Focus extends Buff {
 	}
 
 	public void loseCooldown(float amt) {
+		if (target != null && target instanceof Hero && ((Hero) target).subClass == HeroSubClass.BRAWLER) {
+			int excessArmorSTR = target.belongings.armor == null ? target.STR : target.STR - target.belongings.armor.STRReq();
+			amt *= 0.5f + (0.1f * excessArmorSTR);
+		}
 		cooldown -= amt;
 		if (cooldown < 0) {
 			cooldown = 0;
@@ -61,7 +67,14 @@ public class Focus extends Buff {
 
 	@Override
 	public String desc() {
-		return Messages.get(this, "desc") + "\n\n" + Messages.get(this, "cooldown", (double) cooldown);
+		String desc = Messages.get(this, "desc");
+		desc += "\n\n";
+		if (cooldown > 0) {
+			desc += Messages.get(this, "cooldown", (double) cooldown);
+		} else {
+			desc += Messages.get(this, "ready");
+		}
+		return desc;
 	}
 
 	public void storeInBundle( Bundle bundle ) {
