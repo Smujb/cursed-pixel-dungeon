@@ -182,7 +182,7 @@ public class GameScene extends PixelScene {
 
 		Music.INSTANCE.play( Assets.TUNE, true );
 
-		CPDSettings.lastClass(Dungeon.hero.heroClass.ordinal());
+		CPDSettings.lastClass(Dungeon.hero.heroClass);
 		
 		super.create();
 		Camera.main.zoom( GameMath.gate(minZoom, defaultZoom + CPDSettings.zoom(), maxZoom));

@@ -6,6 +6,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.HuntressNPC;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.MageNPC;
+import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.PriestessNPC;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.RogueNPC;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.WarriorNPC;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -68,6 +69,7 @@ public abstract class HeroNPC extends NPC {
 	@Contract("_ -> new")
 	public static HeroNPC create(@NotNull HeroClass heroClass) {
 		switch (heroClass) {
+			default:
 			case WARRIOR:
 				return new WarriorNPC();
 			case MAGE:
@@ -77,13 +79,7 @@ public abstract class HeroNPC extends NPC {
 			case HUNTRESS:
 				return new HuntressNPC();
 			case PRIESTESS:
-			default:
-				return new HeroNPC() {
-					@Override
-					public HeroClass heroClass() {
-						return heroClass;
-					}
-				};
+				return new PriestessNPC();
 		}
 	}
 }

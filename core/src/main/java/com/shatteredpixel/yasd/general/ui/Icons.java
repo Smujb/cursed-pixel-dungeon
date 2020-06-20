@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.ui;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.watabou.noosa.Image;
-
 public enum Icons {
 	
 	//button icons
@@ -65,6 +64,7 @@ public enum Icons {
 	MAGE,
 	ROGUE,
 	HUNTRESS,
+	PRIESTESS,
 	
 	//main menu icons
 	ENTER,
@@ -183,6 +183,10 @@ public enum Icons {
 			case HUNTRESS:
 				icon.frame(icon.texture.uvRect(64, 48, 80, 64));
 				break;
+			case PRIESTESS:
+				//TODO
+				icon.frame(icon.texture.uvRect(64, 48, 80, 64));
+				break;
 
 			case ENTER:
 				icon.frame(icon.texture.uvRect(0, 64, 17, 81));
@@ -229,6 +233,8 @@ public enum Icons {
 			return get( ROGUE );
 		case HUNTRESS:
 			return get( HUNTRESS );
+		case PRIESTESS:
+			return get( PRIESTESS );
 		default:
 			return null;
 		}

@@ -159,6 +159,9 @@ public class WndClass extends WndTabbed {
 				case HUNTRESS:
 					message = HeroSubClass.SNIPER.desc() + "\n\n" + HeroSubClass.WARDEN.desc();
 					break;
+				case PRIESTESS:
+					message = HeroSubClass.NECROMANCER.desc() + "\n\n" + HeroSubClass.MEDIC.desc();
+					break;
 			}
 
 			RenderedTextBlock text = PixelScene.renderTextBlock( 6 );

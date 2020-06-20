@@ -90,6 +90,9 @@ public class WndStartGame extends Window {
 				case 3:
 					cl = HeroClass.HUNTRESS;
 					break;
+				case 4:
+					cl = HeroClass.PRIESTESS;
+					break;
 			}
 			GamesInProgress.selectedClass = cl;
 		}
@@ -391,6 +394,11 @@ public class WndStartGame extends Window {
 						case HUNTRESS:
 							heroItem.icon(new ItemSprite(ItemSpriteSheet.SPIRIT_BOW, null));
 							heroLoadout.icon(new ItemSprite(ItemSpriteSheet.GLOVES, null));
+							heroMisc.icon(new ItemSprite(ItemSpriteSheet.BOLAS, null));
+							break;
+						case PRIESTESS:
+							heroItem.icon(new ItemSprite(ItemSpriteSheet.RUNIC_BLADE, null));
+							heroLoadout.icon(new ItemSprite(ItemSpriteSheet.RUNIC_BLADE, null));
 							heroMisc.icon(new ItemSprite(ItemSpriteSheet.BOLAS, null));
 							break;
 					}

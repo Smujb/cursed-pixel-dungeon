@@ -43,8 +43,7 @@ public class SurfaceLevel extends TiledMapLevel {
 			case HUNTRESS:
 				return 28 + 27 * SIZE;
 			case PRIESTESS:
-				//TODO
-				return -1;
+				return 44 + 27 * SIZE;
 		}
 		return -1;
 	}

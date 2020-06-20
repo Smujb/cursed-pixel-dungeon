@@ -89,6 +89,7 @@ public class Badges {
 		BOSS_SLAIN_1_MAGE,
 		BOSS_SLAIN_1_ROGUE,
 		BOSS_SLAIN_1_HUNTRESS,
+		BOSS_SLAIN_1_PRIESTESS,
 		BOSS_SLAIN_1( 12 ),
 		BOSS_SLAIN_2( 13 ),
 		BOSS_SLAIN_3( 14 ),
@@ -107,6 +108,7 @@ public class Badges {
 		VICTORY_MAGE,
 		VICTORY_ROGUE,
 		VICTORY_HUNTRESS,
+		VICTORY_PRIESTESS,
 		VICTORY( 34 ),
 		VICTORY_ALL_CLASSES( 35, true ),
 		HAPPY_END( 36 ),
@@ -125,6 +127,7 @@ public class Badges {
 		MASTERY_MAGE,
 		MASTERY_ROGUE,
 		MASTERY_HUNTRESS,
+		MASTERY_PRIESTESS,
 		UNLOCK_MAGE( 65 ),
 		UNLOCK_ROGUE( 66 ),
 		UNLOCK_HUNTRESS( 67 ),
@@ -581,18 +584,21 @@ public class Badges {
 			
 			if (badge == Badge.BOSS_SLAIN_1) {
 				switch (Dungeon.hero.heroClass) {
-				case WARRIOR:
-					badge = Badge.BOSS_SLAIN_1_WARRIOR;
-					break;
-				case MAGE:
-					badge = Badge.BOSS_SLAIN_1_MAGE;
-					break;
-				case ROGUE:
-					badge = Badge.BOSS_SLAIN_1_ROGUE;
-					break;
-				case HUNTRESS:
-					badge = Badge.BOSS_SLAIN_1_HUNTRESS;
-					break;
+					case WARRIOR:
+						badge = Badge.BOSS_SLAIN_1_WARRIOR;
+						break;
+					case MAGE:
+						badge = Badge.BOSS_SLAIN_1_MAGE;
+						break;
+					case ROGUE:
+						badge = Badge.BOSS_SLAIN_1_ROGUE;
+						break;
+					case HUNTRESS:
+						badge = Badge.BOSS_SLAIN_1_HUNTRESS;
+						break;
+					case PRIESTESS:
+						badge = Badge.BOSS_SLAIN_1_PRIESTESS;
+						break;
 				}
 				local.add( badge );
 				if (!global.contains( badge )) {
@@ -603,7 +609,8 @@ public class Badges {
 				if (global.contains( Badge.BOSS_SLAIN_1_WARRIOR ) &&
 					global.contains( Badge.BOSS_SLAIN_1_MAGE ) &&
 					global.contains( Badge.BOSS_SLAIN_1_ROGUE ) &&
-					global.contains( Badge.BOSS_SLAIN_1_HUNTRESS)) {
+					global.contains( Badge.BOSS_SLAIN_1_HUNTRESS) &&
+					global.contains( Badge.BOSS_SLAIN_1_PRIESTESS)) {
 					
 					badge = Badge.BOSS_SLAIN_1_ALL_CLASSES;
 					if (!global.contains( badge )) {
@@ -672,18 +679,21 @@ public class Badges {
 		
 		Badge badge = null;
 		switch (Dungeon.hero.heroClass) {
-		case WARRIOR:
-			badge = Badge.MASTERY_WARRIOR;
-			break;
-		case MAGE:
-			badge = Badge.MASTERY_MAGE;
-			break;
-		case ROGUE:
-			badge = Badge.MASTERY_ROGUE;
-			break;
-		case HUNTRESS:
-			badge = Badge.MASTERY_HUNTRESS;
-			break;
+			case WARRIOR:
+				badge = Badge.MASTERY_WARRIOR;
+				break;
+			case MAGE:
+				badge = Badge.MASTERY_MAGE;
+				break;
+			case ROGUE:
+				badge = Badge.MASTERY_ROGUE;
+				break;
+			case HUNTRESS:
+				badge = Badge.MASTERY_HUNTRESS;
+				break;
+			case PRIESTESS:
+				badge = Badge.MASTERY_PRIESTESS;
+				break;
 		}
 		
 		if (!global.contains( badge )) {
@@ -724,18 +734,20 @@ public class Badges {
 		displayBadge( badge );
 
 		switch (Dungeon.hero.heroClass) {
-		case WARRIOR:
-			badge = Badge.VICTORY_WARRIOR;
-			break;
-		case MAGE:
-			badge = Badge.VICTORY_MAGE;
-			break;
-		case ROGUE:
-			badge = Badge.VICTORY_ROGUE;
-			break;
-		case HUNTRESS:
-			badge = Badge.VICTORY_HUNTRESS;
-			break;
+			case WARRIOR:
+				badge = Badge.VICTORY_WARRIOR;
+				break;
+			case MAGE:
+				badge = Badge.VICTORY_MAGE;
+				break;
+			case ROGUE:
+				badge = Badge.VICTORY_ROGUE;
+				break;
+			case HUNTRESS:
+				badge = Badge.VICTORY_HUNTRESS;
+				break;
+			case PRIESTESS:
+				badge = Badge.VICTORY_PRIESTESS;
 		}
 		local.add( badge );
 		if (!global.contains( badge )) {
@@ -746,7 +758,8 @@ public class Badges {
 		if (global.contains( Badge.VICTORY_WARRIOR ) &&
 			global.contains( Badge.VICTORY_MAGE ) &&
 			global.contains( Badge.VICTORY_ROGUE ) &&
-			global.contains( Badge.VICTORY_HUNTRESS )) {
+			global.contains( Badge.VICTORY_HUNTRESS ) &&
+			global.contains(Badge.VICTORY_PRIESTESS)) {
 			
 			badge = Badge.VICTORY_ALL_CLASSES;
 			displayBadge( badge );

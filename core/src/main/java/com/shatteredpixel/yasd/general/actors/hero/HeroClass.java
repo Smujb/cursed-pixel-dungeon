@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.items.DeveloperItem;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
+import com.shatteredpixel.yasd.general.items.TomeOfMastery;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
@@ -67,7 +68,6 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sneak;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.darts.Dart;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
@@ -113,6 +113,10 @@ public enum HeroClass {
 			case HUNTRESS:
 				initHuntress( hero );
 				break;
+
+			case PRIESTESS:
+				initPriestess( hero );
+				break;
 		}
 		
 	}
@@ -155,8 +159,7 @@ public enum HeroClass {
 	}
 
 	public static void initTest(Hero hero) {
-		//new CurseInfusion().quantity(100).collect();
-		new Dart().quantity(2).collect(hero.belongings.backpack, hero);
+		new TomeOfMastery().collect();
 		new DeveloperItem().collect(hero.belongings.backpack, hero);
 	}
 
@@ -171,6 +174,8 @@ public enum HeroClass {
 				return Badges.Badge.MASTERY_ROGUE;
 			case HUNTRESS:
 				return Badges.Badge.MASTERY_HUNTRESS;
+			case PRIESTESS:
+				return Badges.Badge.MASTERY_PRIESTESS;
 		}
 		return null;
 	}
@@ -240,6 +245,16 @@ public enum HeroClass {
 
 		hero.setPerception(5);
 	}
+
+	private static void initPriestess( Hero hero ) {
+		hero.belongings.setWeapon((KindOfWeapon) new Fist().upgrade().identify());
+		(hero.belongings.armor = new HuntressArmor()).identify();
+
+		new PotionOfMindVision().identify();
+		new ScrollOfLullaby().identify();
+
+		hero.setAttunement(5);
+	}
 	
 	public String title() {
 		return Messages.get(HeroClass.class, title);
@@ -297,6 +312,8 @@ public enum HeroClass {
 				return Assets.ROGUE;
 			case HUNTRESS:
 				return Assets.HUNTRESS;
+			case PRIESTESS:
+				return Assets.PRIESTESS;
 		}
 	}
 
@@ -338,6 +355,14 @@ public enum HeroClass {
 						Messages.get(HeroClass.class, "huntress_perk4"),
 						Messages.get(HeroClass.class, "huntress_perk5"),
 				};
+			case PRIESTESS:
+				return new String[]{
+						Messages.get(HeroClass.class, "priestess_perk1"),
+						Messages.get(HeroClass.class, "priestess_perk2"),
+						Messages.get(HeroClass.class, "priestess_perk3"),
+						Messages.get(HeroClass.class, "priestess_perk4"),
+						Messages.get(HeroClass.class, "priestess_perk5"),
+				};
 		}
 	}
 	
@@ -354,6 +379,9 @@ public enum HeroClass {
 				return !Badges.isUnlocked(Badges.Badge.UNLOCK_ROGUE);
 			case HUNTRESS:
 				return !Badges.isUnlocked(Badges.Badge.UNLOCK_HUNTRESS);
+			//TODO
+			case PRIESTESS:
+				return true;
 		}
 	}
 	

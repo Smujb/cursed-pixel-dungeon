@@ -210,7 +210,7 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 		return getBoolean( KEY_INTRO, true );
 	}
 
-	public static void lastClass( int value ) {
+	private static void lastClass(int value) {
 		put( KEY_LAST_CLASS, value );
 	}
 
@@ -220,20 +220,28 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 			case WARRIOR:
 				cl = 0;
 				break;
+
 			case MAGE:
 				cl = 1;
 				break;
+
 			case ROGUE:
 				cl = 2;
 				break;
+
 			case HUNTRESS:
 				cl = 3;
+				break;
+
+			case PRIESTESS:
+				cl = 4;
+				break;
 		}
 		lastClass(cl);
 	}
 	
 	public static int lastClass() {
-		return getInt( KEY_LAST_CLASS, 0, 0, 3 );
+		return getInt( KEY_LAST_CLASS, 0, 0, 4 );
 	}
 	
 	public static void challenges( int value ) {
