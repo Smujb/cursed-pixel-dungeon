@@ -33,7 +33,7 @@ public class Focus extends Buff {
 
 	public void loseCooldown(float amt) {
 		if (target != null && target instanceof Hero && ((Hero) target).subClass == HeroSubClass.BRAWLER) {
-			int excessArmorSTR = target.belongings.armor == null ? target.STR : target.STR - target.belongings.armor.STRReq();
+			int excessArmorSTR = target.belongings.armor == null ? target.STR - 5 : target.STR - target.belongings.armor.STRReq();
 			amt *= 0.5f + (0.1f * excessArmorSTR);
 		}
 		cooldown -= amt;
