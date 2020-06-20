@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.mobs.DemonSpawner;
+import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.rooms.Room;
@@ -55,7 +56,7 @@ public class DemonSpawnerRoom extends SpecialRoom {
 		Door door = entrance();
 		door.set(Door.Type.UNLOCKED);
 
-		DemonSpawner spawner = new DemonSpawner();
+		DemonSpawner spawner = Mob.create(DemonSpawner.class, level);
 		spawner.pos = cx + cy * level.width();
 		level.mobs.add( spawner );
 
