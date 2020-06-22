@@ -66,6 +66,13 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Basic;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sneak;
+import com.shatteredpixel.yasd.general.items.weapon.melee.relic.LorsionsGreataxe;
+import com.shatteredpixel.yasd.general.items.weapon.melee.relic.LoturgosCrystal;
+import com.shatteredpixel.yasd.general.items.weapon.melee.relic.MaracarsBlades;
+import com.shatteredpixel.yasd.general.items.weapon.melee.relic.NahusSword;
+import com.shatteredpixel.yasd.general.items.weapon.melee.relic.NeptunesTrident;
+import com.shatteredpixel.yasd.general.items.weapon.melee.relic.RaRothsNunchucks;
+import com.shatteredpixel.yasd.general.items.weapon.melee.relic.ThonothsAxe;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -160,6 +167,13 @@ public enum HeroClass {
 
 	public static void initTest(Hero hero) {
 		new TomeOfMastery().collect();
+		new MaracarsBlades().identify().collect();
+		new ThonothsAxe().identify().collect();
+		new LorsionsGreataxe().identify().collect();
+		new NeptunesTrident().identify().collect();
+		new RaRothsNunchucks().identify().collect();
+		new LoturgosCrystal().identify().collect();
+		new NahusSword().identify().collect();
 		new DeveloperItem().collect(hero.belongings.backpack, hero);
 	}
 

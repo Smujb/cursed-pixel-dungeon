@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public abstract class RelicMeleeWeapon extends MeleeWeapon {
     {
-        tier = 6;
         defaultAction = AC_ACTIVATE;
     }
 
