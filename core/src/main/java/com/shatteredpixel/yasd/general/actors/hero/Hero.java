@@ -1054,6 +1054,7 @@ public class Hero extends Char {
 	
 	@Override
 	public void damage(int dmg, @NotNull DamageSrc src) {
+		int preHP = HP;
 		if (!(src.getCause() instanceof Hunger || src.getCause() instanceof Viscosity.DeferedDamage) && damageInterrupt) {
 			interrupt();
 			resting = false;
@@ -1061,8 +1062,11 @@ public class Hero extends Char {
 
 		super.damage( dmg, src );
 
+		int postHP = HP;
+		//Ensures that the damage actually taken is what is measured, not the number given initially.
+		int damageTaken = preHP - postHP;
 		if (!src.ignores() && isAlive()) {
-			processShake(dmg);
+			processShake(damageTaken);
 		}
 	}
 	
