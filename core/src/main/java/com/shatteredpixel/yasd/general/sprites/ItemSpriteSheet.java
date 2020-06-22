@@ -718,6 +718,15 @@ public class ItemSpriteSheet {
 		assignItemRect(HOLSTER,     15, 16);
 	}
 
+	private static final int RELICWEPS         =                             xy(1, 32);  //16 slots
+	public static final int LORSIONSGREATAXE   = RELICWEPS+0;
+	public static final int NEPTUNES_TRIDENT   = RELICWEPS+1;
+	public static final int MARACARS_BLADES    = RELICWEPS+2;
+	public static final int LOTURGOS_CRYSTAL   = RELICWEPS+3;
+	public static final int NAHUSSWORD         = RELICWEPS+4;
+	public static final int RA_ROTHS_NUNCHUCKS = RELICWEPS+5;
+	public static final int THONOTHS_AXE       = RELICWEPS+6;
+
 	private static final int POWERS          =                             xy(1, 35);
 	public static int SPELLBOOK            = POWERS+0;
 	public static int BLINK        	       = POWERS+3;
