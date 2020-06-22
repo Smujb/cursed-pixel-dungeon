@@ -621,11 +621,10 @@ public class ItemSpriteSheet {
 	public static final int WILD_ENERGY     = SPELLS+2;
 	public static final int RETURN_BEACON   = SPELLS+3;
 	public static final int DEGRADE 	    = SPELLS+4;
-	
 	public static final int AQUA_BLAST      = SPELLS+5;
 	public static final int FEATHER_FALL    = SPELLS+6;
 	public static final int RECLAIM_TRAP    = SPELLS+7;
-	
+	public static final int SAFE_UPGRADE    = SPELLS+8;
 	public static final int CURSE_INFUSE    = SPELLS+9;
 	public static final int MAGIC_INFUSE    = SPELLS+10;
 	public static final int ALCHEMIZE       = SPELLS+11;
@@ -643,6 +642,7 @@ public class ItemSpriteSheet {
 		
 		assignItemRect(CURSE_INFUSE,    10, 15);
 		assignItemRect(MAGIC_INFUSE,    10, 15);
+		assignItemRect(SAFE_UPGRADE,    10, 15);
 		assignItemRect(ALCHEMIZE,       10, 15);
 		assignItemRect(RECYCLE,         10, 15);
 	}

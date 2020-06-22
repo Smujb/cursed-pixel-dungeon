@@ -31,7 +31,6 @@ public class LorsionsGreataxe extends RelicMeleeWeapon {
 	{
 		image = ItemSpriteSheet.LORSIONSGREATAXE;
 
-		tier = 6;
 		ACC = 1.33f;
 		damageMultiplier = 1.2f;
 		chargeToAdd = 1f;
@@ -60,7 +59,7 @@ public class LorsionsGreataxe extends RelicMeleeWeapon {
 
 	@Override
 	public int STRReq(int lvl) {
-		return super.STRReq(lvl) + 5;
+		return super.STRReq(lvl) + 2;
 	}
 
 }
