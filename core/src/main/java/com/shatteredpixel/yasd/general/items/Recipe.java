@@ -54,6 +54,7 @@ import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.yasd.general.items.spells.Alchemize;
 import com.shatteredpixel.yasd.general.items.spells.AquaBlast;
 import com.shatteredpixel.yasd.general.items.spells.ArcaneCatalyst;
+import com.shatteredpixel.yasd.general.items.spells.ArcaneInfusion;
 import com.shatteredpixel.yasd.general.items.spells.BeaconOfReturning;
 import com.shatteredpixel.yasd.general.items.spells.CurseInfusion;
 import com.shatteredpixel.yasd.general.items.spells.Degrade;
@@ -209,7 +210,8 @@ public abstract class Recipe {
 		new StewedMeat.twoMeat(),
 		new GooBlob.Recipe(),
 		new Degrade.Recipe(),
-		new BrewOfHolyWater.Recipe()
+		new BrewOfHolyWater.Recipe(),
+		new ArcaneInfusion.Recipe()
 	};
 	
 	private static Recipe[] threeIngredientRecipes = new Recipe[]{

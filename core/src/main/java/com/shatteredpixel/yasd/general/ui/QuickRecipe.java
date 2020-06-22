@@ -62,6 +62,7 @@ import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.yasd.general.items.spells.Alchemize;
 import com.shatteredpixel.yasd.general.items.spells.AquaBlast;
 import com.shatteredpixel.yasd.general.items.spells.ArcaneCatalyst;
+import com.shatteredpixel.yasd.general.items.spells.ArcaneInfusion;
 import com.shatteredpixel.yasd.general.items.spells.BeaconOfReturning;
 import com.shatteredpixel.yasd.general.items.spells.CurseInfusion;
 import com.shatteredpixel.yasd.general.items.spells.Degrade;
@@ -360,12 +361,12 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new MagicalPorter.Recipe()));
 				result.add(new QuickRecipe(new PhaseShift.Recipe()));
 				result.add(new QuickRecipe(new WildEnergy.Recipe()));
-				result.add(new QuickRecipe(new Alchemize.Recipe()));
 				result.add(new QuickRecipe(new Recycle.Recipe()));
 				result.add(new QuickRecipe(new BeaconOfReturning.Recipe()));
 				result.add(null);
 				result.add(null);
 				result.add(new QuickRecipe(new AquaBlast.Recipe()));
+				result.add(new QuickRecipe(new Alchemize.Recipe()));
 				result.add(new QuickRecipe(new FeatherFall.Recipe()));
 				result.add(new QuickRecipe(new ReclaimTrap.Recipe()));
 				result.add(new QuickRecipe(new CurseInfusion.Recipe()));
@@ -374,6 +375,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new MagicalInfusion.Recipe()));
 				result.add(new QuickRecipe(new Degrade.Recipe()));
 				result.add(new QuickRecipe(new SafeUpgrade.Recipe()));
+				result.add(new QuickRecipe(new ArcaneInfusion.Recipe()));
 				return result;
 		}
 	}
