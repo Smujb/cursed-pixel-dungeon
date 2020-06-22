@@ -34,8 +34,8 @@ public class BrewOfHolyWater extends Brew {
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
 
 		{
-			inputs =  new Class[]{Dewdrop.class, Dewdrop.class, PotionOfHealing.class};
-			inQuantity = new int[]{1, 1, 1};
+			inputs =  new Class[]{Dewdrop.class, PotionOfHealing.class};
+			inQuantity = new int[]{1, 1};
 
 			cost = 8;
 
