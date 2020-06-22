@@ -905,7 +905,11 @@ public abstract class Level implements Bundlable {
 	public abstract String waterTex();
 
 	public abstract String loadImg();
-	
+
+	public String music() {
+		return Assets.PRISONS_THEME;
+	}
+
 	abstract protected boolean build();
 	
 	//private ArrayList<Class<?extends Mob>> mobsToSpawn = new ArrayList<>();

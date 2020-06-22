@@ -125,6 +125,11 @@ public class NewCityBossLevel extends Level {
 	}
 
 	@Override
+	public String music() {
+		return Assets.CITY_THEME;
+	}
+
+	@Override
 	public int getScaleFactor() {
 		return new CityLevel().getScaleFactor();
 	}

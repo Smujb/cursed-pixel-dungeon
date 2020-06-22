@@ -61,7 +61,7 @@ public class ChangesScene extends PixelScene {
 	public void create() {
 		super.create();
 
-		Music.INSTANCE.play( Assets.THEME, true );
+		Music.INSTANCE.play( Assets.TITLE_THEME, true );
 
 		int w = Camera.main.width;
 		int h = Camera.main.height;

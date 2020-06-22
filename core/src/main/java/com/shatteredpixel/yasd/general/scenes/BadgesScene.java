@@ -54,7 +54,7 @@ public class BadgesScene extends PixelScene {
 
 		super.create();
 
-		Music.INSTANCE.play( Assets.THEME, true );
+		Music.INSTANCE.play( Assets.TITLE_THEME, true );
 
 		uiCamera.visible = false;
 

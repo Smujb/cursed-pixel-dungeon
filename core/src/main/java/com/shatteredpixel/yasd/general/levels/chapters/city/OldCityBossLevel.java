@@ -106,6 +106,11 @@ public class OldCityBossLevel extends Level {
 		return Assets.LOADING_CITY;
 	}
 
+	@Override
+	public String music() {
+		return Assets.CITY_THEME;
+	}
+
 	private static final String DOOR	= "door";
 	private static final String ENTERED	= "entered";
 	private static final String DROPPED	= "droppped";
