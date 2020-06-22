@@ -32,6 +32,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.GamesInProgress;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.buffs.LockedFloor;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Amulet;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
@@ -69,7 +70,7 @@ public class Entrance extends InteractiveCell {
 				Dungeon.deleteGame(GamesInProgress.curSlot, true);
 			}
 
-		} else {
+		} else if (hero.buff(LockedFloor.class) == null) {
 
 			hero.curAction = null;
 

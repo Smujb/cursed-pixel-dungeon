@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.levels.interactive;
 
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.buffs.LockedFloor;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.plants.Swiftthistle;
@@ -40,13 +41,15 @@ public class Exit extends InteractiveCell {
 	}
 
 	public static void descend(Hero hero) {
-		hero.curAction = null;
+		if (hero.buff(LockedFloor.class) == null) {
+			hero.curAction = null;
 
-		Buff buff = hero.buff(TimekeepersHourglass.timeFreeze.class);
-		if (buff != null) buff.detach();
-		buff = hero.buff(Swiftthistle.TimeBubble.class);
-		if (buff != null) buff.detach();
+			Buff buff = hero.buff(TimekeepersHourglass.timeFreeze.class);
+			if (buff != null) buff.detach();
+			buff = hero.buff(Swiftthistle.TimeBubble.class);
+			if (buff != null) buff.detach();
 
-		LevelHandler.descend();
+			LevelHandler.descend();
+		}
 	}
 }
