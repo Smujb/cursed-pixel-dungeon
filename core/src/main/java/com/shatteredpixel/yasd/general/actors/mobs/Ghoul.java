@@ -101,7 +101,7 @@ public class Ghoul extends Mob {
 			}
 
 			if (!candidates.isEmpty()){
-				Ghoul child = new Ghoul();
+				Ghoul child = Mob.create(Ghoul.class);
 				child.partnerID = this.id();
 				this.partnerID = child.id();
 				if (state != SLEEPING) {
