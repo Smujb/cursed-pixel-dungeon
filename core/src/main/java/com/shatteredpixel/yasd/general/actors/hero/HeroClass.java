@@ -76,6 +76,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.relic.ThonothsAxe;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.windows.WndStartGame;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.DeviceCompat;
@@ -140,6 +141,10 @@ public enum HeroClass {
 			new SmallRation().collect();
 		}
 
+		if (WndStartGame.initWep != null) {
+			hero.belongings.setWeapon(WndStartGame.initWep);
+		}
+
 		new PotionBandolier().collect();
 		Dungeon.LimitedDrops.POTION_BANDOLIER.drop();
 
@@ -195,7 +200,9 @@ public enum HeroClass {
 	}
 
 	private static void initWarrior( Hero hero ) {
-		hero.belongings.setWeapon((KindOfWeapon) new Basic().upgrade().identify());
+		if (hero.belongings.getWeapon() == null) {
+			hero.belongings.setWeapon((KindOfWeapon) new Basic().upgrade().identify());
+		}
 		(hero.belongings.armor = new ChainArmor()).identify();
 		ThrowingStone stones = new ThrowingStone();
 		stones.quantity(3).collect();
@@ -211,10 +218,14 @@ public enum HeroClass {
 
 	private static void initMage( Hero hero ) {
 		MagesStaff staff;
-		
+
 		staff = (MagesStaff) new MagesStaff(new WandOfMagicMissile()).upgrade();
 
-		hero.belongings.setWeapon((KindOfWeapon) staff.identify());
+		if (hero.belongings.getWeapon() == null) {
+			hero.belongings.setWeapon((KindOfWeapon) staff.identify());
+		} else {
+			staff.collect();
+		}
 		(hero.belongings.armor = new MageArmor()).identify();
 		staff.activate(hero);
 
@@ -228,7 +239,9 @@ public enum HeroClass {
 	}
 
 	private static void initRogue( Hero hero ) {
-		hero.belongings.setWeapon((KindOfWeapon) new Sneak().upgrade().identify());
+		if (hero.belongings.getWeapon() == null) {
+			hero.belongings.setWeapon((KindOfWeapon) new Sneak().upgrade().identify());
+		}
 		(hero.belongings.armor = new RogueArmor()).identify();
 		//CloakOfShadows cloak = new CloakOfShadows();
 		//(hero.belongings.miscs[2] = cloak).identify();
@@ -247,7 +260,9 @@ public enum HeroClass {
 
 	private static void initHuntress( Hero hero ) {
 
-		hero.belongings.setWeapon((KindOfWeapon) new Fist().upgrade().identify());
+		if (hero.belongings.getWeapon() == null) {
+			hero.belongings.setWeapon((KindOfWeapon) new Fist().upgrade().identify());
+		}
 		(hero.belongings.armor = new HuntressArmor()).identify();
 		SpiritBow bow = new SpiritBow();
 		bow.identify().collect();
@@ -261,7 +276,10 @@ public enum HeroClass {
 	}
 
 	private static void initPriestess( Hero hero ) {
-		hero.belongings.setWeapon((KindOfWeapon) new Fist().upgrade().identify());
+
+		if (hero.belongings.getWeapon() == null) {
+			hero.belongings.setWeapon((KindOfWeapon) new Fist().upgrade().identify());
+		}
 		(hero.belongings.armor = new HuntressArmor()).identify();
 
 		new PotionOfMindVision().identify();

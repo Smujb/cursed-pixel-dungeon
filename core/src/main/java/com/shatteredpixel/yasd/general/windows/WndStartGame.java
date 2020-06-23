@@ -30,14 +30,15 @@ package com.shatteredpixel.yasd.general.windows;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Difficulty;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.GamesInProgress;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.StoryChapter;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
+import com.shatteredpixel.yasd.general.items.weapon.melee.relic.RelicMeleeWeapon;
 import com.shatteredpixel.yasd.general.journal.Journal;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.IntroScene;
@@ -58,6 +59,7 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Button;
 import com.watabou.noosa.ui.Component;
 import com.watabou.utils.DeviceCompat;
+import com.watabou.utils.Reflection;
 
 public class WndStartGame extends Window {
 	
@@ -65,6 +67,8 @@ public class WndStartGame extends Window {
 	private static final int HEIGHT   = 140;
 	private static final int SLIDER_HEIGHT	= 20;
 	private static final int GAP_TINY 		= 2;
+
+	public static RelicMeleeWeapon initWep = null;
 
 	public WndStartGame(final int slot, boolean longPress){
 		
@@ -197,6 +201,41 @@ public class WndStartGame extends Window {
 		} else {
 			Dungeon.challenges = 0;
 			CPDSettings.challenges(0);
+		}
+
+		Class<? extends RelicMeleeWeapon>[] unlockedWeps = RelicMeleeWeapon.unlockedRelicWeapons();
+
+		if (unlockedWeps.length > 0) {
+			IconButton relicsButton = new IconButton(new ItemSprite(ItemSpriteSheet.WEAPON_HOLDER)){
+				@Override
+				protected void onClick() {
+					Game.scene().addToFront(new WndOptions(Messages.get(WndStartGame.class, "weps_title"), Messages.get(WndStartGame.class, "weps_body"), RelicMeleeWeapon.unlockedWepNames()) {
+						@Override
+						protected void onSelect(int index) {
+							super.onSelect(index);
+							initWep = Reflection.forceNewInstance(unlockedWeps[index]);
+						}
+
+						@Override
+						public void hide() {
+							super.hide();
+							initWep = null;
+						}
+					});
+				}
+
+				@Override
+				public void update() {
+					if( !visible && GamesInProgress.selectedClass != null){
+						visible = true;
+					}
+					super.update();
+				}
+			};
+			relicsButton.setRect(0, HEIGHT - 20, 20, 20);
+			relicsButton.visible = false;
+			add(relicsButton);
+
 		}
 
 		int bottom = (int) difficulty.bottom();

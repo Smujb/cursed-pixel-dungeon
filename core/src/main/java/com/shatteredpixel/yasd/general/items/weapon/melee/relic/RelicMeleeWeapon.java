@@ -12,6 +12,8 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.relic.enchants.RelicEn
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.DeviceCompat;
+import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
 
@@ -45,6 +47,24 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
         enchant(enchantment());
     }
 
+    public static Class<? extends RelicMeleeWeapon>[] unlockedRelicWeapons() {
+        ArrayList<Class<? extends RelicMeleeWeapon>> wepClasses = new ArrayList<>();
+        for (Class<? extends RelicMeleeWeapon> wepClass : weapons) {
+            if (CPDSettings.unlockedRelicWep(wepClass) || DeviceCompat.isDebug()) {
+                wepClasses.add(wepClass);
+            }
+        }
+        return wepClasses.toArray(new Class[0]);
+    }
+
+    public static String[] unlockedWepNames() {
+        Class<? extends RelicMeleeWeapon>[] wepClasses = unlockedRelicWeapons();
+        ArrayList<String> names = new ArrayList<>();
+        for (Class<? extends RelicMeleeWeapon> wepClass : wepClasses) {
+            names.add(Messages.titleCase(Reflection.forceNewInstance(wepClass).name()));
+        }
+        return names.toArray(new String[0]);
+    }
 
     @Override
     public ArrayList<String> actions(Hero hero) {
@@ -57,7 +77,7 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
 
     @Override
     public boolean collect(Bag container, Char ch) {
-        CPDSettings.unlockRelicWep(getClass(), true);
+        //CPDSettings.unlockRelicWep(getClass(), true);
         return super.collect(container, ch);
     }
 
