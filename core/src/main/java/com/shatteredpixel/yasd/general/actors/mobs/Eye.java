@@ -43,11 +43,11 @@ import org.jetbrains.annotations.NotNull;
 public class Eye extends Mob {
 
 	{
-		spriteClass = EyeSprite.class;
-
+		spriteClass = EyeSprite.Purple.class;
 
 		healthFactor = 1.8f;
-		damageFactor = 0.7f;
+		damageFactor = 0.6f;
+
 		viewDistance = Light.DISTANCE;
 
 		EXP = 13;
@@ -67,18 +67,29 @@ public class Eye extends Mob {
 
 	@Override
 	public Element elementalType() {
-		return beamCharged ? Element.DESTRUCTION : Element.PHYSICAL;
+		return beamCharged() ? Element.DESTRUCTION : Element.PHYSICAL;
 	}
 
 	@Override
 	public int damageRoll() {
-		return beamCharged ? super.damageRoll()*4 : super.damageRoll();
+		return beamCharged() ? (int) (super.damageRoll() * beamDMGFactor) : super.damageRoll();
 	}
-	
+
+	@Override
+	public float attackDelay() {
+		return beamCharged() ? beamDLY : super.attackDelay();
+	}
+
 	private Ballistica beam;
 	private int beamTarget = -1;
 	private int beamCooldown;
-	public boolean beamCharged;
+	private float beamCharged;
+	protected float beamDLY = 1f;
+	protected float beamDMGFactor = 5f;
+
+	public boolean beamCharged() {
+		return beamCharged > 0;
+	}
 
 	//generates an average of 1 dew, 0.25 seeds, and 0.25 stones
 	@Override
@@ -102,23 +113,23 @@ public class Eye extends Mob {
     public boolean canAttack(@NotNull Char enemy) {
 
 		if (beamCooldown <= 0) {
-			Ballistica aim = new Ballistica(pos, enemy.pos, Ballistica.STOP_TERRAIN);
+			Ballistica aim = new Ballistica(pos, enemy.pos, Ballistica.MAGIC_BOLT);
 
 			if (enemy.invisible == 0 && !isCharmedBy(enemy) && fieldOfView[enemy.pos] && aim.subPath(1, aim.dist).contains(enemy.pos)){
 				beam = aim;
-				beamTarget = aim.collisionPos;
+				beamTarget = enemy.pos;
 				return true;
 			} else
 				//if the beam is charged, it has to attack, will aim at previous location of target.
-				return beamCharged;
+				return beamCharged();
 		} else
 			return super.canAttack(enemy);
 	}
 
 	@Override
 	protected boolean act() {
-		if (beamCharged && state != HUNTING){
-			beamCharged = false;
+		if (beamCharged() && state != HUNTING){
+			beamCharged = 0;
 		}
 		if (beam == null && beamTarget != -1) {
 			beam = new Ballistica(pos, beamTarget, Ballistica.STOP_TERRAIN);
@@ -134,30 +145,33 @@ public class Eye extends Mob {
 
 		if (beamCooldown > 0) {
 			return super.doAttack(enemy);
-		} else if (!beamCharged){
+		} else if (!beamCharged()){
 			((EyeSprite)sprite).charge( enemy.pos );
 			spend(attackDelay() * 2f);
-			beamCharged = true;
+			beamCharged = 1;
 			return true;
 		} else {
-			return super.doAttack(enemy);
+			if (sprite != null) {
+				sprite.zap( beamTarget );
+				spend( attackDelay() );
+				return false;
+			} else {
+				spend( attackDelay() );
+				return false;
+			}
 		}
-
 	}
 
-	@Override
-	public boolean attack(Char enemy, boolean guaranteed, AttackType type) {
-		boolean attack = super.attack(enemy, guaranteed, type);
-		if (beamCharged) {
-			beamCharged = false;
+	public void beamUsed() {
+		beamCharged -= beamDLY;
+		if (!beamCharged()) {
 			beamCooldown = Random.IntRange(4, 6);
 		}
-		return attack;
 	}
 
 	@Override
 	public void damage(int dmg,  DamageSrc src) {
-		if (!beamCharged) {//Now immune when beam is charged
+		if (!beamCharged()) {//Now immune when beam is charged
 			super.damage(dmg, src);
 		}
 	}
@@ -180,7 +194,7 @@ public class Eye extends Mob {
 		if (bundle.contains(BEAM_TARGET))
 			beamTarget = bundle.getInt(BEAM_TARGET);
 		beamCooldown = bundle.getInt(BEAM_COOLDOWN);
-		beamCharged = bundle.getBoolean(BEAM_CHARGED);
+		beamCharged = bundle.getInt(BEAM_CHARGED);
 	}
 
 	{
@@ -191,11 +205,19 @@ public class Eye extends Mob {
 		@Override
 		public boolean act(boolean enemyInFOV, boolean justAlerted) {
 			//even if enemy isn't seen, attack them if the beam is charged
-			if (beamCharged && enemy != null && canAttack(enemy)) {
+			if (beamCharged() && enemy != null && canAttack(enemy)) {
 				enemySeen = enemyInFOV;
 				return doAttack(enemy);
 			}
 			return super.act(enemyInFOV, justAlerted);
+		}
+	}
+
+	public static class SalvoEye extends Eye {
+		{
+			spriteClass = EyeSprite.Red.class;
+			beamDLY = 1/3f;
+			beamDMGFactor = 2.5f;
 		}
 	}
 }

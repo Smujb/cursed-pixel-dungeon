@@ -53,6 +53,8 @@ public class Bestiary {
 				cl = GrindLevel.PurpleGuardian.class;
 			} else if (cl == GrindLevel.RedGuardian.class) {
 				cl = GrindLevel.OrangeGuardian.class;
+			} else if (cl == Eye.class) {
+				cl = Eye.SalvoEye.class;
 			}
 		}
 		return cl;
