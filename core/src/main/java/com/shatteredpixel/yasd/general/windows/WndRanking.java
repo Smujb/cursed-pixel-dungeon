@@ -275,7 +275,7 @@ public class WndRanking extends WndTabbed {
 		}
 
 		public int getBottomOfMiscs() {
-			return (ItemButton.HEIGHT*Dungeon.hero.belongings.miscs.length)+4;
+			return (ItemButton.HEIGHT*(Dungeon.hero.belongings.miscs.length+2))+4;
 		}
 
 
