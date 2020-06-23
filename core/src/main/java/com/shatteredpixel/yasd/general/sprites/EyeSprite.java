@@ -73,7 +73,9 @@ public class EyeSprite extends MobSprite {
 	@Override
 	public void killAndErase() {
 		super.killAndErase();
-		chargeParticles.killAndErase();
+		if (chargeParticles != null) {
+			chargeParticles.killAndErase();
+		}
 	}
 
 	@Override

@@ -59,7 +59,7 @@ public class Eye extends Mob {
 		loot = new Dewdrop();
 		lootChance = 0.5f;
 
-		range = -1;
+		range = 1;
 		shotType = Ballistica.MAGIC_BOLT;
 
 		properties.add(Property.DEMONIC);
@@ -101,7 +101,7 @@ public class Eye extends Mob {
 	@Override
     public boolean canAttack(@NotNull Char enemy) {
 
-		if (beamCooldown == 0) {
+		if (beamCooldown <= 0) {
 			Ballistica aim = new Ballistica(pos, enemy.pos, Ballistica.STOP_TERRAIN);
 
 			if (enemy.invisible == 0 && !isCharmedBy(enemy) && fieldOfView[enemy.pos] && aim.subPath(1, aim.dist).contains(enemy.pos)){
@@ -136,7 +136,7 @@ public class Eye extends Mob {
 			return super.doAttack(enemy);
 		} else if (!beamCharged){
 			((EyeSprite)sprite).charge( enemy.pos );
-			spend( attackDelay()*2f );
+			spend(attackDelay() * 2f);
 			beamCharged = true;
 			return true;
 		} else {
@@ -159,9 +159,6 @@ public class Eye extends Mob {
 			super.damage(dmg, src);
 		}
 	}
-
-	//used so resistances can differentiate between melee and magical attacks
-	public static class DeathGaze{}
 
 	private static final String BEAM_TARGET     = "beamTarget";
 	private static final String BEAM_COOLDOWN   = "beamCooldown";
