@@ -148,8 +148,10 @@ public class Eye extends Mob {
 	@Override
 	public boolean attack(Char enemy, boolean guaranteed, AttackType type) {
 		boolean attack = super.attack(enemy, guaranteed, type);
-		beamCharged = false;
-		beamCooldown = Random.IntRange(4, 6);
+		if (beamCharged) {
+			beamCharged = false;
+			beamCooldown = Random.IntRange(4, 6);
+		}
 		return attack;
 	}
 
