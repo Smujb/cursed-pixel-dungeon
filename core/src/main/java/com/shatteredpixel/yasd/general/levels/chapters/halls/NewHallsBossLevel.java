@@ -172,8 +172,6 @@ public class NewHallsBossLevel extends Level {
 
 
 		setExit( width/2 + ((ROOM_TOP+1) * width) );
-		set(getExitPos(), EXIT);
-		//map[exit] = Terrain.EXIT;
 
 		CustomTilemap vis = new CenterPieceVisuals();
 		vis.pos(ROOM_LEFT, ROOM_TOP+1);
