@@ -69,7 +69,7 @@ public class YogDzewa extends Boss {
 	{
 		spriteClass = YogSprite.class;
 
-		healthFactor = 1.5f;
+		healthFactor = 1.2f;
 		damageFactor = 0.8f;
 
 		EXP = 50;

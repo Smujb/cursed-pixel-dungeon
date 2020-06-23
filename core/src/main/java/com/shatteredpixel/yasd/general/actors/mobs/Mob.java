@@ -211,20 +211,22 @@ public abstract class Mob extends Char {
 		return 8 + 10 * level;
 	}
 
+	private static final float FACTOR = 0.75f;
+
 	private int normalAttackSkill(int level) {
-		return 9 + level;
+		return (int) (9 + (level*FACTOR));
 	}
 
 	private int normalDefenseSkill(int level) {
-		return 3 + level;
+		return (int) (3 + (level*FACTOR));
 	}
 
 	private int normalPerception(int level) {
-		return 9 + level;
+		return (int) (9 + (level*FACTOR));
 	}
 
 	private int normalStealth(int level) {
-		return 4 + level;
+		return (int) (4 + (level*FACTOR));
 	}
 
 	private int normalDamageRoll(int level) {

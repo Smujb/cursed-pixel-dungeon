@@ -47,7 +47,7 @@ public class DemonSpawner extends Mob {
 	{
 		spriteClass = SpawnerSprite.class;
 
-		healthFactor = 2f;
+		healthFactor = 0.7f;
 		evasionFactor = 0f;
 
 		EXP = 25;
@@ -137,8 +137,8 @@ public class DemonSpawner extends Mob {
 		super.die(cause);
 	}
 
-	public static final String SPAWN_COOLDOWN = "spawn_cooldown";
-	public static final String SPAWN_RECORDED = "spawn_recorded";
+	private static final String SPAWN_COOLDOWN = "spawn_cooldown";
+	private static final String SPAWN_RECORDED = "spawn_recorded";
 
 	@Override
 	public void storeInBundle(Bundle bundle) {

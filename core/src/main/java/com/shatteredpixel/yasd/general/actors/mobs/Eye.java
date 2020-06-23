@@ -46,7 +46,7 @@ public class Eye extends Mob {
 		spriteClass = EyeSprite.Purple.class;
 
 		healthFactor = 1.8f;
-		damageFactor = 0.6f;
+		damageFactor = 0.7f;
 
 		viewDistance = Light.DISTANCE;
 

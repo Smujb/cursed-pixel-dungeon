@@ -48,8 +48,11 @@ import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.tiles.CustomTilemap;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.Tilemap;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
 
 import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY;
 import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY_DECO;
@@ -78,6 +81,8 @@ public class NewHallsBossLevel extends Level {
 	private static final int ROOM_RIGHT		= WIDTH / 2 + 4;
 	private static final int ROOM_TOP		= 8;
 	private static final int ROOM_BOTTOM	= ROOM_TOP + 8;
+
+	private boolean bossSpawned = false;
 
 	@Override
 	public boolean passable(int pos) {
@@ -218,8 +223,9 @@ public class NewHallsBossLevel extends Level {
 		super.occupyCell( ch );
 
 		if (getTerrain(getEntrancePos()) == ENTRANCE && getTerrain(getEntrancePos()) != EXIT
-				&& ch == Dungeon.hero && Dungeon.level.distance(ch.pos, getEntrancePos()) >= 2) {
+				&& ch == Dungeon.hero && Dungeon.level.distance(ch.pos, getEntrancePos()) >= 2 && !bossSpawned) {
 			seal();
+			bossSpawned = true;
 		}
 	}
 
@@ -261,6 +267,20 @@ public class NewHallsBossLevel extends Level {
 		}
 
 		Dungeon.observe();
+	}
+
+	private static final String BOSS_SPAWNED = "boss_spawned";
+
+	@Override
+	public void storeInBundle(Bundle bundle) {
+		super.storeInBundle(bundle);
+		bundle.put(BOSS_SPAWNED, bossSpawned);
+	}
+
+	@Override
+	public void restoreFromBundle(@NotNull Bundle bundle) {
+		super.restoreFromBundle(bundle);
+		bossSpawned = !bundle.contains(BOSS_SPAWNED) || bundle.getBoolean(BOSS_SPAWNED);
 	}
 
 	@Override
