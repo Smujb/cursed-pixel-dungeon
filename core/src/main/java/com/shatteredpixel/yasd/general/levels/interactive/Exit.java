@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.levels.interactive;
 
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.LockedFloor;
@@ -51,8 +50,6 @@ public class Exit extends InteractiveCell {
 			if (buff != null) buff.detach();
 
 			LevelHandler.descend();
-		} else {
-			Dungeon.level.unseal();
 		}
 	}
 }

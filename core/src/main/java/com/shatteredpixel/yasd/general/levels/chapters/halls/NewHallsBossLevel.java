@@ -265,6 +265,7 @@ public class NewHallsBossLevel extends Level {
 			}
 		}
 
+		super.unseal();
 		Dungeon.observe();
 	}
 
