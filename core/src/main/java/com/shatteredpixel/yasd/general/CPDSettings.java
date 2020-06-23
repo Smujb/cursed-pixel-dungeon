@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
+import com.shatteredpixel.yasd.general.items.weapon.melee.relic.RelicMeleeWeapon;
 import com.shatteredpixel.yasd.general.messages.Languages;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -201,6 +202,7 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 	public static final String KEY_INTRO		= "intro";
 	public static final String KEY_TESTING		= "testing";
 	public static final String KEY_CHAPTER		= "chapter";
+	public static final String KEY_RELIC_WEAPON		= "relic_weapon %s";
 	
 	public static void intro( boolean value ) {
 		put( KEY_INTRO, value );
@@ -271,6 +273,16 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 		} catch (Exception e) {
 			return StoryChapter.FIRST;
 		}
+	}
+
+	public static void unlockRelicWep(Class<? extends RelicMeleeWeapon> wepClass, boolean value) {
+		String name = wepClass.getName();
+		put(Messages.format(KEY_RELIC_WEAPON, name), value);
+	}
+
+	public static boolean unlockedRelicWep(Class<? extends RelicMeleeWeapon> wepClass) {
+		String name = wepClass.getName();
+		return getBoolean(Messages.format(KEY_RELIC_WEAPON, name), false);
 	}
 
 	//Audio

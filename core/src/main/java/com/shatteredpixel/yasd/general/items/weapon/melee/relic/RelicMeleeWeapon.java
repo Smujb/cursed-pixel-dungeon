@@ -1,9 +1,11 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee.relic;
 
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.LockedFloor;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.relic.enchants.RelicEnchantment;
@@ -19,7 +21,17 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
         defaultAction = AC_ACTIVATE;
     }
 
-    public static final String AC_ACTIVATE = "activate";
+    public static final Class<? extends RelicMeleeWeapon>[] weapons = new Class[] {
+            LorsionsGreataxe.class,
+            LoturgosCrystal.class,
+            MaracarsBlades.class,
+            NahusSword.class,
+            NeptunesTrident.class,
+            RaRothsNunchucks.class,
+            ThonothsAxe.class
+    };
+
+    private static final String AC_ACTIVATE = "activate";
 
     protected Buff passiveBuff;
     public int charge = 100;
@@ -41,6 +53,12 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
             actions.add(AC_ACTIVATE);
         }
         return actions;
+    }
+
+    @Override
+    public boolean collect(Bag container, Char ch) {
+        CPDSettings.unlockRelicWep(getClass(), true);
+        return super.collect(container, ch);
     }
 
     @Override
