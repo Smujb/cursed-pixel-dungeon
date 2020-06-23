@@ -172,6 +172,7 @@ public class NewHallsBossLevel extends Level {
 
 
 		setExit( width/2 + ((ROOM_TOP+1) * width) );
+		set(getExitPos(), EXIT);
 		//map[exit] = Terrain.EXIT;
 
 		CustomTilemap vis = new CenterPieceVisuals();
@@ -281,6 +282,7 @@ public class NewHallsBossLevel extends Level {
 	public void restoreFromBundle(@NotNull Bundle bundle) {
 		super.restoreFromBundle(bundle);
 		bossSpawned = !bundle.contains(BOSS_SPAWNED) || bundle.getBoolean(BOSS_SPAWNED);
+		set(getExitPos(), EXIT);
 	}
 
 	@Override
