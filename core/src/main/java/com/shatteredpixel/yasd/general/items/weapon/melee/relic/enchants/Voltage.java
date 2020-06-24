@@ -42,7 +42,7 @@ public class Voltage extends RelicEnchantment {
                             splitDamage *= 3;
                         }
                         splitDamage = mob.defenseProc( attacker, splitDamage );
-                        mob.damage( splitDamage, new Char.DamageSrc(Element.SHOCK, weapon));
+                        mob.damage( splitDamage, new Char.DamageSrc(Element.SHOCK, weapon).ignoreDefense());
                         mob.aggro( attacker );
                     }
 

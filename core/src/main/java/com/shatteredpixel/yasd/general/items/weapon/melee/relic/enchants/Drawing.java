@@ -43,7 +43,7 @@ public class Drawing extends RelicEnchantment {
         }
 
         for (Char ch : toDamage) {
-            ch.damage(power, new Char.DamageSrc(Element.DRAIN, this));
+            ch.damage(power, new Char.DamageSrc(Element.DRAIN, this).ignoreDefense());
         }
 
         return damage;
