@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.ui;
 
 import com.shatteredpixel.yasd.general.CPDAction;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -46,7 +47,7 @@ import com.watabou.utils.PathFinder;
 
 public class QuickSlotButton extends Button {
 	
-	private static QuickSlotButton[] instance = new QuickSlotButton[4];
+	private static QuickSlotButton[] instance = new QuickSlotButton[Constants.MAX_QUICKSLOTS];
 	private int slotNum;
 
 	private ItemSlot slot;
@@ -73,7 +74,7 @@ public class QuickSlotButton extends Button {
 	}
 
 	public static void reset() {
-		instance = new QuickSlotButton[4];
+		instance = new QuickSlotButton[Constants.MAX_QUICKSLOTS];
 
 		lastTarget = null;
 	}
