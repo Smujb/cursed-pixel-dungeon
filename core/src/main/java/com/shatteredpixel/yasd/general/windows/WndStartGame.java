@@ -213,7 +213,7 @@ public class WndStartGame extends Window {
 						@Override
 						protected void onSelect(int index) {
 							super.onSelect(index);
-							initWep = Reflection.forceNewInstance(unlockedWeps[index]);
+							initWep = (RelicMeleeWeapon) Reflection.forceNewInstance(unlockedWeps[index]).identify().upgrade();
 						}
 
 						@Override
