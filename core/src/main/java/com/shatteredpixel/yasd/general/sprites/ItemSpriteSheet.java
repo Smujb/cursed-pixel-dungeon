@@ -630,12 +630,14 @@ public class ItemSpriteSheet {
 	public static final int ALCHEMIZE       = SPELLS+11;
 	public static final int RECYCLE         = SPELLS+12;
 	public static final int ARCANE_INFUSION = SPELLS+13;
+	public static final int SAFE_INFUSION   = SPELLS+14;
 	static{
 		assignItemRect(MAGIC_PORTER,    12, 11);
 		assignItemRect(PHASE_SHIFT,     12, 11);
 		assignItemRect(DEGRADE,         12, 11);
 		assignItemRect(WILD_ENERGY,      8, 16);
 		assignItemRect(RETURN_BEACON,    8, 16);
+		assignItemRect(SAFE_INFUSION,    8, 16);
 		
 		assignItemRect(AQUA_BLAST,      11, 11);
 		assignItemRect(FEATHER_FALL,    11, 11);
