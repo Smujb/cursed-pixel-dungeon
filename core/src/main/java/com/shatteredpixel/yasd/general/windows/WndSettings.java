@@ -230,45 +230,45 @@ public class WndSettings extends WndTabbed {
 
 	private class UITab extends Group {
 
-		public UITab(){
+		public UITab() {
 			super();
 
 			RenderedTextBlock barDesc = PixelScene.renderTextBlock(Messages.get(this, "mode"), 9);
-			barDesc.setPos((WIDTH-barDesc.width())/2f, GAP_TINY);
+			barDesc.setPos((WIDTH - barDesc.width()) / 2f, GAP_TINY);
 			PixelScene.align(barDesc);
 			add(barDesc);
 
-			RedButton btnSplit = new RedButton(Messages.get(this, "split")){
+			RedButton btnSplit = new RedButton(Messages.get(this, "split")) {
 				@Override
 				protected void onClick() {
 					CPDSettings.toolbarMode(Toolbar.Mode.SPLIT.name());
 					Toolbar.updateLayout();
 				}
 			};
-			btnSplit.setRect( 0, barDesc.bottom() + GAP_TINY, 36, 16);
+			btnSplit.setRect(0, barDesc.bottom() + GAP_TINY, 36, 16);
 			add(btnSplit);
 
-			RedButton btnGrouped = new RedButton(Messages.get(this, "group")){
+			RedButton btnGrouped = new RedButton(Messages.get(this, "group")) {
 				@Override
 				protected void onClick() {
 					CPDSettings.toolbarMode(Toolbar.Mode.GROUP.name());
 					Toolbar.updateLayout();
 				}
 			};
-			btnGrouped.setRect( btnSplit.right()+GAP_TINY, btnSplit.top(), 36, 16);
+			btnGrouped.setRect(btnSplit.right() + GAP_TINY, btnSplit.top(), 36, 16);
 			add(btnGrouped);
 
-			RedButton btnCentered = new RedButton(Messages.get(this, "center")){
+			RedButton btnCentered = new RedButton(Messages.get(this, "center")) {
 				@Override
 				protected void onClick() {
 					CPDSettings.toolbarMode(Toolbar.Mode.CENTER.name());
 					Toolbar.updateLayout();
 				}
 			};
-			btnCentered.setRect(btnGrouped.right()+GAP_TINY, btnSplit.top(), 36, 16);
+			btnCentered.setRect(btnGrouped.right() + GAP_TINY, btnSplit.top(), 36, 16);
 			add(btnCentered);
 
-			CheckBox chkFlipToolbar = new CheckBox(Messages.get(this, "flip_toolbar")){
+			CheckBox chkFlipToolbar = new CheckBox(Messages.get(this, "flip_toolbar")) {
 				@Override
 				protected void onClick() {
 					super.onClick();
@@ -280,7 +280,7 @@ public class WndSettings extends WndTabbed {
 			chkFlipToolbar.checked(CPDSettings.flipToolbar());
 			add(chkFlipToolbar);
 
-			final CheckBox chkFlipTags = new CheckBox(Messages.get(this, "flip_indicators")){
+			final CheckBox chkFlipTags = new CheckBox(Messages.get(this, "flip_indicators")) {
 				@Override
 				protected void onClick() {
 					super.onClick();
@@ -303,22 +303,22 @@ public class WndSettings extends WndTabbed {
 			particles.setRect(0, chkFlipTags.bottom() + GAP_TINY, WIDTH, SLIDER_HEIGHT);
 			add(particles);
 
-			CheckBox chkFullscreen = new CheckBox( Messages.get(this, "fullscreen") ) {
+			CheckBox chkFullscreen = new CheckBox(Messages.get(this, "fullscreen")) {
 				@Override
 				protected void onClick() {
 					super.onClick();
 					CPDSettings.fullscreen(checked());
 				}
 			};
-			chkFullscreen.setRect( 0, particles.bottom() + GAP_SML, WIDTH, BTN_HEIGHT );
+			chkFullscreen.setRect(0, particles.bottom() + GAP_SML, WIDTH, BTN_HEIGHT);
 			chkFullscreen.checked(CPDSettings.fullscreen());
-			if (DeviceCompat.isDesktop()){
-				chkFullscreen.text( "Fullscreen" );
+			if (DeviceCompat.isDesktop()) {
+				chkFullscreen.text("Fullscreen");
 			}
 			chkFullscreen.enable(DeviceCompat.supportsFullScreen());
 			add(chkFullscreen);
 
-			CheckBox chkFont = new CheckBox(Messages.get(this, "system_font")){
+			CheckBox chkFont = new CheckBox(Messages.get(this, "system_font")) {
 				@Override
 				protected void onClick() {
 					super.onClick();
@@ -339,18 +339,28 @@ public class WndSettings extends WndTabbed {
 			chkFont.checked(CPDSettings.systemFont());
 			add(chkFont);
 
-			//if (DeviceCompat.isDesktop()){
-				RedButton btnKeyBindings = new RedButton(Messages.get(this, "key_bindings")){
-					@Override
-					protected void onClick() {
-						super.onClick();
-						CPDGame.scene().addToFront(new WndKeyBindings());
-					}
-				};
+			RedButton btnKeyBindings = new RedButton(Messages.get(this, "key_bindings")) {
+				@Override
+				protected void onClick() {
+					super.onClick();
+					CPDGame.scene().addToFront(new WndKeyBindings());
+				}
+			};
 
-				btnKeyBindings.setRect(0, chkFont.bottom() + GAP_SML, WIDTH, BTN_HEIGHT);
-				add(btnKeyBindings);
-			//}
+			btnKeyBindings.setRect(0, chkFont.bottom() + GAP_SML, WIDTH, BTN_HEIGHT);
+			add(btnKeyBindings);
+
+			CheckBox chkDarkUI = new CheckBox( Messages.get(this, "dark_ui") ) {
+				@Override
+				protected void onClick() {
+					super.onClick();
+					CPDSettings.darkUI(checked());
+				}
+			};
+
+			chkDarkUI.setRect(0, btnKeyBindings.bottom() + GAP_TINY, WIDTH, BTN_HEIGHT);
+			chkDarkUI.checked(CPDSettings.darkUI());
+			add(chkDarkUI);
 		}
 
 	}

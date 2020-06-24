@@ -56,7 +56,8 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 	}
 	
 	//Graphics
-	
+
+	private static final String KEY_DARK	= "dark_ui";
 	private static final String KEY_FULLSCREEN	= "fullscreen";
 	private static final String KEY_LANDSCAPE	= "landscape";
 	public static final String KEY_POWER_SAVER 	= "power_saver";
@@ -67,6 +68,14 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 	private static final String KEY_CUTSCENES 	    	= "cutscenes";
 	private static final String KEY_FAST_INTERLEVEL_SCENE 	    	= "fast-scenes";
 	private static final String KEY_CUTSCENE 	    	= "watched-cutscene-%s";
+
+	public static void darkUI(boolean value) {
+		put( KEY_DARK, value );
+	}
+
+	public static boolean darkUI() {
+		return getBoolean(KEY_DARK, false);
+	}
 	
 	public static void fullscreen( boolean value ) {
 		put( KEY_FULLSCREEN, value );

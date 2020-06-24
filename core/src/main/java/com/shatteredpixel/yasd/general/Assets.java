@@ -37,18 +37,20 @@ public class Assets {
 	public static final String LOCKED	= "locked_badge.png";
 	public static final String AMULET	= "amulet.png";
 	
-	static final        String CHROME	 = "chrome.png";
-	public static final String ICONS	 = "icons.png";
-	public static final String STATUS	 = "status_pane.png";
-	public static final String MENU		 = "menu_button.png";
-	public static final String HP_BAR	 = "hp_bar.png";
-	public static final String MANA_BAR  = "morale_bar.png";
-	public static final String STAMINA   = "stamina_bar.png";
-	public static final String SHLD_BAR  = "shield_bar.png";
-	public static final String XP_BAR	 = "exp_bar.png";
-	public static final String TOOLBAR	 = "toolbar.png";
-	public static final String SHADOW    = "shadow.png";
-	public static final String BOSSHP    = "boss_hp.png";
+	static final        String CHROME		 = "chrome.png";
+	public static final String ICONS		 = "icons.png";
+	public static final String STATUS		 = "status_pane.png";
+	public static final String STATUS_DARK	 = "status_pane_dark.png";
+	public static final String MENU			 = "menu_button.png";
+	public static final String HP_BAR		 = "hp_bar.png";
+	public static final String MANA_BAR		 = "morale_bar.png";
+	public static final String STAMINA  	 = "stamina_bar.png";
+	public static final String SHLD_BAR 	 = "shield_bar.png";
+	public static final String XP_BAR		 = "exp_bar.png";
+	public static final String TOOLBAR		 = "toolbar.png";
+	public static final String TOOLBAR_DARK  = "toolbar_dark.png";
+	public static final String SHADOW  		 = "shadow.png";
+	public static final String BOSSHP  	 	 = "boss_hp.png";
 
 	public static final String WARRIOR	= "warrior.png";
 	public static final String MAGE		= "mage.png";

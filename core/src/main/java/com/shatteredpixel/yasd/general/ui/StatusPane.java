@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.ui;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDAction;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -40,6 +41,7 @@ import com.shatteredpixel.yasd.general.sprites.HeroSprite;
 import com.shatteredpixel.yasd.general.windows.WndGame;
 import com.shatteredpixel.yasd.general.windows.WndHero;
 import com.shatteredpixel.yasd.general.windows.WndJournal;
+import com.watabou.gltextures.TextureCache;
 import com.watabou.input.GameAction;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Camera;
@@ -234,6 +236,12 @@ public class StatusPane extends Component {
 			avatar.tint(ColorMath.interpolate(warning, warningColors), 0.5f );
 		} else {
 			avatar.resetColor();
+		}
+
+		if (CPDSettings.darkUI()) {
+			bg.texture = TextureCache.get(Assets.STATUS_DARK);
+		} else {
+			bg.texture = TextureCache.get(Assets.STATUS);
 		}
 
 		hp.scale.x = Math.max( 0, (health-shield)/max);

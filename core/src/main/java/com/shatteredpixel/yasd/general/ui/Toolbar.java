@@ -39,6 +39,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.tiles.DungeonTerrainTilemap;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.shatteredpixel.yasd.general.windows.WndJournal;
+import com.watabou.gltextures.TextureCache;
 import com.watabou.input.GameAction;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
@@ -320,6 +321,16 @@ public class Toolbar extends Component {
 
 			base = new Image( Assets.TOOLBAR );
 			add( base );
+		}
+
+		@Override
+		public void update() {
+			super.update();
+			if (CPDSettings.darkUI()) {
+				base.texture = TextureCache.get(Assets.TOOLBAR_DARK);
+			} else {
+				base.texture = TextureCache.get(Assets.TOOLBAR);
+			}
 		}
 
 		@Override
