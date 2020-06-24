@@ -56,7 +56,7 @@ import java.util.Locale;
 public class WndHero extends WndTabbed {
 	
 	private static final int WIDTH		= 115;
-	private static final int HEIGHT		= 150;
+	private static final int HEIGHT		= 160;
 	
 	private StatsTab stats;
 	private BuffsTab buffs;
@@ -126,7 +126,7 @@ public class WndHero extends WndTabbed {
 
 	private class AbilitiesTab extends Group {
 
-		private static final int GAP = 7;
+		private static final int GAP = 6;
 
 		private float pos;
 		private static final int BTN_WIDTH  = 20;
@@ -188,7 +188,6 @@ public class WndHero extends WndTabbed {
 				@Override
 				protected void increaseStat() {
 					Dungeon.hero.increaseFocus();
-
 				}
 			};
 			add( btnFocus );
@@ -213,6 +212,18 @@ public class WndHero extends WndTabbed {
 			};
 			add( btnStealth );
 			pos += GAP;
+
+			//Attunement
+			statSlot( Messages.get(this, "attunement"), hero.getAttunement());
+			statIncreaseButton btnAttunement = new statIncreaseButton() {
+				@Override
+				protected void increaseStat() {
+					Dungeon.hero.increaseAttunement();
+				}
+			};
+			add( btnAttunement );
+			pos += GAP;
+
 			RedButton btnInfo = new RedButton(Messages.get(this, "info")) {
 				@Override
 				protected void onClick() {
