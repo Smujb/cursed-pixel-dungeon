@@ -39,7 +39,7 @@ public class Constants {
     public static final int WAND_CHARGE_CAP = 10;
 
     //Can't find items above this tier.
-    public static final int MAXIMUM_TIER = 5;
+    public static final int MAXIMUM_TIER = 8;
 
 
     //

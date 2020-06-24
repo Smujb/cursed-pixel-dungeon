@@ -59,7 +59,7 @@ public class MeleeWeapon extends Weapon {
 
 	public int STRReq(int lvl){
 		lvl = Math.max(0, lvl);
-		return  (5 + Math.round(tier * 2)) + lvl;
+		return  (3 + Math.round(tier * 3)) + lvl;
 	}
 
 	@Override

@@ -645,7 +645,7 @@ public class Generator {
 	}
 
 	public static Armor randomArmor(){
-		return randomArmor(Dungeon.getScaleFactor() / Constants.CHAPTER_LENGTH);
+		return randomArmor(Dungeon.getScaleFactor()*2 / Constants.CHAPTER_LENGTH);
 	}
 	
 	public static Armor randomArmor(int floorSet) {
@@ -674,7 +674,7 @@ public class Generator {
 	}
 
 	public static MeleeWeapon randomWeapon(){
-		return randomWeapon(Dungeon.getScaleFactor() / Constants.CHAPTER_LENGTH);
+		return randomWeapon(Dungeon.getScaleFactor()*2 / Constants.CHAPTER_LENGTH);
 	}
 	
 	public static MeleeWeapon randomWeapon(int floorSet) {
@@ -710,7 +710,7 @@ public class Generator {
 			Category.MIS_T5
 	};
 	public static MissileWeapon randomMissile(){
-		return randomMissile(Dungeon.getScaleFactor() / Constants.CHAPTER_LENGTH);
+		return randomMissile(Dungeon.getScaleFactor()*2 / Constants.CHAPTER_LENGTH);
 	}
 	
 	public static MissileWeapon randomMissile(int floorSet) {
