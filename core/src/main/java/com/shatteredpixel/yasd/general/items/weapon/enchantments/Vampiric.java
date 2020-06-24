@@ -44,14 +44,14 @@ public class Vampiric extends Weapon.Enchantment {
 		float 	missingPercent = (attacker.HT - attacker.HP) / (float)attacker.HT,
 				maxHeal = (.025f + missingPercent * .125f) * 2, // min max heal is .025%, consistent with shattered.
 				healPercent = 0;
-		int tries = weapon.level();
+		int tries = 1 + weapon.level()/5;
 		do {
 			healPercent = Math.max(healPercent, Random.NormalFloat(0,maxHeal));
 		} while(tries-- > 0);
 		int healAmt = Math.min( Math.round(healPercent*damage), attacker.HT - attacker.HP );
 
 		if (healAmt > 0 && attacker.isAlive()) {
-			attacker.heal(healAmt, false);
+			attacker.heal(healAmt, false, true);
 		}
 
 		return damage;

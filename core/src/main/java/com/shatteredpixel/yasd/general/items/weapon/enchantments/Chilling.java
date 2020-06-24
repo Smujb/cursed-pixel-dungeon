@@ -47,7 +47,7 @@ public class Chilling extends Weapon.Enchantment {
 		// lvl 2 - 60%
 		int level = Math.max( 0, weapon.level() );
 		
-		if (Random.Int( level + 5 ) >= 4) {
+		if (Random.Int( level + 5 ) > 4) {
 			
 			//adds 3 turns of chill per proc, with a cap of 6 turns
 			float durationToAdd = 3f;

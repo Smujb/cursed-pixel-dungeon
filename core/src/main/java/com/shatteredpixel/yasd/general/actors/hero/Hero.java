@@ -250,9 +250,10 @@ public class Hero extends Char {
 		}
 		stamina -= amount;
 		if (stamina < 0) {
-			int damage = (int) (-stamina*(HT/40));
+			int damage = (int) (stamina*3);
 			stamina = 0;
-			damage(damage, new DamageSrc(Element.META).ignoreDefense());
+			//damage(damage, new DamageSrc(Element.META).ignoreDefense());
+			Buff.affect(this, Hunger.class).reduceHunger(damage);
 			if (!isAlive()){
 				Dungeon.fail( Stamina.class );
 				GLog.n( Messages.get( this, "exhausted") );

@@ -29,9 +29,8 @@ package com.shatteredpixel.yasd.general.items.weapon.enchantments;
 
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.items.Generator;
-import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite.Glowing;
@@ -58,7 +57,8 @@ public class Lucky extends Weapon.Enchantment {
 	}
 	
 	public static Item genLoot(){
-		float roll = Random.Float();
+		return LuckyBadge.tryForBonusDrop();
+		/*float roll = Random.Float();
 		if (roll < 0.6f){
 			Item result = new Gold().random();
 			result.quantity(Math.round(result.quantity() * 0.5f));
@@ -71,7 +71,7 @@ public class Lucky extends Weapon.Enchantment {
 			return Random.Int(2) == 0
 					? Generator.random(Generator.Category.POTION)
 					: Generator.random(Generator.Category.SCROLL);
-		}
+		}*/
 	}
 
 	@Override

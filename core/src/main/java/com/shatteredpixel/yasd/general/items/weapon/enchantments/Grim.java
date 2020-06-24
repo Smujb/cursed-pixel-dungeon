@@ -40,31 +40,26 @@ import com.watabou.utils.Random;
 public class Grim extends Weapon.Enchantment {
 	
 	private static ItemSprite.Glowing BLACK = new ItemSprite.Glowing( 0x000000 );
-	
-	@Override
-	public int proc( Weapon weapon, Char attacker, Char defender, int damage ) {
 
-		int level = Math.max( 0, weapon.level() );
+	@Override
+	public int proc(Weapon weapon, Char attacker, Char defender, int damage ) {
 
 		int enemyHealth = defender.HP - damage;
 		if (enemyHealth <= 0) return damage; //no point in proccing if they're already dead.
 
-		//scales from 0 - 50% based on how low hp the enemy is, plus 5% per level
-		float maxChance = 0.5f + .08f*level;
-		float chanceMulti = (float)Math.pow( ((defender.HT - enemyHealth) / (float)defender.HT), 2);
-		float chance = maxChance * chanceMulti;
-		
+		float chance = ((float)(damage/2))/defender.HP;//Chance is now half of damage dealt out of enemy hp. This is a massive nerf for fast weapons but a smaller one for slow weapons.
+
 		if (Random.Float() < chance) {
-			
+
 			defender.damage( defender.HP, new Char.DamageSrc(Element.SPIRIT, this).ignoreDefense());
-			defender.sprite.emitter().burst( ShadowParticle.UP, 5 );
-			
+			int level = 0;
+			defender.sprite.emitter().burst( ShadowParticle.UP, 5 + level );
+
 			if (!defender.isAlive() && attacker instanceof Hero
-				//this prevents unstable from triggering grim achievement
-				&& weapon.hasEnchant(Grim.class, attacker)) {
+					//this prevents unstable from triggering grim achievement
+					&& weapon.hasEnchant(Grim.class, attacker)) {
 				Badges.validateGrimWeapon();
 			}
-			
 		}
 
 		return damage;

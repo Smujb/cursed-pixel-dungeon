@@ -53,7 +53,7 @@ public class Blooming extends Weapon.Enchantment {
 		// lvl 2 - 60%
 		int level = Math.max( 0, weapon.level() );
 		
-		if (Random.Int( level + 3 ) >= 2) {
+		if (Random.Int( level + 3 ) > 2) {
 			
 			boolean secondPlant = level > Random.Int(10);
 			if (plantGrass(defender.pos)){
