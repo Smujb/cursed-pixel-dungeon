@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.scenes;
 
+import com.badlogic.gdx.Gdx;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.CPDSettings;
@@ -36,6 +37,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.shatteredpixel.yasd.general.ui.Window;
 import com.watabou.glwrap.Blending;
+import com.watabou.input.InputHandler;
 import com.watabou.input.PointerEvent;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.BitmapText.Font;
@@ -78,6 +80,8 @@ public class PixelScene extends Scene {
 		super.create();
 
 		GameScene.scene = null;
+
+		InputHandler.updateEventCatching(Gdx.input);
 
 		float minWidth, minHeight;
 		if (landscape()) {
