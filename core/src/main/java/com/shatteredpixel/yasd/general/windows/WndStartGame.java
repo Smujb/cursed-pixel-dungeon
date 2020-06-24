@@ -106,11 +106,12 @@ public class WndStartGame extends Window {
 		title.setPos( (WIDTH - title.width())/2f, 3);
 		PixelScene.align(title);
 		add(title);
-		
-		float heroBtnSpacing = (WIDTH - 4*HeroBtn.WIDTH)/5f;
+
+		HeroClass[] classes = HeroClass.values();
+		float heroBtnSpacing = (WIDTH - classes.length*HeroBtn.WIDTH)/(float) (classes.length + 1);
 		
 		float curX = heroBtnSpacing;
-		for (HeroClass cl : HeroClass.values()){
+		for (HeroClass cl : classes){
 			HeroBtn button = new HeroBtn(cl);
 			button.setRect(curX, title.height() + 7, HeroBtn.WIDTH, HeroBtn.HEIGHT);
 			curX += HeroBtn.WIDTH + heroBtnSpacing;
