@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.ui.changelist;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.effects.BadgeBanner;
 import com.shatteredpixel.yasd.general.items.Honeypot;
 import com.shatteredpixel.yasd.general.items.artifacts.AlchemistsToolkit;
@@ -533,7 +534,7 @@ public class v0_7_X_Changes {
 				"When a recipe asks for any item of a certain type that item no longer has to be identified.\n\n" +
 				"Alchemy guidebook pages now spawn more slowly at earlier stages of the game, and significantly faster at later stages of the game."));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.LONGSWORD, new ItemSprite.Glowing(0x0000FF)), "Enchantment Overhaul!",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.LONGSWORD, new ItemSprite.Glowing(Constants.Colours.PURE_BLUE)), "Enchantment Overhaul!",
 				"Enchantments have been significantly rebalanced to be less about direct damage and more about utility and situational power. Their design should now be more similar to glyphs.\n\n" +
 				"Buffed Enchants: Chilling, Lucky.\n\n" +
 				"Nerfed Enchants: Blazing, Shocking, Grim, Vampiric\n\n" +

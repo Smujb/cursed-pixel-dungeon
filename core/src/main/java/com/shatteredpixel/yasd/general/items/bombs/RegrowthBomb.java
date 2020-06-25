@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.bombs;
 
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -66,7 +67,7 @@ public class RegrowthBomb extends Bomb {
 		super.explode(cell);
 		
 		if (Dungeon.level.heroFOV[cell]) {
-			Splash.at(cell, 0x00FF00, 30);
+			Splash.at(cell, Constants.Colours.PURE_GREEN, 30);
 		}
 		
 		ArrayList<Integer> plantCandidates = new ArrayList<>();

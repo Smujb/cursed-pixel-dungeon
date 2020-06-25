@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.actors.mobs;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -216,7 +217,7 @@ public class RipperDemon extends Mob {
 						spend(GameMath.gate(TICK, enemy.cooldown(), 3*TICK));
 						if (Dungeon.level.heroFOV[pos] || Dungeon.level.heroFOV[leapPos]){
 							GLog.w(Messages.get(RipperDemon.this, "leap"));
-							sprite.parent.addToBack(new TargetedCell(leapPos, 0xFF0000));
+							sprite.parent.addToBack(new TargetedCell(leapPos, Constants.Colours.PURE_RED));
 							Dungeon.hero.interrupt();
 							((RipperSprite)sprite).leapPrep( leapPos );
 

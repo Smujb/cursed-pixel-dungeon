@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items.scrolls.exotic;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
@@ -47,7 +48,7 @@ public class ScrollOfPetrification extends ExoticScroll {
 	
 	@Override
 	public void doRead() {
-		new Flare( 5, 32 ).color( 0xFF0000, true ).show( curUser.sprite, 2f );
+		new Flare( 5, 32 ).color( Constants.Colours.PURE_RED, true ).show( curUser.sprite, 2f );
 		Sample.INSTANCE.play( Assets.SND_READ );
 		Invisibility.dispel();
 		

@@ -27,13 +27,14 @@
 
 package com.shatteredpixel.yasd.general.items.armor.glyphs;
 
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 
 public class Flow extends Armor.Glyph {
 
-	private static ItemSprite.Glowing BLUE = new ItemSprite.Glowing( 0x0000FF );
+	private static ItemSprite.Glowing BLUE = new ItemSprite.Glowing(Constants.Colours.PURE_BLUE);
 
 	@Override
 	public int proc(Armor armor, Char attacker, Char defender, int damage) {

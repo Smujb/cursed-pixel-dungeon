@@ -1005,7 +1005,7 @@ public abstract class Mob extends Char {
 		
 		//lucky enchant logic
 		if (Dungeon.hero.lvl <= Dungeon.getScaleFactor() + 1 && buff(Lucky.LuckProc.class) != null){
-			new  Flare(8, 24).color(0x00FF00, true).show(sprite, 3f);
+			new  Flare(8, 24).color(Constants.Colours.PURE_GREEN, true).show(sprite, 3f);
 			Dungeon.level.drop(Lucky.genLoot(), pos).sprite.drop();
 		}
 		//Cultist subclass logic

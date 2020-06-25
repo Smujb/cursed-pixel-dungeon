@@ -28,8 +28,9 @@
 package com.shatteredpixel.yasd.general.windows;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.Constants;
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -241,7 +242,7 @@ public class WndHero extends WndTabbed {
 			RenderedTextBlock txt = PixelScene.renderTextBlock( label, 10 );
 			txt.setPos(0, pos);
 			if (Dungeon.hero.DistributionPoints > 0) {
-				txt.hardlight(0x00FF00);
+				txt.hardlight(Constants.Colours.PURE_GREEN);
 			}
 			add( txt );
 

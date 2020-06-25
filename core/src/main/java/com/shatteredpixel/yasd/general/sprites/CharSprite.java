@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.sprites;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -74,8 +75,8 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	
 	// Color constants for floating text
 	public static final int DEFAULT		= 0xFFFFFF;
-	public static final int POSITIVE	= 0x00FF00;
-	public static final int NEGATIVE	= 0xFF0000;
+	public static final int POSITIVE	= Constants.Colours.PURE_GREEN;
+	public static final int NEGATIVE	= Constants.Colours.PURE_RED;
 	public static final int WARNING		= 0xFF8800;
 	public static final int NEUTRAL		= 0xFFFF00;
 

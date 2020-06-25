@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.enchantments;
 
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
@@ -40,7 +41,7 @@ import com.watabou.utils.Random;
 
 public class Blocking extends Weapon.Enchantment {
 	
-	private static ItemSprite.Glowing BLUE = new ItemSprite.Glowing( 0x0000FF );
+	private static ItemSprite.Glowing BLUE = new ItemSprite.Glowing( Constants.Colours.PURE_BLUE );
 	
 	@Override
 	public int proc(Weapon weapon, Char attacker, Char defender, int damage) {

@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general.ui.attack;
 
 import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.HeroAction;
@@ -8,7 +9,7 @@ import com.shatteredpixel.yasd.general.actors.hero.HeroAction;
 public class CrushAttackIndicator extends AttackIndicator {
 
 	public CrushAttackIndicator() {
-		color(0x0000FF);
+		color(Constants.Colours.PURE_BLUE);
 	}
 
 	@Override

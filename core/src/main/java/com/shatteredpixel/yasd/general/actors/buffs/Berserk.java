@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.actors.buffs;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -142,7 +143,7 @@ public class Berserk extends Buff {
 
 				SpellSprite.show(target, SpellSprite.BERSERK);
 				Sample.INSTANCE.play( Assets.SND_CHALLENGE );
-				GameScene.flash(0xFF0000);
+				GameScene.flash(Constants.Colours.PURE_RED);
 			}
 
 		}

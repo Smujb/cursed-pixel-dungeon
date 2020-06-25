@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee.relic.enchants;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -30,7 +31,7 @@ import com.watabou.utils.Random;
 
 public class Barrier extends RelicEnchantment {
 
-    private static final ItemSprite.Glowing BLUE = new ItemSprite.Glowing( 0x0000FF );
+    private static final ItemSprite.Glowing BLUE = new ItemSprite.Glowing( Constants.Colours.PURE_BLUE );
 
     private RelicMeleeWeapon weapon = null;
 

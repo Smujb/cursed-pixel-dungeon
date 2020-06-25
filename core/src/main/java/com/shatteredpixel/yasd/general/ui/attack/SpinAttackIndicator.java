@@ -1,5 +1,6 @@
 package com.shatteredpixel.yasd.general.ui.attack;
 
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -12,7 +13,7 @@ import com.watabou.utils.PathFinder;
 public class SpinAttackIndicator extends AttackIndicator {
 
 	public SpinAttackIndicator() {
-		color(0x00FF00);
+		color(Constants.Colours.PURE_GREEN);
 	}
 
 	@Override

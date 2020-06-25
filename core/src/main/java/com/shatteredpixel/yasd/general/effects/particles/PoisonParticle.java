@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.effects.particles;
 
+import com.shatteredpixel.yasd.general.Constants;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.particles.Emitter.Factory;
 import com.watabou.noosa.particles.PixelParticle;
@@ -93,6 +94,6 @@ public class PoisonParticle extends PixelParticle {
 		// alpha: 1 -> 0; size: 1 -> 4
 		size( 4 - (am = left / lifespan) * 3 );
 		// color: 0x8844FF -> 0x00FF00
-		color( ColorMath.interpolate( 0x00FF00, 0x8844FF, am ) );
+		color( ColorMath.interpolate( Constants.Colours.PURE_GREEN, 0x8844FF, am ) );
 	}
 }

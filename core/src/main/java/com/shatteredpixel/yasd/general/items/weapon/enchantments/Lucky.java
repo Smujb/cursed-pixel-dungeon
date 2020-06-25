@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.enchantments;
 
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.items.Item;
@@ -38,7 +39,7 @@ import com.watabou.utils.Random;
 
 public class Lucky extends Weapon.Enchantment {
 
-	private static ItemSprite.Glowing GREEN = new ItemSprite.Glowing( 0x00FF00 );
+	private static ItemSprite.Glowing GREEN = new ItemSprite.Glowing( Constants.Colours.PURE_GREEN );
 	
 	@Override
 	public int proc( Weapon weapon, Char attacker, Char defender, int damage ) {

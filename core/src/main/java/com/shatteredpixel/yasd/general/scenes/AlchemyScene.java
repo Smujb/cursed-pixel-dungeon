@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Chrome;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.effects.CPDEmitter;
@@ -375,7 +376,7 @@ public class AlchemyScene extends PixelScene {
 				energyCost.resetColor();
 			} else {
 				btnCombine.enable(false);
-				energyCost.hardlight(0xFF0000);
+				energyCost.hardlight(Constants.Colours.PURE_RED);
 			}
 			
 		} else {

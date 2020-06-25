@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.effects;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.Constants;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.TextureFilm;
@@ -466,7 +467,7 @@ public class Speck extends Image {
 
 				case ANGRY:
 					am = p < 0.2f ? p * 5 : 1;
-					hardlight(0xFF0000);
+					hardlight(Constants.Colours.PURE_RED);
 					break;
 
 				case NOTE:
@@ -492,7 +493,7 @@ public class Speck extends Image {
 					am = p < 0.2f ? p * 5 : 1;
 					break;
 				case BUBBLE_GREEN:
-					hardlight(0x00FF00);
+					hardlight(Constants.Colours.PURE_GREEN);
 					am = p < 0.2f ? p * 5 : 1;
 					break;
 				case BUBBLE_PURPLE:

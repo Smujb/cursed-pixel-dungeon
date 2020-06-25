@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.scrolls.exotic;
 
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
@@ -46,7 +47,7 @@ public class ScrollOfAntiMagic extends ExoticScroll {
 		Invisibility.dispel();
 		
 		Buff.affect( curUser, MagicImmune.class, 20f );
-		new Flare( 5, 32 ).color( 0xFF0000, true ).show( curUser.sprite, 2f );
+		new Flare( 5, 32 ).color( Constants.Colours.PURE_RED, true ).show( curUser.sprite, 2f );
 		
 		setKnown();
 		

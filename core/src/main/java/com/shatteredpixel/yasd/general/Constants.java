@@ -78,4 +78,10 @@ public class Constants {
     public static final int MAX_QUICKSLOTS = 8;
     public static final int MIN_QUICKSLOTS = 4;
 
+    public static class Colours {
+
+        public static final int PURE_RED = 0xFF0000;
+        public static final int PURE_GREEN = 0x00FF00;
+        public static final int PURE_BLUE = 0x0000FF;
+    }
 }

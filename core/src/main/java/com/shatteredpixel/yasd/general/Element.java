@@ -365,9 +365,9 @@ public enum Element {
 				break;
 			case DRAIN:
 				ch.sprite.parent.add(
-						new Lightning(ch.pos, DungeonTilemap.raisedTileCenterToWorld(cell), null, 0xFF0000));
+						new Lightning(ch.pos, DungeonTilemap.raisedTileCenterToWorld(cell), null, Constants.Colours.PURE_RED));
 				if (Dungeon.hero.fieldOfView[cell] && (target) != null) {
-					new Flare(8, 16).color(0xFF0000, true).show(target.sprite, 2f);
+					new Flare(8, 16).color(Constants.Colours.PURE_RED, true).show(target.sprite, 2f);
 				}
 				attack.call();
 				break;

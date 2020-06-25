@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.items.bombs;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDSettings;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -229,7 +230,7 @@ public class Bomb extends Item {
 
 	@Override
 	public ItemSprite.Glowing glowing() {
-		return fuse != null ? new ItemSprite.Glowing( 0xFF0000, 0.6f) : null;
+		return fuse != null ? new ItemSprite.Glowing(Constants.Colours.PURE_RED, 0.6f) : null;
 	}
 
 	@Override

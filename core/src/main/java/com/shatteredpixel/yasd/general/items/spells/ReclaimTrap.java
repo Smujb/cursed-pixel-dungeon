@@ -44,7 +44,7 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Reflection;
 
-import org.jetbrains.annotations.NotNull;
+import static com.shatteredpixel.yasd.general.Constants.Colours;
 
 public class ReclaimTrap extends TargetedSpell {
 	
@@ -102,10 +102,10 @@ public class ReclaimTrap extends TargetedSpell {
 	}
 	
 	private static final ItemSprite.Glowing[] COLORS = new ItemSprite.Glowing[]{
-			new ItemSprite.Glowing( 0xFF0000 ),
+			new ItemSprite.Glowing( Colours.PURE_RED ),
 			new ItemSprite.Glowing( 0xFF8000 ),
 			new ItemSprite.Glowing( 0xFFFF00 ),
-			new ItemSprite.Glowing( 0x00FF00 ),
+			new ItemSprite.Glowing( Colours.PURE_GREEN ),
 			new ItemSprite.Glowing( 0x00FFFF ),
 			new ItemSprite.Glowing( 0x8000FF ),
 			new ItemSprite.Glowing( 0xFFFFFF ),
