@@ -36,11 +36,14 @@ import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.blobs.Blob;
+import com.shatteredpixel.yasd.general.actors.blobs.DemonGas;
 import com.shatteredpixel.yasd.general.actors.buffs.Adrenaline;
 import com.shatteredpixel.yasd.general.actors.buffs.Aggression;
 import com.shatteredpixel.yasd.general.actors.buffs.Amok;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Charm;
+import com.shatteredpixel.yasd.general.actors.buffs.Corrosion;
 import com.shatteredpixel.yasd.general.actors.buffs.Corruption;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.buffs.Sleep;
@@ -87,6 +90,7 @@ public abstract class Mob extends Char {
 		actPriority = MOB_PRIO;
 		
 		alignment = Alignment.ENEMY;
+		immunities.add(DemonGas.class);
 	}
 
 	protected int level = 0;
@@ -862,6 +866,11 @@ public abstract class Mob extends Char {
 		}
 
 		notice();
+
+		if (Dungeon.isChallenged(Challenges.CORROSION)) {
+			int amount = Math.min( (int) (100*((float)dmg/(float)HT)), 100);
+			GameScene.add(Blob.seed(this.pos, amount, DemonGas.class).setStrength(Corrosion.defaultStrength(Dungeon.getScaleFactor())));
+		}
 		
 		super.damage( dmg, src);
 	}

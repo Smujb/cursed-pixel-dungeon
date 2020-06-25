@@ -27,37 +27,19 @@
 
 package com.shatteredpixel.yasd.general.actors.blobs;
 
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.effects.BlobEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
-import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.messages.Messages;
 
-public class SmokeScreen extends Blob {
-	
+public class SmokeScreen extends Gas {
+
 	@Override
-	protected void evolve() {
-		super.evolve();
-		
-		int cell;
-		
-		Level l = Dungeon.level;
-		for (int i = area.left; i < area.right; i++){
-			for (int j = area.top; j < area.bottom; j++){
-				cell = i + j*l.width();
-			}
-		}
+	public void affectCell(int cell) {
+
 	}
-	
+
 	@Override
 	public void use( BlobEmitter emitter ) {
 		super.use( emitter );
 		emitter.pour( Speck.factory( Speck.SMOKE ), 0.1f );
 	}
-	
-	@Override
-	public String tileDesc() {
-		return Messages.get(this, "desc");
-	}
-	
 }

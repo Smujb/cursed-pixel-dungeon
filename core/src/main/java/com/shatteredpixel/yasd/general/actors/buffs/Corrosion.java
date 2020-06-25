@@ -54,7 +54,7 @@ public class Corrosion extends Buff implements Hero.Doom {
 	}
 
 	public static int defaultStrength(int scale) {
-		return 1 + scale / Constants.CHAPTER_LENGTH;
+		return 1 + scale*2 / Constants.CHAPTER_LENGTH;
 	}
 
 	@Override

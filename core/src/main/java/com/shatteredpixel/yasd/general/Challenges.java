@@ -37,7 +37,6 @@ import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.food.SmallRation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
-import com.shatteredpixel.yasd.general.items.stones.StoneOfRepair;
 
 public class Challenges {
 
@@ -50,7 +49,7 @@ public class Challenges {
 	public static final int DARKNESS			= 32;
 	public static final int NO_SCROLLS		    = 64;
 	public static final int COLLAPSING_FLOOR    = 128;
-	public static final int NO_REPAIR           = 256;
+	public static final int CORROSION			= 256;
 
 	public static final int MAX_VALUE           = 511;
 
@@ -63,11 +62,11 @@ public class Challenges {
 			"darkness",
 			"no_scrolls",
 			"collapsing_floor",
-			"no_repair"
+			"corrosion"
 	};
 
 	public static final int[] MASKS = {
-			NO_FOOD, NO_ARMOR, NO_HEALING, NO_HERBALISM, SWARM_INTELLIGENCE, DARKNESS, NO_SCROLLS, COLLAPSING_FLOOR, NO_REPAIR
+			NO_FOOD, NO_ARMOR, NO_HEALING, NO_HERBALISM, SWARM_INTELLIGENCE, DARKNESS, NO_SCROLLS, COLLAPSING_FLOOR, CORROSION
 	};
 
 	public static boolean isItemBlocked( Item item ){
@@ -101,13 +100,7 @@ public class Challenges {
 		}
 
 		if (Dungeon.isChallenged(NO_SCROLLS)) {
-			if (item instanceof ScrollOfUpgrade) {
-				return true;
-			}
-		}
-
-		if (Dungeon.isChallenged(NO_REPAIR)) {
-			return item instanceof StoneOfRepair;
+			return item instanceof ScrollOfUpgrade;
 		}
 
 		return false;

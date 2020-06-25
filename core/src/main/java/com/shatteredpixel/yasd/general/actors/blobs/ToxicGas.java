@@ -42,7 +42,7 @@ public class ToxicGas extends Gas implements Hero.Doom {
 
 	@Override
 	public void affectCell(int cell) {
-		int damage = 1 + Dungeon.getScaleFactor()/6;
+		int damage = 1 + Dungeon.getScaleFactor()/3;
 		Char ch = Actor.findChar( cell );
 		if (ch != null && !ch.isImmune(this.getClass())) {
 			ch.damage( damage, new Char.DamageSrc(Element.TOXIC, this).ignoreDefense() );
