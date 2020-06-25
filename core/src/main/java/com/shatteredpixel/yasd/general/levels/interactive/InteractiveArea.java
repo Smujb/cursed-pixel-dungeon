@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.Point;
 
 import java.util.ArrayList;
 
@@ -60,9 +61,9 @@ public abstract class InteractiveArea implements Bundlable {
 	}
 
 	public int centerCell(Level level) {
-		float centerX = (x + width) / (float) width;
-		float centerY = (y + height) / (float) height;
-		return level.getPos(Math.round(centerX), Math.round(centerY));
+		float centerX = (x-1 + width/2f);
+		float centerY = (y-1 + height/2f);
+		return level.pointToCell(new Point(Math.round(centerX), Math.round(centerY)));
 	}
 
 	public static <T extends InteractiveArea> ArrayList<T> getAreas(Level level, Class<T> areaClass) {

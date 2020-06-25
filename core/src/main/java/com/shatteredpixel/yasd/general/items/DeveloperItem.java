@@ -413,11 +413,7 @@ public class DeveloperItem extends Item {
 				break;
 			case AC_KILL:
 				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-					if (mob.properties().contains(Char.Property.BOSS)) {
-						mob.damage(mob.damageRoll()*4, mob);
-					} else {
-						mob.die(new Char.DamageSrc(Element.SPIRIT).ignoreDefense());
-					}
+					mob.die(new Char.DamageSrc(Element.SPIRIT).ignoreDefense());
 					GLog.i("All ded");
 				}
 				break;

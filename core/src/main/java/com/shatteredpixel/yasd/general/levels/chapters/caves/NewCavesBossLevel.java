@@ -297,7 +297,7 @@ public class NewCavesBossLevel extends Level {
 	public void unseal() {
 		super.unseal();
 
-		blobs.get(PylonEnergy.class).fullyClear();
+		if (blobs.get(PylonEnergy.class) != null) blobs.get(PylonEnergy.class).fullyClear();
 
 		set( getEntrancePos(), ENTRANCE );
 		int i = 14 + 13*width();
@@ -355,7 +355,7 @@ public class NewCavesBossLevel extends Level {
 				pylonsRemaining++;
 			}
 		}
-		if (pylonsRemaining > 2) {
+		if (pylonsRemaining > 2 && blobs.get(PylonEnergy.class) != null) {
 			blobs.get(PylonEnergy.class).fullyClear();
 		}
 	}
