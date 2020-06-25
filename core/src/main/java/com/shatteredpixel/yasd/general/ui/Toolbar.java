@@ -204,6 +204,7 @@ public class Toolbar extends Component {
 		}
 
 		float right = width;
+		float startX, startY;
 		switch(Mode.valueOf(CPDSettings.toolbarMode())){
 			case SPLIT:
 				btnWait.setPos(x, y);
@@ -211,12 +212,21 @@ public class Toolbar extends Component {
 
 				btnInventory.setPos(right - btnInventory.width(), y);
 
-				float start = btnInventory.left() - btnQuick[0].width();
-				for (int i = 0; i < btnQuick.length; i++) {
+				startX = btnInventory.left() - btnQuick[0].width();
+				for (int i = 0; i < maxHorizontalQuickslots; i++) {
 					QuickslotTool tool = btnQuick[i];
-					tool.setPos(start, y + 2);
+					tool.setPos(startX, y);
 					if (i + 1 < btnQuick.length) {
-						start = btnQuick[i].left() - btnQuick[i+1].width();
+						startX = btnQuick[i].left() - btnQuick[i+1].width();
+					}
+				}
+
+				startY = 40;
+				for (int i = maxHorizontalQuickslots; i < btnQuick.length; i++) {
+					QuickslotTool tool = btnQuick[i];
+					tool.setPos(width - (tool.width() + 2), startY);
+					if (i + 1 < btnQuick.length) {
+						startY = btnQuick[i].bottom();
 					}
 				}
 
@@ -242,12 +252,21 @@ public class Toolbar extends Component {
 				btnSearch.setPos(btnWait.left() - btnSearch.width(), y);
 				btnInventory.setPos(btnSearch.left() - btnInventory.width(), y);
 
-				float groupStart = btnInventory.left() - btnQuick[0].width();
+				startX = btnInventory.left() - btnQuick[0].width();
 				for (int i = 0; i < btnQuick.length; i++) {
 					QuickslotTool tool = btnQuick[i];
-					tool.setPos(groupStart, y + 2);
+					tool.setPos(startX, y + 2);
 					if (i + 1 < btnQuick.length) {
-						groupStart = btnQuick[i].left() - btnQuick[i+1].width();
+						startX = btnQuick[i].left() - btnQuick[i+1].width();
+					}
+				}
+
+				startY = 40;
+				for (int i = maxHorizontalQuickslots; i < btnQuick.length; i++) {
+					QuickslotTool tool = btnQuick[i];
+					tool.setPos(width - (tool.width() + 2), startY);
+					if (i + 1 < btnQuick.length) {
+						startY = btnQuick[i].bottom();
 					}
 				}
 
