@@ -365,6 +365,7 @@ public class Hero extends Char {
 	private static final String FOCUS       = "focus";
 	private static final String PERCEPTION  = "expertise";
 	private static final String EVASION     = "combatskill";
+	private static final String ATTUNEMENT     = "attunement";
 	private static final String DISTRIBUTIONPOINTS  = "distribution-points";
 	
 	@Override
@@ -392,6 +393,7 @@ public class Hero extends Char {
 		bundle.put( FOCUS, Focus );
 		bundle.put( PERCEPTION, Perception );
 		bundle.put( EVASION, Evasion );
+		bundle.put(ATTUNEMENT, Attunement);
 		bundle.put( DISTRIBUTIONPOINTS, DistributionPoints );
 		super.storeInBundle( bundle );
 	}
@@ -421,6 +423,7 @@ public class Hero extends Char {
 		Focus = bundle.getInt( FOCUS );
 		Perception = bundle.getInt( PERCEPTION );
 		Evasion = bundle.getInt( EVASION );
+		Attunement = bundle.getInt( ATTUNEMENT );
 		DistributionPoints = bundle.getInt( DISTRIBUTIONPOINTS );
 		super.restoreFromBundle( bundle );
 	}
