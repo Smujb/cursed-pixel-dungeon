@@ -80,6 +80,7 @@ public class Speck extends Image {
 	public static final int HALO        = 122;
 	public static final int ANGRY       = 123;
 	public static final int HOLY_WATER  = 124;
+	public static final int DEMON_GAS   = 125;
 
 	
 	private static final int SIZE = 7;
@@ -134,6 +135,7 @@ public class Speck extends Image {
 			case BLIZZARD:
 			case INFERNO:
 			case HOLY_WATER:
+			case DEMON_GAS:
 				frame(film.get(STEAM));
 				break;
 			case CALM:
@@ -336,6 +338,13 @@ public class Speck extends Image {
 				lifespan = Random.Float(1f, 3f);
 				break;
 
+			case DEMON_GAS:
+				hardlight(Constants.Colours.PURE_RED);
+				angularSpeed = -30;
+				angle = Random.Float(360);
+				lifespan = Random.Float(1f, 3f);
+				break;
+
 			case STENCH:
 				hardlight(0x003300);
 				angularSpeed = -30;
@@ -509,6 +518,7 @@ public class Speck extends Image {
 				case INFERNO:
 				case DUST:
 				case HOLY_WATER:
+				case DEMON_GAS:
 					am = (float) Math.sqrt((p < 0.5f ? p : 1 - p) * 0.5f);
 					scale.set(1 + p);
 					break;

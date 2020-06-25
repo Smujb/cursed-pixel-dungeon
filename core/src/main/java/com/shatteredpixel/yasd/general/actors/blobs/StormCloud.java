@@ -31,34 +31,18 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.Wet;
+import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
 import com.shatteredpixel.yasd.general.effects.BlobEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.messages.Messages;
 
-public class StormCloud extends Blob {
-	
+public class StormCloud extends Gas {
+
 	@Override
-	protected void evolve() {
-		super.evolve();
-		
-		int cell;
-		Char ch;
-		for (int i = area.left; i < area.right; i++){
-			for (int j = area.top; j < area.bottom; j++){
-				cell = i + j*Dungeon.level.width();
-				if (cur[cell] > 0) {
-					Dungeon.level.setCellToWater(true, cell);
-					if ((ch = Actor.findChar( cell )) != null) {
-						if (!ch.isImmune(this.getClass())) {
-
-							Buff.prolong(ch, Wet.class, 3f);
-
-						}
-					}
-				}
-			}
-		}
+	public void affectCell(int cell) {
+		Char ch = Actor.findChar(cell);
+		Dungeon.level.setCellToWater(true, cell);
+		if (ch != null && !ch.isImmune(this.getClass())) Buff.prolong(ch, Paralysis.class, Paralysis.DURATION);
 	}
 	
 	@Override

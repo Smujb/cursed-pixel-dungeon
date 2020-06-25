@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.actors.blobs;
 
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
@@ -36,31 +35,19 @@ import com.shatteredpixel.yasd.general.effects.BlobEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.messages.Messages;
 
-public class ParalyticGas extends Blob {
+public class ParalyticGas extends Gas {
 	
 	{
 		//acts after mobs, to give them a chance to resist paralysis
 		actPriority = MOB_PRIO - 1;
 	}
-	
-	@Override
-	protected void evolve() {
-		super.evolve();
-		
-		Char ch;
-		int cell;
 
-		for (int i = area.left; i < area.right; i++) {
-			for (int j = area.top; j < area.bottom; j++) {
-				cell = i + j * Dungeon.level.width();
-				if (cur[cell] > 0 && (ch = Actor.findChar(cell)) != null) {
-					if (!ch.isImmune(this.getClass()))
-						Buff.prolong(ch, Paralysis.class, Paralysis.DURATION);
-				}
-			}
-		}
+	@Override
+	public void affectCell(int cell) {
+		Char ch = Actor.findChar(cell);
+		if (ch != null && !ch.isImmune(this.getClass())) Buff.prolong(ch, Paralysis.class, Paralysis.DURATION);
 	}
-	
+
 	@Override
 	public void use( BlobEmitter emitter ) {
 		super.use( emitter );

@@ -27,17 +27,15 @@
 
 package com.shatteredpixel.yasd.general.actors.blobs;
 
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Corrosion;
 import com.shatteredpixel.yasd.general.effects.BlobEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Bundle;
 
-public class CorrosiveGas extends Blob {
+public class CorrosiveGas extends Gas {
 
 	//FIXME should have strength per-cell
 	private int strength = 0;
@@ -48,20 +46,13 @@ public class CorrosiveGas extends Blob {
 
 		if (volume == 0){
 			strength = 0;
-		} else {
-			Char ch;
-			int cell;
-
-			for (int i = area.left; i < area.right; i++){
-				for (int j = area.top; j < area.bottom; j++){
-					cell = i + j*Dungeon.level.width();
-					if (cur[cell] > 0 && (ch = Actor.findChar( cell )) != null) {
-						if (!ch.isImmune(this.getClass()))
-							Buff.affect(ch, Corrosion.class).set(2f, strength);
-					}
-				}
-			}
 		}
+	}
+
+	@Override
+	public void affectCell(int cell) {
+		Char ch = Actor.findChar(cell);
+		if (ch != null &&!ch.isImmune(this.getClass())) Buff.affect(ch, Corrosion.class).set(2f, strength);
 	}
 
 	public CorrosiveGas setStrength(int str){
@@ -90,12 +81,5 @@ public class CorrosiveGas extends Blob {
 	public void storeInBundle( Bundle bundle) {
 		super.storeInBundle(bundle);
 		bundle.put( STRENGTH, strength );
-	}
-
-
-
-	@Override
-	public String tileDesc() {
-		return Messages.get(this, "desc");
 	}
 }
