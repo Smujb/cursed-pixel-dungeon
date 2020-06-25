@@ -169,11 +169,19 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 
 	//Interface
 	
-	public static final String KEY_QUICKSLOTS	= "quickslots";
-	public static final String KEY_PARTICLES	= "particles";
-	public static final String KEY_FLIPTOOLBAR	= "flipped_ui";
-	public static final String KEY_FLIPTAGS 	= "flip_tags";
-	public static final String KEY_BARMODE		= "toolbar_mode";
+	private static final String KEY_QUICKSLOTS	= "quickslots";
+	private static final String KEY_PARTICLES	= "particles";
+	private static final String KEY_FLIPTOOLBAR	= "flipped_ui";
+	private static final String KEY_FLIPTAGS 	= "flip_tags";
+	private static final String KEY_BARMODE		= "toolbar_mode";
+
+	public static void quickslots( int value ){
+		put( KEY_QUICKSLOTS, value );
+	}
+
+	public static int quickslots(){
+		return getInt( KEY_QUICKSLOTS, 4, Constants.MIN_QUICKSLOTS, Constants.MAX_QUICKSLOTS);
+	}
 	
 	public static void particles( int value ){
 		put( KEY_PARTICLES, value );

@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.CellSelector;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.tiles.DungeonTerrainTilemap;
 import com.shatteredpixel.yasd.general.windows.WndBag;
@@ -85,7 +86,10 @@ public class Toolbar extends Component {
 		btnQuick = new QuickslotTool[Constants.MAX_QUICKSLOTS];
 
 		for (int i = 0; i < btnQuick.length; i++) {
-			add( btnQuick[i] = new QuickslotTool(64, 0, 22, 24, i) );
+			btnQuick[i] = new QuickslotTool(64, 0, 22, 24, i);
+			if (i < CPDSettings.quickslots()) {
+				add(btnQuick[i]);
+			}
 		}
 
 		add(btnWait = new Toolbar.Tool(24, 0, 20, 26) {
@@ -172,15 +176,24 @@ public class Toolbar extends Component {
 	
 	@Override
 	protected void layout() {
+		final int maxHorizontalQuickslots = PixelScene.landscape() ? 8 : 4;
+
+		for (int i = 0; i < btnQuick.length; i++) {
+			if (i < CPDSettings.quickslots()) {
+				add(btnQuick[i]);
+			} else {
+				remove(btnQuick[i]);
+			}
+		}
 
 		for(int i = 0; i < Constants.MAX_QUICKSLOTS; i++) {
 			//FIXME doesn't work for portrait mode and no longer dynamically resizes.
 			if (i == 0 && !CPDSettings.flipToolbar() ||
-					i == 5 && CPDSettings.flipToolbar()) {
+					i == Math.min(CPDSettings.quickslots(), maxHorizontalQuickslots)-1 && CPDSettings.flipToolbar()) {
 				btnQuick[i].border(0, 2);
 				btnQuick[i].frame(106, 0, 19, 24);
 			} else if (i == 0 && CPDSettings.flipToolbar() ||
-					i == 5 && !CPDSettings.flipToolbar()) {
+					i == Math.min(CPDSettings.quickslots(), maxHorizontalQuickslots)-1 && !CPDSettings.flipToolbar()) {
 				btnQuick[i].border(2, 1);
 				btnQuick[i].frame(86, 0, 20, 24);
 			} else {

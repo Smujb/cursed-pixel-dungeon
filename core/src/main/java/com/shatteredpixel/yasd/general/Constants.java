@@ -75,8 +75,7 @@ public class Constants {
     //############################## UI STUFF ##############################
     //
 
-    //TODO: add ability for more quickslots
-    public static final int MAX_QUICKSLOTS = 6;
-    public static final int MIN_QUICKSLOTS = 2;
+    public static final int MAX_QUICKSLOTS = 8;
+    public static final int MIN_QUICKSLOTS = 4;
 
 }

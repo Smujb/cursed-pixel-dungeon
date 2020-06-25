@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.windows;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.CPDSettings;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
@@ -225,10 +226,20 @@ public class WndSettings extends WndTabbed {
 			chkInterlevelScene.setRect(0, chkCutscenes.bottom() + GAP_TINY, WIDTH, BTN_HEIGHT);
 			chkInterlevelScene.checked(CPDSettings.fastInterlevelScene());
 			add(chkInterlevelScene);
+
+			OptionSlider particles = new OptionSlider(Messages.get(this, "particles"), "0", "6", 0, 6) {
+				@Override
+				protected void onChange() {
+					CPDSettings.particles(getSelectedValue());
+				}
+			};
+			particles.setSelectedValue(CPDSettings.particles());
+			particles.setRect(0, chkInterlevelScene.bottom() + GAP_TINY, WIDTH, SLIDER_HEIGHT);
+			add(particles);
 		}
 	}
 
-	private class UITab extends Group {
+	private static class UITab extends Group {
 
 		public UITab() {
 			super();
@@ -292,17 +303,6 @@ public class WndSettings extends WndTabbed {
 			chkFlipTags.checked(CPDSettings.flipTags());
 			add(chkFlipTags);
 
-			OptionSlider particles = new OptionSlider(Messages.get(this, "particles"), "0", "6", 0, 6) {
-				@Override
-				protected void onChange() {
-					CPDSettings.particles(getSelectedValue());
-					Toolbar.updateLayout();
-				}
-			};
-			particles.setSelectedValue(CPDSettings.particles());
-			particles.setRect(0, chkFlipTags.bottom() + GAP_TINY, WIDTH, SLIDER_HEIGHT);
-			add(particles);
-
 			CheckBox chkFullscreen = new CheckBox(Messages.get(this, "fullscreen")) {
 				@Override
 				protected void onClick() {
@@ -310,7 +310,7 @@ public class WndSettings extends WndTabbed {
 					CPDSettings.fullscreen(checked());
 				}
 			};
-			chkFullscreen.setRect(0, particles.bottom() + GAP_SML, WIDTH, BTN_HEIGHT);
+			chkFullscreen.setRect(0, chkFlipTags.bottom() + GAP_SML, WIDTH, BTN_HEIGHT);
 			chkFullscreen.checked(CPDSettings.fullscreen());
 			if (DeviceCompat.isDesktop()) {
 				chkFullscreen.text("Fullscreen");
@@ -361,6 +361,17 @@ public class WndSettings extends WndTabbed {
 			chkDarkUI.setRect(0, btnKeyBindings.bottom() + GAP_TINY, WIDTH, BTN_HEIGHT);
 			chkDarkUI.checked(CPDSettings.darkUI());
 			add(chkDarkUI);
+
+			OptionSlider quickslots = new OptionSlider(Messages.get(this, "quickslots"), "" + Constants.MIN_QUICKSLOTS, "" + Constants.MAX_QUICKSLOTS, Constants.MIN_QUICKSLOTS, Constants.MAX_QUICKSLOTS) {
+				@Override
+				protected void onChange() {
+					CPDSettings.quickslots(getSelectedValue());
+					Toolbar.updateLayout();
+				}
+			};
+			quickslots.setSelectedValue(CPDSettings.quickslots());
+			quickslots.setRect(0, chkDarkUI.bottom() + GAP_TINY, WIDTH, SLIDER_HEIGHT);
+			add(quickslots);
 		}
 
 	}
