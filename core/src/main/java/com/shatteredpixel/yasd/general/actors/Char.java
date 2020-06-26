@@ -754,10 +754,8 @@ public abstract class Char extends Actor {
 		return true;
 	}
 
-
-
 	@Contract(" -> new")
-	private DamageSrc defaultSrc() {
+	protected DamageSrc defaultSrc() {
 		return new DamageSrc(this.elementalType(), this);
 	}
 

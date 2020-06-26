@@ -20,6 +20,8 @@ public class Greed extends Power {
 	{
 		mp_cost = 5;
 		image = ItemSpriteSheet.GREED;
+
+		usesTargeting = true;
 	}
 
 	@Override
