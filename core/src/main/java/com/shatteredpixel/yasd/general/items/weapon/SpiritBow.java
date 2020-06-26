@@ -28,14 +28,12 @@
 package com.shatteredpixel.yasd.general.items.weapon;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Splash;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
-import com.shatteredpixel.yasd.general.items.rings.RingOfSharpshooting;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.CellSelector;
@@ -81,7 +79,6 @@ public class SpiritBow extends Weapon {
 		if (action.equals(AC_SHOOT)) {
 			
 			curUser = hero;
-			//curItem = this;
 			GameScene.selectCell( shooter );
 			
 		}
@@ -131,24 +128,25 @@ public class SpiritBow extends Weapon {
 	}
 	
 	@Override
-	public int STRReq(int lvl) {
+	public int STRReq(int lvl){
 		lvl = Math.max(0, lvl);
-		//strength req decreases at +1,+3,+6,+10,etc.
-		return 10 - (int)(Math.sqrt(8 * lvl + 1) - 1)/2;
+		return (7 + lvl);
 	}
-	
+
+	public int tier() {
+		return Math.min(6, level()/10);
+	}
+
 	@Override
 	public int min(float lvl) {
-		return Math.round(1 + Dungeon.hero.lvl/5f
-				+ RingOfSharpshooting.levelDamageBonus(Dungeon.hero)
-				+ (curseInfusionBonus ? Constants.CURSE_INFUSION_BONUS_AMT : 0));
+		return Math.round(tier() +  //base
+					lvl);    		 //level scaling
 	}
-	
+
 	@Override
 	public int max(float lvl) {
-		return 6 + (int)(Dungeon.hero.lvl/2.5f
-				+ 2*RingOfSharpshooting.levelDamageBonus(Dungeon.hero)
-				+ (curseInfusionBonus ? Constants.CURSE_INFUSION_BONUS_AMT * 2 : 0));
+		return Math.round((5*(tier()+1) +    //base
+				lvl*(tier()*2)));   	 //level scaling
 	}
 	
 	private int targetPos;
@@ -202,20 +200,8 @@ public class SpiritBow extends Weapon {
 	}
 	
 	@Override
-	public int level() {
-		//need to check if hero is null for loading an upgraded bow from pre-0.7.0
-		return (Dungeon.hero == null ? 0 : Dungeon.hero.lvl/5)
-				+ (curseInfusionBonus ? 1 : 0);
-	}
-	
-	//for fetching upgrades from a boomerang from pre-0.7.1
-	public int spentUpgrades() {
-		return super.level() - (curseInfusionBonus ? Constants.CURSE_INFUSION_BONUS_AMT : 0);
-	}
-	
-	@Override
 	public boolean isUpgradable() {
-		return false;
+		return true;
 	}
 	
 	public SpiritArrow knockArrow(){
