@@ -207,7 +207,7 @@ public class Hero extends Char {
 	@Override
 	public void updateHT(boolean boostHP) {
 		int preHT = HT;
-		HT = 40 + 10*(lvl-1) + HTBoost;
+		HT = 10*(lvl+3) + 5*(getAttunement()-1) + HTBoost;
 		heal(HT-preHT);
 		super.updateHT(boostHP);
 	}
@@ -328,6 +328,7 @@ public class Hero extends Char {
 
 	public void setAttunement(int attunement) {
 		Attunement = attunement;
+		updateHT(true);
 	}
 
 	public void increaseAttunement() {

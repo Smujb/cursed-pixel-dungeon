@@ -40,8 +40,13 @@ public class Barrier extends ShieldBuff {
 	
 	@Override
 	public boolean act() {
+
+		int amt = 1;
+		if (target != null) {
+			amt = target.HT/100;
+		}
 		
-		absorbDamage(1);
+		absorbDamage(Math.max(1, amt));
 		
 		if (shielding() <= 0){
 			detach();
