@@ -1485,8 +1485,8 @@ public class Hero extends Char {
 
 		GameScene.gameOver();
 		
-		if (cause instanceof Hero.Doom) {
-			((Hero.Doom)cause).onDeath();
+		if (cause.getCause() instanceof Hero.Doom) {
+			((Hero.Doom)cause.getCause()).onDeath();
 		}
 		
 		Dungeon.deleteGame( GamesInProgress.curSlot, true );
