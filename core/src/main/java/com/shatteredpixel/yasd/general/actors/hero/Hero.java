@@ -252,7 +252,6 @@ public class Hero extends Char {
 		if (stamina < 0) {
 			int damage = (int) (stamina*3);
 			stamina = 0;
-			//damage(damage, new DamageSrc(Element.META).ignoreDefense());
 			Buff.affect(this, Hunger.class).reduceHunger(damage);
 			if (!isAlive()){
 				Dungeon.fail( Stamina.class );
@@ -1358,7 +1357,7 @@ public class Hero extends Char {
 				sprite.showStatus( CharSprite.POSITIVE, Messages.get(Hero.class, "level_up") );
 				Sample.INSTANCE.play( Assets.SND_LEVELUP );
 			}
-			increasePoints(3);
+			increasePoints(4);
 
 			Item.updateQuickslot();
 
