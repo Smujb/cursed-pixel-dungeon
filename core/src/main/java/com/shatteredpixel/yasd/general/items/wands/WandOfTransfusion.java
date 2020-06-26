@@ -32,7 +32,6 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.buffs.Barrier;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Charm;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
@@ -76,43 +75,37 @@ public class WandOfTransfusion extends Wand {
 		if (ch instanceof Mob){
 			
 			processSoulMark(ch, chargesPerCast());
+			int selfDmg = 5 + level()*2;
 			
 			//this wand does different things depending on the target.
 			
 			//heals/shields an ally or a charmed enemy while damaging self
 			if (ch.alignment == Char.Alignment.ALLY || ch.buff(Charm.class) != null){
 				
-				// 10% of max hp
-				int selfDmg = Math.round(curUser.HT*0.10f);
-				
-				float healing = selfDmg + 3*level();
+				float healing = selfDmg + level();
 
 				ch.heal((int) healing, true);
-				
-				if (!freeCharge) {
-					damageHero(selfDmg);
-				} else {
-					freeCharge = false;
-				}
 
 			//for enemies...
 			} else {
-				int intLevel = (int) level();
-				//charms living enemies
-				if (!ch.properties().contains(Char.Property.UNDEAD)) {
-					Buff.affect(ch, Charm.class, 5).object = curUser.id();
-					ch.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, 3 + intLevel/2 );
-				
-				//harms the undead
-				} else {
+				int intLevel = level();
+				int charmDuration = 2 + level()/4;
+				if (ch.properties().contains(Char.Property.UNDEAD)) {
+					//harms the undead
 					ch.damage(Random.NormalIntRange(3 + intLevel/2, 6+intLevel), new Char.DamageSrc(Element.LIGHT, this).ignoreDefense());
 					ch.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10 + intLevel);
 					Sample.INSTANCE.play(Assets.SND_BURNING);
+				} else {
+					//charms living enemies
+					charmDuration *= 2;
+					ch.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, 3 + intLevel/2 );
 				}
-				
-				//and grants a self shield
-				Buff.affect(curUser, Barrier.class).setShield((5 + 4*intLevel));
-
+				Buff.affect(ch, Charm.class, charmDuration).object = curUser.id();
+			}
+			if (!freeCharge) {
+				damageHero(selfDmg);
+			} else {
+				freeCharge = false;
 			}
 			
 		}
