@@ -82,7 +82,7 @@ public abstract class DragonCrystal extends KindofMisc {
 
 	public Dragon getDragon() {
 		Actor actor = Actor.findById(dragonID);
-		if (actor != null && actor.getClass() == dragonType()) {
+		if (actor != null && actor.getClass() == dragonType() && ((Char)actor).isAlive()) {
 			return ((Dragon)actor);
 		} else {
 			return null;
