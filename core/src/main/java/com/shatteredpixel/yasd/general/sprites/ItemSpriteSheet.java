@@ -731,6 +731,18 @@ public class ItemSpriteSheet {
 	public static final int RA_ROTHS_NUNCHUCKS = RELICWEPS+5;
 	public static final int THONOTHS_AXE       = RELICWEPS+6;
 
+	private static final int DRAGON_CRYSTALS         =                             xy(1, 33);  //16 slots
+	public static final int WHITE_DRAGON_CRYSTAL            = DRAGON_CRYSTALS+0;
+	public static final int YELLOW_DRAGON_CRYSTAL       	= DRAGON_CRYSTALS+1;
+	public static final int RED_DRAGON_CRYSTAL      		= DRAGON_CRYSTALS+2;
+	public static final int PURPLE_DRAGON_CRYSTAL      	    = DRAGON_CRYSTALS+3;
+	public static final int LIGHT_BLUE_DRAGON_CRYSTAL	    = DRAGON_CRYSTALS+4;
+	public static final int BLUE_DRAGON_CRYSTAL      		= DRAGON_CRYSTALS+5;
+	public static final int GREEN_DRAGON_CRYSTAL       	    = DRAGON_CRYSTALS+6;
+	public static final int LIGHT_GREEN_DRAGON_CRYSTAL      = DRAGON_CRYSTALS+7;
+	public static final int BROWN_DRAGON_CRYSTAL   		  	= DRAGON_CRYSTALS+8;
+	public static final int ADORNED_DRAGON_CRYSTAL    	    = DRAGON_CRYSTALS+9;
+
 	private static final int POWERS          =                             xy(1, 35);
 	public static int SPELLBOOK            = POWERS+0;
 	public static int BLINK        	       = POWERS+3;

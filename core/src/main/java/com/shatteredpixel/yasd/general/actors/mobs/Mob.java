@@ -1184,7 +1184,7 @@ public abstract class Mob extends Char {
 		}
 	}
 
-	protected class Wandering implements AiState {
+	public class Wandering implements AiState {
 
 		public static final String TAG	= "WANDERING";
 

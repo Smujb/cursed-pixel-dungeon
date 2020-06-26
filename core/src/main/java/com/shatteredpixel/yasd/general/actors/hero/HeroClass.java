@@ -37,6 +37,7 @@ import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
+import com.shatteredpixel.yasd.general.items.allies.FireDragonCrystal;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
@@ -66,13 +67,6 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Basic;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sneak;
-import com.shatteredpixel.yasd.general.items.weapon.melee.relic.LorsionsGreataxe;
-import com.shatteredpixel.yasd.general.items.weapon.melee.relic.LoturgosCrystal;
-import com.shatteredpixel.yasd.general.items.weapon.melee.relic.MaracarsBlades;
-import com.shatteredpixel.yasd.general.items.weapon.melee.relic.NahusSword;
-import com.shatteredpixel.yasd.general.items.weapon.melee.relic.NeptunesTrident;
-import com.shatteredpixel.yasd.general.items.weapon.melee.relic.RaRothsNunchucks;
-import com.shatteredpixel.yasd.general.items.weapon.melee.relic.ThonothsAxe;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -172,13 +166,7 @@ public enum HeroClass {
 
 	public static void initTest(Hero hero) {
 		new TomeOfMastery().collect();
-		new MaracarsBlades().identify().collect();
-		new ThonothsAxe().identify().collect();
-		new LorsionsGreataxe().identify().collect();
-		new NeptunesTrident().identify().collect();
-		new RaRothsNunchucks().identify().collect();
-		new LoturgosCrystal().identify().collect();
-		new NahusSword().identify().collect();
+		new FireDragonCrystal().collect();
 		new DeveloperItem().collect(hero.belongings.backpack, hero);
 	}
 
@@ -280,7 +268,9 @@ public enum HeroClass {
 		if (hero.belongings.getWeapon() == null) {
 			hero.belongings.setWeapon((KindOfWeapon) new Fist().upgrade().identify());
 		}
-		(hero.belongings.armor = new HuntressArmor()).identify();
+		(hero.belongings.armor = new MageArmor()).identify();
+		(hero.belongings.miscs[0] = new FireDragonCrystal()).identify();
+		hero.belongings.miscs[0].activate(hero);
 
 		new PotionOfMindVision().identify();
 		new ScrollOfLullaby().identify();
