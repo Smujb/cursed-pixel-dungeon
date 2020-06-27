@@ -4,7 +4,7 @@ import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.sprites.FireDragonSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class FireDragonCrystal extends DragonCrystal {
+public class FireDragonPendant extends DragonPendant {
 	{
 		image = ItemSpriteSheet.RED_DRAGON_CRYSTAL;
 	}
@@ -14,7 +14,7 @@ public class FireDragonCrystal extends DragonCrystal {
 		return FireDragon.class;
 	}
 
-	public static class FireDragon extends DragonCrystal.Dragon {
+	public static class FireDragon extends DragonPendant.Dragon {
 		{
 			spriteClass = FireDragonSprite.class;
 		}
@@ -25,8 +25,8 @@ public class FireDragonCrystal extends DragonCrystal {
 		}
 
 		@Override
-		protected Class<? extends DragonCrystal> crystalType() {
-			return FireDragonCrystal.class;
+		protected Class<? extends DragonPendant> crystalType() {
+			return FireDragonPendant.class;
 		}
 	}
 }

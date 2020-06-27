@@ -37,7 +37,7 @@ import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
-import com.shatteredpixel.yasd.general.items.allies.FireDragonCrystal;
+import com.shatteredpixel.yasd.general.items.allies.FireDragonPendant;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
@@ -167,7 +167,7 @@ public enum HeroClass {
 
 	public static void initTest(Hero hero) {
 		new TomeOfMastery().collect();
-		new FireDragonCrystal().collect();
+		new FireDragonPendant().collect();
 		new DeveloperItem().collect(hero.belongings.backpack, hero);
 	}
 
@@ -270,7 +270,7 @@ public enum HeroClass {
 			hero.belongings.setWeapon((KindOfWeapon) new Fist().upgrade().identify());
 		}
 		(hero.belongings.armor = new PriestessArmor()).identify();
-		(hero.belongings.miscs[0] = new FireDragonCrystal()).upgrade().identify();
+		(hero.belongings.miscs[0] = new FireDragonPendant()).upgrade().identify();
 		hero.belongings.miscs[0].activate(hero);
 
 		new PotionOfMindVision().identify();

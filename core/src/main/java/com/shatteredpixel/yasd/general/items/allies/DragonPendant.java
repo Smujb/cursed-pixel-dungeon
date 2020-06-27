@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public abstract class DragonCrystal extends KindofMisc {
+public abstract class DragonPendant extends KindofMisc {
 
 	private int dragonID;
 
@@ -109,10 +109,11 @@ public abstract class DragonCrystal extends KindofMisc {
 			alignment = Alignment.ALLY;
 
 			WANDERING = new Following();
+			state = HUNTING;
 			intelligentAlly = true;
 		}
 
-		private void setDragonCrystal(@NotNull DragonCrystal cry) {
+		private void setDragonCrystal(@NotNull DragonPendant cry) {
 			level = 1 + cry.level();
 			updateHT(true);
 		}
@@ -129,14 +130,14 @@ public abstract class DragonCrystal extends KindofMisc {
 			return super.act();
 		}
 
-		private DragonCrystal getDragonCrystal() {
+		private DragonPendant getDragonCrystal() {
 			ArrayList<KindofMisc> crystals = Dungeon.hero.belongings.getMiscsOfType(crystalType());
-			if (crystals.size() == 1 && crystals.get(0) instanceof DragonCrystal) {
-				return (DragonCrystal) crystals.get(0);
+			if (crystals.size() == 1 && crystals.get(0) instanceof DragonPendant) {
+				return (DragonPendant) crystals.get(0);
 			}
 			return null;
 		}
 
-		protected abstract Class<? extends DragonCrystal> crystalType();
+		protected abstract Class<? extends DragonPendant> crystalType();
 	}
 }

@@ -311,10 +311,10 @@ abstract public class Weapon extends KindOfWeapon {
 		//30% chance to be cursed
 		//10% chance to be enchanted
 		float effectRoll = Random.Float();
-		if (effectRoll < 0.3f) {
+		if (effectRoll < 0.5f) {
 			enchant(Enchantment.randomCurse());
 			cursed = true;
-		} else if (effectRoll >= 0.9f){
+		} else if (effectRoll >= 0.8f){
 			enchant();
 		}
 
