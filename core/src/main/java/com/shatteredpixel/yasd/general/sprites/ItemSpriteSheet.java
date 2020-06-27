@@ -358,7 +358,7 @@ public class ItemSpriteSheet {
 	public static final int ARMOR_STUDDED           = ARMOR+9;
 	public static final int ARMOR_HIDE				= ARMOR+10;
 	public static final int ARMOR_BANDED			= ARMOR+11;
-	public static final int ARMOR_CHAINMAIL_ELVISH  = ARMOR+12;
+	public static final int ARMOR_PRIESTESS         = ARMOR+12;
 	public static final int ARMOR_CHAINMAIL_DWARVISH= ARMOR+13;
 	public static final int ARMOR_CHAINMAIL_ORCISH  = ARMOR+14;
 	public static final int ARMOR_RINGMAIL 			= ARMOR+15;

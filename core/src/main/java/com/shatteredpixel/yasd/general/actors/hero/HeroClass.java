@@ -42,6 +42,7 @@ import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
 import com.shatteredpixel.yasd.general.items.armor.MageArmor;
+import com.shatteredpixel.yasd.general.items.armor.PriestessArmor;
 import com.shatteredpixel.yasd.general.items.armor.RogueArmor;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.bags.PotionBandolier;
@@ -268,8 +269,8 @@ public enum HeroClass {
 		if (hero.belongings.getWeapon() == null) {
 			hero.belongings.setWeapon((KindOfWeapon) new Fist().upgrade().identify());
 		}
-		(hero.belongings.armor = new MageArmor()).identify();
-		(hero.belongings.miscs[0] = new FireDragonCrystal()).identify();
+		(hero.belongings.armor = new PriestessArmor()).identify();
+		(hero.belongings.miscs[0] = new FireDragonCrystal()).upgrade().identify();
 		hero.belongings.miscs[0].activate(hero);
 
 		new PotionOfMindVision().identify();

@@ -113,7 +113,7 @@ public abstract class DragonCrystal extends KindofMisc {
 		}
 
 		private void setDragonCrystal(@NotNull DragonCrystal cry) {
-			level = 3 + cry.level();
+			level = 1 + cry.level();
 			updateHT(true);
 		}
 
