@@ -234,15 +234,28 @@ public abstract class Mob extends Char {
 	}
 
 	private int normalDamageRoll(int level) {
-		int max = 4 + level * 4;
-		int min = 1 + level;
-		return Random.NormalIntRange(min, max);
+
+		return Random.NormalIntRange(normalMin(level), normalMax(level));
+	}
+
+	protected final int normalMax(int level) {
+		return 4 + level * 4;
+	}
+
+	protected final int normalMin(int level) {
+		return 1 + level;
 	}
 
 	private int normalDRRoll(int level) {
-		int max = 1 + (int) (level*2/3f);
-		int min = level/3;
-		return Random.NormalIntRange(min, max);
+		return Random.NormalIntRange(normalMinDR(level), normalMaxDR(level));
+	}
+
+	protected final int normalMaxDR(int level) {
+		return 1 + (int) (level*2/3f);
+	}
+
+	protected final int normalMinDR(int level) {
+		return level/3;
 	}
 
 	int findClosest(Char enemy, int pos) {

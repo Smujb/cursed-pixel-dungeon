@@ -244,6 +244,11 @@ public abstract class DragonPendant extends KindofMisc {
 			rangedAttackCooldown = bundle.getInt(RANGED_ATTK_COOLDOWN);
 		}
 
+		@Override
+		public String description() {
+			return super.description() + "\n\n" + Messages.get(Dragon.class, "stats", HT, HP, normalMin(level), normalMax(level), normalMinDR(level), normalMaxDR(level), Messages.format( "%d%%", Math.round(accuracyFactor*100)), Messages.format( "%d%%", Math.round(evasionFactor*100)), rangedAttackCooldown);
+		}
+
 		protected abstract Class<? extends DragonPendant> pendantType();
 	}
 }
