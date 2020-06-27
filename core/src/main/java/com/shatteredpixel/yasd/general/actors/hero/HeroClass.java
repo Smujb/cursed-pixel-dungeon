@@ -38,6 +38,7 @@ import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
 import com.shatteredpixel.yasd.general.items.allies.FireDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.VampiricDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
@@ -170,6 +171,7 @@ public enum HeroClass {
 		new TomeOfMastery().collect();
 		new FireDragonPendant().identify().collect();
 		new WaterDragonPendant().identify().collect();
+		new VampiricDragonPendant().identify().collect();
 		new DeveloperItem().collect(hero.belongings.backpack, hero);
 	}
 
