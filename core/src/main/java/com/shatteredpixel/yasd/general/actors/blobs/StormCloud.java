@@ -34,7 +34,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Wet;
 import com.shatteredpixel.yasd.general.effects.BlobEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
-import com.shatteredpixel.yasd.general.messages.Messages;
 
 public class StormCloud extends Gas {
 
@@ -50,10 +49,4 @@ public class StormCloud extends Gas {
 		super.use( emitter );
 		emitter.pour( Speck.factory( Speck.STORM ), 0.4f );
 	}
-	
-	@Override
-	public String tileDesc() {
-		return Messages.get(this, "desc");
-	}
-	
 }
