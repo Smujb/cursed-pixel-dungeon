@@ -21,6 +21,7 @@ public class FireDragonPendant extends DragonPendant {
 			healthFactor = 2/3f;
 			baseSpeed = 1.2f;
 			accuracyFactor = 0.7f;
+			resistances.put(Element.FIRE, 0f);
 		}
 
 		@Override

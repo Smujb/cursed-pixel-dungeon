@@ -38,6 +38,7 @@ import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
 import com.shatteredpixel.yasd.general.items.allies.FireDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
@@ -167,7 +168,8 @@ public enum HeroClass {
 
 	public static void initTest(Hero hero) {
 		new TomeOfMastery().collect();
-		new FireDragonPendant().collect();
+		new FireDragonPendant().identify().collect();
+		new WaterDragonPendant().identify().collect();
 		new DeveloperItem().collect(hero.belongings.backpack, hero);
 	}
 

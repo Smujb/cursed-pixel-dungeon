@@ -375,15 +375,9 @@ public abstract class Mob extends Char {
 		
 		super.act();
 		
-		/*boolean justAlerted = alerted;
-		alerted = false;
-		
-		if (justAlerted){
-			sprite.showAlert();
-		} else {
-			sprite.hideAlert();
-			sprite.hideLost();
-		}*/
+		if (Dungeon.level.liquid(pos) && elementalType() == Element.WATER) {
+			heal(HT/10);
+		}
 		
 		if (paralysed > 0) {
 			enemySeen = false;
