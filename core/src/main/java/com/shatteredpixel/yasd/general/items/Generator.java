@@ -29,6 +29,13 @@ package com.shatteredpixel.yasd.general.items;
 
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.items.allies.DragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.EarthenDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.FireDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.IceDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.PoisonDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.VampiricDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.armor.BasicArmor;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
@@ -256,6 +263,9 @@ public class Generator {
 		MIS_T3  ( 0,    MissileWeapon.class ),
 		MIS_T4  ( 0,    MissileWeapon.class ),
 		MIS_T5  ( 0,    MissileWeapon.class ),
+
+
+		DRAGON_PENDANT  ( 4,    DragonPendant.class ),
 		
 		WAND	( 3,    Wand.class ),
 		RING	( 1,    Ring.class ),
@@ -304,6 +314,23 @@ public class Generator {
 			GOLD.classes = new Class<?>[]{
 					Gold.class };
 			GOLD.probs = new float[]{ 1 };
+
+			DRAGON_PENDANT.classes = new Class<?>[]{
+					EarthenDragonPendant.class,
+					FireDragonPendant.class,
+					IceDragonPendant.class,
+					PoisonDragonPendant.class,
+					VampiricDragonPendant.class,
+					WaterDragonPendant.class
+			};
+			DRAGON_PENDANT.probs = new float[]{
+					1,
+					1,
+					1,
+					1,
+					1,
+					1
+			};
 
 
 			POWER.classes = new Class<?>[] {

@@ -37,7 +37,10 @@ import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
+import com.shatteredpixel.yasd.general.items.allies.EarthenDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.FireDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.IceDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.PoisonDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.VampiricDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
@@ -172,6 +175,9 @@ public enum HeroClass {
 		new FireDragonPendant().identify().collect();
 		new WaterDragonPendant().identify().collect();
 		new VampiricDragonPendant().identify().collect();
+		new EarthenDragonPendant().identify().collect();
+		new PoisonDragonPendant().identify().collect();
+		new IceDragonPendant().identify().collect();
 		new DeveloperItem().collect(hero.belongings.backpack, hero);
 	}
 
