@@ -503,9 +503,7 @@ public abstract class Char extends Actor {
 		if (defender.buff(  Hex.class) != null) defRoll *= 0.8f;
 		if (defender.buff(Bless.class) != null) defRoll *= 1.25f;
 		if (attacker.elementalType().isMagical()) {
-			if (Dungeon.level.adjacent(attacker.pos, defender.pos)) {//Magical mobs have reduced accuracy at melee range.
-				acuRoll /= 2;
-			} else {
+			if (!Dungeon.level.adjacent(attacker.pos, defender.pos)) {
 				acuRoll *= 2;
 			}
 		}

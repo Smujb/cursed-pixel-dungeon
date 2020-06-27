@@ -17,6 +17,10 @@ public class FireDragonPendant extends DragonPendant {
 	public static class FireDragon extends DragonPendant.Dragon {
 		{
 			spriteClass = FireDragonSprite.class;
+			damageFactor = 1.5f;
+			healthFactor = 2/3f;
+			baseSpeed = 1.2f;
+			accuracyFactor = 0.7f;
 		}
 
 		@Override
