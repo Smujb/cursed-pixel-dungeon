@@ -5,13 +5,13 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.effects.BlobEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 
-public class DemonGas extends Gas {
+public class DemonGas extends CorrosiveGas {
 	@Override
 	public void affectCell(int cell) {
+		super.affectCell(cell);
 		Char ch = Actor.findChar(cell);
 		if (ch != null && !ch.isImmune(getClass())) {
 			new ConfusionGas().affectCell(cell);
-			new CorrosiveGas().affectCell(cell);
 		}
 	}
 

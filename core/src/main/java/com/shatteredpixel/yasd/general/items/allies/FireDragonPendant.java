@@ -25,7 +25,7 @@ public class FireDragonPendant extends DragonPendant {
 		}
 
 		@Override
-		protected Class<? extends DragonPendant> crystalType() {
+		protected Class<? extends DragonPendant> pendantType() {
 			return FireDragonPendant.class;
 		}
 	}
