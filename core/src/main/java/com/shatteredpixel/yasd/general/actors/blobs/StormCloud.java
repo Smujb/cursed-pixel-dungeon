@@ -31,7 +31,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
+import com.shatteredpixel.yasd.general.actors.buffs.Wet;
 import com.shatteredpixel.yasd.general.effects.BlobEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -42,7 +42,7 @@ public class StormCloud extends Gas {
 	public void affectCell(int cell) {
 		Char ch = Actor.findChar(cell);
 		Dungeon.level.setCellToWater(true, cell);
-		if (ch != null && !ch.isImmune(this.getClass())) Buff.prolong(ch, Paralysis.class, Paralysis.DURATION);
+		if (ch != null && !ch.isImmune(this.getClass())) Buff.prolong(ch, Wet.class, Wet.DURATION);
 	}
 	
 	@Override
