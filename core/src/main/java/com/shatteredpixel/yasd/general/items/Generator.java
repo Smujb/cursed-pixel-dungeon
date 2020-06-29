@@ -29,11 +29,15 @@ package com.shatteredpixel.yasd.general.items;
 
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.items.allies.AirDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.DarkDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.DragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.EarthenDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.FireDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.GrassDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.IceDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.PoisonDragonPendant;
+import com.shatteredpixel.yasd.general.items.allies.StoneDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.VampiricDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
@@ -321,9 +325,17 @@ public class Generator {
 					IceDragonPendant.class,
 					PoisonDragonPendant.class,
 					VampiricDragonPendant.class,
-					WaterDragonPendant.class
+					WaterDragonPendant.class,
+					AirDragonPendant.class,
+					DarkDragonPendant.class,
+					GrassDragonPendant.class,
+					StoneDragonPendant.class
 			};
 			DRAGON_PENDANT.probs = new float[]{
+					1,
+					1,
+					1,
+					1,
 					1,
 					1,
 					1,

@@ -88,8 +88,8 @@ public abstract class DragonSprite extends MobSprite {
 		}
 	}
 
-	public static class Spirit extends DragonSprite {
-		public Spirit() {
+	public static class Air extends DragonSprite {
+		public Air() {
 			super(9);
 		}
 	}
