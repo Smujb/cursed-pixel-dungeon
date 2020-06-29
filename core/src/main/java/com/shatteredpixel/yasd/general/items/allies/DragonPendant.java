@@ -235,6 +235,7 @@ public abstract class DragonPendant extends KindofMisc {
 
 		@Override
 		public boolean canAttack(@NotNull Char enemy) {
+			//When the hero doesn't have enough strength for the pendant, the dragon may refuse to attack.
 			DragonPendant pendant = getPendant();
 			if (pendant != null) {
 				if (Random.Float() > pendant.chargeFactor()) {
