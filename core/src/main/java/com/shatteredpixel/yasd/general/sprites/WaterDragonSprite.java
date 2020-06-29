@@ -7,7 +7,7 @@ public class WaterDragonSprite extends MobSprite {
 	public WaterDragonSprite() {
 		super();
 
-		texture( Assets.DRAGONS_1 );
+		texture( Assets.DRAGONS_2 );
 
 		TextureFilm frames = new TextureFilm( texture, 16, 16 );
 
