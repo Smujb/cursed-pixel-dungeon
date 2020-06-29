@@ -57,7 +57,7 @@ import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.Soul;
+import com.shatteredpixel.yasd.general.items.allies.Soul;
 import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.rings.Ring;

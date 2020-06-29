@@ -1,4 +1,4 @@
-package com.shatteredpixel.yasd.general.items;
+package com.shatteredpixel.yasd.general.items.allies;
 
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
@@ -13,6 +13,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.actors.mobs.Rat;
+import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.utils.Bundle;
