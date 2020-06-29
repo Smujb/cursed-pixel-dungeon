@@ -1264,7 +1264,8 @@ public abstract class Mob extends Char {
 
 		@Override
 		public boolean act( boolean enemyInFOV, boolean justAlerted ) {
-			if ( enemyInFOV && threshold() ) {
+			//Ensure there is direct line of sight from ally to enemy, and the distance is small. This is enforced so that allies don't end up trailing behind when following hero.
+			if ( enemyInFOV && threshold() && Dungeon.level.distance(pos, enemy.pos) < 5 && Ballistica.canHit(Mob.this, enemy, Ballistica.STOP_TERRAIN) ) {
 
 				enemySeen = true;
 
