@@ -457,7 +457,7 @@ public abstract class YogFist extends Mob {
 
 		@Override
 		public Element elementalType() {
-			return Element.SPIRIT;
+			return Element.SHADOW;
 		}
 
 		@Override

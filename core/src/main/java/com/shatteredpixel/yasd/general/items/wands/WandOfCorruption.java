@@ -77,7 +77,7 @@ public class WandOfCorruption extends Wand {
 	{
 		image = ItemSpriteSheet.WAND_CORRUPTION;
 
-		element = Element.SPIRIT;
+		element = Element.SHADOW;
 	}
 	
 	//Note that some debuffs here have a 0% chance to be applied.

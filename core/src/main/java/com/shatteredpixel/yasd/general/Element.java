@@ -96,7 +96,7 @@ public enum Element {
 	AIR( false ),//Causes "Hex"
 	SHOCK( true ),//More dmg in water
 	LIGHT( true ),//More dmg vs undead/demonic
-	SPIRIT( true ),//Weakens
+	SHADOW( true ),//Weakens
 
 
 	//Used for enforcing death in unusual circumstances where other elements wouldn't fit.
@@ -171,7 +171,7 @@ public enum Element {
 					Buff.affect(defender, Ooze.class).set(20f);
 				}
 				break;
-			case SPIRIT:
+			case SHADOW:
 				Buff.affect(defender, Weakness.class, 5);
 				break;
 			case DRAIN:
@@ -371,7 +371,7 @@ public enum Element {
 				}
 				attack.call();
 				break;
-			case SPIRIT:
+			case SHADOW:
 				MagicMissile.boltFromChar(ch.sprite.parent,
 						MagicMissile.SHADOW,
 						ch.sprite,

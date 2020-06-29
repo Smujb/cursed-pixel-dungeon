@@ -35,7 +35,7 @@ public class Surprise extends Power {
 				damage *= 3;
 				Wound.hit(ch);
 			}
-			ch.damage(damage, new Char.DamageSrc(Element.SPIRIT, this));
+			ch.damage(damage, new Char.DamageSrc(Element.SHADOW, this));
 		}
 	}
 

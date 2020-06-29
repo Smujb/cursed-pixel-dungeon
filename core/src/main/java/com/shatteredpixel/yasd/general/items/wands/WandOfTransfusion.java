@@ -115,7 +115,7 @@ public class WandOfTransfusion extends Wand {
 	//this wand costs health too
 	private void damageHero(int damage){
 		
-		curUser.damage(damage, new Char.DamageSrc(Element.SPIRIT, this).ignoreDefense());
+		curUser.damage(damage, new Char.DamageSrc(Element.SHADOW, this).ignoreDefense());
 
 		if (!curUser.isAlive()){
 			Dungeon.fail( getClass() );

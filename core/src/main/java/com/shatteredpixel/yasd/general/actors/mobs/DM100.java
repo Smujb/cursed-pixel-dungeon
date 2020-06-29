@@ -59,7 +59,7 @@ public class DM100 extends Mob {
 		Element element;
 		switch (type) {
 			case 0: default:
-				element = Element.SPIRIT;
+				element = Element.SHADOW;
 				break;
 			case 1:
 				element = Element.SHOCK;

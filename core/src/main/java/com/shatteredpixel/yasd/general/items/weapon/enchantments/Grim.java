@@ -51,7 +51,7 @@ public class Grim extends Weapon.Enchantment {
 
 		if (Random.Float() < chance) {
 
-			defender.damage( defender.HP, new Char.DamageSrc(Element.SPIRIT, this).ignoreDefense());
+			defender.damage( defender.HP, new Char.DamageSrc(Element.SHADOW, this).ignoreDefense());
 			int level = 0;
 			defender.sprite.emitter().burst( ShadowParticle.UP, 5 + level );
 

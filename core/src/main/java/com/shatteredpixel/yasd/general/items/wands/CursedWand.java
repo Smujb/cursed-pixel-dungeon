@@ -229,10 +229,10 @@ public class CursedWand {
 							if (Random.Int(2) == 0) {
 								user.HP = Math.min(user.HT, user.HP + damage);
 								user.sprite.emitter().burst(Speck.factory(Speck.HEALING), 3);
-								target.damage(damage, new Char.DamageSrc(Element.SPIRIT, CursedWand.class));
+								target.damage(damage, new Char.DamageSrc(Element.SHADOW, CursedWand.class));
 								target.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10);
 							} else {
-								user.damage(damage, new Char.DamageSrc(Element.SPIRIT, CursedWand.class));
+								user.damage(damage, new Char.DamageSrc(Element.SHADOW, CursedWand.class));
 								user.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10);
 								target.HP = Math.min(target.HT, target.HP + damage);
 								target.sprite.emitter().burst(Speck.factory(Speck.HEALING), 3);

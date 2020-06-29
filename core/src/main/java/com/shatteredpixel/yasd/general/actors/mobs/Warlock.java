@@ -68,7 +68,7 @@ public class Warlock extends Mob {
 		Element element;
 		switch (type) {
 			case 0: default:
-				element = Element.SPIRIT;
+				element = Element.SHADOW;
 				break;
 			case 1:
 				element = Element.DESTRUCTION;

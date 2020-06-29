@@ -44,7 +44,7 @@ public class DeferredDeath extends FlavourBuff {
         type = buffType.NEGATIVE;
         announced = true;
 
-        element = Element.SPIRIT;
+        element = Element.SHADOW;
     }
 
     @Override

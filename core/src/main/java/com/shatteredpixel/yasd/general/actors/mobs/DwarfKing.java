@@ -552,7 +552,7 @@ public class DwarfKing extends Boss {
 						Buff.affect(m, KingDamager.class);
 					}
 				} else {
-					ch.damage(m.damageRoll(), new DamageSrc(Element.SPIRIT, m));
+					ch.damage(m.damageRoll(), new DamageSrc(Element.SHADOW, m));
 					if (((DwarfKing)target).phase == 2){
 						target.damage(target.HT/12, new KingDamager());
 					}

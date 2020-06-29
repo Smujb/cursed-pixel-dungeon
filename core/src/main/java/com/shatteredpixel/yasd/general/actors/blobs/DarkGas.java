@@ -65,7 +65,7 @@ public class DarkGas extends Blob {
                     if (cur[cell] > 0 && (ch = Actor.findChar( cell )) != null) {
                         if (!ch.isImmune(this.getClass())) {
                             if (ch instanceof Hero) {
-                                ch.damage(Random.Int(Math.max(1,strength/2), strength+2), new Char.DamageSrc(Element.SPIRIT, this).ignoreDefense() );//Take some direct damage, cap scaling with max HP and never 0. Also prevents the hero standing in it for bonus shielding/sneakSkill without consequence
+                                ch.damage(Random.Int(Math.max(1,strength/2), strength+2), new Char.DamageSrc(Element.SHADOW, this).ignoreDefense() );//Take some direct damage, cap scaling with max HP and never 0. Also prevents the hero standing in it for bonus shielding/sneakSkill without consequence
                             } else {
                                 Buff.prolong(ch, Aggression.class, 3);
                             }

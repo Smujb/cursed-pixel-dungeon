@@ -79,7 +79,7 @@ public abstract class Shaman extends Mob {
 
 		@Override
 		public Element elementalType() {
-			return Element.SPIRIT;
+			return Element.SHADOW;
 		}
 	}
 

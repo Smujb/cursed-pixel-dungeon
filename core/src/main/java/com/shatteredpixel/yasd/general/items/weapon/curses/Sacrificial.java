@@ -49,11 +49,11 @@ public class Sacrificial extends Weapon.Enchantment {
 			}
 			if (procDMG > 0) {
 				GLog.n(Messages.get(this,"proc"));
-				attacker.damage(procDMG / 2, new Char.DamageSrc(Element.SPIRIT, this));
+				attacker.damage(procDMG / 2, new Char.DamageSrc(Element.SHADOW, this));
 				if (defender.properties().contains(Char.Property.BOSS)) {
 					procDMG /= 2;//Doesn't one shot bosses
 				}
-				defender.damage(procDMG, new Char.DamageSrc(Element.SPIRIT, this));
+				defender.damage(procDMG, new Char.DamageSrc(Element.SHADOW, this));
 			}
 		}
 		return damage;

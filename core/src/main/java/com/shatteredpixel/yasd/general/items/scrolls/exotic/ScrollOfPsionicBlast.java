@@ -61,14 +61,14 @@ public class ScrollOfPsionicBlast extends ExoticScroll {
 		for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 			if (Dungeon.level.heroFOV[mob.pos]) {
 				targets ++;
-				mob.damage(Math.round(mob.HT/2f + mob.HP/2f), new Char.DamageSrc(Element.SPIRIT, this).ignoreDefense());
+				mob.damage(Math.round(mob.HT/2f + mob.HP/2f), new Char.DamageSrc(Element.SHADOW, this).ignoreDefense());
 				if (mob.isAlive()) {
 					Buff.prolong(mob, Blindness.class, 10);
 				}
 			}
 		}
 		
-		curUser.damage(Math.max(0, Math.round(curUser.HT*(0.5f * (float)Math.pow(0.9, targets)))), new Char.DamageSrc(Element.SPIRIT, this).ignoreDefense());
+		curUser.damage(Math.max(0, Math.round(curUser.HT*(0.5f * (float)Math.pow(0.9, targets)))), new Char.DamageSrc(Element.SHADOW, this).ignoreDefense());
 		if (curUser.isAlive()) {
 			Buff.prolong(curUser, Blindness.class, 10);
 			Buff.prolong(curUser, Weakness.class, 100);

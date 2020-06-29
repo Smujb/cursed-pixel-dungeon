@@ -12,7 +12,7 @@ public abstract class CorruptedSpell extends Power {
 
 	@Override
 	protected boolean use() {
-		curUser.damage((int) (hp_cost/100f * curUser.HT), new Char.DamageSrc(Element.SPIRIT, this));
+		curUser.damage((int) (hp_cost/100f * curUser.HT), new Char.DamageSrc(Element.SHADOW, this));
 		return true;
 	}
 }

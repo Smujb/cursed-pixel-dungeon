@@ -214,7 +214,7 @@ public class GrindLevel extends TiledMapLevel {
 			baseSpeed = 0.5f;
 			drFactor = 2f;
 			lootAmt = 4;
-			resistances.put(Element.SPIRIT, 0.5f);
+			resistances.put(Element.SHADOW, 0.5f);
 		}
 	}
 

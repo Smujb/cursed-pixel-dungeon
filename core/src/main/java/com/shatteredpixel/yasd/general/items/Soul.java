@@ -93,7 +93,7 @@ public class Soul extends Item {
         hero.busy();
         hero.sprite.operate( hero.pos );
         hero.next();
-        hero.damage(hero.HT/Random.NormalIntRange(5, 20), new Char.DamageSrc(Element.SPIRIT, this));
+        hero.damage(hero.HT/Random.NormalIntRange(5, 20), new Char.DamageSrc(Element.SHADOW, this));
         Buff.prolong(hero, Adrenaline.class, 1 + 2*Random.Int((int) Adrenaline.DURATION-1, (int)Adrenaline.DURATION));
         Buff.prolong(hero, Bless.class, Bless.DURATION);
     }

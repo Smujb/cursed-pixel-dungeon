@@ -325,7 +325,7 @@ public class Statue extends Mob implements Callback {
 	}
 
 	{
-		resistances.put(Element.SPIRIT, 0.5f);
+		resistances.put(Element.SHADOW, 0.5f);
 	}
 
 	@Override
