@@ -6,7 +6,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
 import com.shatteredpixel.yasd.general.actors.buffs.Roots;
 import com.shatteredpixel.yasd.general.plants.Earthroot;
-import com.shatteredpixel.yasd.general.sprites.EarthenDragonSprite;
+import com.shatteredpixel.yasd.general.sprites.DragonSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class EarthenDragonPendant extends DragonPendant {
@@ -22,7 +22,7 @@ public class EarthenDragonPendant extends DragonPendant {
 
 	public static class EarthenDragon extends DragonPendant.Dragon {
 		{
-			spriteClass = EarthenDragonSprite.class;
+			spriteClass = DragonSprite.Earth.class;
 			healthFactor = 1.3f;
 			damageFactor = 0.8f;
 			resistances.put(Element.EARTH, 0f);

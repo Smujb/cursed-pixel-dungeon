@@ -1,8 +1,8 @@
 package com.shatteredpixel.yasd.general.items.allies;
 
 import com.shatteredpixel.yasd.general.Element;
+import com.shatteredpixel.yasd.general.sprites.DragonSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
-import com.shatteredpixel.yasd.general.sprites.PoisonDragonSprite;
 
 public class PoisonDragonPendant extends DragonPendant {
 
@@ -17,7 +17,7 @@ public class PoisonDragonPendant extends DragonPendant {
 
 	public static class PoisonDragon extends DragonPendant.Dragon {
 		{
-			spriteClass = PoisonDragonSprite.class;
+			spriteClass = DragonSprite.Poison.class;
 			damageFactor = 1.3f;
 			evasionFactor = 0.7f;
 			resistances.put(Element.TOXIC, 0f);

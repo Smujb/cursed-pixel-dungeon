@@ -1,8 +1,8 @@
 package com.shatteredpixel.yasd.general.items.allies;
 
 import com.shatteredpixel.yasd.general.Element;
+import com.shatteredpixel.yasd.general.sprites.DragonSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
-import com.shatteredpixel.yasd.general.sprites.VampiricDragonSprite;
 
 public class VampiricDragonPendant extends DragonPendant {
 
@@ -17,7 +17,7 @@ public class VampiricDragonPendant extends DragonPendant {
 
 	public static class VampiricDragon extends DragonPendant.Dragon {
 		{
-			spriteClass = VampiricDragonSprite.class;
+			spriteClass = DragonSprite.Vampiric.class;
 			healthFactor = 0.7f;
 			damageFactor = 0.8f;
 			resistances.put(Element.DRAIN, 0f);

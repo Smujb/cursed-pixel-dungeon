@@ -1,8 +1,8 @@
 package com.shatteredpixel.yasd.general.items.allies;
 
 import com.shatteredpixel.yasd.general.Element;
+import com.shatteredpixel.yasd.general.sprites.DragonSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
-import com.shatteredpixel.yasd.general.sprites.WaterDragonSprite;
 
 public class WaterDragonPendant extends DragonPendant {
 
@@ -17,7 +17,7 @@ public class WaterDragonPendant extends DragonPendant {
 
 	public static class WaterDragon extends DragonPendant.Dragon {
 		{
-			spriteClass = WaterDragonSprite.class;
+			spriteClass = DragonSprite.Water.class;
 			evasionFactor = 1.5f;
 			baseSpeed = 1.5f;
 			damageFactor = 2/3f;

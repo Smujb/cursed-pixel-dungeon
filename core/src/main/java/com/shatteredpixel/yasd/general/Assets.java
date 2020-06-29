@@ -51,8 +51,7 @@ public class Assets {
 	public static final String TOOLBAR_DARK  = "toolbar_dark.png";
 	public static final String SHADOW  		 = "shadow.png";
 	public static final String BOSSHP  	 	 = "boss_hp.png";
-	public static final String DRAGONS_1     = "dragons_1.png";
-	public static final String DRAGONS_2	 = "dragons_2.png";
+	public static final String DRAGONS       = "dragons.png";
 
 	public static final String WARRIOR	= "warrior.png";
 	public static final String MAGE		= "mage.png";

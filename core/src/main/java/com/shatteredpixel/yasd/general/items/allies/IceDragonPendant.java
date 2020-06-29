@@ -1,7 +1,7 @@
 package com.shatteredpixel.yasd.general.items.allies;
 
 import com.shatteredpixel.yasd.general.Element;
-import com.shatteredpixel.yasd.general.sprites.IceDragonSprite;
+import com.shatteredpixel.yasd.general.sprites.DragonSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class IceDragonPendant extends DragonPendant {
@@ -17,7 +17,7 @@ public class IceDragonPendant extends DragonPendant {
 
 	public static class IceDragon extends DragonPendant.Dragon {
 		{
-			spriteClass = IceDragonSprite.class;
+			spriteClass = DragonSprite.Ice.class;
 			resistances.put(Element.COLD, 0f);
 		}
 

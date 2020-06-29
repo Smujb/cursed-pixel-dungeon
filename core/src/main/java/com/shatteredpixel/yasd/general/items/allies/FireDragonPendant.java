@@ -1,7 +1,7 @@
 package com.shatteredpixel.yasd.general.items.allies;
 
 import com.shatteredpixel.yasd.general.Element;
-import com.shatteredpixel.yasd.general.sprites.FireDragonSprite;
+import com.shatteredpixel.yasd.general.sprites.DragonSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class FireDragonPendant extends DragonPendant {
@@ -16,7 +16,7 @@ public class FireDragonPendant extends DragonPendant {
 
 	public static class FireDragon extends DragonPendant.Dragon {
 		{
-			spriteClass = FireDragonSprite.class;
+			spriteClass = DragonSprite.Fire.class;
 			damageFactor = 1.5f;
 			healthFactor = 2/3f;
 			baseSpeed = 1.2f;
