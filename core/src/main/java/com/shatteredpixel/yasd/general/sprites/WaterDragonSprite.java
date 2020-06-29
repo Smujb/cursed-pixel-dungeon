@@ -9,7 +9,7 @@ public class WaterDragonSprite extends MobSprite {
 
 		texture( Assets.DRAGONS_2 );
 
-		TextureFilm frames = new TextureFilm( texture, 16, 16 );
+		TextureFilm frames = new TextureFilm( texture, 16, 12 );
 
 		idle = new Animation( 2, true );
 		idle.frames( frames, 16, 16, 16, 17 );
