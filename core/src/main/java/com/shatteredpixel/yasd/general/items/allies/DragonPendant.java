@@ -213,26 +213,6 @@ public abstract class DragonPendant extends KindofMisc {
 
 		private static final String RANGED_ATTK_COOLDOWN = "ranged_cooldown";
 
-		@Override
-		public int attackSkill(Char target) {
-			int attackSkill = super.attackSkill(target);
-			DragonPendant pendant = getPendant();
-			if (pendant != null) {
-				attackSkill *= pendant.chargeFactor();
-			}
-			return attackSkill;
-		}
-
-		@Override
-		public int defenseSkill(Char target) {
-			int defenseSkill = super.defenseSkill(target);
-			DragonPendant pendant = getPendant();
-			if (pendant != null) {
-				defenseSkill *= pendant.chargeFactor();
-			}
-			return defenseSkill;
-		}
-
 		private void updatePendant(@NotNull DragonPendant pen) {
 			level = 1 + pen.level();
 			updateHT(true);
@@ -255,6 +235,12 @@ public abstract class DragonPendant extends KindofMisc {
 
 		@Override
 		public boolean canAttack(@NotNull Char enemy) {
+			DragonPendant pendant = getPendant();
+			if (pendant != null) {
+				if (Random.Float() > pendant.chargeFactor()) {
+					return false;
+				}
+			}
 			if (rangedAttackCooldown > 0) {
 				range = 1;
 				hasMeleeAttack = true;
