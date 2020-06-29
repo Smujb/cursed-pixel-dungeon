@@ -288,7 +288,7 @@ public enum HeroClass {
 			hero.belongings.setWeapon((KindOfWeapon) new Fist().upgrade().identify());
 		}
 		(hero.belongings.armor = new PriestessArmor()).identify();
-		(hero.belongings.miscs[0] = new FireDragonPendant()).upgrade().identify();
+		(hero.belongings.miscs[0] = new PoisonDragonPendant()).upgrade().identify();
 		hero.belongings.miscs[0].activate(hero);
 
 		new PotionOfMindVision().identify();
