@@ -76,6 +76,7 @@ import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Basic;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Magical;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sneak;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
@@ -285,7 +286,7 @@ public enum HeroClass {
 	private static void initPriestess( Hero hero ) {
 
 		if (hero.belongings.getWeapon() == null) {
-			hero.belongings.setWeapon((KindOfWeapon) new Fist().upgrade().identify());
+			hero.belongings.setWeapon((KindOfWeapon) new Magical().upgrade().identify());
 		}
 		(hero.belongings.armor = new PriestessArmor()).identify();
 		(hero.belongings.miscs[0] = new PoisonDragonPendant()).upgrade().identify();
