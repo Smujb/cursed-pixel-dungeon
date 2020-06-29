@@ -49,6 +49,36 @@ public abstract class DragonPendant extends KindofMisc {
 		}
 	}
 
+	private int attunementReq() {
+		return 1 + level();
+	}
+
+	private float chargeFactor() {
+		if (curUser == null || !(curUser instanceof Hero)) return 1f;
+		Hero hero = (Hero) curUser;
+		if (hero.getAttunement() < attunementReq()) return 1f;
+		int missingAttunement = attunementReq() - hero.getAttunement();
+		return (float) Math.pow(0.8f, missingAttunement);
+	}
+
+	private static final String TXT_ATTUNEMENT = ":%d";
+
+	@Override
+	public String topRightStatus(boolean known) {
+		if (!known) {
+			return null;
+		}
+		return Messages.format(TXT_ATTUNEMENT, attunementReq());
+	}
+
+	@Override
+	public boolean canTypicallyUse(Char ch) {
+		if (ch instanceof Hero) {
+			return ((Hero) ch).getAttunement() >= attunementReq();
+		}
+		return true;
+	}
+
 	private void doSummon(Char ch) {
 		if (charge < CHARGE_CAP) {
 			GLog.w(Messages.get(this, "no_charge"));
@@ -73,6 +103,7 @@ public abstract class DragonPendant extends KindofMisc {
 				dragon.updatePendant(this);
 				setDragon(dragon);
 				charge = 0f;
+				Item.updateQuickslot();
 				GLog.p(Messages.get(this, "dragon_spawned"));
 			} else {
 				GLog.n(Messages.get(this, "spawn_failed"));
@@ -82,7 +113,7 @@ public abstract class DragonPendant extends KindofMisc {
 
 	@Override
 	public String desc() {
-		String desc = super.desc() + "\n\n";
+		String desc = super.desc() + " " + Messages.get(DragonPendant.class, "stats_desc", attunementReq()) + "\n\n";
 		Dragon dragon = getDragon();
 		if (dragon != null) {
 			desc += dragon.description();
@@ -139,7 +170,7 @@ public abstract class DragonPendant extends KindofMisc {
 		@Override
 		public boolean act() {
 			if (getDragon() == null && charge < CHARGE_CAP) {
-				charge += 0.25f;
+				charge += 0.25f*chargeFactor();
 			}
 			Item.updateQuickslot();
 			spend(TICK);
@@ -181,6 +212,26 @@ public abstract class DragonPendant extends KindofMisc {
 		private int rangedAttackCooldown = 0;
 
 		private static final String RANGED_ATTK_COOLDOWN = "ranged_cooldown";
+
+		@Override
+		public int attackSkill(Char target) {
+			int attackSkill = super.attackSkill(target);
+			DragonPendant pendant = getPendant();
+			if (pendant != null) {
+				attackSkill *= pendant.chargeFactor();
+			}
+			return attackSkill;
+		}
+
+		@Override
+		public int defenseSkill(Char target) {
+			int defenseSkill = super.defenseSkill(target);
+			DragonPendant pendant = getPendant();
+			if (pendant != null) {
+				defenseSkill *= pendant.chargeFactor();
+			}
+			return defenseSkill;
+		}
 
 		private void updatePendant(@NotNull DragonPendant pen) {
 			level = 1 + pen.level();
@@ -246,7 +297,14 @@ public abstract class DragonPendant extends KindofMisc {
 
 		@Override
 		public String description() {
-			return super.description() + "\n\n" + Messages.get(Dragon.class, "stats", HT, HP, normalMin(level), normalMax(level), normalMinDR(level), normalMaxDR(level), Messages.format( "%d%%", Math.round(accuracyFactor*100)), Messages.format( "%d%%", Math.round(evasionFactor*100)), Messages.format( "%d%%", Math.round(baseSpeed*100)), rangedAttackCooldown);
+			return super.description() + "\n\n" + Messages.get(Dragon.class, "stats",
+					HP, HT,
+					normalMin(level), normalMax(level),
+					normalMinDR(level), normalMaxDR(level),
+					Messages.format( "%d%%", Math.round(accuracyFactor*100)),
+					Messages.format( "%d%%", Math.round(evasionFactor*100)),
+					Messages.format( "%d%%", Math.round(baseSpeed*100)),
+					rangedAttackCooldown);
 		}
 
 		protected abstract Class<? extends DragonPendant> pendantType();

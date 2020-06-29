@@ -502,7 +502,7 @@ public abstract class Wand extends KindofMisc {
 				if (curUser instanceof Hero) {
 					Hero hero = ((Hero)curUser);
 					int diff = curWand.focusReq() - hero.getFocus();
-					float miscastChance = (float) Math.pow(0.9f, diff);
+					float miscastChance = (float) Math.pow(0.8f, diff);
 					if (diff > 0 && (Random.Float() > miscastChance || curWand.cursed)) {
 						diff = Math.max(3, diff);
 						if (hero.useMP(diff * 3)) {
