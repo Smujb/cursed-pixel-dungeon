@@ -31,6 +31,7 @@ sourceCompatibility = targetCompatibility = appJavaCompatibility
 android {
     compileSdkVersion appAndroidCompileSDK
     compileOptions {
+        sourceCompatibility = appJavaCompatibility
         compileOptions.sourceCompatibility = appJavaCompatibility
         compileOptions.targetCompatibility = appJavaCompatibility
     }
