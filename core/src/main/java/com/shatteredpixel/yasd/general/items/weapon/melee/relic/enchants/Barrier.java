@@ -85,7 +85,7 @@ public class Barrier extends RelicEnchantment {
                                     Buff.affect(enemy, Paralysis.class, Paralysis.DURATION);
                                     break;
                                 case 2:
-                                    element = Element.CONFUSION;
+                                    element = Element.CHAOS;
                                     Buff.affect(enemy, Vertigo.class, Vertigo.DURATION);
                                     break;
                             }

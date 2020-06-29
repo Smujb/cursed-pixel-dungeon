@@ -90,7 +90,7 @@ public enum Element {
 	WATER( true ),//Wets
 	COLD( true ),//Chills
 	TOXIC( true ),//Poisons
-	CONFUSION( false ),//Confuses
+	CHAOS( false ),//Confuses
 
 	//Air
 	AIR( false ),//Causes "Hex"
@@ -190,7 +190,7 @@ public enum Element {
 					damage *= 1.5f;
 				}
 				break;
-			case CONFUSION:
+			case CHAOS:
 				Buff.affect(defender, Vertigo.class, Vertigo.DURATION);
 				break;
 			case TOXIC:
@@ -307,7 +307,7 @@ public enum Element {
 						cell,
 						attack);
 				break;
-			case CONFUSION:
+			case CHAOS:
 				MagicMissile.boltFromChar( ch.sprite.parent,
 						MagicMissile.RAINBOW,
 						ch.sprite,

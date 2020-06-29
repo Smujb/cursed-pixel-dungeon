@@ -100,7 +100,7 @@ public class Berserk extends Buff {
 					}
 				}
 				if (target.shielding() <= 0) {
-					target.die(new Char.DamageSrc(Element.CONFUSION, this));
+					target.die(new Char.DamageSrc(Element.CHAOS, this));
 					if (!target.isAlive()) Dungeon.fail(this.getClass());
 				}
 			} else {

@@ -552,7 +552,7 @@ public class NewDM300 extends Boss {
 		resistances.add(Frost.class);
 		resistances.add(Roots.class);
 		resistances.add(Slow.class);*/
-		resistances.put(Element.CONFUSION, 0.25f);
+		resistances.put(Element.CHAOS, 0.25f);
 	}
 
 	public static class FallingRocks extends Blob {

@@ -77,7 +77,7 @@ public class Miasma extends Blob {
                                 Buff.prolong(ch, Weakness.class, Weakness.DURATION / 2f);
                                 break;
                             case 3:
-                                ch.damage((int) (ch.HT / 10f), new Char.DamageSrc(Element.CONFUSION, this).ignoreDefense());
+                                ch.damage((int) (ch.HT / 10f), new Char.DamageSrc(Element.CHAOS, this).ignoreDefense());
                                 break;
                         }
                     }
