@@ -1,5 +1,6 @@
 package com.shatteredpixel.yasd.general.items.allies;
 
+import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.sprites.DragonSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
@@ -19,6 +20,11 @@ public class AirDragonPendant extends DragonPendant {
 			baseSpeed = 1.5f;
 			healthFactor = 0.5f;
 			evasionFactor = 1.5f;
+		}
+
+		@Override
+		public Element elementalType() {
+			return Element.AIR;
 		}
 
 		@Override
