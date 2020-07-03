@@ -101,7 +101,7 @@ public class DM200 extends Mob {
 	}
 
 	private boolean beside(Char enemy) {
-		return Dungeon.level.adjacent(enemy.pos, pos);
+		return enemy != null && Dungeon.level.adjacent(enemy.pos, pos);
 	}
 
 	protected boolean zap(Char enemy){
