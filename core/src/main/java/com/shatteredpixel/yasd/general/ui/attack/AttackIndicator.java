@@ -50,8 +50,8 @@ public class AttackIndicator extends Tag {
 	private float delay;
 
 	private CharSprite sprite = null;
-	
-	static Mob lastTarget;
+
+	private Mob lastTarget;
 	private ArrayList<Mob> candidates = new ArrayList<>();
 	
 	public AttackIndicator() {
@@ -74,7 +74,7 @@ public class AttackIndicator extends Tag {
 		super.layout();
 		
 		if (sprite != null) {
-			sprite.x = x + (width - sprite.width()) / 2;
+			sprite.x = x + (width - sprite.width()) / 2 + 1;
 			sprite.y = y + (height - sprite.height()) / 2;
 			PixelScene.align(sprite);
 		}
@@ -149,9 +149,7 @@ public class AttackIndicator extends Tag {
 		sprite.paused = true;
 		add( sprite );
 
-		sprite.x = x + (width - sprite.width()) / 2 + 1;
-		sprite.y = y + (height - sprite.height()) / 2;
-		PixelScene.align(sprite);
+		layout();
 	}
 	
 	protected boolean enabled = true;
@@ -175,18 +173,17 @@ public class AttackIndicator extends Tag {
 		Dungeon.hero.busy();
 	}
 	
-	public static void target( Char target ) {
-		lastTarget = (Mob)target;
-
-		if (lastTarget != null) {
-			for (AttackIndicator indicator : GameScene.attacks()) {
-				indicator.updateImage();
-			}
-		}
-		
-		TargetHealthIndicator.instance.target( target );
+	public void setLastTarget( Char target ) {
+		lastTarget = (Mob) target;
+		updateImage();
+		TargetHealthIndicator.instance.target(target);
 	}
 
+	public static void target( Char target ) {
+		for (AttackIndicator indicator : GameScene.attacks()) {
+			indicator.setLastTarget(target);
+		}
+	}
 
 	public static void updateStates() {
 		for (AttackIndicator indicator : GameScene.attacks()) {

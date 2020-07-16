@@ -181,8 +181,10 @@ public class WndStartGame extends Window {
 					CPDGame.scene().addToFront(new WndChallenges(CPDSettings.challenges(), true) {
 						public void onBackPressed() {
 							super.onBackPressed();
-							icon( Icons.get( CPDSettings.challenges() > 0 ?
-									Icons.CHALLENGE_ON :Icons.CHALLENGE_OFF ) );
+							if (parent != null) {
+								icon(Icons.get(CPDSettings.challenges() > 0 ?
+										Icons.CHALLENGE_ON : Icons.CHALLENGE_OFF));
+							}
 						}
 					} );
 				}
