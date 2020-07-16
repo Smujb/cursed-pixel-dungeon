@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Bundle;
@@ -99,22 +100,13 @@ public class MeleeWeapon extends Weapon {
 		return damage;
 	}
 
-	public float getDamageMultiplier(Char owner) {
-		float multiplier = 1f;
-		multiplier *= DLY;
-		multiplier *= 1/ACC;
-		multiplier *= 2/RCH+1;
-		multiplier *= 1f-(defenseMultiplier/2);
-		if (breaksArmor(owner)) {
-			multiplier *= 0.8f;
+	@Override
+	public Item randomHigh() {
+		super.randomHigh();
+		if (Random.Int(2) == 0) {
+			enchant();
 		}
-		if (!canSurpriseAttack) {
-			multiplier *= 1.3;
-		}
-		if (sneakBenefit) {
-			multiplier *= 0.6f;
-		}
-		return multiplier;
+		return this;
 	}
 
 	@Override

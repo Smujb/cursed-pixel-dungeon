@@ -128,10 +128,7 @@ public class PoolRoom extends SpecialRoom {
 		} while (prize.cursed || Challenges.isItemBlocked(prize));
 		prize.cursedKnown = true;
 		
-		//33% chance for an extra update.
-		if (Random.Int(3) == 0){
-			prize.upgrade();
-		}
+		prize = prize.randomHigh();
 
 		return prize;
 	}

@@ -73,9 +73,6 @@ public class VaultRoom extends LockedRoom {
 			level.drop(i2, c + PathFinder.NEIGHBOURS8[Random.Int(8)]).type = Heap.Type.CRYSTAL_CHEST;
 		}
 		level.addItemToSpawn( new CrystalKey( level.key ) );
-		
-		//entrance().set( Door.Type.LOCKED );
-		//level.addItemToSpawn( new IronKey(Dungeon.xPos, Dungeon.depth, Dungeon.zPos) );
 	}
 	
 	private Item prize( Level level ) {
@@ -84,11 +81,13 @@ public class VaultRoom extends LockedRoom {
 		do {
 			prize = Generator.random(cat);
 		} while (prize == null || Challenges.isItemBlocked(prize));
+		prize.randomHigh();
 		return prize;
 	}
 	
 	private ArrayList<Generator.Category> prizeClasses = new ArrayList<>(
 			Arrays.asList(Generator.Category.WAND,
 					Generator.Category.RING,
-					Generator.Category.ARTIFACT));
+					Generator.Category.ARTIFACT,
+					Generator.Category.DRAGON_PENDANT));
 }

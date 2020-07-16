@@ -173,6 +173,15 @@ public class Armor extends EquipableItem {
 	}
 
 	@Override
+	public Item randomHigh() {
+		super.randomHigh();
+		if (Random.Int(2) == 0) {
+			inscribe();
+		}
+		return this;
+	}
+
+	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions(hero);
 		if (seal != null) actions.add(AC_DETACH);

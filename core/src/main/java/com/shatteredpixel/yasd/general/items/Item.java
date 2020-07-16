@@ -53,6 +53,7 @@ import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
+import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
 import org.jetbrains.annotations.Contract;
@@ -518,6 +519,18 @@ public class Item implements Bundlable {
 	
 	public Item random() {
 		return this;
+	}
+
+	public Item randomHigh() {
+		if (isUpgradable()) {
+			int upgrade = 0;
+			do {
+				upgrade();
+				upgrade++;
+			} while (Random.Int(level * 2) <= Dungeon.getScaleFactor() && upgrade < 100);
+			return this;
+		}
+		return random();
 	}
 	
 	public String status() {
