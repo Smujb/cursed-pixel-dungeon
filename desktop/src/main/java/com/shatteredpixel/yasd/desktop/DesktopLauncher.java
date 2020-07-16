@@ -92,7 +92,7 @@ public class DesktopLauncher {
                 StringSelection stringSelection = new StringSelection(myString);
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                 clipboard.setContents(stringSelection, null);
-                Gdx.app.exit();
+                if (Gdx.app != null) Gdx.app.exit();
             }
         });
 
