@@ -120,6 +120,11 @@ public class YogDzewa extends Boss {
 
 	@Override
 	protected boolean act() {
+		//catches an error-case from 0.8.0 & 0.8.0a
+		if (!isAlive()){
+			die(null);
+		}
+
 		if (phase == 0){
 			if (Dungeon.hero.viewDistance >= Dungeon.level.distance(pos, Dungeon.hero.pos)) {
 				Dungeon.observe();
@@ -288,15 +293,21 @@ public class YogDzewa extends Boss {
 		int preHP = HP;
 		super.damage( dmg, src );
 
-		int dmgTaken = preHP - HP;
-
 		if (phase == 0 || findFist() != null) return;
 
-		abilityCooldown -= dmgTaken/10f;
-		summonCooldown -= dmgTaken/10f;
+		if (phase < 4) {
+			HP = Math.max(HP, HT - (HT/4) * phase);
+		} else if (phase == 4) {
+			HP = Math.max(HP, 100);
+		}
+		int dmgTaken = preHP - HP;
+
+		if (dmgTaken > 0) {
+			abilityCooldown -= dmgTaken / 10f;
+			summonCooldown -= dmgTaken / 10f;
+		}
 
 		if (phase < 4 && HP <= HT - (HT/3)*phase){
-			HP = HT - (HT/3)*phase;
 
 			Dungeon.level.viewDistance = Math.max(1, Dungeon.level.viewDistance-1);
 			if (Dungeon.hero.buff(Light.class) == null){
