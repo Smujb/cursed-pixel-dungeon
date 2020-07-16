@@ -115,7 +115,8 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
         return (int) (super.max(lvl)*0.7f);
     }
 
-    public void activate(Char ch ) {
+    public void activate( Char ch ) {
+        super.activate(ch);
         passiveBuff = passiveBuff();
         if (passiveBuff != null) {
             passiveBuff.attachTo(ch);
@@ -166,14 +167,6 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
     }
 
     public class RelicMeleeWeaponBuff extends Buff {
-
-        public int itemLevel() {
-            return level();
-        }
-
-        public boolean isCursed() {
-            return cursed;
-        }
 
         @Override
         public boolean act() {
