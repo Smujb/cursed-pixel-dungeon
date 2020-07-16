@@ -1024,11 +1024,12 @@ public abstract class Char extends Actor {
 	}
 
 	public boolean fieldOfView(int pos) {
-		if (fieldOfView == null || Dungeon.level == null) {
+		if (Dungeon.level == null) {
 			return false;
-		} else if (fieldOfView.length != Dungeon.level.length()) {
+		} else if (fieldOfView == null || fieldOfView.length != Dungeon.level.length()) {
 			fieldOfView = new boolean[Dungeon.level.length()];
-			return false;
+			Dungeon.level.updateFieldOfView(this, fieldOfView);
+			return fieldOfView(pos);
 		} else {
 			return fieldOfView[pos];
 		}

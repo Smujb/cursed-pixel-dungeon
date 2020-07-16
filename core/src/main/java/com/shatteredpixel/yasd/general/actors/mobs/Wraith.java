@@ -161,7 +161,7 @@ public class Wraith extends Mob {
 		ArrayList<Integer> cells = new  ArrayList<>();
 
 		for( Integer cell : Dungeon.level.getPassableCellsList() ){
-			if( pos != cell && enemy.fieldOfView[ cell ] ) {
+			if( pos != cell && enemy.fieldOfView( cell ) ) {
 				cells.add( cell );
 			}
 		}
