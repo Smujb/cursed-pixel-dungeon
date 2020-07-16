@@ -51,7 +51,7 @@ public class AttackIndicator extends Tag {
 
 	private CharSprite sprite = null;
 
-	private Mob lastTarget;
+	Mob lastTarget;
 	private ArrayList<Mob> candidates = new ArrayList<>();
 	
 	public AttackIndicator() {
