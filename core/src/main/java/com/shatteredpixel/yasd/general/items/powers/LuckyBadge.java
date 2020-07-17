@@ -243,7 +243,7 @@ public class LuckyBadge extends Power {
 			return genHighValueConsumable();
 		} else if (roll < 0.9f){ //30% chance
 			Item result;
-			int random = Random.Int(3);
+			int random = Random.Int(4);
 			switch (random){
 				default:
 					result = Generator.random(Generator.Category.ARTIFACT);
@@ -254,24 +254,24 @@ public class LuckyBadge extends Power {
 				case 2:
 					result = Generator.random(Generator.Category.WAND);
 					break;
-				//TODO
-				//case 3:
-				//	result = Generator.random(Generator.Category.ALLIES);
+				case 3:
+					result = Generator.random(Generator.Category.DRAGON_PENDANT);
 			}
+			result.randomHigh();
 			result.cursed = false;
 			result.cursedKnown = true;
 			return result;
 		} else { //10% chance
 			if (Random.Int(3) != 0){
 				Weapon weapon = Generator.randomWeapon((Dungeon.getScaleFactor() / 5) + 1);
-				weapon.upgrade(1);
+				weapon.randomHigh();
 				weapon.enchant(Weapon.Enchantment.random());
 				weapon.cursed = false;
 				weapon.cursedKnown = true;
 				return weapon;
 			} else {
 				Armor armor = Generator.randomArmor((Dungeon.getScaleFactor() / 5) + 1);
-				armor.upgrade();
+				armor.randomHigh();
 				armor.inscribe(Armor.Glyph.random());
 				armor.cursed = false;
 				armor.cursedKnown = true;
