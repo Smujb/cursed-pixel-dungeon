@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general.levels;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -29,18 +30,14 @@ public class GrindLevel extends TiledMapLevel {
 		viewDistance = 20;
 	}
 
+
+
 	public int spawn;
 	public static String SPAWN = "spawn";
 
 	@Override
-	public float respawnTime() {//Respawn time depends on current number of mobs.
-		if (mobs.size() > 6) {
-			return 15f;
-		} else if  (mobs.size() > 2) {
-			return 5f;
-		} else {
-			return 1f;
-		}
+	public float respawnTime() {
+		return 10f/LuckyBadge.mobSpawnFactor;
 	}
 
 	@Override
@@ -114,7 +111,6 @@ public class GrindLevel extends TiledMapLevel {
 		return 10;
 	}
 
-
 	public static class Guardian extends Mob {
 
 		{
@@ -123,16 +119,10 @@ public class GrindLevel extends TiledMapLevel {
 			EXP = 0;
 			state = WANDERING;
 		}
-		int lootAmt = 2;
 
 		@Override
 		public String description() {
 			return Messages.get(Guardian.class,"desc") + "\n\n" + super.description();
-		}
-
-		public Guardian() {
-			super();
-			aggro(Dungeon.hero);
 		}
 
 		@Override
@@ -142,36 +132,45 @@ public class GrindLevel extends TiledMapLevel {
 
 		@Override
 		public void die(DamageSrc cause) {
-			for (int i = 0; i < lootAmt; i++){
-				int ofs;
-				do {
-					ofs = PathFinder.NEIGHBOURS8[Random.Int(8)];
-				} while (!Dungeon.level.passable(pos + ofs));
-				Dungeon.level.drop(LuckyBadge.tryForBonusDrop(), pos + ofs ).sprite.drop( pos );
+			if (cause.getElement() != Element.META) {
+				for (int i = 0; i < Math.pow(3, LuckyBadge.mobLevelFactor); i++) {
+					int ofs;
+					do {
+						ofs = PathFinder.NEIGHBOURS8[Random.Int(8)];
+					} while (!Dungeon.level.passable(pos + ofs));
+					Dungeon.level.drop(LuckyBadge.tryForBonusDrop(), pos + ofs).sprite.drop(pos);
+					LuckyBadge.score++;
+				}
+				if (CPDSettings.validateGrindingHighScore(LuckyBadge.score)) {
+					LuckyBadge.scoreBeaten = true;
+				}
 			}
 			super.die(cause);
 		}
 
 		@Override
 		protected boolean act() {
-			beckon( Dungeon.hero.pos );
+			if (alignment != Dungeon.hero.alignment) {
+				beckon(Dungeon.hero.pos);
+			}
 			return super.act();
 		}
 
 		@Override
 		protected void onCreate() {
 			super.onCreate();
-			HP = HT *= 0.5f;
+			level *= LuckyBadge.mobLevelFactor/2f;
+			updateHT(true);
 		}
 
 		@Override
 		public int damageRoll() {
-			return (int) (super.damageRoll()*0.5f);
+			return (int) (super.damageRoll());
 		}
 
 		@Override
 		public int drRoll(Element element) {
-			return (int) (super.drRoll(element)*0.5f);
+			return (int) (super.drRoll(element));
 		}
 	}
 
@@ -213,7 +212,6 @@ public class GrindLevel extends TiledMapLevel {
 			spriteClass = BlueGuardianSprite.class;
 			baseSpeed = 0.5f;
 			drFactor = 2f;
-			lootAmt = 4;
 			resistances.put(Element.SHADOW, 0.5f);
 		}
 	}
@@ -221,7 +219,6 @@ public class GrindLevel extends TiledMapLevel {
 	public static class PurpleGuardian extends BlueGuardian {
 		{
 			spriteClass = PurpleGuardianSprite.class;
-			lootAmt = 6;//Tanky and rare so 1 (normal) +1 (tanky) +1 (rare)
 		}
 
 		@Override
@@ -301,7 +298,6 @@ public class GrindLevel extends TiledMapLevel {
 			spriteClass = OrangeGuardianSprite.class;
 			baseSpeed = 1f;
 			resistances.put(Element.FIRE, 0.3f);
-			lootAmt = 4;//Rare variant
 
 			range = 4;
 		}

@@ -53,6 +53,7 @@ public class LevelHandler {
 	private static boolean fallIntoPit;
 	public static int depth;
 	public static String key;
+	public static Callback callback;
 
 
 	public static String filename(String key, int slot) {
@@ -292,6 +293,9 @@ public class LevelHandler {
 		}
 
 		Dungeon.switchLevel(level, pos);
+		if (callback != null) {
+			callback.call();
+		}
 	}
 
 	private static void restore() throws IOException {

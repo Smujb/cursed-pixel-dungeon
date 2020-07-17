@@ -86,6 +86,7 @@ import com.shatteredpixel.yasd.general.items.keys.SkeletonKey;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
+import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.rings.RingOfAttunement;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfEvasion;
@@ -100,6 +101,7 @@ import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
+import com.shatteredpixel.yasd.general.levels.GrindLevel;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
 import com.shatteredpixel.yasd.general.levels.interactive.InteractiveArea;
 import com.shatteredpixel.yasd.general.levels.terrain.KindOfTerrain;
@@ -1424,7 +1426,12 @@ public class Hero extends Char {
 			}
 		}
 
-		if (ankh != null) {
+		if (Dungeon.level instanceof GrindLevel && Dungeon.key.equals(LuckyBadge.AC_GRIND)) {
+			Ankh.revive(this, null);
+			GLog.p(Messages.get(LuckyBadge.class, "saved_death"));
+			LuckyBadge.doReturn();
+			return;
+		} else if (ankh != null) {
 			ankh.revive(this);
 			return;
 		}

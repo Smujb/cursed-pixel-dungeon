@@ -220,6 +220,19 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 	public static final String KEY_TESTING		= "testing";
 	public static final String KEY_CHAPTER		= "chapter";
 	public static final String KEY_RELIC_WEAPON		= "relic_weapon %s";
+	public static final String KEY_GRINDING_HIGH_SCORE	= "grinding_high_score";
+
+	public static boolean validateGrindingHighScore( int value ) {
+		if (value <= getGrindingHighScore()) {
+			return false;
+		}
+		put( KEY_GRINDING_HIGH_SCORE, value );
+		return true;
+	}
+
+	public static int getGrindingHighScore() {
+		return getInt( KEY_GRINDING_HIGH_SCORE, 0);
+	}
 	
 	public static void intro( boolean value ) {
 		put( KEY_INTRO, value );

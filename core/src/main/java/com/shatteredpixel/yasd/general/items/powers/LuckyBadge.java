@@ -1,9 +1,15 @@
 package com.shatteredpixel.yasd.general.items.powers;
 
+import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.LevelHandler;
+import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Heap;
@@ -16,10 +22,22 @@ import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
+import com.shatteredpixel.yasd.general.levels.GrindLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.sprites.MissileSprite;
+import com.shatteredpixel.yasd.general.ui.OptionSlider;
+import com.shatteredpixel.yasd.general.ui.RedButton;
+import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
+import com.shatteredpixel.yasd.general.ui.Window;
+import com.shatteredpixel.yasd.general.utils.GLog;
+import com.shatteredpixel.yasd.general.windows.IconTitle;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.Image;
+import com.watabou.noosa.tweeners.Delayer;
+import com.watabou.noosa.ui.Button;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
@@ -40,7 +58,15 @@ public class LuckyBadge extends Power {
 	public static final String AC_GRIND = "grind";
 	public static final String AC_HOME = "home";
 	public static final String AC_RETURN = "return";
-	public static final String AC_GRAB = "grab";
+	private static String MOB_LEVEL_FACTOR = "mob_level_factor";
+	private static String MOB_SPAWN_FACTOR = "mob_spawn_factor";
+	private static String SCORE = "score";
+	private static String SCORE_BEATEN = "score_beaten";
+
+	public static float mobLevelFactor = 1f;
+	public static float mobSpawnFactor = 1f;
+	public static int score = 0;
+	public static boolean scoreBeaten = false;
 
 	public enum Type {NONE, GRIND, SPEED}
 
@@ -55,9 +81,9 @@ public class LuckyBadge extends Power {
 	private static final String RETURN_DEPTH = "returnDepth";
 	private static final String RETURN_KEY = "returnKey";
 
-	private int returnPos = -1;
-	private String returnKey = null;
-	private int returnDepth = -1;
+	private static int returnPos = -1;
+	private static String returnKey = null;
+	private static int returnDepth = -1;
 	private static boolean latestDropWasRare = false;
 
 	@Override
@@ -70,7 +96,6 @@ public class LuckyBadge extends Power {
 		ArrayList<String> actions = new ArrayList<>();
 		if (Dungeon.key.equals(AC_GRIND) || Dungeon.key.equals(AC_HOME)) {
 			actions.add(AC_RETURN);
-			actions.add(AC_GRAB);
 		} else {
 			if (type == Type.GRIND) {
 				actions.add(AC_GRIND);
@@ -85,50 +110,74 @@ public class LuckyBadge extends Power {
 		super.execute(hero, action);
 		switch (action) {
 			case AC_GRIND:
-				returnKey = Dungeon.key;
-				returnPos = hero.pos;
-				returnDepth = Dungeon.depth;
-				LevelHandler.move(AC_GRIND, Messages.get(this, "grind"), LevelHandler.Mode.RETURN, 0, -1);
+				CPDGame.runOnRenderThread(new Callback() {
+					@Override
+					public void call() {
+						Game.scene().addToFront(new WndChooseGrind());
+					}
+				});
 				break;
 			case AC_HOME:
 				returnKey = Dungeon.key;
 				returnPos = hero.pos;
 				returnDepth = Dungeon.depth;
-				LevelHandler.move(AC_HOME, Messages.get(this, "home"), LevelHandler.Mode.RETURN, 0, -1);
+				LevelHandler.move(AC_HOME, Messages.get(this, AC_HOME), LevelHandler.Mode.RETURN, 0, -1);
 				break;
 			case AC_RETURN:
-				if (returnKey == null) {
-					returnKey = Dungeon.keyForDepth();
-				}
-				if (returnDepth < 0) {
-					returnDepth = 0;
-				}
-				LevelHandler.returnTo(returnKey, returnDepth, returnPos);
-				returnDepth = -1;
-				returnPos = -1;
-				returnKey = null;
+				doReturn();
 				break;
-			case AC_GRAB:
-				for (Heap heap : Dungeon.level.heaps.valueList()) {
-					for (Item item : heap.items.toArray(new Item[0])) {
-						((MissileSprite) hero.sprite.parent.recycle(MissileSprite.class)).
-								reset(heap.pos,
-										hero.sprite,
-										item,
-										new Callback() {
-											@Override
-											public void call() {
-												if (item.collect(hero.belongings.backpack, hero)) {
-													GameScene.pickUp( item, hero.pos );
-												} else {
-													Dungeon.level.drop(item, hero.pos).sprite.drop(heap.pos);
-												}
-											}
-										});
-					}
-					heap.destroy();
-				}
 		}
+	}
+
+	public static void doReturn() {
+		if (scoreBeaten) {
+			GLog.p(Messages.get(LuckyBadge.class, "new_high_score", score));
+			scoreBeaten = false;
+		}
+		score = 0;
+		Hero hero = Dungeon.hero;
+		for (Heap heap : Dungeon.level.heaps.valueList()) {
+			for (Item item : heap.items.toArray(new Item[0])) {
+				((MissileSprite) hero.sprite.parent.recycle(MissileSprite.class)).
+						reset(heap.pos,
+								hero.sprite,
+								item,
+								new Callback() {
+									@Override
+									public void call() {
+										if (item.collect(hero.belongings.backpack, hero)) {
+											GameScene.pickUp(item, hero.pos);
+										} else {
+											Dungeon.level.drop(item, hero.pos).sprite.drop(heap.pos);
+										}
+									}
+								});
+			}
+			heap.destroy();
+		}
+		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+			if (mob.alignment == Char.Alignment.ENEMY || mob instanceof GrindLevel.Guardian) {
+				mob.die(new Char.DamageSrc(Element.META));
+			}
+		}
+		Game.scene().add(new Delayer(2f) {
+			@Override
+			protected void updateValues(float progress) {
+				hero.busy();
+				if (progress >= 1f) {
+					if (returnKey == null) {
+						returnKey = Dungeon.keyForDepth();
+					}
+					if (returnDepth < 0) {
+						returnDepth = 0;
+					}
+					LevelHandler.returnTo(returnKey, returnDepth, returnPos);
+					returnDepth = -1;
+					returnPos = -1;
+					returnKey = null;
+				}
+			}
+		});
 	}
 
 	@Override
@@ -137,6 +186,10 @@ public class LuckyBadge extends Power {
 		bundle.put(RETURN_KEY, returnKey);
 		bundle.put(RETURN_POS, returnPos);
 		bundle.put(RETURN_DEPTH, returnDepth);
+		bundle.put(SCORE, score);
+		bundle.put(MOB_LEVEL_FACTOR, mobLevelFactor);
+		bundle.put(MOB_SPAWN_FACTOR, mobSpawnFactor);
+		bundle.put(SCORE_BEATEN, scoreBeaten);
 	}
 
 	@Override
@@ -145,6 +198,10 @@ public class LuckyBadge extends Power {
 		returnKey = bundle.getString(RETURN_KEY);
 		returnPos = bundle.getInt(RETURN_POS);
 		returnDepth = bundle.getInt(RETURN_DEPTH);
+		score = bundle.getInt(SCORE);
+		mobLevelFactor = bundle.getFloat(MOB_LEVEL_FACTOR);
+		mobSpawnFactor = bundle.getFloat(MOB_SPAWN_FACTOR);
+		scoreBeaten = bundle.getBoolean(SCORE_BEATEN);
 	}
 
 	@Override
@@ -290,6 +347,69 @@ public class LuckyBadge extends Power {
 				return Generator.random(Generator.Category.ELIXIR);
 			case 3:
 				return new MeatPie();
+		}
+	}
+
+	public static class WndChooseGrind extends Window {
+		public WndChooseGrind() {
+			IconTitle titlebar = new IconTitle();
+			titlebar.icon( new Image(Assets.LOADING_PRISON));
+			titlebar.label(Messages.get(this, "title"));
+			titlebar.setRect(0, 0, WIDTH, 0);
+			add( titlebar );
+
+			float pos = titlebar.bottom() + GAP;
+
+			RenderedTextBlock message = PixelScene.renderTextBlock( Messages.get(this, "body", CPDSettings.getGrindingHighScore()), 6 );
+			message.maxWidth(WIDTH);
+			message.setPos(0, pos);
+			add( message );
+
+			pos = message.bottom() + GAP;
+
+			OptionSlider powerSlider = new OptionSlider(Messages.get(this, "choose_power"),
+					"1x", "4x", 1, 4) {
+				@Override
+				protected void onChange() {
+					mobLevelFactor = getSelectedValue();
+				}
+			};
+			powerSlider.setSelectedValue((int) mobLevelFactor);
+			powerSlider.setRect(0, pos, WIDTH, BTN_HEIGHT);
+			add(powerSlider);
+
+			pos = powerSlider.bottom() + GAP;
+
+			OptionSlider spawnDelaySlider = new OptionSlider(Messages.get(this, "choose_spawn_delay"),
+					"1x", "0.25x", 1, 4) {
+				@Override
+				protected void onChange() {
+					mobSpawnFactor = getSelectedValue();
+				}
+			};
+			spawnDelaySlider.setSelectedValue((int) mobSpawnFactor);
+			spawnDelaySlider.setRect(0, pos, WIDTH, BTN_HEIGHT);
+			add(spawnDelaySlider);
+
+
+			pos = spawnDelaySlider.bottom() + GAP;
+
+			Button okButton = new RedButton(Messages.get(this, "confirm")) {
+				@Override
+				protected void onClick() {
+					super.onClick();
+					returnKey = Dungeon.key;
+					returnPos = Dungeon.hero.pos;
+					returnDepth = Dungeon.depth;
+					LevelHandler.move(AC_GRIND, Messages.get(this, AC_GRIND), LevelHandler.Mode.RETURN, 0, -1);
+				}
+			};
+			okButton.setRect(0, pos, WIDTH, BTN_HEIGHT);
+			add(okButton);
+
+			pos = okButton.bottom() + GAP;
+
+			resize(WIDTH, (int) pos);
 		}
 	}
 }
