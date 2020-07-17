@@ -56,6 +56,7 @@ import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
 import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
+import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.chapters.prison.NewPrisonBossLevel;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -652,7 +653,12 @@ public class NewTengu extends Boss {
 				
 				image = ItemSpriteSheet.TENGU_BOMB;
 			}
-			
+
+			@Override
+			public boolean collect(Bag container, Char ch) {
+				return doPickUp((Hero) ch);
+			}
+
 			@Override
 			public boolean doPickUp( Hero hero ) {
 				GLog.w( Messages.get(this, "cant_pickup") );
@@ -1020,7 +1026,12 @@ public class NewTengu extends Boss {
 				
 				image = ItemSpriteSheet.TENGU_SHOCKER;
 			}
-			
+
+			@Override
+			public boolean collect(Bag container, Char ch) {
+				return doPickUp((Hero) ch);
+			}
+
 			@Override
 			public boolean doPickUp( Hero hero ) {
 				GLog.w( Messages.get(this, "cant_pickup") );
