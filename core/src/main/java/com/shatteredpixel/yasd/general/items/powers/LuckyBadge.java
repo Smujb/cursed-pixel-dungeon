@@ -367,8 +367,12 @@ public class LuckyBadge extends Power {
 
 			pos = message.bottom() + GAP;
 
+			if (mobLevelFactor > 3) {
+				mobLevelFactor = 3;
+			}
+
 			OptionSlider powerSlider = new OptionSlider(Messages.get(this, "choose_power"),
-					"1x", "4x", 1, 4) {
+					"1x", "3x", 1, 3) {
 				@Override
 				protected void onChange() {
 					mobLevelFactor = getSelectedValue();
