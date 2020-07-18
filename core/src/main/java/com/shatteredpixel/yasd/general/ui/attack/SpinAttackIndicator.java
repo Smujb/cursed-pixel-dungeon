@@ -12,6 +12,10 @@ import com.watabou.utils.PathFinder;
 
 public class SpinAttackIndicator extends AttackIndicator {
 
+	{
+		attackType = Char.AttackType.SPIN;
+	}
+
 	public SpinAttackIndicator() {
 		color(Constants.Colours.PURE_GREEN);
 	}

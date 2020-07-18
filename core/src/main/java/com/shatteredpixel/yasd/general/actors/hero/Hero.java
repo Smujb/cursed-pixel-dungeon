@@ -245,19 +245,19 @@ public class Hero extends Char {
 		return maxStamina;
 	}
 
-	public void useStamina(float amount) {
+	public boolean canUseStamina(float amount) {
+		return stamina - amount > 0;
+	}
+
+	public boolean useStamina(float amount) {
 		if (Dungeon.depth == 0) {
-			return;
+			return true;
 		}
-		stamina -= amount;
-		if (stamina < 0) {
-			int damage = (int) (stamina*3);
-			stamina = 0;
-			Buff.affect(this, Hunger.class).reduceHunger(damage);
-			if (!isAlive()){
-				Dungeon.fail( Stamina.class );
-				GLog.n( Messages.get( this, "exhausted") );
-			}
+		if (canUseStamina(amount)) {
+			stamina -= amount;
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -971,8 +971,6 @@ public class Hero extends Char {
 		}
 		return false;
 	}
-
-
 
 	public Char enemy(){
 		return enemy;
