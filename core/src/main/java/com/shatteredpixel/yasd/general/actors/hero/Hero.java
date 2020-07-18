@@ -98,7 +98,6 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
 import com.shatteredpixel.yasd.general.levels.GrindLevel;
@@ -964,13 +963,6 @@ public class Hero extends Char {
 		StaminaRegen.regen = false;
 		if (enemy.isAlive() && canAttack( enemy ) && !isCharmedBy( enemy )) {
 			float cost = type.staminaCost();
-			KindOfWeapon weapon = belongings.getWeapon();
-			if (weapon != null) {
-				if (weapon instanceof MeleeWeapon) {
-					cost *= ((MeleeWeapon) weapon).STRReq() / 10f;
-					cost *= ((MeleeWeapon) weapon).DLY;
-				}
-			}
 			useStamina(cost);
 
 			sprite.attack(enemy.pos, type);
