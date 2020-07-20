@@ -212,7 +212,7 @@ public abstract class Mob extends Char {
 	}
 
 	private int normalHP(int level) {
-		return 8 + 10 * level;
+		return 4 + 12 * level;
 	}
 
 	private static final float FACTOR = 0.75f;
@@ -239,7 +239,7 @@ public abstract class Mob extends Char {
 	}
 
 	protected final int normalMax(int level) {
-		return 4 + level * 5;
+		return 4 + level * 6;
 	}
 
 	protected final int normalMin(int level) {

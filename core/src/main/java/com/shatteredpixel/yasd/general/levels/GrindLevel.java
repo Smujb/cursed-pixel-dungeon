@@ -133,7 +133,7 @@ public class GrindLevel extends TiledMapLevel {
 		@Override
 		public void die(DamageSrc cause) {
 			if (cause.getElement() != Element.META) {
-				for (int i = 0; i < 3 + Math.pow(2, LuckyBadge.mobLevelFactor); i++) {
+				for (int i = 0; i < 3 + Math.pow(3, LuckyBadge.mobLevelFactor); i++) {
 					int ofs;
 					do {
 						ofs = PathFinder.NEIGHBOURS8[Random.Int(8)];
