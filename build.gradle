@@ -32,6 +32,7 @@ buildscript {
         jcenter()
     }
     dependencies {
+        //noinspection GradleDependency
         classpath 'com.android.tools.build:gradle:3.6.3'
     }
 }
@@ -41,8 +42,8 @@ allprojects {
         appName = 'Cursed Pixel Dungeon'
         appPackageName = 'com.smujamesb.cursedpixeldungeon'
 
-        appVersionCode = 16
-        appVersionName = '0.3.9'
+        appVersionCode = 17
+        appVersionName = '0.3.9a'
         appJavaCompatibility = 1.8
 
         appAndroidCompileSDK = 29
