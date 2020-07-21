@@ -31,6 +31,8 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 
 public class Foresight extends FlavourBuff {
+
+	public static final float DURATION = 600f;
 	
 	{
 		type = buffType.POSITIVE;
@@ -40,6 +42,11 @@ public class Foresight extends FlavourBuff {
 	@Override
 	public int icon() {
 		return BuffIndicator.FORESIGHT;
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 	
 	@Override

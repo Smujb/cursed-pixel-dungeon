@@ -87,16 +87,6 @@ public class Slime extends Mob {
 			return Element.ACID;
 		}
 
-		/*@Override
-		public int attackProc(Char enemy, int damage ) {
-			if (Random.Int( 2 ) == 0) {
-				Buff.affect( enemy, Ooze.class ).set( 20f );
-				enemy.sprite.burst( 0x000000, 5 );
-			}
-
-			return super.attackProc( enemy, damage );
-		}*/
-
 		@Override
 		public void rollToDropLoot() {
 			if (Dungeon.hero.lvl > Dungeon.getScaleFactor() + 3) return;

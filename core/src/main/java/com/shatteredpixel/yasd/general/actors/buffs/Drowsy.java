@@ -30,11 +30,10 @@ package com.shatteredpixel.yasd.general.actors.buffs;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
-import com.watabou.utils.Random;
-
-import org.jetbrains.annotations.NotNull;
 
 public class Drowsy extends Buff {
+
+	public static final float DURATION = 5f;
 
 	{
 		type = buffType.NEUTRAL;
@@ -46,10 +45,16 @@ public class Drowsy extends Buff {
 		return BuffIndicator.DROWSY;
 	}
 
-	public boolean attachTo(@NotNull Char target ) {
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
+	}
+
+	public boolean attachTo(Char target ) {
 		if (!target.isImmune(Sleep.class) && super.attachTo(target)) {
-			if (cooldown() == 0)
-				spend(Random.Int(3, 6));
+			if (cooldown() == 0) {
+				spend(DURATION);
+			}
 			return true;
 		}
 		return false;

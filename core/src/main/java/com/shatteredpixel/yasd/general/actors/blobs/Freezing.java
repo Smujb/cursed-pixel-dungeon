@@ -38,7 +38,6 @@ import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.SnowParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.watabou.utils.Random;
 
 public class Freezing extends Blob {
 	
@@ -79,8 +78,8 @@ public class Freezing extends Blob {
 			} else {
 				Buff.affect(ch, Chill.class, Dungeon.level.liquid(cell) ? 5f : 3f);
 				Chill chill = ch.buff(Chill.class);
-				if (chill != null && chill.cooldown() >= 10f){
-					Buff.affect(ch, Frost.class, 5f);
+				if (chill != null && chill.cooldown() >= Chill.DURATION){
+					Buff.affect(ch, Frost.class, Frost.DURATION);
 				}
 			}
 		}
@@ -106,9 +105,9 @@ public class Freezing extends Blob {
 		Char ch = Actor.findChar( cell );
 		if (ch != null) {
 			if (Dungeon.level.liquid(ch.pos)){
-				Buff.prolong(ch, Frost.class, Frost.duration(ch) * Random.Float(5f, 7.5f));
+				Buff.prolong(ch, Frost.class, Frost.DURATION * 3);
 			} else {
-				Buff.prolong(ch, Frost.class, Frost.duration(ch) * Random.Float(1.0f, 1.5f));
+				Buff.prolong(ch, Frost.class, Frost.DURATION);
 			}
 		}
 		

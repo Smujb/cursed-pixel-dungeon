@@ -45,6 +45,11 @@ public class Hex extends FlavourBuff {
 	}
 
 	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
+	}
+
+	@Override
 	public String toString() {
 		return Messages.get(this, "name");
 	}

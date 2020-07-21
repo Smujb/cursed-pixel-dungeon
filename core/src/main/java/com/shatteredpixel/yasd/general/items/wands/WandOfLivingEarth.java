@@ -260,6 +260,11 @@ public class WandOfLivingEarth extends DamageWand {
 		}
 
 		@Override
+		public float iconFadePercent() {
+			return Math.max(0, (armorToGuardian() - armor) / armorToGuardian());
+		}
+
+		@Override
 		public String toString() {
 			return Messages.get(this, "name");
 		}

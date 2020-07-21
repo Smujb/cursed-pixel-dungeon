@@ -5,6 +5,7 @@ import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
+import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
@@ -58,6 +59,11 @@ public class Focus extends Buff {
 	@Override
 	public int icon() {
 		return BuffIndicator.MIND_VISION;
+	}
+
+	@Override
+	public void tintIcon(Image icon) {
+		icon.hardlight(0.25f, 1.5f, 1f);
 	}
 
 	@Override

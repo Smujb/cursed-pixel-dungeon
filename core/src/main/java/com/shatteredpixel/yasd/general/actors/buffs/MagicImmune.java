@@ -33,7 +33,9 @@ import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.noosa.Image;
 
 public class MagicImmune extends FlavourBuff {
-	
+
+	public static final float DURATION = 20f;
+
 	{
 		type = buffType.POSITIVE;
 		announced = true;
@@ -53,6 +55,11 @@ public class MagicImmune extends FlavourBuff {
 	@Override
 	public void tintIcon(Image icon) {
 		icon.hardlight(0, 1, 0);
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 	
 	@Override

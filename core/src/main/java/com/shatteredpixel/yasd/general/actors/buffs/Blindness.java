@@ -33,6 +33,8 @@ import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 
 public class Blindness extends FlavourBuff {
 
+	public static final float DURATION = 10f;
+
 	{
 		type = buffType.NEGATIVE;
 		announced = true;
@@ -47,6 +49,11 @@ public class Blindness extends FlavourBuff {
 	@Override
 	public int icon() {
 		return BuffIndicator.BLINDNESS;
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 	
 	@Override

@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.actors.buffs;
 
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.utils.Bundle;
@@ -74,6 +75,15 @@ public class Barkskin extends Buff {
 	@Override
 	public int icon() {
 		return BuffIndicator.BARKSKIN;
+	}
+
+	@Override
+	public float iconFadePercent() {
+		if (target instanceof Hero){
+			float max = ((Hero) target).lvl + 5;
+			return (max-level)/max;
+		}
+		return 0;
 	}
 	
 	@Override

@@ -37,6 +37,8 @@ public class Terror extends FlavourBuff {
 
 	private static final String OBJECT    = "object";
 
+	public static final float DURATION = 20f;
+
 	{
 		type = buffType.NEGATIVE;
 		announced = true;
@@ -57,6 +59,11 @@ public class Terror extends FlavourBuff {
 	@Override
 	public int icon() {
 		return BuffIndicator.TERROR;
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 
 	@Override

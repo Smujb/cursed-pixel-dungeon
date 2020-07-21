@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.items.food;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Burning;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
-import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
 import com.shatteredpixel.yasd.general.actors.buffs.Poison;
 import com.shatteredpixel.yasd.general.actors.buffs.Roots;
 import com.shatteredpixel.yasd.general.actors.buffs.Slow;
@@ -40,8 +39,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Random;
-
-import org.jetbrains.annotations.NotNull;
 
 public class MysteryMeat extends Food {
 
@@ -68,11 +65,11 @@ public class MysteryMeat extends Food {
 				break;
 			case 1:
 				GLog.w( Messages.get(MysteryMeat.class, "legs") );
-				Buff.prolong( hero, Roots.class, Paralysis.DURATION );
+				Buff.prolong( hero, Roots.class, Roots.DURATION*2f );
 				break;
 			case 2:
 				GLog.w( Messages.get(MysteryMeat.class, "not_well") );
-				Buff.affect( hero, Poison.class ).set( hero.HT / 5 );
+				Buff.affect( hero, Poison.class ).set( hero.HT / 5f );
 				break;
 			case 3:
 				GLog.w( Messages.get(MysteryMeat.class, "stuffed") );

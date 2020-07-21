@@ -84,6 +84,11 @@ public class Paralysis extends FlavourBuff {
 	}
 
 	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
+	}
+
+	@Override
 	public void fx(boolean on) {
 		if (on) target.sprite.add(CharSprite.State.PARALYSED);
 		else target.sprite.remove(CharSprite.State.PARALYSED);
@@ -102,10 +107,6 @@ public class Paralysis extends FlavourBuff {
 	@Override
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());
-	}
-
-	public static float duration( Char ch ) {
-		return DURATION;
 	}
 	
 	public static class ParalysisResist extends Buff {

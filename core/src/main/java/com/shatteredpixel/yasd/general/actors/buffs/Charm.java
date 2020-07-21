@@ -33,6 +33,8 @@ import com.watabou.utils.Bundle;
 
 public class Charm extends FlavourBuff {
 
+	public static final float DURATION = 10f;
+
 	public int object = 0;
 
 	private static final String OBJECT    = "object";
@@ -57,6 +59,11 @@ public class Charm extends FlavourBuff {
 	@Override
 	public int icon() {
 		return BuffIndicator.HEART;
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 	
 	@Override

@@ -123,7 +123,12 @@ public class PrismaticGuard extends Buff {
 	
 	@Override
 	public void tintIcon(Image icon) {
-		icon.tint(0.5f, 0.5f, 1, 0.5f);
+		icon.hardlight(1f, 1f, 2f);
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return 1f - HP/(float)maxHP();
 	}
 	
 	@Override

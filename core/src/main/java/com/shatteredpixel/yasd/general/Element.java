@@ -168,7 +168,7 @@ public enum Element {
 				break;
 			case ACID:
 				if (Random.Int(2) == 0) {
-					Buff.affect(defender, Ooze.class).set(20f);
+					Buff.affect(defender, Ooze.class).set( Ooze.DURATION );
 				}
 				break;
 			case SHADOW:
@@ -205,18 +205,8 @@ public enum Element {
 	}
 
 	public int defenseProc(int damage, Char attacker, Char defender) {
-		//switch (this) {
-		//	case ACID:
-		//		Buff.affect(attacker, Ooze.class).set(20f);
-		//		break;
-		//}
 		return damage;
 	}
-
-	/*public int affectDamage(Char ch, int damage) {
-		damage = Math.max(damage - ch.drRoll(this), 0);
-		return damage;
-	}*/
 
 	public void FX(Char ch, int cell, Callback attack) {
 		final Char target = Actor.findChar(cell);

@@ -39,6 +39,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.shatteredpixel.yasd.general.utils.GLog;
+import com.watabou.noosa.Image;
 import com.watabou.utils.Random;
 
 import org.jetbrains.annotations.NotNull;
@@ -47,7 +48,7 @@ import java.util.ArrayList;
 
 public class Frost extends FlavourBuff {
 
-	private static final float DURATION	= 5f;
+	public static final float DURATION	= 10f;
 
 	{
 		type = buffType.NEGATIVE;
@@ -106,12 +107,22 @@ public class Frost extends FlavourBuff {
 		if (target.paralysed > 0)
 			target.paralysed--;
 		if (Dungeon.level.liquid(target.pos))
-			Buff.prolong(target, Chill.class, 4f);
+			Buff.prolong(target, Chill.class, Chill.DURATION/2f);
 	}
 	
 	@Override
 	public int icon() {
 		return BuffIndicator.FROST;
+	}
+
+	@Override
+	public void tintIcon(Image icon) {
+		icon.hardlight(0f, 0.75f, 1f);
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 
 	@Override
@@ -128,9 +139,5 @@ public class Frost extends FlavourBuff {
 	@Override
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());
-	}
-
-	public static float duration( Char ch ) {
-		return DURATION;
 	}
 }

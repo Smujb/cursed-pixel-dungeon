@@ -39,6 +39,8 @@ import com.watabou.utils.Random;
 
 public class Ooze extends Buff {
 
+	public static final float DURATION = 20f;
+
 	{
 		type = buffType.NEGATIVE;
 		announced = true;
@@ -75,6 +77,11 @@ public class Ooze extends Buff {
 	@Override
 	public int icon() {
 		return BuffIndicator.OOZE;
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - left) / DURATION);
 	}
 	
 	@Override

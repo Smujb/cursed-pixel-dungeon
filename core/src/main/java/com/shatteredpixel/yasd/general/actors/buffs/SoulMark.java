@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.actors.buffs;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
+import com.watabou.noosa.Image;
 
 public class SoulMark extends FlavourBuff {
 
@@ -43,6 +44,16 @@ public class SoulMark extends FlavourBuff {
 	@Override
 	public int icon() {
 		return BuffIndicator.CORRUPT;
+	}
+
+	@Override
+	public void tintIcon(Image icon) {
+		icon.hardlight(0.5f, 0.5f, 0.5f);
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 
 	@Override

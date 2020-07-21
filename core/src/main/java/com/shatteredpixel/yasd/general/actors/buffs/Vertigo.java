@@ -46,6 +46,11 @@ public class Vertigo extends FlavourBuff {
 	}
 
 	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
+	}
+
+	@Override
 	public void fx(boolean on) {
 		if (on) target.sprite.add( CharSprite.State.VERTIGO );
 		else if (target.invisible == 0) target.sprite.remove( CharSprite.State.VERTIGO );
