@@ -32,6 +32,8 @@ import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.utils.Bundle;
 
 public class AdrenalineSurge extends Buff {
+
+	public static float DURATION = 800f;
 	
 	{
 		type = buffType.POSITIVE;
@@ -64,6 +66,11 @@ public class AdrenalineSurge extends Buff {
 	@Override
 	public int icon() {
 		return BuffIndicator.FURY;
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 	
 	@Override

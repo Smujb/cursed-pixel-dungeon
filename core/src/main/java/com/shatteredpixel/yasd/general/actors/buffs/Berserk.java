@@ -106,7 +106,6 @@ public class Berserk extends Buff {
 			} else {
 				state = State.RECOVERING;
 				levelRecovery = LEVEL_RECOVER_START;
-				BuffIndicator.refreshHero();
 				if (buff != null) buff.absorbDamage(buff.shielding());
 				power = 0f;
 			}
@@ -116,7 +115,6 @@ public class Berserk extends Buff {
 			if (power <= 0){
 				detach();
 			}
-			BuffIndicator.refreshHero();
 		}
 		if (state == State.BERSERK) {
 			target.sprite.add( CharSprite.State.BERSERK );

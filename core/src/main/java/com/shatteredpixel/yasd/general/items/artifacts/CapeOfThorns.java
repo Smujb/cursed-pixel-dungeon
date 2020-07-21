@@ -87,7 +87,6 @@ public class CapeOfThorns extends Artifact {
 			if (cooldown > 0) {
 				cooldown--;
 				if (cooldown == 0) {
-					BuffIndicator.refreshHero();
 					GLog.w( Messages.get(this, "inert") );
 				}
 				updateQuickslot();

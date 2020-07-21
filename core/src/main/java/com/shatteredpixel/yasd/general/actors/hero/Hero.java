@@ -48,7 +48,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Bless;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Combo;
 import com.shatteredpixel.yasd.general.actors.buffs.Drunk;
-import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Focus;
 import com.shatteredpixel.yasd.general.actors.buffs.Foresight;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
@@ -573,9 +572,7 @@ public class Hero extends Char {
 		}
 		
 		checkVisibleMobs();
-		if (!buffs(FlavourBuff.class).isEmpty()) {
-			BuffIndicator.refreshHero();
-		}
+		BuffIndicator.refreshHero();
 		
 		if (paralysed > 0) {
 			

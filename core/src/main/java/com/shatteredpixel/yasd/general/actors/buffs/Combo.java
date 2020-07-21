@@ -116,7 +116,6 @@ public class Combo extends Buff implements ActionIndicator.Action {
 	public boolean act() {
 		comboTime-=TICK;
 		spend(TICK);
-		if (target instanceof Hero) BuffIndicator.refreshHero();
 		if (comboTime <= 0) {
 			detach();
 		}

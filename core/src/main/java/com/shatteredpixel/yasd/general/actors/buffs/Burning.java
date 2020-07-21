@@ -135,7 +135,6 @@ public class Burning extends Buff implements Hero.Doom {
 		
 		spend( TICK );
 		left -= TICK;
-		BuffIndicator.refreshHero();
 		
 		if (left <= 0 ||
 			(Dungeon.level.liquid(target.pos) && !target.flying)) {

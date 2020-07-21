@@ -46,7 +46,6 @@ public class Momentum extends Buff {
 		turnsSinceMove++;
 		if (turnsSinceMove > 0){
 			stacks = Math.max(0, stacks - turnsSinceMove);
-			BuffIndicator.refreshHero();
 			if (stacks == 0) detach();
 		}
 		spend(TICK);
