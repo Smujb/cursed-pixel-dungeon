@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.items.potions.elixirs;
 
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.items.quest.GooBlob;
@@ -84,6 +83,7 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 					healAmt = (float)Math.floor(healAmt);
 				}
 				target.heal((int) healAmt, false);
+				BuffIndicator.refreshHero();
 				left -= healAmt;
 			}
 			
@@ -91,9 +91,6 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 				detach();
 			} else {
 				spend(TICK);
-				if (left <= target.HT/4f){
-					BuffIndicator.refreshHero();
-				}
 			}
 			return true;
 		}
@@ -105,7 +102,13 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 		
 		@Override
 		public void tintIcon(Image icon) {
-			FlavourBuff.greyIcon(icon, target.HT/4f, left);
+			icon.hardlight(0, 1, 1);
+		}
+
+		@Override
+		public float iconFadePercent() {
+			float max = Math.round(target.HT * 1.5f);
+			return Math.max(0, (max - left) / max);
 		}
 		
 		@Override

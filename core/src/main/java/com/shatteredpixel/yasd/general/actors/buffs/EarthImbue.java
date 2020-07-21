@@ -32,7 +32,6 @@ import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.EarthParticle;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
-import com.watabou.noosa.Image;
 
 //pre-0.7.0, otherwise unused
 public class EarthImbue extends FlavourBuff {
@@ -55,8 +54,8 @@ public class EarthImbue extends FlavourBuff {
 	}
 	
 	@Override
-	public void tintIcon(Image icon) {
-		greyIcon(icon, 5f, cooldown());
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 
 	@Override

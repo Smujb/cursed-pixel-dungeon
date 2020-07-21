@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.actors.buffs;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
-import com.watabou.noosa.Image;
 
 public class Adrenaline extends FlavourBuff {
 	
@@ -54,8 +53,8 @@ public class Adrenaline extends FlavourBuff {
 	}
 	
 	@Override
-	public void tintIcon(Image icon) {
-		greyIcon(icon, 5f, cooldown());
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 	
 	@Override

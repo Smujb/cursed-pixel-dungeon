@@ -32,7 +32,6 @@ import com.shatteredpixel.yasd.general.actors.blobs.ToxicGas;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
-import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 
 public class ToxicImbue extends Buff {
@@ -86,8 +85,8 @@ public class ToxicImbue extends Buff {
 	}
 	
 	@Override
-	public void tintIcon(Image icon) {
-		FlavourBuff.greyIcon(icon, 5f, left);
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - left) / DURATION);
 	}
 
 	@Override

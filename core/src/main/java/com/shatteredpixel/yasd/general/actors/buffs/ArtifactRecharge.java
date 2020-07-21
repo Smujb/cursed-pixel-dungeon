@@ -35,8 +35,9 @@ import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 
-//TODO this may be very powerful, consider balancing
 public class ArtifactRecharge extends Buff {
+
+	public static final float DURATION = 30f;
 	
 	{
 		type = buffType.POSITIVE;
@@ -82,6 +83,11 @@ public class ArtifactRecharge extends Buff {
 	@Override
 	public void tintIcon(Image icon) {
 		icon.hardlight(0, 1f, 0);
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - left) / DURATION);
 	}
 	
 	@Override

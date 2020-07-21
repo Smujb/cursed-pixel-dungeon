@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.plants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Haste;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
@@ -39,7 +38,6 @@ import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
-import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 
 import org.jetbrains.annotations.NotNull;
@@ -88,8 +86,8 @@ public class Swiftthistle extends Plant {
 		}
 		
 		@Override
-		public void tintIcon(Image icon) {
-			FlavourBuff.greyIcon(icon, 5f, left);
+		public float iconFadePercent() {
+			return Math.max(0, (6f - left) / 6f);
 		}
 		
 		public void reset(){

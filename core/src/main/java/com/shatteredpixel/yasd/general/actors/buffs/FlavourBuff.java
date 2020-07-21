@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.actors.buffs;
 
-import com.shatteredpixel.yasd.general.actors.Char;
 import com.watabou.noosa.Image;
 
 //buff whose only internal logic is to wait and detach after a time.
@@ -50,7 +49,6 @@ public abstract class FlavourBuff extends Buff {
 
 	//flavour buffs can all just rely on cooldown()
 	protected String dispTurns() {
-		//add one turn as buffs act last, we want them to end at 1 visually, even if they end at 0 internally.
-		return dispTurns(cooldown()+1f);
+		return dispTurns(visualcooldown());
 	}
 }

@@ -31,7 +31,6 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Barkskin;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.EarthParticle;
@@ -39,7 +38,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.noosa.Camera;
-import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 
 import org.jetbrains.annotations.NotNull;
@@ -134,8 +132,8 @@ public class Earthroot extends Plant {
 		}
 		
 		@Override
-		public void tintIcon(Image icon) {
-			FlavourBuff.greyIcon(icon, target.HT/4f, level);
+		public float iconFadePercent() {
+			return Math.max(0, (target.HT - level) / target.HT);
 		}
 		
 		@Override

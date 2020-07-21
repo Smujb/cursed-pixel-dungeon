@@ -73,7 +73,7 @@ public class AdrenalineSurge extends Buff {
 	
 	@Override
 	public String desc() {
-		return Messages.get(this, "desc", boost, dispTurns(cooldown()+1));
+		return Messages.get(this, "desc", boost, dispTurns(visualcooldown()));
 	}
 	
 	private static final String BOOST	    = "boost";

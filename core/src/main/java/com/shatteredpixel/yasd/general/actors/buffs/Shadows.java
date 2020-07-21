@@ -32,7 +32,6 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
-import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 
@@ -108,8 +107,8 @@ public class Shadows extends Invisibility {
 	}
 	
 	@Override
-	public void tintIcon(Image icon) {
-		icon.resetColor();
+	public float iconFadePercent() {
+		return 0;
 	}
 	
 	@Override

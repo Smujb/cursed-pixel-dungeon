@@ -135,6 +135,7 @@ public class Burning extends Buff implements Hero.Doom {
 		
 		spend( TICK );
 		left -= TICK;
+		BuffIndicator.refreshHero();
 		
 		if (left <= 0 ||
 			(Dungeon.level.liquid(target.pos) && !target.flying)) {
@@ -156,6 +157,11 @@ public class Burning extends Buff implements Hero.Doom {
 	@Override
 	public int icon() {
 		return BuffIndicator.FIRE;
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - left) / DURATION);
 	}
 
 	@Override

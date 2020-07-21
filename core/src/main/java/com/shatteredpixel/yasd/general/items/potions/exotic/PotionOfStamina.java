@@ -27,6 +27,8 @@
 
 package com.shatteredpixel.yasd.general.items.potions.exotic;
 
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.buffs.Stamina;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 
 public class PotionOfStamina extends ExoticPotion {
@@ -40,7 +42,7 @@ public class PotionOfStamina extends ExoticPotion {
 		setKnown();
 
 		hero.stamina = hero.maxStamina();
-		//Buff.affect(hero, Stamina.class, 100f);
+
+		Buff.affect(hero, Stamina.class, Stamina.DURATION);
 	}
-	
 }

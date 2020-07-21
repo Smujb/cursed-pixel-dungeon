@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.plants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Healing;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
@@ -39,7 +38,6 @@ import com.shatteredpixel.yasd.general.effects.particles.ShaftParticle;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
-import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 
 public class Sungrass extends Plant {
@@ -130,8 +128,8 @@ public class Sungrass extends Plant {
 		}
 		
 		@Override
-		public void tintIcon(Image icon) {
-			FlavourBuff.greyIcon(icon, target.HT/4f, level);
+		public float iconFadePercent() {
+			return Math.max(0, (target.HT - level) / target.HT);
 		}
 		
 		@Override

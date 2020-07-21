@@ -35,7 +35,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Swiftthistle;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
-import com.watabou.noosa.Image;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -74,8 +73,8 @@ public class Invisibility extends FlavourBuff {
 	}
 	
 	@Override
-	public void tintIcon(Image icon) {
-		greyIcon(icon, 5f, cooldown());
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
 
 	@Override
