@@ -204,10 +204,30 @@ public class NewCavesBossLevel extends Level {
 		if (version <= CPDGame.v0_3_2) {
 			interactiveAreas.add(new DescendArea().setPos(15, 0, 3, 3));
 		}
+
+		//pre-0.8.1 saves that may not have had pylons added
+		int gatePos = pointToCell(new Point(gate.left, gate.top));
+		if (!locked && solid(gatePos)){
+
+			for (int i : pylonPositions) {
+				if (findMob(i) == null) {
+					Pylon pylon = new Pylon();
+					pylon.pos = i;
+					mobs.add(pylon);
+				}
+			}
+
+		}
 	}
 
 	@Override
-	protected void createMobs() { }
+	protected void createMobs() {
+		for (int i : pylonPositions) {
+			Pylon pylon = new Pylon();
+			pylon.pos = i;
+			mobs.add(pylon);
+		}
+	}
 
 	@Override
 	public Actor respawner() {
@@ -256,13 +276,14 @@ public class NewCavesBossLevel extends Level {
 	public void occupyCell(Char ch) {
 		super.occupyCell(ch);
 
-		//seal the level when the hero moves off the entrance, the level isn't already sealed, and the gate hasn't been destroyed
-		int gatePos = pointToCell(new Point(gate.left, gate.top));
-		if (ch == Dungeon.hero && (Dungeon.level.distance(ch.pos, getEntrancePos()) > 1)
-				&& !locked && solid(gatePos)){
-
-			seal();
-
+		//seal the level when the hero moves near to a pylon, the level isn't already sealed, and the gate hasn't been destroyed
+		if (ch == Dungeon.hero && !locked && solid(getEntrancePos())) {
+			for (int pos : pylonPositions) {
+				if (Dungeon.level.distance(ch.pos, pos) <= 3){
+					seal();
+					break;
+				}
+			}
 		}
 	}
 
@@ -284,13 +305,6 @@ public class NewCavesBossLevel extends Level {
 			boss.pos = pointToCell(Random.element(mainArena.getPoints()));
 		} while (!openSpace(boss.pos) || getTerrain(boss.pos) == Terrain.EMPTY_SP);
 		GameScene.add( boss );
-
-		for (int i : pylonPositions) {
-			Pylon pylon = Mob.create(Pylon.class, this);
-			pylon.pos = i;
-			GameScene.add(pylon);
-		}
-
 	}
 
 	@Override
@@ -825,8 +839,11 @@ public class NewCavesBossLevel extends Level {
 				s.resetStatic(x, y);
 				s.speed.set((energySourceSprite.x + energySourceSprite.width/2f) - x,
 						(energySourceSprite.y + energySourceSprite.height/2f) - y);
-				s.speed.normalize().scale(DungeonTilemap.SIZE);
-				s.acc.set(s.speed);
+				s.speed.normalize().scale(DungeonTilemap.SIZE*2f);
+
+				//offset the particles slightly so they don't go too far outside of the cell
+				s.x -= s.speed.x/8f;
+				s.y -= s.speed.y/8f;
 			}
 
 			@Override
@@ -843,8 +860,7 @@ public class NewCavesBossLevel extends Level {
 		public void use( BlobEmitter emitter ) {
 			super.use( emitter );
 			energySourceSprite = null;
-			//emitter.bound.set( 4/16f, 4/16f, 12/16f, 12/16f);
-			emitter.pour(DIRECTED_SPARKS, 0.2f);
+			emitter.pour(DIRECTED_SPARKS, 0.125f);
 		}
 
 	}

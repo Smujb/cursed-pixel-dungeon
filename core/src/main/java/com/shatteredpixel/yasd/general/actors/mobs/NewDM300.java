@@ -231,6 +231,8 @@ public class NewDM300 extends Boss {
 		return super.act();
 	}
 
+	private boolean invulnWarned = false;
+
 	@Override
 	protected Char chooseEnemy() {
 		Char enemy = super.chooseEnemy();
@@ -402,6 +404,10 @@ public class NewDM300 extends Boss {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
+		if (supercharged && !invulnWarned){
+			invulnWarned = true;
+			GLog.w(Messages.get(this, "charging_hint"));
+		}
 		return supercharged;
 	}
 
@@ -415,8 +421,6 @@ public class NewDM300 extends Boss {
 		sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "invulnerable"));
 		((DM300Sprite)sprite).charge();
 		chargeAnnounced = false;
-
-		GLog.h(Messages.get(this, "charging_hint"));
 	}
 
 	public boolean isSupercharged(){
