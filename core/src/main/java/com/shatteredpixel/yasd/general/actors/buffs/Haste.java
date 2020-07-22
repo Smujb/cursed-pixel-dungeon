@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.actors.buffs;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
+import com.watabou.noosa.Image;
 
 public class Haste extends FlavourBuff {
 	
@@ -42,6 +43,11 @@ public class Haste extends FlavourBuff {
 	@Override
 	public int icon() {
 		return BuffIndicator.MOMENTUM;
+	}
+
+	@Override
+	public void tintIcon(Image icon) {
+		icon.hardlight(1f, 0.8f, 0f);
 	}
 	
 	@Override

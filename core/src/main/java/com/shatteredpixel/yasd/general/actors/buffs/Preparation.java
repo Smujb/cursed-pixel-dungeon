@@ -119,16 +119,6 @@ public class Preparation extends Buff implements ActionIndicator.Action {
 	
 	@Override
 	public boolean act() {
-		/*if (target.invisible > 0){
-			turnsPrep++;
-			if (AttackLevel.getLvl(turnsPrep).blinkDistance > 0 && target == Dungeon.hero){
-				ActionIndicator.setAction(this);
-			}
-			BuffIndicator.refreshHero();
-			spend(TICK);
-		} else {
-			detach();
-		}*/
 		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 			if (mob.getEnemy() == target && mob.enemySeen) {
 				detach();
@@ -186,6 +176,19 @@ public class Preparation extends Buff implements ActionIndicator.Action {
 			case LVL_5:
 				icon.hardlight(1f, 0f, 0f);
 				break;
+		}
+	}
+
+	@Override
+	public float iconFadePercent() {
+		if (AttackLevel.getLvl(turnsPrep) == AttackLevel.LVL_5){
+			return 0;
+		} else {
+			float turnsForCur = AttackLevel.getLvl(turnsPrep).turnsReq;
+			float turnsForNext = AttackLevel.values()[AttackLevel.getLvl(turnsPrep).ordinal()+1].turnsReq;
+			turnsForNext -= turnsForCur;
+			float turnsToNext = turnsPrep - turnsForCur;
+			return Math.min(1, (turnsForNext - turnsToNext)/(turnsForNext));
 		}
 	}
 	

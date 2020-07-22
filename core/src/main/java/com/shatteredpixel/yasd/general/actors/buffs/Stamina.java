@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.actors.buffs;
 
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
+import com.watabou.noosa.Image;
 
 public class Stamina extends FlavourBuff {
 
@@ -41,6 +42,11 @@ public class Stamina extends FlavourBuff {
 	@Override
 	public int icon() {
 		return BuffIndicator.MOMENTUM;
+	}
+
+	@Override
+	public void tintIcon(Image icon) {
+		icon.hardlight(0.5f, 1f, 0.5f);
 	}
 	
 	@Override
