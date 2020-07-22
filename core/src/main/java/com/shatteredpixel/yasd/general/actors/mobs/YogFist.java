@@ -101,7 +101,7 @@ public abstract class YogFist extends Mob {
 		return super.attack(enemy, guaranteed, type);
 	}
 
-	boolean invulnWarned = false;
+	private boolean invulnWarned = false;
 
 	protected boolean isNearYog(){
 		int yogPos = Dungeon.level.getExitPos() + 3*Dungeon.level.width();
@@ -110,18 +110,11 @@ public abstract class YogFist extends Mob {
 
 	@Override
 	public boolean isInvulnerable(Class effect) {
-		return isNearYog() || super.isInvulnerable(effect);
-	}
-
-	@Override
-	public void damage(int dmg, DamageSrc src) {
-		if (isInvulnerable(src.getClass())){
-			if (!invulnWarned){
-				invulnWarned = true;
-				GLog.w(Messages.get(this, "invuln_warn"));
-			}
+		if (isNearYog() && !invulnWarned) {
+			invulnWarned = true;
+			GLog.w(Messages.get(this, "invuln_warn"));
 		}
-		super.damage(dmg, src);
+		return isNearYog();
 	}
 
 	@Override
