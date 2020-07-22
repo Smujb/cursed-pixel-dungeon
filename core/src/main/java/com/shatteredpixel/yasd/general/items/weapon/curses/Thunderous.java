@@ -48,7 +48,7 @@ public class Thunderous extends Weapon.Enchantment {
 						Camera.main.shake(3, 0.2f);
 					}
 				}));
-				Sample.INSTANCE.play(Assets.SND_LIGHTNING);
+				Sample.INSTANCE.play(Assets.Sounds.LIGHTNING);
 
 				Camera.main.shake(5, 0.2f);
 			}

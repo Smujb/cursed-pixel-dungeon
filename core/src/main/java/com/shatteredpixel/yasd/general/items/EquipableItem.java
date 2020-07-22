@@ -99,7 +99,7 @@ public abstract class EquipableItem extends Item {
 
 	public static void equipCursed(Char hero) {
 		hero.sprite.emitter().burst(ShadowParticle.CURSE, 6);
-		Sample.INSTANCE.play(Assets.SND_CURSED);
+		Sample.INSTANCE.play(Assets.Sounds.CURSED);
 	}
 
 	protected float time2equip(Char hero) {

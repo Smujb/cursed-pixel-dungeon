@@ -91,7 +91,7 @@ public class DemonSpawnerRoom extends SpecialRoom {
 	private static class CustomFloor extends CustomTilemap {
 
 		{
-			texture = Assets.HALLS_SP;
+			texture = Assets.Environment.Custom.HALLS_SP;
 		}
 
 		@Override

@@ -94,7 +94,7 @@ public class WandOfTransfusion extends Wand {
 					//harms the undead
 					ch.damage(Random.NormalIntRange(3 + intLevel/2, 6+intLevel), new Char.DamageSrc(Element.LIGHT, this).ignoreDefense());
 					ch.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10 + intLevel);
-					Sample.INSTANCE.play(Assets.SND_BURNING);
+					Sample.INSTANCE.play(Assets.Sounds.BURNING);
 				} else {
 					//charms living enemies
 					charmDuration *= 2;

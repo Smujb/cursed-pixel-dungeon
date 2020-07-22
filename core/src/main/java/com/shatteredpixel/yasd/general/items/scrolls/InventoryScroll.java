@@ -95,7 +95,7 @@ public abstract class InventoryScroll extends Scroll {
 				onItemSelected( item );
 				readAnimation();
 				
-				Sample.INSTANCE.play( Assets.SND_READ );
+				Sample.INSTANCE.play( Assets.Sounds.READ );
 				Invisibility.dispel();
 				
 			} else if (identifiedByUse && !anonymous) {

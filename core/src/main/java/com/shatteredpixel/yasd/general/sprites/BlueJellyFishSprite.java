@@ -38,7 +38,7 @@ public class BlueJellyFishSprite extends MobSprite{
 		renderShadow = false;
 		perspectiveRaise = 0.2f;
 
-		texture(Assets.JELLYFISH);
+		texture(Assets.Sprites.JELLYFISH);
 
 		TextureFilm frames = new TextureFilm(texture, 16, 16);
 

@@ -866,14 +866,14 @@ public class Hero extends Char {
 				
 				switch (heap.type) {
 				case TOMB:
-					Sample.INSTANCE.play( Assets.SND_TOMB );
+					Sample.INSTANCE.play( Assets.Sounds.TOMB );
 					Camera.main.shake( 1, 0.5f );
 					break;
 				case SKELETON:
 				case REMAINS:
 					break;
 				default:
-					Sample.INSTANCE.play( Assets.SND_UNLOCK );
+					Sample.INSTANCE.play( Assets.Sounds.UNLOCK );
 				}
 				
 				sprite.operate( dst );
@@ -920,7 +920,7 @@ public class Hero extends Char {
 				
 				sprite.operate( doorCell );
 				
-				Sample.INSTANCE.play( Assets.SND_UNLOCK );
+				Sample.INSTANCE.play( Assets.Sounds.UNLOCK );
 				
 			} else {
 				GLog.w( Messages.get(this, "locked_door") );
@@ -1333,7 +1333,7 @@ public class Hero extends Char {
 
 				GLog.newLine();
 				GLog.p( Messages.get(this, "level_cap"));
-				Sample.INSTANCE.play( Assets.SND_LEVELUP );
+				Sample.INSTANCE.play( Assets.Sounds.LEVELUP );
 			}
 			
 		}
@@ -1344,7 +1344,7 @@ public class Hero extends Char {
 				GLog.newLine();
 				GLog.p( Messages.get(this, "new_level"), lvl );
 				sprite.showStatus( CharSprite.POSITIVE, Messages.get(Hero.class, "level_up") );
-				Sample.INSTANCE.play( Assets.SND_LEVELUP );
+				Sample.INSTANCE.play( Assets.Sounds.LEVELUP );
 			}
 			increasePoints(4);
 
@@ -1509,9 +1509,9 @@ public class Hero extends Char {
 		
 		if (!flying) {
 			if (Dungeon.level.liquid(pos)) {
-				Sample.INSTANCE.play( Assets.SND_WATER, 1, 1, Random.Float( 0.8f, 1.25f ) );
+				Sample.INSTANCE.play( Assets.Sounds.WATER, 1, 1, Random.Float( 0.8f, 1.25f ) );
 			} else {
-				Sample.INSTANCE.play( Assets.SND_STEP );
+				Sample.INSTANCE.play( Assets.Sounds.STEP );
 			}
 		}
 	}
@@ -1575,7 +1575,7 @@ public class Hero extends Char {
 			if (Dungeon.level.distance(pos, heap.pos) <= 1){
 				boolean hasKey = true;
 				if (heap.type == Type.SKELETON || heap.type == Type.REMAINS) {
-					Sample.INSTANCE.play( Assets.SND_BONES );
+					Sample.INSTANCE.play( Assets.Sounds.BONES );
 				} else if (heap.type == Type.LOCKED_CHEST){
 					hasKey = Notes.remove(new GoldenKey(Dungeon.key));
 				} else if (heap.type == Type.CRYSTAL_CHEST){
@@ -1709,7 +1709,7 @@ public class Hero extends Char {
 		
 		if (smthFound) {
 			GLog.w( Messages.get(this, "noticed_smth") );
-			Sample.INSTANCE.play( Assets.SND_SECRET );
+			Sample.INSTANCE.play( Assets.Sounds.SECRET );
 			interrupt();
 		}
 		

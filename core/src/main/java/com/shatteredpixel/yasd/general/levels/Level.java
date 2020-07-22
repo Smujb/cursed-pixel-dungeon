@@ -907,7 +907,7 @@ public abstract class Level implements Bundlable {
 	public abstract String loadImg();
 
 	public String music() {
-		return Assets.PRISONS_THEME;
+		return Assets.Music.PRISONS_THEME;
 	}
 
 	abstract protected boolean build();
@@ -1555,7 +1555,7 @@ public abstract class Level implements Bundlable {
 			
 			if (bubble != null){
 				
-				Sample.INSTANCE.play(Assets.SND_TRAP);
+				Sample.INSTANCE.play(Assets.Sounds.TRAP);
 				
 				discover(cell);
 				
@@ -1563,7 +1563,7 @@ public abstract class Level implements Bundlable {
 				
 			} else if (timeFreeze != null){
 				
-				Sample.INSTANCE.play(Assets.SND_TRAP);
+				Sample.INSTANCE.play(Assets.Sounds.TRAP);
 				
 				discover(cell);
 				

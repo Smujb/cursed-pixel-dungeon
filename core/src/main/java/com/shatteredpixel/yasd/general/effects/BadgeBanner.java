@@ -56,7 +56,7 @@ public class BadgeBanner extends Image {
 	
 	private BadgeBanner( int index ) {
 		
-		super( Assets.BADGES );
+		super( Assets.Interfaces.BADGES );
 		
 		if (atlas == null) {
 			atlas = new TextureFilm( texture, 16, 16 );
@@ -73,7 +73,7 @@ public class BadgeBanner extends Image {
 		state = State.FADE_IN;
 		time = FADE_IN_TIME;
 		
-		Sample.INSTANCE.play( Assets.SND_BADGE );
+		Sample.INSTANCE.play( Assets.Sounds.BADGE );
 	}
 	
 	@Override
@@ -287,7 +287,7 @@ public class BadgeBanner extends Image {
 	}
 	
 	public static Image image( int index ) {
-		Image image = new Image( Assets.BADGES );
+		Image image = new Image( Assets.Interfaces.BADGES );
 		if (atlas == null) {
 			atlas = new TextureFilm( image.texture, 16, 16 );
 		}

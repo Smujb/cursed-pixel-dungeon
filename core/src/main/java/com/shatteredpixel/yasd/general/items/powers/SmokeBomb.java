@@ -58,7 +58,7 @@ public class SmokeBomb extends Power {
 
 				ScrollOfTeleportation.appear( curUser, target );
 				CellEmitter.get( target ).burst( Speck.factory( Speck.WOOL ), 10 );
-				Sample.INSTANCE.play( Assets.SND_PUFF );
+				Sample.INSTANCE.play( Assets.Sounds.PUFF );
 				Dungeon.level.pressCell( target );
 				Dungeon.observe();
 				GameScene.updateFog();

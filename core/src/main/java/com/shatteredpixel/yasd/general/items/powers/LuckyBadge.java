@@ -353,7 +353,7 @@ public class LuckyBadge extends Power {
 	public static class WndChooseGrind extends Window {
 		public WndChooseGrind() {
 			IconTitle titlebar = new IconTitle();
-			titlebar.icon( new Image(Assets.LOADING_PRISON));
+			titlebar.icon( new Image(Assets.Interfaces.LOADING_PRISON));
 			titlebar.label(Messages.get(this, "title"));
 			titlebar.setRect(0, 0, WIDTH, 0);
 			add( titlebar );

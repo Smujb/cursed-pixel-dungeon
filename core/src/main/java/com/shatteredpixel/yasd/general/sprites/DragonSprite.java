@@ -11,7 +11,7 @@ public abstract class DragonSprite extends MobSprite {
 	private DragonSprite(int layer) {
 		super();
 
-		texture( Assets.DRAGONS );
+		texture( Assets.Sprites.DRAGONS );
 
 		TextureFilm frames = new TextureFilm( texture, SIZE, SIZE );
 

@@ -75,7 +75,7 @@ public class SacrificialFire extends Blob {
         if (ch != null) {
             if (Dungeon.hero.fieldOfView[pos] && ch.buff( Marked.class ) == null) {
                 ch.sprite.emitter().burst( SacrificialParticle.FACTORY, 20 );
-                Sample.INSTANCE.play( Assets.SND_BURNING );
+                Sample.INSTANCE.play( Assets.Sounds.BURNING );
             }
             Buff.prolong( ch, Marked.class, Marked.DURATION );
         }

@@ -127,7 +127,7 @@ public class OldDM300 extends Boss {
 		if (Dungeon.level.heroFOV[cell]) {
 			CellEmitter.get( cell ).start( Speck.factory( Speck.ROCK ), 0.07f, 10 );
 			Camera.main.shake( 3, 0.7f );
-			Sample.INSTANCE.play( Assets.SND_ROCKS );
+			Sample.INSTANCE.play( Assets.Sounds.ROCKS );
 			
 			if (Dungeon.level.liquid()[cell]) {
 				GameScene.ripple( cell );

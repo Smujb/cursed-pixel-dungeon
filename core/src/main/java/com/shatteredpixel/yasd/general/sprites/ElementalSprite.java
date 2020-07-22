@@ -51,7 +51,7 @@ public abstract class ElementalSprite extends MobSprite {
 
 		int c = texOffset();
 
-		texture( Assets.ELEMENTAL );
+		texture( Assets.Sprites.ELEMENTAL );
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 14 );
 		

@@ -41,7 +41,7 @@ public class Greed extends Power {
 				curUser.sprite,
 				shot.collisionPos,
 				callback);
-		Sample.INSTANCE.play( Assets.SND_GOLD );
+		Sample.INSTANCE.play( Assets.Sounds.GOLD );
 	}
 
 

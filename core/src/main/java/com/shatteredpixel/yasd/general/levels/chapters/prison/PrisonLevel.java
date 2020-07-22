@@ -104,17 +104,17 @@ public class PrisonLevel extends RegularLevel {
 	
 	@Override
 	public String tilesTex() {
-		return Assets.TILES_PRISON;
+		return Assets.Environment.TILES_PRISON;
 	}
 	
 	@Override
 	public String waterTex() {
-		return Assets.WATER_PRISON;
+		return Assets.Environment.WATER_PRISON;
 	}
 
 	@Override
 	public String loadImg() {
-		return Assets.LOADING_PRISON;
+		return Assets.Interfaces.LOADING_PRISON;
 	}
 
 	@Override

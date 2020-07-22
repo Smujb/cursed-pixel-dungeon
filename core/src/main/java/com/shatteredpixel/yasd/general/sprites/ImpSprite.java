@@ -38,7 +38,7 @@ public class ImpSprite extends MobSprite {
 	public ImpSprite() {
 		super();
 		
-		texture( Assets.IMP );
+		texture( Assets.Sprites.IMP );
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 14 );
 		

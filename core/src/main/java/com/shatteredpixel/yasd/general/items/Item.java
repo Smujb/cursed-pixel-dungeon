@@ -147,7 +147,7 @@ public class Item implements Bundlable {
 		if (collect( hero.belongings.backpack, hero)) {
 			
 			GameScene.pickUp( this, hero.pos );
-			Sample.INSTANCE.play( Assets.SND_ITEM );
+			Sample.INSTANCE.play( Assets.Sounds.ITEM );
 			hero.spendAndNext( TIME_TO_PICK_UP );
 			return true;
 			
@@ -595,7 +595,7 @@ public class Item implements Bundlable {
 		}
 
 
-		Sample.INSTANCE.play( Assets.SND_MISS, 0.6f, 0.6f, 1.5f );
+		Sample.INSTANCE.play( Assets.Sounds.MISS, 0.6f, 0.6f, 1.5f );
 
 		Char enemy = Actor.findChar( cell );
 		QuickSlotButton.target(enemy);

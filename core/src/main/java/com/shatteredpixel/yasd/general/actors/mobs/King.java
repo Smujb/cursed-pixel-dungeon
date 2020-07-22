@@ -178,7 +178,7 @@ public class King extends Boss {
 		nextPedestal = !nextPedestal;
 		
 		sprite.centerEmitter().start( Speck.factory( Speck.SCREAM ), 0.4f, 2 );
-		Sample.INSTANCE.play( Assets.SND_CHALLENGE );
+		Sample.INSTANCE.play( Assets.Sounds.CHALLENGE );
 		
 		boolean[] passable = Dungeon.level.passable();
 		for (Char c : Actor.chars()) {
@@ -302,7 +302,7 @@ public class King extends Boss {
 			super.die( cause );
 			
 			if (Dungeon.level.heroFOV[pos]) {
-				Sample.INSTANCE.play( Assets.SND_BONES );
+				Sample.INSTANCE.play( Assets.Sounds.BONES );
 			}
 		}
 		

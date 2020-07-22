@@ -59,7 +59,7 @@ public class StoneOfAffection extends Runestone {
 			}
 		}
 		
-		Sample.INSTANCE.play( Assets.SND_CHARMS );
+		Sample.INSTANCE.play( Assets.Sounds.CHARMS );
 		
 	}
 	

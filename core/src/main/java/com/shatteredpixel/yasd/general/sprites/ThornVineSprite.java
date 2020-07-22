@@ -35,7 +35,7 @@ public class ThornVineSprite extends MobSprite {
     public ThornVineSprite() {
         super();
 
-        texture( Assets.THORNVINE );
+        texture( Assets.Sprites.THORNVINE );
 
         TextureFilm frames = new TextureFilm( texture, 16, 16 );
 

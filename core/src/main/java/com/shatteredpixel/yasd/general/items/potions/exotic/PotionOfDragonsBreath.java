@@ -80,7 +80,7 @@ public class PotionOfDragonsBreath extends ExoticPotion {
 				//TODO if this can ever be found un-IDed, need logic for that
 				((Item)source).collect();
 			} else {
-				Sample.INSTANCE.play( Assets.SND_DRINK );
+				Sample.INSTANCE.play( Assets.Sounds.DRINK );
 				curUser.sprite.operate(curUser.pos, new Callback() {
 					@Override
 					public void call() {

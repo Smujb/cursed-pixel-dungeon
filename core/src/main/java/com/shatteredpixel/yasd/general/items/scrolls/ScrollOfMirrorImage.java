@@ -62,7 +62,7 @@ public class ScrollOfMirrorImage extends Scroll {
 			setKnown();
 		}
 		
-		Sample.INSTANCE.play( Assets.SND_READ );
+		Sample.INSTANCE.play( Assets.Sounds.READ );
 		Invisibility.dispel();
 		
 		readAnimation();
@@ -75,7 +75,7 @@ public class ScrollOfMirrorImage extends Scroll {
 		
 		setKnown();
 		
-		Sample.INSTANCE.play( Assets.SND_READ );
+		Sample.INSTANCE.play( Assets.Sounds.READ );
 		Invisibility.dispel();
 	
 		readAnimation();

@@ -203,7 +203,7 @@ public class TestBoss extends Mob {
 							TestBoss.towerPositions.add(i);
 						}
 					} );
-			Sample.INSTANCE.play( Assets.SND_ZAP );
+			Sample.INSTANCE.play( Assets.Sounds.ZAP );
 		}
 	}
 
@@ -333,7 +333,7 @@ public class TestBoss extends Mob {
 		public TestBossSprite() {
 			super();
 
-			texture(Assets.STATUE);
+			texture(Assets.Sprites.STATUE);
 
 			TextureFilm frames = new  TextureFilm(texture, 12, 15);
 
@@ -363,7 +363,7 @@ public class TestBoss extends Mob {
 			public LitTowerSprite() {
 			super();
 
-			texture(Assets.LITTOWER);
+			texture(Assets.Sprites.LIGHTNING_TOWER);
 			TextureFilm frames = new  TextureFilm(texture, 16, 16);
 
 			idle = new  MovieClip.Animation(10, true);

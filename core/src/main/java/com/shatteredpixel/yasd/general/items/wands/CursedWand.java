@@ -236,7 +236,7 @@ public class CursedWand {
 								user.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10);
 								target.HP = Math.min(target.HT, target.HP + damage);
 								target.sprite.emitter().burst(Speck.factory(Speck.HEALING), 3);
-								Sample.INSTANCE.play(Assets.SND_CURSED);
+								Sample.INSTANCE.play(Assets.Sounds.CURSED);
 								if (!user.isAlive() && origin != null) {
 									Dungeon.fail(origin.getClass());
 									GLog.n(Messages.get(CursedWand.class, "ondeath", origin.name()));
@@ -356,7 +356,7 @@ public class CursedWand {
 					GameScene.add(Blob.seed(Dungeon.level.randomDestination(null), 10, Fire.class));
 				} while (Random.Int(5) != 0);
 				new Flare(8, 32).color(0xFFFF66, true).show(user.sprite, 2f);
-				Sample.INSTANCE.play(Assets.SND_TELEPORT);
+				Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 				GLog.p(Messages.get(CursedWand.class, "grass"));
 				GLog.w(Messages.get(CursedWand.class, "fire"));
 				afterZap.call();
@@ -378,7 +378,7 @@ public class CursedWand {
 										Generator.Category.RING, Generator.Category.WAND));
 							} while (reward.level() < 1);
 							//play vfx/sfx manually as mimic isn't in the scene yet
-							Sample.INSTANCE.play(Assets.SND_MIMIC, 1, 0.85f);
+							Sample.INSTANCE.play(Assets.Sounds.MIMIC, 1, 0.85f);
 							CellEmitter.get(mimic.pos).burst(Speck.factory(Speck.STAR), 10);
 							mimic.items.clear();
 							mimic.items.add(reward);
@@ -462,7 +462,7 @@ public class CursedWand {
 				user.sprite,
 				bolt.collisionPos,
 				callback);
-		Sample.INSTANCE.play( Assets.SND_ZAP );
+		Sample.INSTANCE.play( Assets.Sounds.ZAP );
 	}
 
 }

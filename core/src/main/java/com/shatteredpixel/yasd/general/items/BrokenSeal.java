@@ -92,7 +92,7 @@ public class BrokenSeal extends Item {
 				} else {
 					GLog.p(Messages.get(BrokenSeal.class, "affix"));
 					Dungeon.hero.sprite.operate(Dungeon.hero.pos);
-					Sample.INSTANCE.play(Assets.SND_UNLOCK);
+					Sample.INSTANCE.play(Assets.Sounds.UNLOCK);
 					//armor.affixSeal((BrokenSeal)curItem);
 					armor.affixSeal((BrokenSeal)source);
 					if (armor.level() > 20) {

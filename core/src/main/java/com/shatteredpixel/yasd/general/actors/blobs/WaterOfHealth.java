@@ -52,7 +52,7 @@ public class WaterOfHealth extends WellWater {
 		
 		if (!hero.isAlive()) return false;
 		
-		Sample.INSTANCE.play( Assets.SND_DRINK );
+		Sample.INSTANCE.play( Assets.Sounds.DRINK );
 
 		hero.HP = hero.HT;
 		hero.sprite.emitter().start( Speck.factory( Speck.HEALING ), 0.4f, 4 );
@@ -79,7 +79,7 @@ public class WaterOfHealth extends WellWater {
 			if (ScrollOfRemoveCurse.uncurse( null, item )){
 				CellEmitter.get( pos ).start( ShadowParticle.UP, 0.05f, 10 );
 			}
-			Sample.INSTANCE.play( Assets.SND_DRINK );
+			Sample.INSTANCE.play( Assets.Sounds.DRINK );
 			return item;
 		}
 

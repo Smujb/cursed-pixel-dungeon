@@ -116,7 +116,7 @@ public class ChaliceOfBlood extends Artifact {
 		if (damage <= 0){
 			damage = 1;
 		} else {
-			Sample.INSTANCE.play(Assets.SND_CURSED);
+			Sample.INSTANCE.play(Assets.Sounds.CURSED);
 			hero.sprite.emitter().burst( ShadowParticle.CURSE, 4+(damage/10) );
 		}
 

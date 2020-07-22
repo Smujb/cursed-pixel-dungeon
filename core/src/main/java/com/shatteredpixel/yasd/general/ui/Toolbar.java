@@ -358,7 +358,7 @@ public class Toolbar extends Component {
 		protected void createChildren() {
 			super.createChildren();
 
-			base = new Image( Assets.TOOLBAR );
+			base = new Image( Assets.Interfaces.TOOLBAR );
 			add( base );
 		}
 
@@ -366,9 +366,9 @@ public class Toolbar extends Component {
 		public void update() {
 			super.update();
 			if (CPDSettings.darkUI()) {
-				base.texture = TextureCache.get(Assets.TOOLBAR_DARK);
+				base.texture = TextureCache.get(Assets.Interfaces.TOOLBAR_DARK);
 			} else {
-				base.texture = TextureCache.get(Assets.TOOLBAR);
+				base.texture = TextureCache.get(Assets.Interfaces.TOOLBAR);
 			}
 		}
 

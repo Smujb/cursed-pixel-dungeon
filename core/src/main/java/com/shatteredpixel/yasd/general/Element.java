@@ -230,7 +230,7 @@ public enum Element {
 						ch.sprite,
 						cell,
 						attack);
-				Sample.INSTANCE.play( Assets.SND_ZAP );
+				Sample.INSTANCE.play( Assets.Sounds.ZAP );
 				break;
 			case DESTRUCTION:
 				ch.sprite.parent.add(
@@ -281,7 +281,7 @@ public enum Element {
 								}
 							}
 						});
-				Sample.INSTANCE.play(Assets.SND_ZAP);
+				Sample.INSTANCE.play(Assets.Sounds.ZAP);
 				break;
 			case EARTH:
 				MagicMissile.boltFromChar( ch.sprite.parent,

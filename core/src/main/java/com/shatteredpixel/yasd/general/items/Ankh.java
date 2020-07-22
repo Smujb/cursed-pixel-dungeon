@@ -90,7 +90,7 @@ public class Ankh extends Item {
 		}
 
 		if (toRevive == Dungeon.hero) {
-			Sample.INSTANCE.play(Assets.SND_TELEPORT);
+			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 			GLog.w(Messages.get(Ankh.class, "revive"));
 			Statistics.ankhsUsed++;
 		}

@@ -63,7 +63,7 @@ public class Shadows extends Invisibility {
 	@Override
 	public boolean attachTo(@NotNull Char target ) {
 		if (super.attachTo( target )) {
-			Sample.INSTANCE.play( Assets.SND_MELD );
+			Sample.INSTANCE.play( Assets.Sounds.MELD );
 			if (Dungeon.level != null)
 				Dungeon.observe();
 			return true;

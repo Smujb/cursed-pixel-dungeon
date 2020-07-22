@@ -75,9 +75,9 @@ public class TextScene extends PixelScene {
 		if (bgTex == null) {
 			try {
 				bgTex = Dungeon.newLevel(Dungeon.keyForDepth(), false).loadImg();
-				if (bgTex == null || bgTex.isEmpty()) bgTex = Assets.SHADOW;
+				if (bgTex == null || bgTex.isEmpty()) bgTex = Assets.Interfaces.SHADOW;
 			} catch (Exception e) {
-				bgTex = Assets.SHADOW;
+				bgTex = Assets.Interfaces.SHADOW;
 			}
 		}
 

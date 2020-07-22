@@ -340,7 +340,7 @@ public class DeveloperItem extends Item {
 								key[0] = text.toLowerCase();
 								Level level = Dungeon.newLevel(key[0], false);
 								if (level != null) {
-									icon(new Image(level.loadImg() == null ? level.loadImg() : Assets.SHADOW));
+									icon(new Image(level.loadImg() == null ? level.loadImg() : Assets.Interfaces.SHADOW));
 									WndChooseDepth.this.update();
 									GLog.p("Level exists.");
 								} else {

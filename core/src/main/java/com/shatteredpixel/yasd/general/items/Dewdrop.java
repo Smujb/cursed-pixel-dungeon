@@ -70,7 +70,7 @@ public class Dewdrop extends Item {
 
 			}
 
-			Sample.INSTANCE.play( Assets.SND_DEWDROP );
+			Sample.INSTANCE.play( Assets.Sounds.DEWDROP );
 			ch.spendAndNext( TIME_TO_PICK_UP );
 			return true;
 		}

@@ -40,7 +40,7 @@ public class GolemSprite extends MobSprite {
 	public GolemSprite() {
 		super();
 		
-		texture( Assets.GOLEM );
+		texture( Assets.Sprites.GOLEM );
 
 		TextureFilm frames = new TextureFilm( texture, 17, 19 );
 		

@@ -64,7 +64,7 @@ public class AmuletScene extends PixelScene {
 			add( text );
 		}
 		
-		amulet = new Image( Assets.AMULET );
+		amulet = new Image( Assets.Sprites.AMULET );
 		add( amulet );
 		
 		RedButton btnExit = new RedButton( Messages.get(this, "exit") ) {

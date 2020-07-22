@@ -37,7 +37,7 @@ public class UndeadSprite extends MobSprite {
 	public UndeadSprite() {
 		super();
 		
-		texture( Assets.UNDEAD );
+		texture( Assets.Sprites.UNDEAD );
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 16 );
 		

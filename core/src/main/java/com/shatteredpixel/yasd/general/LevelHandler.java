@@ -289,7 +289,7 @@ public class LevelHandler {
 		}
 
 		if (level.bossLevel) {
-			Sample.INSTANCE.load(Assets.SND_BOSS);
+			Sample.INSTANCE.load(Assets.Sounds.BOSS);
 		}
 
 		Dungeon.switchLevel(level, pos);

@@ -93,7 +93,7 @@ public class Barrier extends RelicEnchantment {
                         }
                     }
                 });
-        Sample.INSTANCE.play( Assets.SND_ZAP );
+        Sample.INSTANCE.play( Assets.Sounds.ZAP );
     }
 
     private CellSelector.Listener zap = new  CellSelector.Listener() {

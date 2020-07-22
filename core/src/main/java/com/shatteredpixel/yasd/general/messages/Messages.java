@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.messages;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -61,17 +62,17 @@ public class Messages {
 	/**
 	 * Setup Methods
 	 */
-	//TODO probably want to move these to assets now
+
 	private static String[] prop_files = new String[]{
-			"com/shatteredpixel/yasd/general/messages/actors/actors",
-			"com/shatteredpixel/yasd/general/messages/items/items",
-			"com/shatteredpixel/yasd/general/messages/journal/journal",
-			"com/shatteredpixel/yasd/general/messages/levels/levels",
-			"com/shatteredpixel/yasd/general/messages/plants/plants",
-			"com/shatteredpixel/yasd/general/messages/scenes/scenes",
-			"com/shatteredpixel/yasd/general/messages/ui/ui",
-			"com/shatteredpixel/yasd/general/messages/windows/windows",
-			"com/shatteredpixel/yasd/general/messages/misc/misc"
+			Assets.Messages.ACTORS,
+			Assets.Messages.ITEMS,
+			Assets.Messages.JOURNAL,
+			Assets.Messages.LEVELS,
+			Assets.Messages.MISC,
+			Assets.Messages.PLANTS,
+			Assets.Messages.SCENES,
+			Assets.Messages.UI,
+			Assets.Messages.WINDOWS
 	};
 
 	static{
@@ -87,7 +88,7 @@ public class Messages {
 		Locale locale = new Locale(lang.code());
 
 		for (String file : prop_files) {
-			bundles.add(I18NBundle.createBundle(Gdx.files.classpath(file), locale));
+			bundles.add(I18NBundle.createBundle(Gdx.files.internal(file), locale));
 		}
 	}
 
@@ -155,6 +156,7 @@ public class Messages {
 	}
 
 
+
 	/**
 	 * String Utility Methods
 	 */
@@ -176,8 +178,10 @@ public class Messages {
 	//Words which should not be capitalized in title case, mostly prepositions which appear ingame
 	//This list is not comprehensive!
 	private static final HashSet<String> noCaps = new HashSet<>(
-			Arrays.asList(//English
-					"a", "an", "and", "of", "by", "to", "the", "x")
+			Arrays.asList(new String[]{
+					//English
+					"a", "an", "and", "of", "by", "to", "the", "x"
+			})
 	);
 
 	public static String titleCase( String str ){

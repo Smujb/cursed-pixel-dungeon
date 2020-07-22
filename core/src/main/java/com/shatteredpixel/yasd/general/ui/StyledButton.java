@@ -93,7 +93,7 @@ public class StyledButton extends Button {
 	@Override
 	protected void onPointerDown() {
 		bg.brightness( 1.2f );
-		Sample.INSTANCE.play( Assets.SND_CLICK );
+		Sample.INSTANCE.play( Assets.Sounds.CLICK );
 	}
 	
 	@Override

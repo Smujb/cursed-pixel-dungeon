@@ -48,7 +48,7 @@ public class FeatherFall extends Spell {
 	protected void onCast(Hero hero) {
 		Buff.append(hero, FeatherBuff.class, 30f);
 		hero.sprite.operate(hero.pos);
-		Sample.INSTANCE.play(Assets.SND_READ );
+		Sample.INSTANCE.play(Assets.Sounds.READ );
 		hero.sprite.emitter().burst( Speck.factory( Speck.JET ), 20);
 		
 		GLog.p(Messages.get(this, "light"));

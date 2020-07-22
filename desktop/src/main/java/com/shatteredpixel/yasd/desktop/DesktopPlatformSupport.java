@@ -131,15 +131,15 @@ public class DesktopPlatformSupport extends PlatformSupport {
             }
         }
 
-        basicFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("pixel_font.ttf"));
+        basicFontGenerator = asianFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/droid_sans.ttf"));
 
         fonts = new HashMap<>();
 
         if (systemfont) {
-            basicFontGenerator = asianFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("DroidSansFallback.ttf"));
+            basicFontGenerator = asianFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("droid_sans.ttf"));
         } else {
-            basicFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("pixel_font.ttf"));
-            asianFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("DroidSansFallback.ttf"));
+            basicFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/pixel_font.ttf"));
+            asianFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/droid_sans.ttf"));
         }
 
         fonts.put(basicFontGenerator, basicFonts);

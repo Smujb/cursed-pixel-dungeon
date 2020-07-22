@@ -37,7 +37,7 @@ public class GuardSprite extends MobSprite {
 	public GuardSprite() {
 		super();
 
-		texture( Assets.GUARD );
+		texture( Assets.Sprites.GUARD );
 
 		TextureFilm frames = new TextureFilm( texture, 12, 16 );
 

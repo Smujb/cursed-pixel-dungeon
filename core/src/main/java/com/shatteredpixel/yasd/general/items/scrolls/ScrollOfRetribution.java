@@ -56,7 +56,7 @@ public class ScrollOfRetribution extends Scroll {
 		float hpPercent = (curUser.HT - curUser.HP)/(float)(curUser.HT);
 		float power = Math.min( 4f, 4.45f*hpPercent);
 		
-		Sample.INSTANCE.play( Assets.SND_BLAST );
+		Sample.INSTANCE.play( Assets.Sounds.BLAST );
 		Invisibility.dispel();
 		
 		for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
@@ -83,7 +83,7 @@ public class ScrollOfRetribution extends Scroll {
 	public void empoweredRead() {
 		GameScene.flash( 0xFFFFFF );
 		
-		Sample.INSTANCE.play( Assets.SND_BLAST );
+		Sample.INSTANCE.play( Assets.Sounds.BLAST );
 		Invisibility.dispel();
 		
 		//scales from 3x to 5x power, maxing at ~20% HP

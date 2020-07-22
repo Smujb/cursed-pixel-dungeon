@@ -64,7 +64,7 @@ public class WandOfPlasmaBolt extends DamageWand {
                 curUser.sprite,
                 bolt.collisionPos,
                 callback);
-        Sample.INSTANCE.play(Assets.SND_ZAP);
+        Sample.INSTANCE.play(Assets.Sounds.ZAP);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class WandOfPlasmaBolt extends DamageWand {
                 String defense = ch.defenseVerb();
                 ch.sprite.showStatus( CharSprite.NEUTRAL, defense );
 
-                Sample.INSTANCE.play(Assets.SND_MISS);
+                Sample.INSTANCE.play(Assets.Sounds.MISS);
             }
 
         } else {

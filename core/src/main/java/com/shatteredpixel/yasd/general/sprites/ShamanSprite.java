@@ -42,7 +42,7 @@ public abstract class ShamanSprite extends MobSprite {
 
 		int c = texOffset();
 
-		texture(Assets.SHAMAN);
+		texture(Assets.Sprites.SHAMAN);
 
 		TextureFilm frames = new TextureFilm(texture, 12, 15);
 

@@ -68,7 +68,7 @@ public class Ghost extends NPC {
 	public Ghost() {
 		super();
 
-		Sample.INSTANCE.load( Assets.SND_GHOST );
+		Sample.INSTANCE.load( Assets.Sounds.GHOST );
 	}
 
 	@Override
@@ -109,7 +109,7 @@ public class Ghost extends NPC {
 	public boolean interact(Char c) {
 		sprite.turnTo( pos, c.pos );
 		
-		Sample.INSTANCE.play( Assets.SND_GHOST );
+		Sample.INSTANCE.play( Assets.Sounds.GHOST );
 
 		if (c != Dungeon.hero){
 			return super.interact(c);
@@ -329,7 +329,7 @@ public class Ghost extends NPC {
 		public static void process() {
 			if (spawned && given && !processed && (depth == Dungeon.depth)) {
 				GLog.n( Messages.get(Ghost.class, "find_me") );
-				Sample.INSTANCE.play( Assets.SND_GHOST );
+				Sample.INSTANCE.play( Assets.Sounds.GHOST );
 				processed = true;
 			}
 		}

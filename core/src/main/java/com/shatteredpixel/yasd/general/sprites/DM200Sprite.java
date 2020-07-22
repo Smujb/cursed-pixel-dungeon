@@ -36,7 +36,7 @@ public class DM200Sprite extends MobSprite {
 	public DM200Sprite () {
 		super();
 
-		texture( Assets.DM200 );
+		texture( Assets.Sprites.DM200 );
 
 		TextureFilm frames = new TextureFilm( texture, 21, 18 );
 
@@ -75,7 +75,7 @@ public class DM200Sprite extends MobSprite {
 		public DM201Sprite () {
 			super();
 
-			texture( Assets.DM200 );
+			texture( Assets.Sprites.DM200 );
 
 			TextureFilm frames = new TextureFilm( texture, 21, 18 );
 

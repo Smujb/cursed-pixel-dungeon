@@ -159,7 +159,7 @@ public class LloydsBeacon extends Artifact {
 			hero.busy();
 			
 			hero.sprite.operate( hero.pos );
-			Sample.INSTANCE.play( Assets.SND_BEACON );
+			Sample.INSTANCE.play( Assets.Sounds.BEACON );
 			
 			GLog.i( Messages.get(this, "return") );
 			
@@ -218,7 +218,7 @@ public class LloydsBeacon extends Artifact {
 					ScrollOfTeleportation.teleportUser(curUser);
 					curUser.spendAndNext( 1f );
 				} else {
-					Sample.INSTANCE.play( Assets.SND_ZAP );
+					Sample.INSTANCE.play( Assets.Sounds.ZAP );
 					curUser.sprite.zap(bolt.collisionPos);
 					if (curUser instanceof Hero) {
 						curUser.busy();

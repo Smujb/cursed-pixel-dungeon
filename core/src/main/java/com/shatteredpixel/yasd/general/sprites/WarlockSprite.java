@@ -35,7 +35,7 @@ public class WarlockSprite extends MobSprite {
 	public WarlockSprite() {
 		super();
 		
-		texture( Assets.WARLOCK );
+		texture( Assets.Sprites.WARLOCK );
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 		

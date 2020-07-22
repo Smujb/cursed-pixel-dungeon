@@ -49,7 +49,7 @@ public class DM300Sprite extends MobSprite {
 	public DM300Sprite() {
 		super();
 
-		texture( Assets.DM300 );
+		texture( Assets.Sprites.DM300 );
 
 		setAnimations(false);
 	}
@@ -101,7 +101,7 @@ public class DM300Sprite extends MobSprite {
 						((NewDM300)ch).onZapComplete();
 					}
 				} );
-		Sample.INSTANCE.play( Assets.SND_PUFF );
+		Sample.INSTANCE.play( Assets.Sounds.PUFF );
 	}
 
 	public void charge(){
@@ -111,7 +111,7 @@ public class DM300Sprite extends MobSprite {
 	public void slam( int cell ){
 		turnTo( ch.pos , cell );
 		play( slam );
-		Sample.INSTANCE.play( Assets.SND_ROCKS );
+		Sample.INSTANCE.play( Assets.Sounds.ROCKS );
 		Camera.main.shake( 3, 0.7f );
 	}
 
@@ -132,7 +132,7 @@ public class DM300Sprite extends MobSprite {
 
 		if (anim == die && !exploded) {
 			exploded = true;
-			Sample.INSTANCE.play(Assets.SND_BLAST);
+			Sample.INSTANCE.play(Assets.Sounds.BLAST);
 			emitter().burst( BlastParticle.FACTORY, 100 );
 			killAndErase();
 		}

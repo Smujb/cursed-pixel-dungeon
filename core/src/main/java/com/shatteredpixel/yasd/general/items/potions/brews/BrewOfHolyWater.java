@@ -19,7 +19,7 @@ public class BrewOfHolyWater extends Brew {
 	public void shatter(int cell) {
 		if (Dungeon.level.heroFOV[cell]) {
 			splash( cell );
-			Sample.INSTANCE.play( Assets.SND_SHATTER );
+			Sample.INSTANCE.play( Assets.Sounds.SHATTER );
 		}
 
 		GameScene.add( Blob.seed( cell, 1000, HolyWater.class ) );

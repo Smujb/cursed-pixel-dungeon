@@ -54,7 +54,7 @@ public class BadgesScene extends PixelScene {
 
 		super.create();
 
-		Music.INSTANCE.play( Assets.TITLE_THEME, true );
+		Music.INSTANCE.play( Assets.Music.TITLE_THEME, true );
 
 		uiCamera.visible = false;
 
@@ -140,7 +140,7 @@ public class BadgesScene extends PixelScene {
 			this.badge = badge;
 			active = (badge != null);
 
-			icon = active ? BadgeBanner.image(badge.image) : new Image( Assets.LOCKED );
+			icon = active ? BadgeBanner.image(badge.image) : new Image( Assets.Interfaces.LOCKED );
 			add(icon);
 
 			setSize( icon.width(), icon.height() );
@@ -165,7 +165,7 @@ public class BadgesScene extends PixelScene {
 
 		@Override
 		protected void onClick() {
-			Sample.INSTANCE.play( Assets.SND_CLICK, 0.7f, 0.7f, 1.2f );
+			Sample.INSTANCE.play( Assets.Sounds.CLICK, 0.7f, 0.7f, 1.2f );
 			Game.scene().add( new WndBadge( badge ) );
 		}
 	}

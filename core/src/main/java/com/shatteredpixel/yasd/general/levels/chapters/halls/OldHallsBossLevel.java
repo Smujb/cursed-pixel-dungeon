@@ -93,17 +93,17 @@ public class OldHallsBossLevel extends Level {
 	
 	@Override
 	public String tilesTex() {
-		return Assets.TILES_HALLS;
+		return Assets.Environment.TILES_HALLS;
 	}
 	
 	@Override
 	public String waterTex() {
-		return Assets.WATER_HALLS;
+		return Assets.Environment.WATER_HALLS;
 	}
 
 	@Override
 	public String loadImg() {
-		return Assets.LOADING_HALLS;
+		return Assets.Interfaces.LOADING_HALLS;
 	}
 	
 	private static final String STAIRS	= "stairs";

@@ -36,7 +36,7 @@ public class DM100Sprite extends MobSprite {
 	public DM100Sprite() {
 		super();
 
-		texture( Assets.DM100 );
+		texture( Assets.Sprites.DM100 );
 
 		TextureFilm frames = new TextureFilm( texture, 16, 14 );
 

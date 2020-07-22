@@ -38,7 +38,7 @@ public class PurpleJellyFishSprite extends MobSprite {
 		renderShadow = false;
 		perspectiveRaise = 0.2f;
 
-		texture(Assets.JELLYFISH);
+		texture(Assets.Sprites.JELLYFISH);
 
 		int shift = 16;
 

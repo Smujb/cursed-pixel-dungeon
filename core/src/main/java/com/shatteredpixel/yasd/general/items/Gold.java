@@ -79,7 +79,7 @@ public class Gold extends Item {
 		GameScene.pickUp( this, ch.pos );
 		ch.sprite.showStatus( CharSprite.NEUTRAL, TXT_VALUE, quantity );
 
-		Sample.INSTANCE.play( Assets.SND_GOLD, 1, 1, Random.Float( 0.9f, 1.1f ) );
+		Sample.INSTANCE.play( Assets.Sounds.GOLD, 1, 1, Random.Float( 0.9f, 1.1f ) );
 
 		return true;
 	}

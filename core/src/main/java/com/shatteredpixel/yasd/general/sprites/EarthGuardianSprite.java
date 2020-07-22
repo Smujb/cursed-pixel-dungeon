@@ -35,7 +35,7 @@ public class EarthGuardianSprite extends MobSprite {
 	public EarthGuardianSprite() {
 		super();
 
-		texture( Assets.GUARDIAN );
+		texture( Assets.Sprites.GUARDIAN );
 
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 

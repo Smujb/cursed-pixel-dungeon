@@ -33,7 +33,7 @@ public class MoltenEarth extends Power {
 		}
 
 		curUser.sprite.centerEmitter().start( ElmoParticle.FACTORY, 0.15f, 4 );
-		Sample.INSTANCE.play( Assets.SND_READ );
+		Sample.INSTANCE.play( Assets.Sounds.READ );
 	}
 }
 

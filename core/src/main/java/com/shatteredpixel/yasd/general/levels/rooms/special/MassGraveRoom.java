@@ -109,7 +109,7 @@ public class MassGraveRoom extends SpecialRoom {
 		private static final int FLOOR          = 7;
 
 		{
-			texture = Assets.PRISON_QUEST;
+			texture = Assets.Environment.Custom.PRISON_QUEST;
 		}
 
 		@Override

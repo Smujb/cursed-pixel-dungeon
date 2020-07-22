@@ -105,6 +105,6 @@ public class StoneOfDisarming extends Runestone {
 			CellEmitter.get(t.pos).burst(Speck.factory(Speck.STEAM), 6);
 		}
 		
-		Sample.INSTANCE.play( Assets.SND_TELEPORT );
+		Sample.INSTANCE.play( Assets.Sounds.TELEPORT );
 	}
 }

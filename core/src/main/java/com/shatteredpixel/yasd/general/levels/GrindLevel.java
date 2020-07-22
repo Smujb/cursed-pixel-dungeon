@@ -56,17 +56,17 @@ public class GrindLevel extends TiledMapLevel {
 	@Override
 	//For now. Reworked tiles are needed.
 	public String tilesTex() {
-		return Assets.TILES_HEAVEN;
+		return Assets.Environment.TILES_HEAVEN;
 	}
 
 	@Override
 	public String waterTex() {
-		return Assets.WATER_HEAVEN;
+		return Assets.Environment.WATER_HEAVEN;
 	}
 
 	@Override
 	public String loadImg() {
-		return Assets.WATER_HEAVEN;
+		return Assets.Environment.WATER_HEAVEN;
 	}
 
 	@Override

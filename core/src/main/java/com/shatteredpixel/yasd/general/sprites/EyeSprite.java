@@ -47,7 +47,7 @@ public abstract class EyeSprite extends MobSprite {
 	public EyeSprite(int offset) {
 		super();
 		
-		texture( Assets.EYE );
+		texture( Assets.Sprites.EYE );
 		
 		TextureFilm frames = new TextureFilm( texture, 16, 18 );
 		

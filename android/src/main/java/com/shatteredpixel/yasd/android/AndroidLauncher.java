@@ -37,6 +37,7 @@ import android.widget.TextView;
 
 import com.badlogic.gdx.graphics.g2d.freetype.FreeType;
 import com.badlogic.gdx.utils.GdxNativesLoader;
+import com.shatteredpixel.yasd.general.Assets;
 
 public class AndroidLauncher extends Activity {
 	
@@ -61,7 +62,7 @@ public class AndroidLauncher extends Activity {
 					e.getMessage());
 			text.setTextSize(16);
 			text.setTextColor(0xFFFFFFFF);
-			text.setTypeface(Typeface.createFromAsset(getAssets(), "pixel_font.ttf"));
+			text.setTypeface(Typeface.createFromAsset(getAssets(), Assets.Fonts.PIXELFONT));
 			text.setGravity(Gravity.CENTER_VERTICAL);
 			text.setPadding(10, 10, 10, 10);
 			setContentView(text);

@@ -38,7 +38,7 @@ public class GhostSprite extends MobSprite {
 	public GhostSprite() {
 		super();
 		
-		texture( Assets.GHOST );
+		texture( Assets.Sprites.GHOST );
 		
 		TextureFilm frames = new TextureFilm( texture, 14, 15 );
 		

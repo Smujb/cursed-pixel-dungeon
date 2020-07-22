@@ -82,7 +82,7 @@ public class SewerBossExitRoom extends ExitRoom {
 	public static class SewerExit extends CustomTilemap {
 		
 		{
-			texture = Assets.SEWER_BOSS;
+			texture = Assets.Environment.Custom.SEWER_BOSS;
 			
 			tileW = 3;
 			tileH = 3;
@@ -113,7 +113,7 @@ public class SewerBossExitRoom extends ExitRoom {
 	public static class SewerExitOverhang extends CustomTilemap {
 		
 		{
-			texture = Assets.SEWER_BOSS;
+			texture = Assets.Environment.Custom.SEWER_BOSS;
 			
 			tileW = 3;
 			tileH = 2;

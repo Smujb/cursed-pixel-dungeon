@@ -32,7 +32,7 @@ public class DevSettingsButton extends Button {
 	@Override
 	protected void onPointerDown() {
 		image.brightness( 1.5f );
-		Sample.INSTANCE.play( Assets.SND_CLICK );
+		Sample.INSTANCE.play( Assets.Sounds.CLICK );
 	}
 
 	@Override

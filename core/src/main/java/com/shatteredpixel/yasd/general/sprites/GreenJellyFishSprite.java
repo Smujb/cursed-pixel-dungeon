@@ -38,7 +38,7 @@ public class GreenJellyFishSprite extends MobSprite {
 		renderShadow = false;
 		perspectiveRaise = 0.2f;
 		int shift = 32;
-		texture(Assets.JELLYFISH);
+		texture(Assets.Sprites.JELLYFISH);
 
 		TextureFilm frames = new TextureFilm(texture, 16, 16);
 

@@ -90,22 +90,22 @@ public class CityLevel extends RegularLevel {
 
 	@Override
 	public String tilesTex() {
-		return Assets.TILES_CITY;
+		return Assets.Environment.TILES_CITY;
 	}
 	
 	@Override
 	public String waterTex() {
-		return Assets.WATER_CITY;
+		return Assets.Environment.WATER_CITY;
 	}
 
 	@Override
 	public String loadImg() {
-		return Assets.LOADING_CITY;
+		return Assets.Interfaces.LOADING_CITY;
 	}
 
 	@Override
 	public String music() {
-		return Assets.CITY_THEME;
+		return Assets.Music.CITY_THEME;
 	}
 
 	@Override

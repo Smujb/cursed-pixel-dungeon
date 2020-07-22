@@ -100,13 +100,13 @@ public class GrimTrap extends Trap {
 								public void call() {
 									finalTarget.damage(finalDmg, new Char.DamageSrc(Element.SHADOW, this).ignoreDefense() );
 									if (finalTarget == Dungeon.hero) {
-										Sample.INSTANCE.play(Assets.SND_CURSED);
+										Sample.INSTANCE.play(Assets.Sounds.CURSED);
 										if (!finalTarget.isAlive()) {
 											Dungeon.fail( GrimTrap.class );
 											GLog.n( Messages.get(GrimTrap.class, "ondeath") );
 										}
 									} else {
-										Sample.INSTANCE.play(Assets.SND_BURNING);
+										Sample.INSTANCE.play(Assets.Sounds.BURNING);
 									}
 									finalTarget.sprite.emitter().burst(ShadowParticle.UP, 10);
 									Actor.remove(toRemove);
@@ -118,7 +118,7 @@ public class GrimTrap extends Trap {
 			});
 		} else {
 			CellEmitter.get(pos).burst(ShadowParticle.UP, 10);
-			Sample.INSTANCE.play(Assets.SND_BURNING);
+			Sample.INSTANCE.play(Assets.Sounds.BURNING);
 		}
 	}
 }

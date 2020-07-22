@@ -104,17 +104,17 @@ public class NewCavesBossLevel extends Level {
 
 	@Override
 	public String tilesTex() {
-		return Assets.TILES_CAVES;
+		return Assets.Environment.TILES_CAVES;
 	}
 
 	@Override
 	public String waterTex() {
-		return Assets.WATER_CAVES;
+		return Assets.Environment.WATER_CAVES;
 	}
 
 	@Override
 	public String loadImg() {
-		return Assets.LOADING_CAVES;
+		return Assets.Interfaces.LOADING_CAVES;
 	}
 
 	private static int WIDTH = 33;
@@ -276,7 +276,7 @@ public class NewCavesBossLevel extends Level {
 
 		CellEmitter.get( getEntrancePos() ).start( Speck.factory( Speck.ROCK ), 0.07f, 10 );
 		Camera.main.shake( 3, 0.7f );
-		Sample.INSTANCE.play( Assets.SND_ROCKS );
+		Sample.INSTANCE.play( Assets.Sounds.ROCKS );
 
 		NewDM300 boss = Mob.create(NewDM300.class, this);
 		boss.state = boss.WANDERING;
@@ -579,7 +579,7 @@ public class NewCavesBossLevel extends Level {
 	public static class CityEntrance extends CustomTilemap{
 
 		{
-			texture = Assets.CAVES_BOSS;
+			texture = Assets.Environment.Custom.CAVES_BOSS;
 		}
 
 		private static short[] entryWay = new short[]{
@@ -627,7 +627,7 @@ public class NewCavesBossLevel extends Level {
 	public static class EntranceOverhang extends CustomTilemap{
 
 		{
-			texture = Assets.CAVES_BOSS;
+			texture = Assets.Environment.Custom.CAVES_BOSS;
 		}
 
 		private static short[] entryWay = new short[]{
@@ -671,7 +671,7 @@ public class NewCavesBossLevel extends Level {
 	public static class ArenaVisuals extends CustomTilemap {
 
 		{
-			texture = Assets.CAVES_BOSS;
+			texture = Assets.Environment.Custom.CAVES_BOSS;
 		}
 
 		@Override
@@ -782,7 +782,7 @@ public class NewCavesBossLevel extends Level {
 
 						Char ch = Actor.findChar(cell);
 						if (ch != null && !(ch instanceof NewDM300)) {
-							Sample.INSTANCE.play( Assets.SND_LIGHTNING );
+							Sample.INSTANCE.play( Assets.Sounds.LIGHTNING );
 							ch.damage( Random.NormalIntRange(6, 12), new Char.DamageSrc(Element.SHOCK, this));
 							ch.sprite.flash();
 

@@ -41,7 +41,7 @@ public class PoisonBurst extends Power {
 				curUser.sprite,
 				shot.collisionPos,
 				callback);
-		Sample.INSTANCE.play( Assets.SND_ZAP );
+		Sample.INSTANCE.play( Assets.Sounds.ZAP );
 	}
 
 	@Override

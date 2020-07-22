@@ -65,7 +65,7 @@ public class StoneOfDeepenedSleep extends Runestone {
 			}
 		}
 		
-		Sample.INSTANCE.play( Assets.SND_LULLABY );
+		Sample.INSTANCE.play( Assets.Sounds.LULLABY );
 		
 	}
 }

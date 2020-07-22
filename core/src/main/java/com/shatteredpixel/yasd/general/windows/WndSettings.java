@@ -416,7 +416,7 @@ public class WndSettings extends WndTabbed {
 				protected void onClick() {
 					super.onClick();
 					CPDSettings.soundFx(!checked());
-					Sample.INSTANCE.play( Assets.SND_CLICK );
+					Sample.INSTANCE.play( Assets.Sounds.CLICK );
 				}
 			};
 			btnSound.setRect(0, SFXVol.bottom() + GAP_TINY, WIDTH, BTN_HEIGHT);
@@ -428,7 +428,7 @@ public class WndSettings extends WndTabbed {
 				protected void onClick() {
 					super.onClick();
 					CPDSettings.vibrate(checked());
-					Sample.INSTANCE.play( Assets.SND_CLICK );
+					Sample.INSTANCE.play( Assets.Sounds.CLICK );
 				}
 			};
 			btnVibrate.setRect(0, btnSound.bottom() + GAP_LRG, WIDTH, BTN_HEIGHT);

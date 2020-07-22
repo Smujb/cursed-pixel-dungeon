@@ -40,7 +40,7 @@ public class PiranhaSprite extends MobSprite {
 		renderShadow = false;
 		perspectiveRaise = 0.2f;
 		
-		texture( Assets.PIRANHA );
+		texture( Assets.Sprites.PIRANHA );
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 16 );
 		

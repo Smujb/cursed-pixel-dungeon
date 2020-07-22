@@ -57,17 +57,17 @@ public class SurfaceLevel extends TiledMapLevel {
 
 	@Override
 	public String tilesTex() {
-		return Assets.TILES_SEWERS;
+		return Assets.Environment.TILES_SEWERS;
 	}
 
 	@Override
 	public String waterTex() {
-		return Assets.WATER_SEWERS;
+		return Assets.Environment.WATER_SEWERS;
 	}
 
 	@Override
 	public String loadImg() {
-		return Assets.LOADING_SEWERS;
+		return Assets.Interfaces.LOADING_SEWERS;
 	}
 
 	@Override
