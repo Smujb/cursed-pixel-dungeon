@@ -40,13 +40,12 @@ public class IconDifficulty extends Image {
 				copy( Icons.WARNING.get() );
 				break;
 			case HARD:
-				copy( Icons.DIFF3.get() );
+				copy( Icons.CHALLENGE_ON.get() );
 				break;
 			case MEDIUM:
-				copy( Icons.DIFF2.get() );
+				copy( Icons.CHALLENGE_OFF.get() );
 				break;
 			default:
-				copy( Icons.DIFF1.get() );
 				break;
 		}
 
