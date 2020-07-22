@@ -35,13 +35,14 @@ import com.shatteredpixel.yasd.general.actors.buffs.Recharging;
 import com.shatteredpixel.yasd.general.effects.SpellSprite;
 import com.shatteredpixel.yasd.general.effects.particles.EnergyParticle;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfRecharging extends Scroll {
 
 	{
-		initials = 6;
+		icon = ItemSpriteSheet.Icons.SCROLL_RECHARGE;
 
 		mpCost = 7;
 	}

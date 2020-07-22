@@ -35,12 +35,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.PrismaticGuard;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.PrismaticImage;
 import com.shatteredpixel.yasd.general.effects.Speck;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfPrismaticImage extends ExoticScroll {
 	
 	{
-		initials = 3;
+		icon = ItemSpriteSheet.Icons.SCROLL_PRISIMG;
 
 		mpCost = 13;
 	}

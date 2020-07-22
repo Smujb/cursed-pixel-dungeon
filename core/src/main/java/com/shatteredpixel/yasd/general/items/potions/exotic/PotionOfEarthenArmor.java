@@ -30,11 +30,12 @@ package com.shatteredpixel.yasd.general.items.potions.exotic;
 import com.shatteredpixel.yasd.general.actors.buffs.Barkskin;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class PotionOfEarthenArmor extends ExoticPotion {
 	
 	{
-		initials = 8;
+		icon = ItemSpriteSheet.Icons.POTION_EARTHARMR;
 	}
 	
 	@Override

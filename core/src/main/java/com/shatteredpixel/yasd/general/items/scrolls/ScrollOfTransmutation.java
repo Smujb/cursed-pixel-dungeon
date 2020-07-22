@@ -51,6 +51,7 @@ import com.shatteredpixel.yasd.general.items.weapon.missiles.darts.Dart;
 import com.shatteredpixel.yasd.general.journal.Catalog;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Plant;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.watabou.utils.Random;
@@ -59,7 +60,7 @@ import com.watabou.utils.Reflection;
 public class ScrollOfTransmutation extends InventoryScroll {
 	
 	{
-		initials = 10;
+		icon = ItemSpriteSheet.Icons.SCROLL_TRANSMUTE;
 		mode = WndBag.Mode.TRANMSUTABLE;
 		
 		bones = true;

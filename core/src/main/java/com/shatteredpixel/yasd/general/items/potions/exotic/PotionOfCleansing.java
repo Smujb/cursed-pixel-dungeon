@@ -35,12 +35,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Corruption;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class PotionOfCleansing extends ExoticPotion {
 	
 	{
-		initials = 9;
+		icon = ItemSpriteSheet.Icons.POTION_CLEANSE;
 	}
 	
 	@Override

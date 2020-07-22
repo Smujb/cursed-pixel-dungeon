@@ -33,12 +33,13 @@ import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.CorrosiveGas;
 import com.shatteredpixel.yasd.general.actors.buffs.Corrosion;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class PotionOfCorrosiveGas extends ExoticPotion {
 	
 	{
-		initials = 11;
+		icon = ItemSpriteSheet.Icons.POTION_CORROGAS;
 	}
 	
 	@Override

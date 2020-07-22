@@ -38,6 +38,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.shatteredpixel.yasd.general.ui.Window;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -52,7 +53,7 @@ import java.util.HashSet;
 public class ScrollOfDivination extends ExoticScroll {
 	
 	{
-		initials = 0;
+		icon = ItemSpriteSheet.Icons.SCROLL_DIVINATE;
 
 		mpCost = 15;
 	}

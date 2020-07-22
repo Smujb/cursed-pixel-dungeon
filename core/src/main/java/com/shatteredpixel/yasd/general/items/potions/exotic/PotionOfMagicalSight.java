@@ -31,11 +31,12 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicalSight;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class PotionOfMagicalSight extends ExoticPotion {
 	
 	{
-		initials = 7;
+		icon = ItemSpriteSheet.Icons.POTION_MAGISIGHT;
 	}
 	
 	@Override

@@ -31,12 +31,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Haste;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 
 public class PotionOfHaste extends Potion {
 	
 	{
-		initials = 2;
+		icon = ItemSpriteSheet.Icons.POTION_HASTE;
 	}
 	
 	@Override

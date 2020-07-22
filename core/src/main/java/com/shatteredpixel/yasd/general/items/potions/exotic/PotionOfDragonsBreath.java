@@ -43,6 +43,7 @@ import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.CellSelector;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
@@ -52,7 +53,7 @@ import java.util.HashSet;
 public class PotionOfDragonsBreath extends ExoticPotion {
 	
 	{
-		initials = 6;
+		icon = ItemSpriteSheet.Icons.POTION_DRGBREATH;
 	}
 	
 	//a lot of this is copy-paste from wand of fireblast

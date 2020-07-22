@@ -32,12 +32,13 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.ParalyticGas;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class PotionOfParalyticGas extends Potion {
 
 	{
-		initials = 8;
+		icon = ItemSpriteSheet.Icons.POTION_PARAGAS;
 	}
 
 	@Override

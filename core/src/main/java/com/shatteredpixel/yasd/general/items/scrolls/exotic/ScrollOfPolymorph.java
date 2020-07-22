@@ -37,6 +37,7 @@ import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.TargetHealthIndicator;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -44,7 +45,7 @@ import com.watabou.utils.Random;
 public class ScrollOfPolymorph extends ExoticScroll {
 	
 	{
-		initials = 10;
+		icon = ItemSpriteSheet.Icons.SCROLL_POLYMORPH;
 
 		mpCost = 5;
 	}

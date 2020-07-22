@@ -28,11 +28,12 @@
 package com.shatteredpixel.yasd.general.items.potions;
 
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class PotionOfExperience extends Potion {
 
 	{
-		initials = 0;
+		icon = ItemSpriteSheet.Icons.POTION_EXP;
 
 		bones = true;
 	}

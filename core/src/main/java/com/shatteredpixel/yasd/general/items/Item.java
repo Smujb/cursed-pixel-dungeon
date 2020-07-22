@@ -84,6 +84,7 @@ public class Item implements Bundlable {
 	
 	protected String name = Messages.get(this, "name");
 	public int image = 0;
+	public int icon = -1; //used as an identifier for items with randomized images
 
 	public static final float MAXIMUM_DURABILITY = 1000;
 	public float curDurability = MAXIMUM_DURABILITY;
@@ -350,8 +351,12 @@ public class Item implements Bundlable {
 	protected void onDetach(){}
 
 	//returns the true level of the item, only affected by modifiers which are persistent (e.g. curse infusion)
-	public int level(){
+	public int trueLevel(){
 		return level;
+	}
+
+	public int level(){
+		return trueLevel();
 	}
 
 	public Item level( int value ){

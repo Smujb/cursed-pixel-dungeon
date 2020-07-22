@@ -70,8 +70,6 @@ public abstract class Scroll extends Item {
 
 	protected int mpCost = 0;
 
-	protected Integer initials;
-
 	private static final Class<?>[] scrolls = {
 		ScrollOfIdentify.class,
 		ScrollOfMagicMapping.class,
@@ -247,10 +245,6 @@ public abstract class Scroll extends Item {
 		return isKnown() ?
 				(desc() + (mpCost > 0 ? Messages.get(this, "cost", mpCost) : "")) :
 			Messages.get(this, "unknown_desc");
-	}
-
-	public Integer initials(){
-		return isKnown() ? initials : null;
 	}
 	
 	@Override

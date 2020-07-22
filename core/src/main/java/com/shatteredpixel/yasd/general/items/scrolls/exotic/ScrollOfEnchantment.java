@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.shatteredpixel.yasd.general.windows.WndOptions;
@@ -44,7 +45,7 @@ import com.watabou.noosa.audio.Sample;
 public class ScrollOfEnchantment extends ExoticScroll {
 	
 	{
-		initials = 11;
+		icon = ItemSpriteSheet.Icons.SCROLL_ENCHANT;
 
 		mpCost = 5;
 	}

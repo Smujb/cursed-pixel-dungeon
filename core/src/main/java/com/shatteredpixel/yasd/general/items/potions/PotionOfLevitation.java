@@ -36,13 +36,14 @@ import com.shatteredpixel.yasd.general.actors.buffs.Levitation;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
 public class PotionOfLevitation extends Potion {
 
 	{
-		initials = 5;
+		icon = ItemSpriteSheet.Icons.POTION_LEVITATE;
 	}
 
 	@Override

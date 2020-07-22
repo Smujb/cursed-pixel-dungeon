@@ -34,12 +34,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.Charm;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfAffection extends ExoticScroll {
 	
 	{
-		initials = 1;
+		icon = ItemSpriteSheet.Icons.SCROLL_AFFECTION;
 
 		mpCost = 12;
 	}

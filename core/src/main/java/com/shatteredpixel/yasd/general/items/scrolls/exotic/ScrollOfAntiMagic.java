@@ -32,11 +32,12 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.effects.Flare;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class ScrollOfAntiMagic extends ExoticScroll {
 	
 	{
-		initials = 7;
+		icon = ItemSpriteSheet.Icons.SCROLL_ANTIMAGIC;
 
 		mpCost = 9;
 	}

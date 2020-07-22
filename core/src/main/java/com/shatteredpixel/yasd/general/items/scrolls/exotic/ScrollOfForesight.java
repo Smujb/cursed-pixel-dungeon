@@ -32,12 +32,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Foresight;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.effects.SpellSprite;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfForesight extends ExoticScroll {
 	
 	{
-		initials = 2;
+		icon = ItemSpriteSheet.Icons.SCROLL_FORESIGHT;
 
 		mpCost = 6;
 	}

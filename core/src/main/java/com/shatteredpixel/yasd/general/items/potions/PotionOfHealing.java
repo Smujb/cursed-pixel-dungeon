@@ -41,12 +41,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.Vulnerable;
 import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 
 public class PotionOfHealing extends Potion {
 
 	{
-		initials = 3;
+		icon = ItemSpriteSheet.Icons.POTION_HEALING;
 
 		bones = true;
 	}

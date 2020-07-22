@@ -37,12 +37,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfRetribution extends Scroll {
 
 	{
-		initials = 4;
+		icon = ItemSpriteSheet.Icons.SCROLL_RETRIB;
 
 		mpCost = 3;
 	}

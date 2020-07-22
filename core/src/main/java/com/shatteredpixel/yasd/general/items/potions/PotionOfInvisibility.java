@@ -32,13 +32,14 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
 public class PotionOfInvisibility extends Potion {
 
 	{
-		initials = 4;
+		icon = ItemSpriteSheet.Icons.POTION_INVIS;
 	}
 
 	@Override

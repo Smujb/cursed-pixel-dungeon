@@ -35,13 +35,14 @@ import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfLullaby extends Scroll {
 
 	{
-		initials = 1;
+		icon = ItemSpriteSheet.Icons.SCROLL_LULLABY;
 
 		mpCost = 8;
 	}

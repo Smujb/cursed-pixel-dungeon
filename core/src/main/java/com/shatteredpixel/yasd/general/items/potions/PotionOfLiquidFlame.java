@@ -32,13 +32,14 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.Fire;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PathFinder;
 
 public class PotionOfLiquidFlame extends Potion {
 
 	{
-		initials = 6;
+		icon = ItemSpriteSheet.Icons.POTION_LIQFLAME;
 	}
 
 	@Override

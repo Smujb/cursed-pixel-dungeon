@@ -29,12 +29,13 @@ package com.shatteredpixel.yasd.general.items.potions;
 
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 
 public class PotionOfMana extends Potion {
 
 	{
-		initials = 10;
+		icon = ItemSpriteSheet.Icons.POTION_STRENGTH;
 	}
 	
 	@Override

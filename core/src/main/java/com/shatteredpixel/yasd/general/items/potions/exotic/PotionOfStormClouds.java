@@ -32,12 +32,13 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.StormCloud;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class PotionOfStormClouds extends ExoticPotion {
 	
 	{
-		initials = 5;
+		icon = ItemSpriteSheet.Icons.POTION_STRMCLOUD;
 	}
 	
 	@Override

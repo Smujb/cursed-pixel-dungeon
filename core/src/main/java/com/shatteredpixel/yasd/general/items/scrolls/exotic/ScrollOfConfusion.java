@@ -36,12 +36,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfConfusion extends ExoticScroll {
 	
 	{
-		initials = 5;
+		icon = ItemSpriteSheet.Icons.SCROLL_CONFUSION;
 
 		mpCost = 10;
 	}

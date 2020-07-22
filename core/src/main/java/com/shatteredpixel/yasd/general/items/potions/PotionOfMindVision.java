@@ -32,12 +32,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.MindVision;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 
 public class PotionOfMindVision extends Potion {
 
 	{
-		initials = 7;
+		icon = ItemSpriteSheet.Icons.POTION_MINDVIS;
 	}
 
 	@Override

@@ -38,13 +38,14 @@ import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfPsionicBlast extends ExoticScroll {
 	
 	{
-		initials = 4;
+		icon = ItemSpriteSheet.Icons.SCROLL_PSIBLAST;
 
 		mpCost = 15;
 	}

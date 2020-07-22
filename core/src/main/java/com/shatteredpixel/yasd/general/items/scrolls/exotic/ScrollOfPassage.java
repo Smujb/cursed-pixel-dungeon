@@ -34,12 +34,13 @@ import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Swiftthistle;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 
 public class ScrollOfPassage extends ExoticScroll {
 	
 	{
-		initials = 8;
+		icon = ItemSpriteSheet.Icons.SCROLL_ENCHANT;
 
 		mpCost = 4;
 	}

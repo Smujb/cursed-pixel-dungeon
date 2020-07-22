@@ -30,11 +30,12 @@ package com.shatteredpixel.yasd.general.items.potions.exotic;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Stamina;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class PotionOfStamina extends ExoticPotion {
 	
 	{
-		initials = 2;
+		icon = ItemSpriteSheet.Icons.POTION_STAMINA;
 	}
 	
 	@Override

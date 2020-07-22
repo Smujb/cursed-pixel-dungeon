@@ -43,6 +43,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.CellSelector;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.HeroSprite;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.BArray;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
@@ -56,7 +57,7 @@ import java.util.ArrayList;
 public class ScrollOfTeleportation extends Scroll {
 
 	{
-		initials = 8;
+		icon = ItemSpriteSheet.Icons.SCROLL_TELEPORT;
 
 		mpCost = 2;
 	}

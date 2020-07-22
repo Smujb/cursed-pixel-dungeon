@@ -30,11 +30,12 @@ package com.shatteredpixel.yasd.general.items.potions.exotic;
 import com.shatteredpixel.yasd.general.actors.buffs.Bless;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class PotionOfHolyFuror extends ExoticPotion {
 	
 	{
-		initials = 0;
+		icon = ItemSpriteSheet.Icons.POTION_HOLYFUROR;
 	}
 	
 	@Override

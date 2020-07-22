@@ -39,13 +39,14 @@ import com.shatteredpixel.yasd.general.effects.SpellSprite;
 import com.shatteredpixel.yasd.general.levels.terrain.KindOfTerrain;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfMagicMapping extends Scroll {
 
 	{
-		initials = 2;
+		icon = ItemSpriteSheet.Icons.SCROLL_MAGICMAP;
 
 		mpCost = 6;
 	}

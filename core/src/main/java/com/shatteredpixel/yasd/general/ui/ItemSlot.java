@@ -30,12 +30,8 @@ package com.shatteredpixel.yasd.general.ui;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.keys.Key;
-import com.shatteredpixel.yasd.general.items.keys.SkeletonKey;
-import com.shatteredpixel.yasd.general.items.potions.Potion;
-import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
-import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
-import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
+import com.shatteredpixel.yasd.general.items.armor.Armor;
+import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -50,23 +46,22 @@ public class ItemSlot extends Button {
 	public static final int UPGRADED	= 0x44FF44;
 	public static final int FADED       = 0x999999;
 	public static final int WARNING		= 0xFF8800;
-	
+	public static final int ENHANCED	= 0x3399FF;
+
 	private static final float ENABLED	= 1.0f;
 	private static final float DISABLED	= 0.3f;
-	
-	protected ItemSprite icon;
-	protected Item       item;
-	protected BitmapText topLeft;
-	protected BitmapText topRight;
-	protected BitmapText bottomRight;
-	protected Image      bottomRightIcon;
-	protected boolean    iconVisible = true;
-	
 
-	private static final String TXT_KEY_DEPTH	= "\u007F%d";
+	protected ItemSprite sprite;
+	protected Item       item;
+	protected BitmapText status;
+	protected BitmapText extra;
+	protected Image      itemIcon;
+	protected BitmapText level;
+
+	private static final String TXT_STRENGTH	= ":%d";
+	private static final String TXT_TYPICAL_STR	= "%d?";
 
 	private static final String TXT_LEVEL	= "%+d";
-	private static final String TXT_CURSED    = "";//"-";
 
 	// Special "virtual items"
 	public static final Item CHEST = new Item() {
@@ -87,80 +82,81 @@ public class ItemSlot extends Button {
 	public static final Item REMAINS = new Item() {
 		public int image() { return ItemSpriteSheet.REMAINS; }
 	};
-	
+
 	public ItemSlot() {
 		super();
-		icon.visible(false);
+		sprite.visible(false);
 		enable(false);
 	}
-	
+
 	public ItemSlot( Item item ) {
 		this();
 		item( item );
 	}
-		
+
 	@Override
 	protected void createChildren() {
-		
+
 		super.createChildren();
-		
-		icon = new ItemSprite();
-		add( icon );
-		
-		topLeft = new BitmapText( PixelScene.pixelFont);
-		add( topLeft );
-		
-		topRight = new BitmapText( PixelScene.pixelFont);
-		add( topRight );
-		
-		bottomRight = new BitmapText( PixelScene.pixelFont);
-		add( bottomRight );
+
+		sprite = new ItemSprite();
+		add(sprite);
+
+		status = new BitmapText( PixelScene.pixelFont);
+		add(status);
+
+		extra = new BitmapText( PixelScene.pixelFont);
+		add(extra);
+
+		level = new BitmapText( PixelScene.pixelFont);
+		add(level);
 	}
-	
+
 	@Override
 	protected void layout() {
 		super.layout();
-		
-		icon.x = x + (width - icon.width) / 2f;
-		icon.y = y + (height - icon.height) / 2f;
-		PixelScene.align(icon);
-		
-		if (topLeft != null) {
-			topLeft.measure();
-			if (topLeft.width > width){
-				topLeft.scale.set(PixelScene.align(0.8f));
+
+		sprite.x = x + (width - sprite.width) / 2f;
+		sprite.y = y + (height - sprite.height) / 2f;
+		PixelScene.align(sprite);
+
+		if (status != null) {
+			status.measure();
+			if (status.width > width){
+				status.scale.set(PixelScene.align(0.8f));
 			} else {
-				topLeft.scale.set(1f);
+				status.scale.set(1f);
 			}
-			topLeft.x = x;
-			topLeft.y = y;
-			PixelScene.align(topLeft);
-		}
-		
-		if (topRight != null) {
-			topRight.x = x + (width - topRight.width());
-			topRight.y = y;
-			PixelScene.align(topRight);
-		}
-		
-		if (bottomRight != null) {
-			bottomRight.x = x + (width - bottomRight.width());
-			bottomRight.y = y + (height - bottomRight.height());
-			PixelScene.align(bottomRight);
+			status.x = x;
+			status.y = y;
+			PixelScene.align(status);
 		}
 
-		if (bottomRightIcon != null) {
-			bottomRightIcon.x = x + (width - bottomRightIcon.width()) -1;
-			bottomRightIcon.y = y + (height - bottomRightIcon.height());
-			PixelScene.align(bottomRightIcon);
+		if (extra != null) {
+			extra.x = x + (width - extra.width());
+			extra.y = y;
+			PixelScene.align(extra);
 		}
+
+		if (itemIcon != null){
+			itemIcon.x = x + width - (ItemSpriteSheet.Icons.SIZE + itemIcon.width())/2f;
+			itemIcon.y = y + (ItemSpriteSheet.Icons.SIZE - itemIcon.height)/2f;
+			PixelScene.align(itemIcon);
+		}
+
+		if (level != null) {
+			level.x = x + (width - level.width());
+			level.y = y + (height - level.baseLine() - 1);
+			PixelScene.align(level);
+		}
+
 	}
-	
+
 	public void item( Item item ) {
 		if (this.item == item) {
 			if (item != null) {
-				icon.frame(item.image());
-				icon.glow(item.glowing());
+				sprite.frame(item.image());
+				sprite.glow(item.glowing());
 			}
 			updateText();
 			return;
@@ -171,122 +167,105 @@ public class ItemSlot extends Button {
 		if (item == null) {
 
 			enable(false);
-			icon.visible(false);
+			sprite.visible(false);
 
 			updateText();
-			
-		} else {
-			
-			enable(true);
-			icon.visible(true);
 
-			icon.view( item );
+		} else {
+
+			enable(true);
+			sprite.visible(true);
+
+			sprite.view( item );
 			updateText();
 		}
 	}
 
 	private void updateText(){
 
-		if (bottomRightIcon != null){
-			remove(bottomRightIcon);
-			bottomRightIcon = null;
+		if (itemIcon != null){
+			remove(itemIcon);
+			itemIcon = null;
 		}
 
 		if (item == null){
-			topLeft.visible = topRight.visible = bottomRight.visible = false;
+			status.visible = extra.visible = level.visible = false;
 			return;
 		} else {
-			topLeft.visible = topRight.visible = bottomRight.visible = true;
+			status.visible = extra.visible = level.visible = true;
 		}
 
-		topLeft.text( item.status() );
+		status.text( item.status() );
 
-		if (item != null && item.topRightStatus(item.levelKnown) != null) {
-			topRight.text(item.topRightStatus(item.levelKnown));
-			if (item.levelKnown) {
-				if (!item.canTypicallyUse(Dungeon.hero)) {
-					topRight.hardlight( DEGRADED );
+		if (item.icon != -1 && item.isIdentified()){
+			extra.text( null );
+
+			itemIcon = new Image(Assets.Sprites.ITEM_ICONS);
+			itemIcon.frame(ItemSpriteSheet.Icons.film.get(item.icon));
+			add(itemIcon);
+
+		} else if (item instanceof Weapon || item instanceof Armor) {
+
+			if (item.levelKnown){
+				int str = item instanceof Weapon ? ((Weapon)item).STRReq() : ((Armor)item).STRReq();
+				extra.text( Messages.format( TXT_STRENGTH, str ) );
+				if (str > Dungeon.hero.STR()) {
+					extra.hardlight( DEGRADED );
 				} else {
-					topRight.resetColor();
+					extra.resetColor();
 				}
 			} else {
-				topRight.hardlight( WARNING );
+				int str = item instanceof Weapon ? ((Weapon)item).STRReq(0) : ((Armor)item).STRReq(0);
+				extra.text( Messages.format( TXT_TYPICAL_STR, str ) );
+				extra.hardlight( WARNING );
 			}
-			topRight.measure();
+			extra.measure();
 
-		} else if (item instanceof Key && !(item instanceof SkeletonKey)) {
-			topRight.text(Messages.format(TXT_KEY_DEPTH, ((Key) item).levelKey));
-			topRight.measure();
 		} else {
 
-			topRight.text( null );
+			extra.text( null );
 
 		}
 
 		int level = item.visiblyUpgraded();
+		int trueLvl = item.trueLevel();
 
-		if (level != 0) {
-			bottomRight.text( item.levelKnown ? Messages.format( TXT_LEVEL, level ) : TXT_CURSED );
-			bottomRight.measure();
-			bottomRight.hardlight( level > 0 ? UPGRADED : DEGRADED );
-		} else if (item instanceof Scroll || item instanceof Potion) {
-			bottomRight.text( null );
-
-			Integer iconInt;
-			if (item instanceof Scroll){
-				iconInt = ((Scroll) item).initials();
+		if (trueLvl != 0 || level != 0 && item.levelKnown) {
+			this.level.text( Messages.format( TXT_LEVEL, level ) );
+			this.level.measure();
+			if (trueLvl > level || level < 0) {
+				this.level.hardlight(DEGRADED);
+			} else if (level > trueLvl) {
+				this.level.hardlight(ENHANCED);
 			} else {
-				iconInt = ((Potion) item).initials();
+				this.level.hardlight(UPGRADED);
 			}
-			if (iconInt != null && iconVisible) {
-				bottomRightIcon = new Image(Assets.Interfaces.CONS_ICONS);
-				int left = iconInt*7;
-				int top;
-				if (item instanceof Potion){
-					if (item instanceof ExoticPotion){
-						top = 8;
-					} else {
-						top = 0;
-					}
-				} else {
-					if (item instanceof ExoticScroll){
-						top = 24;
-					} else {
-						top = 16;
-					}
-				}
-				bottomRightIcon.frame(left, top, 7, 8);
-				add(bottomRightIcon);
-			}
-
 		} else {
-			bottomRight.text( null );
+			this.level.text( null );
 		}
 
 		layout();
 	}
-	
+
 	public void enable( boolean value ) {
-		
+
 		active = value;
-		
+
 		float alpha = value ? ENABLED : DISABLED;
-		icon.alpha( alpha );
-		topLeft.alpha( alpha );
-		topRight.alpha( alpha );
-		bottomRight.alpha( alpha );
-		if (bottomRightIcon != null) bottomRightIcon.alpha( alpha );
+		sprite.alpha( alpha );
+		status.alpha( alpha );
+		extra.alpha( alpha );
+		level.alpha( alpha );
+		if (itemIcon != null) itemIcon.alpha( alpha );
 	}
 
-	public void showParams( boolean TL, boolean TR, boolean BR ) {
-		if (TL) add( topLeft );
-		else remove( topLeft );
+	public void showExtraInfo( boolean show ){
 
-		if (TR) add( topRight );
-		else remove( topRight );
+		if (show){
+			add(extra);
+		} else {
+			remove(extra);
+		}
 
-		if (BR) add( bottomRight );
-		else remove( bottomRight );
-		iconVisible = BR;
 	}
 }

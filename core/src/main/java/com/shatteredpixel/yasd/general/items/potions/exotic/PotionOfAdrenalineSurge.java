@@ -30,11 +30,12 @@ package com.shatteredpixel.yasd.general.items.potions.exotic;
 import com.shatteredpixel.yasd.general.actors.buffs.AdrenalineSurge;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class PotionOfAdrenalineSurge extends ExoticPotion {
 	
 	{
-		initials = 10;
+		icon = ItemSpriteSheet.Icons.POTION_ARENSURGE;
 	}
 	
 	@Override

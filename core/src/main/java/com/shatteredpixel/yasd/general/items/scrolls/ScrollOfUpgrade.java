@@ -40,13 +40,14 @@ import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 
 public class ScrollOfUpgrade extends InventoryScroll {
 	
 	{
-		initials = 11;
+		icon = ItemSpriteSheet.Icons.SCROLL_UPGRADE;
 		mode = WndBag.Mode.UPGRADEABLE;
 	}
 	

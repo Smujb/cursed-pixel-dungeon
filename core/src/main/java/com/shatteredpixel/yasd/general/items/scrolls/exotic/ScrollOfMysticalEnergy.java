@@ -33,12 +33,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.effects.SpellSprite;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRecharging;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfMysticalEnergy extends ExoticScroll {
 	
 	{
-		initials = 6;
+		icon = ItemSpriteSheet.Icons.SCROLL_MYSTENRG;
 
 		mpCost = 13;
 	}

@@ -36,12 +36,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Flare;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfPetrification extends ExoticScroll {
 	
 	{
-		initials = 9;
+		icon = ItemSpriteSheet.Icons.SCROLL_PETRIF;
 
 		mpCost = 12;
 	}

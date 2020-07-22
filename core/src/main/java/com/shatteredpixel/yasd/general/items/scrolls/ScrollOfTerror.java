@@ -38,13 +38,14 @@ import com.shatteredpixel.yasd.general.actors.buffs.Terror;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
 public class ScrollOfTerror extends Scroll {
 
 	{
-		initials = 9;
+		icon = ItemSpriteSheet.Icons.SCROLL_TERROR;
 
 		mpCost = 7;
 	}

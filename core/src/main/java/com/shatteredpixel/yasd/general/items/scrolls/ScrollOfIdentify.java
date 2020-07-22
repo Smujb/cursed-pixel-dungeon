@@ -32,6 +32,7 @@ import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.effects.Identification;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.watabou.noosa.audio.Sample;
@@ -42,7 +43,7 @@ import java.util.ArrayList;
 public class ScrollOfIdentify extends InventoryScroll {
 
 	{
-		initials = 0;
+		icon = ItemSpriteSheet.Icons.SCROLL_IDENTIFY;
 		mode = WndBag.Mode.UNIDENTIFED;
 
 		mpCost = 2;

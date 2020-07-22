@@ -64,15 +64,15 @@ public class LootIndicator extends Tag {
 				return CPDAction.TAG_LOOT;
 			}
 		};
-		slot.showParams( true, false, false );
+		slot.showExtraInfo( false );
 		add( slot );
 	}
 	
 	@Override
 	protected void layout() {
 		super.layout();
-		
-		slot.setRect( x + 2, y + 3, width - 2, height - 6 );
+
+		slot.setRect( x + 2, y + 3, width - 3, height - 6 );
 	}
 	
 	@Override

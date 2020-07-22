@@ -32,12 +32,13 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.SmokeScreen;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
 public class PotionOfShroudingFog extends ExoticPotion {
 	
 	{
-		initials = 4;
+		icon = ItemSpriteSheet.Icons.POTION_SHROUDFOG;
 	}
 	
 	@Override
