@@ -82,14 +82,15 @@ public class DesktopLauncher {
                 exceptionMsg = exceptionMsg.replace("com.watabou.", "");
                 exceptionMsg = exceptionMsg.replace("com.badlogic.gdx.", "");
                 exceptionMsg = exceptionMsg.replace("\t", "    ");
+                String message = title + " has run into an error it can't recover from and has crashed, sorry about that!\n\n" +
+                        "The error has been copied to your clipboard. If you can, please post it on my Discord.\n\n" +
+                        "version: " + Game.version + "\n" +
+                        exceptionMsg;
 
                 TinyFileDialogs.tinyfd_messageBox(title + " Has Crashed!",
-                        title + " has run into an error it can't recover from and has crashed, sorry about that!\n\n" +
-                                "The error has been copied to your clipboard. If you can, please post it on my Discord.\n\n" +
-                                exceptionMsg,
+                        message,
                         "ok", "error", false );
-                String myString = exceptionMsg;
-                StringSelection stringSelection = new StringSelection(myString);
+                StringSelection stringSelection = new StringSelection(message);
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                 clipboard.setContents(stringSelection, null);
                 if (Gdx.app != null) Gdx.app.exit();
