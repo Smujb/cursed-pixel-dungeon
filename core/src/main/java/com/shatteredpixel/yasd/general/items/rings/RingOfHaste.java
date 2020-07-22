@@ -29,10 +29,15 @@ package com.shatteredpixel.yasd.general.items.rings;
 
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 import java.text.DecimalFormat;
 
 public class RingOfHaste extends Ring {
+
+	{
+		icon = ItemSpriteSheet.Icons.RING_HASTE;
+	}
 	
 	public String statsInfo() {
 		if (isIdentified()){

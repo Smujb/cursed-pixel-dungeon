@@ -28,8 +28,13 @@
 package com.shatteredpixel.yasd.general.items.rings;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class RingOfAttunement extends HeroStatRing {
+
+	{
+		icon = ItemSpriteSheet.Icons.RING_MIGHT;
+	}
 	
 	@Override
 	protected RingBuff buff( ) {

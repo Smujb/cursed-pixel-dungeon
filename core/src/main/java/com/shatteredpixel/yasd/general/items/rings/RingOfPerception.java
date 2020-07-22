@@ -28,8 +28,13 @@
 package com.shatteredpixel.yasd.general.items.rings;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class RingOfPerception extends HeroStatRing {
+
+	{
+		icon = ItemSpriteSheet.Icons.RING_ACCURACY;
+	}
 
 	@Override
 	protected RingBuff buff( ) {

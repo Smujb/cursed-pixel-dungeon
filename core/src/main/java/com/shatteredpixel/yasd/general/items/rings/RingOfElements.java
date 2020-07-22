@@ -30,12 +30,18 @@ package com.shatteredpixel.yasd.general.items.rings;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.items.armor.glyphs.AntiMagic;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 import java.text.DecimalFormat;
 import java.util.HashSet;
 
 public class RingOfElements extends Ring {
-	
+
+	{
+		icon = ItemSpriteSheet.Icons.RING_ELEMENTS;
+	}
+
+
 	public String statsInfo() {
 		if (isIdentified()){
 			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (0.5f * soloMultiplier())));
