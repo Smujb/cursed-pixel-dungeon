@@ -143,7 +143,8 @@ public class Game implements ApplicationListener {
 		Gdx.gl.glDisable(Gdx.gl.GL_SCISSOR_TEST);
 		Gdx.gl.glClear(Gdx.gl.GL_COLOR_BUFFER_BIT);
 		draw();
-		
+
+		Gdx.gl.glDisable( Gdx.gl.GL_SCISSOR_TEST );
 		Gdx.gl.glFlush();
 		
 		step();
