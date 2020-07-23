@@ -82,13 +82,7 @@ public class RegrowthBomb extends Bomb {
 						Buff.affect( ch, Healing.class ).setHeal((int)(0.8f*ch.HT + 14), 0.25f, 0);
 						PotionOfHealing.cure(ch);
 					}
-				} else if ( /*Dungeon.level.getTerrain(i) == Terrain.EMPTY ||
-							Dungeon.level.getTerrain(i) == Terrain.EMBERS ||
-							Dungeon.level.map[i] == Terrain.EMPTY_DECO ||
-							Dungeon.level.map[i] == Terrain.GRASS ||
-							Dungeon.level.map[i] == Terrain.HIGH_GRASS ||
-							Dungeon.level.map[i] == Terrain.FURROWED_GRASS*/
-						Dungeon.level.terrainIsOneOf(i, Terrain.EMPTY, Terrain.EMBERS, Terrain.EMPTY_DECO, Terrain.GRASS, Terrain.HIGH_GRASS, Terrain.FURROWED_GRASS)){
+				} else if (Dungeon.level.terrainIsOneOf(i, Terrain.EMPTY, Terrain.EMBERS, Terrain.EMPTY_DECO, Terrain.GRASS, Terrain.HIGH_GRASS, Terrain.FURROWED_GRASS)){
 					
 					plantCandidates.add(i);
 				}
@@ -101,7 +95,7 @@ public class RegrowthBomb extends Bomb {
 		for (int i = 0; i < plants; i++) {
 			Integer plantPos = Random.element(plantCandidates);
 			if (plantPos != null) {
-				Dungeon.level.plant((Plant.Seed) Generator.random(Generator.Category.SEED), plantPos);
+				Dungeon.level.plant((Plant.Seed) Generator.randomUsingDefaults(Generator.Category.SEED), plantPos);
 				plantCandidates.remove(plantPos);
 			}
 		}

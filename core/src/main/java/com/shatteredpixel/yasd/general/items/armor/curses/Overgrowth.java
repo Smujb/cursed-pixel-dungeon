@@ -34,7 +34,6 @@ import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.LeafParticle;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.plants.BlandfruitBush;
 import com.shatteredpixel.yasd.general.plants.Plant;
 import com.shatteredpixel.yasd.general.plants.Starflower;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -51,8 +50,8 @@ public class Overgrowth extends Armor.Glyph {
 			
 			Plant.Seed s;
 			do{
-				s = (Plant.Seed) Generator.random(Generator.Category.SEED);
-			} while (s instanceof BlandfruitBush.Seed || s instanceof Starflower.Seed);
+				s = (Plant.Seed) Generator.randomUsingDefaults(Generator.Category.SEED);
+			} while (s instanceof Starflower.Seed);
 			
 			Plant p = s.couch(defender.pos, null);
 			

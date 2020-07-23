@@ -157,9 +157,10 @@ public class ShopRoom extends SpecialRoom {
 
 	private Armor generateArmor(int level) {
 		Armor armor;
-		int minTier = level/6;
-		int maxTier = minTier + 2;
+		int minTier = level/4;
+		int maxTier = level/2;
 		armor = (Armor) Generator.randomArmor().identify().upgrade();
+		armor.randomHigh();
 		armor.cursed = false;
 		if (armor.hasCurseGlyph()) {
 			armor.inscribe(Armor.Glyph.random());
@@ -182,10 +183,11 @@ public class ShopRoom extends SpecialRoom {
 
 	private MeleeWeapon generateWeapon(int level) {
 		MeleeWeapon weapon;
-		int minTier = level/6;
-		int maxTier = minTier + 2;
+		int minTier = level/4;
+		int maxTier = level/2;
 
 		weapon = (MeleeWeapon) Generator.random(Generator.Category.WEAPON).identify().upgrade();
+		weapon.randomHigh();
 		weapon.cursed = false;
 		if (weapon.hasCurseEnchant()) {
 			weapon.enchant(Weapon.Enchantment.random());
@@ -197,11 +199,6 @@ public class ShopRoom extends SpecialRoom {
 		} while (weapon.STRReq() < typicalStr - 3 + Random.Int(6));
 		if (weapon.tier < 1) {
 			weapon.setTier(1);
-		}
-		if (weapon.tier == minTier & weapon.isUpgradable()) {//Extra upgrade if possible and Armour is at minimum amount
-			weapon.upgrade();
-		} else if (weapon.tier == maxTier & weapon.level() > 1) {
-			weapon.degrade();
 		}
 		return weapon;
 	}
@@ -231,12 +228,12 @@ public class ShopRoom extends SpecialRoom {
 				itemsToSpawn.add( new Torch() );
 				break;
 		}
-		for (int a = 0; a < Random.IntRange(1,2); a++) {
+		for (int a = 0; a < Random.IntRange(2,3); a++) {
 			Armor armor = generateArmor(level);
 			itemsToSpawn.add( armor );
 		}
 
-		for (int a = 0; a < Random.IntRange(1,2); a++) {
+		for (int a = 0; a < Random.IntRange(2,3); a++) {
 			MeleeWeapon weapon = generateWeapon(level);
 			itemsToSpawn.add( weapon );
 		}
@@ -252,18 +249,20 @@ public class ShopRoom extends SpecialRoom {
 
 
 		itemsToSpawn.add( new PotionOfHealing() );
-		for (int i=0; i < 3; i++)
-			itemsToSpawn.add( Generator.random( Generator.Category.POTION ) );
+
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
 
 		itemsToSpawn.add( new ScrollOfIdentify() );
 		itemsToSpawn.add( new ScrollOfRemoveCurse() );
 		itemsToSpawn.add( new ScrollOfMagicMapping() );
-		itemsToSpawn.add( Generator.random( Generator.Category.SCROLL ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
 
 		for (int i=0; i < 2; i++)
 			itemsToSpawn.add( Random.Int(2) == 0 ?
-					Generator.random( Generator.Category.POTION ) :
-					Generator.random( Generator.Category.SCROLL ) );
+					Generator.randomUsingDefaults( Generator.Category.POTION ) :
+					Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
 
 
 		itemsToSpawn.add( new SmallRation() );

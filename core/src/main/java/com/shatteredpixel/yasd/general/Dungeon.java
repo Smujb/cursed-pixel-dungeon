@@ -242,7 +242,6 @@ public class Dungeon {
 		Imp.Quest.reset();
 
 		Generator.reset();
-		Generator.initArtifacts();
 		hero = new Hero();
 		hero.live();
 		

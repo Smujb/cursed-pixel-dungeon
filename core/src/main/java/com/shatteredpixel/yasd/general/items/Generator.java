@@ -41,13 +41,6 @@ import com.shatteredpixel.yasd.general.items.allies.StoneDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.VampiricDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.items.armor.BasicArmor;
-import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
-import com.shatteredpixel.yasd.general.items.armor.HeavyArmor;
-import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
-import com.shatteredpixel.yasd.general.items.armor.LightArmor;
-import com.shatteredpixel.yasd.general.items.armor.MageArmor;
-import com.shatteredpixel.yasd.general.items.armor.RogueArmor;
 import com.shatteredpixel.yasd.general.items.artifacts.AlchemistsToolkit;
 import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.artifacts.CapeOfThorns;
@@ -120,6 +113,7 @@ import com.shatteredpixel.yasd.general.items.powers.Surprise;
 import com.shatteredpixel.yasd.general.items.powers.Telekinesis;
 import com.shatteredpixel.yasd.general.items.powers.WaterPump;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
+import com.shatteredpixel.yasd.general.items.rings.RingOfAttunement;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfEvasion;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
@@ -181,42 +175,7 @@ import com.shatteredpixel.yasd.general.items.stones.StoneOfIntuition;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfRepair;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfShock;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
-import com.shatteredpixel.yasd.general.items.wands.WandOfAcid;
-import com.shatteredpixel.yasd.general.items.wands.WandOfBlastWave;
-import com.shatteredpixel.yasd.general.items.wands.WandOfCorrosion;
-import com.shatteredpixel.yasd.general.items.wands.WandOfCorruption;
-import com.shatteredpixel.yasd.general.items.wands.WandOfDamnation;
-import com.shatteredpixel.yasd.general.items.wands.WandOfDarkness;
-import com.shatteredpixel.yasd.general.items.wands.WandOfDisintegration;
-import com.shatteredpixel.yasd.general.items.wands.WandOfFireblast;
-import com.shatteredpixel.yasd.general.items.wands.WandOfFlow;
-import com.shatteredpixel.yasd.general.items.wands.WandOfFrost;
-import com.shatteredpixel.yasd.general.items.wands.WandOfLifeDrain;
-import com.shatteredpixel.yasd.general.items.wands.WandOfLightning;
-import com.shatteredpixel.yasd.general.items.wands.WandOfLivingEarth;
-import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
-import com.shatteredpixel.yasd.general.items.wands.WandOfPlasmaBolt;
-import com.shatteredpixel.yasd.general.items.wands.WandOfPrismaticLight;
-import com.shatteredpixel.yasd.general.items.wands.WandOfRegrowth;
-import com.shatteredpixel.yasd.general.items.wands.WandOfThornvines;
-import com.shatteredpixel.yasd.general.items.wands.WandOfTransfusion;
-import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Axe;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Basic;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Blunt;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Dual;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Long;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Magical;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Projectile;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Sharp;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Shield;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Sneak;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Staff;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.Bolas;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.FishingSpear;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ForceCube;
@@ -250,7 +209,8 @@ import com.watabou.utils.GameMath;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
-import java.util.ArrayList;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -258,9 +218,9 @@ public class Generator {
 
 	public enum Category {
 		WEAPON	( 6,    MeleeWeapon.class),
-		
+
 		ARMOR	( 6,    Armor.class ),
-		
+
 		MISSILE ( 3,    MissileWeapon.class ),
 		MIS_T1  ( 0,    MissileWeapon.class ),
 		MIS_T2  ( 0,    MissileWeapon.class ),
@@ -270,54 +230,58 @@ public class Generator {
 
 
 		DRAGON_PENDANT  ( 4,    DragonPendant.class ),
-		
+
 		WAND	( 3,    Wand.class ),
 		RING	( 1,    Ring.class ),
 		ARTIFACT( 1,    Artifact.class),
-		
+
 		FOOD	( 0,    Food.class ),
 
 		POTION	( 20,   Potion.class ),
 		POTION_EXOTIC	( 1,   ExoticPotion.class ),
 		ELIXIR( 1,   Elixir.class ),
 		SEED	( 0,    Plant.Seed.class ), //dropped by grass
-		
+
 		SCROLL	( 20,   Scroll.class ),
 		SPELL ( 0,   Spell.class ),
 		SCROLL_EXOTIC (1,   ExoticScroll.class),
 		STONE   ( 2,    Runestone.class),
 
 		POWER (0, Power.class),
-		
+
 		GOLD	( 18,   Gold.class );
-		
+
 		public Class<?>[] classes;
+
+		//some item types use a deck-based system, where the probs decrement as items are picked
+		// until they are all 0, and then they reset. Those generator classes should define
+		// defaultProbs. If defaultProbs is null then a deck system isn't used.
+		//Artifacts in particular don't reset, no duplicates!
 		public float[] probs;
-		
+		public float[] defaultProbs = null;
+
 		public float prob;
 		public Class<? extends Item> superClass;
-		
-		Category(float prob, Class<? extends Item> superClass) {
+
+		private Category( float prob, Class<? extends Item> superClass ) {
 			this.prob = prob;
 			this.superClass = superClass;
 		}
-		
+
 		public static int order( Item item ) {
 			for (int i=0; i < values().length; i++) {
 				if (values()[i].superClass.isInstance( item )) {
 					return i;
 				}
 			}
-			
+
 			return item instanceof Bag ? Integer.MAX_VALUE : Integer.MAX_VALUE - 1;
 		}
-		
-		private static final float[] INITIAL_ARTIFACT_PROBS = new float[]{ 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1};
-		
+
 		static {
 			GOLD.classes = new Class<?>[]{
-					Gold.class };
-			GOLD.probs = new float[]{ 1 };
+					Gold.class};
+			GOLD.probs = new float[]{1};
 
 			DRAGON_PENDANT.classes = new Class<?>[]{
 					EarthenDragonPendant.class,
@@ -343,7 +307,6 @@ public class Generator {
 					1,
 					1
 			};
-
 
 			POWER.classes = new Class<?>[] {
 					Alchemy.class,
@@ -378,9 +341,9 @@ public class Generator {
 					1,
 					1
 			};
-			
+
 			POTION.classes = new Class<?>[]{
-					PotionOfMana.class, //2 drop every chapter, see Dungeon.posNeeded()
+					PotionOfMana.class,
 					PotionOfHealing.class,
 					PotionOfMindVision.class,
 					PotionOfFrost.class,
@@ -392,7 +355,8 @@ public class Generator {
 					PotionOfParalyticGas.class,
 					PotionOfPurity.class,
 					PotionOfExperience.class};
-			POTION.probs = new float[]{ 3, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1 };
+			POTION.defaultProbs = new float[]{3, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1};
+			POTION.probs = POTION.defaultProbs.clone();
 
 			POTION_EXOTIC.classes = new Class<?>[]{
 					PotionOfAdrenalineSurge.class, //2 drop every chapter, see Dungeon.posNeeded()
@@ -407,7 +371,8 @@ public class Generator {
 					PotionOfEarthenArmor.class,
 					PotionOfCleansing.class,
 					PotionOfHolyFuror.class};
-			POTION_EXOTIC.probs = new float[]{ 2, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1 };
+			POTION_EXOTIC.defaultProbs = new float[]{ 2, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1 };
+			POTION_EXOTIC.probs = POTION_EXOTIC.defaultProbs.clone();
 
 			ELIXIR.classes = new Class<?>[] {
 					BlizzardBrew.class,
@@ -423,22 +388,26 @@ public class Generator {
 					ElixirOfToxicEssence.class
 			};
 
-			ELIXIR.probs = new float[] {1,1,1,1,1,1,1,1,1,1,1};
-			
+			ELIXIR.defaultProbs = new float[] {1,1,1,1,1,1,1,1,1,1,1};
+			ELIXIR.probs = ELIXIR.defaultProbs.clone();
+
 			SEED.classes = new Class<?>[]{
 					Rotberry.Seed.class, //quest item
-					Blindweed.Seed.class,
-					Dreamfoil.Seed.class,
-					Earthroot.Seed.class,
+					Sungrass.Seed.class,
 					Fadeleaf.Seed.class,
-					Firebloom.Seed.class,
 					Icecap.Seed.class,
+					Firebloom.Seed.class,
 					Sorrowmoss.Seed.class,
 					Stormvine.Seed.class,
 					Sungrass.Seed.class,
 					Swiftthistle.Seed.class,
+					Blindweed.Seed.class,
+					Stormvine.Seed.class,
+					Earthroot.Seed.class,
+					Dreamfoil.Seed.class,
 					Starflower.Seed.class};
-			SEED.probs = new float[]{ 0, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 1 };
+			SEED.defaultProbs = new float[]{ 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2 };
+			SEED.probs = SEED.defaultProbs.clone();
 
 			SPELL.classes = new Class<?>[]{
 					CurseInfusion.class,
@@ -452,8 +421,9 @@ public class Generator {
 					Alchemize.class,
 					Recycle.class
 			};
-			SPELL.probs = new float[]{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-			
+			SPELL.defaultProbs = new float[]{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+			SPELL.probs = SPELL.defaultProbs.clone();
+
 			SCROLL.classes = new Class<?>[]{
 					ScrollOfUpgrade.class, //3 drop every chapter, see Dungeon.souNeeded()
 					ScrollOfIdentify.class,
@@ -468,7 +438,8 @@ public class Generator {
 					ScrollOfTerror.class,
 					ScrollOfTransmutation.class
 			};
-			SCROLL.probs = new float[]{ 1, 6, 2, 3, 3, 3, 2, 2, 2, 2, 2, 1 };
+			SCROLL.defaultProbs = new float[]{0, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1};
+			SCROLL.probs = SCROLL.defaultProbs.clone();
 
 			SCROLL_EXOTIC.classes = new Class<?>[]{
 					ScrollOfEnchantment.class,
@@ -484,128 +455,84 @@ public class Generator {
 					ScrollOfPetrification.class,
 					ScrollOfPolymorph.class
 			};
-			SCROLL_EXOTIC.probs = SCROLL.probs.clone();
-			
+			SCROLL_EXOTIC.defaultProbs = SCROLL_EXOTIC.probs = SCROLL.defaultProbs.clone();
+
 			STONE.classes = new Class<?>[]{
 					StoneOfEnchantment.class,   //1 drops per chapter, can rarely find more
-					StoneOfAugmentation.class,  //1 is sold in each shop, can rarely find more
 					StoneOfIntuition.class,     //1 additional stone is also dropped on floors 1-3
-					StoneOfRepair.class,		//Impossible to obtain atm, will be reworked later TODO
-					StoneOfAffection.class,
-					StoneOfBlast.class,
-					StoneOfBlink.class,
-					StoneOfClairvoyance.class,
-					StoneOfDeepenedSleep.class,
 					StoneOfDisarming.class,
 					StoneOfFlock.class,
-					StoneOfShock.class
+					StoneOfShock.class,
+					StoneOfBlink.class,
+					StoneOfDeepenedSleep.class,
+					StoneOfClairvoyance.class,
+					StoneOfRepair.class,
+					StoneOfBlast.class,
+					StoneOfAffection.class,
+					StoneOfAugmentation.class  //1 is sold in each shop
 			};
-			STONE.probs = new float[]{ 1, 1, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10 };
+			STONE.defaultProbs = new float[]{ 0, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 0 };
+			STONE.probs = STONE.defaultProbs.clone();
 
-			WAND.classes = new Class<?>[]{
-					WandOfMagicMissile.class,
-					WandOfLightning.class,
-					WandOfDisintegration.class,
-					WandOfFireblast.class,
-					WandOfCorrosion.class,
-					WandOfBlastWave.class,
-					WandOfLivingEarth.class,
-					WandOfFrost.class,
-					WandOfPrismaticLight.class,
-					WandOfWarding.class,
-					WandOfTransfusion.class,
-					WandOfCorruption.class,
-					WandOfRegrowth.class,
-					WandOfLifeDrain.class,
-					WandOfAcid.class,
-					WandOfDamnation.class,
-					WandOfThornvines.class,
-					WandOfPlasmaBolt.class,
-					WandOfFlow.class,
-					WandOfDarkness.class};
-			WAND.probs = new float[]{ 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 4, 3, 3 };
-			
 			//see generator.randomWeapon
-			WEAPON.classes = new Class<?>[]{
-					Staff.class,
-					Fist.class,
-					MagesStaff.class,
-					Sharp.class,
-					Dual.class,
-					Long.class,
-					Axe.class,
-					Flail.class,
-					Magical.class,
-					Sneak.class,
-					Projectile.class,
-					Basic.class,
-					Blunt.class,
-					Polearm.class,
-					//Heavy.class,
-					Shield.class
+			WEAPON.classes = new Class<?>[]{};
+			WEAPON.probs = new float[]{};
 
-			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 4, 6, 4, /*5,*/ 4 };
-			
 			//see Generator.randomArmor
-			ARMOR.classes = new Class<?>[]{
-					RogueArmor.class,
-					MageArmor.class,
-					HuntressArmor.class,
-					LightArmor.class,
-					ChainArmor.class,
-					BasicArmor.class,
-					HeavyArmor.class,
-			};
-			ARMOR.probs = new float[]{  0, 0, 0, 5, 5, 5, 5 };
-			
+			ARMOR.classes = new Class<?>[]{};
+			ARMOR.probs = new float[]{};
+
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{};
 			MISSILE.probs = new float[]{};
-			
+
+			//see Generator.randomWand
+			WAND.classes = new Class<?>[]{};
+			WAND.probs = new float[]{};
+
 			MIS_T1.classes = new Class<?>[]{
 					ThrowingStone.class,
 					ThrowingKnife.class
 			};
-			MIS_T1.probs = new float[]{ 6, 5 };
-			
+			MIS_T1.probs = new float[]{6, 5};
+
 			MIS_T2.classes = new Class<?>[]{
 					FishingSpear.class,
 					ThrowingClub.class,
 					Shuriken.class
 			};
-			MIS_T2.probs = new float[]{ 6, 5, 4 };
-			
+			MIS_T2.probs = new float[]{6, 5, 4};
+
 			MIS_T3.classes = new Class<?>[]{
 					ThrowingSpear.class,
 					Kunai.class,
 					Bolas.class
 			};
-			MIS_T3.probs = new float[]{ 6, 5, 4 };
-			
+			MIS_T3.probs = new float[]{6, 5, 4};
+
 			MIS_T4.classes = new Class<?>[]{
 					Javelin.class,
 					Tomahawk.class,
 					HeavyBoomerang.class
 			};
-			MIS_T4.probs = new float[]{ 6, 5, 4 };
-			
+			MIS_T4.probs = new float[]{6, 5, 4};
+
 			MIS_T5.classes = new Class<?>[]{
 					Trident.class,
 					ThrowingHammer.class,
 					ForceCube.class
 			};
-			MIS_T5.probs = new float[]{ 6, 5, 4 };
-			
+			MIS_T5.probs = new float[]{6, 5, 4};
+
 			FOOD.classes = new Class<?>[]{
 					Food.class,
 					Pasty.class,
-					MysteryMeat.class };
-			FOOD.probs = new float[]{ 4, 1, 0 };
-			
+					MysteryMeat.class};
+			FOOD.probs = new float[]{4, 1, 0};
+
 			RING.classes = new Class<?>[]{
 					RingOfPerception.class,
-					//_Unused.class,
+					RingOfAttunement.class,
 					RingOfElements.class,
 					RingOfEvasion.class,
 					RingOfFuror.class,
@@ -615,8 +542,9 @@ public class Generator {
 					RingOfSharpshooting.class,
 					RingOfTenacity.class,
 					RingOfWealth.class};
-			RING.probs = new float[]{ 1, /*1,*/ 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-			
+			RING.defaultProbs = new float[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+			RING.probs = RING.defaultProbs.clone();
+
 			ARTIFACT.classes = new Class<?>[]{
 					CapeOfThorns.class,
 					ChaliceOfBlood.class,
@@ -632,61 +560,90 @@ public class Generator {
 					LloydsBeacon.class,
 					EtherealChains.class
 			};
-			ARTIFACT.probs = INITIAL_ARTIFACT_PROBS.clone();
+			ARTIFACT.defaultProbs = new float[]{0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1};
+			ARTIFACT.probs = ARTIFACT.defaultProbs.clone();
 		}
 	}
+
+	private static final String CATEGORY_PROBS = "_probs";
 
 	private static final float[][] floorSetTierProbs = new float[][] {
 			{0, 70, 20,  8,  2},
 			{0, 25, 50, 20,  5},
-			{0, 10, 40, 40, 10},
-			{0,  5, 20, 50, 25},
-			{0,  2,  8, 20, 70}
+			{0,  0, 40, 50, 10},
+			{0,  0, 20, 40, 40},
+			{0,  0,  0, 20, 80}
 	};
-	
+
 	private static HashMap<Category,Float> categoryProbs = new LinkedHashMap<>();
-	
+
 	public static void reset() {
 		for (Category cat : Category.values()) {
 			categoryProbs.put( cat, cat.prob );
+			if (cat.defaultProbs != null) cat.probs = cat.defaultProbs.clone();
 		}
 	}
-	
+
+	public static void reset(Category cat){
+		cat.probs = cat.defaultProbs.clone();
+	}
+
 	public static Item random() {
 		Category cat = Random.chances( categoryProbs );
-		if (cat == null){
+		do {
 			reset();
 			cat = Random.chances( categoryProbs );
-		}
+		} while (cat == null);
 		categoryProbs.put( cat, categoryProbs.get( cat ) - 1);
 		return random( cat );
 	}
-	
+
 	public static Item random( Category cat ) {
+		if (cat == null) return random();
 		switch (cat) {
-		case ARMOR:
-			return randomArmor();
-		case WEAPON:
-			return randomWeapon();
-		case MISSILE:
-			return randomMissile();
-		case ARTIFACT:
-			Item item = randomArtifact();
-			//if we're out of artifacts, return a ring instead.
-			return item != null ? item : random(Category.RING);
-		default:
-			return ((Item) Reflection.newInstance(cat.classes[Random.chances( cat.probs )])).random();
+			case ARMOR:
+				return randomArmor();
+			case WEAPON:
+				return randomWeapon();
+			case MISSILE:
+				return randomMissile();
+			case ARTIFACT:
+				Item item = randomArtifact();
+				//if we're out of artifacts, return a ring instead.
+				return item != null ? item : random(Category.RING);
+			default:
+				if (cat.probs == null) {
+					cat.probs = cat.defaultProbs;
+				}
+				int i = Random.chances(cat.probs);
+				if (i == -1) {
+					reset(cat);
+					i = Random.chances(cat.probs);
+				}
+				if (cat.defaultProbs != null) cat.probs[i]--;
+				return ((Item) Reflection.newInstance(cat.classes[i])).random();
 		}
 	}
-	
+
+	//overrides any deck systems and always uses default probs
+	public static Item randomUsingDefaults( Category cat ){
+		if (cat.defaultProbs == null) {
+			return random(cat); //currently covers weapons/armor/missiles
+		} else {
+			return ((Item) Reflection.newInstance(cat.classes[Random.chances(cat.defaultProbs)])).random();
+		}
+	}
+
 	public static Item random( Class<? extends Item> cl ) {
 		return Reflection.newInstance(cl).random();
 	}
 
+	@NotNull
 	public static Armor randomArmor(){
-		return randomArmor(Dungeon.getScaleFactor()*2 / Constants.CHAPTER_LENGTH);
+		return randomArmor(Dungeon.getScaleFactor() / Constants.CHAPTER_LENGTH);
 	}
-	
+
+	@NotNull
 	public static Armor randomArmor(int floorSet) {
 
 		floorSet += (Random.chances(new float[]{1, 3, 3, 2, 1})) - 1;
@@ -713,15 +670,14 @@ public class Generator {
 	}
 
 	public static MeleeWeapon randomWeapon(){
-		return randomWeapon(Dungeon.getScaleFactor()*2 / Constants.CHAPTER_LENGTH);
+		return randomWeapon(Dungeon.getScaleFactor() / Constants.CHAPTER_LENGTH);
 	}
-	
+
 	public static MeleeWeapon randomWeapon(int floorSet) {
-		MeleeWeapon w;
 
 		floorSet += (Random.chances(new float[]{1, 3, 3, 2, 1})) - 1;
 		int tier = (int) GameMath.gate(1, floorSet, Constants.MAXIMUM_TIER);
-		w = (MeleeWeapon) Reflection.newInstance(Category.WEAPON.classes[Random.chances( Category.WEAPON.probs )]);
+		MeleeWeapon w = (MeleeWeapon) Reflection.newInstance(Category.WEAPON.classes[Random.chances( Category.WEAPON.probs )]);
 		w.random();
 		w.setTier(tier);
 		if (w.tier == 1) {
@@ -740,7 +696,7 @@ public class Generator {
 		}
 		return w;
 	}
-	
+
 	public static final Category[] misTiers = new Category[]{
 			Category.MIS_T1,
 			Category.MIS_T2,
@@ -748,14 +704,15 @@ public class Generator {
 			Category.MIS_T4,
 			Category.MIS_T5
 	};
+
 	public static MissileWeapon randomMissile(){
-		return randomMissile(Dungeon.getScaleFactor()*2 / Constants.CHAPTER_LENGTH);
+		return randomMissile(Dungeon.depth / 5);
 	}
-	
+
 	public static MissileWeapon randomMissile(int floorSet) {
-		
+
 		floorSet = (int)GameMath.gate(0, floorSet, floorSetTierProbs.length-1);
-		
+
 		Category c = misTiers[Random.chances(floorSetTierProbs[floorSet])];
 		MissileWeapon w = (MissileWeapon)Reflection.newInstance(c.classes[Random.chances(c.probs)]);
 		w.random();
@@ -772,47 +729,25 @@ public class Generator {
 		if (i == -1){
 			return null;
 		}
-		
-		Class<?extends Artifact> art = (Class<? extends Artifact>) cat.classes[i];
 
-		if (removeArtifact(art)) {
-			Artifact artifact = Reflection.newInstance(art);
-			artifact.random();
-			return artifact;
-		} else {
-			return null;
-		}
+		cat.probs[i]--;
+		return (Artifact) Reflection.newInstance((Class<? extends Artifact>) cat.classes[i]).random();
+
 	}
 
 	public static boolean removeArtifact(Class<?extends Artifact> artifact) {
-		if (spawnedArtifacts.contains(artifact))
-			return false;
-
 		Category cat = Category.ARTIFACT;
-		for (int i = 0; i < cat.classes.length; i++)
+		for (int i = 0; i < cat.classes.length; i++){
 			if (cat.classes[i].equals(artifact)) {
-				if (cat.probs[i] == 1){
-					cat.probs[i] = 0;
-					spawnedArtifacts.add(artifact);
-					return true;
-				} else
-					return false;
+				cat.probs[i] = 0;
+				return true;
 			}
-
+		}
 		return false;
 	}
 
-	//resets artifact probabilities, for new dungeons
-	public static void initArtifacts() {
-		Category.ARTIFACT.probs = Category.INITIAL_ARTIFACT_PROBS.clone();
-		spawnedArtifacts = new ArrayList<>();
-	}
-
-	private static ArrayList<Class<?extends Artifact>> spawnedArtifacts = new ArrayList<>();
-	
 	private static final String GENERAL_PROBS = "general_probs";
-	private static final String SPAWNED_ARTIFACTS = "spawned_artifacts";
-	
+
 	public static void storeInBundle(Bundle bundle) {
 		Float[] genProbs = categoryProbs.values().toArray(new Float[0]);
 		float[] storeProbs = new float[genProbs.length];
@@ -820,25 +755,53 @@ public class Generator {
 			storeProbs[i] = genProbs[i];
 		}
 		bundle.put( GENERAL_PROBS, storeProbs);
-		
-		bundle.put( SPAWNED_ARTIFACTS, spawnedArtifacts.toArray(new Class[0]));
+
+		for (Category cat : Category.values()){
+			if (cat.defaultProbs == null) continue;
+			boolean needsStore = false;
+			for (int i = 0; i < cat.probs.length; i++){
+				if (cat.probs[i] != cat.defaultProbs[i]){
+					needsStore = true;
+					break;
+				}
+			}
+
+			if (needsStore){
+				bundle.put(cat.name().toLowerCase() + CATEGORY_PROBS, cat.probs);
+			}
+		}
 	}
 
 	public static void restoreFromBundle(Bundle bundle) {
+		reset();
+
 		if (bundle.contains(GENERAL_PROBS)){
 			float[] probs = bundle.getFloatArray(GENERAL_PROBS);
 			for (int i = 0; i < probs.length; i++){
 				categoryProbs.put(Category.values()[i], probs[i]);
 			}
-		} else {
-			reset();
 		}
-		
-		initArtifacts();
-		
-		for ( Class<?extends Artifact> artifact : bundle.getClassArray(SPAWNED_ARTIFACTS) ){
-			removeArtifact(artifact);
+
+		for (Category cat : Category.values()){
+			if (bundle.contains(cat.name().toLowerCase() + CATEGORY_PROBS)){
+				float[] probs = bundle.getFloatArray(cat.name().toLowerCase() + CATEGORY_PROBS);
+				if (cat.defaultProbs != null && probs.length == cat.defaultProbs.length){
+					cat.probs = probs;
+				}
+			}
 		}
-		
+
+		//pre-0.8.1
+		if (bundle.contains("spawned_artifacts")) {
+			for (Class<? extends Artifact> artifact : bundle.getClassArray("spawned_artifacts")) {
+				Category cat = Category.ARTIFACT;
+				for (int i = 0; i < cat.classes.length; i++) {
+					if (cat.classes[i].equals(artifact)) {
+						cat.probs[i] = 0;
+					}
+				}
+			}
+		}
+
 	}
 }
