@@ -40,7 +40,7 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 public class ScrollOfPassage extends ExoticScroll {
 	
 	{
-		icon = ItemSpriteSheet.Icons.SCROLL_ENCHANT;
+		icon = ItemSpriteSheet.Icons.SCROLL_PASSAGE;
 
 		mpCost = 4;
 	}

@@ -805,8 +805,17 @@ public class ItemSpriteSheet {
 		public static final int RING_WEALTH     = RINGS+10;
 		public static final int RING_UNUSED     = RINGS+11;
 		static {
-			for (int i = RINGS; i < RINGS+16; i++)
-				assignIconRect(i, 8, 8);
+			assignIconRect( RING_ACCURACY,      7, 7 );
+			assignIconRect( RING_ELEMENTS,      7, 7 );
+			assignIconRect( RING_ENERGY,        7, 5 );
+			assignIconRect( RING_EVASION,       7, 7 );
+			assignIconRect( RING_FORCE,         7, 5 );
+			assignIconRect( RING_FUROR,         6, 6 );
+			assignIconRect( RING_HASTE,         6, 6 );
+			assignIconRect( RING_MIGHT,         7, 7 );
+			assignIconRect( RING_SHARPSHOOT,    7, 7 );
+			assignIconRect( RING_TENACITY,      6, 6 );
+			assignIconRect( RING_WEALTH,        6, 6 );
 		}
 
 		private static final int SCROLLS = xy(1, 3);  //16 slots
@@ -830,9 +839,9 @@ public class ItemSpriteSheet {
 			assignIconRect(SCROLL_MIRRORIMG, 7, 5);
 			assignIconRect(SCROLL_RECHARGE, 7, 5);
 			assignIconRect(SCROLL_TELEPORT, 7, 7);
-			assignIconRect(SCROLL_LULLABY, 4, 5);
+			assignIconRect( SCROLL_LULLABY,     7, 6 );
 			assignIconRect(SCROLL_MAGICMAP, 7, 7);
-			assignIconRect(SCROLL_RAGE, 5, 5);
+			assignIconRect( SCROLL_RAGE,        6, 6 );
 			assignIconRect(SCROLL_RETRIB, 5, 6);
 			assignIconRect(SCROLL_TERROR, 5, 7);
 			assignIconRect(SCROLL_TRANSMUTE, 7, 7);
@@ -854,14 +863,14 @@ public class ItemSpriteSheet {
 
 		static {
 			assignIconRect(SCROLL_ENCHANT, 7, 7);
-			assignIconRect(SCROLL_DIVINATE, 7, 7);
+			assignIconRect( SCROLL_DIVINATE,    7, 6 );
 			assignIconRect(SCROLL_ANTIMAGIC, 7, 7);
 			assignIconRect(SCROLL_PRISIMG, 5, 7);
 			assignIconRect(SCROLL_MYSTENRG, 7, 5);
 			assignIconRect(SCROLL_PASSAGE, 5, 7);
 			assignIconRect(SCROLL_AFFECTION, 7, 6);
 			assignIconRect(SCROLL_FORESIGHT, 7, 5);
-			assignIconRect(SCROLL_CONFUSION, 4, 7);
+			assignIconRect( SCROLL_CONFUSION,   7, 7 );
 			assignIconRect(SCROLL_PSIBLAST, 5, 6);
 			assignIconRect(SCROLL_PETRIF, 7, 5);
 			assignIconRect(SCROLL_POLYMORPH, 7, 6);
@@ -887,15 +896,15 @@ public class ItemSpriteSheet {
 			assignIconRect(POTION_STRENGTH, 7, 7);
 			assignIconRect(POTION_HEALING, 6, 7);
 			assignIconRect(POTION_MINDVIS, 7, 5);
-			assignIconRect(POTION_FROST, 5, 7);
+			assignIconRect( POTION_FROST,       7, 7 );
 			assignIconRect(POTION_LIQFLAME, 5, 7);
 			assignIconRect(POTION_TOXICGAS, 7, 7);
 			assignIconRect(POTION_HASTE, 6, 6);
 			assignIconRect(POTION_INVIS, 5, 7);
-			assignIconRect(POTION_LEVITATE, 5, 5);
+			assignIconRect( POTION_LEVITATE,    6, 7 );
 			assignIconRect(POTION_PARAGAS, 7, 7);
-			assignIconRect(POTION_PURITY, 5, 5);
-			assignIconRect(POTION_EXP, 5, 5);
+			assignIconRect( POTION_PURITY,      5, 7 );
+			assignIconRect( POTION_EXP,         7, 7 );
 		}
 
 		private static final int EXOTIC_POTIONS = xy(1, 7);  //16 slots
@@ -913,18 +922,18 @@ public class ItemSpriteSheet {
 		public static final int POTION_HOLYFUROR = EXOTIC_POTIONS + 11;
 
 		static {
-			assignIconRect(POTION_ARENSURGE, 7, 7);
-			assignIconRect(POTION_SHIELDING, 6, 7);
-			assignIconRect(POTION_MAGISIGHT, 7, 5);
-			assignIconRect(POTION_SNAPFREEZ, 5, 7);
-			assignIconRect(POTION_DRGBREATH, 5, 7);
-			assignIconRect(POTION_CORROGAS, 7, 7);
-			assignIconRect(POTION_STAMINA, 6, 6);
-			assignIconRect(POTION_SHROUDFOG, 5, 7);
-			assignIconRect(POTION_STRMCLOUD, 5, 5);
-			assignIconRect(POTION_EARTHARMR, 7, 7);
-			assignIconRect(POTION_CLEANSE, 5, 5);
-			assignIconRect(POTION_HOLYFUROR, 5, 5);
+			assignIconRect( POTION_ARENSURGE,   7, 7 );
+			assignIconRect( POTION_SHIELDING,   6, 6 );
+			assignIconRect( POTION_MAGISIGHT,   7, 5 );
+			assignIconRect( POTION_SNAPFREEZ,   7, 7 );
+			assignIconRect( POTION_DRGBREATH,   7, 7 );
+			assignIconRect( POTION_CORROGAS,    7, 7 );
+			assignIconRect( POTION_STAMINA,     6, 6 );
+			assignIconRect( POTION_SHROUDFOG,   7, 7 );
+			assignIconRect( POTION_STRMCLOUD,   7, 7 );
+			assignIconRect( POTION_EARTHARMR,   6, 6 );
+			assignIconRect( POTION_CLEANSE,     7, 7 );
+			assignIconRect( POTION_HOLYFUROR,   5, 7 );
 		}
 	}
 
