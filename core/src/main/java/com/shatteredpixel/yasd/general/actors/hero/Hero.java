@@ -1509,9 +1509,15 @@ public class Hero extends Char {
 		
 		if (!flying) {
 			if (Dungeon.level.liquid(pos)) {
-				Sample.INSTANCE.play( Assets.Sounds.WATER, 1, 1, Random.Float( 0.8f, 1.25f ) );
+				Sample.INSTANCE.play( Assets.Sounds.WATER, 1, Random.Float( 0.8f, 1.25f ) );
+			} else if (Dungeon.level.getTerrain(pos) == Terrain.EMPTY_SP) {
+				Sample.INSTANCE.play( Assets.Sounds.TRAMPLE, 1, Random.Float( 0.96f, 1.05f ) );
+			} else if (Dungeon.level.getTerrain(pos) == Terrain.GRASS
+					|| Dungeon.level.getTerrain(pos) == Terrain.EMBERS
+					|| Dungeon.level.getTerrain(pos) == Terrain.FURROWED_GRASS){
+				Sample.INSTANCE.play( Assets.Sounds.GRASS, 1, Random.Float( 0.96f, 1.05f ) );
 			} else {
-				Sample.INSTANCE.play( Assets.Sounds.STEP );
+				Sample.INSTANCE.play( Assets.Sounds.STEP, 1, Random.Float( 0.96f, 1.05f ) );
 			}
 		}
 	}
