@@ -42,7 +42,7 @@ task debug(dependsOn: classes, type: JavaExec) {
     classpath = sourceSets.debug.runtimeClasspath + sourceSets.main.runtimeClasspath
     ignoreExitValue = true
 
-    main = mainClass
+    main = "com.shatteredpixel.yasd.desktop.DesktopLauncher"
     systemProperty 'Specification-Title', appName
     systemProperty 'Specification-Version', appVersionName + "-INDEV"
     systemProperty 'Implementation-Version', appVersionCode
@@ -63,7 +63,7 @@ task release(dependsOn: compileForRelease, type: Jar) {
     from { configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) } }
 
     manifest {
-        attributes 'Main-Class': mainClass
+        attributes 'Main-Class': "com.shatteredpixel.yasd.desktop.DesktopLauncher"
         attributes 'Specification-Title': appName
         attributes 'Specification-Version': appVersionName
         attributes 'Implementation-Version': appVersionCode
