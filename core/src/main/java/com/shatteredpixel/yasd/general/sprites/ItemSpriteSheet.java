@@ -809,13 +809,13 @@ public class ItemSpriteSheet {
 			assignIconRect( RING_ELEMENTS,      7, 7 );
 			assignIconRect( RING_ENERGY,        7, 5 );
 			assignIconRect( RING_EVASION,       7, 7 );
-			assignIconRect( RING_FORCE,         7, 5 );
-			assignIconRect( RING_FUROR,         6, 6 );
+			assignIconRect( RING_FORCE,         5, 6 );
+			assignIconRect( RING_FUROR,         7, 6 );
 			assignIconRect( RING_HASTE,         6, 6 );
 			assignIconRect( RING_MIGHT,         7, 7 );
 			assignIconRect( RING_SHARPSHOOT,    7, 7 );
 			assignIconRect( RING_TENACITY,      6, 6 );
-			assignIconRect( RING_WEALTH,        6, 6 );
+			assignIconRect( RING_WEALTH,        7, 6 );
 		}
 
 		private static final int SCROLLS = xy(1, 3);  //16 slots
