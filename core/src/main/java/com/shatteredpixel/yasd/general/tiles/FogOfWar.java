@@ -27,10 +27,12 @@
 
 package com.shatteredpixel.yasd.general.tiles;
 
-import com.shatteredpixel.yasd.general.Dungeon;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.shatteredpixel.yasd.general.CPDSettings;
-import com.watabou.gltextures.BufferTexture;
+import com.shatteredpixel.yasd.general.Dungeon;
+import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
+import com.watabou.glwrap.Texture;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.NoosaScript;
 import com.watabou.noosa.NoosaScriptNoLighting;
@@ -115,8 +117,12 @@ public class FogOfWar extends Image {
 		float size = DungeonTilemap.SIZE / PIX_PER_TILE;
 		width = width2 * size;
 		height = height2 * size;
-		
-		BufferTexture tx = new BufferTexture(width2, height2);
+
+		//TODO might be nice to compartmentalize the pixmap access and modification into texture/texturecache
+		Pixmap px = new Pixmap(width2, height2, Pixmap.Format.RGBA8888);
+		px.setBlending(Pixmap.Blending.None);
+		px.fill();
+		SmartTexture tx = new SmartTexture(px, Texture.LINEAR, Texture.CLAMP, false);
 		TextureCache.add(FogOfWar.class, tx);
 		texture( tx );
 		
@@ -188,7 +194,7 @@ public class FogOfWar extends Image {
 			}
 		}
 
-		BufferTexture fog = (BufferTexture) texture;
+		Pixmap fog = texture.bitmap;
 
 		int cell;
 		
@@ -278,13 +284,8 @@ public class FogOfWar extends Image {
 			}
 			
 		}
-		
-		if (updating.size() == 1 && !fullUpdate){
-			fog.update(updating.get(0).top * PIX_PER_TILE, updating.get(0).bottom * PIX_PER_TILE);
-		} else {
-			fog.update();
-		}
 
+		texture.bitmap(fog);
 	}
 	
 	private boolean wall(int cell) {
@@ -303,32 +304,20 @@ public class FogOfWar extends Image {
 			return INVISIBLE;
 		}
 	}
-	
-	private void fillLeft( BufferTexture fog, int x, int y, int color){
-		for (int i = 0; i < PIX_PER_TILE; i++){
-			fog.pixels.position(((y * PIX_PER_TILE)+i)*width2 + x * PIX_PER_TILE);
-			for (int j = 0; j < PIX_PER_TILE/2; j++) {
-				fog.pixels.put(color);
-			}
-		}
-	}
-	
-	private void fillRight( BufferTexture fog, int x, int y, int color){
-		for (int i = 0; i < PIX_PER_TILE; i++){
-			fog.pixels.position(((y * PIX_PER_TILE)+i)*width2 + x * PIX_PER_TILE + PIX_PER_TILE/2);
-			for (int j = PIX_PER_TILE/2; j < PIX_PER_TILE; j++) {
-				fog.pixels.put(color);
-			}
-		}
+
+	private void fillLeft( Pixmap fog, int x, int y, int color){
+		fog.setColor((color << 8) | (color >>> 24));
+		fog.fillRectangle(x * PIX_PER_TILE, y*PIX_PER_TILE, PIX_PER_TILE/2, PIX_PER_TILE);
 	}
 
-	private void fillCell( BufferTexture fog, int x, int y, int color){
-		for (int i = 0; i < PIX_PER_TILE; i++){
-			fog.pixels.position(((y * PIX_PER_TILE)+i)*width2 + x * PIX_PER_TILE);
-			for (int j = 0; j < PIX_PER_TILE; j++) {
-				fog.pixels.put(color);
-			}
-		}
+	private void fillRight( Pixmap fog, int x, int y, int color){
+		fog.setColor((color << 8) | (color >>> 24));
+		fog.fillRectangle(x * PIX_PER_TILE + PIX_PER_TILE/2, y*PIX_PER_TILE, PIX_PER_TILE/2, PIX_PER_TILE);
+	}
+
+	private void fillCell( Pixmap fog, int x, int y, int color) {
+		fog.setColor((color << 8) | (color >>> 24));
+		fog.fillRectangle(x * PIX_PER_TILE, y * PIX_PER_TILE, PIX_PER_TILE, PIX_PER_TILE);
 	}
 
 	@Override
