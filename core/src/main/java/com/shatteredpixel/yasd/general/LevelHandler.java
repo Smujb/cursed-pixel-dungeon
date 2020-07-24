@@ -298,16 +298,17 @@ public class LevelHandler {
 		Mob.clearHeldAllies();
 
 		GameLog.wipe();
-		Level level;
+		Level level = getLevel( Dungeon.key, GamesInProgress.curSlot );
 		Dungeon.loadGame( GamesInProgress.curSlot );
 		Dungeon.level = null;
 		Actor.clear();
 		if (Dungeon.key == null) {
 			Dungeon.depth = Statistics.deepestFloor;
 			Dungeon.switchLevel( getLevel(Dungeon.key = Dungeon.keyForDepth()), -1 );
-		} else {
-			level = getLevel( Dungeon.key, GamesInProgress.curSlot );
+		} else if (level != null) {
 			Dungeon.switchLevel( level, Dungeon.hero.pos );
+		} else {
+			Dungeon.switchLevel( Dungeon.newLevel(Dungeon.key, true), Dungeon.hero.pos );
 		}
 	}
 }
