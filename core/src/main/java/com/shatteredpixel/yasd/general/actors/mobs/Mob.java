@@ -215,7 +215,7 @@ public abstract class Mob extends Char {
 		return 4 + 12 * level;
 	}
 
-	private static final float FACTOR = 0.75f;
+	private static final float FACTOR = 0.8f;
 
 	private int normalAttackSkill(int level) {
 		return (int) (9 + (level*FACTOR));
