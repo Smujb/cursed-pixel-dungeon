@@ -43,7 +43,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.PixmapPacker;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.shatteredpixel.yasd.android.windows.WndAndroidTextInput;
-import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.watabou.noosa.Game;
@@ -255,7 +254,7 @@ public class AndroidPlatformSupport extends PlatformSupport {
 		} else if (systemfont && Gdx.files.absolute("/system/fonts/DroidSans.ttf").exists()){
 			basicFontGenerator = new FreeTypeFontGenerator(Gdx.files.absolute("/system/fonts/DroidSans.ttf"));
 		} else {
-			basicFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal(Assets.Fonts.PIXELFONT));
+			basicFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/pixel_font.ttf"));
 		}
 		
 		//android 7.0+. all asian fonts are nicely contained in one spot
