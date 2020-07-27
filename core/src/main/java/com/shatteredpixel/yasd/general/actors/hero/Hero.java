@@ -497,13 +497,6 @@ public class Hero extends Char {
 		return hit;
 	}
 
-	/*@Override
-	public int elementalDefenseProc(Char enemy, int damage) {
-		damage *= RingOfElements.resist(this);
-		damageMorale(damage- elementalDRRoll());
-		return super.elementalDefenseProc(enemy, damage);
-	}*/
-
 	@Override
 	public int attackSkill(Char target) {
 		attackSkill = 9 + getPerception();

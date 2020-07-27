@@ -41,6 +41,13 @@ import com.shatteredpixel.yasd.general.items.allies.StoneDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.VampiricDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
+import com.shatteredpixel.yasd.general.items.armor.BasicArmor;
+import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
+import com.shatteredpixel.yasd.general.items.armor.HeavyArmor;
+import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
+import com.shatteredpixel.yasd.general.items.armor.LightArmor;
+import com.shatteredpixel.yasd.general.items.armor.MageArmor;
+import com.shatteredpixel.yasd.general.items.armor.RogueArmor;
 import com.shatteredpixel.yasd.general.items.artifacts.AlchemistsToolkit;
 import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.artifacts.CapeOfThorns;
@@ -175,7 +182,42 @@ import com.shatteredpixel.yasd.general.items.stones.StoneOfIntuition;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfRepair;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfShock;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
+import com.shatteredpixel.yasd.general.items.wands.WandOfAcid;
+import com.shatteredpixel.yasd.general.items.wands.WandOfBlastWave;
+import com.shatteredpixel.yasd.general.items.wands.WandOfCorrosion;
+import com.shatteredpixel.yasd.general.items.wands.WandOfCorruption;
+import com.shatteredpixel.yasd.general.items.wands.WandOfDamnation;
+import com.shatteredpixel.yasd.general.items.wands.WandOfDarkness;
+import com.shatteredpixel.yasd.general.items.wands.WandOfDisintegration;
+import com.shatteredpixel.yasd.general.items.wands.WandOfFireblast;
+import com.shatteredpixel.yasd.general.items.wands.WandOfFlow;
+import com.shatteredpixel.yasd.general.items.wands.WandOfFrost;
+import com.shatteredpixel.yasd.general.items.wands.WandOfLifeDrain;
+import com.shatteredpixel.yasd.general.items.wands.WandOfLightning;
+import com.shatteredpixel.yasd.general.items.wands.WandOfLivingEarth;
+import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
+import com.shatteredpixel.yasd.general.items.wands.WandOfPlasmaBolt;
+import com.shatteredpixel.yasd.general.items.wands.WandOfPrismaticLight;
+import com.shatteredpixel.yasd.general.items.wands.WandOfRegrowth;
+import com.shatteredpixel.yasd.general.items.wands.WandOfThornvines;
+import com.shatteredpixel.yasd.general.items.wands.WandOfTransfusion;
+import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Axe;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Basic;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Blunt;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Dual;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Long;
+import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Magical;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Projectile;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Sharp;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Shield;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Sneak;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Staff;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.Bolas;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.FishingSpear;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ForceCube;
@@ -474,55 +516,100 @@ public class Generator {
 			STONE.defaultProbs = new float[]{ 0, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 0 };
 			STONE.probs = STONE.defaultProbs.clone();
 
+			WAND.classes = new Class<?>[]{
+					WandOfMagicMissile.class,
+					WandOfLightning.class,
+					WandOfDisintegration.class,
+					WandOfFireblast.class,
+					WandOfCorrosion.class,
+					WandOfBlastWave.class,
+					WandOfLivingEarth.class,
+					WandOfFrost.class,
+					WandOfPrismaticLight.class,
+					WandOfWarding.class,
+					WandOfTransfusion.class,
+					WandOfCorruption.class,
+					WandOfRegrowth.class,
+					WandOfLifeDrain.class,
+					WandOfAcid.class,
+					WandOfDamnation.class,
+					WandOfThornvines.class,
+					WandOfPlasmaBolt.class,
+					WandOfFlow.class,
+					WandOfDarkness.class};
+			WAND.probs = new float[]{ 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 4, 3, 3 };
+
 			//see generator.randomWeapon
-			WEAPON.classes = new Class<?>[]{};
-			WEAPON.probs = new float[]{};
+			WEAPON.classes = new Class<?>[]{
+					Staff.class,
+					Fist.class,
+					MagesStaff.class,
+					Sharp.class,
+					Dual.class,
+					Long.class,
+					Axe.class,
+					Flail.class,
+					Magical.class,
+					Sneak.class,
+					Projectile.class,
+					Basic.class,
+					Blunt.class,
+					Polearm.class,
+					//Heavy.class,
+					Shield.class
+
+			};
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 4, 6, 4, /*5,*/ 4 };
 
 			//see Generator.randomArmor
-			ARMOR.classes = new Class<?>[]{};
-			ARMOR.probs = new float[]{};
+			ARMOR.classes = new Class<?>[]{
+					RogueArmor.class,
+					MageArmor.class,
+					HuntressArmor.class,
+					LightArmor.class,
+					ChainArmor.class,
+					BasicArmor.class,
+					HeavyArmor.class,
+			};
+			ARMOR.probs = new float[]{  0, 0, 0, 5, 5, 5, 5 };
 
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{};
 			MISSILE.probs = new float[]{};
 
-			//see Generator.randomWand
-			WAND.classes = new Class<?>[]{};
-			WAND.probs = new float[]{};
-
 			MIS_T1.classes = new Class<?>[]{
 					ThrowingStone.class,
 					ThrowingKnife.class
 			};
-			MIS_T1.probs = new float[]{6, 5};
+			MIS_T1.probs = new float[]{ 6, 5 };
 
 			MIS_T2.classes = new Class<?>[]{
 					FishingSpear.class,
 					ThrowingClub.class,
 					Shuriken.class
 			};
-			MIS_T2.probs = new float[]{6, 5, 4};
+			MIS_T2.probs = new float[]{ 6, 5, 4 };
 
 			MIS_T3.classes = new Class<?>[]{
 					ThrowingSpear.class,
 					Kunai.class,
 					Bolas.class
 			};
-			MIS_T3.probs = new float[]{6, 5, 4};
+			MIS_T3.probs = new float[]{ 6, 5, 4 };
 
 			MIS_T4.classes = new Class<?>[]{
 					Javelin.class,
 					Tomahawk.class,
 					HeavyBoomerang.class
 			};
-			MIS_T4.probs = new float[]{6, 5, 4};
+			MIS_T4.probs = new float[]{ 6, 5, 4 };
 
 			MIS_T5.classes = new Class<?>[]{
 					Trident.class,
 					ThrowingHammer.class,
 					ForceCube.class
 			};
-			MIS_T5.probs = new float[]{6, 5, 4};
+			MIS_T5.probs = new float[]{ 6, 5, 4 };
 
 			FOOD.classes = new Class<?>[]{
 					Food.class,

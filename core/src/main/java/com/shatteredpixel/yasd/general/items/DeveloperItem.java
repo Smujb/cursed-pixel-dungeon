@@ -398,12 +398,16 @@ public class DeveloperItem extends Item {
 				GLog.p("Position in map (X, Y): " + coords[0] + ", " + coords[1] + ".");
 				break;
 			case AC_MAP:
-				new ScrollOfMagicMapping().doRead();
+				ScrollOfMagicMapping scrollOfMagicMapping = new ScrollOfMagicMapping();
+				scrollOfMagicMapping.setUser(hero);
+				scrollOfMagicMapping.doRead();
 				Buff.affect(hero, Awareness.class, Awareness.DURATION*5);
 				Buff.affect(hero, MindVision.class, MindVision.DURATION);
 				break;
 			case AC_TP:
-				new ScrollOfTeleportation().empoweredRead();
+				ScrollOfTeleportation scrollOfTeleportation = new ScrollOfTeleportation();
+				scrollOfTeleportation.setUser(hero);
+				scrollOfTeleportation.empoweredRead();
 				break;
 			case AC_CHOOSEDEPTH:
 				CPDGame.scene().addToFront(new WndChooseDepth(Dungeon.level));
