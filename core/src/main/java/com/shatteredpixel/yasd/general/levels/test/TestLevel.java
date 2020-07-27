@@ -2,11 +2,18 @@ package com.shatteredpixel.yasd.general.levels.test;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.levels.RegularLevel;
+import com.shatteredpixel.yasd.general.levels.builders.Builder;
+import com.shatteredpixel.yasd.general.levels.builders.MetroidVaniaBuilder;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.painters.SewerPainter;
 import com.watabou.utils.Random;
 
 public class TestLevel extends RegularLevel {
+
+	@Override
+	protected Builder builder() {
+		return new MetroidVaniaBuilder();
+	}
 
 	@Override
 	protected Painter painter() {
