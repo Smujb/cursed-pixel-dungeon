@@ -302,7 +302,6 @@ public class Dungeon {
 		staticLevels.put("old yog", OldHallsBossLevel.class);
 		staticLevels.put("loot", LootLevel.class);
 		staticLevels.put("test", TestLevel.class);
-		staticLevels.put("test 2", com.shatteredpixel.yasd.general.levels.test.TestLevel.class);
 	}
 
 	@Contract(pure = true)
