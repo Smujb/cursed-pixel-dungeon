@@ -156,9 +156,9 @@ public class CPDGame extends Game {
 		CPDAction.loadBindings();
 		
 		Music.INSTANCE.enable( CPDSettings.music() );
-		Music.INSTANCE.volume( CPDSettings.musicVol()/10f );
+		Music.INSTANCE.volume( CPDSettings.musicVol()*CPDSettings.musicVol()/100f );
 		Sample.INSTANCE.enable( CPDSettings.soundFx() );
-		Sample.INSTANCE.volume( CPDSettings.SFXVol()/10f );
+		Sample.INSTANCE.volume( CPDSettings.SFXVol()*CPDSettings.SFXVol()/100f );
 
 		Sample.INSTANCE.load( Assets.Sounds.all );
 	}
