@@ -118,8 +118,13 @@ public class Dungeon {
 		BLANDFRUIT_SEED,
 
 		//Other limited enemy drops
+		SLIME_WEP,
+		SKELE_WEP,
 		THEIF_MISC,
+		GUARD_ARM,
 		SHAMAN_WAND,
+		DM200_EQUIP,
+		GOLEM_EQUIP,
 
 		//containers
 		DEW_VIAL,
@@ -135,8 +140,13 @@ public class Dungeon {
 		public boolean dropped(){
 			return count != 0;
 		}
+
 		public void drop(){
 			count = 1;
+		}
+
+		public void increaseCount() {
+			count++;
 		}
 
 		public static void reset(){

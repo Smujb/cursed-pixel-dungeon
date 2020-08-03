@@ -36,7 +36,6 @@ import com.shatteredpixel.yasd.general.effects.Chains;
 import com.shatteredpixel.yasd.general.effects.Pushing;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -61,7 +60,7 @@ public class Guard extends Mob {
 		EXP = 7;
 
 		loot = Generator.Category.ARMOR;
-		lootChance = 0.1667f;
+		lootChance = 0.2f; //by default, see rollToDropLoot()
 
 		properties.add(Property.UNDEAD);
 		
@@ -128,13 +127,15 @@ public class Guard extends Mob {
 
 	@Override
 	protected Item createLoot() {
-		Armor loot;
-		do{
-			loot = Generator.randomArmor();
-		//50% chance of re-rolling tier 4 or 5 items
-		} while (loot.tier >= 4 && Random.Int(2) == 0);
-		loot.level(0);
-		return loot;
+		Dungeon.LimitedDrops.GUARD_ARM.increaseCount();
+		return super.createLoot();
+	}
+
+	public void rollToDropLoot() {
+		//each drop makes future drops 1/2 as likely
+		// so loot chance looks like: 1/5, 1/10, 1/20, 1/40, etc.
+		lootChance *= Math.pow(1 / 2f, Dungeon.LimitedDrops.GUARD_ARM.count);
+		super.rollToDropLoot();
 	}
 
 	private final String CHAINSUSED = "chainsused";

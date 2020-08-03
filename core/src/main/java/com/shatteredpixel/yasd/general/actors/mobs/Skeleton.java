@@ -33,7 +33,6 @@ import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.SkeletonSprite;
@@ -41,8 +40,6 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
-
-import org.jetbrains.annotations.NotNull;
 
 public class Skeleton extends Mob {
 	
@@ -58,7 +55,7 @@ public class Skeleton extends Mob {
 		EXP = 5;
 
 		loot = Generator.Category.WEAPON;
-		lootChance = 0.125f;
+		lootChance = 0.1667f; //by default, see rollToDropLoot()
 
 		properties.add(Property.UNDEAD);
 		properties.add(Property.INORGANIC);
@@ -110,23 +107,14 @@ public class Skeleton extends Mob {
 	
 	@Override
 	protected Item createLoot() {
-		MeleeWeapon loot;
-		do {
-			loot = Generator.randomWeapon();
-		//50% chance of re-rolling tier 4 or 5 melee weapons
-		} while (loot.tier >= 4 && Random.Int(2) == 0);
-		loot.level(0);
-		return loot;
+		Dungeon.LimitedDrops.SKELE_WEP.increaseCount();
+		return super.createLoot();
 	}
-	
-	/*@Override
-	public int attackSkill( Char target ) {
-		return 16;
-	}
-	
-	@Override
-	public int drRoll(Element element) {
-		return Random.NormalIntRange(0, 5);
-	}*/
 
+	public void rollToDropLoot() {
+		//each drop makes future drops 1/2 as likely
+		// so loot chance looks like: 1/6, 1/12, 1/24, 1/48, etc.
+		lootChance *= Math.pow(1 / 2f, Dungeon.LimitedDrops.SKELE_WEP.count);
+		super.rollToDropLoot();
+	}
 }

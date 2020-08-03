@@ -34,6 +34,8 @@ import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Imp;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
+import com.shatteredpixel.yasd.general.items.Generator;
+import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.sprites.GolemSprite;
@@ -52,6 +54,9 @@ public class Golem extends Mob {
 		damageFactor = 1.5f;
 		
 		EXP = 12;
+
+		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR);
+		lootChance = 0.125f; //initially, see rollToDropLoot
 		
 		properties.add(Property.INORGANIC);
 		properties.add(Property.LARGE);
@@ -63,8 +68,21 @@ public class Golem extends Mob {
 	@Override
 	public void rollToDropLoot() {
 		Imp.Quest.process( this );
-		
+
+		//each drop makes future drops 1/2 as likely
+		// so loot chance looks like: 1/8, 1/16, 1/32, 1/64, etc.
+		lootChance *= Math.pow(1/2f, Dungeon.LimitedDrops.GOLEM_EQUIP.count);
 		super.rollToDropLoot();
+	}
+
+	protected Item createLoot() {
+		//uses probability tables for demon halls
+		Dungeon.LimitedDrops.GOLEM_EQUIP.increaseCount();
+		if (loot == Generator.Category.WEAPON){
+			return Generator.randomWeapon(5);
+		} else {
+			return Generator.randomArmor(5);
+		}
 	}
 
 	private boolean teleporting = false;
