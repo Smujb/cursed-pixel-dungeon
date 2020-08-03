@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.ui;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.scenes.AboutScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.scenes.TitleScene;
 import com.shatteredpixel.yasd.general.windows.WndOptions;
@@ -36,8 +37,6 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.ui.Button;
 import com.watabou.utils.DeviceCompat;
-
-import static com.shatteredpixel.yasd.general.scenes.AboutScene.POPUP_YASD;
 
 public class DiscordButton extends Button {
 	
@@ -78,7 +77,7 @@ public class DiscordButton extends Button {
 				Messages.get(TitleScene.class, "discord_button")){
 			@Override
 			protected void onSelect(int index) {
-				DeviceCompat.openURI("https://" + POPUP_YASD);
+				DeviceCompat.openURI(AboutScene.DISCORD_LINK);
 			}
 		};
 		parent.add(wnd);
