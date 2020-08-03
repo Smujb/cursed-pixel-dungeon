@@ -49,7 +49,7 @@ public class DM100 extends Mob {
 		maxLvl = 14;
 		
 		loot = Generator.Category.SCROLL;
-		lootChance = 0.33f;
+		lootChance = 0.25f;
 		
 		properties.add(Property.ELECTRIC);
 	}
