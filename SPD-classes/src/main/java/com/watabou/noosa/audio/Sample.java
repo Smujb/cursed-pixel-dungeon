@@ -43,10 +43,10 @@ public enum Sample {
 
 	public void reset() {
 
-		for (Sound sound : ids.values()){
+		for (Sound sound : ids.values()) {
 			sound.dispose();
 		}
-		
+
 		ids.clear();
 
 	}
@@ -63,58 +63,63 @@ public enum Sample {
 		}
 	}
 
-	public void load( String... assets ) {
 
-		//FIXME there used to be a queue here so that assets were loaded async.
-		//This was to prevent hanging on specific android versions (implement in vanilla v1.7.5)
-		//Maybe LibGDX already handles this?
-		for (String asset : assets){
-			if (!ids.containsKey(asset)){
-				ids.put(asset, Gdx.audio.newSound(Gdx.files.internal(asset)));
+	public void load(final String... assets) {
+
+		//load in a separate thread to prevent this blocking the UI
+		new Thread() {
+			@Override
+			public void run() {
+				synchronized (Sample.class) {
+					for (String asset : assets) {
+						if (!ids.containsKey(asset)) {
+							ids.put(asset, Gdx.audio.newSound(Gdx.files.internal(asset)));
+						}
+					}
+				}
 			}
+		}.start();
+	}
+
+	public void unload(Object src) {
+		if (ids.containsKey(src)) {
+			ids.get(src).dispose();
+			ids.remove(src);
 		}
-		
 	}
 
-	public void unload( Object src ) {
-		if (ids.containsKey( src )) {
-			ids.get( src ).dispose();
-			ids.remove( src );
-		}
+	public long play(Object id) {
+		return play(id, 1);
 	}
 
-	public long play( Object id ) {
-		return play( id, 1 );
+	public long play(Object id, float volume) {
+		return play(id, volume, volume, 1);
 	}
 
-	public long play( Object id, float volume ) {
-		return play( id, volume, volume, 1 );
+	public long play(Object id, float volume, float pitch) {
+		return play(id, volume, volume, pitch);
 	}
-	
-	public long play( Object id, float volume, float pitch ) {
-		return play( id, volume, volume, pitch );
-	}
-	
-	public long play( Object id, float leftVolume, float rightVolume, float pitch ) {
+
+	public long play(Object id, float leftVolume, float rightVolume, float pitch) {
 		float volume = Math.max(leftVolume, rightVolume);
 		float pan = rightVolume - leftVolume;
-		if (enabled && ids.containsKey( id )) {
-			return ids.get(id).play( globalVolume*volume, pitch, pan );
+		if (enabled && ids.containsKey(id)) {
+			return ids.get(id).play(globalVolume * volume, pitch, pan);
 		} else {
 			return -1;
 		}
 	}
 
-	public void enable( boolean value ) {
+	public void enable(boolean value) {
 		enabled = value;
 	}
 
-	public void volume( float value ) {
+	public void volume(float value) {
 		globalVolume = value;
 	}
 
 	public boolean isEnabled() {
 		return enabled;
 	}
-	
+
 }
