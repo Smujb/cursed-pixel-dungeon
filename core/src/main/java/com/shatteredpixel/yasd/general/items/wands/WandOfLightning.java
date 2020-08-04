@@ -79,7 +79,7 @@ public class WandOfLightning extends DamageWand {
 		//lightning deals less damage per-target, the more targets that are hit.
 		float multipler = 0.4f + (0.6f/affected.size());
 		//if the main target is in water, all affected take full damage
-		if (Dungeon.level.liquid()[bolt.collisionPos]) multipler = 1f;
+		if (Dungeon.level.liquid(bolt.collisionPos)) multipler = 1f;
 
 		for (Char ch : affected){
 			processSoulMark(ch, chargesPerCast());

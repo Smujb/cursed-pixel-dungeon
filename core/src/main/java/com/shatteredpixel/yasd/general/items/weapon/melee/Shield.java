@@ -74,7 +74,7 @@ public class Shield extends MeleeWeapon {
 	}
 
 	public int defenseFactor() {
-		return Math.round(tier*2 + (tier/2f)*level());    //2*tier extra defence, plus tier/2 per level;
+		return Math.round(tier*1.5f + (tier/3f)*level());    //2*tier extra defence, plus tier/2 per level;
 	}
 
 	//Placeholders for tiers.

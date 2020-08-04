@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
-import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
@@ -75,11 +74,6 @@ public class Fist extends MeleeWeapon {
 		} else {
 			return Enchantment.getName(Gauntlet.class, enchantment, cursedKnown);
 		}
-	}
-
-	@Override
-	public int defenseFactor( Char owner ) {
-		return tier;	//(tier) extra defence
 	}
 
 	//Placeholders for tiers.

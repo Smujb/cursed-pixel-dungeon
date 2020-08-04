@@ -33,10 +33,8 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Dual extends MeleeWeapon {
 
 	{
-		//image = ItemSpriteSheet.SAI;
-
 		tier = 1;
-		DLY = 0.6f; //3x speed
+		DLY = 0.6f; //fast
 
 		damageMultiplier = 0.5f;
 	}
