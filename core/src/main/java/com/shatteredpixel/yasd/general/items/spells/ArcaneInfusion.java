@@ -17,7 +17,7 @@ import com.watabou.utils.Random;
 public class ArcaneInfusion extends InventorySpell {
 
 	{
-		mode = WndBag.Mode.UPGRADEABLE;
+		mode = WndBag.Mode.ENCHANTABLE;
 		image = ItemSpriteSheet.ARCANE_INFUSION;
 	}
 
@@ -26,10 +26,10 @@ public class ArcaneInfusion extends InventorySpell {
 
 		item.upgrade();
 
-		if (item instanceof Weapon && ((Weapon) item).enchantment != null) {
+		if (item instanceof Weapon && ((Weapon) item).enchantment == null) {
 			Class<Weapon.Enchantment> enchantment = (Class<Weapon.Enchantment>) ((Weapon) item).enchantment.getClass();
 			((Weapon) item).enchant(Random.Int(2) == 0 ? Weapon.Enchantment.randomUncommon(enchantment) : Weapon.Enchantment.randomRare(enchantment));
-		} else if (item instanceof Armor && ((Armor) item).glyph != null) {
+		} else if (item instanceof Armor && ((Armor) item).glyph == null) {
 			Class<Armor.Glyph> glyph = (Class<Armor.Glyph>) ((Armor) item).glyph.getClass();
 			((Armor) item).inscribe(Random.Int(2) == 0 ? Armor.Glyph.randomUncommon(glyph) : Armor.Glyph.randomRare(glyph));
 		}
