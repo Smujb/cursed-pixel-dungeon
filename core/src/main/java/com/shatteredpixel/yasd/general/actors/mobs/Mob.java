@@ -956,21 +956,21 @@ public abstract class Mob extends Char {
 
 	public float corruptionResistance() {
 		//base enemy resistance is usually based on their exp, but in special cases it is based on other criteria
-		float enemyResist = 1 + this.EXP;
+		float enemyResist = 1 + this.level;
 		if (this instanceof Mimic || this instanceof Statue || this instanceof Wraith){
-			enemyResist = 3 + Dungeon.getScaleFactor() *2;
+			enemyResist = 3 + level * 2;
 		} else if (this instanceof Piranha || this instanceof Bee) {
-			enemyResist = 1 + Dungeon.getScaleFactor() /2f;
-		}  else if (this instanceof Yog.BurningFist || this instanceof Yog.RottingFist) {
-			enemyResist = 1 + 30;
+			enemyResist = 1 + level / 2f;
+		}  else if (this.properties().contains(Property.BOSS)) {
+			enemyResist = 4 + level * 3;
 		} else if (this instanceof Yog.Larva || this instanceof King.Undead){
 			enemyResist = 1 + 5;
 		} else if (this instanceof Swarm){
 			//child swarms don't give exp, so we force this here.
 			enemyResist = 1 + new Swarm().EXP;
 		}
-		//100% health: 3x resist   75%: 2.1x resist   50%: 1.5x resist   25%: 1.1x resist
-		enemyResist *= 1 + 2*Math.pow(this.HP/(float)this.HT, 2);
+		//100% health: 5x resist   75%: 3.25x resist   50%: 2x resist   25%: 1.25x resist
+		enemyResist *= 1 + 4*Math.pow(enemy.HP/(float)enemy.HT, 2);
 		return enemyResist;
 	}
 	
