@@ -407,7 +407,16 @@ public class WndSettings extends WndTabbed {
 				@Override
 				protected void onChange() {
 					CPDSettings.SFXVol(getSelectedValue());
-					Sample.INSTANCE.play(Random.element(Assets.Sounds.all));
+					if (Random.Int(100) == 0){
+						Sample.INSTANCE.play(Assets.Sounds.MIMIC);
+					} else {
+						Sample.INSTANCE.play(Random.oneOf(Assets.Sounds.GOLD,
+								Assets.Sounds.HIT,
+								Assets.Sounds.ITEM,
+								Assets.Sounds.SHATTER,
+								Assets.Sounds.EVOKE,
+								Assets.Sounds.TELEPORT));
+					}
 				}
 			};
 			SFXVol.setSelectedValue(CPDSettings.SFXVol());
