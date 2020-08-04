@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.items.armor.glyphs;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
+import com.watabou.utils.GameMath;
 
 public class Stone extends Armor.Glyph {
 
@@ -49,9 +50,9 @@ public class Stone extends Armor.Glyph {
 		} else {
 			hitChance = 1f - (evasion/accuracy)/2f;
 		}
-		
-		//75% of dodge chance is applied as damage reduction
-		hitChance = (1f + 3f*hitChance)/4f;
+
+		// we clamp in case accuracy or evasion were negative
+		hitChance = GameMath.gate(0.25f, (1f + 3f*hitChance)/4f, 1f);
 		
 		damage = (int)Math.ceil(damage * hitChance);
 		
