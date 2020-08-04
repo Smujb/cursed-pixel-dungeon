@@ -54,8 +54,8 @@ public class Corrupting extends Weapon.Enchantment {
 		int level = Math.max( 0, weapon.level() );
 		
 		// lvl 0 - 20%
-		// lvl 1 ~ 22.5%
-		// lvl 2 ~ 25%
+		// lvl 1 ~ 23%
+		// lvl 2 ~ 26%
 		if (damage >= defender.HP
 				&& !defender.isImmune(Corruption.class)
 				&& Random.Int( level/2 + 15 ) > 12) {

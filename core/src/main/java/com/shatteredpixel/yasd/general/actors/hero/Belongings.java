@@ -65,6 +65,7 @@ import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 import org.jetbrains.annotations.NotNull;
@@ -312,30 +313,31 @@ public class Belongings implements Iterable<Item> {
 
 	public float affectSpeed(float speed) {
 		speed *= RingOfHaste.speedMultiplier(owner);
-		Armor CurArmour = armor;
-		//speed *= CurArmour.speedMultiplier(ownerID);
+		Armor curArmour = armor;
+		//speed *= curArmour.speedMultiplier(ownerID);
 		if (armor != null) {
-			int aEnc = CurArmour.STRReq() - owner.STR();
+			int aEnc = curArmour.STRReq() - owner.STR();
 			if (aEnc > 0) speed /= Math.pow(1.2, aEnc);
-			if (CurArmour.hasGlyph(Swiftness.class, owner)) {
+			if (curArmour.hasGlyph(Swiftness.class, owner)) {
 				boolean enemyNear = false;
+				PathFinder.buildDistanceMap(owner.pos, Dungeon.level.passable(), 2);
 				for (Char ch : Actor.chars()) {
-					if (Dungeon.level.adjacent(ch.pos, owner.pos) && owner.alignment != ch.alignment) {
+					if ( PathFinder.distance[ch.pos] != Integer.MAX_VALUE && owner.alignment != ch.alignment) {
 						enemyNear = true;
 						break;
 					}
 				}
-				if (!enemyNear) speed *= (1.2f + 0.04f * CurArmour.level());
-			} else if (CurArmour.hasGlyph(Flow.class, owner) && Dungeon.level.liquid(owner.pos)) {
-				speed *= 2f;
+				if (!enemyNear) speed *= (1.2f + 0.04f * curArmour.level());
+			} else if (curArmour.hasGlyph(Flow.class, owner) && Dungeon.level.liquid(owner.pos)) {
+				speed *= (2f + 0.25f*curArmour.level());
 			}
 
-			if (CurArmour.hasGlyph(Bulk.class, owner) &&
+			if (curArmour.hasGlyph(Bulk.class, owner) &&
 					(Dungeon.level.getTerrain(owner.pos) == Terrain.DOOR
 							|| Dungeon.level.getTerrain(owner.pos) == Terrain.OPEN_DOOR)) {
 				speed /= 3f;
 			}
-			speed *= CurArmour.speedFactor;
+			speed *= curArmour.speedFactor;
 		}
 
 

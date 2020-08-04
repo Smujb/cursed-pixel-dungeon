@@ -27,14 +27,9 @@
 
 package com.shatteredpixel.yasd.general.items.armor.glyphs;
 
-import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Bundle;
 
 public class Camouflage extends Armor.Glyph {
 
@@ -50,60 +45,5 @@ public class Camouflage extends Armor.Glyph {
 	public ItemSprite.Glowing glowing() {
 		return GREEN;
 	}
-
-	public static class Camo extends Invisibility {
-		
-		{
-			announced = false;
-		}
-		
-		private int pos;
-		private int left;
-
-		@Override
-		public boolean act() {
-			left--;
-			if (left == 0 || target.pos != pos) {
-				detach();
-			} else {
-				spend(TICK);
-			}
-			return true;
-		}
-
-		public void set(int time){
-			left = time;
-			pos = target.pos;
-			Sample.INSTANCE.play( Assets.Sounds.MELD );
-		}
-
-		@Override
-		public String toString() {
-			return Messages.get(this, "name");
-		}
-
-		@Override
-		public String desc() {
-			return Messages.get(this, "desc", dispTurns(left));
-		}
-
-		private static final String POS     = "pos";
-		private static final String LEFT	= "left";
-
-		@Override
-		public void storeInBundle( Bundle bundle ) {
-			super.storeInBundle( bundle );
-			bundle.put( POS, pos );
-			bundle.put( LEFT, left );
-		}
-
-		@Override
-		public void restoreFromBundle( Bundle bundle ) {
-			super.restoreFromBundle( bundle );
-			pos = bundle.getInt( POS );
-			left = bundle.getInt( LEFT );
-		}
-	}
-
 }
 

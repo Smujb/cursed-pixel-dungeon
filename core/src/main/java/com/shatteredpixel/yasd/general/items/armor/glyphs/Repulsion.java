@@ -41,6 +41,9 @@ public class Repulsion extends Armor.Glyph {
 	@Override
 	public int proc( Armor armor, Char attacker, Char defender, int damage) {
 
+		// lvl 0 - 20%
+		// lvl 1 - 33%
+		// lvl 2 - 43%
 		int level = Math.max( 0, armor.level() );
 
 		if (Random.Int( level + 5 ) >= 4){
