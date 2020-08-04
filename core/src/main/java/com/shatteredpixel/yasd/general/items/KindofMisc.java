@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items;
 
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -69,13 +70,14 @@ public abstract class KindofMisc extends EquipableItem {
 							}
 							if (equipped == null) return;
 
-							//temporarily give 1 extra backpack spot to support swapping with a full inventory
-							hero.belongings.backpack.size++;
+							int slot = Dungeon.quickslot.getSlot(KindofMisc.this);
+							detach(hero.belongings.backpack);
 							if (equipped.doUnequip(hero, true, false)) {
-								//fully re-execute rather than just call doEquip as we want to preserve quickslot
-								execute(hero, AC_EQUIP);
+								doEquip(hero);
+							} else {
+								collect();
 							}
-							hero.belongings.backpack.size--;
+							if (slot != -1) Dungeon.quickslot.setSlot(slot, KindofMisc.this);
 						}
 					});
 

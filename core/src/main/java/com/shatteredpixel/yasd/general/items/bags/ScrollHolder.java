@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.bags;
 
-import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.spells.BeaconOfReturning;
@@ -38,13 +37,15 @@ public class ScrollHolder extends Bag {
 
 	{
 		image = ItemSpriteSheet.HOLDER;
-
-		size = Belongings.BACKPACK_SIZE;
 	}
 	
 	@Override
-	public boolean grab( Item item ) {
-		return item instanceof Scroll || item instanceof Spell;
+	public boolean canHold( Item item ) {
+		if (item instanceof Scroll || item instanceof Spell){
+			return super.canHold(item);
+		} else {
+			return false;
+		}
 	}
 	
 	@Override

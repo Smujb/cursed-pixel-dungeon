@@ -41,10 +41,8 @@ import com.shatteredpixel.yasd.general.items.Recipe;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.artifacts.SandalsOfNature;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
-import com.shatteredpixel.yasd.general.items.bags.BombBag;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.bags.PotionBandolier;
-import com.shatteredpixel.yasd.general.items.bags.PowerHolder;
 import com.shatteredpixel.yasd.general.items.bags.ScrollHolder;
 import com.shatteredpixel.yasd.general.items.bags.VelvetPouch;
 import com.shatteredpixel.yasd.general.items.food.Food;
@@ -131,45 +129,45 @@ public class WndBag extends WndTabbed {
 	
 	private static Mode lastMode;
 	private static Bag lastBag;
-	
+
 	public WndBag( Bag bag, Listener listener, Mode mode, String title ) {
-		
+
 		super();
-		
+
 		if( INSTANCE != null ){
 			INSTANCE.hide();
 		}
 		INSTANCE = this;
-		
+
 		this.listener = listener;
 		this.mode = mode;
 		this.title = title;
-		
+
 		lastMode = mode;
 		lastBag = bag;
 
 
 		nCols = PixelScene.landscape() ? COLS_L : COLS_P;
-		nRows = (int)Math.ceil((Belongings.BACKPACK_SIZE + 4) / (float)nCols);
 
 		int slotsWidth = SLOT_WIDTH * nCols + SLOT_MARGIN * (nCols - 1);
-		int slotsHeight = SLOT_HEIGHT * nRows + SLOT_MARGIN * (nRows - 1);
 
 		placeTitle( bag, slotsWidth );
-		
+
 		placeItems( bag );
+
+		nRows = (int) Math.ceil((Belongings.BACKPACK_SIZE + Constants.MISC_SLOTS) / (float)nCols);
+
+		int slotsHeight = SLOT_HEIGHT * nRows + SLOT_MARGIN * (nRows - 1);
 
 		resize( slotsWidth, slotsHeight + TITLE_HEIGHT );
 
 		Belongings stuff = Dungeon.hero.belongings;
 		Bag[] bags = {
-			stuff.backpack,
-			stuff.getItem( VelvetPouch.class ),
-			stuff.getItem( ScrollHolder.class ),
-			stuff.getItem( PotionBandolier.class ),
-			stuff.getItem( MagicalHolster.class ),
-			stuff.getItem( BombBag.class ),
-			stuff.getItem( PowerHolder.class )};
+				stuff.backpack,
+				stuff.getItem( VelvetPouch.class ),
+				stuff.getItem( ScrollHolder.class ),
+				stuff.getItem( PotionBandolier.class ),
+				stuff.getItem( MagicalHolster.class )};
 
 		for (Bag b : bags) {
 			if (b != null) {
@@ -255,12 +253,16 @@ public class WndBag extends WndTabbed {
 		}
 		
 		// Free Space
-		while ((count - stuff.miscs.length) < container.size) {
+		while ((count - 4) < container.capacity()) {
 			placeItem( null );
 		}
 	}
 	
 	protected void placeItem( final Item item ) {
+
+		count++;
+
+		if (item instanceof Bag) return;
 		
 		int x = col * (SLOT_WIDTH + SLOT_MARGIN);
 		int y = TITLE_HEIGHT + row * (SLOT_HEIGHT + SLOT_MARGIN);
@@ -271,8 +273,6 @@ public class WndBag extends WndTabbed {
 			col = 0;
 			row++;
 		}
-		
-		count++;
 	}
 
 	@Override

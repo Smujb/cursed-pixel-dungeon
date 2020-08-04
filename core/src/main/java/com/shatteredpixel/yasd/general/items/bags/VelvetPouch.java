@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.bags;
 
-import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.quest.GooBlob;
 import com.shatteredpixel.yasd.general.items.quest.MetalShard;
@@ -39,14 +38,16 @@ public class VelvetPouch extends Bag {
 
 	{
 		image = ItemSpriteSheet.POUCH;
-		
-		size = Belongings.BACKPACK_SIZE;
 	}
 	
 	@Override
-	public boolean grab( Item item ) {
-		return item instanceof Plant.Seed || item instanceof Runestone
-				|| item instanceof GooBlob || item instanceof MetalShard;
+	public boolean canHold( Item item ) {
+		if (item instanceof Plant.Seed || item instanceof Runestone
+				|| item instanceof GooBlob || item instanceof MetalShard){
+			return super.canHold(item);
+		} else {
+			return false;
+		}
 	}
 	
 	@Override

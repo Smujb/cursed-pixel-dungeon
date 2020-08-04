@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.bags;
 
-import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.bombs.Bomb;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
@@ -38,16 +37,18 @@ public class MagicalHolster extends Bag {
 
 	{
 		image = ItemSpriteSheet.HOLSTER;
-
-		size = Belongings.BACKPACK_SIZE;
 	}
 
 	public static final float HOLSTER_SCALE_FACTOR = 0.85f;
 	public static final float HOLSTER_DURABILITY_FACTOR = 1.2f;
 	
 	@Override
-	public boolean grab( Item item ) {
-		return item instanceof Wand || item instanceof MissileWeapon || item instanceof Bomb;
+	public boolean canHold( Item item ) {
+		if (item instanceof Wand || item instanceof MissileWeapon || item instanceof Bomb){
+			return super.canHold(item);
+		} else {
+			return false;
+		}
 	}
 
 	@Override

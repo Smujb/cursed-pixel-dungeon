@@ -30,14 +30,13 @@ package com.shatteredpixel.yasd.general.items.bags;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -57,8 +56,10 @@ public class Bag extends Item implements Iterable<Item> {
 	public Char owner;
 	
 	public ArrayList<Item> items = new ArrayList<>();
-	
-	public int size = 1;
+
+	public int capacity(){
+		return Belongings.BACKPACK_SIZE; // default container size
+	}
 	
 	@Override
 	public void execute( Hero hero, String action ) {
@@ -76,7 +77,7 @@ public class Bag extends Item implements Iterable<Item> {
 	public boolean collect( Bag container,  Char ch) {
 
 		for (Item item : container.items.toArray( new Item[0] )) {
-			if (grab( item )) {
+			if (canHold( item )) {
 				int slot = Dungeon.quickslot.getSlot(item);
 				item.detachAll(container);
 				if (!item.collect(this, ch)) {
@@ -160,8 +161,17 @@ public class Bag extends Item implements Iterable<Item> {
 		}
 		return false;
 	}
-	
-	public boolean grab( Item item ) {
+
+	public boolean canHold( Item item ){
+		if (items.contains(item) || item instanceof Bag || items.size() < capacity()){
+			return true;
+		} else if (item.stackable) {
+			for (Item i : items) {
+				if (item.isSimilar( i )) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 

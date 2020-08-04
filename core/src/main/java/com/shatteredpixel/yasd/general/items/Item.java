@@ -217,60 +217,60 @@ public class Item implements Bundlable {
 		}
 		return this;
 	}
-	
+
 	public boolean collect( Bag container,  Char ch ) {
-		
+
 		ArrayList<Item> items = container.items;
 
-		if (necessaryBag != null && !necessaryBag.isInstance(container)) {
-			for (Item item:items) {
-				if (item instanceof Bag && ((Bag)item).grab( this ) && necessaryBag.isInstance(item)) {
-					if (collect( (Bag)item, ch)){
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-
-		curUser = ch;
-		if (items.contains( this )) {
-			return true;
-		}
-		
-		for (Item item:items) {
-			if (item instanceof Bag && ((Bag)item).grab( this )) {
-				return collect( (Bag)item, ch);
-			}
-		}
-		
-		if (stackable) {
-			for (Item item:items) {
-				if (isSimilar( item )) {
-					item.merge( this );
-					updateQuickslot();
+		for (Item item : items) {
+			if (item instanceof Bag && ((Bag) item).canHold(this)) {
+				if (collect((Bag) item, ch)) {
+					curUser = ch;
 					return true;
 				}
 			}
 		}
-		
-		if (items.size() < container.size) {
-			
-			if (Dungeon.hero != null && Dungeon.hero.isAlive()) {
-				Badges.validateItemLevelAquired( this );
-			}
-			
-			items.add( this );
-			Dungeon.quickslot.replacePlaceholder(this);
-			updateQuickslot();
-			Collections.sort( items, itemComparator );
-			return true;
-			
-		} else {
-			GLog.n( Messages.get(Item.class, "pack_full", container.name()) );
+
+
+		if (!container.canHold(this)) {
+			GLog.n(Messages.get(Item.class, "pack_full", container.name()));
 			return false;
-			
 		}
+
+		if (items.contains(this)) {
+			curUser = ch;
+			return true;
+		}
+
+		for (Item item : items) {
+			if (item instanceof Bag && ((Bag) item).canHold(this)) {
+				curUser = ch;
+				return collect((Bag) item, ch);
+			}
+		}
+
+		if (stackable) {
+			for (Item item : items) {
+				if (isSimilar(item)) {
+					item.merge(this);
+					updateQuickslot();
+					curUser = ch;
+					return true;
+				}
+			}
+		}
+
+		if (Dungeon.hero != null && Dungeon.hero.isAlive()) {
+			Badges.validateItemLevelAquired(this);
+
+		}
+
+		items.add(this);
+		Dungeon.quickslot.replacePlaceholder(this);
+		updateQuickslot();
+		Collections.sort(items, itemComparator);
+		curUser = ch;
+		return true;
 	}
 	
 	public final boolean collect() {
