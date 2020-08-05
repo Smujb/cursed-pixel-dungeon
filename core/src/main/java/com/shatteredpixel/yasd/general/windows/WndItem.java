@@ -94,7 +94,7 @@ public class WndItem extends Window {
 		float y = info.top() + info.height() + GAP;
 		float x = 0;
 		
-		if (Dungeon.hero.isAlive() && options) {
+		if (Dungeon.hero != null && Dungeon.hero.isAlive() && options) {
 			ArrayList<RedButton> buttons = new ArrayList<>();
 			for (final String action:item.actions( Dungeon.hero )) {
 				

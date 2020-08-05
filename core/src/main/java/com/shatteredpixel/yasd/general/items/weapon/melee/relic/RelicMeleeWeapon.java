@@ -213,6 +213,7 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
         public BtnRelicWeapon(RelicMeleeWeapon weapon) {
             super(Chrome.Type.GREY_BUTTON_TR, "");
             icon(new ItemSprite(weapon.image()));
+            weapon.cursedKnown = true;
             this.weapon = weapon;
             setRect(0, 0, 20, 20);
             //Ensure it's clear whether it's unlocked
