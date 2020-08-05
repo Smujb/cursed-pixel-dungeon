@@ -27,52 +27,17 @@
 
 package com.shatteredpixel.yasd.general.ui;
 
-import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
-import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.scenes.TitleScene;
 import com.watabou.noosa.Game;
-import com.watabou.noosa.Image;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.ui.Button;
 
-public class ExitButton extends Button {
-
-	protected Image image;
+public class ExitButton extends IconButton {
 
 	public ExitButton() {
-		super();
+		super(Icons.EXIT.get());
 
 		width = 20;
 		height = 20;
-	}
-
-	@Override
-	protected void createChildren() {
-		super.createChildren();
-
-		image = Icons.EXIT.get();
-		add( image );
-	}
-
-	@Override
-	protected void layout() {
-		super.layout();
-
-		image.x = x + (width - image.width)/2f;
-		image.y = y + (height - image.height)/2f;
-		PixelScene.align(image);
-	}
-
-	@Override
-	protected void onPointerDown() {
-		image.brightness( 1.5f );
-		Sample.INSTANCE.play( Assets.Sounds.CLICK );
-	}
-
-	@Override
-	protected void onPointerUp() {
-		image.resetColor();
 	}
 
 	@Override
