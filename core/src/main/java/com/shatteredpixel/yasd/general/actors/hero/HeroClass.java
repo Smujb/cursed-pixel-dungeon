@@ -148,6 +148,7 @@ public enum HeroClass {
 
 		if (HeroSelectScene.curWeapon != null) {
 			hero.belongings.setWeapon((KindOfWeapon) HeroSelectScene.curWeapon.upgrade().identify());
+			hero.belongings.getWeapon().activate(hero);
 		}
 
 		new PotionBandolier().collect();
