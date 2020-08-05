@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.LockedFloor;
+import com.shatteredpixel.yasd.general.actors.buffs.MagicCharge;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.buffs.Recharging;
 import com.shatteredpixel.yasd.general.actors.buffs.SoulMark;
@@ -289,7 +290,14 @@ public abstract class Wand extends KindofMisc {
 			curseInfusionBonus = false;
 			updateLevel();
 		}
-		return super.level() + (curseInfusionBonus ? Constants.CURSE_INFUSION_BONUS_AMT : 0);
+		int lvl = super.level();
+		if (curUser != null) {
+			MagicCharge buff = curUser.buff(MagicCharge.class);
+			if (buff != null && buff.level() > lvl){
+				return buff.level();
+			}
+		}
+		return lvl + (curseInfusionBonus ? Constants.CURSE_INFUSION_BONUS_AMT : 0);
 	}
 	
 	@Override
@@ -359,6 +367,11 @@ public abstract class Wand extends KindofMisc {
 		}
 		
 		curCharges -= cursed ? 1 : chargesPerCast();
+
+		MagicCharge buff = curUser.buff(MagicCharge.class);
+		if (buff != null && buff.level() > super.level()){
+			buff.detach();
+		}
 
 		if (curUser instanceof Hero) {
 			//Spend should be handled in mob code for mobs. They have to spend the turn before zapping, not after.

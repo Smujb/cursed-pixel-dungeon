@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.actors.buffs;
 
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
+import com.watabou.noosa.Image;
 
 public class Recharging extends FlavourBuff {
 
@@ -42,6 +43,11 @@ public class Recharging extends FlavourBuff {
 	@Override
 	public int icon() {
 		return BuffIndicator.RECHARGING;
+	}
+
+	@Override
+	public void tintIcon(Image icon) {
+		icon.hardlight(1, 1, 0);
 	}
 	
 	@Override
