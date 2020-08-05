@@ -81,7 +81,6 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Sneak;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.shatteredpixel.yasd.general.windows.WndStartGame;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.DeviceCompat;
@@ -146,9 +145,9 @@ public enum HeroClass {
 			new SmallRation().collect();
 		}
 
-		if (WndStartGame.initWep != null) {
+		/*if (WndStartGame.initWep != null) {
 			hero.belongings.setWeapon(WndStartGame.initWep);
-		}
+		}*/
 
 		new PotionBandolier().collect();
 		Dungeon.LimitedDrops.POTION_BANDOLIER.drop();
@@ -356,6 +355,20 @@ public enum HeroClass {
 				return Assets.Sprites.HUNTRESS;
 			case PRIESTESS:
 				return Assets.Sprites.PRIESTESS;
+		}
+	}
+
+	public String splashArt(){
+		switch (this) {
+			case WARRIOR: default:
+				return Assets.Splashes.WARRIOR;
+			case MAGE:
+				return Assets.Splashes.MAGE;
+			case ROGUE:
+				return Assets.Splashes.ROGUE;
+			//FIXME splash for Priestess
+			case HUNTRESS: case PRIESTESS:
+				return Assets.Splashes.HUNTRESS;
 		}
 	}
 

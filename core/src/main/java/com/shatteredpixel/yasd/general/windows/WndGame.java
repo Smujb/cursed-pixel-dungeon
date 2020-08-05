@@ -32,6 +32,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.GamesInProgress;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.scenes.HeroSelectScene;
 import com.shatteredpixel.yasd.general.scenes.RankingsScene;
 import com.shatteredpixel.yasd.general.scenes.TitleScene;
 import com.shatteredpixel.yasd.general.ui.RedButton;
@@ -79,8 +80,8 @@ public class WndGame extends Window {
 				@Override
 				protected void onClick() {
 					GamesInProgress.selectedClass = Dungeon.hero.heroClass;
-					//InterlevelScene.noStory = true;
-					GameScene.show(new WndStartGame(GamesInProgress.firstEmpty(), false));
+					GamesInProgress.curSlot = GamesInProgress.firstEmpty();
+					CPDGame.switchScene(HeroSelectScene.class);
 				}
 			} );
 			btnStart.textColor(Window.TITLE_COLOR);

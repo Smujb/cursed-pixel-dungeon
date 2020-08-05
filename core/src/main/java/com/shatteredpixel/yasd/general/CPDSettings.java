@@ -397,12 +397,17 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 				(language() == Languages.KOREAN || language() == Languages.CHINESE || language() == Languages.JAPANESE));
 	}
 
-	public static void difficulty( int value ) {
-		put( KEY_DIFFICULTY, value );
+	public static void difficulty( Difficulty value ) {
+		put( KEY_DIFFICULTY, value.name() );
 	}
 
-	public static int difficulty() {
-		return getInt( KEY_DIFFICULTY, 2, 0, 4 );
+	public static Difficulty difficulty() {
+		try {
+			return Difficulty.valueOf(getString(KEY_DIFFICULTY, Difficulty.MEDIUM.name()));
+			//Support old saves.
+		} catch (IllegalArgumentException e) {
+			return Difficulty.fromInt(getInt(KEY_DIFFICULTY, 2, 1, 4));
+		}
 	}
 
 	//Developer options

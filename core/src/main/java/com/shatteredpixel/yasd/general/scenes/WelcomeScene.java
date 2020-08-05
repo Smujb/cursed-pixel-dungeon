@@ -28,8 +28,9 @@
 package com.shatteredpixel.yasd.general.scenes;
 
 import com.shatteredpixel.yasd.general.CPDGame;
-import com.shatteredpixel.yasd.general.Chrome;
 import com.shatteredpixel.yasd.general.CPDSettings;
+import com.shatteredpixel.yasd.general.Chrome;
+import com.shatteredpixel.yasd.general.GamesInProgress;
 import com.shatteredpixel.yasd.general.Rankings;
 import com.shatteredpixel.yasd.general.effects.BannerSprites;
 import com.shatteredpixel.yasd.general.effects.Fireball;
@@ -37,7 +38,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.Icons;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.shatteredpixel.yasd.general.ui.StyledButton;
-import com.shatteredpixel.yasd.general.windows.WndStartGame;
 import com.watabou.glwrap.Blending;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
@@ -104,7 +104,9 @@ public class WelcomeScene extends PixelScene {
 				super.onClick();
 				if (previousVersion == 0){
 					CPDSettings.version(CPDGame.versionCode);
-					WelcomeScene.this.add(new WndStartGame(1, false));
+					GamesInProgress.selectedClass = null;
+					GamesInProgress.curSlot = 1;
+					CPDGame.switchScene(HeroSelectScene.class);
 				} else {
 					updateVersion(previousVersion);
 					CPDGame.switchScene(TitleScene.class);

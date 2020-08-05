@@ -40,7 +40,6 @@ import com.shatteredpixel.yasd.general.ui.Icons;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.shatteredpixel.yasd.general.ui.Window;
 import com.shatteredpixel.yasd.general.windows.WndGameInProgress;
-import com.shatteredpixel.yasd.general.windows.WndStartGame;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Image;
@@ -265,7 +264,9 @@ public class StartScene extends PixelScene {
 		@Override
 		protected void onClick() {
 			if (newGame) {
-				CPDGame.scene().add( new WndStartGame(slot, false));
+				GamesInProgress.selectedClass = null;
+				GamesInProgress.curSlot = slot;
+				CPDGame.switchScene(HeroSelectScene.class);
 			} else {
 				CPDGame.scene().add( new WndGameInProgress(slot));
 			}
