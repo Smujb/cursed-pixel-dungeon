@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.effects;
 
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.tiles.DungeonTilemap;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.Game;
@@ -35,6 +36,7 @@ import com.watabou.noosa.Image;
 public class CheckedCell extends Image {
 	
 	private float alpha;
+	private float delay;
 	
 	public CheckedCell( int pos ) {
 		super( TextureCache.createSolid( 0xFF55AAFF ) );
@@ -47,10 +49,19 @@ public class CheckedCell extends Image {
 		
 		alpha = 0.8f;
 	}
+
+	public CheckedCell( int pos, int visSource ) {
+		this( pos );
+		delay = (Dungeon.level.trueDistance(pos, visSource)-1f);
+		//steadily accelerates as distance increases
+		if (delay > 0) delay = (float)Math.pow(delay, 0.75f)/10f;
+	}
 	
 	@Override
 	public void update() {
-		if ((alpha -= Game.elapsed) > 0) {
+		if ((delay -= Game.elapsed) > 0){
+			alpha( 0 );
+		} else if ((alpha -= Game.elapsed) > 0) {
 			alpha( alpha );
 			scale.set( DungeonTilemap.SIZE * alpha );
 		} else {
