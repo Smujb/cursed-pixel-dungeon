@@ -50,7 +50,11 @@ public abstract class DragonPendant extends KindofMisc {
 	}
 
 	private int attunementReq() {
-		return 1 + level();
+		return attunementReq(trueLevel());
+	}
+
+	private int attunementReq(int lvl) {
+		return 1 + lvl;
 	}
 
 	private float chargeFactor() {

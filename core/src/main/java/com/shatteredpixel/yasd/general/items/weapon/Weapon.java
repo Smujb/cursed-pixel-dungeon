@@ -237,7 +237,7 @@ abstract public class Weapon extends KindOfWeapon {
 	}
 
 	public int STRReq(){
-		return STRReq(Math.max(0, level()));
+		return STRReq(Math.max(0, trueLevel()));
 	}
 
 	public abstract int STRReq(int lvl);

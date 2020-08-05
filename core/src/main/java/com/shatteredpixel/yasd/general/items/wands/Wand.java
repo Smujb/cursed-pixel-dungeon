@@ -460,7 +460,7 @@ public abstract class Wand extends KindofMisc {
 	}
 
 	private int focusReq() {
-		return focusReq(level());
+		return focusReq(trueLevel());
 	}
 
 	private static final String TXT_FOCUS = ":%d";

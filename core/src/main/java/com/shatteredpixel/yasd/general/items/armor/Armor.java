@@ -572,7 +572,7 @@ public class Armor extends EquipableItem {
 	}
 
 	public int STRReq() {
-		return STRReq(Math.max(0, level()));
+		return STRReq(Math.max(0, trueLevel()));
 	}
 
 	public int STRReq(int lvl){
