@@ -48,6 +48,8 @@ public class DifficultyButton extends StyledButton {
 		this.difficulty = difficulty;
 		buttonArrayList.add(this);
 		updateDifficulty();
+		//Ensure it's clear whether it's unlocked
+		alpha(1f);
 	}
 
 	@Override
@@ -57,6 +59,12 @@ public class DifficultyButton extends StyledButton {
 		for (DifficultyButton difficultyButton : buttonArrayList) {
 			difficultyButton.updateDifficulty();
 		}
+	}
+
+	@Override
+	public void alpha(float value) {
+		super.alpha(value);
+		text.alpha(difficulty.isUnlocked() ? value*1f : value*0.3f);
 	}
 
 	private void updateDifficulty() {

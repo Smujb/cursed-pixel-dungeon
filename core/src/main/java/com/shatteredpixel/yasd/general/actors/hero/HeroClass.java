@@ -81,6 +81,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Sneak;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.scenes.HeroSelectScene;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.DeviceCompat;
@@ -145,9 +146,9 @@ public enum HeroClass {
 			new SmallRation().collect();
 		}
 
-		/*if (WndStartGame.initWep != null) {
-			hero.belongings.setWeapon(WndStartGame.initWep);
-		}*/
+		if (HeroSelectScene.curWeapon != null) {
+			hero.belongings.setWeapon((KindOfWeapon) HeroSelectScene.curWeapon.upgrade().identify());
+		}
 
 		new PotionBandolier().collect();
 		Dungeon.LimitedDrops.POTION_BANDOLIER.drop();
@@ -226,10 +227,10 @@ public enum HeroClass {
 	private static void initMage( Hero hero ) {
 		MagesStaff staff;
 
-		staff = (MagesStaff) new MagesStaff(new WandOfMagicMissile()).upgrade();
+		staff = (MagesStaff) new MagesStaff(new WandOfMagicMissile()).upgrade().identify();
 
 		if (hero.belongings.getWeapon() == null) {
-			hero.belongings.setWeapon((KindOfWeapon) staff.identify());
+			hero.belongings.setWeapon(staff);
 		} else {
 			staff.collect();
 		}
@@ -366,9 +367,11 @@ public enum HeroClass {
 				return Assets.Splashes.MAGE;
 			case ROGUE:
 				return Assets.Splashes.ROGUE;
-			//FIXME splash for Priestess
-			case HUNTRESS: case PRIESTESS:
+			case HUNTRESS:
 				return Assets.Splashes.HUNTRESS;
+			//FIXME splash for Priestess
+			case PRIESTESS:
+				return Assets.Interfaces.SHADOW;
 		}
 	}
 

@@ -1,6 +1,8 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee.relic;
 
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.CPDSettings;
+import com.shatteredpixel.yasd.general.Chrome;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.LockedFloor;
@@ -10,7 +12,14 @@ import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.relic.enchants.RelicEnchantment;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.scenes.HeroSelectScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSprite;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
+import com.shatteredpixel.yasd.general.ui.StyledButton;
 import com.shatteredpixel.yasd.general.utils.GLog;
+import com.shatteredpixel.yasd.general.windows.WndItem;
+import com.shatteredpixel.yasd.general.windows.WndTitledMessage;
+import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.Reflection;
@@ -24,6 +33,8 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
     }
 
     public static final Class<? extends RelicMeleeWeapon>[] weapons = new Class[] {
+            //Placeholder for the first button
+            null,
             LorsionsGreataxe.class,
             LoturgosCrystal.class,
             MaracarsBlades.class,
@@ -185,6 +196,53 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
             }
             spend( TICK );
             return true;
+        }
+    }
+
+    public static class BtnRelicWeapon extends StyledButton {
+
+        RelicMeleeWeapon weapon;
+
+        public BtnRelicWeapon() {
+            super(Chrome.Type.GREY_BUTTON_TR, "");
+            icon(new ItemSprite(ItemSpriteSheet.WEAPON_HOLDER));
+            this.weapon = null;
+            setRect(0, 0, 20, 20);
+        }
+
+        public BtnRelicWeapon(RelicMeleeWeapon weapon) {
+            super(Chrome.Type.GREY_BUTTON_TR, "");
+            icon(new ItemSprite(weapon.image()));
+            this.weapon = weapon;
+            setRect(0, 0, 20, 20);
+            //Ensure it's clear whether it's unlocked
+            alpha(1f);
+        }
+
+        @Override
+        public void alpha(float value) {
+            super.alpha(value);
+            if (HeroSelectScene.curWeapon == weapon || (HeroSelectScene.curWeapon != null && HeroSelectScene.curWeapon.equals(weapon))) {
+                icon.am = value;
+            } else {
+                icon.am = value*0.3f;
+            }
+        }
+
+        @Override
+        protected boolean onLongClick() {
+            if (weapon == null) {
+                CPDGame.scene().addToFront(new WndTitledMessage(new Image(icon), Messages.get(this, "relic_weapon"), Messages.get(this, "relic_wep_desc")));
+            } else {
+                CPDGame.scene().addToFront(new WndItem(null, weapon, false));
+            }
+            return true;
+        }
+
+        @Override
+        protected void onClick() {
+            super.onClick();
+            HeroSelectScene.curWeapon = weapon;
         }
     }
 }

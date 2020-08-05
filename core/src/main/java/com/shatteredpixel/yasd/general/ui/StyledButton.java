@@ -56,6 +56,10 @@ public class StyledButton extends Button {
 		text.text( label );
 		add( text );
 	}
+
+	public void setChrome(Chrome.Type type) {
+		bg = Chrome.get(type);
+	}
 	
 	@Override
 	protected void layout() {
@@ -105,7 +109,7 @@ public class StyledButton extends Button {
 		active = value;
 		text.alpha( value ? 1.0f : 0.3f );
 	}
-	
+
 	public void text( String value ) {
 		text.text( value );
 		layout();

@@ -127,6 +127,7 @@ public class TitleScene extends PixelScene {
 				if (DeviceCompat.isDebug() && DeviceCompat.isDesktop()) {
 					GamesInProgress.selectedClass = null;
 					GamesInProgress.curSlot = 1;
+					HeroSelectScene.testing = true;
 					CPDGame.switchScene(HeroSelectScene.class);
 					return true;
 				}

@@ -38,6 +38,7 @@ import com.shatteredpixel.yasd.general.GamesInProgress;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
+import com.shatteredpixel.yasd.general.items.weapon.melee.relic.RelicMeleeWeapon;
 import com.shatteredpixel.yasd.general.journal.Journal;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -61,6 +62,7 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.PointerArea;
 import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.GameMath;
+import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
 
@@ -71,10 +73,12 @@ public class HeroSelectScene extends PixelScene {
 
 	//fading UI elements
 	private ArrayList<StyledButton> heroBtns = new ArrayList<>();
+	private ArrayList<RelicMeleeWeapon.BtnRelicWeapon> relicButtons = new ArrayList<>();
 	private StyledButton startBtn;
 	private IconButton infoButton;
 	private IconButton challengeButton;
 	private IconButton btnExit;
+	public static RelicMeleeWeapon curWeapon = null;
 
 	public static boolean testing = false;
 
@@ -84,6 +88,7 @@ public class HeroSelectScene extends PixelScene {
 
 		CPDSettings.testing(testing);
 		testing = false;
+		curWeapon = null;
 
 		Badges.loadGlobal();
 		Journal.loadGlobal();
@@ -226,6 +231,27 @@ public class HeroSelectScene extends PixelScene {
 			add(button);
 		}
 
+		int pos = 0;
+		for (Class<? extends RelicMeleeWeapon> weaponClass : RelicMeleeWeapon.weapons) {
+			RelicMeleeWeapon weapon = null;
+			if (weaponClass != null) {
+				weapon = Reflection.newInstance(weaponClass);
+				/*if (!CPDSettings.unlockedRelicWep(weaponClass)) {
+					continue;
+				}*/
+			}
+			RelicMeleeWeapon.BtnRelicWeapon btnRelicWeapon;
+			if (weapon == null) {
+				btnRelicWeapon = new RelicMeleeWeapon.BtnRelicWeapon();
+			} else {
+				btnRelicWeapon = new RelicMeleeWeapon.BtnRelicWeapon(weapon);
+			}
+			btnRelicWeapon.setPos(pos,0);
+			pos += btnRelicWeapon.width();
+			relicButtons.add(btnRelicWeapon);
+			add(btnRelicWeapon);
+		}
+
 		PointerArea fadeResetter = new PointerArea(0, 0, Camera.main.width, Camera.main.height){
 			@Override
 			public boolean onSignal(PointerEvent event) {
@@ -275,22 +301,28 @@ public class HeroSelectScene extends PixelScene {
 		for (Object v : members){
 			if (v instanceof Window) resetFade();
 		}
+		float alpha;
 		if (GamesInProgress.selectedClass != null) {
 			if (uiAlpha > 0f){
 				uiAlpha -= Game.elapsed/4f;
 			}
-			float alpha = GameMath.gate(0f, uiAlpha, 1f);
-			for (StyledButton b : heroBtns){
-				b.alpha(alpha);
-			}
-			for (DifficultyButton button : DifficultyButton.buttonArrayList) {
-				button.alpha(alpha);
-			}
-			startBtn.alpha(alpha);
-			btnExit.icon().alpha(alpha);
-			challengeButton.icon().alpha(alpha);
-			infoButton.icon().alpha(alpha);
+			alpha = GameMath.gate(0f, uiAlpha, 1f);
+		} else {
+			alpha = 1f;
 		}
+		for (StyledButton b : heroBtns){
+			b.alpha(alpha);
+		}
+		for (StyledButton b : relicButtons){
+			b.alpha(alpha);
+		}
+		for (DifficultyButton button : DifficultyButton.buttonArrayList) {
+			button.alpha(alpha);
+		}
+		startBtn.alpha(alpha);
+		btnExit.icon().alpha(alpha);
+		challengeButton.icon().alpha(alpha);
+		infoButton.icon().alpha(alpha);
 	}
 
 	private void resetFade(){
@@ -315,8 +347,7 @@ public class HeroSelectScene extends PixelScene {
 
 			this.cl = cl;
 
-			icon(new Image(cl.spritesheet(), 0, 90, 12, 15));
-
+			icon(cl.icon());
 		}
 
 		@Override
