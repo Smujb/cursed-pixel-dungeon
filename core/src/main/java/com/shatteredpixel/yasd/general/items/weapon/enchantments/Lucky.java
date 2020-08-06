@@ -31,10 +31,11 @@ import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
+import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite.Glowing;
+import com.watabou.noosa.Visual;
 import com.watabou.utils.Random;
 
 public class Lucky extends Weapon.Enchantment {
@@ -58,21 +59,12 @@ public class Lucky extends Weapon.Enchantment {
 	}
 	
 	public static Item genLoot(){
-		return LuckyBadge.tryForBonusDrop();
-		/*float roll = Random.Float();
-		if (roll < 0.6f){
-			Item result = new Gold().random();
-			result.quantity(Math.round(result.quantity() * 0.5f));
-			return result;
-		} else if (roll < 0.9f){
-			return Random.Int(2) == 0
-					? Generator.random(Generator.Category.SEED)
-					: Generator.random(Generator.Category.STONE);
-		} else {
-			return Random.Int(2) == 0
-					? Generator.random(Generator.Category.POTION)
-					: Generator.random(Generator.Category.SCROLL);
-		}*/
+		//80% common, 20% uncommon, 0% rare
+		return RingOfWealth.genConsumableDrop(-5);
+	}
+
+	public static void showFlare( Visual vis ) {
+		RingOfWealth.showFlareForBonusDrop(vis);
 	}
 
 	@Override

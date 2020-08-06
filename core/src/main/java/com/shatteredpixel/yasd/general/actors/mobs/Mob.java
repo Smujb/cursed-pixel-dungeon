@@ -52,7 +52,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Terror;
 import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
-import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Generator;
@@ -1001,8 +1000,8 @@ public abstract class Mob extends Char {
 		
 		//lucky enchant logic
 		if (Dungeon.hero.lvl <= Dungeon.getScaleFactor() + 1 && buff(Lucky.LuckProc.class) != null){
-			new  Flare(8, 24).color(Constants.Colours.PURE_GREEN, true).show(sprite, 3f);
 			Dungeon.level.drop(Lucky.genLoot(), pos).sprite.drop();
+			Lucky.showFlare(sprite);
 		}
 		//Cultist subclass logic
 		if (Dungeon.hero.subClass == HeroSubClass.CULTIST && Random.Int(3) == 0 && !(this.properties().contains(Property.BOSS) || this.properties().contains(Property.INORGANIC))) {
