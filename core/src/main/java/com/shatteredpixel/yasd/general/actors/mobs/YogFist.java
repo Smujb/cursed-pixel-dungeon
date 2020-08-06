@@ -155,11 +155,16 @@ public abstract class YogFist extends Mob {
 				CellEmitter.get( pos ).burst( Speck.factory( Speck.STEAM ), 10 );
 			}
 
-			int cell = pos + PathFinder.NEIGHBOURS8[Random.Int(8)];
-			if (Dungeon.level.getTerrain(cell) == Terrain.WATER){
-				Dungeon.level.set( cell, Terrain.EMPTY);
-				GameScene.updateMap( cell );
-				CellEmitter.get( cell ).burst( Speck.factory( Speck.STEAM ), 10 );
+			//1.33 evaporated tiles on average
+			int evaporatedTiles = Random.chances(new float[]{0, 2, 1});
+
+			for (int i = 0; i < evaporatedTiles; i++) {
+				int cell = pos + PathFinder.NEIGHBOURS8[Random.Int(8)];
+				if (Dungeon.level.getTerrain(cell) == Terrain.WATER){
+					Dungeon.level.set( cell, Terrain.EMPTY);
+					GameScene.updateMap( cell );
+					CellEmitter.get( cell ).burst( Speck.factory( Speck.STEAM ), 10 );
+				}
 			}
 
 			for (int i : PathFinder.NEIGHBOURS9) {
