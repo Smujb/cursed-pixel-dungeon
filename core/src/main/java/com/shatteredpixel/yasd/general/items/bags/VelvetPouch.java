@@ -49,6 +49,11 @@ public class VelvetPouch extends Bag {
 			return false;
 		}
 	}
+
+	@Override
+	public int capacity() {
+		return super.capacity()-1;
+	}
 	
 	@Override
 	public int price() {

@@ -52,6 +52,11 @@ public class MagicalHolster extends Bag {
 	}
 
 	@Override
+	public int capacity() {
+		return super.capacity()-1;
+	}
+
+	@Override
 	public void onDetach( ) {
 		super.onDetach();
 		for (Item item : items) {
