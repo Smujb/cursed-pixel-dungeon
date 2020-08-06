@@ -50,18 +50,21 @@ import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
-import com.watabou.utils.PathFinder;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
 public class WandOfWarding extends DamageWand {
 
 	{
-		collisionProperties = Ballistica.STOP_TARGET;
-
 		image = ItemSpriteSheet.WAND_WARDING;
 	}
-	
+
+	@Override
+	protected int collisionProperties(int target) {
+		if (Dungeon.level.heroFOV[target])  return Ballistica.STOP_TARGET;
+		else                                return Ballistica.PROJECTILE;
+	}
+
 	private boolean wardAvailable = true;
 	
 	@Override
@@ -70,7 +73,7 @@ public class WandOfWarding extends DamageWand {
 		int currentWardEnergy = 0;
 		for (Char ch : Actor.chars()){
 			if (ch instanceof Ward){
-				currentWardEnergy += ((Ward) ch).tier + 1;
+				currentWardEnergy += ((Ward) ch).tier;
 			}
 		}
 		
@@ -78,7 +81,7 @@ public class WandOfWarding extends DamageWand {
 		for (Buff buff : curUser.buffs()){
 			if (buff instanceof Wand.Charger){
 				if (((Charger) buff).wand() instanceof WandOfWarding){
-					maxWardEnergy += 3 + ((Charger) buff).wand().level()*3;
+					maxWardEnergy += 2 + ((Charger) buff).wand().level();
 				}
 			}
 		}
@@ -103,11 +106,24 @@ public class WandOfWarding extends DamageWand {
 	
 	@Override
 	public void onZap(Ballistica bolt) {
-		
-		Char ch = Actor.findChar(bolt.collisionPos);
-		if (!curUser.fieldOfView[bolt.collisionPos] || !Dungeon.level.passable(bolt.collisionPos)){
+
+		int target = bolt.collisionPos;
+		Char ch = Actor.findChar(target);
+		if (ch != null && !(ch instanceof Ward)){
+			if (bolt.dist > 1) target = bolt.path.get(bolt.dist-1);
+
+			ch = Actor.findChar(target);
+			if (ch != null && !(ch instanceof Ward)){
+				GLog.w( Messages.get(this, "bad_location"));
+				Dungeon.level.pressCell(bolt.collisionPos);
+				return;
+			}
+		}
+
+		if (!Dungeon.level.passable(target)){
+
 			GLog.w( Messages.get(this, "bad_location"));
-			Dungeon.level.pressCell(bolt.collisionPos);
+			Dungeon.level.pressCell(target);
 			
 		} else if (ch != null){
 			if (ch instanceof Ward){
@@ -119,21 +135,18 @@ public class WandOfWarding extends DamageWand {
 				ch.sprite.emitter().burst(MagicMissile.WardParticle.UP, ((Ward) ch).tier);
 			} else {
 				GLog.w( Messages.get(this, "bad_location"));
-				Dungeon.level.pressCell(bolt.collisionPos);
+				Dungeon.level.pressCell(target);
 			}
 
-		} else if (canPlaceWard(bolt.collisionPos)){
+		} else {
 			Ward ward = Mob.create(Ward.class);
-			ward.pos = bolt.collisionPos;
+			ward.pos = target;
 			ward.wandLevel = (int)level();
 			GameScene.add(ward, 1f);
 			Dungeon.level.occupyCell(ward);
 			ward.sprite.emitter().burst(MagicMissile.WardParticle.UP, ward.tier);
-			Dungeon.level.pressCell(bolt.collisionPos);
+			Dungeon.level.pressCell(target);
 			ward.alignment = curUser.alignment;
-		} else {
-			GLog.w( Messages.get(this, "bad_location"));
-			Dungeon.level.pressCell(bolt.collisionPos);
 		}
 	}
 
@@ -179,18 +192,6 @@ public class WandOfWarding extends DamageWand {
 		particle.radiateXY(2.5f);
 	}
 
-	private static boolean canPlaceWard(int pos){
-
-		for (int i : PathFinder.CIRCLE8){
-			if (Actor.findChar(pos+i) instanceof Ward){
-				return false;
-			}
-		}
-
-		return true;
-
-	}
-
 	private static float realMin(float lvl) {
 		return 2 + lvl;
 	}
@@ -212,9 +213,9 @@ public class WandOfWarding extends DamageWand {
 	@Override
 	public String statsDesc() {
 		if (levelKnown)
-			return Messages.get(this, "stats_desc", (int)(level()+3));
+			return Messages.get(this, "stats_desc", level()+2);
 		else
-			return Messages.get(this, "stats_desc", 3);
+			return Messages.get(this, "stats_desc", 2);
 	}
 
 	public static class Ward extends NPC {
@@ -222,14 +223,15 @@ public class WandOfWarding extends DamageWand {
 		public int tier = 1;
 		private int wandLevel = 1;
 
-		private int totalZaps = 0;
+		public int totalZaps = 0;
 
 		{
 			spriteClass = WardSprite.class;
 
 			properties.add(Char.Property.IMMOVABLE);
+			properties.add(Property.INORGANIC);
 
-			viewDistance = 3;
+			viewDistance = 4;
 			range = viewDistance;
 			state = WANDERING;
 
@@ -267,15 +269,19 @@ public class WandOfWarding extends DamageWand {
 				case 1: case 2: default:
 					break; //do nothing
 				case 3:
-					HP = HT = 30;
+					HT = 30;
+					HP = 10 + (5-totalZaps)*4;
 					break;
 				case 4:
 					HT = 48;
-					HP = Math.round(48*(HP/30f));
+					HP += 18;
 					break;
 				case 5:
 					HT = 70;
-					HP = Math.round(70*(HP/48f));
+					HP += 22;
+					break;
+				case 6:
+					wandHeal(wandLevel);
 					break;
 			}
 
@@ -283,7 +289,10 @@ public class WandOfWarding extends DamageWand {
 				tier++;
 				viewDistance++;
 				range++;
-				updateSpriteState();
+				if (sprite != null){
+					((WardSprite)sprite).updateTier(tier);
+					sprite.place(pos);
+				}
 				GameScene.updateFog(pos, viewDistance+1);
 			}
 		}
@@ -293,19 +302,23 @@ public class WandOfWarding extends DamageWand {
 				this.wandLevel = wandLevel;
 			}
 
+			int heal;
 			switch(tier){
 				default:
-					break;
+					return;
 				case 4:
-					HP = Math.min(HT, HP+6);
+					heal = 8;
 					break;
 				case 5:
-					HP = Math.min(HT, HP+8);
+					heal = 10;
 					break;
 				case 6:
-					HP = Math.min(HT, HP+12);
+					heal = 15;
 					break;
 			}
+
+			heal(heal);
+			if (sprite != null) sprite.showStatus(CharSprite.POSITIVE, Integer.toString(heal));
 		}
 
 		@Override
@@ -327,13 +340,10 @@ public class WandOfWarding extends DamageWand {
 
 		@Override
         public float attackDelay() {
-			switch (tier){
-				case 1: case 2: default:
-					return 2f;
-				case 3: case 4:
-					return 1.5f;
-				case 5: case 6:
-					return 1f;
+			if (tier > 3){
+				return 1f;
+			} else {
+				return 2f;
 			}
 		}
 
@@ -343,15 +353,8 @@ public class WandOfWarding extends DamageWand {
 			if (hit) {
 				totalZaps++;
 				switch (tier) {
-					case 1:
-					default:
-						if (totalZaps >= tier) {
-							die(new DamageSrc(Element.META, this));
-						}
-						break;
-					case 2:
-					case 3:
-						if (totalZaps > tier) {
+					case 1: case 2: case 3: default:
+						if (totalZaps >= (2*tier-1)){
 							die(new DamageSrc(Element.META, this));
 						}
 						break;
@@ -439,8 +442,7 @@ public class WandOfWarding extends DamageWand {
 		}
 
 		@Override
-		public String description() {
-			return Messages.get(this, "desc_" + tier, 2+wandLevel, 8 + 4*wandLevel );
+		public String description() {return Messages.get(this, "desc_" + tier, 2+wandLevel, 8 + 4*wandLevel, tier );
 		}
 
 		private static final String TIER = "tier";
@@ -459,7 +461,7 @@ public class WandOfWarding extends DamageWand {
 		public void restoreFromBundle( Bundle bundle) {
 			super.restoreFromBundle(bundle);
 			tier = bundle.getInt(TIER);
-			viewDistance = 2 + tier;
+			viewDistance = 3 + tier;
 			wandLevel = bundle.getInt(WAND_LEVEL);
 			totalZaps = bundle.getInt(TOTAL_ZAPS);
 		}
