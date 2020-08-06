@@ -91,7 +91,7 @@ public class Golem extends Mob {
 
 	private static final String TELEPORTING = "teleporting";
 	private static final String SELF_COOLDOWN = "self_cooldown";
-	private static final String ENEMY_COOLDOWN = "vent_cooldown";
+	private static final String ENEMY_COOLDOWN = "enemy_cooldown";
 
 	@Override
 	public void storeInBundle( Bundle bundle) {
