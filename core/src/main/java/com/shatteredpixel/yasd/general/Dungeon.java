@@ -43,6 +43,7 @@ import com.shatteredpixel.yasd.general.items.Ankh;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.artifacts.TalismanOfForesight;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
@@ -856,6 +857,24 @@ public class Dungeon {
 				BArray.or( level.visited, level.heroFOV, h.pos - 1 + level.width(), 3, level.visited );
 				GameScene.updateFog(h.pos, 2);
 			}
+		}
+
+		for (TalismanOfForesight.CharAwareness c : hero.buffs(TalismanOfForesight.CharAwareness.class)){
+			if (Dungeon.depth != c.depth) continue;
+			Char ch = (Char) Actor.findById(c.charID);
+			if (ch == null) continue;
+			BArray.or( level.visited, level.heroFOV, ch.pos - 1 - level.width(), 3, level.visited );
+			BArray.or( level.visited, level.heroFOV, ch.pos - 1, 3, level.visited );
+			BArray.or( level.visited, level.heroFOV, ch.pos - 1 + level.width(), 3, level.visited );
+			GameScene.updateFog(ch.pos, 2);
+		}
+
+		for (TalismanOfForesight.HeapAwareness h : hero.buffs(TalismanOfForesight.HeapAwareness.class)){
+			if (Dungeon.depth != h.depth) continue;
+			BArray.or( level.visited, level.heroFOV, h.pos - 1 - level.width(), 3, level.visited );
+			BArray.or( level.visited, level.heroFOV, h.pos - 1, 3, level.visited );
+			BArray.or( level.visited, level.heroFOV, h.pos - 1 + level.width(), 3, level.visited );
+			GameScene.updateFog(h.pos, 2);
 		}
 
 		GameScene.afterObserve();

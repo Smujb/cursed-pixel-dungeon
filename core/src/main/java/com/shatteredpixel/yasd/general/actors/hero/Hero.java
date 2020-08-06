@@ -1681,8 +1681,13 @@ public class Hero extends Char {
 
 							smthFound = true;
 
-							if (talisman != null && !talisman.isCursed())
-								talisman.charge();
+							if (talisman != null){
+								if (oldValue == Terrain.SECRET_DOOR) {
+									talisman.charge(10);
+								} else {
+									talisman.charge(2);
+								}
+							}
 						}
 					}
 				}

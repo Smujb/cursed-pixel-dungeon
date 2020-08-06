@@ -63,6 +63,7 @@ import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.Torch;
+import com.shatteredpixel.yasd.general.items.artifacts.TalismanOfForesight;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.food.SmallRation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLevitation;
@@ -1693,6 +1694,24 @@ public abstract class Level implements Bundlable {
 					for (int i : PathFinder.NEIGHBOURS9)
 						fieldOfView[p + i] = true;
 				}
+			}
+
+			for (TalismanOfForesight.CharAwareness a : c.buffs(TalismanOfForesight.CharAwareness.class)){
+				if (Dungeon.depth != a.depth) continue;
+				Char ch = (Char) Actor.findById(a.charID);
+				if (ch == null) {
+					a.detach();
+					continue;
+				}
+				int p = ch.pos;
+				for (int i : PathFinder.NEIGHBOURS9)
+					fieldOfView[p+i] = true;
+			}
+
+			for (TalismanOfForesight.HeapAwareness h : c.buffs(TalismanOfForesight.HeapAwareness.class)){
+				if (Dungeon.depth != h.depth) continue;
+				for (int i : PathFinder.NEIGHBOURS9)
+					fieldOfView[h.pos+i] = true;
 			}
 
 			for (Mob ward : mobs) {

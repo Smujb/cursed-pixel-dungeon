@@ -29,13 +29,21 @@ package com.shatteredpixel.yasd.general.items.artifacts;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.actors.buffs.Awareness;
+import com.shatteredpixel.yasd.general.actors.Actor;
+import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.LockedFloor;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.effects.CheckedCell;
+import com.shatteredpixel.yasd.general.items.Heap;
+import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.levels.terrain.KindOfTerrain;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
+import com.shatteredpixel.yasd.general.mechanics.Ballistica;
+import com.shatteredpixel.yasd.general.mechanics.ConeAOE;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.scenes.CellSelector;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
@@ -65,8 +73,7 @@ public class TalismanOfForesight extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && charge == chargeCap && !cursed)
-			actions.add(AC_SCRY);
+		if (isEquipped( hero ) && !cursed) actions.add(AC_SCRY);
 		return actions;
 	}
 
@@ -76,33 +83,9 @@ public class TalismanOfForesight extends Artifact {
 
 		if (action.equals(AC_SCRY)){
 
-			if (!isEquipped(hero))        GLog.i( Messages.get(Artifact.class, "need_to_equip") );
-			else if (charge != chargeCap) GLog.i( Messages.get(this, "no_charge") );
-			else {
-				hero.sprite.operate(hero.pos);
-				hero.busy();
-				Sample.INSTANCE.play(Assets.Sounds.BEACON);
-				charge = 0;
-				for (int i = 0; i < Dungeon.level.length(); i++) {
-
-					KindOfTerrain terr = Dungeon.level.getTerrain(i);
-					if (terr.secret()) {
-
-						GameScene.updateMap(i);
-
-						if (Dungeon.level.heroFOV[i]) {
-							GameScene.discoverTile(i, terr);
-						}
-					}
-				}
-
-				GLog.p( Messages.get(this, "scry") );
-
-				updateQuickslot();
-
-				Buff.affect(hero, Awareness.class, Awareness.DURATION);
-				Dungeon.observe();
-			}
+			if (!isEquipped(hero))  GLog.i( Messages.get(Artifact.class, "need_to_equip") );
+			else if (charge < 5)    GLog.i( Messages.get(this, "low_charge") );
+			else                    GameScene.selectCell(scry);
 		}
 	}
 
@@ -110,11 +93,11 @@ public class TalismanOfForesight extends Artifact {
 	protected ArtifactBuff passiveBuff() {
 		return new Foresight();
 	}
-	
+
 	@Override
 	public void charge(Hero target) {
 		if (charge < chargeCap){
-			charge += 4f;
+			charge += 2f;
 			if (charge >= chargeCap) {
 				charge = chargeCap;
 				partialCharge = 0;
@@ -138,23 +121,137 @@ public class TalismanOfForesight extends Artifact {
 
 		return desc;
 	}
-	
+
+	private float maxDist(){
+		return Math.min(5 + 2*level(), (charge-3)/1.08f);
+	}
+
+	private CellSelector.Listener scry = new CellSelector.Listener(){
+
+		@Override
+		public void onSelect(Integer target) {
+			if (target != null && target != curUser.pos){
+
+				//enforces at least 2 tiles of distance
+				if (Dungeon.level.adjacent(target, curUser.pos)){
+					target += (target - curUser.pos);
+				}
+
+				float dist = Dungeon.level.trueDistance(curUser.pos, target);
+
+				if (dist >= 3 && dist > maxDist()){
+					Ballistica trajectory = new Ballistica(curUser.pos, target, Ballistica.STOP_TARGET);
+					int i = 0;
+					while (i < trajectory.path.size()
+							&& Dungeon.level.trueDistance(curUser.pos, trajectory.path.get(i)) <= maxDist()){
+						target = trajectory.path.get(i);
+						i++;
+					}
+					dist = Dungeon.level.trueDistance(curUser.pos, target);
+				}
+
+				//starts at 200 degrees, loses 8% per tile of distance
+				float angle = Math.round(200*(float)Math.pow(0.92, dist));
+				ConeAOE cone = new ConeAOE(curUser.pos, target, angle);
+
+				int earnedExp = 0;
+				boolean noticed = false;
+				for (int cell : cone.cells){
+					GameScene.effectOverFog(new CheckedCell( cell, curUser.pos ));
+					if (Dungeon.level.discoverable[cell] && !(Dungeon.level.mapped[cell] || Dungeon.level.visited[cell])){
+						Dungeon.level.mapped[cell] = true;
+						earnedExp++;
+					}
+
+					if (Dungeon.level.secret(cell)) {
+						Dungeon.level.discover(cell);
+
+						if (Dungeon.level.heroFOV[cell]) {
+							KindOfTerrain oldValue = Dungeon.level.getTerrain(cell);
+							GameScene.discoverTile(cell, Dungeon.level.getTerrain(cell));
+							Dungeon.level.discover( cell );
+							ScrollOfMagicMapping.discover(cell);
+							noticed = true;
+
+							if (Dungeon.level.hasTrap(cell)){
+								earnedExp += 10;
+							} else if (oldValue == Terrain.SECRET_DOOR){
+								earnedExp += 100;
+							}
+						}
+					}
+
+					Char ch = Actor.findChar(cell);
+					if (ch != null && ch.alignment != Char.Alignment.NEUTRAL && ch.alignment != curUser.alignment){
+						Buff.append(curUser, CharAwareness.class, 5 + 2*level()).charID = ch.id();
+
+						if (!curUser.fieldOfView[ch.pos]){
+							earnedExp += 10;
+						}
+					}
+
+					Heap h = Dungeon.level.heaps.get(cell);
+					if (h != null){
+						Buff.append(curUser, HeapAwareness.class, 5 + 2*level()).pos = h.pos;
+
+						if (!h.seen){
+							earnedExp += 10;
+						}
+					}
+
+				}
+
+				exp += earnedExp;
+				if (exp >= 50 + 50*level() && level() < levelCap) {
+					exp -= 50 + 50*level();
+					upgrade();
+					GLog.p( Messages.get(TalismanOfForesight.class, "levelup") );
+				}
+				updateQuickslot();
+
+				//5 charge at 2 tiles, up to 30 charge at 25 tiles
+				charge -= 3 + dist*1.08f;
+				partialCharge -= (dist*1.08f)%1f;
+
+				if (partialCharge < 0 && charge > 0){
+					partialCharge ++;
+					charge --;
+				}
+				updateQuickslot();
+				Dungeon.observe();
+				Dungeon.hero.checkVisibleMobs();
+				GameScene.updateFog();
+
+				curUser.sprite.zap(target);
+				Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
+				if (noticed) Sample.INSTANCE.play(Assets.Sounds.SECRET);
+
+			}
+
+		}
+
+		@Override
+		public String prompt() {
+			return Messages.get(TalismanOfForesight.class, "prompt");
+		}
+	};
+
 	private static final String WARN = "warn";
-	
+
 	@Override
 	public void storeInBundle(  Bundle bundle) {
 		super.storeInBundle(bundle);
 		bundle.put(WARN, warn);
 	}
-	
+
 	@Override
 	public void restoreFromBundle(  Bundle bundle) {
 		super.restoreFromBundle(bundle);
-		warn = bundle.getInt(WARN);
+		warn = bundle.getBoolean(WARN);
 	}
-	
-	private int warn = 0;
-	
+
+	private boolean warn = false;
+
 	public class Foresight extends ArtifactBuff{
 
 		@Override
@@ -198,23 +295,21 @@ public class TalismanOfForesight extends Artifact {
 			}
 
 			if (smthFound && !cursed){
-				if (warn == 0){
+				if (!warn){
 					GLog.w( Messages.get(this, "uneasy") );
 					if (target instanceof Hero){
 						((Hero)target).interrupt();
 					}
 				}
-				warn = 3;
+				warn = true;
 			} else {
-				if (warn > 0){
-					warn --;
-				}
+				warn = false;
 			}
 
-			//fully charges in 2000 turns at lvl=0, scaling to 667 turns at lvl = 10.
+			//fully charges in 2000 turns at lvl=0, scaling to 1000 turns at lvl = 10.
 			LockedFloor lock = target.buff(LockedFloor.class);
 			if (charge < chargeCap && !cursed && (lock == null || lock.regenOn())) {
-				partialCharge += 0.05+(level()*0.01);
+				partialCharge += 0.05f+(level()*0.005f);
 
 				if (partialCharge > 1 && charge < chargeCap) {
 					partialCharge--;
@@ -222,22 +317,16 @@ public class TalismanOfForesight extends Artifact {
 					updateQuickslot();
 				} else if (charge >= chargeCap) {
 					partialCharge = 0;
-					GLog.p( Messages.get(this, "full_charge") );
+					GLog.p( Messages.get(TalismanOfForesight.class, "full_charge") );
 				}
 			}
 
 			return true;
 		}
 
-		public void charge(){
-			charge = Math.min(charge+(2+(level()/3)), chargeCap);
-			exp++;
-			if (exp >= 4 && level() < levelCap) {
-				upgrade();
-				GLog.p( Messages.get(this, "levelup") );
-				exp -= 4;
-			}
-			updateQuickslot();
+
+		public void charge(int boost){
+			charge = Math.min((charge+boost), chargeCap);
 		}
 
 		@Override
@@ -252,10 +341,71 @@ public class TalismanOfForesight extends Artifact {
 
 		@Override
 		public int icon() {
-			if (warn == 0)
-				return BuffIndicator.NONE;
-			else
+			if (warn)
 				return BuffIndicator.FORESIGHT;
+			else
+				return BuffIndicator.NONE;
+		}
+	}
+
+	public static class CharAwareness extends FlavourBuff {
+
+		public int charID;
+		public int depth = Dungeon.depth;
+
+		private static final String ID = "id";
+		private static final String DEPTH = "depth";
+
+		@Override
+		public void detach() {
+			super.detach();
+			Dungeon.observe();
+			GameScene.updateFog();
+		}
+
+		@Override
+		public void restoreFromBundle(Bundle bundle) {
+			super.restoreFromBundle(bundle);
+			charID = bundle.getInt(ID);
+			depth = bundle.getInt(DEPTH);
+		}
+
+		@Override
+		public void storeInBundle(Bundle bundle) {
+			super.storeInBundle(bundle);
+			bundle.put(ID, charID);
+			bundle.put(DEPTH, depth);
+		}
+
+	}
+
+	public static class HeapAwareness extends FlavourBuff {
+
+		public int pos;
+		public int depth = Dungeon.depth;
+
+		private static final String POS = "pos";
+		private static final String DEPTH = "depth";
+
+		@Override
+		public void detach() {
+			super.detach();
+			Dungeon.observe();
+			GameScene.updateFog();
+		}
+
+		@Override
+		public void restoreFromBundle(Bundle bundle) {
+			super.restoreFromBundle(bundle);
+			pos = bundle.getInt(POS);
+			depth = bundle.getInt(DEPTH);
+		}
+
+		@Override
+		public void storeInBundle(Bundle bundle) {
+			super.storeInBundle(bundle);
+			bundle.put(POS, pos);
+			bundle.put(DEPTH, depth);
 		}
 	}
 }
