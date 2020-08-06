@@ -89,20 +89,6 @@ public enum Difficulty {
 	}
 
 	@Contract(pure = true)
-	public int degradationAmount() {
-		switch (this) {
-			case EASY://Easy = 3 drop in durability per hit (200 hits until break)
-				return 3;
-			case MEDIUM: default://Medium = 6 drop in durability per hit (100 hits until break)
-				return 6;
-			case HARD://Hard = 12 drop in durability per hit (83 hits until break)
-				return 12;
-			case IMPOSSIBLE:
-				return 20;//Impossible = 20 drop in durability per hit (50 hits until break)
-		}
-	}
-
-	@Contract(pure = true)
 	public static Difficulty fromInt(int diff) {
 		switch (diff) {
 			case 1:
