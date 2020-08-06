@@ -233,7 +233,7 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
         @Override
         protected boolean onLongClick() {
             if (weapon == null) {
-                CPDGame.scene().addToFront(new WndTitledMessage(new Image(icon), Messages.get(this, "relic_weapon"), Messages.get(this, "relic_wep_desc")));
+                CPDGame.scene().addToFront(new WndTitledMessage(new Image(icon), Messages.get(this, "relic_weapon"), Messages.get(this, "relic_weapon_desc")));
             } else {
                 CPDGame.scene().addToFront(new WndItem(null, weapon, false));
             }
@@ -243,7 +243,11 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
         @Override
         protected void onClick() {
             super.onClick();
-            HeroSelectScene.curWeapon = weapon;
+            if (HeroSelectScene.curWeapon == weapon) {
+                 onLongClick();
+            } else {
+                HeroSelectScene.curWeapon = weapon;
+            }
         }
     }
 }
