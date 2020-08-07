@@ -35,6 +35,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.ui.CheckBox;
+import com.shatteredpixel.yasd.general.ui.Icons;
 import com.shatteredpixel.yasd.general.ui.OptionSlider;
 import com.shatteredpixel.yasd.general.ui.RedButton;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
@@ -74,7 +75,7 @@ public class WndSettings extends WndTabbed {
 		audio = new AudioTab();
 		add( audio );
 
-		add( new LabeledTab(Messages.get(this, "display")){
+		add( new IconTab(Icons.get(Icons.DISPLAY)){
 			@Override
 			protected void select(boolean value) {
 				super.select(value);
@@ -83,7 +84,7 @@ public class WndSettings extends WndTabbed {
 			}
 		});
 
-		add( new LabeledTab(Messages.get(this, "ui")){
+		add( new IconTab(Icons.get(Icons.PREFS)){
 			@Override
 			protected void select(boolean value) {
 				super.select(value);
@@ -92,7 +93,7 @@ public class WndSettings extends WndTabbed {
 			}
 		});
 
-		add( new LabeledTab(Messages.get(this, "audio")){
+		add( new IconTab(Icons.get(Icons.AUDIO)){
 			@Override
 			protected void select(boolean value) {
 				super.select(value);
