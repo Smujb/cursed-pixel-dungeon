@@ -17,8 +17,8 @@ import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.StyledButton;
 import com.shatteredpixel.yasd.general.utils.GLog;
+import com.shatteredpixel.yasd.general.windows.WndInfoItem;
 import com.shatteredpixel.yasd.general.windows.WndTitledMessage;
-import com.shatteredpixel.yasd.general.windows.WndUseItem;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.DeviceCompat;
@@ -235,7 +235,7 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
             if (weapon == null) {
                 CPDGame.scene().addToFront(new WndTitledMessage(new Image(icon), Messages.get(this, "relic_weapon"), Messages.get(this, "relic_weapon_desc")));
             } else {
-                CPDGame.scene().addToFront(new WndUseItem(null, weapon) );
+                CPDGame.scene().addToFront(new WndInfoItem(weapon));
             }
             return true;
         }
