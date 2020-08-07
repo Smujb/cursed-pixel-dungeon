@@ -55,6 +55,8 @@ public class CPDAction extends GameAction {
 
 	public static final GameAction WAIT        = new CPDAction("wait");
 	public static final GameAction SEARCH      = new CPDAction("search");
+	public static final GameAction REST        = new CPDAction("rest");
+
 
 	public static final GameAction INVENTORY   = new CPDAction("inventory");
 	public static final GameAction QUICKSLOT_1 = new CPDAction("quickslot_1");
@@ -91,6 +93,7 @@ public class CPDAction extends GameAction {
 
 		defaultBindingsDesktop.put( Input.Keys.SPACE,       CPDAction.WAIT );
 		defaultBindingsDesktop.put( Input.Keys.S,           CPDAction.SEARCH );
+		defaultBindingsDesktop.put( Input.Keys.Z,           CPDAction.REST );
 
 		defaultBindingsDesktop.put( Input.Keys.I,           CPDAction.INVENTORY );
 		defaultBindingsDesktop.put( Input.Keys.Q,           CPDAction.QUICKSLOT_1 );

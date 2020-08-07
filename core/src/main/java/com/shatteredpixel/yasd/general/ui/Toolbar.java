@@ -110,6 +110,19 @@ public class Toolbar extends Component {
 				return true;
 			}
 		});
+
+		add(new Button(){
+			@Override
+			protected void onClick() {
+				examining = false;
+				Dungeon.hero.rest(true);
+			}
+
+			@Override
+			public GameAction keyAction() {
+				return CPDAction.REST;
+			}
+		});
 		
 		add(btnSearch = new Tool(44, 0, 20, 26) {
 			@Override
