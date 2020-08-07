@@ -828,7 +828,7 @@ public abstract class Mob extends Char {
 	}
 
 	public boolean surprisedBy( Char enemy ){
-		return !enemySeen && enemy == Dungeon.hero;
+		return (!enemySeen || enemy.invisible > 0) && enemy == Dungeon.hero;
 	}
 
 	public Char getEnemy() {

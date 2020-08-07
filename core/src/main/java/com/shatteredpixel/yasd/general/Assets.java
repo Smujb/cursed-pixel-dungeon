@@ -240,7 +240,6 @@ public class Assets {
 		public static final String ROGUE	= "sprites/rogue.png";
 		public static final String HUNTRESS	= "sprites/huntress.png";
 		public static final String PRIESTESS= "sprites/priestess.png";
-		public static final String AVATARS	= "sprites/avatars.png";
 		public static final String PET		= "sprites/pet.png";
 		public static final String AMULET	= "sprites/amulet.png";
 

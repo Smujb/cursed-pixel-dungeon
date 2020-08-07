@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.actors.Actor;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
@@ -142,6 +143,12 @@ public enum Rankings {
 			} else if (!Dungeon.quickslot.contains(item))
 				belongings.backpack.items.remove(item);
 		}
+
+		//remove all buffs (ones tied to equipment will be re-applied)
+		for(Buff b : Dungeon.hero.buffs()){
+			Dungeon.hero.remove(b);
+		}
+
 		rec.gameData.put( HERO, Dungeon.hero );
 
 		//save stats
