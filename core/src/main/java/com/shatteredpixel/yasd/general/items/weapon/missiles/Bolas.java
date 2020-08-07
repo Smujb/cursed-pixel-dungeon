@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.missiles;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Cripple;
@@ -36,6 +37,8 @@ public class Bolas extends MissileWeapon {
 	
 	{
 		image = ItemSpriteSheet.BOLAS;
+		hitSound = Assets.Sounds.HIT;
+		hitSoundPitch = 1f;
 		
 		tier = 3;
 		baseUses = 5;

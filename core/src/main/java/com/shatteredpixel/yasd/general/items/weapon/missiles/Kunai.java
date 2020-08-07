@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.missiles;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -38,6 +39,8 @@ public class Kunai extends MissileWeapon {
 	
 	{
 		image = ItemSpriteSheet.KUNAI;
+		hitSound = Assets.Sounds.HIT_STAB;
+		hitSoundPitch = 1.1f;
 		
 		tier = 3;
 		baseUses = 5;

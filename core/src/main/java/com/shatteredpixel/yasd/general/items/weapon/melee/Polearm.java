@@ -27,12 +27,16 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Polearm extends MeleeWeapon {
 
 	{
+		hitSound = Assets.Sounds.HIT_SLASH;
+		hitSoundPitch = 0.8f;
+
 		tier = 1;
 		DLY = 1.5f;   //0.67x speed
 		RCH = 2;    //extra reach

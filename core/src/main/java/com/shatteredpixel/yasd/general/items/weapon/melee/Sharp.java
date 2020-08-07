@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
@@ -38,6 +39,8 @@ public class Sharp extends MeleeWeapon {
 
 	{
 		image = ItemSpriteSheet.SCIMITAR;
+		hitSound = Assets.Sounds.HIT_SLASH;
+		hitSoundPitch = 1.2f;
 
 		tier = 1;
 		DLY = 1f;

@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.missiles;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
@@ -36,6 +37,8 @@ public class Tomahawk extends MissileWeapon {
 
 	{
 		image = ItemSpriteSheet.TOMAHAWK;
+		hitSound = Assets.Sounds.HIT_SLASH;
+		hitSoundPitch = 0.9f;
 
 		tier = 4;
 		baseUses = 5;

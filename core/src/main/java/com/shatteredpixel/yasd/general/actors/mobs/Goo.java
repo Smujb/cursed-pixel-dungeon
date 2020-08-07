@@ -163,6 +163,7 @@ public class Goo extends Boss {
 					GameScene.add(Blob.seed(i, 1, GooWarn.class));
 			}
 			pumpedUp++;
+			Sample.INSTANCE.play( Assets.Sounds.CHARGEUP );
 
 			spend( attackDelay() );
 
@@ -201,6 +202,7 @@ public class Goo extends Boss {
 			if (Dungeon.level.heroFOV[pos]) {
 				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(this, "!!!") );
 				GLog.n( Messages.get(this, "pumpup") );
+				Sample.INSTANCE.play( Assets.Sounds.CHARGEUP, 1f, 0.8f );
 			}
 
 			spend( attackDelay() );

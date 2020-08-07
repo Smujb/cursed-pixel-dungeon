@@ -27,10 +27,12 @@
 
 package com.shatteredpixel.yasd.general.levels.traps;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.CorrosiveGas;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.watabou.noosa.audio.Sample;
 
 public class CorrosionTrap extends Trap {
 
@@ -43,6 +45,7 @@ public class CorrosionTrap extends Trap {
 	public void activate() {
 
 		CorrosiveGas corrosiveGas = Blob.seed(pos, 80 + 5 * Dungeon.getScaleFactor(), CorrosiveGas.class);
+		Sample.INSTANCE.play(Assets.Sounds.GAS);
 
 		corrosiveGas.setStrength(1 + Dungeon.getScaleFactor() / 4);
 

@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
@@ -34,6 +35,8 @@ public class Sneak extends MeleeWeapon {
 
 	{
 		image = ItemSpriteSheet.ASSASSINS_BLADE;
+		hitSound = Assets.Sounds.HIT_STAB;
+		hitSoundPitch = 0.9f;
 
 		tier = 1;
 		damageMultiplier = 0.80f;

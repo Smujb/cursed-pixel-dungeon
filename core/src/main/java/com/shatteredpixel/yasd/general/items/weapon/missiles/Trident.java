@@ -27,12 +27,15 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.missiles;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Trident extends MissileWeapon {
 	
 	{
 		image = ItemSpriteSheet.TRIDENT;
+		hitSound = Assets.Sounds.HIT_SLASH;
+		hitSoundPitch = 0.9f;
 		
 		tier = 5;
 	}

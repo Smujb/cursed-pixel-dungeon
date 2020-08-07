@@ -27,9 +27,11 @@
 
 package com.shatteredpixel.yasd.general.items.wands;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 //for wands that directly damage a target
@@ -50,6 +52,7 @@ public abstract class DamageWand extends Wand{
 		if (damage > 0) {
 			enemy.damage(damage, new Char.DamageSrc(element, this).ignoreDefense());
 		}
+		Sample.INSTANCE.play( Assets.Sounds.HIT_MAGIC, 1, 0.8f * Random.Float(0.87f, 1.15f) );
 		return damage;
 	}
 

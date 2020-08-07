@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
@@ -34,6 +35,8 @@ public class Flail extends MeleeWeapon {
 
 	{
 		image = ItemSpriteSheet.FLAIL;
+		hitSound = Assets.Sounds.HIT_CRUSH;
+		hitSoundPitch = 0.8f;
 
 		tier = 4;
 		ACC = 0.8f; //0.8x accuracy

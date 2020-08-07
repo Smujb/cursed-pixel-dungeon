@@ -37,6 +37,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Ooze;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
+import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.CorrosionParticle;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -60,9 +61,10 @@ public class WandOfCorrosion extends Wand {
 	public void onZap(Ballistica bolt) {
 		int level = level();
 		CorrosiveGas gas = Blob.seed(bolt.collisionPos, 50 + 5 * level, CorrosiveGas.class);
-		CellEmitter.center(bolt.collisionPos).burst( CorrosionParticle.SPLASH, 10 );
+		CellEmitter.get(bolt.collisionPos).burst(Speck.factory(Speck.CORROSION), 10 );
 		gas.setStrength(2 + level);
 		GameScene.add(gas);
+		Sample.INSTANCE.play(Assets.Sounds.GAS);
 
 		for (int i : PathFinder.NEIGHBOURS9) {
 			Char ch = Actor.findChar(bolt.collisionPos + i);

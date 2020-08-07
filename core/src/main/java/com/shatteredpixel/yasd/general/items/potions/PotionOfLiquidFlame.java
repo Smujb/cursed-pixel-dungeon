@@ -50,6 +50,7 @@ public class PotionOfLiquidFlame extends Potion {
 
 			splash( cell );
 			Sample.INSTANCE.play( Assets.Sounds.SHATTER );
+			Sample.INSTANCE.play( Assets.Sounds.BURNING );
 		}
 
 		for (int offset : PathFinder.NEIGHBOURS9){

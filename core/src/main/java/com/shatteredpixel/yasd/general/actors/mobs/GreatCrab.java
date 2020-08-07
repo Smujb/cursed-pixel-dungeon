@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.actors.mobs;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Ghost;
@@ -36,8 +37,8 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.GreatCrabSprite;
 import com.shatteredpixel.yasd.general.utils.GLog;
-
-import org.jetbrains.annotations.NotNull;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Random;
 
 public class GreatCrab extends Crab {
 
@@ -82,6 +83,7 @@ public class GreatCrab extends Crab {
 				|| (src.getCause() instanceof Char && enemy == src.getCause()))){
 			GLog.n( Messages.get(this, "noticed") );
 			sprite.showStatus( CharSprite.NEUTRAL, Messages.get(this, "blocked") );
+			Sample.INSTANCE.play( Assets.Sounds.HIT_PARRY, 1, Random.Float(0.96f, 1.05f));
 		} else {
 			super.damage( dmg, src);
 		}

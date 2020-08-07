@@ -27,12 +27,14 @@
 
 package com.shatteredpixel.yasd.general.levels.traps;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.Fire;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PathFinder;
 
 public class BurningTrap extends Trap {
@@ -51,6 +53,6 @@ public class BurningTrap extends Trap {
 				CellEmitter.get( pos+i ).burst( FlameParticle.FACTORY, 5 );
 			}
 		}
-
+		Sample.INSTANCE.play(Assets.Sounds.BURNING);
 	}
 }

@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.missiles;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -35,6 +36,8 @@ public class Shuriken extends MissileWeapon {
 
 	{
 		image = ItemSpriteSheet.SHURIKEN;
+		hitSound = Assets.Sounds.HIT_STAB;
+		hitSoundPitch = 1.2f;
 		
 		tier = 2;
 		baseUses = 5;

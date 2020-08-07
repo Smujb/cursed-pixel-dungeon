@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
@@ -34,6 +35,8 @@ public class Fist extends MeleeWeapon {
 
 	{
 		image = ItemSpriteSheet.GLOVES;
+		hitSound = Assets.Sounds.HIT_CRUSH;
+		hitSoundPitch = 1.2f;
 
 		tier = 1;
 		DLY = 0.5f; //2x speed

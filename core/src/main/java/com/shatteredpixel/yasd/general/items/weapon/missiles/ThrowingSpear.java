@@ -27,13 +27,16 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.missiles;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class ThrowingSpear extends MissileWeapon {
 	
 	{
 		image = ItemSpriteSheet.THROWING_SPEAR;
-		
+		hitSound = Assets.Sounds.HIT_STAB;
+		hitSoundPitch = 1f;
+
 		tier = 3;
 	}
 	

@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
@@ -34,6 +35,8 @@ public class Heavy extends MeleeWeapon {
 
 	{
 		image = ItemSpriteSheet.GREATAXE;
+		hitSound = Assets.Sounds.HIT_SLASH;
+		hitSoundPitch = 1f;
 
 		tier = 1;
 

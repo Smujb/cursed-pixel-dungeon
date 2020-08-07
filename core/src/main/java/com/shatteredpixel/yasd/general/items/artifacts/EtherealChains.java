@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.artifacts;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -45,6 +46,7 @@ import com.shatteredpixel.yasd.general.tiles.DungeonTilemap;
 import com.shatteredpixel.yasd.general.ui.QuickSlotButton;
 import com.shatteredpixel.yasd.general.utils.BArray;
 import com.shatteredpixel.yasd.general.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -123,7 +125,8 @@ public class EtherealChains extends Artifact {
 				} else {
 					chainLocation( chain, curUser );
 				}
-
+				throwSound();
+				Sample.INSTANCE.play( Assets.Sounds.CHAINS );
 			}
 
 		}

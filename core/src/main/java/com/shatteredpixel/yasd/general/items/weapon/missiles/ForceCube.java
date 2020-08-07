@@ -50,6 +50,11 @@ public class ForceCube extends MissileWeapon {
 		
 		sticky = false;
 	}
+
+	@Override
+	public void hitSound(float pitch) {
+		//no hitsound as it never hits enemies directly
+	}
 	
 	@Override
 	protected void onThrow(int cell) {

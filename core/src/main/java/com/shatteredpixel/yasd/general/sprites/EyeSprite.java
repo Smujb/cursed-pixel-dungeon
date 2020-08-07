@@ -35,6 +35,7 @@ import com.shatteredpixel.yasd.general.effects.Beam;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.tiles.DungeonTilemap;
 import com.watabou.noosa.TextureFilm;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 
 public abstract class EyeSprite extends MobSprite {
@@ -118,6 +119,7 @@ public abstract class EyeSprite extends MobSprite {
 	public void charge( int pos ){
 		turnTo(ch.pos, pos);
 		play(charging);
+		if (visible) Sample.INSTANCE.play( Assets.Sounds.CHARGEUP );
 	}
 
 	@Override

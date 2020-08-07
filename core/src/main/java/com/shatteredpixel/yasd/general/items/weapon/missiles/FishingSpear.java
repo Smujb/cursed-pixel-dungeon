@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.missiles;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.mobs.WaterMob;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -35,6 +36,8 @@ public class FishingSpear extends MissileWeapon {
 	
 	{
 		image = ItemSpriteSheet.FISHING_SPEAR;
+		hitSound = Assets.Sounds.HIT_STAB;
+		hitSoundPitch = 1.1f;
 		
 		tier = 2;
 	}

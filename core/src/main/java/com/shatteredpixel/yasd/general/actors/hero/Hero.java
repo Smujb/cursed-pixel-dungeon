@@ -472,6 +472,29 @@ public class Hero extends Char {
 		return className();
 	}
 
+	@Override
+	public void hitSound(float pitch) {
+		KindOfWeapon weapon = belongings.getWeapon();
+		if ( weapon != null ){
+			weapon.hitSound(pitch);
+		} /*else if (RingOfForce.getBuffedBonus(this, RingOfForce.Force.class) > 0) {
+			//pitch deepens by 2.5% (additive) per point of strength, down to 75%
+			super.hitSound( pitch * GameMath.gate( 0.75f, 1.25f - 0.025f*STR(), 1f) );
+		} */else {
+			super.hitSound(pitch * 1.1f);
+		}
+	}
+
+	@Override
+	public boolean blockSound(float pitch) {
+		KindOfWeapon weapon = belongings.getWeapon();
+		if ( weapon != null && weapon.defenseFactor(this) >= 4 ){
+			Sample.INSTANCE.play( Assets.Sounds.HIT_PARRY, 1, pitch);
+			return true;
+		}
+		return super.blockSound(pitch);
+	}
+
 	public void live() {
 		Buff.affect(this, Regeneration.class);
 		Buff.affect(this, Hunger.class);
@@ -1029,6 +1052,13 @@ public class Hero extends Char {
 			if (shake > 0.5f) {
 				float divisor = 3 + 12 * ((HP + shielding()) / (float) (HT + shielding()));
 				GameScene.flash((int) (0xFF / divisor) << 16);
+				if (isAlive()) {
+					if (shake >= 1/3f) {
+						Sample.INSTANCE.play(Assets.Sounds.HEALTH_CRITICAL);
+					} else {
+						Sample.INSTANCE.play(Assets.Sounds.HEALTH_WARN, shake * 3f);
+					}
+				}
 			}
 			CPDGame.shake(shake);
 		}

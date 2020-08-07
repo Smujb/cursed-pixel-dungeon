@@ -27,12 +27,15 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.missiles;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Javelin extends MissileWeapon {
 
 	{
 		image = ItemSpriteSheet.JAVELIN;
+		hitSound = Assets.Sounds.HIT_STAB;
+		hitSoundPitch = 1f;
 		
 		tier = 4;
 	}

@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -34,6 +35,7 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.utils.BArray;
 import com.shatteredpixel.yasd.general.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
@@ -42,6 +44,9 @@ import org.jetbrains.annotations.NotNull;
 abstract public class KindOfWeapon extends EquipableItem {
 	
 	protected static final float TIME_TO_EQUIP = 1f;
+
+	protected String hitSound = Assets.Sounds.HIT;
+	protected float hitSoundPitch = 1f;
 
 	public boolean canSurpriseAttack = true;
 
@@ -145,5 +150,8 @@ abstract public class KindOfWeapon extends EquipableItem {
 	public int proc( Char attacker, Char defender, int damage ) {
 		return damage;
 	}
-	
+
+	public void hitSound( float pitch ){
+		Sample.INSTANCE.play(hitSound, 1, pitch * hitSoundPitch);
+	}
 }

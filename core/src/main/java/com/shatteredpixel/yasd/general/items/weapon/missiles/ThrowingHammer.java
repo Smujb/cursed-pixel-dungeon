@@ -27,12 +27,15 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.missiles;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class ThrowingHammer extends MissileWeapon {
 	
 	{
 		image = ItemSpriteSheet.THROWING_HAMMER;
+		hitSound = Assets.Sounds.HIT_CRUSH;
+		hitSoundPitch = 0.8f;
 		
 		tier = 5;
 		baseUses = 15;

@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.actors.mobs;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -42,6 +43,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.DM200Sprite;
 import com.shatteredpixel.yasd.general.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -136,6 +138,7 @@ public class DM200 extends Mob {
 		}
 
 		GLog.w(Messages.get(this, "vent"));
+		Sample.INSTANCE.play(Assets.Sounds.GAS);
 		GameScene.add(Blob.seed(trajectory.collisionPos, 100, ToxicGas.class));
 		return true;
 	}
@@ -245,6 +248,7 @@ public class DM200 extends Mob {
 					GameScene.add(Blob.seed(enemy.pos + i, 5, CorrosiveGas.class).setStrength(Corrosion.defaultStrength(Dungeon.getScaleFactor())));
 				}
 			}
+			Sample.INSTANCE.play(Assets.Sounds.GAS);
 			return true;
 		}
 

@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -35,6 +36,8 @@ public class Blunt extends MeleeWeapon {//War Hammer will get reworked.
 
 	{
 		image = ItemSpriteSheet.WAR_HAMMER;
+		hitSound = Assets.Sounds.HIT_CRUSH;
+		hitSoundPitch = 1f;
 
 		tier = 1;
 		//accuracyFactor = 1.33f; //33% boost to accuracy

@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.missiles;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -38,6 +39,8 @@ public class ThrowingKnife extends MissileWeapon {
 	
 	{
 		image = ItemSpriteSheet.THROWING_KNIFE;
+		hitSound = Assets.Sounds.HIT_SLASH;
+		hitSoundPitch = 1.2f;
 		
 		bones = false;
 		

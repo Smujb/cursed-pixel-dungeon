@@ -315,6 +315,7 @@ public class NewDM300 extends Boss {
 
 		}
 
+		Sample.INSTANCE.play(Assets.Sounds.GAS);
 	}
 
 	public void onSlamComplete(){
