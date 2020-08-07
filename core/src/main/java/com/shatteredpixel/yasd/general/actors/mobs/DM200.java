@@ -138,7 +138,6 @@ public class DM200 extends Mob {
 		}
 
 		GLog.w(Messages.get(this, "vent"));
-		Sample.INSTANCE.play(Assets.Sounds.GAS);
 		GameScene.add(Blob.seed(trajectory.collisionPos, 100, ToxicGas.class));
 		return true;
 	}
