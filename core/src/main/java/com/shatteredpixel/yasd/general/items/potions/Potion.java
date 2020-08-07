@@ -250,11 +250,7 @@ public class Potion extends Item {
 
 		super.execute( hero, action );
 		
-		/*if (action.equals( AC_CHOOSE )){
-			
-			GameScene.show(new WndItem(null, this, true) );
-			
-		} else*/ if (action.equals( AC_DRINK )) {
+		if (action.equals( AC_DRINK )) {
 			if (isKnown() && mustThrowPots.contains(getClass())) {
 
 				GameScene.show(

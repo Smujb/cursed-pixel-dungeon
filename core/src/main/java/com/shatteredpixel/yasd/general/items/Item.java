@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.items;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -47,7 +46,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.MissileSprite;
 import com.shatteredpixel.yasd.general.ui.QuickSlotButton;
 import com.shatteredpixel.yasd.general.utils.GLog;
-import com.shatteredpixel.yasd.general.windows.WndItem;
+import com.shatteredpixel.yasd.general.windows.WndUseItem;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Bundlable;
@@ -190,15 +189,11 @@ public class Item implements Bundlable {
 			}
 			
 		} else if (action.equals(AC_INFO)) {
-			if (!testing) {
-				GameScene.show(new WndItem(null, this, true));
-			} else {
-				LevelHandler.descend();
-			}
+			GameScene.show(new WndUseItem(null, this));
 		}
 	}
 	
-	public void execute( Hero hero ) {
+	public final void execute( Hero hero ) {
 		execute( hero, defaultAction );
 	}
 	

@@ -68,7 +68,7 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.IconTitle;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.shatteredpixel.yasd.general.windows.WndBlacksmith;
-import com.shatteredpixel.yasd.general.windows.WndItem;
+import com.shatteredpixel.yasd.general.windows.WndUseItem;
 import com.shatteredpixel.yasd.general.windows.WndQuest;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Sample;
@@ -136,7 +136,8 @@ public class DriedRose extends Artifact {
 
 		if (action.equals(AC_SUMMON)) {
 
-			if (!Ghost.Quest.completed())   GameScene.show(new WndItem(null, this, true));
+			if (!Ghost.Quest.completed())
+				if (!Ghost.Quest.completed())   GameScene.show(new WndUseItem(null, this));
 			else if (ghost != null)         GLog.i( Messages.get(this, "spawned") );
 			else if (!isEquipped( hero ))   GLog.i( Messages.get(Artifact.class, "need_to_equip") );
 			else if (charge != chargeCap)   GLog.i( Messages.get(this, "no_charge") );

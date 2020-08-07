@@ -467,8 +467,8 @@ public class WndBag extends WndTabbed {
 				listener.onSelect( item );
 				
 			} else {
-				
-				Game.scene().addToFront(new WndItem( WndBag.this, item ) );
+
+				Game.scene().addToFront(new WndUseItem( WndBag.this, item ) );
 				
 			}
 		}

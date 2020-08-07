@@ -375,7 +375,7 @@ public class WndRanking extends WndTabbed {
 		
 		@Override
 		protected void onClick() {
-			Game.scene().add( new WndItem( null, item ) );
+			Game.scene().add( new WndInfoItem( item ) );
 		}
 	}
 
@@ -419,7 +419,7 @@ public class WndRanking extends WndTabbed {
 
 		@Override
 		protected void onClick() {
-			Game.scene().add(new WndItem(null, item));
+			Game.scene().add(new WndInfoItem(item));
 		}
 	}
 }
