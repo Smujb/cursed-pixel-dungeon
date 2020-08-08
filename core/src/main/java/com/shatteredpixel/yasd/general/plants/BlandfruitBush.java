@@ -36,6 +36,7 @@ public class BlandfruitBush extends Plant {
 
 	{
 		image = 12;
+		seedClass = Seed.class;
 	}
 
 	@Override

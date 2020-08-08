@@ -48,6 +48,7 @@ public class Swiftthistle extends Plant {
 	
 	{
 		image = 2;
+		seedClass = Seed.class;
 	}
 	
 	@Override

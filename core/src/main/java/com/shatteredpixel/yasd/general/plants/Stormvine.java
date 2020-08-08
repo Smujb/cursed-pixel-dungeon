@@ -39,6 +39,7 @@ public class Stormvine extends Plant {
 
 	{
 		image = 5;
+		seedClass = Seed.class;
 	}
 
 	@Override

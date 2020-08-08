@@ -41,6 +41,7 @@ public class Rotberry extends Plant {
 
 	{
 		image = 0;
+		seedClass = Seed.class;
 	}
 
 	@Override

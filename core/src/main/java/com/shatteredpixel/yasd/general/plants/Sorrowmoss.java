@@ -42,6 +42,7 @@ public class Sorrowmoss extends Plant {
 
 	{
 		image = 6;
+		seedClass = Seed.class;
 	}
 	
 	@Override

@@ -28,12 +28,14 @@
 package com.shatteredpixel.yasd.general.items.weapon.missiles.darts;
 
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.PinCushion;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.items.Generator;
+import com.shatteredpixel.yasd.general.items.wands.WandOfRegrowth;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Blindweed;
 import com.shatteredpixel.yasd.general.plants.Dreamfoil;
@@ -127,6 +129,8 @@ public abstract class TippedDart extends Dart {
 			Dungeon.level.drop( d, enemy.pos ).sprite.drop();
 		}
 	}
+
+	private static int targetPos = -1;
 	
 	@Override
 	protected float durabilityPerUse() {
@@ -135,6 +139,30 @@ public abstract class TippedDart extends Dart {
 		if (Dungeon.hero.subClass == HeroSubClass.WARDEN){
 			use /= 2f;
 		}
+
+		//checks both destination and source position
+		float lotusPreserve = 0f;
+		if (targetPos != -1){
+			for (Char ch : Actor.chars()){
+				if (ch instanceof WandOfRegrowth.Lotus){
+					WandOfRegrowth.Lotus l = (WandOfRegrowth.Lotus) ch;
+					if (l.inRange(targetPos)){
+						lotusPreserve = Math.max(lotusPreserve, l.seedPreservation());
+					}
+				}
+			}
+			targetPos = -1;
+		}
+		int p = curUser == null ? Dungeon.hero.pos : curUser.pos;
+		for (Char ch : Actor.chars()){
+			if (ch instanceof WandOfRegrowth.Lotus){
+				WandOfRegrowth.Lotus l = (WandOfRegrowth.Lotus) ch;
+				if (l.inRange(p)){
+					lotusPreserve = Math.max(lotusPreserve, l.seedPreservation());
+				}
+			}
+		}
+		use *= (1f - lotusPreserve);
 		
 		return use;
 	}

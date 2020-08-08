@@ -43,6 +43,7 @@ public class Dreamfoil extends Plant {
 
 	{
 		image = 7;
+		seedClass = Seed.class;
 	}
 
 	@Override

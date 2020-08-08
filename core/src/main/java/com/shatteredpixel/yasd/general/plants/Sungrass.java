@@ -44,6 +44,7 @@ public class Sungrass extends Plant {
 	
 	{
 		image = 3;
+		seedClass = Seed.class;
 	}
 	
 	@Override
