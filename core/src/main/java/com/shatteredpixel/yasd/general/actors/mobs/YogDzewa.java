@@ -120,10 +120,8 @@ public class YogDzewa extends Boss {
 
 	@Override
 	protected boolean act() {
-		//catches an error-case from 0.8.0 & 0.8.0a
-		if (!isAlive()){
-			die(null);
-		}
+
+		enemySeen = true;
 
 		if (phase == 0){
 			if (Dungeon.hero.viewDistance >= Dungeon.level.distance(pos, Dungeon.hero.pos)) {

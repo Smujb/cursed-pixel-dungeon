@@ -827,8 +827,9 @@ public abstract class Mob extends Char {
 		return super.defenseProc(enemy, damage);
 	}
 
-	public boolean surprisedBy( Char enemy ){
-		return (!enemySeen || enemy.invisible > 0) && enemy == Dungeon.hero;
+	@Override
+	public boolean surprisedBy(Char enemy) {
+		return super.surprisedBy(enemy) || (!enemySeen && state != PASSIVE);
 	}
 
 	public Char getEnemy() {
