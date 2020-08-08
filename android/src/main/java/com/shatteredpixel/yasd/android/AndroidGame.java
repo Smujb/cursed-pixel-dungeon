@@ -51,8 +51,8 @@ public class AndroidGame extends AndroidApplication {
 	public static AndroidApplication instance;
 	public static AndroidApplicationConfiguration config;
 	protected static GLSurfaceView view;
-	
-	private AndroidPlatformSupport support;
+
+	private static AndroidPlatformSupport support;
 
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -103,8 +103,9 @@ public class AndroidGame extends AndroidApplication {
 		
 		config.useCompass = false;
 		config.useAccelerometer = false;
-		
-		support = new AndroidPlatformSupport();
+
+		if (support == null) support = new AndroidPlatformSupport();
+		else                 support.resetGenerators();
 		
 		support.updateSystemUI();
 

@@ -107,7 +107,7 @@ public class NewTengu extends Mob {
 	//Tengu is immune to debuffs and damage when removed from the level
 	@Override
 	public void add(Buff buff) {
-		if (Actor.chars().contains(this) || buff instanceof Doom){
+		if (Actor.chars().contains(this) || buff instanceof Doom) {
 			super.add(buff);
 		}
 	}
