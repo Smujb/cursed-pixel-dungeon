@@ -11,6 +11,7 @@ public class RaRothsNunchucks extends RelicMeleeWeapon {
         RCH = 3;
         DLY = 0.5f;
         damageMultiplier = 0.5f;
+        canSurpriseAttack = false;
     }
 
     @Override
