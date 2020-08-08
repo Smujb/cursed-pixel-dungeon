@@ -27,12 +27,10 @@
 
 package com.shatteredpixel.yasd.general.actors.buffs;
 
-import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 
 import org.jetbrains.annotations.NotNull;
@@ -63,7 +61,6 @@ public class Shadows extends Invisibility {
 	@Override
 	public boolean attachTo(@NotNull Char target ) {
 		if (super.attachTo( target )) {
-			Sample.INSTANCE.play( Assets.Sounds.MELD );
 			if (Dungeon.level != null)
 				Dungeon.observe();
 			return true;

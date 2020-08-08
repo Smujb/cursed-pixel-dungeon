@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.actors.blobs;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Shadows;
@@ -38,6 +39,7 @@ import com.shatteredpixel.yasd.general.levels.terrain.KindOfTerrain;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.watabou.noosa.audio.Sample;
 
 public class Foliage extends Blob {
 	
@@ -72,7 +74,13 @@ public class Foliage extends Blob {
 		
 		Hero hero = Dungeon.hero;
 		if (hero.isAlive() && hero.visibleEnemies() == 0 && cur[hero.pos] > 0) {
-			Buff.affect( hero, Shadows.class ).prolong();
+			Shadows s = hero.buff(Shadows.class);
+			if (s == null){
+				Buff.affect( hero, Shadows.class ).prolong();
+				Sample.INSTANCE.play( Assets.Sounds.MELD );
+			} else {
+				s.prolong();
+			}
 		}
 
 		if (visible) {
