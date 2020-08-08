@@ -638,13 +638,15 @@ public abstract class Wand extends KindofMisc {
 		}
 
 		public void gainCharge(float charge){
-			partialCharge += charge;
-			while (partialCharge >= 1f){
-				curCharges++;
-				partialCharge--;
+			if (curCharges < maxCharges) {
+				partialCharge += charge;
+				while (partialCharge >= 1f) {
+					curCharges++;
+					partialCharge--;
+				}
+				curCharges = Math.min(curCharges, maxCharges);
+				updateQuickslot();
 			}
-			curCharges = Math.min(curCharges, maxCharges);
-			updateQuickslot();
 		}
 
 		private void setScaleFactor(float value){

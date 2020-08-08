@@ -31,8 +31,6 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.Recharging;
 import com.shatteredpixel.yasd.general.effects.SpellSprite;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -78,9 +76,12 @@ public class WandOfMagicMissile extends DamageWand {
 
 	@Override
 	public void onHit(MagesStaff staff, Char attacker, Char defender, int damage) {
-		Buff.prolong( attacker, Recharging.class, 1 + staff.level()/2f);
 		SpellSprite.show(attacker, SpellSprite.CHARGE);
-
+		for (Wand.Charger c : attacker.buffs(Wand.Charger.class)){
+			if (c.wand() != this){
+				c.gainCharge(1/3f);
+			}
+		}
 	}
 	
 	protected int initialCharges() {
