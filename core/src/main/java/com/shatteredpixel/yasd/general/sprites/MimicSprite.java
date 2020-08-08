@@ -85,11 +85,27 @@ public class MimicSprite extends MobSprite {
 	}
 
 	@Override
-	public synchronized void showSleep() {
+	public void showSleep() {
 		if (curAnim == hiding){
 			return;
 		}
 		super.showSleep();
+	}
+
+	@Override
+	public void showAlert() {
+		if (curAnim == hiding){
+			return;
+		}
+		super.showAlert();
+	}
+
+	@Override
+	public void showLost() {
+		if (curAnim == hiding){
+			return;
+		}
+		super.showLost();
 	}
 
 	public static class Golden extends MimicSprite{

@@ -75,9 +75,7 @@ public class MobSprite extends CharSprite {
 
 		am = 1;
 
-		if (emo != null){
-			emo.killAndErase();
-		}
+		hideEmo();
 
 		if (health != null){
 			health.killAndErase();
