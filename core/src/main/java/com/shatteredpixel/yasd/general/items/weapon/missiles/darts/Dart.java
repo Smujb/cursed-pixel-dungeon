@@ -42,6 +42,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.shatteredpixel.yasd.general.windows.WndOptions;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -49,7 +50,7 @@ public class Dart extends MissileWeapon {
 
 	{
 		image = ItemSpriteSheet.DART;
-		hitSound = Assets.Sounds.HIT_STAB;
+		hitSound = Assets.Sounds.HIT_ARROW;
 		hitSoundPitch = 1.3f;
 
 		tier = 1;
@@ -108,7 +109,7 @@ public class Dart extends MissileWeapon {
 	public void throwSound() {
 		Projectile projectile = getCrossbow();
 		if (projectile != null) {
-			Sample.INSTANCE.play(Assets.Sounds.ATK_CROSSBOW);
+			Sample.INSTANCE.play(Assets.Sounds.ATK_CROSSBOW, 1, Random.Float(0.87f, 1.15f));
 		} else {
 			super.throwSound();
 		}

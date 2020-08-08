@@ -212,6 +212,8 @@ public class SpiritBow extends Weapon {
 		
 		{
 			image = ItemSpriteSheet.SPIRIT_ARROW;
+
+			hitSound = Assets.Sounds.HIT_ARROW;
 		}
 		
 		@Override
@@ -264,7 +266,7 @@ public class SpiritBow extends Weapon {
 
 		@Override
 		public void throwSound() {
-			Sample.INSTANCE.play( Assets.Sounds.ATK_SPIRITBOW );
+			Sample.INSTANCE.play( Assets.Sounds.ATK_SPIRITBOW, 1, Random.Float(0.87f, 1.15f) );
 		}
 
 		int flurryCount = -1;
@@ -289,8 +291,8 @@ public class SpiritBow extends Weapon {
 				final boolean last = flurryCount == 1;
 				
 				user.busy();
-				
-				Sample.INSTANCE.play( Assets.Sounds.MISS, 0.6f, 0.6f, 1.5f );
+
+				throwSound();
 				
 				((MissileSprite) user.sprite.parent.recycle(MissileSprite.class)).
 						reset(user.sprite,
