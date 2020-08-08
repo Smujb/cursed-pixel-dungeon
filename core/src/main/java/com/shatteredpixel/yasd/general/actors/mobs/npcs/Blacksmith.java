@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.actors.mobs.npcs;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
@@ -204,9 +205,9 @@ public class Blacksmith extends NPC {
 		
 		return null;
 	}
-	
+
 	public static void upgrade( Item item1, Item item2 ) {
-		
+
 		Item first, second;
 		if (item2.level() > item1.level()) {
 			first = item2;
@@ -231,7 +232,7 @@ public class Blacksmith extends NPC {
 				Dungeon.level.drop( seal, Dungeon.hero.pos );
 			}
 		}
-		
+
 		if (first.isEquipped( Dungeon.hero )) {
 			((EquipableItem)first).doUnequip( Dungeon.hero, true );
 		}
@@ -249,9 +250,12 @@ public class Blacksmith extends NPC {
 				Dungeon.level.drop( first, Dungeon.hero.pos );
 			}
 		}
-		
+		Dungeon.hero.spendAndNext( 2f );
+		Badges.validateItemLevelAquired( first );
+		Item.updateQuickslot();
+
 		Quest.reforged = true;
-		
+
 		Notes.remove( Notes.Landmark.TROLL );
 	}
 	

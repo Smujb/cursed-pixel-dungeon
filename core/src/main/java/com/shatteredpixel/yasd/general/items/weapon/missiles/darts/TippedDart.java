@@ -78,6 +78,7 @@ public abstract class TippedDart extends Dart {
 	
 	@Override
 	public void execute(final Hero hero, String action) {
+		super.execute(hero, action);
 		if (action.equals( AC_CLEAN )){
 			
 			GameScene.show(new WndOptions(Messages.get(this, "clean_title"),
@@ -106,7 +107,6 @@ public abstract class TippedDart extends Dart {
 			});
 			
 		}
-		super.execute(hero, action);
 	}
 	
 	//exact same damage as regular darts, despite being higher tier.
