@@ -1034,6 +1034,9 @@ public class GameScene extends PixelScene {
 	}
 	
 	public static void selectCell( CellSelector.Listener listener ) {
+		if (cellSelector.listener != null && cellSelector.listener != defaultCellListener){
+			cellSelector.listener.onSelect(null);
+		}
 		cellSelector.listener = listener;
 		if (scene != null)
 			scene.prompt( listener.prompt() );
