@@ -146,7 +146,7 @@ public class Item implements Bundlable {
 	public boolean canTypicallyUse(Char ch) {
 		if (ch instanceof Hero) {
 			for (HeroStat stat : statScaling) {
-				if (((Hero) ch).getStat(stat) > statReq()) {
+				if (((Hero) ch).getStat(stat) >= statReq()) {
 					return true;
 				}
 			}
