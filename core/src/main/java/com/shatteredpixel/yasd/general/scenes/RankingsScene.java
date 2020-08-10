@@ -225,7 +225,7 @@ public class RankingsScene extends PixelScene {
 				add(level);
 			}
 			
-			classIcon.copy( Icons.get( rec.heroClass ) );
+			classIcon.copy( rec.heroClass.icon() );
 			if (rec.heroClass == HeroClass.ROGUE){
 				//cloak of shadows needs to be brightened a bit
 				classIcon.brightness(2f);

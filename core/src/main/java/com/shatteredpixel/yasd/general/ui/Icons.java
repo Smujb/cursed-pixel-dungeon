@@ -68,6 +68,7 @@ public enum Icons {
 	MAGE,
 	ROGUE,
 	HUNTRESS,
+	PRIESTESS,
 
 	//main menu icons
 	ENTER,
@@ -260,6 +261,8 @@ public enum Icons {
 				return get( ROGUE );
 			case HUNTRESS:
 				return get( HUNTRESS );
+			case PRIESTESS:
+				return get( PRIESTESS );
 			default:
 				return null;
 		}

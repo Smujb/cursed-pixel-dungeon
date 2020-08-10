@@ -184,14 +184,14 @@ public class StartScene extends PixelScene {
 					depth = new BitmapText(PixelScene.pixelFont);
 					add(depth);
 					
-					classIcon = new Image(Icons.get(info.heroClass));
+					classIcon = new Image(info.heroClass.icon());
 					add(classIcon);
 					level = new BitmapText(PixelScene.pixelFont);
 					add(level);
 				} else {
 					hero.copy(new Image(info.heroClass.spritesheet(), 0, 15*info.armorAppearance, 12, 15));
 					
-					classIcon.copy(Icons.get(info.heroClass));
+					classIcon.copy(info.heroClass.icon());
 				}
 				
 				depth.text(Integer.toString(info.depth));

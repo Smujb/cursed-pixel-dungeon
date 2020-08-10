@@ -135,7 +135,7 @@ public class YASD_log {
 				"_-_ This will send them to an alternative map, where they have limited air.\n" +
 				"_-_ This area is full of Piranhas, and a new mob stolen from Prismatic PD: Jellyfish"));
 
-		changes.addButton(new ChangeButton(Icons.get(HeroClass.WARRIOR), "Stats system", "Added a stat system:\n" +
+		changes.addButton(new ChangeButton(HeroClass.WARRIOR.icon(), "Stats system", "Added a stat system:\n" +
 				"_-_ When leveling up, hero will get distribution points. These can be used to upgrade skills.\n" +
 				"_-_ Power - increases the hero's strength.\n" +
 				"_-_ Focus - increases the damage of the hero's wands\n" +
