@@ -60,10 +60,19 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class Item implements Bundlable {
+
+	public enum HeroStat {
+		EXECUTION,
+		FOCUS,
+		RESILIENCE,
+		ASSAULT,
+		SUPPORT
+	}
 
 	protected static final String TXT_TO_STRING_LVL		= "%s %+d";
 	protected static final String TXT_TO_STRING_X		= "%s x%d";
@@ -78,8 +87,6 @@ public class Item implements Bundlable {
 	
 	public String defaultAction = AC_INFO;
 	public boolean usesTargeting;
-
-	protected Class<? extends Bag> necessaryBag = null;
 	
 	protected String name = Messages.get(this, "name");
 	public int image = 0;
@@ -104,7 +111,7 @@ public class Item implements Bundlable {
 	// whether an item can be included in heroes remains
 	public boolean bones = false;
 
-	private final boolean testing = false;
+	public ArrayList<HeroStat> statScaling = new ArrayList<>();
 	
 	private static Comparator<Item> itemComparator = new Comparator<Item>() {
 		@Override
@@ -124,12 +131,53 @@ public class Item implements Bundlable {
 		return this;
 	}
 
+	private static final String TXT_REQ = ":%d";
+	private static final String TXT_TYPICAL_REQ = "%d+";
+
 	public String topRightStatus(boolean known) {
-		return null;
+		if (statScaling.isEmpty()) {
+			return null;
+		}
+		String baseText = known ? TXT_REQ : TXT_TYPICAL_REQ;
+		int str = known ? statReq() : statReq(0);
+		return Messages.format(baseText, str);
 	}
 
 	public boolean canTypicallyUse(Char ch) {
+		if (ch instanceof Hero) {
+			for (HeroStat stat : statScaling) {
+				if (((Hero) ch).getStat(stat) > statReq()) {
+					return true;
+				}
+			}
+			return false;
+		}
 		return true;
+	}
+
+	public int statReq(int level) {
+		return level + 1;
+	}
+
+	public final int statReq() {
+		return statReq(trueLevel());
+	}
+
+	public int bestHeroStat(Hero hero) {
+		int best = -1;
+		for (HeroStat stat : statScaling) {
+			if (hero.getStat(stat) > best) {
+				best = hero.getStat(stat);
+			}
+		}
+		return best;
+	}
+
+	public int encumbrance() {
+		if (curUser instanceof Hero) {
+			return bestHeroStat((Hero) curUser) - statReq();
+		}
+		return 0;
 	}
 
 	public Item replaceForAlchemy() {
@@ -488,7 +536,24 @@ public class Item implements Bundlable {
 	}
 	
 	public String info() {
-		return desc();
+		return desc() + statsReqDesc();
+	}
+
+	public String statsReqDesc() {
+		String desc = "";
+		if (!statScaling.isEmpty()) {
+			desc += "\n\n";
+			if (statScaling.equals(Arrays.asList(HeroStat.values()))) {
+				desc += Messages.get(this, "scales_any", statReq());
+			} else {
+				if (statScaling.size() == 1) {
+					desc += Messages.get(this, "requires_stats_1", statReq(), statScaling.get(0).name());
+				} else {
+					desc += Messages.get(this, "requires_stats_2", statReq(), statScaling.get(0).name(), statScaling.get(1).name());
+				}
+			}
+		}
+		return desc;
 	}
 	
 	public String desc() {

@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.potions.elixirs;
 
-import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -58,8 +57,6 @@ public class ElixirOfMight extends Elixir {
 		hero.updateHT( true );
 		hero.sprite.showStatus( CharSprite.POSITIVE, Messages.get(this, "msg_1", boost.boost() ));
 		GLog.p( Messages.get(this, "msg_2") );
-
-		Badges.validateStrengthAttained();
 	}
 	
 	public String desc() {

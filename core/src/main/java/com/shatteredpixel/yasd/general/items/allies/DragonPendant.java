@@ -17,11 +17,14 @@ import com.watabou.utils.Random;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class DragonPendant extends KindofMisc {
 
 	{
 		defaultAction = AC_SUMMON;
+
+		statScaling = new ArrayList<>(Arrays.asList(HeroStat.SUPPORT));
 	}
 
 	private int dragonID;
@@ -49,38 +52,12 @@ public abstract class DragonPendant extends KindofMisc {
 		}
 	}
 
-	private int attunementReq() {
-		return attunementReq(trueLevel());
-	}
-
-	private int attunementReq(int lvl) {
-		return 1 + lvl;
-	}
-
 	private float chargeFactor() {
 		if (curUser == null || !(curUser instanceof Hero)) return 1f;
 		Hero hero = (Hero) curUser;
-		if (hero.getAttunement() < attunementReq()) return 1f;
-		int missingAttunement = attunementReq() - hero.getAttunement();
+		if (canTypicallyUse(hero)) return 1f;
+		int missingAttunement = encumbrance();
 		return (float) Math.pow(0.8f, missingAttunement);
-	}
-
-	private static final String TXT_ATTUNEMENT = ":%d";
-
-	@Override
-	public String topRightStatus(boolean known) {
-		if (!known) {
-			return null;
-		}
-		return Messages.format(TXT_ATTUNEMENT, attunementReq());
-	}
-
-	@Override
-	public boolean canTypicallyUse(Char ch) {
-		if (ch instanceof Hero) {
-			return ((Hero) ch).getAttunement() >= attunementReq();
-		}
-		return true;
 	}
 
 	private void doSummon(Char ch) {
@@ -117,7 +94,7 @@ public abstract class DragonPendant extends KindofMisc {
 
 	@Override
 	public String desc() {
-		String desc = super.desc() + " " + Messages.get(DragonPendant.class, "stats_desc", attunementReq()) + "\n\n";
+		String desc = super.desc() + " " + Messages.get(DragonPendant.class, "stats_desc", statReq()) + "\n\n";
 		Dragon dragon = getDragon();
 		if (dragon != null) {
 			desc += dragon.description();

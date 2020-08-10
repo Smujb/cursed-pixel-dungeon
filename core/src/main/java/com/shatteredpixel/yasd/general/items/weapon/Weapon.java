@@ -205,7 +205,7 @@ abstract public class Weapon extends KindOfWeapon {
 		int encumbrance = 0;
 		
 		if( owner instanceof Hero ){
-			encumbrance = STRReq() - owner.STR();
+			encumbrance = 0;
 		}
 
 		if (hasEnchant(Wayward.class, owner))
@@ -221,7 +221,7 @@ abstract public class Weapon extends KindOfWeapon {
 
 		int encumbrance = 0;
 		if (owner instanceof Hero) {
-			encumbrance = STRReq() - owner.STR();
+			encumbrance = 0;
 		}
 
 		float DLY = augment.delayFactor(this.DLY);
@@ -234,27 +234,6 @@ abstract public class Weapon extends KindOfWeapon {
 	@Override
 	public int reachFactor(Char owner) {
 		return hasEnchant(Projecting.class, owner) ? RCH+1 : RCH;
-	}
-
-	public int STRReq(){
-		return STRReq(Math.max(0, trueLevel()));
-	}
-
-	public abstract int STRReq(int lvl);
-
-	private static final String TXT_STRENGTH	= ":%d";
-	private static final String TXT_TYPICAL_STR	= "%d+";
-
-	@Override
-	public String topRightStatus(boolean known) {
-		String baseText = known ? TXT_STRENGTH : TXT_TYPICAL_STR;
-		int str = known ? STRReq() : STRReq(0);
-		return Messages.format(baseText, str);
-	}
-
-	@Override
-	public boolean canTypicallyUse(Char ch) {
-		return ch.STR() >= STRReq();
 	}
 
 	@Override

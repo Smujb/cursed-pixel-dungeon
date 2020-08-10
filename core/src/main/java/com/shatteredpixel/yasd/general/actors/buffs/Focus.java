@@ -1,7 +1,5 @@
 package com.shatteredpixel.yasd.general.actors.buffs;
 
-import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
@@ -33,10 +31,10 @@ public class Focus extends Buff {
 	}
 
 	public void loseCooldown(float amt) {
-		if (target != null && target instanceof Hero && ((Hero) target).subClass == HeroSubClass.BRAWLER) {
+		/*if (target != null && target instanceof Hero && ((Hero) target).subClass == HeroSubClass.BRAWLER) {
 			int excessArmorSTR = target.belongings.armor == null ? target.STR - 5 : target.STR - target.belongings.armor.STRReq();
 			amt *= 0.5f + (0.1f * excessArmorSTR);
-		}
+		}*/
 		cooldown -= amt;
 		if (cooldown < 0) {
 			cooldown = 0;

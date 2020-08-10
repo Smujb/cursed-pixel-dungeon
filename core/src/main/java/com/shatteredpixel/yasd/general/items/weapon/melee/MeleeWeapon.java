@@ -37,7 +37,13 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MeleeWeapon extends Weapon {
+	{
+		statScaling = new ArrayList<>(Arrays.asList(HeroStat.EXECUTION));
+	}
 	
 	public int tier;
 
@@ -58,11 +64,6 @@ public class MeleeWeapon extends Weapon {
 				lvl*(tier*2))*damageMultiplier);   //level scaling
 	}
 
-	public int STRReq(int lvl){
-		lvl = Math.max(0, lvl);
-		return  (3 + Math.round(tier * 3)) + lvl;
-	}
-
 	@Override
 	public int defenseFactor(Char owner) {
 		return (int) ((max()/2)*defenseMultiplier);
@@ -73,12 +74,6 @@ public class MeleeWeapon extends Weapon {
 
 		int damage = augment.damageFactor(super.damageRoll( owner ));
 
-		if (owner instanceof Hero & owner.STR() < Integer.MAX_VALUE) {
-			int exStr = owner.STR() - STRReq();
-			if (exStr > 0) {
-				damage += Random.IntRange( 0, exStr );
-			}
-		}
 		if (sneakBenefit) {
 			Char enemy = null;
 			float bonus = 0;
@@ -115,17 +110,9 @@ public class MeleeWeapon extends Weapon {
 		String info = desc();
 
 		if (levelKnown) {
-			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_known", tier, augment.damageFactor(min()), augment.damageFactor(max()), STRReq());
-			if (Dungeon.hero != null && STRReq() > Dungeon.hero.STR()) {
-				info += " " + Messages.get(Weapon.class, "too_heavy");
-			} else if (Dungeon.hero != null && Dungeon.hero.STR() > STRReq()){
-				info += " " + Messages.get(Weapon.class, "excess_str", Dungeon.hero.STR() - STRReq());
-			}
+			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_known", tier, augment.damageFactor(min()), augment.damageFactor(max()), statReq());
 		} else {
-			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", tier, min(0), max(0), STRReq(0));
-			if (Dungeon.hero != null && STRReq(0) > Dungeon.hero.STR()) {
-				info += " " + Messages.get(MeleeWeapon.class, "probably_too_heavy");
-			}
+			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", tier, min(0), max(0), statReq(0));
 		}
 
 		if (DLY != 1f | ACC != 1f | RCH != 1 | breaksArmor(Dungeon.hero) | !canSurpriseAttack | defenseFactor(Dungeon.hero) > 0 | sneakBenefit) {
@@ -188,13 +175,9 @@ public class MeleeWeapon extends Weapon {
 			info += "\n\n" + Messages.get(Weapon.class, "not_cursed");
 		}
 		
-		return info;
+		return info + statsReqDesc();
 	}
-	
-	/*public String statsInfo(){
-		return Messages.get(this, "stats_desc");
-	}*/
-	
+
 	@Override
 	public int price() {
 		int price = 20 * tier;

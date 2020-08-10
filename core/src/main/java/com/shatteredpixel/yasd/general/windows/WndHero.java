@@ -174,7 +174,7 @@ public class WndHero extends WndTabbed {
 			pos += GAP;
 
 			//Power
-			statSlot( Messages.get(this, "power"), hero.getPower() );
+			statSlot( Messages.get(this, "power"), hero.getExecution() );
 			statIncreaseButton btnPower = new statIncreaseButton() {
 				@Override
 				protected void increaseStat() {
@@ -194,7 +194,7 @@ public class WndHero extends WndTabbed {
 			add( btnFocus );
 			pos += GAP;
 			//Perception
-			statSlot( Messages.get(this, "perception"), hero.getPerception() );
+			statSlot( Messages.get(this, "perception"), hero.getResilience() );
 			statIncreaseButton btnExpertise = new statIncreaseButton() {
 				@Override
 				protected void increaseStat() {
@@ -204,7 +204,7 @@ public class WndHero extends WndTabbed {
 			add( btnExpertise );
 			pos += GAP;
 			//Evasion
-			statSlot( Messages.get(this, "evasion"), hero.getEvasion());
+			statSlot( Messages.get(this, "evasion"), hero.getAssault());
 			statIncreaseButton btnStealth = new statIncreaseButton() {
 				@Override
 				protected void increaseStat() {
@@ -215,7 +215,7 @@ public class WndHero extends WndTabbed {
 			pos += GAP;
 
 			//Attunement
-			statSlot( Messages.get(this, "attunement"), hero.getAttunement());
+			statSlot( Messages.get(this, "attunement"), hero.getSupport());
 			statIncreaseButton btnAttunement = new statIncreaseButton() {
 				@Override
 				protected void increaseStat() {
@@ -287,7 +287,6 @@ public class WndHero extends WndTabbed {
 
 			pos = title.bottom() + 2*GAP;
 
-			statSlot( Messages.get(this, "str"), hero.STR() );
 			if (hero.shielding() > 0) statSlot( Messages.get(this, "health"), hero.HP + "+" + hero.shielding() + "/" + hero.HT );
 			else statSlot( Messages.get(this, "health"), (hero.HP) + "/" + hero.HT );
 			statSlot( Messages.get(this, "mana") , hero.mp + "/" + hero.maxMP() );

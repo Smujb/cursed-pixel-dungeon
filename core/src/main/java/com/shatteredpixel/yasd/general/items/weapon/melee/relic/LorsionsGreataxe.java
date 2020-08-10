@@ -58,8 +58,7 @@ public class LorsionsGreataxe extends RelicMeleeWeapon {
 	}
 
 	@Override
-	public int STRReq(int lvl) {
-		return super.STRReq(lvl) + 2;
+	public int statReq(int level) {
+		return super.statReq(level)+2;
 	}
-
 }

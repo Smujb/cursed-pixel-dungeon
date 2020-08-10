@@ -25,11 +25,14 @@ import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class RelicMeleeWeapon extends MeleeWeapon {
     {
         tier = 1;
         defaultAction = AC_ACTIVATE;
+
+        statScaling = new ArrayList<>(Arrays.asList(HeroStat.values()));
     }
 
     public static final Class<? extends RelicMeleeWeapon>[] weapons = new Class[] {

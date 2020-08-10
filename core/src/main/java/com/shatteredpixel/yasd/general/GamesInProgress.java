@@ -132,7 +132,6 @@ public class GamesInProgress {
 		info.challenges = challenges;
 		
 		info.level = hero.lvl;
-		info.str = hero.STR;
 		info.exp = hero.exp;
 		info.hp = hero.HP;
 		info.ht = hero.HT;

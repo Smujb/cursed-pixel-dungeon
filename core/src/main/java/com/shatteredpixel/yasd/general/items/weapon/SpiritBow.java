@@ -91,13 +91,7 @@ public class SpiritBow extends Weapon {
 		info += "\n\n" + Messages.get( SpiritBow.class, "stats",
 				Math.round(augment.damageFactor(min())),
 				Math.round(augment.damageFactor(max())),
-				STRReq());
-		
-		if (STRReq() > Dungeon.hero.STR()) {
-			info += " " + Messages.get(Weapon.class, "too_heavy");
-		} else if (Dungeon.hero.STR() > STRReq()){
-			info += " " + Messages.get(Weapon.class, "excess_str", Dungeon.hero.STR() - STRReq());
-		}
+				statReq());
 		
 		switch (augment) {
 			case SPEED:
@@ -126,12 +120,6 @@ public class SpiritBow extends Weapon {
 		
 		return info;
 	}
-	
-	@Override
-	public int STRReq(int lvl){
-		lvl = Math.max(0, lvl);
-		return (7 + lvl);
-	}
 
 	public int tier() {
 		return Math.min(6, level()/10);
@@ -154,13 +142,6 @@ public class SpiritBow extends Weapon {
 	@Override
 	public int damageRoll(Char owner) {
 		int damage = augment.damageFactor(super.damageRoll(owner));
-		
-		if (owner instanceof Hero) {
-			int exStr = owner.STR() - STRReq();
-			if (exStr > 0) {
-				damage += Random.IntRange( 0, exStr );
-			}
-		}
 		
 		if (sniperSpecial){
 			switch (augment){
@@ -244,12 +225,12 @@ public class SpiritBow extends Weapon {
 				return super.accuracyFactor(owner);
 			}
 		}
-		
+
 		@Override
-		public int STRReq(int lvl) {
-			return SpiritBow.this.STRReq(lvl);
+		public int statReq(int level) {
+			return SpiritBow.this.statReq(level);
 		}
-		
+
 		@Override
 		protected void onThrow( int cell ) {
 			Char enemy = Actor.findChar( cell );

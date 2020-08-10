@@ -334,7 +334,7 @@ public class Badges {
 	public static void validateStrengthAttained() {
 		Badge badge = null;
 		
-		if (!local.contains( Badge.STRENGTH_ATTAINED_1 ) && Dungeon.hero.STR >= 13) {
+		/*if (!local.contains( Badge.STRENGTH_ATTAINED_1 ) && Dungeon.hero.STR >= 13) {
 			badge = Badge.STRENGTH_ATTAINED_1;
 			local.add( badge );
 		}
@@ -349,7 +349,7 @@ public class Badges {
 		if (!local.contains( Badge.STRENGTH_ATTAINED_4 ) && Dungeon.hero.STR >= 19) {
 			badge = Badge.STRENGTH_ATTAINED_4;
 			local.add( badge );
-		}
+		}*/
 		
 		displayBadge( badge );
 	}

@@ -78,6 +78,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Armor extends EquipableItem {
+	{
+		statScaling = new ArrayList<>(Arrays.asList(HeroStat.RESILIENCE));
+	}
 
 	public float EVA = 1f;
 	public float STE = 1f;
@@ -463,23 +466,14 @@ public class Armor extends EquipableItem {
 		String info = desc();
 		
 		if (levelKnown) {
-			info += "\n\n" + Messages.get(Armor.class, "curr_absorb", tier, DRMin(), DRMax(), STRReq());
+			info += "\n\n" + Messages.get(Armor.class, "curr_absorb", tier, DRMin(), DRMax(), statReq());
 
 			info += " " + Messages.get(Armor.class, "curr_absorb_magic",  magicalDRMin(), magicalDRMax());
-
-			
-			if (STRReq() > Dungeon.hero.STR()) {
-				info += " " + Messages.get(Armor.class, "too_heavy");
-			}
 		} else {
-			info += "\n\n" + Messages.get(Armor.class, "avg_absorb", tier, DRMin(0), DRMax(0), STRReq(0));
+			info += "\n\n" + Messages.get(Armor.class, "avg_absorb", tier, DRMin(0), DRMax(0), statReq(0));
 
 			if (magicalDRMax() > 0) {
 				info += " " +  Messages.get(Armor.class, "avg_absorb_magic", magicalDRMin(0), magicalDRMax(0));
-			}
-
-			if (STRReq(0) > Dungeon.hero.STR()) {
-				info += " " + Messages.get(Armor.class, "probably_too_heavy");
 			}
 		}
 
@@ -531,7 +525,7 @@ public class Armor extends EquipableItem {
 			info += "\n\n" + Messages.get(Armor.class, "not_cursed");
 		}
 		
-		return info;
+		return info + statsReqDesc();
 	}
 
 	@Override
@@ -569,30 +563,6 @@ public class Armor extends EquipableItem {
 		}
 
 		return this;
-	}
-
-	public int STRReq() {
-		return STRReq(Math.max(0, trueLevel()));
-	}
-
-	public int STRReq(int lvl){
-		lvl = Math.max(0, lvl);
-		return  (3 + Math.round(tier * 3)) + lvl;
-	}
-
-	private static final String TXT_STRENGTH	= ":%d";
-	private static final String TXT_TYPICAL_STR	= "%d+";
-
-	@Override
-	public String topRightStatus(boolean known) {
-		String baseText = known ? TXT_STRENGTH : TXT_TYPICAL_STR;
-		int str = known ? STRReq() : STRReq(0);
-		return Messages.format(baseText, str);
-	}
-
-	@Override
-	public boolean canTypicallyUse(Char ch) {
-		return ch.STR() >= STRReq();
 	}
 	
 	@Override

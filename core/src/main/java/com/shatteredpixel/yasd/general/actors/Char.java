@@ -36,7 +36,6 @@ import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.ToxicGas;
 import com.shatteredpixel.yasd.general.actors.buffs.Adrenaline;
-import com.shatteredpixel.yasd.general.actors.buffs.AdrenalineSurge;
 import com.shatteredpixel.yasd.general.actors.buffs.Aggression;
 import com.shatteredpixel.yasd.general.actors.buffs.ArcaneArmor;
 import com.shatteredpixel.yasd.general.actors.buffs.Barkskin;
@@ -129,7 +128,6 @@ public abstract class Char extends Actor {
 	public int sneakSkill = 0;
 
 	public Belongings belongings = null;
-	public int STR;
 	//public boolean hasBelongings = false;
 
 	protected int numTypes = 1;
@@ -227,17 +225,6 @@ public abstract class Char extends Actor {
 
 	public boolean hasBelongings() {
 		return belongings != null;
-	}
-
-	public int STR() {
-		int STR = this.STR;
-
-		AdrenalineSurge buff = buff(AdrenalineSurge.class);
-		if (buff != null) {
-			STR += buff.boost();
-		}
-
-		return STR;
 	}
 
 	public Element elementalType() {

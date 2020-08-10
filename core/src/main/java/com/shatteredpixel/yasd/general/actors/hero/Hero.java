@@ -142,13 +142,11 @@ public class Hero extends Char {
 		immunities.add(Amok.class);
 	}
 
-	public static final int STARTING_STR = 10;
-
-	private int Power = 1;
-	private int Focus = 1;
-	private int Perception = 1;
-	private int Evasion = 1;
-	private int Attunement = 1;
+	private int execution = 1;
+	private int focus = 1;
+	private int resilience = 1;
+	private int assault = 1;
+	private int support = 1;
 	public int DistributionPoints = 0;
 
 	private static final float TIME_TO_REST = 1f;
@@ -191,7 +189,6 @@ public class Hero extends Char {
 		belongings = new Belongings(this);
 
 		HP = HT = 20;
-		STR = STARTING_STR;
 
 		updateMP();
 		updateStamina();
@@ -207,7 +204,7 @@ public class Hero extends Char {
 	@Override
 	public void updateHT(boolean boostHP) {
 		int preHT = HT;
-		HT = 10 * (lvl + 3) + 5 * (getAttunement() - 1) + HTBoost;
+		HT = 10 * (lvl + 3) + 5 * (getSupport() - 1) + HTBoost;
 		heal(HT - preHT);
 		super.updateHT(boostHP);
 	}
@@ -257,12 +254,12 @@ public class Hero extends Char {
 
 	;
 
-	public int getPower() {
-		return Power + RingOfPower.statBonus(this);
+	public int getExecution() {
+		return execution + RingOfPower.statBonus(this);
 	}
 
-	public int getPerception() {
-		int perception = Perception + RingOfPerception.statBonus(this);
+	public int getResilience() {
+		int perception = resilience + RingOfPerception.statBonus(this);
 		if (buff(Drunk.class) != null) {
 			perception /= 2;
 		}
@@ -270,65 +267,82 @@ public class Hero extends Char {
 	}
 
 	public int getFocus() {
-		return Focus + RingOfFocus.statBonus(this);
+		return focus + RingOfFocus.statBonus(this);
 	}
 
-	public int getEvasion() {
-		int evasion = Evasion + RingOfEvasion.statBonus(this);
+	public int getAssault() {
+		int evasion = assault + RingOfEvasion.statBonus(this);
 		if (buff(Drunk.class) != null) {
 			evasion /= 2;
 		}
 		return evasion;
 	}
 
-	public int getAttunement() {
-		return Attunement + RingOfAttunement.statBonus(this);
+	public int getSupport() {
+		return support + RingOfAttunement.statBonus(this);
 	}
 
-	public void setPower(int power) {
-		Power = power;
-		Dungeon.hero.STR();
-		Badges.validateStrengthAttained();
+	public void setExecution(int execution) {
+		this.execution = execution;
 	}
 
 	public void increasePower() {
-		setPower(Power + 1);
+		setExecution(execution + 1);
 	}
 
-	public void setPerception(int perception) {
-		Perception = perception;
+	public void setResilience(int resilience) {
+		this.resilience = resilience;
 	}
 
 	public void increasePerception() {
-		setPerception(Perception + 1);
+		setResilience(resilience + 1);
 	}
 
 	public void setFocus(int focus) {
-		Focus = focus;
+		this.focus = focus;
 		updateMP();
 	}
 
 	public void increaseFocus() {
-		setFocus(Focus + 1);
+		setFocus(focus + 1);
 	}
 
-	public void setEvasion(int evasion) {
-		Evasion = evasion;
+	public void setAssault(int assault) {
+		this.assault = assault;
 	}
 
 	public void increaseEvasion() {
-		setEvasion(Evasion + 1);
+		setAssault(assault + 1);
 	}
 
-	public void setAttunement(int attunement) {
-		Attunement = attunement;
+	public void setSupport(int support) {
+		this.support = support;
 		updateHT(true);
 	}
 
 	public void increaseAttunement() {
-		setAttunement(Attunement + 1);
+		setSupport(support + 1);
 	}
 
+	public int getStat(Item.HeroStat stat) {
+		int execution = getExecution();
+		int focus = getFocus();
+		int resilience = getResilience();
+		int assult = getAssault();
+		int support = getSupport();
+		switch (stat) {
+			case EXECUTION: default:
+				return execution;
+			case FOCUS:
+				return focus;
+			case RESILIENCE:
+				return resilience;
+			case ASSAULT:
+				return assult;
+			case SUPPORT:
+				return support;
+		}
+	}
 	public void increasePoints(int increase) {
 		DistributionPoints += increase;
 		CPDGame.runOnRenderThread(new Callback() {
@@ -371,8 +385,6 @@ public class Hero extends Char {
 		bundle.put(ATTACK, attackSkill);
 		bundle.put(DEFENSE, defenseSkill);
 
-		bundle.put(STRENGTH, STR);
-
 		bundle.put(LEVEL, lvl);
 		bundle.put(EXPERIENCE, exp);
 
@@ -384,11 +396,11 @@ public class Hero extends Char {
 		bundle.put(MAX_STAMINA, maxStamina);
 
 		//Hero stats
-		bundle.put(POWER, Power);
-		bundle.put(FOCUS, Focus);
-		bundle.put(PERCEPTION, Perception);
-		bundle.put(EVASION, Evasion);
-		bundle.put(ATTUNEMENT, Attunement);
+		bundle.put(POWER, execution);
+		bundle.put(FOCUS, focus);
+		bundle.put(PERCEPTION, resilience);
+		bundle.put(EVASION, assault);
+		bundle.put(ATTUNEMENT, support);
 		bundle.put(DISTRIBUTIONPOINTS, DistributionPoints);
 		super.storeInBundle(bundle);
 	}
@@ -401,8 +413,6 @@ public class Hero extends Char {
 		attackSkill = bundle.getInt(ATTACK);
 		defenseSkill = bundle.getInt(DEFENSE);
 
-		STR = bundle.getInt(STRENGTH);
-
 		lvl = bundle.getInt(LEVEL);
 		exp = bundle.getInt(EXPERIENCE);
 
@@ -414,20 +424,13 @@ public class Hero extends Char {
 		maxStamina = bundle.getInt(MAX_STAMINA);
 
 		//Hero stats
-		Power = bundle.getInt(POWER);
-		Focus = bundle.getInt(FOCUS);
-		Perception = bundle.getInt(PERCEPTION);
-		Evasion = bundle.getInt(EVASION);
-		Attunement = bundle.getInt(ATTUNEMENT);
+		execution = bundle.getInt(POWER);
+		focus = bundle.getInt(FOCUS);
+		resilience = bundle.getInt(PERCEPTION);
+		assault = bundle.getInt(EVASION);
+		support = bundle.getInt(ATTUNEMENT);
 		DistributionPoints = bundle.getInt(DISTRIBUTIONPOINTS);
 		super.restoreFromBundle(bundle);
-	}
-
-
-	@Override
-	public int STR() {
-		STR = 9 + getPower();
-		return super.STR();
 	}
 
 	@Override
@@ -441,13 +444,13 @@ public class Hero extends Char {
 
 	@Override
 	public float sneakSkill(Char enemy) {
-		sneakSkill = 9 + getEvasion();
+		sneakSkill = 9 + getAssault();
 		return super.sneakSkill(enemy);
 	}
 
 	@Override
 	public float noticeSkill(Char enemy) {
-		noticeSkill = 4 + getPerception();
+		noticeSkill = 4 + getResilience();
 		return super.noticeSkill(enemy);
 	}
 
@@ -522,13 +525,13 @@ public class Hero extends Char {
 
 	@Override
 	public int attackSkill(Char target) {
-		attackSkill = 9 + getPerception();
+		attackSkill = 9 + getResilience();
 		return super.attackSkill(target);
 	}
 
 	@Override
 	public int defenseSkill(Char enemy) {
-		defenseSkill = 3 + getEvasion();
+		defenseSkill = 3 + getAssault();
 		return super.defenseSkill(enemy);
 	}
 
@@ -1695,12 +1698,12 @@ public class Hero extends Char {
 
 							//unintentional trap detection scales from 40% at floor 0 to 30% at floor 25
 						} else if (Dungeon.level.hasTrap(p)) {
-							chance = 0.4f - (Dungeon.depth - (getPerception() / 2f) / 250f);
+							chance = 0.4f - (Dungeon.depth - (getResilience() / 2f) / 250f);
 							//GLog.p("trap");
 
 							//unintentional door detection scales from 20% at floor 0 to 0% at floor 20
 						} else {
-							chance = 0.2f - (Dungeon.depth - (getPerception() / 2f) / 100f);
+							chance = 0.2f - (Dungeon.depth - (getResilience() / 2f) / 100f);
 							//GLog.p("door/wall");
 
 						}

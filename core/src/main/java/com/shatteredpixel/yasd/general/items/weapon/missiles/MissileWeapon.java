@@ -48,6 +48,7 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 abstract public class MissileWeapon extends Weapon {
 
@@ -59,6 +60,8 @@ abstract public class MissileWeapon extends Weapon {
 
 		defaultAction = AC_THROW;
 		usesTargeting = true;
+
+		statScaling = new ArrayList<>(Arrays.asList(HeroStat.ASSAULT));
 	}
 	
 	protected boolean sticky = true;
@@ -106,16 +109,6 @@ abstract public class MissileWeapon extends Weapon {
 	@Override
 	public int max() {
 		return Math.max(0, max( level() + RingOfSharpshooting.levelDamageBonus(Dungeon.hero) ));
-	}
-	
-	public int STRReq(int lvl){
-		lvl = Math.max(0, lvl);
-		//strength req decreases at +1,+3,+6,+10,etc.
-		int strPerTier = 3;
-		if (Dungeon.hero.heroClass == HeroClass.HUNTRESS) {
-			strPerTier = 2;
-		}
-		return (2 + tier * strPerTier) + lvl;
 	}
 	
 	@Override
@@ -283,16 +276,7 @@ abstract public class MissileWeapon extends Weapon {
 	
 	@Override
 	public int damageRoll(Char owner) {
-		int damage = augment.damageFactor(super.damageRoll( owner ));
-		
-		if (owner instanceof Hero) {
-			int exStr = owner.STR() - STRReq();
-			if (exStr > 0) {
-				damage += Random.IntRange( 0, exStr );
-			}
-		}
-		
-		return damage;
+		return augment.damageFactor(super.damageRoll( owner ));
 	}
 	
 	@Override
@@ -352,13 +336,7 @@ abstract public class MissileWeapon extends Weapon {
 				tier,
 				Math.round(augment.damageFactor(min())),
 				Math.round(augment.damageFactor(max())),
-				STRReq());
-
-		if (STRReq() > Dungeon.hero.STR()) {
-			info += " " + Messages.get(Weapon.class, "too_heavy");
-		} else if (Dungeon.hero.STR() > STRReq()){
-			info += " " + Messages.get(Weapon.class, "excess_str", Dungeon.hero.STR() - STRReq());
-		}
+				statReq());
 
 		if (enchantment != null && (cursedKnown || !enchantment.curse())){
 			info += "\n\n" + Messages.get(Weapon.class, "enchanted", enchantment.name());
@@ -386,7 +364,7 @@ abstract public class MissileWeapon extends Weapon {
 		}
 		
 		
-		return info;
+		return info + statsReqDesc();
 	}
 	
 	@Override

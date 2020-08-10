@@ -67,8 +67,6 @@ public class Statue extends Mob implements Callback {
 		
 		properties.add(Property.INORGANIC);
 
-		STR = Integer.MAX_VALUE;
-
 		belongings = new Belongings(this);
 	}
 

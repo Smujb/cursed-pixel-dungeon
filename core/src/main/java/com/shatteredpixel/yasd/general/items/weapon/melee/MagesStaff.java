@@ -83,6 +83,8 @@ public class MagesStaff extends MeleeWeapon {
 		bones = false;
 
 		damageMultiplier = 0.8f;
+
+		statScaling.add(HeroStat.FOCUS);
 	}
 
 	@Override
@@ -280,7 +282,7 @@ public class MagesStaff extends MeleeWeapon {
 		if (wand == null){
 			info += "\n\n" + Messages.get(this, "no_wand");
 		} else {
-			info += "\n\n" + Messages.get(this, "has_wand", Messages.get(wand, "name")) + " " + wand.statsDesc() + wand.descFocusReq();
+			info += "\n\n" + Messages.get(this, "has_wand", Messages.get(wand, "name")) + " " + wand.statsDesc();
 		}
 
 		return info;

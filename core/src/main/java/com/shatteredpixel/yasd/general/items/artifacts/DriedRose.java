@@ -936,7 +936,7 @@ public class DriedRose extends Artifact {
 								} else if (item.cursed) {
 									GLog.w( Messages.get(WndGhostHero.class, "cant_cursed"));
 									hide();
-								} else if (((MeleeWeapon)item).STRReq() > rose.ghostStrength()) {
+								} else if (((MeleeWeapon)item).statReq() > rose.ghostStrength()) {
 									GLog.w( Messages.get(WndGhostHero.class, "cant_strength"));
 									hide();
 								} else {
@@ -986,7 +986,7 @@ public class DriedRose extends Artifact {
 								} else if (item.cursed) {
 									GLog.w( Messages.get(WndGhostHero.class, "cant_cursed"));
 									hide();
-								} else if (((Armor)item).STRReq() > rose.ghostStrength()) {
+								} else if (((Armor)item).statReq() > rose.ghostStrength()) {
 									GLog.w( Messages.get(WndGhostHero.class, "cant_strength"));
 									hide();
 								} else {

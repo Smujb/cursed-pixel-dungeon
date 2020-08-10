@@ -60,7 +60,6 @@ import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -181,10 +180,7 @@ public class Belongings implements Iterable<Item> {
 		int armReq = 0;
 		if (armor != null) {
 			 armDr = armor.magicalDRRoll();
-			 armReq = armor.STRReq();
-		}
-		if (owner.STR() < armReq) {
-			armDr -= 2 * (armReq - owner.STR());
+			 armReq = armor.statReq();
 		}
 		if (armDr > 0) dr += armDr;
 		if (armor != null && armor.hasGlyph(AntiMagic.class, owner)) {
@@ -198,16 +194,10 @@ public class Belongings implements Iterable<Item> {
 		int dr = 0;
 		if (armor != null) {
 			dr += armor.DRRoll();
-			if (owner.STR() < armor.STRReq()) {
-				dr -= 2 * (armor.STRReq() - owner.STR());
-			}
 		}
 
 		if (weapon != null) {
 			int wepDr = Random.NormalIntRange(0, weapon.defenseFactor(owner));
-			if (weapon instanceof MeleeWeapon & owner.STR() < ((MeleeWeapon) weapon).STRReq()) {
-				wepDr -= 2 * (((MeleeWeapon) weapon).STRReq() - owner.STR());
-			}
 			if (wepDr > 0) dr += wepDr;
 		}
 
@@ -266,7 +256,6 @@ public class Belongings implements Iterable<Item> {
 	public boolean canSurpriseAttack() {
 		KindOfWeapon curWep = getWeapon();
 		if (!(curWep instanceof Weapon)) return true;
-		if (owner.STR() < ((Weapon) curWep).STRReq()) return false;
 		return curWep.canSurpriseAttack;
 	}
 
@@ -305,7 +294,7 @@ public class Belongings implements Iterable<Item> {
 			if (CurArmour.hasGlyph(Stone.class, owner) && !((Stone) CurArmour.glyph).testingEvasion()) {
 				return 0;
 			}
-			int aEnc = CurArmour.STRReq() - owner.STR();
+			int aEnc = 3;//CurArmour.STRReq() - owner.STR();
 			if (aEnc > 0) evasion /= Math.pow(1.5, aEnc);
 
 			Momentum momentum = owner.buff(Momentum.class);
@@ -326,8 +315,6 @@ public class Belongings implements Iterable<Item> {
 		Armor curArmour = armor;
 		//speed *= curArmour.speedMultiplier(ownerID);
 		if (armor != null) {
-			int aEnc = curArmour.STRReq() - owner.STR();
-			if (aEnc > 0) speed /= Math.pow(1.2, aEnc);
 			if (curArmour.hasGlyph(Swiftness.class, owner)) {
 				boolean enemyNear = false;
 				PathFinder.buildDistanceMap(owner.pos, Dungeon.level.passable(), 2);

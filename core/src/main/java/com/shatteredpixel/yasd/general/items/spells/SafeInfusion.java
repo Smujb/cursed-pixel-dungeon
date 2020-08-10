@@ -1,8 +1,6 @@
 package com.shatteredpixel.yasd.general.items.spells;
 
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class SafeInfusion extends MagicalInfusion {
@@ -13,8 +11,7 @@ public class SafeInfusion extends MagicalInfusion {
 
 	@Override
 	protected void removeUpgrades(Item item) {
-		int itemStrReq;
-		int str = curUser.STR();
+		/*int itemStrReq;
 		if (item instanceof Weapon) {
 			itemStrReq = ((Weapon) item).STRReq();
 		} else if (item instanceof Armor) {
@@ -25,7 +22,7 @@ public class SafeInfusion extends MagicalInfusion {
 		item.level(Math.max(0, str-itemStrReq));
 		if (item.level() > 10) {
 			item.level(10);
-		}
+		}*/
 	}
 
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
