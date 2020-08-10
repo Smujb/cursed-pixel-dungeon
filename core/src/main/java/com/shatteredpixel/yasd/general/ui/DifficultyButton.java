@@ -43,6 +43,10 @@ public class DifficultyButton extends StyledButton {
 	private Difficulty difficulty;
 	public static ArrayList<DifficultyButton> buttonArrayList = new ArrayList<>();
 
+	public static void reset() {
+		buttonArrayList = new ArrayList<>();
+	}
+
 	public DifficultyButton(@NotNull Difficulty difficulty) {
 		super(Chrome.Type.GREY_BUTTON_TR, difficulty.title(), 9);
 		this.difficulty = difficulty;

@@ -190,6 +190,10 @@ public enum Icons {
 				icon.frame( icon.texture.uvRect( 64, 48, 80, 64 ) );
 				break;
 
+			case PRIESTESS:
+				icon.frame( icon.texture.uvRect( 80, 50, 93, 64 ) );
+				break;
+
 			case ENTER:
 				icon.frame( icon.texture.uvRect( 0, 64, 17, 81 ) );
 				break;
@@ -254,6 +258,7 @@ public enum Icons {
 	public static Image get( HeroClass cl ) {
 		switch (cl) {
 			case WARRIOR:
+			default:
 				return get( WARRIOR );
 			case MAGE:
 				return get( MAGE );
@@ -263,8 +268,6 @@ public enum Icons {
 				return get( HUNTRESS );
 			case PRIESTESS:
 				return get( PRIESTESS );
-			default:
-				return null;
 		}
 	}
 }
