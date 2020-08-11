@@ -24,7 +24,7 @@ public abstract class DragonPendant extends KindofMisc {
 	{
 		defaultAction = AC_SUMMON;
 
-		statScaling = new ArrayList<>(Arrays.asList(HeroStat.SUPPORT));
+		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.SUPPORT));
 	}
 
 	private int dragonID;

@@ -61,7 +61,7 @@ abstract public class MissileWeapon extends Weapon {
 		defaultAction = AC_THROW;
 		usesTargeting = true;
 
-		statScaling = new ArrayList<>(Arrays.asList(HeroStat.ASSAULT));
+		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.ASSAULT));
 	}
 	
 	protected boolean sticky = true;

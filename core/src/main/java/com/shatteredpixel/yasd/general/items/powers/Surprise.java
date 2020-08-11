@@ -30,7 +30,7 @@ public class Surprise extends Power {
 		Char ch = Actor.findChar(pos);
 		int damage;
 		if (ch != null) {
-			damage = Random.NormalIntRange(hero.getFocus(), hero.getFocus()*3);
+			damage = Random.NormalIntRange(hero.lvl, hero.lvl*3);
 			if (ch instanceof Mob && ((Mob)ch).surprisedBy(curUser)) {
 				damage *= 3;
 				Wound.hit(ch);

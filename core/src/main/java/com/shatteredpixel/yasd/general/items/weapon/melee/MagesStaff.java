@@ -84,7 +84,7 @@ public class MagesStaff extends MeleeWeapon {
 
 		damageMultiplier = 0.8f;
 
-		statScaling.add(HeroStat.FOCUS);
+		statScaling.add(Hero.HeroStat.FOCUS);
 	}
 
 	public MagesStaff() {

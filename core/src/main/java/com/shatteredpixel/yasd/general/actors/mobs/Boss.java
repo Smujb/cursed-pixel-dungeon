@@ -21,7 +21,7 @@ public class Boss extends Mob {
 			} while (!Dungeon.level.passable(pos + ofs));
 			Dungeon.level.drop( new ScrollOfUpgrade(), pos + ofs ).sprite.drop( pos );
 		}
-		Dungeon.hero.increasePoints(5);
+		Dungeon.hero.increasePoints(3);
 		super.die(cause);
 	}
 }

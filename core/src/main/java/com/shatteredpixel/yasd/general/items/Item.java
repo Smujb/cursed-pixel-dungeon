@@ -66,18 +66,6 @@ import java.util.Comparator;
 
 public class Item implements Bundlable {
 
-	public enum HeroStat {
-		EXECUTION,
-		FOCUS,
-		RESILIENCE,
-		ASSAULT,
-		SUPPORT;
-
-		public String getName() {
-			return Messages.get(HeroStat.class, name());
-		}
-	}
-
 	protected static final String TXT_TO_STRING_LVL		= "%s %+d";
 	protected static final String TXT_TO_STRING_X		= "%s x%d";
 	public static final String AC_INFO = "INFO_WINDOW";
@@ -115,7 +103,7 @@ public class Item implements Bundlable {
 	// whether an item can be included in heroes remains
 	public boolean bones = false;
 
-	public ArrayList<HeroStat> statScaling = new ArrayList<>();
+	public ArrayList<Hero.HeroStat> statScaling = new ArrayList<>();
 	
 	private static Comparator<Item> itemComparator = new Comparator<Item>() {
 		@Override
@@ -149,7 +137,7 @@ public class Item implements Bundlable {
 
 	public boolean canTypicallyUse(Char ch) {
 		if (ch instanceof Hero) {
-			for (HeroStat stat : statScaling) {
+			for (Hero.HeroStat stat : statScaling) {
 				if (((Hero) ch).getStat(stat) >= statReq()) {
 					return true;
 				}
@@ -169,7 +157,7 @@ public class Item implements Bundlable {
 
 	public int bestHeroStat(Hero hero) {
 		int best = -1;
-		for (HeroStat stat : statScaling) {
+		for (Hero.HeroStat stat : statScaling) {
 			if (hero.getStat(stat) > best) {
 				best = hero.getStat(stat);
 			}
@@ -547,7 +535,7 @@ public class Item implements Bundlable {
 		String desc = "";
 		if (!statScaling.isEmpty()) {
 			desc += "\n\n";
-			if (statScaling.equals(Arrays.asList(HeroStat.values()))) {
+			if (statScaling.equals(Arrays.asList(Hero.HeroStat.values()))) {
 				desc += Messages.get(this, "scales_any", statReq());
 			} else {
 				if (statScaling.size() == 1) {

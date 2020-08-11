@@ -142,6 +142,22 @@ public class Hero extends Char {
 		immunities.add(Amok.class);
 	}
 
+	public enum HeroStat {
+		EXECUTION,
+		FOCUS,
+		RESILIENCE,
+		ASSAULT,
+		SUPPORT;
+
+		public String getName() {
+			return Messages.get(HeroStat.class, name());
+		}
+
+		public float hpBoost(int curLevel) {
+			return (float) (1f + Math.pow(0.70f, Math.max(1, curLevel)));
+		}
+	}
+
 	private int execution = 1;
 	private int focus = 1;
 	private int resilience = 1;
@@ -204,7 +220,13 @@ public class Hero extends Char {
 	@Override
 	public void updateHT(boolean boostHP) {
 		int preHT = HT;
-		HT = 10 * (lvl + 3) + 5 * (getSupport() - 1) + HTBoost;
+		HT = 40 + HTBoost;
+		for (HeroStat stat : HeroStat.values()) {
+			for (int i = 1; i < getStat(stat); i++) {
+				HT *= stat.hpBoost(i);
+				GLog.h(stat.hpBoost(i)+ "");
+			}
+		}
 		heal(HT - preHT);
 		super.updateHT(boostHP);
 	}
@@ -286,7 +308,7 @@ public class Hero extends Char {
 		this.execution = execution;
 	}
 
-	public void increasePower() {
+	public void increaseExecution() {
 		setExecution(execution + 1);
 	}
 
@@ -294,7 +316,7 @@ public class Hero extends Char {
 		this.resilience = resilience;
 	}
 
-	public void increasePerception() {
+	public void increaseResilience() {
 		setResilience(resilience + 1);
 	}
 
@@ -311,7 +333,7 @@ public class Hero extends Char {
 		this.assault = assault;
 	}
 
-	public void increaseEvasion() {
+	public void increaseAssault() {
 		setAssault(assault + 1);
 	}
 
@@ -320,11 +342,32 @@ public class Hero extends Char {
 		updateHT(true);
 	}
 
-	public void increaseAttunement() {
+	public void increaseSupport() {
 		setSupport(support + 1);
 	}
 
-	public int getStat(Item.HeroStat stat) {
+	public void increaseStat(HeroStat stat) {
+		updateHT(true);
+		switch (stat) {
+			case EXECUTION:
+				increaseExecution();
+				return;
+			case FOCUS:
+				increaseFocus();
+				return;
+			case RESILIENCE:
+				increaseResilience();
+				return;
+			case ASSAULT:
+				increaseAssault();
+				return;
+			case SUPPORT:
+				increaseSupport();
+				return;
+		}
+	}
+
+	public int getStat(HeroStat stat) {
 		int execution = getExecution();
 		int focus = getFocus();
 		int resilience = getResilience();
@@ -444,13 +487,13 @@ public class Hero extends Char {
 
 	@Override
 	public float sneakSkill(Char enemy) {
-		sneakSkill = 9 + getAssault();
+		sneakSkill = 9 + getExecution();
 		return super.sneakSkill(enemy);
 	}
 
 	@Override
 	public float noticeSkill(Char enemy) {
-		noticeSkill = 4 + getResilience();
+		noticeSkill = 4 + getAssault();
 		return super.noticeSkill(enemy);
 	}
 
@@ -531,7 +574,7 @@ public class Hero extends Char {
 
 	@Override
 	public int defenseSkill(Char enemy) {
-		defenseSkill = 3 + getAssault();
+		defenseSkill = 3 + getSupport();
 		return super.defenseSkill(enemy);
 	}
 
@@ -1371,7 +1414,7 @@ public class Hero extends Char {
 				sprite.showStatus(CharSprite.POSITIVE, Messages.get(Hero.class, "level_up"));
 				Sample.INSTANCE.play(Assets.Sounds.LEVELUP);
 			}
-			increasePoints(4);
+			increasePoints(1);
 
 			Item.updateQuickslot();
 
@@ -1698,12 +1741,12 @@ public class Hero extends Char {
 
 							//unintentional trap detection scales from 40% at floor 0 to 30% at floor 25
 						} else if (Dungeon.level.hasTrap(p)) {
-							chance = 0.4f - (Dungeon.depth - (getResilience() / 2f) / 250f);
+							chance = 0.4f - (Dungeon.depth / 250f);
 							//GLog.p("trap");
 
 							//unintentional door detection scales from 20% at floor 0 to 0% at floor 20
 						} else {
-							chance = 0.2f - (Dungeon.depth - (getResilience() / 2f) / 100f);
+							chance = 0.2f - (Dungeon.depth / 100f);
 							//GLog.p("door/wall");
 
 						}

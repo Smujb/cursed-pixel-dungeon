@@ -133,31 +133,72 @@ public class WndHero extends WndTabbed {
 		private static final int BTN_WIDTH  = 20;
 		private static final int BTN_HEIGHT	= 20;
 
-		private abstract class statIncreaseButton extends RedButton {
+		private class StatIncreaseButton extends RedButton {
 
-			statIncreaseButton() {
+			private Hero.HeroStat stat;
+
+			public StatIncreaseButton(Hero.HeroStat stat) {
 				super("+");
+				this.stat = stat;
 				setRect(WIDTH*0.8f, pos-BTN_HEIGHT, BTN_WIDTH, BTN_HEIGHT);
 			}
 
 			@Override
 			protected void onClick() {
 				if (Dungeon.hero.DistributionPoints > 0) {
-					Dungeon.hero.DistributionPoints--;
-					onBackPressed();
-					increaseStat();
-					WndHero window = new WndHero();
-					window.switchToAbilities();
-					GameScene.show(window);
+					CPDGame.scene().addToFront(new WndConfirmIncrease(stat));
+					WndHero.this.hide();
 				} else {
 					GLog.w(Messages.get(WndHero.class,"no_points"));
 				}
 			}
-			protected abstract void increaseStat();
 		}
 
-		AbilitiesTab() {
+		private class WndConfirmIncrease extends Window {
 
+			public WndConfirmIncrease(Hero.HeroStat stat) {
+				Hero hero = Dungeon.hero;
+				IconTitle title = new IconTitle();
+				title.icon( HeroSprite.avatar(hero.heroClass, hero.tier()) );
+				title.label( Messages.get(this, "title", stat.getName()));
+				title.color(Window.SHPX_COLOR);
+				title.setRect( 0, 0, WIDTH, 0 );
+				add(title);
+
+				RenderedTextBlock message = PixelScene.renderTextBlock(
+						Messages.get(this, "increase_stat_info",
+						Messages.format( "%d%%", Math.round(stat.hpBoost(hero.getStat(stat))*100)),
+						stat.getName()),
+						6 );
+				message.maxWidth(WIDTH);
+				message.setPos(0, title.bottom() + GAP);
+				add( message );
+
+				RedButton buttonConfirm = new RedButton(Messages.get(this, "confirm")) {
+					@Override
+					protected void onClick() {
+						super.onClick();
+						hero.increaseStat(stat);
+						hero.DistributionPoints--;
+						AbilitiesTab.this.update();
+						hide();
+					}
+				};
+				buttonConfirm.setRect(0, message.bottom() + GAP, WIDTH, BTN_HEIGHT);
+				add(buttonConfirm);
+
+				resize(WIDTH, (int) (buttonConfirm.bottom() + GAP));
+			}
+		}
+
+		public AbilitiesTab() {
+			update();
+		}
+
+		@Override
+		public synchronized void update() {
+			super.update();
+			clear();
 			Hero hero = Dungeon.hero;
 
 			IconTitle title = new IconTitle();
@@ -173,71 +214,15 @@ public class WndHero extends WndTabbed {
 			statSlot( Messages.get(this, "points"), hero.DistributionPoints );
 			pos += GAP;
 
-			//Power
-			statSlot( Messages.get(this, "power"), hero.getExecution() );
-			statIncreaseButton btnPower = new statIncreaseButton() {
-				@Override
-				protected void increaseStat() {
-					Dungeon.hero.increasePower();
-				}
-			};
-			add( btnPower );
-			pos += GAP;
-			//Focus
-			statSlot( Messages.get(this, "focus"), hero.getFocus() );
-			statIncreaseButton btnFocus = new statIncreaseButton() {
-				@Override
-				protected void increaseStat() {
-					Dungeon.hero.increaseFocus();
-				}
-			};
-			add( btnFocus );
-			pos += GAP;
-			//Perception
-			statSlot( Messages.get(this, "perception"), hero.getResilience() );
-			statIncreaseButton btnExpertise = new statIncreaseButton() {
-				@Override
-				protected void increaseStat() {
-					Dungeon.hero.increasePerception();
-				}
-			};
-			add( btnExpertise );
-			pos += GAP;
-			//Evasion
-			statSlot( Messages.get(this, "evasion"), hero.getAssault());
-			statIncreaseButton btnStealth = new statIncreaseButton() {
-				@Override
-				protected void increaseStat() {
-					Dungeon.hero.increaseEvasion();
-				}
-			};
-			add( btnStealth );
-			pos += GAP;
-
-			//Attunement
-			statSlot( Messages.get(this, "attunement"), hero.getSupport());
-			statIncreaseButton btnAttunement = new statIncreaseButton() {
-				@Override
-				protected void increaseStat() {
-					Dungeon.hero.increaseAttunement();
-				}
-			};
-			add( btnAttunement );
-			pos += GAP;
-
-			RedButton btnInfo = new RedButton(Messages.get(this, "info")) {
-				@Override
-				protected void onClick() {
-					CPDGame.scene().addToFront(new WndTitledMessage( HeroSprite.avatar(hero.heroClass, 6 ), Messages.get(AbilitiesTab.class, "info_title"), Messages.get(AbilitiesTab.class, "info_desc")));
-				}
-			};
-			btnInfo.setRect(WIDTH*0.1f, pos, WIDTH*0.8f, BTN_HEIGHT);
-			add(btnInfo);
-			pos = btnInfo.bottom();
-
+			for (Hero.HeroStat stat : Hero.HeroStat.values()) {
+				statSlot(stat.getName(), hero.getStat(stat));
+				StatIncreaseButton statBtn = new StatIncreaseButton(stat);
+				add( statBtn );
+				pos += GAP;
+			}
 		}
 
-		private void statSlot( String label, String value ) {
+		private void statSlot(String label, String value ) {
 
 			RenderedTextBlock txt = PixelScene.renderTextBlock( label, 10 );
 			txt.setPos(0, pos);

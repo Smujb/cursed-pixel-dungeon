@@ -24,7 +24,7 @@ public class Blink extends Power {
 	public void onZap(Ballistica shot) {
 		int level = 0;
 		if (curUser instanceof Hero) {
-			level = ((Hero)curUser).getFocus();
+			level = ((Hero)curUser).lvl;
 		}
 
 		int dist = Math.min(shot.dist, level);

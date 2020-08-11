@@ -23,7 +23,7 @@ public class Telekinesis extends Power {
 	@Override
 	public void onZap(Ballistica shot) {
 		if (!(curUser instanceof Hero)) return;
-		int level = ((Hero) curUser).getFocus();
+		int level = ((Hero) curUser).lvl;
 
 		int cell = shot.collisionPos;
 

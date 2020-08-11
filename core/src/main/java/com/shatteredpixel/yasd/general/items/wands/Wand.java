@@ -66,7 +66,7 @@ import java.util.Arrays;
 public abstract class Wand extends KindofMisc {
 
 	{
-		statScaling = new ArrayList<>(Arrays.asList(HeroStat.FOCUS));
+		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.FOCUS));
 	}
 
 	public Element element = Element.MAGICAL;

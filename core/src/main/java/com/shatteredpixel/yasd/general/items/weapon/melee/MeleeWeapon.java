@@ -42,7 +42,7 @@ import java.util.Arrays;
 
 public class MeleeWeapon extends Weapon {
 	{
-		statScaling = new ArrayList<>(Arrays.asList(HeroStat.EXECUTION));
+		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.EXECUTION));
 	}
 	
 	public int tier;
