@@ -60,6 +60,7 @@ import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
+import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -177,11 +178,13 @@ public class Belongings implements Iterable<Item> {
 	public int magicalDR() {
 		int dr = 0;
 		int armDr = 0;
-		int armReq = 0;
 		if (armor != null) {
 			 armDr = armor.magicalDRRoll();
-			 armReq = armor.statReq();
+			if (!armor.canTypicallyUse(owner)) {
+				armDr -= 2 * armor.encumbrance();
+			}
 		}
+
 		if (armDr > 0) dr += armDr;
 		if (armor != null && armor.hasGlyph(AntiMagic.class, owner)) {
 			dr += AntiMagic.drRoll(armor.level());
@@ -194,10 +197,16 @@ public class Belongings implements Iterable<Item> {
 		int dr = 0;
 		if (armor != null) {
 			dr += armor.DRRoll();
+			if (!armor.canTypicallyUse(owner)) {
+				dr -= 2 * armor.encumbrance();
+			}
 		}
 
 		if (weapon != null) {
 			int wepDr = Random.NormalIntRange(0, weapon.defenseFactor(owner));
+			if (weapon instanceof MeleeWeapon & !weapon.canTypicallyUse(owner)) {
+				wepDr -= 2 * weapon.encumbrance();
+			}
 			if (wepDr > 0) dr += wepDr;
 		}
 
@@ -256,6 +265,7 @@ public class Belongings implements Iterable<Item> {
 	public boolean canSurpriseAttack() {
 		KindOfWeapon curWep = getWeapon();
 		if (!(curWep instanceof Weapon)) return true;
+		if (!curWep.canTypicallyUse(owner)) return false;
 		return curWep.canSurpriseAttack;
 	}
 
@@ -294,7 +304,7 @@ public class Belongings implements Iterable<Item> {
 			if (CurArmour.hasGlyph(Stone.class, owner) && !((Stone) CurArmour.glyph).testingEvasion()) {
 				return 0;
 			}
-			int aEnc = 3;//CurArmour.STRReq() - owner.STR();
+			int aEnc = CurArmour.encumbrance();
 			if (aEnc > 0) evasion /= Math.pow(1.5, aEnc);
 
 			Momentum momentum = owner.buff(Momentum.class);
@@ -315,6 +325,8 @@ public class Belongings implements Iterable<Item> {
 		Armor curArmour = armor;
 		//speed *= curArmour.speedMultiplier(ownerID);
 		if (armor != null) {
+			int aEnc = curArmour.encumbrance();
+			if (aEnc > 0) speed /= Math.pow(1.2, aEnc);
 			if (curArmour.hasGlyph(Swiftness.class, owner)) {
 				boolean enemyNear = false;
 				PathFinder.buildDistanceMap(owner.pos, Dungeon.level.passable(), 2);
