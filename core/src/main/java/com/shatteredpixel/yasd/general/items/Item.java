@@ -171,7 +171,7 @@ public class Item implements Bundlable {
 
 	public int encumbrance() {
 		if (curUser instanceof Hero) {
-			return bestHeroStat((Hero) curUser) - statReq();
+			return Math.max(0, bestHeroStat((Hero) curUser) - statReq());
 		}
 		return 0;
 	}
