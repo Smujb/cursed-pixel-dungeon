@@ -31,10 +31,10 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class Blunt extends MeleeWeapon {//War Hammer will get reworked.
+public class Blunt extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.WAR_HAMMER;
+		image = ItemSpriteSheet.MACE;
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1f;
 		//accuracyFactor = 1.33f; //33% boost to accuracy

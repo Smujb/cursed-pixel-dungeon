@@ -191,13 +191,6 @@ public class WndHero extends WndTabbed {
 		}
 
 		public AbilitiesTab() {
-			update();
-		}
-
-		@Override
-		public synchronized void update() {
-			super.update();
-			clear();
 			Hero hero = Dungeon.hero;
 
 			IconTitle title = new IconTitle();
