@@ -224,7 +224,6 @@ public class Hero extends Char {
 		for (HeroStat stat : HeroStat.values()) {
 			for (int i = 1; i < getStat(stat); i++) {
 				HT *= stat.hpBoost(i);
-				GLog.h(stat.hpBoost(i)+ "");
 			}
 		}
 		heal(HT - preHT);

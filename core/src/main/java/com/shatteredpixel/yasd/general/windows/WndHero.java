@@ -167,8 +167,8 @@ public class WndHero extends WndTabbed {
 
 				RenderedTextBlock message = PixelScene.renderTextBlock(
 						Messages.get(this, "increase_stat_info",
-						Messages.format( "%d%%", Math.round(stat.hpBoost(hero.getStat(stat))*100)),
-						stat.getName()),
+						Messages.format( "+%d%%", Math.round((stat.hpBoost(hero.getStat(stat))-1f)*100)),
+						stat.getName()) + " " + Messages.get(this, stat.name()),
 						6 );
 				message.maxWidth(WIDTH);
 				message.setPos(0, title.bottom() + GAP);
@@ -180,7 +180,6 @@ public class WndHero extends WndTabbed {
 						super.onClick();
 						hero.increaseStat(stat);
 						hero.DistributionPoints--;
-						AbilitiesTab.this.update();
 						hide();
 					}
 				};
