@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Whip extends MeleeWeapon {
@@ -40,5 +41,7 @@ public class Whip extends MeleeWeapon {
 		RCH = 3;    //lots of extra reach
 
 		damageMultiplier = 0.6f;
+
+		statScaling.add(Hero.HeroStat.ASSAULT);
 	}
 }

@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.armor;
 
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class HuntressArmor extends ClothArmor {
@@ -38,6 +39,8 @@ public class HuntressArmor extends ClothArmor {
 		speedFactor = 1.4f;
 		DRfactor = 0.75f;
 		magicalDRFactor = 0.5f;
+
+		statScaling.add(Hero.HeroStat.ASSAULT);
 	}
 
 	@Override

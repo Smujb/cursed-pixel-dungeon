@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Blunt extends MeleeWeapon {//War Hammer will get reworked.
@@ -39,5 +40,7 @@ public class Blunt extends MeleeWeapon {//War Hammer will get reworked.
 		//accuracyFactor = 1.33f; //33% boost to accuracy
 
 		damageMultiplier = 0.80f;
+
+		statScaling.add(Hero.HeroStat.RESILIENCE);
 	}
 }

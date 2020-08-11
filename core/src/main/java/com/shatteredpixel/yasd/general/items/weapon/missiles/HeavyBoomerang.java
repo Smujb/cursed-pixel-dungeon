@@ -51,6 +51,8 @@ public class HeavyBoomerang extends MissileWeapon {
 		sticky = false;
 
 		damageMultiplier = 0.8f;
+
+		statScaling.add(Hero.HeroStat.RESILIENCE);
 	}
 	
 	@Override

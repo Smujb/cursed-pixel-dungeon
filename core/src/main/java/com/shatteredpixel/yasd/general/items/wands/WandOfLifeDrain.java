@@ -30,6 +30,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Vampiric;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -42,6 +43,8 @@ public class WandOfLifeDrain extends DamageWand {
         image = ItemSpriteSheet.WAND_LIFE_DRAIN;
 
         element = Element.DRAIN;
+
+        statScaling.add(Hero.HeroStat.SUPPORT);
 	}
 
     @Override

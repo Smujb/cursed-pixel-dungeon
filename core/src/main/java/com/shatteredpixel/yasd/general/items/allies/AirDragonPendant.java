@@ -1,12 +1,15 @@
 package com.shatteredpixel.yasd.general.items.allies;
 
 import com.shatteredpixel.yasd.general.Element;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.DragonSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class AirDragonPendant extends DragonPendant {
 	{
 		image = ItemSpriteSheet.WHITE_DRAGON_CRYSTAL;
+
+		statScaling.add(Hero.HeroStat.ASSAULT);
 	}
 
 	@Override

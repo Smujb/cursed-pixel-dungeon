@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.armor;
 
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class MageArmor extends ClothArmor {
@@ -37,6 +38,8 @@ public class MageArmor extends ClothArmor {
 		EVA = 1.25f;
 		magicalDRFactor = 1.5f;
 		DRfactor = 0.75f;
+
+		statScaling.add(Hero.HeroStat.FOCUS);
 	}
 
 	@Override

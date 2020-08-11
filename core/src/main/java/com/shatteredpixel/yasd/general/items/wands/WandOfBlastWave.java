@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Effects;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.effects.Pushing;
@@ -58,6 +59,8 @@ public class WandOfBlastWave extends DamageWand {
 		image = ItemSpriteSheet.WAND_BLAST_WAVE;
 
 		collisionProperties = Ballistica.PROJECTILE;
+
+		statScaling.add(Hero.HeroStat.ASSAULT);
 	}
 	@Override
 	public float min(float lvl){

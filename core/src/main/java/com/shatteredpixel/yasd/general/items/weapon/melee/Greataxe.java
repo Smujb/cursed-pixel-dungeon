@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Greataxe extends MeleeWeapon {
@@ -38,5 +39,7 @@ public class Greataxe extends MeleeWeapon {
 		hitSoundPitch = 1f;
 
 		damageMultiplier = 1f;
+
+		statScaling.add(Hero.HeroStat.RESILIENCE);
 	}
 }

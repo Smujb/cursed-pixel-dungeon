@@ -39,5 +39,4 @@ public class ThrowingSpear extends MissileWeapon {
 
 		tier = 3;
 	}
-	
 }

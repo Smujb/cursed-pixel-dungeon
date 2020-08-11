@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.armor;
 
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class LightArmor extends Armor {
@@ -36,6 +37,8 @@ public class LightArmor extends Armor {
 		DRfactor = 0.7f;
 		magicalDRFactor = 0.6f;
 		EVA = 1.33f;
+
+		statScaling.add(Hero.HeroStat.SUPPORT);
 	}
 
 	@Override

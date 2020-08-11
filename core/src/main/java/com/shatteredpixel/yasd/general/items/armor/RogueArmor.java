@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.armor;
 
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class RogueArmor extends ClothArmor {
@@ -38,6 +39,8 @@ public class RogueArmor extends ClothArmor {
 		magicalDRFactor = 0.75f;
 		EVA = 1.25f;
 		STE = 1.25f;
+
+		statScaling.add(Hero.HeroStat.EXECUTION);
 	}
 
 	@Override

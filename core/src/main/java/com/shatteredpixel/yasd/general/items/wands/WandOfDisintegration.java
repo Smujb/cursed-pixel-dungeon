@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.Web;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Beam;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.PurpleParticle;
@@ -55,6 +56,8 @@ public class WandOfDisintegration extends DamageWand {
 		collisionProperties = Ballistica.WONT_STOP;
 
 		element = Element.DESTRUCTION;
+
+		statScaling.add(Hero.HeroStat.ASSAULT);
 	}
 
 	@Override

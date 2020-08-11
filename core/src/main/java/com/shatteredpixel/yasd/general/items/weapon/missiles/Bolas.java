@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Cripple;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Bolas extends MissileWeapon {
@@ -43,6 +44,8 @@ public class Bolas extends MissileWeapon {
 		tier = 3;
 		baseUses = 5;
 		damageMultiplier = 0.6f;
+
+		statScaling.add(Hero.HeroStat.FOCUS);
 	}
 	
 	@Override

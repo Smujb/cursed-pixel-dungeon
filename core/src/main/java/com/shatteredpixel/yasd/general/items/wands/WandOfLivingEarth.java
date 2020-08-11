@@ -60,6 +60,8 @@ public class WandOfLivingEarth extends DamageWand {
 		image = ItemSpriteSheet.WAND_LIVING_EARTH;
 
 		element = Element.EARTH;
+
+		statScaling.add(Hero.HeroStat.RESILIENCE);
 	}
 	
 	@Override

@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class RunicBlade extends MeleeWeapon {
@@ -37,6 +38,7 @@ public class RunicBlade extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
 
+		statScaling.add(Hero.HeroStat.FOCUS);
 	}
 
 	@Override

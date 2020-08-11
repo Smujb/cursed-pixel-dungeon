@@ -85,20 +85,15 @@ abstract public class MissileWeapon extends Weapon {
 	}
 
 	@Override
-	public int min() {
-		return Math.max(0, min( power() + RingOfSharpshooting.levelDamageBonus(Dungeon.hero) ));
-	}
-
-	@Override
 	public int min(float lvl) {
-		return  Math.round(tier +  //base
+		return  Math.round(1 +  //base
 				lvl);    //level scaling
 	}
 
 	@Override
 	public int max(float lvl) {
-		return (int) ((5*(tier+1) +    //base
-				lvl*(tier*2))*damageMultiplier);   //level scaling
+		return (int) ((10 +    //base
+				lvl*5)*damageMultiplier);   //level scaling
 	}
 
 	@Override
@@ -333,7 +328,6 @@ abstract public class MissileWeapon extends Weapon {
 		String info = desc();
 		
 		info += "\n\n" + Messages.get( MissileWeapon.class, "stats",
-				tier,
 				Math.round(augment.damageFactor(min())),
 				Math.round(augment.damageFactor(max())),
 				statReq());

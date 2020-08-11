@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general.items.allies;
 
 import com.shatteredpixel.yasd.general.Element;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.DragonSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
@@ -8,6 +9,8 @@ public class DarkDragonPendant extends DragonPendant {
 
 	{
 		image = ItemSpriteSheet.ADORNED_DRAGON_CRYSTAL;
+
+		statScaling.add(Hero.HeroStat.FOCUS);
 	}
 
 	@Override

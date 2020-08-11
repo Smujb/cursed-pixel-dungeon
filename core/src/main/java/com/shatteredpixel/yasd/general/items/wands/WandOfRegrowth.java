@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Roots;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.NPC;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.items.Dewdrop;
@@ -55,6 +56,7 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class WandOfRegrowth extends Wand {
@@ -63,6 +65,8 @@ public class WandOfRegrowth extends Wand {
 		image = ItemSpriteSheet.WAND_REGROWTH;
 
 		collisionProperties = Ballistica.STOP_TERRAIN;
+
+		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.values()));
 	}
 
 	private int totChrgUsed = 0;

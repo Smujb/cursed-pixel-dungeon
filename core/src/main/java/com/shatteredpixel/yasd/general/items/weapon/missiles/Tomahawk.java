@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Tomahawk extends MissileWeapon {
@@ -44,6 +45,8 @@ public class Tomahawk extends MissileWeapon {
 		baseUses = 5;
 
 		damageMultiplier = 0.75f;
+
+		statScaling.add(Hero.HeroStat.SUPPORT);
 	}
 	
 	@Override

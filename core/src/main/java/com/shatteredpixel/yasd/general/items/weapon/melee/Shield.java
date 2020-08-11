@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Shield extends MeleeWeapon {
@@ -39,6 +40,8 @@ public class Shield extends MeleeWeapon {
 		hitSoundPitch = 1f;
 
 		damageMultiplier = 0.6f;
+
+		statScaling.add(Hero.HeroStat.RESILIENCE);
 	}
 
 	@Override

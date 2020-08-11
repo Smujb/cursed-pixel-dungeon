@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Crossbow extends MeleeWeapon {
@@ -39,5 +40,7 @@ public class Crossbow extends MeleeWeapon {
 		
 		//check Dart.class for additional properties
 		damageMultiplier = 0.75f;
+
+		statScaling.add(Hero.HeroStat.ASSAULT);
 	}
 }
