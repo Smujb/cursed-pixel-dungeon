@@ -71,7 +71,11 @@ public class Item implements Bundlable {
 		FOCUS,
 		RESILIENCE,
 		ASSAULT,
-		SUPPORT
+		SUPPORT;
+
+		public String getName() {
+			return Messages.get(HeroStat.class, name());
+		}
 	}
 
 	protected static final String TXT_TO_STRING_LVL		= "%s %+d";
@@ -547,9 +551,9 @@ public class Item implements Bundlable {
 				desc += Messages.get(this, "scales_any", statReq());
 			} else {
 				if (statScaling.size() == 1) {
-					desc += Messages.get(this, "requires_stats_1", statReq(), statScaling.get(0).name());
+					desc += Messages.get(this, "requires_stats_1", statReq(), statScaling.get(0).getName());
 				} else {
-					desc += Messages.get(this, "requires_stats_2", statReq(), statScaling.get(0).name(), statScaling.get(1).name());
+					desc += Messages.get(this, "requires_stats_2", statReq(), statScaling.get(0).getName(), statScaling.get(1).getName());
 				}
 			}
 		}

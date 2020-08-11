@@ -87,15 +87,6 @@ public class MagesStaff extends MeleeWeapon {
 		statScaling.add(HeroStat.FOCUS);
 	}
 
-	@Override
-	public int upgradeLimit() {
-		int limit = super.upgradeLimit();
-		if (Dungeon.hero.subClass == HeroSubClass.BATTLEMAGE) {
-			return (int) (limit * (4/3f));
-		}
-		return limit;
-	}
-
 	public MagesStaff() {
 		wand = null;
 	}
