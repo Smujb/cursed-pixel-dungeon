@@ -44,8 +44,4 @@ public class ChainArmor extends Armor {
 	public int appearance() {
 		return 3;
 	}
-
-	private static class Studded extends Armor {}
-	private static class RingMail extends Armor {}
-	private static class Mail extends Armor {}
 }

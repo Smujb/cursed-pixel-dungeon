@@ -35,9 +35,6 @@ public class BasicArmor extends Armor {
 		image = ItemSpriteSheet.ARMOR_SCALE;
 	}
 
-	private static class Disc extends Armor {}
-	private static class Scale extends Armor {}
-
 	@Override
 	public int appearance() {
 		return 4;

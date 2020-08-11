@@ -28,8 +28,6 @@
 package com.shatteredpixel.yasd.general.levels.rooms.special;
 
 import com.shatteredpixel.yasd.general.Challenges;
-import com.shatteredpixel.yasd.general.Constants;
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Heap;
@@ -80,7 +78,7 @@ public class CryptRoom extends SpecialRoom {
 	private static Item prize( Level level ) {
 		
 		//1 floor set higher than normal
-		Armor prize = Generator.randomArmor( (Dungeon.depth / Constants.CHAPTER_LENGTH) + 1);
+		Armor prize = Generator.randomArmor();
 		
 		if (Challenges.isItemBlocked(prize)){
 			return new Gold().random();

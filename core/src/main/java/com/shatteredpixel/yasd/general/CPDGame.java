@@ -30,7 +30,7 @@ package com.shatteredpixel.yasd.general;
 import com.shatteredpixel.yasd.general.actors.mobs.Brute;
 import com.shatteredpixel.yasd.general.items.rings.RingOfEvasion;
 import com.shatteredpixel.yasd.general.items.rings.RingOfPerception;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.levels.chapters.prison.OldPrisonBossLevel;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
@@ -79,7 +79,7 @@ public class CPDGame extends Game {
 				"com.shatteredpixel.yasd.general.items.getWeapons.missiles.Boomerang" );
 		
 		com.watabou.utils.Bundle.addAlias(
-				Fist.class,
+				Glove.class,
 				"com.shatteredpixel.yasd.general.items.getWeapons.melee.Knuckles" );
 		
 		//v0.7.2

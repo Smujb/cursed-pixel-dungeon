@@ -28,8 +28,6 @@
 package com.shatteredpixel.yasd.general.levels.rooms.special;
 
 import com.shatteredpixel.yasd.general.Challenges;
-import com.shatteredpixel.yasd.general.Constants;
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.actors.mobs.Piranha;
 import com.shatteredpixel.yasd.general.items.Generator;
@@ -120,9 +118,9 @@ public class PoolRoom extends SpecialRoom {
 		//1 floor set higher in probability, never cursed
 		do {
 			if (Random.Int(2) == 0) {
-				prize = Generator.randomWeapon((Dungeon.depth / Constants.CHAPTER_LENGTH) + 1);
+				prize = Generator.randomWeapon();
 			} else {
-				prize = Generator.randomArmor((Dungeon.depth / Constants.CHAPTER_LENGTH) + 1);
+				prize = Generator.randomArmor();
 
 			}
 		} while (prize.cursed || Challenges.isItemBlocked(prize));

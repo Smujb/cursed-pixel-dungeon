@@ -30,7 +30,7 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class Long extends MeleeWeapon {
+public class Whip extends MeleeWeapon {
 
 	{
 		image = ItemSpriteSheet.WHIP;

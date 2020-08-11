@@ -33,7 +33,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Projectile;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Crossbow;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Plant;
@@ -97,9 +97,9 @@ public class Dart extends MissileWeapon {
 		}
 	}
 
-	private Projectile getCrossbow() {
-		if (curUser != null && curUser.belongings.getWeapon() instanceof Projectile) {
-			return ((Projectile) curUser.belongings.getWeapon());
+	private Crossbow getCrossbow() {
+		if (curUser != null && curUser.belongings.getWeapon() instanceof Crossbow) {
+			return ((Crossbow) curUser.belongings.getWeapon());
 		} else {
 			return null;
 		}
@@ -107,8 +107,8 @@ public class Dart extends MissileWeapon {
 
 	@Override
 	public void throwSound() {
-		Projectile projectile = getCrossbow();
-		if (projectile != null) {
+		Crossbow crossbow = getCrossbow();
+		if (crossbow != null) {
 			Sample.INSTANCE.play(Assets.Sounds.ATK_CROSSBOW, 1, Random.Float(0.87f, 1.15f));
 		} else {
 			super.throwSound();

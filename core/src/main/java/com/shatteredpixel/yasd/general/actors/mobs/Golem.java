@@ -79,9 +79,9 @@ public class Golem extends Mob {
 		//uses probability tables for demon halls
 		Dungeon.LimitedDrops.GOLEM_EQUIP.increaseCount();
 		if (loot == Generator.Category.WEAPON){
-			return Generator.randomWeapon(5);
+			return Generator.randomWeapon();
 		} else {
-			return Generator.randomArmor(5);
+			return Generator.randomArmor();
 		}
 	}
 

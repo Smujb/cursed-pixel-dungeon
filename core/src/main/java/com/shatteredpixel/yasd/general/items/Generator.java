@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items;
 
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.allies.AirDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.DarkDragonPendant;
@@ -45,6 +44,7 @@ import com.shatteredpixel.yasd.general.items.armor.BasicArmor;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.HeavyArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
+import com.shatteredpixel.yasd.general.items.armor.IceArmor;
 import com.shatteredpixel.yasd.general.items.armor.LightArmor;
 import com.shatteredpixel.yasd.general.items.armor.MageArmor;
 import com.shatteredpixel.yasd.general.items.armor.RogueArmor;
@@ -203,21 +203,21 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfThornvines;
 import com.shatteredpixel.yasd.general.items.wands.WandOfTransfusion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Axe;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Basic;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Blunt;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Crossbow;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dual;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Long;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Magical;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Projectile;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Sharp;
+import com.shatteredpixel.yasd.general.items.weapon.melee.RunicBlade;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Scimitar;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Shield;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Sneak;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Staff;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.Bolas;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.FishingSpear;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ForceCube;
@@ -541,17 +541,17 @@ public class Generator {
 			//see generator.randomWeapon
 			WEAPON.classes = new Class<?>[]{
 					Staff.class,
-					Fist.class,
+					Glove.class,
 					MagesStaff.class,
-					Sharp.class,
+					Scimitar.class,
 					Dual.class,
-					Long.class,
+					Whip.class,
 					Axe.class,
 					Flail.class,
-					Magical.class,
-					Sneak.class,
-					Projectile.class,
-					Basic.class,
+					RunicBlade.class,
+					Dagger.class,
+					Crossbow.class,
+					Sword.class,
 					Blunt.class,
 					Polearm.class,
 					//Heavy.class,
@@ -569,8 +569,9 @@ public class Generator {
 					ChainArmor.class,
 					BasicArmor.class,
 					HeavyArmor.class,
+					IceArmor.class
 			};
-			ARMOR.probs = new float[]{  0, 0, 0, 5, 5, 5, 5 };
+			ARMOR.probs = new float[]{  0, 0, 0, 5, 5, 5, 5, 4 };
 
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{};
@@ -725,28 +726,13 @@ public class Generator {
 	}
 
 	@NotNull
-	public static Armor randomArmor(){
-		return randomArmor(Dungeon.getScaleFactor() / Constants.CHAPTER_LENGTH);
-	}
-
-	@NotNull
-	public static Armor randomArmor(int floorSet) {
-
-		floorSet += (Random.chances(new float[]{1, 3, 3, 2, 1})) - 1;
-		int tier = (int) GameMath.gate(1, floorSet, Constants.MAXIMUM_TIER);
-
+	public static Armor randomArmor() {
 		Armor a = (Armor)Reflection.newInstance(Category.ARMOR.classes[Random.chances(Category.ARMOR.probs)]);
 		a.random();
 		return a;
 	}
 
-	public static MeleeWeapon randomWeapon(){
-		return randomWeapon(Dungeon.getScaleFactor() / Constants.CHAPTER_LENGTH);
-	}
-
-	public static MeleeWeapon randomWeapon(int floorSet) {
-
-		floorSet += (Random.chances(new float[]{1, 3, 3, 2, 1})) - 1;
+	public static MeleeWeapon randomWeapon() {
 		MeleeWeapon w = (MeleeWeapon) Reflection.newInstance(Category.WEAPON.classes[Random.chances( Category.WEAPON.probs )]);
 		w.random();
 		return w;

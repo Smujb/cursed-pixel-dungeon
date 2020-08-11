@@ -28,10 +28,12 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Polearm extends MeleeWeapon {
 
 	{
+		image = ItemSpriteSheet.GLAIVE;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 0.8f;
 

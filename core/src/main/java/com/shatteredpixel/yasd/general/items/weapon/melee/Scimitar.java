@@ -28,19 +28,29 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
 
-public class Fist extends MeleeWeapon {
+public class Scimitar extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.GLOVES;
-		hitSound = Assets.Sounds.HIT_CRUSH;
+		image = ItemSpriteSheet.SCIMITAR;
+		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1.2f;
 
-		DLY = 0.5f; //2x speed
-		
-		bones = false;
+		DLY = 1f;
 
-		damageMultiplier = 0.5f;
+		damageMultiplier = 0.80f;
+	}
+
+	@Override
+	public int proc(Char attacker, Char defender, int damage) {
+		if (Random.Int(3) == 0) {
+			Buff.affect( defender, Bleeding.class ).set( damage/3 );
+		}
+		return super.proc(attacker, defender, damage);
 	}
 }

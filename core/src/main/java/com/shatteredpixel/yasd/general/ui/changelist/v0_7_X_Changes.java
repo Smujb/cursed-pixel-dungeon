@@ -47,7 +47,7 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfLivingEarth;
 import com.shatteredpixel.yasd.general.items.wands.WandOfRegrowth;
 import com.shatteredpixel.yasd.general.items.wands.WandOfTransfusion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.Shuriken;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.Tomahawk;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.darts.Dart;
@@ -789,7 +789,7 @@ public class v0_7_X_Changes {
 				"The ring of force's equipped getWeapons bonus was always meant as a small boost so it wasn't useless if the player already had a better getWeapons. It wasn't intended to be used to both replace melee and then boost thrown weapons.\n" +
 				"_-_ The ring of force no longer gives bonus damage to thrown weapons."));
 		
-		changes.addButton( new ChangeButton( new Fist(),
+		changes.addButton( new ChangeButton( new Glove(),
 				"As furor now works much better with fast weapons, I've taken the opportunity to very slightly nerf sai and gauntlets\n\n" +
 				"_-_ Dual blocking down to 0-2 from 0-3\n" +
 				"_-_ Gauntlet blocking down to 0-4 from 0-5"));

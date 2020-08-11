@@ -96,20 +96,20 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfRegrowth;
 import com.shatteredpixel.yasd.general.items.wands.WandOfTransfusion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Axe;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Basic;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Blunt;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dual;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Fist;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Heavy;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Long;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Magical;
+import com.shatteredpixel.yasd.general.items.weapon.melee.RunicBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Projectile;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Sharp;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Crossbow;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Scimitar;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Shield;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Sneak;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Staff;
 import com.watabou.utils.Bundle;
 
@@ -146,7 +146,7 @@ public enum Catalog {
 	
 	static {
 		//WEAPONS.seen.put( WornShortsword.class,             false);
-		WEAPONS.seen.put( Fist.class,                     false);
+		WEAPONS.seen.put( Glove.class,                     false);
 		//WEAPONS.seen.put( Dagger.class,                     false);
 		WEAPONS.seen.put( MagesStaff.class,                 false);
 		//WEAPONS.seen.put( Boomerang.class,                  false);
@@ -157,20 +157,20 @@ public enum Catalog {
 		//WEAPONS.seen.put( Dirk.class,                       false);
 		//WEAPONS.seen.put( Sword.class,                      false);
 		//WEAPONS.seen.put( Mace.class,                       false);
-		WEAPONS.seen.put( Sharp.class,                   false);
+		WEAPONS.seen.put( Scimitar.class,                   false);
 		//WEAPONS.seen.put( RoundShield.class,                false);
 		WEAPONS.seen.put( Dual.class,                        false);
-		WEAPONS.seen.put( Long.class,                       false);
+		WEAPONS.seen.put( Whip.class,                       false);
 		//WEAPONS.seen.put( Longsword.class,                  false);
 		WEAPONS.seen.put( Axe.class,                  false);
 		WEAPONS.seen.put( Flail.class,                      false);
-		WEAPONS.seen.put( Magical.class,                 false);
-		WEAPONS.seen.put( Sneak.class,             false);
-		WEAPONS.seen.put( Projectile.class,                   false);
-		WEAPONS.seen.put( Basic.class,                 false);
+		WEAPONS.seen.put( RunicBlade.class,                 false);
+		WEAPONS.seen.put( Dagger.class,             false);
+		WEAPONS.seen.put( Crossbow.class,                   false);
+		WEAPONS.seen.put( Sword.class,                 false);
 		WEAPONS.seen.put( Blunt.class,                  false);
 		WEAPONS.seen.put( Polearm.class,                     false);
-		WEAPONS.seen.put( Heavy.class,                   false);
+		WEAPONS.seen.put( Greataxe.class,                   false);
 		WEAPONS.seen.put( Shield.class,                false);
 		//WEAPONS.seen.put( Gauntlet.class,                   false);
 	

@@ -30,7 +30,7 @@ package com.shatteredpixel.yasd.general.sprites;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Projectile;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Crossbow;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.Bolas;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.FishingSpear;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.HeavyBoomerang;
@@ -143,7 +143,7 @@ public class MissileSprite extends ItemSprite implements Tweener.Listener {
 		}
 		
 		float speed = SPEED;
-		if (item instanceof Dart && Dungeon.hero.belongings.getWeapon() instanceof Projectile) {
+		if (item instanceof Dart && Dungeon.hero.belongings.getWeapon() instanceof Crossbow) {
 			speed *= 3f;
 			
 		} else if (item instanceof SpiritBow.SpiritArrow

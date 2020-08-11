@@ -30,14 +30,17 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class Projectile extends MeleeWeapon {
-	
+public class RunicBlade extends MeleeWeapon {
+
 	{
-		image = ItemSpriteSheet.CROSSBOW;
-		hitSound = Assets.Sounds.HIT;
+		image = ItemSpriteSheet.RUNIC_BLADE;
+		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
-		
-		//check Dart.class for additional properties
-		damageMultiplier = 0.75f;
+
+	}
+
+	@Override
+	public int max(float lvl) {
+		return (int) (super.max(lvl*1.5f)*0.7f);
 	}
 }

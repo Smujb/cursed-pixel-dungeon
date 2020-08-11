@@ -30,14 +30,14 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class Sneak extends MeleeWeapon {
-
+public class Crossbow extends MeleeWeapon {
+	
 	{
-		image = ItemSpriteSheet.ASSASSINS_BLADE;
-		hitSound = Assets.Sounds.HIT_STAB;
-		hitSoundPitch = 0.9f;
-
-		damageMultiplier = 0.80f;
-		sneakBenefit = true;
+		image = ItemSpriteSheet.CROSSBOW;
+		hitSound = Assets.Sounds.HIT;
+		hitSoundPitch = 1f;
+		
+		//check Dart.class for additional properties
+		damageMultiplier = 0.75f;
 	}
 }

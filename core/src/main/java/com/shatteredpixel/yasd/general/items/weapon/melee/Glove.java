@@ -30,17 +30,17 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class Magical extends MeleeWeapon {
+public class Glove extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.RUNIC_BLADE;
-		hitSound = Assets.Sounds.HIT_SLASH;
-		hitSoundPitch = 1f;
+		image = ItemSpriteSheet.GLOVES;
+		hitSound = Assets.Sounds.HIT_CRUSH;
+		hitSoundPitch = 1.2f;
 
-	}
+		DLY = 0.5f; //2x speed
+		
+		bones = false;
 
-	@Override
-	public int max(float lvl) {
-		return (int) (super.max(lvl*1.5f)*0.7f);
+		damageMultiplier = 0.5f;
 	}
 }

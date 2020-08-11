@@ -30,11 +30,13 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class Basic extends MeleeWeapon {
+public class Greataxe extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.GREATSWORD;
+		image = ItemSpriteSheet.GREATAXE;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
+
+		damageMultiplier = 1f;
 	}
 }

@@ -28,8 +28,6 @@
 package com.shatteredpixel.yasd.general.levels.rooms.secret;
 
 import com.shatteredpixel.yasd.general.Challenges;
-import com.shatteredpixel.yasd.general.Constants;
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
@@ -104,9 +102,9 @@ public class SecretMazeRoom extends SecretRoom {
 		//1 floor set higher in probability, never cursed
 		do {
 			if (Random.Int(2) == 0) {
-				prize = Generator.randomWeapon((Dungeon.depth / Constants.CHAPTER_LENGTH) + 1);
+				prize = Generator.randomWeapon();
 			} else {
-				prize = Generator.randomArmor((Dungeon.depth / Constants.CHAPTER_LENGTH) + 1);
+				prize = Generator.randomArmor();
 			}
 		} while (prize.cursed || Challenges.isItemBlocked(prize));
 		
