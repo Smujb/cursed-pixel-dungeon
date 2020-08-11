@@ -121,20 +121,16 @@ public class SpiritBow extends Weapon {
 		return info;
 	}
 
-	public int tier() {
-		return Math.min(6, level()/10);
-	}
-
 	@Override
 	public int min(float lvl) {
-		return Math.round(tier() +  //base
-					lvl);    		 //level scaling
+		return  Math.round(1 +  //base
+				lvl);    //level scaling
 	}
 
 	@Override
 	public int max(float lvl) {
-		return Math.round((5*(tier()+1) +    //base
-				lvl*(tier()*2)));   	 //level scaling
+		return (int) ((10 +    //base
+				lvl*3));   //level scaling
 	}
 	
 	private int targetPos;

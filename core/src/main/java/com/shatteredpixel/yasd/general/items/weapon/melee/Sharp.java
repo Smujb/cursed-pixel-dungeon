@@ -31,7 +31,6 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
@@ -42,20 +41,9 @@ public class Sharp extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1.2f;
 
-		tier = 1;
 		DLY = 1f;
 
 		damageMultiplier = 0.80f;
-	}
-
-	@Override
-	public String desc() {
-		return Messages.get(Scimitar.class, "desc");
-	}
-
-	@Override
-	public String name() {
-		return Enchantment.getName(Scimitar.class, enchantment, cursedKnown);
 	}
 
 	@Override
@@ -65,6 +53,4 @@ public class Sharp extends MeleeWeapon {
 		}
 		return super.proc(attacker, defender, damage);
 	}
-
-	private static class Scimitar extends MeleeWeapon {}
 }

@@ -27,40 +27,12 @@
 
 package com.shatteredpixel.yasd.general.items.armor;
 
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class BasicArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_SCALE;
-	}
-
-	@Override
-	public int image() {
-		if (tier < 4) {
-			return ItemSpriteSheet.ARMOR_DISC;
-		} else  {
-			return ItemSpriteSheet.ARMOR_SCALE;
-		}
-	}
-
-	@Override
-	public String desc() {
-		if (tier < 4) {
-			return Messages.get(Disc.class, "desc");
-		} else {
-			return Messages.get(Scale.class, "desc");
-		}
-	}
-
-	@Override
-	public String name() {
-		if (tier < 4) {
-			return Glyph.getName(Disc.class, glyph, cursedKnown);
-		} else  {
-			return Glyph.getName(Scale.class, glyph, cursedKnown);
-		}
 	}
 
 	private static class Disc extends Armor {}

@@ -37,38 +37,7 @@ public class Axe extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 0.9f;
 
-		tier = 1;
 		ACC = 1.33f; //33% boost to accuracy
 		damageMultiplier = 0.80f;
 	}
-
-	@Override
-	public int image() {
-		if (tier < 4) {
-			return ItemSpriteSheet.HAND_AXE;
-		} else {
-			return ItemSpriteSheet.BATTLE_AXE;
-		}
-	}
-
-	@Override
-	public String desc() {
-		if (tier < 4) {
-			return new HandAxe().desc();
-		} else {
-			return new BattleAxe().desc();
-		}
-	}
-
-	@Override
-	public String name() {
-		if (tier < 4) {
-			return Enchantment.getName(HandAxe.class, enchantment, cursedKnown);
-		} else  {
-			return Enchantment.getName(BattleAxe.class, enchantment, cursedKnown);
-		}
-	}
-
-	private static class BattleAxe extends MeleeWeapon {}
-	private static class HandAxe extends MeleeWeapon {}
 }

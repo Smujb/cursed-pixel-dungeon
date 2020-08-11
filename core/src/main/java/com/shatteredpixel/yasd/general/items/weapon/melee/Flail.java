@@ -38,7 +38,6 @@ public class Flail extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 0.8f;
 
-		tier = 4;
 		ACC = 0.8f; //0.8x accuracy
 
 		damageMultiplier = 1.5f;

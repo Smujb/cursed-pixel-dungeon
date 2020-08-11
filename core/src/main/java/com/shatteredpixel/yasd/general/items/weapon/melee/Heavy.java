@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Heavy extends MeleeWeapon {
@@ -38,20 +37,6 @@ public class Heavy extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
 
-		tier = 1;
-
 		damageMultiplier = 1f;
 	}
-
-	@Override
-	public String desc() {
-		return Messages.get(Greataxe.class, "desc");
-	}
-
-	@Override
-	public String name() {
-		return Enchantment.getName(Greataxe.class, enchantment, cursedKnown);
-	}
-
-	private static class Greataxe extends MeleeWeapon {}
 }

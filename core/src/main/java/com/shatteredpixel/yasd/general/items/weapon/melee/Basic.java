@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Basic extends MeleeWeapon {
@@ -37,66 +36,5 @@ public class Basic extends MeleeWeapon {
 		image = ItemSpriteSheet.GREATSWORD;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
-
-		tier=1;
 	}
-
-	@Override
-	public int image() {
-		switch (tier) {
-			case 1:
-				return ItemSpriteSheet.WORN_SHORTSWORD;
-			case 2:
-				return ItemSpriteSheet.SHORTSWORD;
-			case 3:
-				return ItemSpriteSheet.SWORD;
-			case 4:
-				return ItemSpriteSheet.LONGSWORD;
-			case 5: default:
-				return ItemSpriteSheet.GREATSWORD;
-
-		}
-	}
-
-	@Override
-	public String desc() {
-		switch (tier) {
-			case 1:
-				return Messages.get(WornShortsword.class, "desc");
-			case 2:
-				return Messages.get(Shortsword.class, "desc");
-			case 3:
-				return Messages.get(Sword.class, "desc");
-			case 4:
-				return Messages.get(Longsword.class, "desc");
-			case 5: default:
-				return Messages.get(Greatsword.class, "desc");
-
-		}
-	}
-
-	@Override
-	public String name() {
-		switch (tier) {
-			case 1:
-				return Enchantment.getName(WornShortsword.class, enchantment, cursedKnown);
-			case 2:
-				return Enchantment.getName(Shortsword.class, enchantment, cursedKnown);
-			case 3:
-				return Enchantment.getName(Sword.class, enchantment, cursedKnown);
-			case 4:
-				return Enchantment.getName(Longsword.class, enchantment, cursedKnown);
-			case 5: default:
-				return Enchantment.getName(Greatsword.class, enchantment, cursedKnown);
-
-		}
-	}
-
-	//Placeholders for tiers
-	private class WornShortsword extends MeleeWeapon {}
-	private class Shortsword extends MeleeWeapon {}
-	private class Sword extends MeleeWeapon {}
-	private class Longsword extends MeleeWeapon {}
-	private class Greatsword extends MeleeWeapon {}
-
 }

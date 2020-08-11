@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.armor;
 
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class HeavyArmor extends Armor {
@@ -40,36 +39,6 @@ public class HeavyArmor extends Armor {
 		DRfactor = 1.25f;
 		speedFactor = 2/3f;
 	}
-
-	@Override
-	public int image() {
-		if (tier < 4) {
-			return ItemSpriteSheet.ARMOR_PLATE;
-		} else  {
-			return ItemSpriteSheet.ARMOR_BANDED;
-		}
-	}
-
-	@Override
-	public String desc() {
-		if (tier < 4) {
-			return Messages.get(Plate.class, "desc");
-		} else {
-			return Messages.get(Lead.class, "desc");
-		}
-	}
-
-	@Override
-	public String name() {
-		if (tier < 4) {
-			return Glyph.getName(Plate.class, glyph, cursedKnown);
-		} else  {
-			return Glyph.getName(Lead.class, glyph, cursedKnown);
-		}
-	}
-
-	private static class Plate extends Armor {}
-	private static class Lead extends Armor {}
 
 	@Override
 	public int appearance() {

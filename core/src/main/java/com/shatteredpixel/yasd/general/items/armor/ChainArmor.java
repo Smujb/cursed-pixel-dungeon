@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.armor;
 
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class ChainArmor extends Armor {
@@ -42,48 +41,11 @@ public class ChainArmor extends Armor {
 	}
 
 	@Override
-	public int image() {
-		if (tier < 3) {
-			return ItemSpriteSheet.ARMOR_STUDDED;
-		} else if (tier < 5) {
-			return ItemSpriteSheet.ARMOR_RINGMAIL;
-		} else {
-			return ItemSpriteSheet.ARMOR_MAIL;
-		}
-	}
-
-	@Override
-	public String desc() {
-		if (tier < 3) {
-			return Messages.get(Studded.class, "desc");
-		} else if (tier < 5) {
-			return Messages.get(RingMail.class, "desc");
-		} else {
-			return Messages.get(Mail.class, "desc");
-		}
-	}
-
-	@Override
-	public String name() {
-		if (tier < 3) {
-			return Glyph.getName(Studded.class, glyph, cursedKnown);
-		} else if (tier < 5) {
-			return Glyph.getName(RingMail.class, glyph, cursedKnown);
-		} else {
-			return Glyph.getName(Mail.class, glyph, cursedKnown);
-		}
+	public int appearance() {
+		return 3;
 	}
 
 	private static class Studded extends Armor {}
 	private static class RingMail extends Armor {}
 	private static class Mail extends Armor {}
-
-	@Override
-	public int appearance() {
-		if (tier < 3) {
-			return 2;
-		} else {
-			return 3;
-		}
-	}
 }

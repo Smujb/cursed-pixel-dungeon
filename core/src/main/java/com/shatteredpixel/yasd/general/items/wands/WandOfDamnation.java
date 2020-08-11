@@ -55,7 +55,7 @@ public class WandOfDamnation extends Wand {
         if (ch instanceof Mob) {
             enemy = ((Mob)ch);
 
-            float corruptingPower = 3 + level()/2f;
+            float corruptingPower = 3 + power()/2f;
 
             float enemyResist = enemy.corruptionResistance();
 
@@ -73,7 +73,7 @@ public class WandOfDamnation extends Wand {
         Char ch = defender;
         DeferredDeath buff = ch.buff(DeferredDeath.class);
         if (buff != null) {
-            buff.recover(Random.Int(staff.level()*2+2));
+            buff.recover(Random.Int(staff.power()*2+2));
         }
     }
 

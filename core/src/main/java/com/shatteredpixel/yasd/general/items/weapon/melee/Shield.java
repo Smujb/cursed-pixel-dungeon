@@ -29,8 +29,6 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.messages.Messages;
-import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Shield extends MeleeWeapon {
 
@@ -39,36 +37,7 @@ public class Shield extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1f;
 
-		tier = 1;
-
 		damageMultiplier = 0.6f;
-	}
-
-	@Override
-	public int image() {
-		if (tier >= 4) {
-			return ItemSpriteSheet.GREATSHIELD;
-		} else {
-			return ItemSpriteSheet.ROUND_SHIELD;
-		}
-	}
-
-	@Override
-	public String desc() {
-		if (tier >= 4) {
-			return Messages.get(Greatshield.class, "desc");
-		} else {
-			return Messages.get(RoundShield.class, "desc");
-		}
-	}
-
-	@Override
-	public String name() {
-		if (tier >= 4) {
-			return Enchantment.getName(Greatshield.class, enchantment, cursedKnown);
-		} else {
-			return Enchantment.getName(RoundShield.class, enchantment, cursedKnown);
-		}
 	}
 
 	@Override
@@ -77,10 +46,6 @@ public class Shield extends MeleeWeapon {
 	}
 
 	public int defenseFactor() {
-		return Math.round(tier*1.5f + (tier/3f)*level());    //2*tier extra defence, plus tier/2 per level;
+		return Math.round(power()*2);    //2*power extra defense
 	}
-
-	//Placeholders for tiers.
-	private static class Greatshield extends MeleeWeapon {}
-	private static class RoundShield extends MeleeWeapon {}
 }

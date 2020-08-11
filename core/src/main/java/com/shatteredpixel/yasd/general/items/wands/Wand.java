@@ -200,7 +200,7 @@ public abstract class Wand extends KindofMisc {
 	}
 
 	protected void processSoulMark(Char target, int chargesUsed){
-		processSoulMark(target, level(), chargesUsed);
+		processSoulMark(target, power(), chargesUsed);
 	}
 
 	protected static void processSoulMark(Char target, int wandLevel, int chargesUsed){
@@ -328,7 +328,7 @@ public abstract class Wand extends KindofMisc {
 	}
 	
 	public void updateLevel() {
-		maxCharges = Math.min( initialCharges() + level()*chargesScaling(), Constants.WAND_CHARGE_CAP );
+		maxCharges = Math.min( initialCharges() + power()*chargesScaling(), Constants.WAND_CHARGE_CAP );
 		curCharges = Math.min( curCharges, maxCharges );
 	}
 	

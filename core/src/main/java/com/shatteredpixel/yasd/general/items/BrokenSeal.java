@@ -140,7 +140,7 @@ public class BrokenSeal extends Item {
 
 		public synchronized int maxShield() {
 			if (armor != null && armor.isEquipped(target)) {
-				return 1 + armor.tier + armor.level();
+				return 1 + armor.level();
 			} else {
 				return 0;
 			}

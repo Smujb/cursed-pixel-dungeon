@@ -28,14 +28,11 @@
 package com.shatteredpixel.yasd.general.items.spells;
 
 import com.shatteredpixel.yasd.general.Badges;
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -51,17 +48,8 @@ public class MagicalInfusion extends InventorySpell {
 
 	@Override
 	protected void onItemSelected( Item item ) {
-		if (item instanceof MeleeWeapon) {
-			if (((MeleeWeapon) item).tier < Constants.MAXIMUM_TIER) {
-				((MeleeWeapon) item).upgradeTier(1);
-			}
-		} else if (item instanceof Armor) {
-			if (((Armor) item).tier < Constants.MAXIMUM_TIER ) {
-				((Armor) item).upgradeTier(1);
-			}
-		}
 
-		removeUpgrades(item);
+		//removeUpgrades(item);
 
 		GLog.p( Messages.get(this, "infuse", item.name()) );
 

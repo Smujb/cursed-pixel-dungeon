@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.armor;
 
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class LightArmor extends Armor {
@@ -40,48 +39,7 @@ public class LightArmor extends Armor {
 	}
 
 	@Override
-	public int image() {
-		if (tier == 0) {
-			return ItemSpriteSheet.ARMOR_CLOTH;
-		} else if (tier < 4) {
-			return ItemSpriteSheet.ARMOR_HIDE;
-		} else  {
-			return ItemSpriteSheet.ARMOR_LEATHER;
-		}
-	}
-
-	@Override
-	public String desc() {
-		if (tier == 0) {
-			return Messages.get(Cloth.class, "desc");
-		} else if (tier < 4) {
-			return Messages.get(Hide.class, "desc");
-		} else {
-			return Messages.get(Leather.class, "desc");
-		}
-	}
-
-	@Override
-	public String name() {
-		if (tier == 0) {
-			return Glyph.getName(Cloth.class, glyph, cursedKnown);
-		} else if (tier < 4) {
-			return Glyph.getName(Hide.class, glyph, cursedKnown);
-		} else  {
-			return Glyph.getName(Leather.class, glyph, cursedKnown);
-		}
-	}
-
-	private static class Cloth extends Armor {}
-	private static class Leather extends Armor {}
-	private static class Hide extends Armor {}
-
-	@Override
 	public int appearance() {
-		if (tier == 0) {
-			return 1;
-		} else {
-			return 2;
-		}
+		return 2;
 	}
 }

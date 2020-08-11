@@ -81,7 +81,7 @@ public class WandOfWarding extends DamageWand {
 		for (Buff buff : curUser.buffs()){
 			if (buff instanceof Wand.Charger){
 				if (((Charger) buff).wand() instanceof WandOfWarding){
-					maxWardEnergy += 2 + ((Charger) buff).wand().level();
+					maxWardEnergy += 2 + ((Charger) buff).wand().power();
 				}
 			}
 		}
@@ -128,9 +128,9 @@ public class WandOfWarding extends DamageWand {
 		} else if (ch != null){
 			if (ch instanceof Ward){
 				if (wardAvailable) {
-					((Ward) ch).upgrade((int)level());
+					((Ward) ch).upgrade((int)power());
 				} else {
-					((Ward) ch).wandHeal( (int)level() );
+					((Ward) ch).wandHeal( (int)power() );
 				}
 				ch.sprite.emitter().burst(MagicMissile.WardParticle.UP, ((Ward) ch).tier);
 			} else {
@@ -141,7 +141,7 @@ public class WandOfWarding extends DamageWand {
 		} else {
 			Ward ward = Mob.create(Ward.class);
 			ward.pos = target;
-			ward.wandLevel = (int)level();
+			ward.wandLevel = (int)power();
 			GameScene.add(ward, 1f);
 			Dungeon.level.occupyCell(ward);
 			ward.sprite.emitter().burst(MagicMissile.WardParticle.UP, ward.tier);
@@ -167,7 +167,7 @@ public class WandOfWarding extends DamageWand {
 	@Override
 	public void onHit(MagesStaff staff, Char attacker, Char defender, int damage) {
 
-		int level = Math.max( 0, staff.level() );
+		int level = Math.max( 0, staff.power() );
 
 		// lvl 0 - 20%
 		// lvl 1 - 33%
@@ -175,7 +175,7 @@ public class WandOfWarding extends DamageWand {
 		if (Random.Int( level + 5 ) >= 4) {
 			for (Char ch : Actor.chars()){
 				if (ch instanceof Ward){
-					((Ward) ch).wandHeal(staff.level());
+					((Ward) ch).wandHeal(staff.power());
 					ch.sprite.emitter().burst(MagicMissile.WardParticle.UP, ((Ward) ch).tier);
 				}
 			}
@@ -213,7 +213,7 @@ public class WandOfWarding extends DamageWand {
 	@Override
 	public String statsDesc() {
 		if (levelKnown)
-			return Messages.get(this, "stats_desc", level()+2);
+			return Messages.get(this, "stats_desc", power()+2);
 		else
 			return Messages.get(this, "stats_desc", 2);
 	}

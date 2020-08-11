@@ -122,7 +122,7 @@ public class WaterOfTransmutation extends WellWater {
 		Weapon n;
 
 		do {
-			n = Generator.randomWeapon().setTier(w.tier);
+			n = Generator.randomWeapon();
 		} while (Challenges.isItemBlocked(n) || n.getClass() == w.getClass());
 
 		int level = w.level();

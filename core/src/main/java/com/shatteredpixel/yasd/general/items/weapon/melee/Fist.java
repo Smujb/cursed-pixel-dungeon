@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Fist extends MeleeWeapon {
@@ -38,52 +37,10 @@ public class Fist extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1.2f;
 
-		tier = 1;
 		DLY = 0.5f; //2x speed
 		
 		bones = false;
 
 		damageMultiplier = 0.5f;
 	}
-
-	@Override
-	public int image() {
-		if (tier < 3) {
-			return ItemSpriteSheet.GLOVES;
-		} else if (tier < 5) {
-			return ItemSpriteSheet.KNUCKLEDUSTER;
-		} else {
-			return ItemSpriteSheet.GAUNTLETS;
-		}
-	}
-
-	@Override
-	public String desc() {
-		if (tier < 3) {
-			return Messages.get(Gloves.class, "desc");
-		} else if (tier < 5) {
-			return Messages.get(Knuckles.class, "desc");
-		} else {
-			return Messages.get(Gauntlet.class, "desc");
-		}
-	}
-
-	@Override
-	public String name() {
-		if (tier < 3) {
-			return Enchantment.getName(Gloves.class, enchantment, cursedKnown);
-		} else if (tier < 5) {
-			return Enchantment.getName(Knuckles.class, enchantment, cursedKnown);
-		} else {
-			return Enchantment.getName(Gauntlet.class, enchantment, cursedKnown);
-		}
-	}
-
-	//Placeholders for tiers.
-	private static class Gloves extends MeleeWeapon {}
-
-	private static class Knuckles extends MeleeWeapon {}
-
-	private static class Gauntlet extends MeleeWeapon {}
-
 }

@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Magical extends MeleeWeapon {
@@ -38,24 +37,10 @@ public class Magical extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
 
-		tier = 1;
-	}
-
-	@Override
-	public String desc() {
-		return Messages.get(RunicBlade.class, "desc");
-	}
-
-	@Override
-	public String name() {
-		return Enchantment.getName(RunicBlade.class, enchantment, cursedKnown);
 	}
 
 	@Override
 	public int max(float lvl) {
-		return 5*(tier) +
-				Math.round(lvl*(tier*3));
+		return (int) (super.max(lvl*1.5f)*0.7f);
 	}
-
-	private static class RunicBlade extends MeleeWeapon {}
 }

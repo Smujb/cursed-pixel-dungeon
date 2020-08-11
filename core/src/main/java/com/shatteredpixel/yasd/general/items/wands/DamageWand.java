@@ -58,7 +58,7 @@ public abstract class DamageWand extends Wand{
 
 
 	public final int min() {
-		return (int) min(level());
+		return (int) min(power());
 	}
 
 	public abstract float min(float lvl);
@@ -68,7 +68,7 @@ public abstract class DamageWand extends Wand{
 	}
 
 	public final int max(){
-		return (int) max(level());
+		return (int) max(power());
 	}
 
 	public abstract float max(float lvl);
@@ -83,7 +83,7 @@ public abstract class DamageWand extends Wand{
 	}
 
 	public int damageRoll(){
-		return damageRoll(level());
+		return damageRoll(power());
 	}
 
 	public int damageRoll(float lvl){

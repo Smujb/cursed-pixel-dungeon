@@ -118,8 +118,6 @@ public class Armor extends EquipableItem {
 	
 	private BrokenSeal seal;
 	
-	public int tier = 1;
-	
 	private static final int USES_TO_ID = 10;
 	private int usesLeftToID = USES_TO_ID;
 	private float availableUsesToID = USES_TO_ID/2f;
@@ -141,7 +139,6 @@ public class Armor extends EquipableItem {
 		bundle.put( CURSE_INFUSION_BONUS, curseInfusionBonus );
 		bundle.put( SEAL, seal);
 		bundle.put( AUGMENT, augment);
-		bundle.put( TIER, tier );
 	}
 
 	@Override
@@ -160,8 +157,6 @@ public class Armor extends EquipableItem {
 		}
 		
 		augment = bundle.getEnum(AUGMENT, Augment.class);
-
-		tier = bundle.getInt(TIER);
 
 	}
 
@@ -249,23 +244,23 @@ public class Armor extends EquipableItem {
 	}
 
 	public final int DRMax(){
-		return DRMax(level());
+		return DRMax(power());
 	}
 
 	public int DRMax(int lvl){
-		return Math.round(((tier*3) + (tier * lvl)) * DRfactor);
+		return Math.round((5 + lvl * 5) * DRfactor);
 	}
 
 	public final int DRMin(){
-		return DRMin(level());
+		return DRMin(power());
 	}
 
 	public int DRMin(int lvl){
-		return Math.round((tier + lvl) * DRfactor);
+		return Math.round((1 + lvl) * DRfactor);
 	}
 
 	public int DRRoll() {
-		return DRRoll(level());
+		return DRRoll(power());
 	}
 
 	public int DRRoll(int lvl) {
@@ -273,23 +268,23 @@ public class Armor extends EquipableItem {
 	}
 
 	public final int magicalDRMax(){
-		return magicalDRMax(level());
+		return magicalDRMax(power());
 	}
 
 	public int magicalDRMax(float lvl){
-		return Math.round(((tier*3) + lvl*3f) * magicalDRFactor);
+		return Math.round((5 + lvl * 5) * DRfactor);
 	}
 
 	public final int magicalDRMin(){
-		return magicalDRMin(level());
+		return magicalDRMin(power());
 	}
 
 	public int magicalDRMin(float lvl){
-		return Math.round((tier + lvl/2f) * magicalDRFactor);
+		return Math.round((1 + lvl) * magicalDRFactor);
 	}
 
 	public int magicalDRRoll() {
-		return magicalDRRoll(level());
+		return magicalDRRoll(power());
 	}
 
 	public int magicalDRRoll(float lvl) {
@@ -455,11 +450,11 @@ public class Armor extends EquipableItem {
 		String info = desc();
 		
 		if (levelKnown) {
-			info += "\n\n" + Messages.get(Armor.class, "curr_absorb", tier, DRMin(), DRMax(), statReq());
+			info += "\n\n" + Messages.get(Armor.class, "curr_absorb", DRMin(), DRMax(), statReq());
 
 			info += " " + Messages.get(Armor.class, "curr_absorb_magic",  magicalDRMin(), magicalDRMax());
 		} else {
-			info += "\n\n" + Messages.get(Armor.class, "avg_absorb", tier, DRMin(0), DRMax(0), statReq(0));
+			info += "\n\n" + Messages.get(Armor.class, "avg_absorb", DRMin(0), DRMax(0), statReq(0));
 
 			if (magicalDRMax() > 0) {
 				info += " " +  Messages.get(Armor.class, "avg_absorb_magic", magicalDRMin(0), magicalDRMax(0));
@@ -558,7 +553,7 @@ public class Armor extends EquipableItem {
 	public int price() {
 		if (seal != null) return 0;
 
-		int price = 20 * tier;
+		int price = 100;
 		if (hasGoodGlyph()) {
 			price *= 1.5;
 		}
@@ -566,7 +561,7 @@ public class Armor extends EquipableItem {
 			price /= 2;
 		}
 		if (levelKnown && level() > 0) {
-			price *= (level() + 1);
+			price *= (power() + 1);
 		}
 		if (price < 1) {
 			price = 1;
@@ -729,25 +724,5 @@ public class Armor extends EquipableItem {
 			}
 		}
 		
-	}
-	public Armor setTier(int tier) {
-		this.tier = tier;
-		updateTier();
-		return this;
-	}
-
-	public Armor upgradeTier(int tier) {
-		this.tier += tier;
-		updateTier();
-		return this;
-	}
-
-	public Armor degradeTier(int tier) {
-		this.tier -= tier;
-		updateTier();
-		return this;
-	}
-	public void updateTier() {
-
 	}
 }

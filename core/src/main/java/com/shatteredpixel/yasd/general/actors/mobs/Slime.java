@@ -76,7 +76,6 @@ public class Slime extends Mob {
 		MeleeWeapon w = Generator.randomWeapon();
 		w.random();
 		w.level(0);
-		w.setTier(2);
 		return w;
 	}
 

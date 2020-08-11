@@ -355,21 +355,10 @@ public class Belongings implements Iterable<Item> {
 
 	public float affectStealth(float stealth) {
 		Armor CurArmour = armor;
-		//sneakSkill *= CurArmour.stealthMultiplier(ownerID);
 		if (CurArmour != null) {
 			if (CurArmour.hasGlyph(Obfuscation.class, owner)) {
 				stealth += 1 + CurArmour.level() / 3f;
 			}
-			int penalty = CurArmour.tier;
-
-
-			if (owner instanceof Hero) {
-				if (((Hero) owner).heroClass == HeroClass.ROGUE) {
-					penalty /= 2;
-				}
-			}
-			stealth -= penalty;
-
 			stealth *= CurArmour.STE;
 		}
 

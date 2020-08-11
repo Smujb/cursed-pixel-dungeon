@@ -32,4 +32,9 @@ public class ClothArmor extends Armor {
 	{
 		bones = false; //Finding them in bones would be semi-frequent and disappointing.
 	}
+
+	@Override
+	public int appearance() {
+		return 1;
+	}
 }

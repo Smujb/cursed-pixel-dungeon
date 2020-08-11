@@ -168,10 +168,6 @@ public class ScrollOfTransmutation extends InventoryScroll {
 
 
 		n.level(level);
-
-		if (n instanceof MeleeWeapon && w instanceof MeleeWeapon) {
-			((MeleeWeapon) n).setTier(((MeleeWeapon) w).tier);
-		}
 		n.enchantment = w.enchantment;
 		n.curseInfusionBonus = w.curseInfusionBonus;
 		n.levelKnown = w.levelKnown;

@@ -75,9 +75,9 @@ public class WandOfPrismaticLight extends DamageWand {
 		affectMap(beam);
 
 		if (Dungeon.isChallenged(Challenges.DARKNESS)) {
-			Buff.prolong(curUser, Light.class, 2f + level());
+			Buff.prolong(curUser, Light.class, 2f + power());
 		} else {
-			Buff.prolong(curUser, Light.class, 10f + level() * 5);
+			Buff.prolong(curUser, Light.class, 10f + power() * 5);
 		}
 
 		Char ch = Actor.findChar(beam.collisionPos);
@@ -90,18 +90,18 @@ public class WandOfPrismaticLight extends DamageWand {
 	private void affectTarget(Char ch){
 
 		//three in (5+lvl) chance of failing
-		if (Random.Int(5 + level()) >= 3) {
-			Buff.prolong(ch, Blindness.class, 2f + (level() * 0.333f));
+		if (Random.Int(5 + power()) >= 3) {
+			Buff.prolong(ch, Blindness.class, 2f + (power() * 0.333f));
 			ch.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 		}
 
 		if (ch.properties().contains(Char.Property.DEMONIC) || ch.properties().contains(Char.Property.UNDEAD)){
-			ch.sprite.emitter().start( ShadowParticle.UP, 0.05f, 10+level() );
+			ch.sprite.emitter().start( ShadowParticle.UP, 0.05f, 10+power() );
 			Sample.INSTANCE.play(Assets.Sounds.BURNING);
 
 			hit(ch);
 		} else {
-			ch.sprite.centerEmitter().burst( RainbowParticle.BURST, 10+level() );
+			ch.sprite.centerEmitter().burst( RainbowParticle.BURST, 10+power() );
 
 			hit(ch);
 		}
@@ -143,7 +143,7 @@ public class WandOfPrismaticLight extends DamageWand {
 	@Override
 	public void onHit(MagesStaff staff, Char attacker, Char defender, int damage) {
 		//cripples enemy
-		Buff.prolong( defender, Cripple.class, 1f+staff.level());
+		Buff.prolong( defender, Cripple.class, 1f+staff.power());
 	}
 
 	@Override

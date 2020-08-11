@@ -34,7 +34,6 @@ import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -44,8 +43,6 @@ public class MeleeWeapon extends Weapon {
 	{
 		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.EXECUTION));
 	}
-	
-	public int tier;
 
 	public float damageMultiplier = 1f;
 	public float defenseMultiplier = 0f;
@@ -54,14 +51,14 @@ public class MeleeWeapon extends Weapon {
 
 	@Override
 	public int min(float lvl) {
-		return  Math.round(tier +  //base
+		return  Math.round(1 +  //base
 				lvl);    //level scaling
 	}
 
 	@Override
 	public int max(float lvl) {
-		return (int) ((5*(tier+1) +    //base
-				lvl*(tier*2))*damageMultiplier);   //level scaling
+		return (int) ((10 +    //base
+				lvl*5)*damageMultiplier);   //level scaling
 	}
 
 	@Override
@@ -110,9 +107,9 @@ public class MeleeWeapon extends Weapon {
 		String info = desc();
 
 		if (levelKnown) {
-			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_known", tier, augment.damageFactor(min()), augment.damageFactor(max()), statReq());
+			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_known", augment.damageFactor(min()), augment.damageFactor(max()), statReq());
 		} else {
-			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", tier, min(0), max(0), statReq(0));
+			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", min(0), max(0), statReq(0));
 		}
 
 		if (DLY != 1f | ACC != 1f | RCH != 1 | breaksArmor(Dungeon.hero) | !canSurpriseAttack | defenseFactor(Dungeon.hero) > 0 | sneakBenefit) {
@@ -180,7 +177,7 @@ public class MeleeWeapon extends Weapon {
 
 	@Override
 	public int price() {
-		int price = 20 * tier;
+		int price = 100;
 		if (hasGoodEnchant()) {
 			price *= 1.5;
 		}
@@ -188,47 +185,11 @@ public class MeleeWeapon extends Weapon {
 			price /= 2;
 		}
 		if (levelKnown && level() > 0) {
-			price *= (level() + 1);
+			price *= (power() + 1);
 		}
 		if (price < 1) {
 			price = 1;
 		}
 		return price;
-	}
-
-	public MeleeWeapon setTier(int tier) {
-		this.tier = tier;
-		updateTier();
-		return this;
-	}
-
-	public MeleeWeapon upgradeTier(int tier) {
-		this.tier += tier;
-		updateTier();
-		return this;
-	}
-
-	public MeleeWeapon degradeTier(int tier) {
-		this.tier -= tier;
-		updateTier();
-		return this;
-	}
-
-	private void updateTier() {
-
-	}
-
-	public static String TIER = "tier";
-
-	@Override
-	public void storeInBundle(  Bundle bundle) {
-		super.storeInBundle(bundle);
-		bundle.put(TIER, tier);
-	}
-
-	@Override
-	public void restoreFromBundle(  Bundle bundle) {
-		super.restoreFromBundle(bundle);
-		tier = bundle.getInt(TIER);
 	}
 }

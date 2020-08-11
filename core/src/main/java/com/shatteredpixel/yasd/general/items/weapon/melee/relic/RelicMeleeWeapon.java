@@ -29,7 +29,6 @@ import java.util.Arrays;
 
 public abstract class RelicMeleeWeapon extends MeleeWeapon {
     {
-        tier = 1;
         defaultAction = AC_ACTIVATE;
 
         statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.values()));

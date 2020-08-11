@@ -28,8 +28,6 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.messages.Messages;
-import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Dual extends MeleeWeapon {
 
@@ -37,39 +35,8 @@ public class Dual extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_STAB;
 		hitSoundPitch = 1.3f;
 
-		tier = 1;
 		DLY = 0.6f; //fast
 
 		damageMultiplier = 0.5f;
 	}
-
-	@Override
-	public int image() {
-		if (tier >= 4) {
-			return ItemSpriteSheet.KATANA;
-		} else {
-			return ItemSpriteSheet.SAI;
-		}
-	}
-
-	@Override
-	public String desc() {
-		if (tier >= 4) {
-			return Messages.get(Katana.class, "desc");
-		} else {
-			return Messages.get(Sai.class, "desc");
-		}
-	}
-
-	@Override
-	public String name() {
-		if (tier >= 4) {
-			return Enchantment.getName(Katana.class, enchantment, cursedKnown);
-		} else {
-			return Enchantment.getName(Sai.class, enchantment, cursedKnown);
-		}
-	}
-
-	private static class Sai extends MeleeWeapon {}
-	private static class Katana extends MeleeWeapon {}
 }

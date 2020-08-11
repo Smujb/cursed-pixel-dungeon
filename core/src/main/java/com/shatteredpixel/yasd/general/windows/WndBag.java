@@ -54,7 +54,6 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.yasd.general.items.spells.Recycle;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -438,9 +437,9 @@ public class WndBag extends WndTabbed {
 									mode == Mode.TRANMSUTABLE && ScrollOfTransmutation.canTransmute(item) ||
 									mode == Mode.NOT_EQUIPPED && !item.isEquipped(Dungeon.hero) ||
 									mode == Mode.RECYCLABLE && Recycle.isRecyclable(item) ||
-									mode == Mode.ALL ||
-									mode == Mode.INCREASE_TIER && ((item instanceof MeleeWeapon && ((MeleeWeapon) item).tier < Constants.MAXIMUM_TIER && !(item instanceof MagesStaff)) || (item instanceof Armor && ((Armor) item).tier < Constants.MAXIMUM_TIER))
-					);
+									mode == Mode.ALL
+
+							);
 				}
 			} else {
 				bg.color( NORMAL );

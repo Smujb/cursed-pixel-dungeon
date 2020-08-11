@@ -40,7 +40,6 @@ import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -291,9 +290,7 @@ public class Ghost extends NPC {
 					tier = 5;
 				}
 				armor = Generator.randomArmor();
-				armor.setTier(tier);
 				weapon = Generator.randomWeapon();
-				((MeleeWeapon) weapon).setTier(tier);
 
 
 				//50%:+0, 30%:+1, 15%:+2, 5%:+3

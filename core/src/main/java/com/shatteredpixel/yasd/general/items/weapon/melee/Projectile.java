@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Projectile extends MeleeWeapon {
@@ -39,20 +38,6 @@ public class Projectile extends MeleeWeapon {
 		hitSoundPitch = 1f;
 		
 		//check Dart.class for additional properties
-		
-		tier = 1;
 		damageMultiplier = 0.75f;
 	}
-
-	@Override
-	public String desc() {
-		return Messages.get(Crossbow.class, "desc");
-	}
-
-	@Override
-	public String name() {
-		return Enchantment.getName(Crossbow.class, enchantment, cursedKnown);
-	}
-
-	private static class Crossbow extends MeleeWeapon {}
 }

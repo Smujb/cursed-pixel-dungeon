@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Sneak extends MeleeWeapon {
@@ -38,46 +37,7 @@ public class Sneak extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_STAB;
 		hitSoundPitch = 0.9f;
 
-		tier = 1;
 		damageMultiplier = 0.80f;
 		sneakBenefit = true;
 	}
-
-	@Override
-	public int image() {
-		if (tier < 2) {
-			return ItemSpriteSheet.DAGGER;
-		} else if (tier < 3) {
-			return ItemSpriteSheet.DIRK;
-		} else {
-			return ItemSpriteSheet.ASSASSINS_BLADE;
-		}
-	}
-
-	@Override
-	public String desc() {
-		if (tier < 2) {
-			return Messages.get(Dagger.class, "desc");
-		} else if (tier < 3) {
-			return Messages.get(Dirk.class, "desc");
-		} else {
-			return Messages.get(AssassinsBlade.class, "desc");
-		}
-	}
-
-	@Override
-	public String name() {
-		if (tier < 2) {
-			return Enchantment.getName(Dagger.class, enchantment, cursedKnown);
-		} else if (tier < 3) {
-			return Enchantment.getName(Dirk.class, enchantment, cursedKnown);
-		} else {
-			return Enchantment.getName(AssassinsBlade.class, enchantment, cursedKnown);
-		}
-	}
-
-	private static class Dirk extends MeleeWeapon {}
-	private static class Dagger extends MeleeWeapon {}
-	private static class AssassinsBlade extends MeleeWeapon {}
-
 }

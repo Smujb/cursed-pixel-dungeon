@@ -55,11 +55,11 @@ abstract public class KindOfWeapon extends EquipableItem {
 	}
 
 	public int min(){
-		return min(level());
+		return min(power());
 	}
 
 	public int max(){
-		return max(level());
+		return max(power());
 	}
 
 	@Override

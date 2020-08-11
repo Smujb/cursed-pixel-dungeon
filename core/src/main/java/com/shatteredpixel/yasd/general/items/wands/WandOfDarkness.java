@@ -58,7 +58,7 @@ public class WandOfDarkness extends Wand {
 
     @Override
     public void onZap(Ballistica bolt) {
-        float level = level();
+        float level = power();
         int pos = bolt.collisionPos;
         for( int i : PathFinder.NEIGHBOURS9) {
             if (!Dungeon.level.solid(pos + i)) {
@@ -99,8 +99,8 @@ public class WandOfDarkness extends Wand {
         // lvl 0 - 33%
         // lvl 1 - 50%
         // lvl 2 - 60%
-        if (Random.Int( level() + 3 ) >= 2) {
-            Buff.affect( defender, Terror.class, 3 + staff.level() * 2);
+        if (Random.Int( power() + 3 ) >= 2) {
+            Buff.affect( defender, Terror.class, 3 + staff.power() * 2);
         }
     }
 

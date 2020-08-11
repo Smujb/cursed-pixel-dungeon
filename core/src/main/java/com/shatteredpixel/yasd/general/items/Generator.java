@@ -737,21 +737,6 @@ public class Generator {
 
 		Armor a = (Armor)Reflection.newInstance(Category.ARMOR.classes[Random.chances(Category.ARMOR.probs)]);
 		a.random();
-		a.setTier(tier);
-		if (a.tier == 1) {
-			switch (Random.Int(3)) {
-				case 0:
-					a.setTier(2);
-					break;
-				case 2:
-					a.cursed = false;
-					a.inscribe();
-					break;
-				case 3:
-					a.upgrade();
-					break;
-			}
-		}
 		return a;
 	}
 
@@ -762,24 +747,8 @@ public class Generator {
 	public static MeleeWeapon randomWeapon(int floorSet) {
 
 		floorSet += (Random.chances(new float[]{1, 3, 3, 2, 1})) - 1;
-		int tier = (int) GameMath.gate(1, floorSet, Constants.MAXIMUM_TIER);
 		MeleeWeapon w = (MeleeWeapon) Reflection.newInstance(Category.WEAPON.classes[Random.chances( Category.WEAPON.probs )]);
 		w.random();
-		w.setTier(tier);
-		if (w.tier == 1) {
-			switch (Random.Int(3)) {
-				case 0:
-					w.setTier(2);
-					break;
-				case 2:
-					w.cursed = false;
-					w.enchant();
-					break;
-				case 3:
-					w.upgrade();
-					break;
-			}
-		}
 		return w;
 	}
 

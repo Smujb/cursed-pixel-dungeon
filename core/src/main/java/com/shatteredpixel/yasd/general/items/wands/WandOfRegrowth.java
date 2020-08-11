@@ -89,7 +89,7 @@ public class WandOfRegrowth extends Wand {
 		float furrowedChance = overLimit > 0 ? (overLimit / (10f + Dungeon.hero.lvl)) : 0;
 
 		int chrgUsed = chargesPerCast();
-		int grassToPlace = Math.round((3.5f+level()/2f)*chrgUsed);
+		int grassToPlace = Math.round((3.5f+power()/2f)*chrgUsed);
 
 		//ignore cells which can't have anything grow in them.
 		for (Iterator<Integer> i = cells.iterator(); i.hasNext();) {
@@ -117,7 +117,7 @@ public class WandOfRegrowth extends Wand {
 
 		if (chargesPerCast() >= 3){
 			Lotus l = new Lotus();
-			l.setLevel(level());
+			l.setLevel(power());
 			if (cells.contains(target) && Actor.findChar(target) == null){
 				cells.remove((Integer)target);
 				l.pos = target;
@@ -186,12 +186,12 @@ public class WandOfRegrowth extends Wand {
 	}
 
 	private int chargeLimit( int heroLvl ){
-		if (level() >= 10){
+		if (power() >= 10){
 			return Integer.MAX_VALUE;
 		} else {
 			//8 charges at base, plus:
 			//2/3.33/5/7/10/14/20/30/50/110/infinite charges per hero level, based on wand level
-			float lvl = level();
+			float lvl = power();
 			return Math.round(8 + heroLvl * (2+lvl) * (1f + (lvl/(10 - lvl))));
 		}
 	}

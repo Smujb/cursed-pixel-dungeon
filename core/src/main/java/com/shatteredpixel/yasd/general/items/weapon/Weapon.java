@@ -205,7 +205,7 @@ abstract public class Weapon extends KindOfWeapon {
 		int encumbrance = 0;
 		
 		if( owner instanceof Hero ){
-			encumbrance = 0;
+			encumbrance = encumbrance();
 		}
 
 		if (hasEnchant(Wayward.class, owner))
@@ -221,7 +221,7 @@ abstract public class Weapon extends KindOfWeapon {
 
 		int encumbrance = 0;
 		if (owner instanceof Hero) {
-			encumbrance = 0;
+			encumbrance = encumbrance();
 		}
 
 		float DLY = augment.delayFactor(this.DLY);

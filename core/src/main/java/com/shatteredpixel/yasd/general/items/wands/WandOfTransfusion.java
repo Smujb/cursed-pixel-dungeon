@@ -75,21 +75,21 @@ public class WandOfTransfusion extends Wand {
 		if (ch instanceof Mob){
 			
 			processSoulMark(ch, chargesPerCast());
-			int selfDmg = 5 + level()*2;
+			int selfDmg = 5 + power()*2;
 			
 			//this wand does different things depending on the target.
 			
 			//heals/shields an ally or a charmed enemy while damaging self
 			if (ch.alignment == Char.Alignment.ALLY || ch.buff(Charm.class) != null){
 				
-				float healing = selfDmg + level();
+				float healing = selfDmg + power();
 
 				ch.heal((int) healing, true);
 
 			//for enemies...
 			} else {
-				int intLevel = level();
-				int charmDuration = 2 + level()/4;
+				int intLevel = power();
+				int charmDuration = 2 + power()/4;
 				if (ch.properties().contains(Char.Property.UNDEAD)) {
 					//harms the undead
 					ch.damage(Random.NormalIntRange(3 + intLevel/2, 6+intLevel), new Char.DamageSrc(Element.LIGHT, this).ignoreDefense());
@@ -133,7 +133,7 @@ public class WandOfTransfusion extends Wand {
 		// lvl 0 - 10%
 		// lvl 1 - 18%
 		// lvl 2 - 25%
-		if (Random.Int( level() + 10 ) >= 9){
+		if (Random.Int( power() + 10 ) >= 9){
 			//grants a free use of the staff
 			freeCharge = true;
 			GLog.p( Messages.get(this, "charged") );
@@ -145,7 +145,7 @@ public class WandOfTransfusion extends Wand {
 	public String statsDesc() {
 		int selfDMG = Math.round(Dungeon.hero.HT*0.10f);
 		if (levelKnown)
-			return Messages.get(this, "stats_desc", selfDMG, selfDMG + 3*level(), 5+2*level(), 3+level()/2, 6+level());
+			return Messages.get(this, "stats_desc", selfDMG, selfDMG + 3*power(), 5+2*power(), 3+power()/2, 6+power());
 		else
 			return Messages.get(this, "stats_desc", selfDMG, selfDMG, 5, 3, 6);
 	}

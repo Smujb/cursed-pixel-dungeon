@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Long extends MeleeWeapon {
@@ -38,21 +37,8 @@ public class Long extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1.1f;
 
-		tier = 3;
 		RCH = 3;    //lots of extra reach
 
 		damageMultiplier = 0.6f;
 	}
-
-	@Override
-	public String desc() {
-		return Messages.get(Whip.class, "desc");
-	}
-
-	@Override
-	public String name() {
-		return Enchantment.getName(Whip.class, enchantment, cursedKnown);
-	}
-
-	private static class Whip extends MeleeWeapon {}
 }

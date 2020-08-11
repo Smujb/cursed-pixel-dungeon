@@ -29,8 +29,6 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.messages.Messages;
-import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Staff extends MeleeWeapon {
 
@@ -39,43 +37,11 @@ public class Staff extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1f;
 
-		tier = 1;
-
 		damageMultiplier = 0.7f;
 	}
 
 	@Override
-	public int image() {
-		if (tier < 4) {
-			return ItemSpriteSheet.QUARTERSTAFF;
-		} else  {
-			return ItemSpriteSheet.ROD;
-		}
-	}
-
-	@Override
-	public String desc() {
-		if (tier < 4) {
-			return Messages.get(Quarterstaff.class, "desc");
-		} else {
-			return Messages.get(Rod.class, "desc");
-		}
-	}
-
-	@Override
-	public String name() {
-		if (tier < 4) {
-			return Enchantment.getName(Quarterstaff.class, enchantment, cursedKnown);
-		} else  {
-			return Enchantment.getName(Rod.class, enchantment, cursedKnown);
-		}
-	}
-
-	@Override
 	public int defenseFactor( Char owner ) {
-		return 2*tier;	//2*tier extra defence
+		return power()/2;	//2*tier extra defence
 	}
-
-	private static class Rod extends MeleeWeapon {}
-	private static class Quarterstaff extends MeleeWeapon {}
 }

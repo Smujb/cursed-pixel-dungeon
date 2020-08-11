@@ -11,18 +11,7 @@ public class SafeInfusion extends MagicalInfusion {
 
 	@Override
 	protected void removeUpgrades(Item item) {
-		/*int itemStrReq;
-		if (item instanceof Weapon) {
-			itemStrReq = ((Weapon) item).STRReq();
-		} else if (item instanceof Armor) {
-			itemStrReq = ((Armor) item).STRReq();
-		} else {
-			return;
-		}
-		item.level(Math.max(0, str-itemStrReq));
-		if (item.level() > 10) {
-			item.level(10);
-		}*/
+
 	}
 
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {

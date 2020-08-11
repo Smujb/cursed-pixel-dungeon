@@ -135,6 +135,10 @@ public class Item implements Bundlable {
 		return Messages.format(baseText, str);
 	}
 
+	public int power() {
+		return (int) (level * (level/3f));
+	}
+
 	public boolean canTypicallyUse(Char ch) {
 		if (ch instanceof Hero) {
 			for (Hero.HeroStat stat : statScaling) {
@@ -148,7 +152,7 @@ public class Item implements Bundlable {
 	}
 
 	public int statReq(int level) {
-		return level + 1;
+		return level/3 + 1;
 	}
 
 	public final int statReq() {
