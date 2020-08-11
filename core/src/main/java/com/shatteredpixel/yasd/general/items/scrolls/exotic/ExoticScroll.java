@@ -43,6 +43,7 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTerror;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.stones.Runestone;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
@@ -111,7 +112,7 @@ public abstract class ExoticScroll extends Scroll {
 	public void reset() {
 		super.reset();
 		if (handler != null && handler.contains(exoToReg.get(this.getClass()))) {
-			image = handler.image(exoToReg.get(this.getClass())) + 16;
+			image = handler.image(exoToReg.get(this.getClass())) + ItemSpriteSheet.WIDTH;
 			rune = handler.label(exoToReg.get(this.getClass()));
 		}
 	}

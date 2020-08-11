@@ -32,7 +32,7 @@ import com.watabou.noosa.TextureFilm;
 
 public class ItemSpriteSheet {
 
-	private static final int WIDTH = 32;
+	public static final int WIDTH = 32;
 	public static final int SIZE = 16;
 
 	public static TextureFilm film = new TextureFilm( Assets.Sprites.ITEMS, SIZE, SIZE );

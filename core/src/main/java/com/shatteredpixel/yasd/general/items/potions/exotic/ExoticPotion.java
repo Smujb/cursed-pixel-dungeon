@@ -44,6 +44,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfPurity;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMana;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfToxicGas;
 import com.shatteredpixel.yasd.general.plants.Plant;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
@@ -116,7 +117,7 @@ public class ExoticPotion extends Potion {
 	public void reset() {
 		super.reset();
 		if (handler != null && handler.contains(exoToReg.get(this.getClass()))) {
-			image = handler.image(exoToReg.get(this.getClass())) + 16;
+			image = handler.image(exoToReg.get(this.getClass())) + ItemSpriteSheet.WIDTH;
 			color = handler.label(exoToReg.get(this.getClass()));
 		}
 	}
