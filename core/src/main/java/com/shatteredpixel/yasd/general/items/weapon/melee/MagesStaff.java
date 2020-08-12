@@ -47,6 +47,7 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfRegrowth;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
@@ -278,13 +279,13 @@ public class MagesStaff extends MeleeWeapon {
 	}
 
 	@Override
-	public Emitter emitter() {
-		Emitter emitter = super.emitter();
-		if (wand == null) return emitter;
-		emitter.pos(12.5f, 3);
-		emitter.fillTarget = false;
-		emitter.pour(StaffParticleFactory, 0.1f);
-		return emitter;
+	public void setupEmitters(ItemSprite sprite) {
+		super.setupEmitters(sprite);
+		if (wand != null) {
+			Emitter emitter = emitter(sprite);
+			emitter.fillTarget = false;
+			emitter.pour(StaffParticleFactory, 0.1f);
+		}
 	}
 
 	private static final String WAND = "wand";

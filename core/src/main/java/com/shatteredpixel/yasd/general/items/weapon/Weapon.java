@@ -151,12 +151,12 @@ abstract public class Weapon extends KindOfWeapon {
 	}
 
 	@Override
-	public Emitter emitter() {
-		Emitter emitter = super.emitter();
+	public void setupEmitters(ItemSprite sprite) {
+		super.setupEmitters(sprite);
+		Emitter emitter = emitter(sprite);
 		if (enchantment != null && !enchantment.curse() && cursedKnown) {
 			emitter.pour(Speck.factory(Speck.HALO), 0.15f);
 		}
-		return emitter;
 	}
 
 	private static final String USES_LEFT_TO_ID = "uses_left_to_id";

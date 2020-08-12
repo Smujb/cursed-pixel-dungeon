@@ -513,13 +513,19 @@ public class Armor extends EquipableItem {
 	}
 
 	@Override
-	public Emitter emitter() {
-		Emitter emitter = super.emitter();
-		if (seal == null) return emitter;
-		emitter.pos(ItemSpriteSheet.film.width(image)/2f + 2f, ItemSpriteSheet.film.height(image)/3f);
-		emitter.fillTarget = false;
-		emitter.pour(Speck.factory( Speck.RED_LIGHT ), 0.6f);
-		return emitter;
+	public void setupEmitters(ItemSprite sprite) {
+		super.setupEmitters(sprite);
+		Emitter emitter = emitter(sprite);
+		if (glyph != null && !glyph.curse() && cursedKnown) {
+			emitter.pour(Speck.factory(Speck.HALO), 0.15f);
+		}
+
+		if (seal != null) {
+			emitter = emitter(sprite);
+			emitter.pos(ItemSpriteSheet.film.width(image) / 2f + 2f, ItemSpriteSheet.film.height(image) / 3f);
+			emitter.fillTarget = false;
+			emitter.pour(Speck.factory(Speck.RED_LIGHT), 0.6f);
+		}
 	}
 
 	@Override

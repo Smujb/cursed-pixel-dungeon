@@ -50,6 +50,8 @@ import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+
 public class ItemSprite extends MovieClip {
 
 	public static final int SIZE	= 16;
@@ -59,9 +61,8 @@ public class ItemSprite extends MovieClip {
 	public Heap heap;
 	
 	private Glowing glowing;
-	//FIXME: a lot of this emitter functionality isn't very well implemented.
-	//right now I want to ship 0.3.0, but should refactor in the future.
-	protected Emitter emitter;
+
+	public ArrayList<Emitter> emitters = new ArrayList<>();
 	private float phase;
 	private boolean glowUp;
 	
@@ -125,17 +126,22 @@ public class ItemSprite extends MovieClip {
 		dropInterval = 0;
 		
 		heap = null;
-		if (emitter != null) {
-			emitter.killAndErase();
-			emitter = null;
-		}
+		killEmitters();
 	}
 
 	public void visible(boolean value){
 		this.visible = value;
-		if (emitter != null && !visible){
-			emitter.killAndErase();
-			emitter = null;
+		if (!visible) {
+			killEmitters();
+		}
+	}
+
+	protected final void killEmitters() {
+		if (!emitters.isEmpty()) {
+			for (Emitter emitter : emitters.toArray(new Emitter[0])) {
+				emitter.killAndErase();
+				emitters.remove(emitter);
+			}
 		}
 	}
 	
@@ -195,11 +201,8 @@ public class ItemSprite extends MovieClip {
 
 	public ItemSprite view( Item item ){
 		view(item.image(), item.glowing());
-		Emitter emitter = item.emitter();
-		if (emitter != null && parent != null) {
-			emitter.pos( this );
-			parent.add( emitter );
-			this.emitter = emitter;
+		if (parent != null) {
+			item.setupEmitters(this);
 		}
 		return this;
 	}
@@ -231,8 +234,7 @@ public class ItemSprite extends MovieClip {
 	}
 	
 	public ItemSprite view( int image, Glowing glowing ) {
-		if (this.emitter != null) this.emitter.killAndErase();
-		emitter = null;
+		killEmitters();
 		frame( image );
 		glow( glowing );
 		return this;
@@ -256,8 +258,7 @@ public class ItemSprite extends MovieClip {
 	@Override
 	public void kill() {
 		super.kill();
-		if (emitter != null) emitter.killAndErase();
-		emitter = null;
+		killEmitters();
 	}
 
 	private float[] shadowMatrix = new float[16];
@@ -314,8 +315,10 @@ public class ItemSprite extends MovieClip {
 
 		visible = (heap == null || heap.seen);
 
-		if (emitter != null){
-			emitter.visible = visible;
+		for (Emitter emitter : emitters) {
+			if (emitter != null) {
+				emitter.visible = visible;
+			}
 		}
 
 		if (dropInterval > 0){

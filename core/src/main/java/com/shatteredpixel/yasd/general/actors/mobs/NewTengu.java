@@ -62,6 +62,7 @@ import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
+import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.sprites.MissileSprite;
 import com.shatteredpixel.yasd.general.sprites.TenguSprite;
@@ -682,12 +683,12 @@ public class NewTengu extends Mob {
 			}
 
 			@Override
-			public Emitter emitter() {
-				Emitter emitter = new Emitter();
+			public void setupEmitters(ItemSprite sprite) {
+				super.setupEmitters(sprite);
+				Emitter emitter = emitter(sprite);
 				emitter.pos(7.5f, 3.5f);
 				emitter.fillTarget = false;
 				emitter.pour(SmokeParticle.SPEW, 0.05f);
-				return emitter;
 			}
 		}
 	}
@@ -1050,12 +1051,12 @@ public class NewTengu extends Mob {
 			}
 
 			@Override
-			public Emitter emitter() {
-				Emitter emitter = new Emitter();
+			public void setupEmitters(ItemSprite sprite) {
+				super.setupEmitters(sprite);
+				Emitter emitter = emitter(sprite);
 				emitter.pos(5, 5);
 				emitter.fillTarget = false;
 				emitter.pour(SparkParticle.FACTORY, 0.1f);
-				return emitter;
 			}
 		}
 

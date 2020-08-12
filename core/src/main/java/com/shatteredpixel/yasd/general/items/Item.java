@@ -529,12 +529,20 @@ public class Item implements Bundlable {
 		return null;
 	}
 
-	public Emitter emitter() {
+	@NotNull
+	public final Emitter emitter(ItemSprite sprite) {
 		Emitter emitter = new CPDEmitter();
+		emitter.pos( sprite );
+		sprite.parent.add( emitter );
+		sprite.emitters.add(emitter);
+		return emitter;
+	}
+
+	public void setupEmitters(ItemSprite sprite) {
+		Emitter emitter = emitter(sprite);
 		if (cursed && cursedKnown) {
 			emitter.pour(ShadowParticle.CURSE, 0.15f);
 		}
-		return emitter;
 	}
 	
 	public String info() {
