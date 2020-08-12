@@ -371,7 +371,7 @@ public class Armor extends EquipableItem {
 
 		cursed = false;
 
-		if (seal != null && seal.level() == 0) {
+		if (seal != null && seal.level() < seal.upgradeLimit()) {
 			seal.upgrade();
 			return this;
 		}

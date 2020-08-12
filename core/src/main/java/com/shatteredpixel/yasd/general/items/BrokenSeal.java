@@ -76,7 +76,7 @@ public class BrokenSeal extends Item {
 	//scroll of upgrade can be used directly once, same as upgrading armour the seal is affixed to then removing it.
 	@Override
 	public int upgradeLimit() {
-		return 5;
+		return 3;
 	}
 
 
