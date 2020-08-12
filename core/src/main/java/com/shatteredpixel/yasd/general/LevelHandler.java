@@ -37,6 +37,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.TextScene;
 import com.shatteredpixel.yasd.general.ui.GameLog;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.FileUtils;
@@ -54,6 +55,7 @@ public class LevelHandler {
 	public static String key;
 	public static Callback callback;
 
+	private static Exception error = null;
 
 	public static String filename(String key, int slot) {
 		return GamesInProgress.slotFolder(slot) + "/" + key + ".dat";
@@ -71,6 +73,7 @@ public class LevelHandler {
 			Bundle bundle = FileUtils.bundleFromFile(filename(key, save));
 			return (Level) bundle.get(Dungeon.LEVEL);
 		} catch (IOException e) {
+			LevelHandler.error = e;
 			return null;
 		}
 	}
@@ -298,17 +301,23 @@ public class LevelHandler {
 		Mob.clearHeldAllies();
 
 		GameLog.wipe();
-		Level level = getLevel( Dungeon.key, GamesInProgress.curSlot );
 		Dungeon.loadGame( GamesInProgress.curSlot );
+		Level level = getLevel( Dungeon.key, GamesInProgress.curSlot );
 		Dungeon.level = null;
 		Actor.clear();
-		if (Dungeon.key == null) {
-			Dungeon.depth = Statistics.deepestFloor;
-			Dungeon.switchLevel( getLevel(Dungeon.key = Dungeon.keyForDepth()), -1 );
-		} else if (level != null) {
+		if (level != null) {
 			Dungeon.switchLevel( level, Dungeon.hero.pos );
+			GLog.n("1");
 		} else {
-			Dungeon.switchLevel( Dungeon.newLevel(Dungeon.key, true), Dungeon.hero.pos );
+			if (Dungeon.key == null) {
+				Dungeon.key = Dungeon.keyForDepth();
+			}
+			level = Dungeon.newLevel(Dungeon.key, true);
+			Dungeon.switchLevel( level, level.getEntrancePos() );
+			if (error != null) {
+				CPDGame.reportException(error);
+			}
+			GLog.n("3");
 		}
 	}
 }

@@ -133,8 +133,6 @@ public class WndGameInProgress extends Window {
 				
 				Dungeon.hero = null;
 				ActionIndicator.action = null;
-				//InterlevelScene.mode = InterlevelScene.Mode.CONTINUE;
-				//MainGame.switchScene(InterlevelScene.class);
 				LevelHandler.doRestore();
 			}
 		};
