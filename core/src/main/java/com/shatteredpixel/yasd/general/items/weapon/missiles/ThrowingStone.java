@@ -38,8 +38,7 @@ public class ThrowingStone extends MissileWeapon {
 		hitSoundPitch = 1.1f;
 		
 		bones = false;
-		
-		tier = 1;
+
 		baseUses = 5;
 		sticky = false;
 	}

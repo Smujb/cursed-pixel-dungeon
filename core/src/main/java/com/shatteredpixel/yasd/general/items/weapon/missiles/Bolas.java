@@ -40,8 +40,7 @@ public class Bolas extends MissileWeapon {
 		image = ItemSpriteSheet.BOLAS;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1f;
-		
-		tier = 3;
+
 		baseUses = 5;
 		damageMultiplier = 0.6f;
 

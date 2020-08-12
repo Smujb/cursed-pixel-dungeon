@@ -60,7 +60,6 @@ import java.util.HashMap;
 public abstract class TippedDart extends Dart {
 	
 	{
-		tier = 2;
 		
 		//so that slightly more than 1.5x durability is needed for 2 uses
 		baseUses = 0.65f;

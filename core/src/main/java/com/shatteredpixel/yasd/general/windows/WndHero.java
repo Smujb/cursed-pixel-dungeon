@@ -203,24 +203,22 @@ public class WndHero extends WndTabbed {
 			pos = title.bottom() + GAP;
 
 			//Current points to distribute
-			statSlot( Messages.get(this, "points"), hero.DistributionPoints );
+			statSlot( Messages.get(this, "points"), hero.DistributionPoints, hero.DistributionPoints > 0 ? Constants.Colours.PURE_GREEN : Constants.Colours.PURE_WHITE);
 			pos += GAP;
 
 			for (Hero.HeroStat stat : Hero.HeroStat.values()) {
-				statSlot(stat.getName(), hero.getStat(stat));
+				statSlot(stat.getName(), hero.getStat(stat), stat.colour());
 				StatIncreaseButton statBtn = new StatIncreaseButton(stat);
 				add( statBtn );
 				pos += GAP;
 			}
 		}
 
-		private void statSlot(String label, String value ) {
+		private void statSlot( String label, String value, int colour ) {
 
 			RenderedTextBlock txt = PixelScene.renderTextBlock( label, 10 );
 			txt.setPos(0, pos);
-			if (Dungeon.hero.DistributionPoints > 0) {
-				txt.hardlight(Constants.Colours.PURE_GREEN);
-			}
+			txt.hardlight(colour);
 			add( txt );
 
 			txt = PixelScene.renderTextBlock( value, 10 );
@@ -231,8 +229,8 @@ public class WndHero extends WndTabbed {
 			pos += GAP + txt.height();
 		}
 
-		private void statSlot( String label, int value ) {
-			statSlot( label, Integer.toString( value ) );
+		private void statSlot( String label, int value, int colour ) {
+			statSlot( label, Integer.toString( value ), colour );
 		}
 
 		public float height() {

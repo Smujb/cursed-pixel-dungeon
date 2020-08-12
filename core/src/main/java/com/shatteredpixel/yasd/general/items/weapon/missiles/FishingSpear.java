@@ -38,8 +38,6 @@ public class FishingSpear extends MissileWeapon {
 		image = ItemSpriteSheet.FISHING_SPEAR;
 		hitSound = Assets.Sounds.HIT_STAB;
 		hitSoundPitch = 1.1f;
-		
-		tier = 2;
 	}
 	
 	@Override

@@ -46,8 +46,7 @@ public class HeavyBoomerang extends MissileWeapon {
 
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1f;
-		
-		tier = 4;
+
 		sticky = false;
 
 		damageMultiplier = 0.8f;

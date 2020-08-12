@@ -36,8 +36,6 @@ public class ThrowingClub extends MissileWeapon {
 		image = ItemSpriteSheet.THROWING_CLUB;
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1.1f;
-		
-		tier = 2;
 		baseUses = 15;
 		sticky = false;
 		damageMultiplier = 0.8f;

@@ -80,8 +80,13 @@ public class Constants {
 
     public static class Colours {
 
-        public static final int PURE_RED = 0xFF0000;
+        public static final int PURE_RED   = 0xFF0000;
         public static final int PURE_GREEN = 0x00FF00;
-        public static final int PURE_BLUE = 0x0000FF;
+        public static final int PURE_BLUE  = 0x0000FF;
+        public static final int YELLOW     = 0xFFFF00;
+        public static final int PURPLE     = 0xFF00FF;
+        public static final int LIGHT_BLUE = 0x6496FF;
+        public static final int PURE_WHITE = 0xFFFFFF;
+
     }
 }

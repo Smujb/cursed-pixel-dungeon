@@ -43,8 +43,7 @@ public class ThrowingKnife extends MissileWeapon {
 		hitSoundPitch = 1.2f;
 		
 		bones = false;
-		
-		tier = 1;
+
 		baseUses = 5;
 
 		damageMultiplier = 1.2f;

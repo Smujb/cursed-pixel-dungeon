@@ -155,6 +155,21 @@ public class Hero extends Char {
 		public float hpBoost(int curLevel) {
 			return (float) (1f + Math.pow(0.70f, Math.max(1, curLevel)));
 		}
+
+		public int colour() {
+			switch (this) {
+				case EXECUTION: default:
+					return Constants.Colours.PURPLE;
+				case FOCUS:
+					return Constants.Colours.LIGHT_BLUE;
+				case RESILIENCE:
+					return Constants.Colours.PURE_GREEN;
+				case ASSAULT:
+					return Constants.Colours.PURE_RED;
+				case SUPPORT:
+					return Constants.Colours.YELLOW;
+			}
+		}
 	}
 
 	private int execution = 1;

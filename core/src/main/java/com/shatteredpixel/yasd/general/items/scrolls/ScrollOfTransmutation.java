@@ -54,7 +54,6 @@ import com.shatteredpixel.yasd.general.plants.Plant;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
-import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
 public class ScrollOfTransmutation extends InventoryScroll {
@@ -152,15 +151,12 @@ public class ScrollOfTransmutation extends InventoryScroll {
 	private Weapon changeWeapon( Weapon w ) {
 		
 		Weapon n;
-		Generator.Category c;
-		if (w instanceof MeleeWeapon) {
-			c = Generator.Category.WEAPON;
-		} else {
-			c = Generator.misTiers[((MissileWeapon)w).tier - 1];
-		}
-		
 		do {
-			n = (Weapon) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+			if (w instanceof MeleeWeapon) {
+				n = Generator.randomWeapon();
+			} else {
+				n = Generator.randomMissile();
+			}
 		} while (Challenges.isItemBlocked(n) || n.getClass() == w.getClass());
 		
 		int level = w.level();
