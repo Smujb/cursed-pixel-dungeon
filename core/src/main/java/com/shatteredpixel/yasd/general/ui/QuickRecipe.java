@@ -67,12 +67,10 @@ import com.shatteredpixel.yasd.general.items.spells.BeaconOfReturning;
 import com.shatteredpixel.yasd.general.items.spells.CurseInfusion;
 import com.shatteredpixel.yasd.general.items.spells.Degrade;
 import com.shatteredpixel.yasd.general.items.spells.FeatherFall;
-import com.shatteredpixel.yasd.general.items.spells.MagicalInfusion;
 import com.shatteredpixel.yasd.general.items.spells.MagicalPorter;
 import com.shatteredpixel.yasd.general.items.spells.PhaseShift;
 import com.shatteredpixel.yasd.general.items.spells.ReclaimTrap;
 import com.shatteredpixel.yasd.general.items.spells.Recycle;
-import com.shatteredpixel.yasd.general.items.spells.SafeInfusion;
 import com.shatteredpixel.yasd.general.items.spells.SafeUpgrade;
 import com.shatteredpixel.yasd.general.items.spells.WildEnergy;
 import com.shatteredpixel.yasd.general.items.stones.Runestone;
@@ -373,11 +371,9 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new CurseInfusion.Recipe()));
 				result.add(null);
 				result.add(null);
-				result.add(new QuickRecipe(new MagicalInfusion.Recipe()));
 				result.add(new QuickRecipe(new Degrade.Recipe()));
 				result.add(new QuickRecipe(new SafeUpgrade.Recipe()));
 				result.add(new QuickRecipe(new ArcaneInfusion.Recipe()));
-				result.add(new QuickRecipe(new SafeInfusion.Recipe()));
 				return result;
 		}
 	}

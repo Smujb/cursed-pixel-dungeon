@@ -59,12 +59,10 @@ import com.shatteredpixel.yasd.general.items.spells.BeaconOfReturning;
 import com.shatteredpixel.yasd.general.items.spells.CurseInfusion;
 import com.shatteredpixel.yasd.general.items.spells.Degrade;
 import com.shatteredpixel.yasd.general.items.spells.FeatherFall;
-import com.shatteredpixel.yasd.general.items.spells.MagicalInfusion;
 import com.shatteredpixel.yasd.general.items.spells.MagicalPorter;
 import com.shatteredpixel.yasd.general.items.spells.PhaseShift;
 import com.shatteredpixel.yasd.general.items.spells.ReclaimTrap;
 import com.shatteredpixel.yasd.general.items.spells.Recycle;
-import com.shatteredpixel.yasd.general.items.spells.SafeInfusion;
 import com.shatteredpixel.yasd.general.items.spells.SafeUpgrade;
 import com.shatteredpixel.yasd.general.items.spells.WildEnergy;
 import com.watabou.utils.Reflection;
@@ -202,7 +200,6 @@ public abstract class Recipe {
 		new BeaconOfReturning.Recipe(),
 		new CurseInfusion.Recipe(),
 		new FeatherFall.Recipe(),
-		new MagicalInfusion.Recipe(),
 		new MagicalPorter.Recipe(),
 		new PhaseShift.Recipe(),
 		new ReclaimTrap.Recipe(),
@@ -221,8 +218,7 @@ public abstract class Recipe {
 		new ExoticScroll.ScrollToExotic(),
 		new StewedMeat.threeMeat(),
 		new MeatPie.Recipe(),
-		new SafeUpgrade.Recipe(),
-		new SafeInfusion.Recipe()
+		new SafeUpgrade.Recipe()
 	};
 	
 	public static Recipe findRecipe(ArrayList<Item> ingredients){

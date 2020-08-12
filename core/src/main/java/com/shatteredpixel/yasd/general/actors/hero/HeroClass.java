@@ -37,16 +37,7 @@ import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
-import com.shatteredpixel.yasd.general.items.allies.AirDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.DarkDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.EarthenDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.FireDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.GrassDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.IceDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.PoisonDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.StoneDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.VampiricDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
@@ -73,11 +64,11 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRage;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.RunicBlade;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -178,16 +169,6 @@ public enum HeroClass {
 
 	public static void initTest(Hero hero) {
 		new TomeOfMastery().collect();
-		new FireDragonPendant().identify().collect();
-		new WaterDragonPendant().identify().collect();
-		new VampiricDragonPendant().identify().collect();
-		new EarthenDragonPendant().identify().collect();
-		new PoisonDragonPendant().identify().collect();
-		new IceDragonPendant().identify().collect();
-		new StoneDragonPendant().identify().collect();
-		new DarkDragonPendant().identify().collect();
-		new GrassDragonPendant().identify().collect();
-		new AirDragonPendant().identify().collect();
 		new DeveloperItem().collect(hero.belongings.backpack, hero);
 	}
 
@@ -221,7 +202,7 @@ public enum HeroClass {
 		
 		new PotionOfHealing().identify();
 		new ScrollOfRage().identify();
-		hero.setExecution(3);
+		hero.increaseExecution();
 	}
 
 	private static void initMage( Hero hero ) {
@@ -243,7 +224,7 @@ public enum HeroClass {
 		
 		new ScrollOfUpgrade().identify();
 		new PotionOfLiquidFlame().identify();
-		hero.setFocus(3);
+		hero.increaseFocus();
 	}
 
 	private static void initRogue( Hero hero ) {
@@ -263,7 +244,7 @@ public enum HeroClass {
 		
 		new ScrollOfMagicMapping().identify();
 		new PotionOfInvisibility().identify();
-		hero.setAssault(3);
+		hero.increaseAssault();
 	}
 
 	private static void initHuntress( Hero hero ) {
@@ -280,7 +261,7 @@ public enum HeroClass {
 		new PotionOfMindVision().identify();
 		new ScrollOfLullaby().identify();
 
-		hero.setResilience(3);
+		hero.increaseResilience();
 	}
 
 	private static void initPriestess( Hero hero ) {
@@ -295,7 +276,7 @@ public enum HeroClass {
 		new PotionOfMindVision().identify();
 		new ScrollOfLullaby().identify();
 
-		hero.setSupport(3);
+		hero.increaseSupport();
 	}
 	
 	public String title() {
