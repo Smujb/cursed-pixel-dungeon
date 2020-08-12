@@ -159,19 +159,25 @@ public class Item implements Bundlable {
 		return statReq(trueLevel());
 	}
 
-	public int bestHeroStat(Hero hero) {
-		int best = -1;
+	public int bestHeroStatValue(Hero hero) {
+		return hero.getStat(bestHeroStat(hero));
+	}
+
+	public Hero.HeroStat bestHeroStat(Hero hero) {
+		int bestVal = -1;
+		Hero.HeroStat bestStat = null;
 		for (Hero.HeroStat stat : statScaling) {
-			if (hero.getStat(stat) > best) {
-				best = hero.getStat(stat);
+			if (hero.getStat(stat) > bestVal && statScaling.contains(stat)) {
+				bestVal = hero.getStat(stat);
+				bestStat = stat;
 			}
 		}
-		return best;
+		return bestStat;
 	}
 
 	public int encumbrance() {
 		if (curUser instanceof Hero) {
-			return Math.max(0, statReq() - bestHeroStat((Hero) curUser));
+			return Math.max(0, statReq() - bestHeroStatValue((Hero) curUser));
 		}
 		return 0;
 	}

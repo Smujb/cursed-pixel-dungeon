@@ -27,10 +27,10 @@
 
 package com.shatteredpixel.yasd.general.windows;
 
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
-import com.shatteredpixel.yasd.general.ui.ItemSlot;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.shatteredpixel.yasd.general.ui.Window;
 
@@ -75,10 +75,8 @@ public class WndInfoItem extends Window {
 	private void fillFields( Item item ) {
 
 		int color = TITLE_COLOR;
-		if (item.levelKnown && item.level() > 0) {
-			color = ItemSlot.UPGRADED;
-		} else if (item.levelKnown && item.level() < 0) {
-			color = ItemSlot.DEGRADED;
+		if (!item.statScaling.isEmpty()) {
+			color = item.bestHeroStat(Dungeon.hero).colour();
 		}
 
 		IconTitle titlebar = new IconTitle( item );
