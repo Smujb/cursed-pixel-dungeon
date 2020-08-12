@@ -30,21 +30,20 @@ package com.shatteredpixel.yasd.general.items.rings;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class RingOfAttunement extends HeroStatRing {
+public class RingOfResilience extends HeroStatRing {
 
 	{
-		icon = ItemSpriteSheet.Icons.RING_MIGHT;
+		icon = ItemSpriteSheet.Icons.RING_ACCURACY;
 	}
-	
+
 	@Override
 	protected RingBuff buff( ) {
-		return new Attunement();
+		return new ExpertiseBuff();
 	}
 
 	public static int statBonus(Char target) {
-		return statBonus(target, Attunement.class);
+		return statBonus(target, ExpertiseBuff.class);
 	}
 
-	public class Attunement extends RingBuff {
-	}
+	public class ExpertiseBuff extends RingBuff {}
 }

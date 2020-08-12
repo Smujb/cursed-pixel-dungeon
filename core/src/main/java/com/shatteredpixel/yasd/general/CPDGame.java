@@ -28,8 +28,8 @@
 package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.actors.mobs.Brute;
-import com.shatteredpixel.yasd.general.items.rings.RingOfEvasion;
-import com.shatteredpixel.yasd.general.items.rings.RingOfPerception;
+import com.shatteredpixel.yasd.general.items.rings.RingOfAssault;
+import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.levels.chapters.prison.OldPrisonBossLevel;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -87,13 +87,13 @@ public class CPDGame extends Game {
 				com.shatteredpixel.yasd.general.items.stones.StoneOfDisarming.class,
 				"com.shatteredpixel.yasd.general.items.stones.StoneOfDetectCurse" );
 
-		com.watabou.utils.Bundle.addAlias(RingOfEvasion.class,
+		com.watabou.utils.Bundle.addAlias(RingOfAssault.class,
 				"com.shatteredpixel.yasd.general.items.rings.RingOfForce");
 
-		com.watabou.utils.Bundle.addAlias(RingOfPerception.class,
+		com.watabou.utils.Bundle.addAlias(RingOfResilience.class,
 				"com.shatteredpixel.yasd.general.items.rings.RingOfAccuracy");
 
-		com.watabou.utils.Bundle.addAlias(RingOfPerception.class,
+		com.watabou.utils.Bundle.addAlias(RingOfResilience.class,
 				"com.shatteredpixel.yasd.general.items.rings._Unused");
 		
 		com.watabou.utils.Bundle.addAlias(

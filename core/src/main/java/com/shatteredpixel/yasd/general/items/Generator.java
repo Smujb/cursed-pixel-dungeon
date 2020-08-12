@@ -120,14 +120,14 @@ import com.shatteredpixel.yasd.general.items.powers.Surprise;
 import com.shatteredpixel.yasd.general.items.powers.Telekinesis;
 import com.shatteredpixel.yasd.general.items.powers.WaterPump;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
-import com.shatteredpixel.yasd.general.items.rings.RingOfAttunement;
+import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
-import com.shatteredpixel.yasd.general.items.rings.RingOfEvasion;
+import com.shatteredpixel.yasd.general.items.rings.RingOfAssault;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
 import com.shatteredpixel.yasd.general.items.rings.RingOfHaste;
-import com.shatteredpixel.yasd.general.items.rings.RingOfPerception;
-import com.shatteredpixel.yasd.general.items.rings.RingOfPower;
+import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
+import com.shatteredpixel.yasd.general.items.rings.RingOfExecution;
 import com.shatteredpixel.yasd.general.items.rings.RingOfSharpshooting;
 import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
@@ -618,14 +618,14 @@ public class Generator {
 			FOOD.probs = new float[]{4, 1, 0};
 
 			RING.classes = new Class<?>[]{
-					RingOfPerception.class,
-					RingOfAttunement.class,
+					RingOfResilience.class,
+					RingOfSupport.class,
 					RingOfElements.class,
-					RingOfEvasion.class,
+					RingOfAssault.class,
 					RingOfFuror.class,
 					RingOfHaste.class,
 					RingOfFocus.class,
-					RingOfPower.class,
+					RingOfExecution.class,
 					RingOfSharpshooting.class,
 					RingOfTenacity.class,
 					RingOfWealth.class};

@@ -30,7 +30,7 @@ package com.shatteredpixel.yasd.general.items.rings;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class RingOfEvasion extends HeroStatRing {
+public class RingOfAssault extends HeroStatRing {
 
 	{
 		icon = ItemSpriteSheet.Icons.RING_EVASION;

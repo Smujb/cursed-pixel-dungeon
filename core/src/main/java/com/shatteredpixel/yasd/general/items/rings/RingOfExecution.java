@@ -33,7 +33,7 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class RingOfPower extends HeroStatRing {
+public class RingOfExecution extends HeroStatRing {
 
 	{
 		icon = ItemSpriteSheet.Icons.RING_FORCE;

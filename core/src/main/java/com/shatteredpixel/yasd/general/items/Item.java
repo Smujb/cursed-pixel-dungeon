@@ -136,7 +136,7 @@ public class Item implements Bundlable {
 	}
 
 	public int power() {
-		return (int) (level * (level/3f));
+		return (int) (level * (level/4f));
 	}
 
 	public boolean canTypicallyUse(Char ch) {
@@ -152,7 +152,7 @@ public class Item implements Bundlable {
 	}
 
 	public int statReq(int level) {
-		return level/3 + 1;
+		return level/2 + 1;
 	}
 
 	public final int statReq() {

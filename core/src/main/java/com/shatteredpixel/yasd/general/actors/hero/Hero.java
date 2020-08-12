@@ -47,7 +47,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Berserk;
 import com.shatteredpixel.yasd.general.actors.buffs.Bless;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Combo;
-import com.shatteredpixel.yasd.general.actors.buffs.Drunk;
 import com.shatteredpixel.yasd.general.actors.buffs.Focus;
 import com.shatteredpixel.yasd.general.actors.buffs.Foresight;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
@@ -86,12 +85,12 @@ import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
-import com.shatteredpixel.yasd.general.items.rings.RingOfAttunement;
+import com.shatteredpixel.yasd.general.items.rings.RingOfAssault;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
-import com.shatteredpixel.yasd.general.items.rings.RingOfEvasion;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
-import com.shatteredpixel.yasd.general.items.rings.RingOfPerception;
-import com.shatteredpixel.yasd.general.items.rings.RingOfPower;
+import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
+import com.shatteredpixel.yasd.general.items.rings.RingOfExecution;
+import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
@@ -276,15 +275,11 @@ public class Hero extends Char {
 	;
 
 	public int getExecution() {
-		return execution + RingOfPower.statBonus(this);
+		return execution + RingOfExecution.statBonus(this);
 	}
 
 	public int getResilience() {
-		int perception = resilience + RingOfPerception.statBonus(this);
-		if (buff(Drunk.class) != null) {
-			perception /= 2;
-		}
-		return perception;
+		return resilience + RingOfResilience.statBonus(this);
 	}
 
 	public int getFocus() {
@@ -292,15 +287,11 @@ public class Hero extends Char {
 	}
 
 	public int getAssault() {
-		int evasion = assault + RingOfEvasion.statBonus(this);
-		if (buff(Drunk.class) != null) {
-			evasion /= 2;
-		}
-		return evasion;
+		return assault + RingOfAssault.statBonus(this);
 	}
 
 	public int getSupport() {
-		return support + RingOfAttunement.statBonus(this);
+		return support + RingOfSupport.statBonus(this);
 	}
 
 	public void setExecution(int execution) {

@@ -46,6 +46,7 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SpiritBow extends Weapon {
 	
@@ -59,6 +60,8 @@ public class SpiritBow extends Weapon {
 		
 		unique = true;
 		bones = false;
+
+		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.ASSAULT));
 	}
 	
 	public boolean sniperSpecial = false;
