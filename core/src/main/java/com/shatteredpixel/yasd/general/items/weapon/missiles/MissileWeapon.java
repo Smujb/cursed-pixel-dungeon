@@ -76,8 +76,6 @@ abstract public class MissileWeapon extends Weapon {
 	
 	//used to reduce durability from the source weapon stack, rather than the one being thrown.
 	protected MissileWeapon parent;
-	
-	public int tier;
 
 	@Override
 	public boolean breaksArmor(Char owner) {
@@ -363,7 +361,7 @@ abstract public class MissileWeapon extends Weapon {
 	
 	@Override
 	public int price() {
-		return 6 * tier * quantity * (level() + 1);
+		return 20 * quantity * (level() + 1);
 	}
 	
 	private static final String DURABILITY = "durability";
