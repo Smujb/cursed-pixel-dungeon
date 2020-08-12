@@ -37,7 +37,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.TextScene;
 import com.shatteredpixel.yasd.general.ui.GameLog;
-import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.FileUtils;
@@ -307,7 +306,6 @@ public class LevelHandler {
 		Actor.clear();
 		if (level != null) {
 			Dungeon.switchLevel( level, Dungeon.hero.pos );
-			GLog.n("1");
 		} else {
 			if (Dungeon.key == null) {
 				Dungeon.key = Dungeon.keyForDepth();
@@ -317,7 +315,6 @@ public class LevelHandler {
 			if (error != null) {
 				CPDGame.reportException(error);
 			}
-			GLog.n("3");
 		}
 	}
 }
