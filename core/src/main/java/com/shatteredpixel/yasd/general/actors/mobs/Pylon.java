@@ -63,7 +63,7 @@ public class Pylon extends Mob {
 
 		damageFactor = 0.3f;
 
-        properties.add(Property.MINIBOSS);
+		properties.add(Property.MINIBOSS);
 		properties.add(Property.INORGANIC);
 		properties.add(Property.ELECTRIC);
 		properties.add(Property.IMMOVABLE);
@@ -77,6 +77,8 @@ public class Pylon extends Mob {
 	@Override
 	protected boolean act() {
 		spend(TICK);
+
+		GLog.n(alignment.name());
 
 		Heap heap = Dungeon.level.heaps.get( pos );
 		if (heap != null) {
@@ -197,6 +199,7 @@ public class Pylon extends Mob {
 		super.restoreFromBundle(bundle);
 		alignment = bundle.getEnum(ALIGNMENT, Alignment.class);
 		targetNeighbor = bundle.getInt(TARGET_NEIGHBOUR);
+		if (HP <= 0 || HT <= 0) HP = HT = 1;
 	}
 
 	{

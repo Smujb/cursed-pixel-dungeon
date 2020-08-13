@@ -60,7 +60,6 @@ import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -204,7 +203,7 @@ public class Belongings implements Iterable<Item> {
 
 		if (weapon != null) {
 			int wepDr = Random.NormalIntRange(0, weapon.defenseFactor(owner));
-			if (weapon instanceof MeleeWeapon & !weapon.canTypicallyUse(owner)) {
+			if (!weapon.canTypicallyUse(owner)) {
 				wepDr -= 2 * weapon.encumbrance();
 			}
 			if (wepDr > 0) dr += wepDr;

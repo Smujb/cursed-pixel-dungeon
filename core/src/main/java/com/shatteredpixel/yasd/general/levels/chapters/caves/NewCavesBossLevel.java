@@ -206,7 +206,7 @@ public class NewCavesBossLevel extends Level {
 
 			for (int i : pylonPositions) {
 				if (findMob(i) == null) {
-					Pylon pylon = new Pylon();
+					Pylon pylon = Mob.create(Pylon.class, this);
 					pylon.pos = i;
 					mobs.add(pylon);
 				}
