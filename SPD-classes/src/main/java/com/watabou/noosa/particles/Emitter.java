@@ -58,11 +58,16 @@ public class Emitter extends Group {
 	
 	protected Factory factory;
 	
-	public void pos( float x, float y ) {
+	public final void pos( float x, float y ) {
 		pos( x, y, 0, 0 );
 	}
+
+	public void move( float x, float y ) {
+		this.x += x;
+		this.y += y;
+	}
 	
-	public void pos( PointF p ) {
+	public final void pos( PointF p ) {
 		pos( p.x, p.y, 0, 0 );
 	}
 	

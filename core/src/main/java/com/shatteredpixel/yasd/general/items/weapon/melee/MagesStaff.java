@@ -284,6 +284,7 @@ public class MagesStaff extends MeleeWeapon {
 		if (wand != null) {
 			Emitter emitter = emitter(sprite);
 			emitter.fillTarget = false;
+			emitter.move(12.5f, 3);
 			emitter.pour(StaffParticleFactory, 0.1f);
 		}
 	}
