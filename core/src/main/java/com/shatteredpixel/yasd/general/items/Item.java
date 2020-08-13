@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.items;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
+import com.shatteredpixel.yasd.general.Difficulty;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -135,12 +136,20 @@ public class Item implements Bundlable {
 		return Messages.format(baseText, str);
 	}
 
-	public static int calcPower(int level) {
-		return (int) Math.pow(1.2f, level);
+	public static int calcItemPower(int level) {
+		return calcMobPower(level, null);
+	}
+
+	public static int calcMobPower(int level, Difficulty difficulty) {
+		float factor = 1.2f;
+		if (difficulty != null) {
+			factor = difficulty.mobScalingPower();
+		}
+		return (int) Math.pow(factor, level);
 	}
 
 	public int power() {
-		return calcPower(level());
+		return calcItemPower(level());
 	}
 
 	public boolean canTypicallyUse(Char ch) {

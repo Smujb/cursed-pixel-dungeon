@@ -199,7 +199,6 @@ public abstract class Mob extends Char {
 	@Override
 	public void updateHT(boolean boostHP) {
 		HP = HT = (int) (normalHP(level) * healthFactor);
-		HP = HT *= Dungeon.difficulty.mobHealthFactor();
 		//Bosses (obviously) have higher HP
 		if (properties().contains(Property.BOSS)) {
 			HP = HT *= 5;
@@ -209,7 +208,7 @@ public abstract class Mob extends Char {
 	}
 
 	private int normalHP(int level) {
-		return 12 * Item.calcPower(level);
+		return 12 * Item.calcItemPower(level);
 	}
 
 	public static final float FACTOR = 0.8f;
@@ -235,11 +234,11 @@ public abstract class Mob extends Char {
 	}
 
 	protected final int normalMax(int level) {
-		return Item.calcPower(level) * 8;
+		return Item.calcItemPower(level) * 8;
 	}
 
 	protected final int normalMin(int level) {
-		return Item.calcPower(level);
+		return Item.calcItemPower(level);
 	}
 
 	private int normalDRRoll(int level) {
@@ -247,11 +246,11 @@ public abstract class Mob extends Char {
 	}
 
 	protected final int normalMaxDR(int level) {
-		return Item.calcPower(level);
+		return Item.calcItemPower(level);
 	}
 
 	protected final int normalMinDR(int level) {
-		return Item.calcPower(level)/4;
+		return Item.calcItemPower(level)/4;
 	}
 
 	int findClosest(Char enemy, int pos) {

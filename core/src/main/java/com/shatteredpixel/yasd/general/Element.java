@@ -197,10 +197,6 @@ public enum Element {
 				Buff.affect(defender, Poison.class).set(2 + Dungeon.getScaleFactor() / 3f);
 				break;
 		}
-
-		if (attacker.alignment == Char.Alignment.ENEMY) {
-			damage *= Dungeon.difficulty.mobDamageFactor();
-		}
 		return damage;
 	}
 
