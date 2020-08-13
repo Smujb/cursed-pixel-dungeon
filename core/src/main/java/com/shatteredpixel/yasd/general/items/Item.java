@@ -135,8 +135,12 @@ public class Item implements Bundlable {
 		return Messages.format(baseText, str);
 	}
 
+	public static int calcPower(int level) {
+		return (int) Math.pow(1.2f, level);
+	}
+
 	public int power() {
-		return (int) (level * (level/4f));
+		return calcPower(level());
 	}
 
 	public boolean canTypicallyUse(Char ch) {

@@ -211,7 +211,7 @@ public abstract class Mob extends Char {
 	}
 
 	private int normalHP(int level) {
-		return 15 * level;
+		return 12 * Item.calcPower(level);
 	}
 
 	public static final float FACTOR = 0.8f;
@@ -233,16 +233,15 @@ public abstract class Mob extends Char {
 	}
 
 	private int normalDamageRoll(int level) {
-
 		return Random.NormalIntRange(normalMin(level), normalMax(level));
 	}
 
 	protected final int normalMax(int level) {
-		return 1 + level * 8;
+		return Item.calcPower(level) * 8;
 	}
 
 	protected final int normalMin(int level) {
-		return 1 + level;
+		return Item.calcPower(level);
 	}
 
 	private int normalDRRoll(int level) {
@@ -250,11 +249,11 @@ public abstract class Mob extends Char {
 	}
 
 	protected final int normalMaxDR(int level) {
-		return 1 + (int) (level*2/3f);
+		return Item.calcPower(level);
 	}
 
 	protected final int normalMinDR(int level) {
-		return level/3;
+		return Item.calcPower(level)/4;
 	}
 
 	int findClosest(Char enemy, int pos) {
