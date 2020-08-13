@@ -44,7 +44,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Amok;
 import com.shatteredpixel.yasd.general.actors.buffs.Awareness;
 import com.shatteredpixel.yasd.general.actors.buffs.Barkskin;
 import com.shatteredpixel.yasd.general.actors.buffs.Berserk;
-import com.shatteredpixel.yasd.general.actors.buffs.Bless;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Combo;
 import com.shatteredpixel.yasd.general.actors.buffs.Focus;
@@ -87,9 +86,9 @@ import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.rings.RingOfAssault;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
+import com.shatteredpixel.yasd.general.items.rings.RingOfExecution;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
 import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
-import com.shatteredpixel.yasd.general.items.rings.RingOfExecution;
 import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
@@ -1390,25 +1389,14 @@ public class Hero extends Char {
 		boolean levelUp = false;
 		while (this.exp >= maxExp()) {
 			this.exp -= maxExp();
-			if (lvl < Constants.HERO_EXP_CAP) {
-				lvl++;
-				levelUp = true;
+			lvl++;
+			levelUp = true;
 
-				if (buff(ElixirOfMight.HTBoost.class) != null) {
-					buff(ElixirOfMight.HTBoost.class).onLevelUp();
-				}
-
-				updateHT(true);
-
-			} else {
-				Buff.prolong(this, Bless.class, Bless.DURATION);
-				this.exp = 0;
-
-				GLog.newLine();
-				GLog.p(Messages.get(this, "level_cap"));
-				Sample.INSTANCE.play(Assets.Sounds.LEVELUP);
+			if (buff(ElixirOfMight.HTBoost.class) != null) {
+				buff(ElixirOfMight.HTBoost.class).onLevelUp();
 			}
 
+			updateHT(true);
 		}
 
 		if (levelUp) {

@@ -65,9 +65,8 @@ public class Succubus extends Mob {
 		viewDistance = Light.DISTANCE;
 		
 		EXP = 12;
-		maxLvl = 25;
 
-		loot = Generator.Category.SCROLL;
+        loot = Generator.Category.SCROLL;
 		lootChance = 0.33f;
 
 		properties.add(Property.DEMONIC);

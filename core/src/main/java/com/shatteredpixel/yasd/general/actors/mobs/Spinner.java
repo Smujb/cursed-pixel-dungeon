@@ -54,9 +54,8 @@ public class Spinner extends Mob {
 		healthFactor = 0.6f;
 
 		EXP = 9;
-		maxLvl = 17;
 
-		loot = Reflection.newInstance(MysteryMeat.class);
+        loot = Reflection.newInstance(MysteryMeat.class);
 		lootChance = 0.125f;
 
 		FLEEING = new  Fleeing();

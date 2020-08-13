@@ -46,9 +46,8 @@ public class DM100 extends Mob {
 		shotType = Ballistica.MAGIC_BOLT;
 		
 		EXP = 6;
-		maxLvl = 14;
-		
-		loot = Generator.Category.SCROLL;
+
+        loot = Generator.Category.SCROLL;
 		lootChance = 0.25f;
 		
 		properties.add(Property.ELECTRIC);

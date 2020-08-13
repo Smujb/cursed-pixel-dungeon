@@ -74,8 +74,7 @@ public class PrisonLevel extends RegularLevel {
 		color2 = 0x88924c;
 
 		minScaleFactor = 7;
-		maxScaleFactor = 12;
-	}
+    }
 	
 	@Override
 	protected ArrayList<Room> initRooms() {

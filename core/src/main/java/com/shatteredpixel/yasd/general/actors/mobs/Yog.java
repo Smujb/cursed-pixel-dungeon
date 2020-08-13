@@ -315,9 +315,8 @@ public class Yog extends Boss {
 			damageFactor = 2f;
 			
 			EXP = 0;
-			maxLvl = -2;
-			
-			state = HUNTING;
+
+            state = HUNTING;
 
 			properties.add(Property.DEMONIC);
 		}

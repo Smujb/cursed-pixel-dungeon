@@ -258,8 +258,7 @@ public class TestBoss extends Mob {
 			defenseSkill = 1000;
 
 			EXP = 0;
-			maxLvl = -2;
-			state = PASSIVE;
+            state = PASSIVE;
 			properties.add(Property.IMMOVABLE);
 		}
 

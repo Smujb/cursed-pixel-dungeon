@@ -73,8 +73,7 @@ public class CityLevel extends RegularLevel {
 		color2 = 0xf2f2f2;
 
 		minScaleFactor = 19;
-		maxScaleFactor = 24;
-	}
+    }
 	
 	@Override
 	protected int standardRooms() {

@@ -484,9 +484,8 @@ public class YogDzewa extends Boss {
 			viewDistance = Light.DISTANCE;
 
 			EXP = 5;
-			maxLvl = -2;
 
-			properties.add(Property.DEMONIC);
+            properties.add(Property.DEMONIC);
 		}
 
 	}

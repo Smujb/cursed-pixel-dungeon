@@ -223,7 +223,7 @@ public class WandOfCorruption extends Wand {
 				if (enemy.alignment == Char.Alignment.ENEMY){
 					mob.rollToDropLoot();
 				}
-				if (mob.EXP > 0 && hero.lvl <= mob.maxLvl) {
+				if (mob.EXP > 0) {
 					hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(enemy, "exp", mob.EXP));
 					hero.earnExp(mob.EXP, enemy.getClass());
 				} else {

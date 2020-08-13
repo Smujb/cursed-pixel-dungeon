@@ -81,8 +81,7 @@ public class HallsLevel extends RegularLevel {
 		color2 = 0xa68521;
 
 		minScaleFactor = 25;
-		maxScaleFactor = 30;
-	}
+    }
 
 	@Override
 	protected ArrayList<Room> initRooms() {

@@ -60,9 +60,8 @@ public class RipperDemon extends Mob {
 		attackDelay = 0.5f;
 
 		EXP = 9; //for corrupting
-		maxLvl = -2;
 
-		HUNTING = new Hunting();
+        HUNTING = new Hunting();
 
 		baseSpeed = 1f;
 		properties.add(Property.DEMONIC);

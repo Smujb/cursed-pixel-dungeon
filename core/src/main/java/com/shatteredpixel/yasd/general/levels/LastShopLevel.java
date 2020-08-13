@@ -59,8 +59,7 @@ public class LastShopLevel extends RegularLevel {
 		color2 = 0xf2f2f2;
 
 		minScaleFactor = 20;
-		maxScaleFactor = 22;
-	}
+    }
 
 	@Override
 	public String tilesTex() {

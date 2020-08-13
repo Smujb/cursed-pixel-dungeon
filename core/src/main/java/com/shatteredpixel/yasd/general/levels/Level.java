@@ -131,7 +131,6 @@ import com.watabou.noosa.Group;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.GameMath;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
@@ -181,8 +180,6 @@ public abstract class Level implements Bundlable {
 
 	private Class lastMob = null;
 
-	public boolean hasExit = true;
-	public boolean hasEntrance = true;
 	public boolean bossLevel = false;
 
 	public String key;
@@ -201,8 +198,8 @@ public abstract class Level implements Bundlable {
 	public boolean[] heroFOV;
 
 	protected int minScaleFactor = 0;
-	protected int maxScaleFactor = -1;
-	//By default, scales with hero level and has max and min defined within the individual levels. -1 max gives no limit.
+
+	//By default, scales with hero level and has min value defined within the individual levels.
 	public int getScaleFactor() {
 		int level;
 		if (Dungeon.hero != null) {
@@ -210,11 +207,7 @@ public abstract class Level implements Bundlable {
 		} else {
 			level = 1;
 		}
-		if (maxScaleFactor == -1) {
-			return Math.max(minScaleFactor, level);
-		} else {
-			return (int) GameMath.gate(minScaleFactor, level, maxScaleFactor);
-		}
+		return Math.max(minScaleFactor, level);
 	}
 
 	public ArrayList<Integer> getTileLocations(Terrain terrain) {

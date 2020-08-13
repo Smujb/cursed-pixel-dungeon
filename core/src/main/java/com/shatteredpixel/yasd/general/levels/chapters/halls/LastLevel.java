@@ -61,10 +61,8 @@ public class LastLevel extends Level {
 		color2 = 0xa68521;
 
 		minScaleFactor = 25;
-		maxScaleFactor = -1;
 
-		viewDistance = Math.min(4, viewDistance);
-		hasExit = false;
+        viewDistance = Math.min(4, viewDistance);
 	}
 
 	@Override

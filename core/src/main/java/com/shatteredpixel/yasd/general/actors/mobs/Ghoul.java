@@ -53,9 +53,8 @@ public class Ghoul extends Mob {
 		damageFactor = 0.8f;
 
 		EXP = 5;
-		maxLvl = 20;
 
-		SLEEPING = new Sleeping();
+        SLEEPING = new Sleeping();
 		WANDERING = new Wandering();
 		state = SLEEPING;
 

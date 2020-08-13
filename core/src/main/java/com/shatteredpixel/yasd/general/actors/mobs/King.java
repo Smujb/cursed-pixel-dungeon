@@ -255,9 +255,8 @@ public class King extends Boss {
 			damageFactor = 0.75f;
 			//HP = HT = 28;
 			//defenseSkill = 15;
-			
-			maxLvl = -2;
-			EXP = 0;
+
+            EXP = 0;
 			
 			state = WANDERING;
 

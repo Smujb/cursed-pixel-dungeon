@@ -54,9 +54,8 @@ public class Scorpio extends Mob {
 		hasMeleeAttack = false;
 		
 		EXP = 14;
-		maxLvl = 25;
 
-		baseSpeed = 0.8f;
+        baseSpeed = 0.8f;
 
 		loot = Generator.Category.POTION;
 		lootChance = 0.5f;

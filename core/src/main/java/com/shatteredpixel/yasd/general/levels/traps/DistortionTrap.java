@@ -143,8 +143,6 @@ public class DistortionTrap extends Trap{
 			if (Char.canOccupy(mob, Dungeon.level, pos)){
 				continue;
 			}
-
-			mob.maxLvl = Constants.HERO_EXP_CAP;
 			mob.state = mob.WANDERING;
 			mob.pos = point;
 			GameScene.add(mob, DELAY);

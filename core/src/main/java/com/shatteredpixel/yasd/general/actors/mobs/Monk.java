@@ -46,9 +46,8 @@ public class Monk extends Mob {
 		attackDelay = 0.5f;
 
 		EXP = 11;
-		maxLvl = 21;
 
-		loot = new Food();
+        loot = new Food();
 		lootChance = 0.083f;
 
 		properties.add(Property.UNDEAD);

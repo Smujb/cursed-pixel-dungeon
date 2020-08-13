@@ -48,9 +48,8 @@ public class Slime extends Mob {
 		damageFactor = 2/3f;
 		
 		EXP = 4;
-		maxLvl = 9;
 
-		lootChance = 0.2f; //by default, see rollToDropLoot()
+        lootChance = 0.2f; //by default, see rollToDropLoot()
 	}
 	
 	@Override
