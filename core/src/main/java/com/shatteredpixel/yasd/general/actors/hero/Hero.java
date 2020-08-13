@@ -492,13 +492,13 @@ public class Hero extends Char {
 
 	@Override
 	public float sneakSkill(Char enemy) {
-		sneakSkill = 9 + getExecution();
+		sneakSkill = 9 + (int) (lvl * Mob.FACTOR) + getExecution();
 		return super.sneakSkill(enemy);
 	}
 
 	@Override
 	public float noticeSkill(Char enemy) {
-		noticeSkill = 4 + getAssault();
+		noticeSkill = 4 + (int) (lvl * Mob.FACTOR) + getAssault();
 		return super.noticeSkill(enemy);
 	}
 
@@ -573,13 +573,13 @@ public class Hero extends Char {
 
 	@Override
 	public int attackSkill(Char target) {
-		attackSkill = 9 + getResilience();
+		attackSkill = 9 + (int) (lvl * Mob.FACTOR) + getResilience();
 		return super.attackSkill(target);
 	}
 
 	@Override
 	public int defenseSkill(Char enemy) {
-		defenseSkill = 3 + getSupport();
+		defenseSkill = 3 + (int) (lvl * Mob.FACTOR) + getSupport();
 		return super.defenseSkill(enemy);
 	}
 
