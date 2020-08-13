@@ -188,7 +188,7 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 	}
 	
 	public static int particles(){
-		return getInt( KEY_PARTICLES, 1, 0, 6);
+		return getInt( KEY_PARTICLES, 1, 1, 6);
 	}
 	
 	public static void flipToolbar( boolean value) {

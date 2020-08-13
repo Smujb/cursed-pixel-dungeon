@@ -230,7 +230,7 @@ public class WndSettings extends WndTabbed {
 			chkInterlevelScene.checked(CPDSettings.fastInterlevelScene());
 			add(chkInterlevelScene);
 
-			OptionSlider particles = new OptionSlider(Messages.get(this, "particles"), "0", "6", 0, 6) {
+			OptionSlider particles = new OptionSlider(Messages.get(this, "particles"), "1", "6", 1, 6) {
 				@Override
 				protected void onChange() {
 					CPDSettings.particles(getSelectedValue());
