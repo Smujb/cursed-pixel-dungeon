@@ -90,8 +90,8 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public int max(float lvl) {
-		return (int) ((10 +    //base
-				lvl*5)*damageMultiplier);   //level scaling
+		return (int) ((20 +    //base
+				lvl*10)*damageMultiplier);   //level scaling
 	}
 
 	@Override
