@@ -238,7 +238,7 @@ public abstract class Mob extends Char {
 	}
 
 	protected final int normalMax(int level) {
-		return 4 + level * 5;
+		return 3 + level * 7;
 	}
 
 	protected final int normalMin(int level) {
