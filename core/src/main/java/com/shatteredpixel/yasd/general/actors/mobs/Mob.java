@@ -208,7 +208,7 @@ public abstract class Mob extends Char {
 	}
 
 	private int normalHP(int level) {
-		return 12 * Item.calcItemPower(level);
+		return 15 * Item.calcItemPower(level);
 	}
 
 	public static final float FACTOR = 0.8f;
