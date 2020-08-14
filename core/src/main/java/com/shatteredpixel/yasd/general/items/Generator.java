@@ -571,7 +571,7 @@ public class Generator {
 					HeavyArmor.class,
 					IceArmor.class
 			};
-			ARMOR.probs = new float[]{  0, 0, 0, 5, 5, 5, 5, 4 };
+			ARMOR.probs = new float[]{  0, 0, 0, 5, 5, 5, 5, 0 };
 
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{};
