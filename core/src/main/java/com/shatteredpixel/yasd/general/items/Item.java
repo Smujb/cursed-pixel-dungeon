@@ -141,7 +141,7 @@ public class Item implements Bundlable {
 	}
 
 	public static int calcMobPower(int level, Difficulty difficulty) {
-		float factor = 1.2f;
+		float factor = 1.1f;
 		if (difficulty != null) {
 			factor = difficulty.mobScalingPower();
 		}
