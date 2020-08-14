@@ -78,8 +78,6 @@ public class Pylon extends Mob {
 	protected boolean act() {
 		spend(TICK);
 
-		GLog.n(alignment.name());
-
 		Heap heap = Dungeon.level.heaps.get( pos );
 		if (heap != null) {
 			int n;

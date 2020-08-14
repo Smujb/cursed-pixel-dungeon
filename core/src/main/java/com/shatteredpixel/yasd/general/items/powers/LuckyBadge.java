@@ -63,7 +63,7 @@ public class LuckyBadge extends Power {
 	private static String SCORE = "score";
 	private static String SCORE_BEATEN = "score_beaten";
 
-	public static float mobLevelFactor = 1f;
+	public static float mobLevelBoost = 1f;
 	public static float mobSpawnFactor = 1f;
 	public static int score = 0;
 	public static boolean scoreBeaten = false;
@@ -187,7 +187,7 @@ public class LuckyBadge extends Power {
 		bundle.put(RETURN_POS, returnPos);
 		bundle.put(RETURN_DEPTH, returnDepth);
 		bundle.put(SCORE, score);
-		bundle.put(MOB_LEVEL_FACTOR, mobLevelFactor);
+		bundle.put(MOB_LEVEL_FACTOR, mobLevelBoost);
 		bundle.put(MOB_SPAWN_FACTOR, mobSpawnFactor);
 		bundle.put(SCORE_BEATEN, scoreBeaten);
 	}
@@ -199,7 +199,7 @@ public class LuckyBadge extends Power {
 		returnPos = bundle.getInt(RETURN_POS);
 		returnDepth = bundle.getInt(RETURN_DEPTH);
 		score = bundle.getInt(SCORE);
-		mobLevelFactor = bundle.getFloat(MOB_LEVEL_FACTOR);
+		mobLevelBoost = bundle.getFloat(MOB_LEVEL_FACTOR);
 		mobSpawnFactor = bundle.getFloat(MOB_SPAWN_FACTOR);
 		scoreBeaten = bundle.getBoolean(SCORE_BEATEN);
 	}
@@ -367,18 +367,18 @@ public class LuckyBadge extends Power {
 
 			pos = message.bottom() + GAP;
 
-			if (mobLevelFactor > 3) {
-				mobLevelFactor = 3;
+			if (mobLevelBoost > 5) {
+				mobLevelBoost = 5;
 			}
 
 			OptionSlider powerSlider = new OptionSlider(Messages.get(this, "choose_power"),
-					"1x", "3x", 1, 3) {
+					"-1", "+5", -1, 5) {
 				@Override
 				protected void onChange() {
-					mobLevelFactor = getSelectedValue();
+					mobLevelBoost = getSelectedValue();
 				}
 			};
-			powerSlider.setSelectedValue((int) mobLevelFactor);
+			powerSlider.setSelectedValue((int) mobLevelBoost);
 			powerSlider.setRect(0, pos, WIDTH, BTN_HEIGHT);
 			add(powerSlider);
 
