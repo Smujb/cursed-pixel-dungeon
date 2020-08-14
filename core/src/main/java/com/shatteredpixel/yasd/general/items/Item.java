@@ -140,6 +140,10 @@ public class Item implements Bundlable {
 		return calcMobPower(level, null);
 	}
 
+	public static int calcMobPower(int level) {
+		return calcMobPower(level, Dungeon.difficulty);
+	}
+
 	public static int calcMobPower(int level, Difficulty difficulty) {
 		float factor = Difficulty.MEDIUM.mobScalingPower();
 		if (difficulty != null) {
