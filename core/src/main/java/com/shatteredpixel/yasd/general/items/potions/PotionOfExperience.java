@@ -41,7 +41,7 @@ public class PotionOfExperience extends Potion {
 	@Override
 	public void apply( Hero hero ) {
 		setKnown();
-		hero.earnExp( hero.maxExp(), getClass() );
+		hero.earnExp( hero.maxExp(), getClass(), false );
 	}
 	
 	@Override

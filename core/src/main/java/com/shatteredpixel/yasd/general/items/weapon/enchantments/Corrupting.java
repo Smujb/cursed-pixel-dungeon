@@ -38,8 +38,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.SoulMark;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
-import com.shatteredpixel.yasd.general.messages.Messages;
-import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.watabou.utils.Random;
 
@@ -81,12 +79,7 @@ public class Corrupting extends Weapon.Enchantment {
 			Statistics.enemiesSlain++;
 			Badges.validateMonstersSlain();
 			Statistics.qualifiedForNoKilling = false;
-			if (enemy.EXP > 0) {
-				hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(enemy, "exp", enemy.EXP));
-				hero.earnExp(enemy.EXP, enemy.getClass());
-			} else {
-				hero.earnExp(0, enemy.getClass());
-			}
+			hero.earnExp(Math.max(enemy.EXP, 0), enemy.getClass());
 			
 			return 0;
 		}

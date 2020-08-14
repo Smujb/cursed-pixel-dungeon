@@ -879,9 +879,6 @@ public abstract class Mob extends Char {
 				Statistics.qualifiedForNoKilling = false;
 				
 				int exp = Dungeon.hero.lvl <= Dungeon.getScaleFactor() + 2 ? EXP : 0;
-				if (exp > 0) {
-					Dungeon.hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "exp", exp));
-				}
 				Dungeon.hero.earnExp(exp, getClass());
 			}
 		}

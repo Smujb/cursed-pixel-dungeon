@@ -1363,8 +1363,15 @@ public class Hero extends Char {
 		return true;
 	}
 
-	public void earnExp(int exp, Class source) {
+	public final void earnExp(int exp, Class source) {
+		earnExp(exp, source, true);
+	}
 
+	public void earnExp(int exp, Class source, boolean show) {
+
+		if (exp > 0 && show) {
+			Dungeon.hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "exp", exp));
+		}
 		this.exp += exp;
 		float percent = exp / (float) maxExp();
 
@@ -1387,7 +1394,7 @@ public class Hero extends Char {
 		}
 
 		boolean levelUp = false;
-		while (this.exp >= maxExp()) {
+		while (this.exp >= maxExp() && lvl < Constants.HERO_LEVEL_CAP) {
 			this.exp -= maxExp();
 			lvl++;
 			levelUp = true;

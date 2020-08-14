@@ -65,7 +65,6 @@ import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Random;
@@ -223,12 +222,7 @@ public class WandOfCorruption extends Wand {
 				if (enemy.alignment == Char.Alignment.ENEMY){
 					mob.rollToDropLoot();
 				}
-				if (mob.EXP > 0) {
-					hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(enemy, "exp", mob.EXP));
-					hero.earnExp(mob.EXP, enemy.getClass());
-				} else {
-					hero.earnExp(0, enemy.getClass());
-				}
+				hero.earnExp(Math.max(mob.EXP, 0), enemy.getClass());
 			}
 		} else {
 			Buff.affect(enemy, Doom.class);
