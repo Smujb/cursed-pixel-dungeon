@@ -237,9 +237,9 @@ public class HeroSelectScene extends PixelScene {
 			RelicMeleeWeapon weapon = null;
 			if (weaponClass != null) {
 				weapon = Reflection.newInstance(weaponClass);
-				/*if (!CPDSettings.unlockedRelicWep(weaponClass)) {
+				if (!(CPDSettings.unlockedRelicWep(weaponClass) || DeviceCompat.isDebug())) {
 					continue;
-				}*/
+				}
 			}
 			RelicMeleeWeapon.BtnRelicWeapon btnRelicWeapon;
 			if (weapon == null) {

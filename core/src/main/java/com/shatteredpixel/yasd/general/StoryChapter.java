@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.watabou.utils.DeviceCompat;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -26,7 +27,7 @@ public enum StoryChapter {
 	}
 
 	public boolean unlocked() {
-		return true;
+		return DeviceCompat.isDebug();
 	}
 
 	public static String[] strValues() {
