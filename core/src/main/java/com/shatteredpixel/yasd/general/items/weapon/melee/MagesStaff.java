@@ -75,7 +75,6 @@ public class MagesStaff extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1.1f;
 
-		defaultAction = AC_ZAP;
 		usesTargeting = true;
 
 		unique = true;
@@ -98,6 +97,10 @@ public class MagesStaff extends MeleeWeapon {
 		updateWand(false);
 		wand.curCharges = wand.maxCharges;
 		name = Messages.get(wand, "staff_name");
+	}
+
+	public Wand getWand() {
+		return wand;
 	}
 
 	@Override

@@ -36,13 +36,11 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
-import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.watabou.utils.Random;
 
 public class MagicalInfusion extends InventorySpell {
 
 	{
-		mode = WndBag.Mode.INCREASE_TIER;
 		image = ItemSpriteSheet.MAGIC_INFUSE;
 	}
 

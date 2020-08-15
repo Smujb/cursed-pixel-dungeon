@@ -93,9 +93,6 @@ import com.shatteredpixel.yasd.general.ui.Toast;
 import com.shatteredpixel.yasd.general.ui.Toolbar;
 import com.shatteredpixel.yasd.general.ui.Window;
 import com.shatteredpixel.yasd.general.ui.attack.AttackIndicator;
-import com.shatteredpixel.yasd.general.ui.attack.CrushAttackIndicator;
-import com.shatteredpixel.yasd.general.ui.attack.NormalAttackIndicator;
-import com.shatteredpixel.yasd.general.ui.attack.SpinAttackIndicator;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.shatteredpixel.yasd.general.windows.WndBag.Mode;
@@ -311,26 +308,7 @@ public class GameScene extends PixelScene {
 		toolbar.setRect( 0,uiCamera.height - toolbar.height(), uiCamera.width, toolbar.height() );
 		add( toolbar );
 
-		attacks = new AttackIndicator[3];
-
-		for (int i = 0; i < attacks.length; i++) {
-			AttackIndicator attack;
-			//TODO when more are available, add more options.
-			switch (i) {
-				default:
-					attack = new NormalAttackIndicator();
-					break;
-				case 1:
-					attack = new CrushAttackIndicator();
-					break;
-				case 2:
-					attack = new SpinAttackIndicator();
-					break;
-			}
-			attacks[i] = attack;
-			attack.camera = uiCamera;
-			add( attack );
-		}
+		attacks = new AttackIndicator[0];
 
 		loot = new LootIndicator();
 		loot.camera = uiCamera;
@@ -669,22 +647,18 @@ public class GameScene extends PixelScene {
 
 		if (scene == null) return;
 
-		float tagLeft = CPDSettings.flipTags() ? 0 : uiCamera.width - scene.attacks[0].width();
+		float tagLeft = CPDSettings.flipTags() ? 0 : uiCamera.width - scene.loot.width();
 
 		if (CPDSettings.flipTags()) {
-			scene.log.setRect(scene.attacks[0].width(), scene.toolbar.top()-2, uiCamera.width - scene.attacks[0].width(), 0);
+			scene.log.setRect(scene.attacks[0].width(), scene.toolbar.top()-2, uiCamera.width - scene.loot.width(), 0);
 		} else {
-			scene.log.setRect(0, scene.toolbar.top()-2, uiCamera.width - scene.attacks[0].width(),  0 );
+			scene.log.setRect(0, scene.toolbar.top()-2, uiCamera.width - scene.loot.width(),  0 );
 		}
 
 		float pos = scene.toolbar.top();
 
 		if (scene.tagAttack) {
-			for (AttackIndicator indicator : attacks()) {
-				indicator.setPos(tagLeft, pos - indicator.height());
-				indicator.flip(tagLeft == 0);
-				pos = indicator.top();
-			}
+			//TODO
 		}
 
 		if (scene.tagLoot) {

@@ -43,6 +43,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.SoulMark;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
+import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
@@ -63,7 +64,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class Wand extends KindofMisc {
+public abstract class Wand extends KindofMisc implements Attackable {
 
 	{
 		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.FOCUS));
@@ -159,6 +160,13 @@ public abstract class Wand extends KindofMisc {
 				curUser.next();
 			}
 		});
+	}
+
+	@Override
+	public void use(Char enemy) {
+		if (curUser != null && isEquipped(curUser) && tryToZap(curUser, enemy.pos)) {
+			zap(enemy.pos);
+		}
 	}
 
 	public abstract void onZap(Ballistica attack );

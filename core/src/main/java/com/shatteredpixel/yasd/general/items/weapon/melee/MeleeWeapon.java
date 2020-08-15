@@ -28,26 +28,44 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.scenes.CellSelector;
+import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.utils.GLog;
+import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MeleeWeapon extends Weapon {
+public class MeleeWeapon extends Weapon implements Attackable {
 	{
 		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.EXECUTION));
+
+		usesTargeting = true;
+		defaultAction = AC_ATTACK;
 	}
 
 	public float damageMultiplier = 1f;
 	public float defenseMultiplier = 0f;
 
 	public boolean sneakBenefit = false;
+
+	private static final String AC_ATTACK = "attack";
+
+	@Override
+	public ArrayList<String> actions(Hero hero) {
+		ArrayList<String> actions = super.actions(hero);
+		actions.add(AC_ATTACK);
+		return actions;
+	}
 
 	@Override
 	public int min(float lvl) {
@@ -59,6 +77,72 @@ public class MeleeWeapon extends Weapon {
 	public int max(float lvl) {
 		return (int) ((20 +    //base
 				lvl*10)*damageMultiplier);   //level scaling
+	}
+
+	@Override
+	public void execute(Hero hero, String action) {
+		super.execute(hero, action);
+		if (action.equals(AC_ATTACK)) {
+			if (isEquipped(curUser)) {
+				GameScene.selectCell(ATTACK);
+			} else {
+				GLog.i(Messages.get(MeleeWeapon.this, "not_equipped"));
+			}
+		}
+	}
+
+	private final CellSelector.Listener ATTACK = new CellSelector.Listener() {
+
+		@Override
+		public void onSelect(Integer cell) {
+			if (cell != null && curUser != null) {
+				Char ch = Actor.findChar(cell);
+				if (ch != null) {
+					if (MeleeWeapon.this.canReach(curUser, cell)) {
+						MeleeWeapon.this.doAttack(curUser, ch);
+					} else {
+						GLog.i(Messages.get(MeleeWeapon.this, "out_of_range"));
+					}
+ 				} else {
+					GLog.i(Messages.get(MeleeWeapon.this, "no_enemy"));
+				}
+			}
+		}
+
+		@Override
+		public String prompt() {
+			return Messages.get(MeleeWeapon.this, "select_cell");
+		}
+	};
+
+	public boolean doAttack(Char attacker, Char enemy) {
+		attacker.busy();
+		if (attacker.sprite != null && (attacker.sprite.visible || enemy.sprite.visible)) {
+			attacker.sprite.attack(enemy.pos, new Callback() {
+				@Override
+				public void call() {
+					attack(attacker, enemy, false);
+					attacker.next();
+				}
+			});
+			attacker.spend( DLY );
+			return false;
+		} else {
+			attack(attacker, enemy, false);
+			attacker.spend( DLY );
+			return true;
+		}
+	}
+
+	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
+		return attacker.attack(enemy, guaranteed, Char.AttackType.NORMAL);
+	}
+
+	@Override
+	public void use(Char enemy) {
+		if (curUser != null && isEquipped(curUser) && canReach(curUser, enemy.pos)) {
+			doAttack(curUser, enemy);
+		}
 	}
 
 	@Override

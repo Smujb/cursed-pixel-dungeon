@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
@@ -40,7 +41,9 @@ import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.utils.BArray;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.shatteredpixel.yasd.general.windows.WndBag.Listener;
+import com.shatteredpixel.yasd.general.windows.WndOptions;
 import com.watabou.input.GameAction;
+import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Button;
 import com.watabou.utils.PathFinder;
@@ -84,8 +87,25 @@ public class QuickSlotButton extends Button {
 			@Override
 			public void onSelect( Item item ) {
 				if (item != null) {
-					Dungeon.quickslot.setSlot( slotNum , item );
-					refresh();
+					if (item instanceof MagesStaff) {
+						Game.scene().addToFront(new WndOptions(Messages.get(MagesStaff.class, "staff_or_wand"), "", item.name(), ((MagesStaff)item).getWand().name()) {
+							@Override
+							protected void onSelect(int index) {
+								super.onSelect(index);
+								Item toSlot = null;
+								if (index == 0) {
+									toSlot = item;
+								} else {
+									toSlot = ((MagesStaff)item).getWand();
+								}
+								Dungeon.quickslot.setSlot( slotNum , toSlot );
+								refresh();
+							}
+						});
+					} else {
+						Dungeon.quickslot.setSlot(slotNum, item);
+						refresh();
+					}
 				}
 			}
 		};

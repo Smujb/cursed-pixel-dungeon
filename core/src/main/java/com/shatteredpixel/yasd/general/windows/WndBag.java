@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
+import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Item;
@@ -83,6 +84,7 @@ public class WndBag extends WndTabbed {
 	//FIXME this is getting cumbersome, there should be a better way to manage this
 	public enum Mode {
 		ALL,
+		EQUIPPED,
 		UNIDENTIFED,
 		UNCURSABLE,
 		CURSABLE,
@@ -104,7 +106,7 @@ public class WndBag extends WndTabbed {
 		RECYCLABLE,
 		NOT_EQUIPPED,
 		REPAIRABLE,
-		INCREASE_TIER
+		ATTACKABLE
 	}
 
 	protected static final int COLS_P    = 5;
@@ -436,7 +438,9 @@ public class WndBag extends WndTabbed {
 									mode == Mode.ALCHEMY && Recipe.usableInRecipe(item) ||
 									mode == Mode.TRANMSUTABLE && ScrollOfTransmutation.canTransmute(item) ||
 									mode == Mode.NOT_EQUIPPED && !item.isEquipped(Dungeon.hero) ||
+									mode == Mode.EQUIPPED && item.isEquipped(Dungeon.hero) ||
 									mode == Mode.RECYCLABLE && Recycle.isRecyclable(item) ||
+									mode == Mode.ATTACKABLE && item instanceof Attackable ||
 									mode == Mode.ALL
 
 							);
