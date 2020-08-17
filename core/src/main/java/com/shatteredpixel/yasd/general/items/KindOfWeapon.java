@@ -125,7 +125,7 @@ abstract public class KindOfWeapon extends EquipableItem {
 	}
 
 	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
-		return attacker.attack(enemy, guaranteed, Char.AttackType.NORMAL);
+		return attacker.attack(enemy, guaranteed);
 	}
 
 	@Override

@@ -772,9 +772,9 @@ public abstract class Mob extends Char {
 	}
 	
 	@Override
-	public void onAttackComplete(AttackType type) {
+	public void onAttackComplete() {
 		attack( enemy);
-		super.onAttackComplete(type);
+		super.onAttackComplete();
 	}
 	
 	@Override

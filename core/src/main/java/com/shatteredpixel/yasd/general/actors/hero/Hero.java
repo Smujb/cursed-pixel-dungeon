@@ -988,7 +988,7 @@ public class Hero extends Char {
 	}
 
 	private boolean actAttack(@NotNull HeroAction.Attack action) {
-		if (doAttack(action.target, action.type)) {
+		if (doAttack(action.target)) {
 			return false;
 		} else {
 
@@ -1003,15 +1003,11 @@ public class Hero extends Char {
 		}
 	}
 
-	public boolean doAttack(Char enemy, AttackType type) {
+	public boolean doAttack(Char enemy) {
 		this.enemy = enemy;
 		StaminaRegen.regen = false;
-		if (enemy.isAlive() && canAttack(enemy) && !isCharmedBy(enemy)) {
-			float cost = type.staminaCost();
-			useStamina(cost);
-
-			sprite.attack(enemy.pos, type);
-
+		if (enemy.isAlive() && canAttack(enemy) && !isCharmedBy(enemy) && belongings.getWeapon() != null) {
+			belongings.getWeapon().doAttack(this, enemy);
 			return true;
 		}
 		return false;
@@ -1305,7 +1301,7 @@ public class Hero extends Char {
 			if (ch.alignment != Alignment.ENEMY && ch.buff(Amok.class) == null) {
 				curAction = new HeroAction.Interact(ch);
 			} else {
-				curAction = new HeroAction.Attack(ch, AttackType.NORMAL);
+				curAction = new HeroAction.Attack(ch);
 			}
 
 		} else if ((heap = Dungeon.level.heaps.get(cell)) != null
@@ -1583,11 +1579,11 @@ public class Hero extends Char {
 	}
 
 	@Override
-	public void onAttackComplete(AttackType type) {
+	public void onAttackComplete() {
 
 		AttackIndicator.target(enemy);
 
-		boolean hit = attack(enemy, false, type);
+		boolean hit = attack(enemy);
 
 		if (subClass == HeroSubClass.GLADIATOR) {
 			if (hit) {
@@ -1603,7 +1599,7 @@ public class Hero extends Char {
 
 		curAction = null;
 
-		super.onAttackComplete(type);
+		super.onAttackComplete();
 	}
 
 	@Override

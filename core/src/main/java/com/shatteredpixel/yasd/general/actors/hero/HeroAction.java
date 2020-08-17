@@ -99,10 +99,8 @@ public class HeroAction {
 	
 	public static class Attack extends HeroAction {
 		public Char target;
-		public Char.AttackType type;
-		public Attack(Char target, Char.AttackType type) {
+		public Attack(Char target) {
 			this.target = target;
-			this.type = type;
 		}
 	}
 }

@@ -13,7 +13,6 @@ import com.watabou.utils.PathFinder;
 public class SpinAttackIndicator extends AttackIndicator {
 
 	{
-		attackType = Char.AttackType.SPIN;
 	}
 
 	public SpinAttackIndicator() {
@@ -32,11 +31,10 @@ public class SpinAttackIndicator extends AttackIndicator {
 					for (int i : PathFinder.NEIGHBOURS8) {
 						Char ch = Actor.findChar(hero.pos + i);
 						if (ch != null) {
-							hero.attack(ch, false, Char.AttackType.SPIN);
+							hero.attack(ch, false);
 						}
 					}
 					Invisibility.dispel();
-					hero.useStamina(Char.AttackType.SPIN.staminaCost());
 					hero.spendAndNext(hero.attackDelay());
 					hero.ready();
 				}

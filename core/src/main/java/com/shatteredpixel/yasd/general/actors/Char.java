@@ -154,46 +154,6 @@ public abstract class Char extends Actor {
 
 	public Alignment alignment;
 
-	public enum AttackType {
-		NORMAL {
-		},
-		SPIN {
-		},
-		FURY {
-		},
-		BLOCK {
-		},
-		CRUSH;
-
-		public float staminaCost() {
-			switch (this) {
-				case NORMAL: default:
-					return 0;
-				case SPIN:
-					return 5;
-				case CRUSH:
-					return 7;
-				case FURY:
-					return 9;
-				case BLOCK:
-					return 10;
-			}
-		}
-
-		public int proc(int damage, DamageSrc src) {
-			switch (this) {
-				case CRUSH:
-					src.ignoreDefense();
-					damage *= 1.5f;
-					break;
-				case FURY:
-					damage /= 2;
-					break;
-			}
-			return damage;
-		}
-	}
-
 	public int viewDistance = 8;
 
 	public boolean[] fieldOfView = null;
@@ -381,10 +341,10 @@ public abstract class Char extends Actor {
 	}
 
 	public final boolean attack(Char enemy) {
-		return attack(enemy, false, AttackType.NORMAL);
+		return attack(enemy, false);
 	}
 
-	public boolean attack(Char enemy, boolean guaranteed, AttackType type) {
+	public boolean attack(Char enemy, boolean guaranteed) {
 
 		if (enemy == null || enemy == this) return false;
 
@@ -429,7 +389,6 @@ public abstract class Char extends Actor {
 			if (!enemy.isAlive()) {
 				return true;
 			}
-			dmg = type.proc(dmg, src);
 			enemy.damage( dmg, src );
 
 			if (visibleFight) {
@@ -1125,11 +1084,7 @@ public abstract class Char extends Actor {
 		// so calling next() here isn't necessary (see Actor.process)
 	}
 
-	public final void onAttackComplete() {
-		onAttackComplete(AttackType.NORMAL);
-	}
-
-	public void onAttackComplete(AttackType type) {
+	public void onAttackComplete() {
 		next();
 	}
 

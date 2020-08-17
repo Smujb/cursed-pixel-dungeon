@@ -51,8 +51,6 @@ public class AttackIndicator extends Tag {
 
 	private CharSprite sprite = null;
 
-	protected Char.AttackType attackType = Char.AttackType.NORMAL;
-
 	Mob lastTarget;
 	private ArrayList<Mob> candidates = new ArrayList<>();
 	
@@ -86,7 +84,7 @@ public class AttackIndicator extends Tag {
 	public synchronized void update() {
 		super.update();
 
-		if (!bg.visible || !Dungeon.hero.canUseStamina(attackType.staminaCost())){
+		if (!bg.visible){
 			enable(false);
 			if (delay > 0f) delay -= Game.elapsed;
 			if (delay <= 0f) active = false;

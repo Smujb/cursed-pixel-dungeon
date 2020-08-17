@@ -259,16 +259,6 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 		}
 	}
 
-	public final void attack(int cell, Char.AttackType type) {
-		attack(cell, new Callback() {
-			@Override
-			public void call() {
-				idle();
-				ch.onAttackComplete(type);
-			}
-		});
-	}
-
 	public void attack( int cell ) {
 		attack(cell, new Callback() {
 			@Override
