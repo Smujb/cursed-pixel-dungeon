@@ -31,20 +31,13 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.utils.BArray;
-import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
-import org.jetbrains.annotations.NotNull;
-
-abstract public class KindOfWeapon extends EquipableItem {
-	
-	protected static final float TIME_TO_EQUIP = 1f;
+abstract public class KindOfWeapon extends KindofMisc {
 
 	protected String hitSound = Assets.Sounds.HIT;
 	protected float hitSoundPitch = 1f;
@@ -61,48 +54,6 @@ abstract public class KindOfWeapon extends EquipableItem {
 
 	public int max(){
 		return max(power());
-	}
-
-	@Override
-	public boolean doEquip( Hero hero ) {
-
-		detachAll( hero.belongings.backpack );
-
-		if (hero.belongings.getWeapon() == null || hero.belongings.getWeapon().doUnequip( hero, true )) {
-
-			hero.belongings.setWeapon(this);
-			activate( hero );
-
-			updateQuickslot();
-
-			cursedKnown = true;
-			if (cursed) {
-				equipCursed( hero );
-				GLog.n( Messages.get(KindOfWeapon.class, "equip_cursed") );
-			}
-
-			hero.spendAndNext( TIME_TO_EQUIP );
-			return true;
-
-		} else {
-
-			collect( hero.belongings.backpack, hero );
-			return false;
-		}
-	}
-
-	@Override
-	public boolean doUnequip(Char ch, boolean collect, boolean single ) {
-		if (super.doUnequip( ch, collect, single )) {
-
-			ch.belongings.setWeapon(null);
-			return true;
-
-		} else {
-
-			return false;
-
-		}
 	}
 
 	public boolean doAttack(Char attacker, Char enemy) {
@@ -126,11 +77,6 @@ abstract public class KindOfWeapon extends EquipableItem {
 
 	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
 		return attacker.attack(enemy, guaranteed);
-	}
-
-	@Override
-	public boolean isEquipped(@NotNull Char owner) {
-		return owner.belongings.getWeapon() == this;
 	}
 
 	abstract public int min(float lvl);

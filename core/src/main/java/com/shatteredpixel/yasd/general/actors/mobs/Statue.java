@@ -38,7 +38,6 @@ import com.shatteredpixel.yasd.general.items.Ankh;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
@@ -80,8 +79,8 @@ public class Statue extends Mob implements Callback {
 	public Statue() {
 		super();
 
-		belongings.setWeapon((KindOfWeapon) Generator.randomWeapon().level(0).uncurse().identify());
-		belongings.setArmor((Armor) Generator.randomArmor().level(0).uncurse().identify());
+		//belongings.setWeapon((KindOfWeapon) Generator.randomWeapon().level(0).uncurse().identify());
+		//belongings.setArmor((Armor) Generator.randomArmor().level(0).uncurse().identify());
 
 		for (int i = 0; i < belongings.miscs.length; i++) {
 			belongings.miscs[i] = newItem();

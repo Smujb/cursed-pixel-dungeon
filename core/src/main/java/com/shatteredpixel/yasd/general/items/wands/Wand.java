@@ -120,7 +120,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 
 		if (action.equals(AC_ZAP)) {
 
-			if (!isEquipped(hero)) execute(hero, AC_EQUIP);
+			if (!(isEquipped(hero) || imbued)) execute(hero, AC_EQUIP);
 			else {
 				execute(hero, AC_ZAP_OVERRIDE);
 
@@ -132,6 +132,8 @@ public abstract class Wand extends KindofMisc implements Attackable {
 			GameScene.selectCell(zapper);
 		}
 	}
+
+	public boolean imbued = false;
 
 	@Override
 	public void activate(Char ch) {//When equipped, start charging

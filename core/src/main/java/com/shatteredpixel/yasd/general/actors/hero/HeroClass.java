@@ -140,8 +140,8 @@ public enum HeroClass {
 		}
 
 		if (HeroSelectScene.curWeapon != null) {
-			hero.belongings.setWeapon((KindOfWeapon) HeroSelectScene.curWeapon.upgrade().identify());
-			hero.belongings.getWeapon().activate(hero);
+			hero.belongings.miscs[0] = (KindOfWeapon) HeroSelectScene.curWeapon.upgrade().identify();
+			hero.belongings.miscs[0].activate(hero);
 		}
 
 		new PotionBandolier().collect();
@@ -157,8 +157,6 @@ public enum HeroClass {
 		Dungeon.LimitedDrops.MAGICAL_HOLSTER.drop();
 
 		new PowerHolder().collect();
-
-		//new FoodHolder().collect();
 
 		new LuckyBadge().collect();
 
@@ -193,10 +191,10 @@ public enum HeroClass {
 	}
 
 	private static void initWarrior( Hero hero ) {
-		if (hero.belongings.getWeapon() == null) {
-			hero.belongings.setWeapon((KindOfWeapon) new Sword().upgrade().identify());
+		if (hero.belongings.miscs[0] == null) {
+			hero.belongings.miscs[0] = (KindofMisc) new Sword().upgrade().identify();
 		}
-		hero.belongings.setArmor((Armor) new ChainArmor().identify());
+		hero.belongings.miscs[1] = (Armor) new ChainArmor().identify();
 		ThrowingStone stones = new ThrowingStone();
 		stones.quantity(3).collect();
 		Dungeon.quickslot.setSlot(0, hero.belongings.getWeapon());
@@ -214,12 +212,12 @@ public enum HeroClass {
 
 		staff = (MagesStaff) new MagesStaff(new WandOfMagicMissile()).upgrade().identify();
 
-		if (hero.belongings.getWeapon() == null) {
-			hero.belongings.setWeapon(staff);
+		if (hero.belongings.miscs[0] == null) {
+			hero.belongings.miscs[0] = staff;
 		} else {
 			staff.collect();
 		}
-		hero.belongings.setArmor((Armor) new MageArmor().identify());
+		hero.belongings.miscs[1] = (Armor) new MageArmor().identify();
 		staff.activate(hero);
 
 		new Blink().collect();
@@ -233,10 +231,10 @@ public enum HeroClass {
 	}
 
 	private static void initRogue( Hero hero ) {
-		if (hero.belongings.getWeapon() == null) {
-			hero.belongings.setWeapon((KindOfWeapon) new Dagger().upgrade().identify());
+		if (hero.belongings.miscs[0] == null) {
+			hero.belongings.miscs[0] = (KindofMisc) new Dagger().upgrade().identify();
 		}
-		hero.belongings.setArmor((Armor) new RogueArmor().identify());
+		hero.belongings.miscs[1] = (Armor) new RogueArmor().identify();
 
 		ThrowingKnife knives = new ThrowingKnife();
 		knives.quantity(3).collect();
@@ -251,10 +249,10 @@ public enum HeroClass {
 
 	private static void initHuntress( Hero hero ) {
 
-		if (hero.belongings.getWeapon() == null) {
-			hero.belongings.setWeapon((KindOfWeapon) new Glove().upgrade().identify());
+		if (hero.belongings.miscs[0] == null) {
+			hero.belongings.miscs[0] = (KindofMisc) new Glove().upgrade().identify();
 		}
-		hero.belongings.setArmor((Armor) new HuntressArmor().identify());
+		hero.belongings.miscs[1] = (Armor) new HuntressArmor().identify();
 		SpiritBow bow = new SpiritBow();
 		bow.identify().collect();
 
@@ -269,10 +267,10 @@ public enum HeroClass {
 
 	private static void initPriestess( Hero hero ) {
 
-		if (hero.belongings.getWeapon() == null) {
-			hero.belongings.setWeapon((KindOfWeapon) new RunicBlade().upgrade().identify());
+		if (hero.belongings.miscs[0] == null) {
+			hero.belongings.miscs[0] = (KindofMisc) new RunicBlade().upgrade().identify();
 		}
-		hero.belongings.setArmor((Armor) new PriestessArmor().identify());
+		hero.belongings.miscs[1] = (Armor) new PriestessArmor().identify();
 		(hero.belongings.miscs[0] = new PoisonDragonPendant()).upgrade().identify();
 		hero.belongings.miscs[0].activate(hero);
 

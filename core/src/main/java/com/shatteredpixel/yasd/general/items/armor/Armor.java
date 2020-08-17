@@ -36,8 +36,8 @@ import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.BrokenSeal;
-import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.armor.curses.AntiEntropy;
 import com.shatteredpixel.yasd.general.items.armor.curses.Bulk;
 import com.shatteredpixel.yasd.general.items.armor.curses.Corrosion;
@@ -61,7 +61,6 @@ import com.shatteredpixel.yasd.general.items.armor.glyphs.Swiftness;
 import com.shatteredpixel.yasd.general.items.armor.glyphs.Thorns;
 import com.shatteredpixel.yasd.general.items.armor.glyphs.Viscosity;
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.shatteredpixel.yasd.general.sprites.HeroSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -76,7 +75,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Armor extends EquipableItem {
+public class Armor extends KindofMisc {
 	{
 		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.RESILIENCE));
 	}
@@ -229,6 +228,14 @@ public class Armor extends EquipableItem {
 		}
 	}
 
+	@Override
+	public boolean doEquip(Hero hero) {
+		if (hero.belongings.getArmor() != null) {
+			GLog.n(Messages.get(Armor.class, "only_wear_one"));
+			return false;
+		}
+		return super.doEquip(hero);
+	}
 
 	public int appearance() {
 		return 1;
@@ -289,56 +296,6 @@ public class Armor extends EquipableItem {
 
 	public int magicalDRRoll(float lvl) {
 		return Random.NormalIntRange(magicalDRMin(lvl), magicalDRMax(lvl));
-	}
-
-	@Override
-	public boolean doEquip( Hero hero ) {
-
-		detach(hero.belongings.backpack);
-
-		if (hero.belongings.getArmor() == null || hero.belongings.getArmor().doUnequip( hero, true, false )) {
-
-			hero.belongings.setArmor(this);
-
-			cursedKnown = true;
-			if (cursed) {
-				equipCursed( hero );
-				GLog.n( Messages.get(Armor.class, "equip_cursed") );
-			}
-
-			((HeroSprite)hero.sprite).updateArmor();
-			activate(hero);
-
-			hero.spendAndNext( time2equip( hero ) );
-			return true;
-
-		} else {
-
-			collect( hero.belongings.backpack, hero );
-			return false;
-
-		}
-	}
-
-	@Override
-	public boolean doUnequip( Char ch, boolean collect, boolean single ) {
-		if (super.doUnequip( ch, collect, single )) {
-
-			ch.belongings.setArmor(null);
-			if (ch instanceof Hero) {
-				((HeroSprite) ch.sprite).updateArmor();
-			}
-
-			BrokenSeal.WarriorShield sealBuff = ch.buff(BrokenSeal.WarriorShield.class);
-			if (sealBuff != null) sealBuff.setArmor(null);
-
-			return true;
-
-		} else {
-
-			return false;
-
-		}
 	}
 
 	@Override

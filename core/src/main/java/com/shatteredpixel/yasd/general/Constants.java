@@ -46,7 +46,7 @@ public class Constants {
     //############################## CHAR/MOB STUFF ##############################
     //
     //Number of misc slots for char.
-    public static final int MISC_SLOTS = 3;
+    public static final int MISC_SLOTS = 5;
 
     //
     //############################## DUNGEON STUFF ##############################

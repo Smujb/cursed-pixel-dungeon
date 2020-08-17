@@ -219,6 +219,7 @@ public class MagesStaff extends MeleeWeapon {
 		}
 		
 		Badges.validateItemLevelAquired(this);
+		wand.imbued = true;
 
 		return this;
 	}

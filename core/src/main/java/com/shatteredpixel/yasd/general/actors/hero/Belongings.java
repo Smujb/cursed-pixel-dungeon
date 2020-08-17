@@ -80,12 +80,6 @@ public class Belongings implements Iterable<Item> {
 	
 	public Bag backpack;
 
-	@Nullable
-	private KindOfWeapon weapon;
-
-	@Nullable
-	private Armor armor;
-
 	public KindofMisc[] miscs;
 
 	public Belongings( Char owner ) {
@@ -139,20 +133,14 @@ public class Belongings implements Iterable<Item> {
 
 	@Nullable
 	public KindOfWeapon getWeapon() {
-	    return weapon;
+		ArrayList<KindofMisc> weps = getMiscsOfType(KindOfWeapon.class);
+		return weps.size() > 0 ? (KindOfWeapon) weps.get(0) : null;
 	}
 	
 	@Nullable
 	public Armor getArmor() {
-		return armor;
-	}
-
-	public void setArmor(Armor armor) {
-		this.armor = armor;
-	}
-
-	public void setWeapon(@Nullable KindOfWeapon weapon) {
-		this.weapon = weapon;
+		ArrayList<KindofMisc> armors = getMiscsOfType(Armor.class);
+		return armors.size() > 0 ? (Armor) armors.get(0) : null;
 	}
 
 	public float accuracyFactor(float accuracy, Char target) {
@@ -395,8 +383,8 @@ public class Belongings implements Iterable<Item> {
 		
 		backpack.clear();
 		backpack.restoreFromBundle( bundle );
-		setArmor((Armor) bundle.get(ARMOR));
-		setWeapon ((KindOfWeapon) bundle.get(WEAPON));
+		//setArmor((Armor) bundle.get(ARMOR));
+		//setWeapon ((KindOfWeapon) bundle.get(WEAPON));
 		if (getWeapon() != null) {
 			getWeapon().activate( owner );
 		}
@@ -568,7 +556,7 @@ public class Belongings implements Iterable<Item> {
 		
 		private Iterator<Item> backpackIterator = backpack.iterator();
 		
-		private Item[] equipped = { getWeapon(), getArmor(), miscs[0], miscs[1],  miscs[2] };
+		private Item[] equipped = miscs.clone();
 		private int backpackIndex = equipped.length;
 		
 		@Override
@@ -600,19 +588,24 @@ public class Belongings implements Iterable<Item> {
 		public void remove() {
 			switch (index) {
 				case 0:
-					equipped[0] = weapon = null;
+					equipped[0] = miscs[0] = null;
 					break;
 				case 1:
-					equipped[1] = armor = null;
+					equipped[1] = miscs[1] = null;
 					break;
 				case 2:
-					equipped[2] = miscs[0] = null;
+					equipped[2] = miscs[2] = null;
 					break;
 				case 3:
-					equipped[3] = miscs[1] = null;
+					equipped[3] = miscs[3] = null;
 					break;
 				case 4:
-					equipped[4] = miscs[2] = null;
+					equipped[4] = miscs[4] = null;
+					break;
+				case 5:
+					if (miscs.length > 5 && equipped.length > 5) {
+						equipped[5] = miscs[5] = null;
+					}
 					break;
 				default:
 					backpackIterator.remove();
