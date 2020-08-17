@@ -557,20 +557,6 @@ public class Hero extends Char {
 	}
 
 	@Override
-	public boolean shoot(Char enemy, MissileWeapon wep) {
-		boolean hit = super.shoot(enemy, wep);
-		if (subClass == HeroSubClass.GLADIATOR) {
-			if (hit) {
-				Buff.affect(this, Combo.class).hit(enemy);
-			} else {
-				Combo combo = buff(Combo.class);
-				if (combo != null) combo.miss(enemy);
-			}
-		}
-		return hit;
-	}
-
-	@Override
 	public int attackSkill(Char target) {
 		attackSkill = 9 + (int) (lvl * Mob.FACTOR) + getResilience();
 		return super.attackSkill(target);

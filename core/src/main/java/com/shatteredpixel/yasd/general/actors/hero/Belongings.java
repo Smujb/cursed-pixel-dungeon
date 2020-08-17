@@ -35,7 +35,6 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Berserk;
 import com.shatteredpixel.yasd.general.actors.buffs.Burning;
 import com.shatteredpixel.yasd.general.actors.buffs.Fury;
-import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.Momentum;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
@@ -136,18 +135,6 @@ public class Belongings implements Iterable<Item> {
 			}
 		}
 		return items;
-	}
-
-	public boolean shoot(Char enemy, MissileWeapon wep) {
-
-		//temporarily set the hero's getWeapon() to the missile getWeapon() being used
-		KindOfWeapon equipped = getWeapon();
-		setWeapon(wep);
-		boolean hit = owner.attack(enemy);
-		Invisibility.dispel();
-		setWeapon(equipped);
-
-		return hit;
 	}
 
 	@Nullable

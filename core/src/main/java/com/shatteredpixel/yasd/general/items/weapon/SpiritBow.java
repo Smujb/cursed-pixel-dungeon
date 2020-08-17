@@ -237,7 +237,7 @@ public class SpiritBow extends Weapon {
 				parent = null;
 				Splash.at( cell, 0xCC99FFFF, 1 );
 			} else {
-				if (!curUser.shoot( enemy, this )) {
+				if (!this.attack(curUser, enemy, false)) {
 					Splash.at(cell, 0xCC99FFFF, 1);
 				}
 				if (sniperSpecial && SpiritBow.this.augment != Augment.SPEED) sniperSpecial = false;

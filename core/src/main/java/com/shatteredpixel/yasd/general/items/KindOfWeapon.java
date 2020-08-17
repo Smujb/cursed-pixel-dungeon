@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.utils.BArray;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
@@ -102,6 +103,29 @@ abstract public class KindOfWeapon extends EquipableItem {
 			return false;
 
 		}
+	}
+
+	public boolean doAttack(Char attacker, Char enemy) {
+		attacker.busy();
+		if (attacker.sprite != null && (attacker.sprite.visible || enemy.sprite.visible)) {
+			attacker.sprite.attack(enemy.pos, new Callback() {
+				@Override
+				public void call() {
+					attack(attacker, enemy, false);
+					attacker.next();
+				}
+			});
+			attacker.spend( attacker.attackDelay() );
+			return false;
+		} else {
+			attack(attacker, enemy, false);
+			attacker.spend( attacker.attackDelay() );
+			return true;
+		}
+	}
+
+	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
+		return attacker.attack(enemy, guaranteed, Char.AttackType.NORMAL);
 	}
 
 	@Override

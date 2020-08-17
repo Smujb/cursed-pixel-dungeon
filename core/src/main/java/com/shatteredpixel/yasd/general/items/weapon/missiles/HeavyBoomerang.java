@@ -117,7 +117,7 @@ public class HeavyBoomerang extends MissileWeapon {
 												}
 												
 											} else if (returnTarget != null){
-												if (target.shoot( returnTarget, boomerang )) {
+												if (boomerang.attack(target, returnTarget, false)) {
 													boomerang.decrementDurability();
 												}
 												if (boomerang.durability > 0) {

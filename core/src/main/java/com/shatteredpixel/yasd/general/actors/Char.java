@@ -207,10 +207,6 @@ public abstract class Char extends Actor {
 				& buff(Frost.class) == null);
 	}
 
-	public boolean shoot(Char enemy, MissileWeapon wep) {
-		return belongings.shoot(enemy, wep);
-	}
-
 	public int missingHP() {
 		return HT - HP;
 	}

@@ -39,7 +39,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.CellSelector;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.utils.GLog;
-import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -114,29 +113,6 @@ public class MeleeWeapon extends Weapon implements Attackable {
 			return Messages.get(MeleeWeapon.this, "select_cell");
 		}
 	};
-
-	public boolean doAttack(Char attacker, Char enemy) {
-		attacker.busy();
-		if (attacker.sprite != null && (attacker.sprite.visible || enemy.sprite.visible)) {
-			attacker.sprite.attack(enemy.pos, new Callback() {
-				@Override
-				public void call() {
-					attack(attacker, enemy, false);
-					attacker.next();
-				}
-			});
-			attacker.spend( DLY );
-			return false;
-		} else {
-			attack(attacker, enemy, false);
-			attacker.spend( DLY );
-			return true;
-		}
-	}
-
-	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
-		return attacker.attack(enemy, guaranteed, Char.AttackType.NORMAL);
-	}
 
 	@Override
 	public void use(Char enemy) {
