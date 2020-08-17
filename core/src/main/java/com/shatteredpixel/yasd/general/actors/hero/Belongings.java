@@ -83,8 +83,10 @@ public class Belongings implements Iterable<Item> {
 
 	@Nullable
 	private KindOfWeapon weapon;
+
 	@Nullable
-	public Armor armor;
+	private Armor armor;
+
 	public KindofMisc[] miscs;
 
 	public Belongings( Char owner ) {
@@ -138,12 +140,12 @@ public class Belongings implements Iterable<Item> {
 
 	public boolean shoot(Char enemy, MissileWeapon wep) {
 
-		//temporarily set the hero's weapon to the missile weapon being used
-		KindOfWeapon equipped = weapon;
-		weapon = wep;
+		//temporarily set the hero's getWeapon() to the missile getWeapon() being used
+		KindOfWeapon equipped = getWeapon();
+		setWeapon(wep);
 		boolean hit = owner.attack(enemy);
 		Invisibility.dispel();
-		weapon = equipped;
+		setWeapon(equipped);
 
 		return hit;
 	}
@@ -151,6 +153,15 @@ public class Belongings implements Iterable<Item> {
 	@Nullable
 	public KindOfWeapon getWeapon() {
 	    return weapon;
+	}
+	
+	@Nullable
+	public Armor getArmor() {
+		return armor;
+	}
+
+	public void setArmor(Armor armor) {
+		this.armor = armor;
 	}
 
 	public void setWeapon(@Nullable KindOfWeapon weapon) {
@@ -177,16 +188,16 @@ public class Belongings implements Iterable<Item> {
 	public int magicalDR() {
 		int dr = 0;
 		int armDr = 0;
-		if (armor != null) {
-			 armDr = armor.magicalDRRoll();
-			if (!armor.canTypicallyUse(owner)) {
-				armDr -= 2 * armor.encumbrance();
+		if (getArmor() != null) {
+			 armDr = getArmor().magicalDRRoll();
+			if (!getArmor().canTypicallyUse(owner)) {
+				armDr -= 2 * getArmor().encumbrance();
 			}
 		}
 
 		if (armDr > 0) dr += armDr;
-		if (armor != null && armor.hasGlyph(AntiMagic.class, owner)) {
-			dr += AntiMagic.drRoll(armor.level());
+		if (getArmor() != null && getArmor().hasGlyph(AntiMagic.class, owner)) {
+			dr += AntiMagic.drRoll(getArmor().level());
 		}
 
 		return dr;
@@ -194,17 +205,17 @@ public class Belongings implements Iterable<Item> {
 
 	public int drRoll() {
 		int dr = 0;
-		if (armor != null) {
-			dr += armor.DRRoll();
-			if (!armor.canTypicallyUse(owner)) {
-				dr -= 2 * armor.encumbrance();
+		if (getArmor() != null) {
+			dr += getArmor().DRRoll();
+			if (!getArmor().canTypicallyUse(owner)) {
+				dr -= 2 * getArmor().encumbrance();
 			}
 		}
 
-		if (weapon != null) {
-			int wepDr = Random.NormalIntRange(0, weapon.defenseFactor(owner));
-			if (!weapon.canTypicallyUse(owner)) {
-				wepDr -= 2 * weapon.encumbrance();
+		if (getWeapon() != null) {
+			int wepDr = Random.NormalIntRange(0, getWeapon().defenseFactor(owner));
+			if (!getWeapon().canTypicallyUse(owner)) {
+				wepDr -= 2 * getWeapon().encumbrance();
 			}
 			if (wepDr > 0) dr += wepDr;
 		}
@@ -237,8 +248,8 @@ public class Belongings implements Iterable<Item> {
 	}
 
 	public int defenseProc(Char enemy, int damage) {
-		if (armor != null) {
-			damage = armor.proc(enemy, owner, damage);
+		if (getArmor() != null) {
+			damage = getArmor().proc(enemy, owner, damage);
 		}
 		return damage;
 	}
@@ -255,8 +266,8 @@ public class Belongings implements Iterable<Item> {
 	}
 
 	public int magicalDefenseProc(Char enemy, int damage) {
-		if (armor != null) {
-			damage = armor.magicalProc(enemy, owner, damage);
+		if (getArmor() != null) {
+			damage = getArmor().magicalProc(enemy, owner, damage);
 		}
 		return damage;
 	}
@@ -284,8 +295,8 @@ public class Belongings implements Iterable<Item> {
 
 	public float attackDelay() {
 		float multiplier = 1f;
-		if (weapon != null) {
-			return weapon.speedFactor(owner) * multiplier;//Two weapons = 1/2 attack speed
+		if (getWeapon() != null) {
+			return getWeapon().speedFactor(owner) * multiplier;//Two getWeapon()s = 1/2 attack speed
 		} else {
 			//Normally putting furor speed on unarmed attacks would be unnecessary
 			//But there's going to be that one guy who gets a furor+force ring combo
@@ -297,7 +308,7 @@ public class Belongings implements Iterable<Item> {
 
 	public float affectEvasion(float evasion) {
 		//evasion *= _Unused.evasionMultiplier(owner);
-		Armor CurArmour = armor;
+		Armor CurArmour = getArmor();
 		//evasion *= CurArmour.evasionMultiplier(ownerID);
 		if (CurArmour != null) {
 			if (CurArmour.hasGlyph(Stone.class, owner) && !((Stone) CurArmour.glyph).testingEvasion()) {
@@ -321,9 +332,9 @@ public class Belongings implements Iterable<Item> {
 
 	public float affectSpeed(float speed) {
 		speed *= RingOfHaste.speedMultiplier(owner);
-		Armor curArmour = armor;
+		Armor curArmour = getArmor();
 		//speed *= curArmour.speedMultiplier(ownerID);
-		if (armor != null) {
+		if (getArmor() != null) {
 			int aEnc = curArmour.encumbrance();
 			if (aEnc > 0) speed /= Math.pow(1.2, aEnc);
 			if (curArmour.hasGlyph(Swiftness.class, owner)) {
@@ -353,7 +364,7 @@ public class Belongings implements Iterable<Item> {
 	}
 
 	public float affectStealth(float stealth) {
-		Armor CurArmour = armor;
+		Armor CurArmour = getArmor();
 		if (CurArmour != null) {
 			if (CurArmour.hasGlyph(Obfuscation.class, owner)) {
 				stealth += 1 + CurArmour.level() / 3f;
@@ -370,16 +381,16 @@ public class Belongings implements Iterable<Item> {
 
 	public boolean isImmune(Class effect) {
 		return effect == Burning.class
-				&& armor != null
-				&& armor.hasGlyph(Brimstone.class, owner);
+				&& getArmor() != null
+				&& getArmor().hasGlyph(Brimstone.class, owner);
 	}
 
 	//##############################################################################################
 	//####################### End of stuff for handling chars with belongings ######################
 	//##############################################################################################
 
-	private static final String ARMOR		= "armor";
-	private static final String WEAPON		= "weapon";
+	private static final String ARMOR		= "getArmor()";
+	private static final String WEAPON		= "getWeapon()";
 	private static final String MISC        = "misc";
 
 
@@ -389,21 +400,21 @@ public class Belongings implements Iterable<Item> {
 		for (int i = 0; i < owner.miscSlots(); i++) {//Store all miscs
 			bundle.put( MISC + i, miscs[i]);
 		}
-		bundle.put(ARMOR, armor);
-		bundle.put(WEAPON, weapon);
+		bundle.put(ARMOR, getArmor());
+		bundle.put(WEAPON, getWeapon());
 	}
 	
 	public void restoreFromBundle( Bundle bundle ) {
 		
 		backpack.clear();
 		backpack.restoreFromBundle( bundle );
-		armor = (Armor) bundle.get(ARMOR);
-		weapon = (KindOfWeapon) bundle.get(WEAPON);
-		if (weapon != null) {
-			weapon.activate( owner );
+		setArmor((Armor) bundle.get(ARMOR));
+		setWeapon ((KindOfWeapon) bundle.get(WEAPON));
+		if (getWeapon() != null) {
+			getWeapon().activate( owner );
 		}
-		if (armor != null) {
-			armor.activate( owner );
+		if (getArmor() != null) {
+			getArmor().activate( owner );
 		}
 		miscs = new KindofMisc[owner.miscSlots()];
 		for (int i = 0; i < owner.miscSlots(); i++) {//Restore all miscs
@@ -489,12 +500,12 @@ public class Belongings implements Iterable<Item> {
 	
 	public void observe() {
 
-		if (weapon != null) {
-			weapon.identify();
+		if (getWeapon() != null) {
+			getWeapon().identify();
 		}
 
-		if (armor != null) {
-			armor.identify();
+		if (getArmor() != null) {
+			getArmor().identify();
 		}
 
 		for (int i = 0; i < owner.miscSlots(); i++) {
@@ -570,7 +581,7 @@ public class Belongings implements Iterable<Item> {
 		
 		private Iterator<Item> backpackIterator = backpack.iterator();
 		
-		private Item[] equipped = { weapon, armor, miscs[0], miscs[1],  miscs[2] };
+		private Item[] equipped = { getWeapon(), getArmor(), miscs[0], miscs[1],  miscs[2] };
 		private int backpackIndex = equipped.length;
 		
 		@Override

@@ -38,6 +38,7 @@ import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
 import com.shatteredpixel.yasd.general.items.allies.PoisonDragonPendant;
+import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
@@ -195,7 +196,7 @@ public enum HeroClass {
 		if (hero.belongings.getWeapon() == null) {
 			hero.belongings.setWeapon((KindOfWeapon) new Sword().upgrade().identify());
 		}
-		(hero.belongings.armor = new ChainArmor()).identify();
+		hero.belongings.setArmor((Armor) new ChainArmor().identify());
 		ThrowingStone stones = new ThrowingStone();
 		stones.quantity(3).collect();
 		Dungeon.quickslot.setSlot(0, hero.belongings.getWeapon());
@@ -218,7 +219,7 @@ public enum HeroClass {
 		} else {
 			staff.collect();
 		}
-		(hero.belongings.armor = new MageArmor()).identify();
+		hero.belongings.setArmor((Armor) new MageArmor().identify());
 		staff.activate(hero);
 
 		new Blink().collect();
@@ -235,10 +236,7 @@ public enum HeroClass {
 		if (hero.belongings.getWeapon() == null) {
 			hero.belongings.setWeapon((KindOfWeapon) new Dagger().upgrade().identify());
 		}
-		(hero.belongings.armor = new RogueArmor()).identify();
-		//CloakOfShadows cloak = new CloakOfShadows();
-		//(hero.belongings.miscs[2] = cloak).identify();
-		//hero.belongings.miscs[2].activate( hero );
+		hero.belongings.setArmor((Armor) new RogueArmor().identify());
 
 		ThrowingKnife knives = new ThrowingKnife();
 		knives.quantity(3).collect();
@@ -256,7 +254,7 @@ public enum HeroClass {
 		if (hero.belongings.getWeapon() == null) {
 			hero.belongings.setWeapon((KindOfWeapon) new Glove().upgrade().identify());
 		}
-		(hero.belongings.armor = new HuntressArmor()).identify();
+		hero.belongings.setArmor((Armor) new HuntressArmor().identify());
 		SpiritBow bow = new SpiritBow();
 		bow.identify().collect();
 
@@ -274,7 +272,7 @@ public enum HeroClass {
 		if (hero.belongings.getWeapon() == null) {
 			hero.belongings.setWeapon((KindOfWeapon) new RunicBlade().upgrade().identify());
 		}
-		(hero.belongings.armor = new PriestessArmor()).identify();
+		hero.belongings.setArmor((Armor) new PriestessArmor().identify());
 		(hero.belongings.miscs[0] = new PoisonDragonPendant()).upgrade().identify();
 		hero.belongings.miscs[0].activate(hero);
 

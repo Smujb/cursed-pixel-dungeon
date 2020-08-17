@@ -208,7 +208,7 @@ public class Armor extends EquipableItem {
 
 	@Override
 	public boolean isEquipped(@NotNull Char owner) {
-		return owner.belongings.armor == this;
+		return owner.belongings.getArmor() == this;
 	}
 
 	@Override
@@ -296,9 +296,9 @@ public class Armor extends EquipableItem {
 
 		detach(hero.belongings.backpack);
 
-		if (hero.belongings.armor == null || hero.belongings.armor.doUnequip( hero, true, false )) {
+		if (hero.belongings.getArmor() == null || hero.belongings.getArmor().doUnequip( hero, true, false )) {
 
-			hero.belongings.armor = this;
+			hero.belongings.setArmor(this);
 
 			cursedKnown = true;
 			if (cursed) {
@@ -324,7 +324,7 @@ public class Armor extends EquipableItem {
 	public boolean doUnequip( Char ch, boolean collect, boolean single ) {
 		if (super.doUnequip( ch, collect, single )) {
 
-			ch.belongings.armor = null;
+			ch.belongings.setArmor(null);
 			if (ch instanceof Hero) {
 				((HeroSprite) ch.sprite).updateArmor();
 			}

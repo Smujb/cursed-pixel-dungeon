@@ -245,7 +245,7 @@ public class WndRanking extends WndTabbed {
 
 			addItem(stuff.getWeapon());
 
-			addItem(stuff.armor);
+			addItem(stuff.getArmor());
 
 			for (KindofMisc misc : stuff.miscs) {
 				if (misc != null) {

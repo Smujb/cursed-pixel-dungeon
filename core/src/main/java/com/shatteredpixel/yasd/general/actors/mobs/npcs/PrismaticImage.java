@@ -41,16 +41,12 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.items.armor.glyphs.Brimstone;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.PrismaticSprite;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
-
-import java.util.ArrayList;
 
 public class PrismaticImage extends NPC {
 	
@@ -186,8 +182,8 @@ public class PrismaticImage extends NPC {
 	@Override
 	public int defenseProc(Char enemy, int damage) {
 		damage = super.defenseProc(enemy, damage);
-		if (hero.belongings.armor != null) {
-			damage = hero.belongings.armor.proc(enemy, this, damage);
+		if (hero.belongings.getArmor() != null) {
+			damage = hero.belongings.getArmor().proc(enemy, this, damage);
 		}
 		return damage;
 	}

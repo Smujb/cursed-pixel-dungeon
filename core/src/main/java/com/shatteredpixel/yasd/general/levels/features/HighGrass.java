@@ -115,12 +115,12 @@ public class HighGrass {
 
 				//Camouflage
 				boolean hasCamoflage = false;
-				if (hero.belongings.armor != null && hero.belongings.armor.hasGlyph(Camouflage.class, hero)) {
+				if (hero.belongings.getArmor() != null && hero.belongings.getArmor().hasGlyph(Camouflage.class, hero)) {
 					hasCamoflage = true;
 				}
 
 				if (hasCamoflage) {
-					Buff.prolong(hero, Invisibility.class, 3 + hero.belongings.armor.level()/2f);
+					Buff.prolong(hero, Invisibility.class, 3 + hero.belongings.getArmor().level()/2f);
 					Sample.INSTANCE.play( Assets.Sounds.MELD );
 				}
 			}

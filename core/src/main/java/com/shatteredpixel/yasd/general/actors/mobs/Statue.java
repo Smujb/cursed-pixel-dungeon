@@ -81,8 +81,7 @@ public class Statue extends Mob implements Callback {
 		super();
 
 		belongings.setWeapon((KindOfWeapon) Generator.randomWeapon().level(0).uncurse().identify());
-
-		belongings.armor = (Armor) Generator.randomArmor().level(0).uncurse().identify();
+		belongings.setArmor((Armor) Generator.randomArmor().level(0).uncurse().identify());
 
 		for (int i = 0; i < belongings.miscs.length; i++) {
 			belongings.miscs[i] = newItem();
@@ -156,7 +155,7 @@ public class Statue extends Mob implements Callback {
 	protected void upgradeItems() {
 		int sous = Dungeon.getScaleFactor();
 		EquipableItem item;
-		if (belongings.miscs.length > 0 || belongings.getWeapon() != null || belongings.armor != null) {
+		if (belongings.miscs.length > 0 || belongings.getWeapon() != null || belongings.getArmor() != null) {
 			do {
 				do {
 					item = null;
@@ -166,7 +165,7 @@ public class Statue extends Mob implements Callback {
 					} else if (slot == belongings.miscs.length + 1) {
 						item = belongings.getWeapon();
 					} else if (slot == belongings.miscs.length + 2) {
-						item = belongings.armor;
+						item = belongings.getArmor();
 					}
 				} while (item == null || !item.isUpgradable());//If the item is not upgradeable (An artifact or +3) chose another. Also, if it is null (nothing equipped in that slot)
 				item.upgrade();
@@ -203,7 +202,7 @@ public class Statue extends Mob implements Callback {
 	@Override
 	public CharSprite sprite() {
 		CharSprite sprite = super.sprite();
-		Armor armor = belongings.armor;
+		Armor armor = belongings.getArmor();
 		if (armor != null) {
 			((StatueSprite) sprite).setArmor(armor.appearance());
 		}
@@ -269,7 +268,7 @@ public class Statue extends Mob implements Callback {
 	public void dropGear() {
 		ArrayList<Item> items = new ArrayList<>(Arrays.asList(belongings.miscs));
 		items.add(belongings.getWeapon());
-		items.add(belongings.armor);
+		items.add(belongings.getArmor());
 		for (Item item : items) {
 			if (item != null) {
 				Dungeon.level.drop(item.identify(), pos).sprite.drop();
