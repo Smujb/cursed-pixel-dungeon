@@ -30,15 +30,19 @@ package com.shatteredpixel.yasd.general.ui.attack;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.items.Attackable;
+import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
-import com.shatteredpixel.yasd.general.sprites.CharSprite;
+import com.shatteredpixel.yasd.general.sprites.ItemSprite;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.DangerIndicator;
+import com.shatteredpixel.yasd.general.ui.QuickSlotButton;
 import com.shatteredpixel.yasd.general.ui.Tag;
 import com.shatteredpixel.yasd.general.ui.TargetHealthIndicator;
-import com.watabou.noosa.Game;
+import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.watabou.utils.Random;
-import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
 
@@ -47,9 +51,7 @@ public class AttackIndicator extends Tag {
 	private static final float ENABLED	= 1.0f;
 	private static final float DISABLED	= 0.3f;
 
-	private float delay;
-
-	private CharSprite sprite = null;
+	private ItemSprite sprite = null;
 
 	Mob lastTarget;
 	private ArrayList<Mob> candidates = new ArrayList<>();
@@ -60,8 +62,10 @@ public class AttackIndicator extends Tag {
 		lastTarget = null;
 		
 		setSize( 24, 24 );
-		visible( false );
-		enable( false );
+
+		active = true;
+		enable(true);
+		visible(true);
 	}
 
 	@Override
@@ -83,23 +87,16 @@ public class AttackIndicator extends Tag {
 	@Override
 	public synchronized void update() {
 		super.update();
+		active = true;
 
-		if (!bg.visible){
-			enable(false);
-			if (delay > 0f) delay -= Game.elapsed;
-			if (delay <= 0f) active = false;
+		if (Dungeon.hero.isAlive()) {
+
+			enable(Dungeon.hero.ready);
+			visible(true);
+
 		} else {
-			delay = 0.75f;
-			active = true;
-		
-			if (Dungeon.hero.isAlive()) {
-
-				enable(Dungeon.hero.ready);
-
-			} else {
-				visible( false );
-				enable( false );
-			}
+			visible(false);
+			enable(false);
 		}
 	}
 	
@@ -119,20 +116,14 @@ public class AttackIndicator extends Tag {
 				lastTarget = null;
 			} else {
 				active = true;
-				//lastTarget = Random.element( candidates );
 				AttackIndicator.target(Random.element(candidates));
 				updateImage();
 				flash();
 			}
-		} else {
-			if (!bg.visible) {
-				active = true;
-				flash();
-			}
 		}
-		
-		visible( lastTarget != null );
-		enable( bg.visible );
+
+		visible( true );
+		enable( true );
 	}
 	
 	private synchronized void updateImage() {
@@ -141,12 +132,12 @@ public class AttackIndicator extends Tag {
 			sprite.killAndErase();
 			sprite = null;
 		}
-		
-		sprite = Reflection.newInstance(lastTarget.spriteClass);
-		active = true;
-		sprite.linkVisuals(lastTarget);
-		sprite.idle();
-		sprite.paused = true;
+
+		int image = ItemSpriteSheet.WEAPON_HOLDER;
+		if (Dungeon.hero.curItem() != null) {
+			image =  ((Item)Dungeon.hero.curItem()).image;
+		}
+		sprite = new ItemSprite(image, null);
 		add( sprite );
 
 		layout();
@@ -170,25 +161,49 @@ public class AttackIndicator extends Tag {
 	@Override
 	protected void onClick() {
 		super.onClick();
-		Dungeon.hero.busy();
+		if (Dungeon.hero.curItem() == null) {
+			onLongClick();
+		} else {
+			if (lastTarget != null) {
+				Dungeon.hero.curItem().use(lastTarget);
+			}
+		}
 	}
-	
-	public void setLastTarget( Char target ) {
+
+	@Override
+	protected boolean onLongClick() {
+		GameScene.selectItem(listener(), WndBag.Mode.ATTACKABLE, Messages.get(QuickSlotButton.class, "select_item"));
+		return true;
+	}
+
+	private WndBag.Listener listener() {
+		return new WndBag.Listener() {
+			@Override
+			public void onSelect( Item item ) {
+				if (item instanceof Attackable) {
+					for (int slot = 0; slot < Dungeon.hero.belongings.miscs.length; slot++) {
+						if (Dungeon.hero.belongings.miscs[slot] == item) {
+							Dungeon.hero.curItemSlot = slot;
+							break;
+						}
+					}
+				}
+			}
+		};
+	}
+
+	public void setLastTarget(Char target ) {
 		lastTarget = (Mob) target;
 		updateImage();
 		TargetHealthIndicator.instance.target(target);
 	}
 
 	public static void target( Char target ) {
-		for (AttackIndicator indicator : GameScene.attacks()) {
-			indicator.setLastTarget(target);
-		}
+		GameScene.getAttack().setLastTarget(target);
 	}
 
 	public static void updateStates() {
-		for (AttackIndicator indicator : GameScene.attacks()) {
-			indicator.updateState();
-		}
+		GameScene.getAttack().updateState();
 	}
 	
 	private void updateState() {

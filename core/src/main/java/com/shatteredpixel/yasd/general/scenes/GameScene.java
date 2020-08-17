@@ -164,7 +164,7 @@ public class GameScene extends PixelScene {
 	private Toolbar toolbar;
 	private Toast prompt;
 
-	private AttackIndicator[] attacks;
+	private AttackIndicator attack;
 	private LootIndicator loot;
 	private ActionIndicator action;
 	private ResumeIndicator resume;
@@ -308,7 +308,9 @@ public class GameScene extends PixelScene {
 		toolbar.setRect( 0,uiCamera.height - toolbar.height(), uiCamera.width, toolbar.height() );
 		add( toolbar );
 
-		attacks = new AttackIndicator[0];
+		attack = new AttackIndicator();
+		attack.camera = uiCamera;
+		add( attack );
 
 		loot = new LootIndicator();
 		loot.camera = uiCamera;
@@ -486,11 +488,11 @@ public class GameScene extends PixelScene {
 
 	}
 
-	public static AttackIndicator[] attacks() {
+	public static AttackIndicator getAttack() {
 		if (scene == null) {
-			return new AttackIndicator[3];
+			return new AttackIndicator();
 		} else {
-			return scene.attacks;
+			return scene.attack;
 		}
 	}
 
@@ -598,20 +600,14 @@ public class GameScene extends PixelScene {
 			log.newLine();
 		}
 
-		boolean active = attackActive();
-
-		if (tagAttack != active ||
-				tagLoot != loot.visible ||
+		if (tagLoot != loot.visible ||
 				tagAction != action.visible ||
 				tagResume != resume.visible) {
 
 			//we only want to change the layout when new tags pop in, not when existing ones leave.
-			boolean tagAppearing = (active && !tagAttack) ||
-									(loot.visible && !tagLoot) ||
+			boolean tagAppearing = (loot.visible && !tagLoot) ||
 									(action.visible && !tagAction) ||
 									(resume.visible && !tagResume);
-
-			tagAttack = active;
 			tagLoot = loot.visible;
 			tagAction = action.visible;
 			tagResume = resume.visible;
@@ -627,18 +623,6 @@ public class GameScene extends PixelScene {
 		toDestroy.clear();
 	}
 
-	private boolean attackActive() {
-		boolean active = false;
-		for (AttackIndicator attackIndicator : attacks) {
-			if (attackIndicator.active) {
-				active = true;
-				break;
-			}
-		}
-		return active;
-	}
-
-	private boolean tagAttack    = false;
 	private boolean tagLoot      = false;
 	private boolean tagAction    = false;
 	private boolean tagResume    = false;
@@ -647,34 +631,35 @@ public class GameScene extends PixelScene {
 
 		if (scene == null) return;
 
-		float tagLeft = CPDSettings.flipTags() ? 0 : uiCamera.width - scene.loot.width();
+		float tagLeft = CPDSettings.flipTags() ? 0 : uiCamera.width - scene.attack.width();
 
 		if (CPDSettings.flipTags()) {
-			scene.log.setRect(scene.attacks[0].width(), scene.toolbar.top()-2, uiCamera.width - scene.loot.width(), 0);
+			scene.log.setRect(scene.attack.width(), scene.toolbar.top() - 2, uiCamera.width - scene.attack.width(), 0);
 		} else {
-			scene.log.setRect(0, scene.toolbar.top()-2, uiCamera.width - scene.loot.width(),  0 );
+			scene.log.setRect(0, scene.toolbar.top() - 2, uiCamera.width - scene.attack.width(), 0);
 		}
 
 		float pos = scene.toolbar.top();
 
-		if (scene.tagAttack) {
-			//TODO
-		}
+		scene.attack.setPos(tagLeft, pos - scene.attack.height());
+		scene.attack.flip(tagLeft == 0);
+		pos = scene.attack.top();
+		scene.attack.visible = true;
 
 		if (scene.tagLoot) {
-			scene.loot.setPos( tagLeft, pos - scene.loot.height() );
+			scene.loot.setPos(tagLeft, pos - scene.loot.height());
 			scene.loot.flip(tagLeft == 0);
 			pos = scene.loot.top();
 		}
 
 		if (scene.tagAction) {
-			scene.action.setPos( tagLeft, pos - scene.action.height() );
+			scene.action.setPos(tagLeft, pos - scene.action.height());
 			scene.action.flip(tagLeft == 0);
 			pos = scene.action.top();
 		}
 
 		if (scene.tagResume) {
-			scene.resume.setPos( tagLeft, pos - scene.resume.height() );
+			scene.resume.setPos(tagLeft, pos - scene.resume.height());
 			scene.resume.flip(tagLeft == 0);
 			pos = scene.resume.top();
 		}

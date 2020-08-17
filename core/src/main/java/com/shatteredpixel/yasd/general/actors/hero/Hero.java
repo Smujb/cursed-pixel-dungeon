@@ -62,6 +62,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.CheckedCell;
 import com.shatteredpixel.yasd.general.items.Ankh;
+import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Dewdrop;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Heap.Type;
@@ -184,6 +185,18 @@ public class Hero extends Char {
 
 	public HeroClass heroClass = HeroClass.ROGUE;
 	public HeroSubClass subClass = HeroSubClass.NONE;
+
+
+	public int curItemSlot = 0;
+
+	public Attackable curItem() {
+		if (curItemSlot >= 0 && curItemSlot < belongings.miscs.length && belongings.miscs[curItemSlot] instanceof Attackable) {
+			return (Attackable) belongings.miscs[curItemSlot];
+		} else {
+			curItemSlot = -1;
+			return null;
+		}
+	}
 
 
 	public boolean ready = false;
