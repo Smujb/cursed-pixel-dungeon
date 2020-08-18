@@ -124,7 +124,12 @@ public enum HeroClass {
 				initPriestess( hero );
 				break;
 		}
-		
+
+		for (KindofMisc misc : hero.belongings.miscs) {
+			if (misc != null) {
+				misc.activate(hero);
+			}
+		}
 	}
 
 	private static void initCommon( Hero hero ) {
@@ -141,7 +146,6 @@ public enum HeroClass {
 
 		if (HeroSelectScene.curWeapon != null) {
 			hero.belongings.miscs[0] = (KindOfWeapon) HeroSelectScene.curWeapon.upgrade().identify();
-			hero.belongings.miscs[0].activate(hero);
 		}
 
 		new PotionBandolier().collect();
@@ -218,7 +222,6 @@ public enum HeroClass {
 			staff.collect();
 		}
 		hero.belongings.miscs[1] = (Armor) new MageArmor().identify();
-		staff.activate(hero);
 
 		new Blink().collect();
 
@@ -262,7 +265,7 @@ public enum HeroClass {
 		new PotionOfMindVision().identify();
 		new ScrollOfLullaby().identify();
 
-		hero.increaseResilience();
+		hero.increaseAssault();
 	}
 
 	private static void initPriestess( Hero hero ) {
@@ -272,7 +275,6 @@ public enum HeroClass {
 		}
 		hero.belongings.miscs[1] = (Armor) new PriestessArmor().identify();
 		(hero.belongings.miscs[0] = new PoisonDragonPendant()).upgrade().identify();
-		hero.belongings.miscs[0].activate(hero);
 
 		Dungeon.quickslot.setSlot(0, hero.belongings.getWeapon());
 

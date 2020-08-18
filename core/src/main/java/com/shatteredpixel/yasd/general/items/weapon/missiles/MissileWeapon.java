@@ -38,6 +38,7 @@ import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.rings.RingOfSharpshooting;
@@ -121,18 +122,28 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 
 	@Override
 	public void use(Char enemy) {
-		cast( curUser, enemy.pos );
+		if (curUser == null) {
+			return;
+		}
+		if (Dungeon.level.adjacent(curUser.pos, enemy.pos)) {
+			doAttack(curUser, enemy);
+		} else {
+			cast(curUser, enemy.pos);
+		}
 	}
 
 	@Override
 	public boolean canAttack(Char enemy) {
+		if (curUser == null) {
+			return false;
+		}
 		return Ballistica.canHit(curUser, enemy, Ballistica.PROJECTILE);
 	}
 
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		actions.remove( AC_EQUIP );
+		//actions.remove( AC_EQUIP );
 		return actions;
 	}
 	
@@ -295,17 +306,48 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 			MissileWeapon m = (MissileWeapon)split;
 			m.durability = MAX_DURABILITY;
 			m.parent = this;
+			m.curUser = curUser;
 		}
 		
 		return split;
 	}
-	
+
+	@Override
+	public void activate(Char ch) {
+		super.activate(ch);
+		if (parent != null) {
+			parent.curUser = ch;
+		}
+	}
+
 	@Override
 	public boolean doPickUp(Hero hero) {
 		parent = null;
+		KindofMisc[] miscs = hero.belongings.miscs;
+		for (int i = 0; i < miscs.length; i++) {
+			KindofMisc misc = miscs[i];
+			if (misc != null && misc.isSimilar(this)) {
+				Item merged = misc.merge(this);
+				if (merged != null) {
+					miscs[i] = (KindofMisc) merged;
+					hero.next();
+					return true;
+				}
+				return false;
+			}
+		}
 		return super.doPickUp(hero);
 	}
-	
+
+	@Override
+	public boolean doEquip(Hero hero) {
+		if (parent != null) {
+			return parent.doEquip(hero);
+		} else {
+			return super.doEquip(hero);
+		}
+	}
+
 	@Override
 	public boolean isIdentified() {
 		return true;

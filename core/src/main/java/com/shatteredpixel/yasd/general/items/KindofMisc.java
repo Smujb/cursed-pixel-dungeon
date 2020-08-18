@@ -71,7 +71,7 @@ public abstract class KindofMisc extends EquipableItem {
 							if (equipped == null) return;
 
 							int slot = Dungeon.quickslot.getSlot(KindofMisc.this);
-							detach(hero.belongings.backpack);
+							detachAll(hero.belongings.backpack);
 							if (equipped.doUnequip(hero, true, false)) {
 								doEquip(hero);
 							} else {
@@ -93,7 +93,7 @@ public abstract class KindofMisc extends EquipableItem {
 			}
 
 
-			detach( hero.belongings.backpack );
+			detachAll(hero.belongings.backpack);
 
 			activate( hero );
 

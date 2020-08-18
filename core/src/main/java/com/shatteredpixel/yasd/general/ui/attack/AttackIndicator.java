@@ -184,7 +184,7 @@ public class AttackIndicator extends Tag {
 			public void onSelect( Item item ) {
 				if (item instanceof Attackable) {
 					Dungeon.hero.setCurItem((Attackable) item);
-					AttackIndicator.this.updateState();
+					AttackIndicator.this.updateImage();
 				}
 			}
 		};
