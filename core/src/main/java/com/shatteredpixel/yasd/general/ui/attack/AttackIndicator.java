@@ -92,6 +92,7 @@ public class AttackIndicator extends Tag {
 		if (Dungeon.hero.isAlive()) {
 
 			enable(Dungeon.hero.ready);
+			active = Dungeon.hero.ready;
 			visible(true);
 
 		} else {
@@ -123,7 +124,8 @@ public class AttackIndicator extends Tag {
 		}
 
 		visible( true );
-		enable( true );
+		enable( Dungeon.hero.ready );
+		active = Dungeon.hero.ready;
 	}
 	
 	private synchronized void updateImage() {
@@ -161,6 +163,9 @@ public class AttackIndicator extends Tag {
 	@Override
 	protected void onClick() {
 		super.onClick();
+		if (!Dungeon.hero.ready) {
+			return;
+		}
 		if (Dungeon.hero.curItem() == null) {
 			onLongClick();
 		} else {
@@ -170,6 +175,7 @@ public class AttackIndicator extends Tag {
 				checkEnemies();
 			}
 		}
+		active = Dungeon.hero.ready;
 		enable(Dungeon.hero.ready);
 	}
 
