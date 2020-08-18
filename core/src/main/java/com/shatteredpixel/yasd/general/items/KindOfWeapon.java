@@ -62,8 +62,13 @@ abstract public class KindOfWeapon extends KindofMisc {
 			attacker.sprite.attack(enemy.pos, new Callback() {
 				@Override
 				public void call() {
-					attack(attacker, enemy, false);
-					attacker.next();
+					fx(attacker, enemy.pos, new Callback() {
+						@Override
+						public void call() {
+							attack(attacker, enemy, false);
+							attacker.next();
+						}
+					});
 				}
 			});
 			attacker.spend( attacker.attackDelay() );
@@ -71,12 +76,17 @@ abstract public class KindOfWeapon extends KindofMisc {
 		} else {
 			attack(attacker, enemy, false);
 			attacker.spend( attacker.attackDelay() );
+			attacker.next();
 			return true;
 		}
 	}
 
 	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
 		return attacker.attack(enemy, guaranteed);
+	}
+
+	public void fx(Char attacker, int pos, Callback callback) {
+		callback.call();
 	}
 
 	abstract public int min(float lvl);

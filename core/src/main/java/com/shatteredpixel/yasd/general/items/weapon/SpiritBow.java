@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Splash;
+import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -48,7 +49,7 @@ import com.watabou.utils.Random;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SpiritBow extends Weapon {
+public class SpiritBow extends Weapon implements Attackable {
 	
 	public static final String AC_SHOOT		= "SHOOT";
 	
@@ -181,7 +182,12 @@ public class SpiritBow extends Weapon {
 	public SpiritArrow knockArrow(){
 		return new SpiritArrow();
 	}
-	
+
+	@Override
+	public void use(Char enemy) {
+		knockArrow().cast(curUser, enemy.pos);
+	}
+
 	public class SpiritArrow extends MissileWeapon {
 		
 		{

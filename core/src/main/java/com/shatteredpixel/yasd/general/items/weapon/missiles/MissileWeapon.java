@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.PinCushion;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
+import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
@@ -50,7 +51,7 @@ import com.watabou.utils.Random;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-abstract public class MissileWeapon extends Weapon {
+abstract public class MissileWeapon extends Weapon implements Attackable {
 
 	{
 		stackable = true;
@@ -115,6 +116,11 @@ abstract public class MissileWeapon extends Weapon {
 		} else {
 			return super.upgrade();
 		}
+	}
+
+	@Override
+	public void use(Char enemy) {
+		cast( curUser, enemy.pos );
 	}
 
 	@Override
