@@ -259,10 +259,10 @@ import java.util.LinkedHashMap;
 public class Generator {
 
 	public enum Category {
-		WEAPON	( 5,    MeleeWeapon.class),
-		ARMOR	( 5,    Armor.class ),
+		WEAPON	( 3,    MeleeWeapon.class),
+		ARMOR	( 3,    Armor.class ),
 
-		MISSILE ( 3,    MissileWeapon.class ),
+		MISSILE ( 2,    MissileWeapon.class ),
 		MIS_T1  ( 0,    MissileWeapon.class ),
 		MIS_T2  ( 0,    MissileWeapon.class ),
 		MIS_T3  ( 0,    MissileWeapon.class ),
@@ -270,9 +270,9 @@ public class Generator {
 		MIS_T5  ( 0,    MissileWeapon.class ),
 
 
-		DRAGON_PENDANT  ( 4,    DragonPendant.class ),
+		DRAGON_PENDANT  ( 2,    DragonPendant.class ),
 
-		WAND	( 3,    Wand.class ),
+		WAND	( 2,    Wand.class ),
 		RING	( 1,    Ring.class ),
 		ARTIFACT( 1,    Artifact.class),
 
