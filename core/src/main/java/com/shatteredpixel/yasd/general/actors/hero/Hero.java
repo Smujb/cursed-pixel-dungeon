@@ -118,6 +118,7 @@ import com.shatteredpixel.yasd.general.windows.WndTradeItem;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
@@ -187,17 +188,27 @@ public class Hero extends Char {
 	public HeroSubClass subClass = HeroSubClass.NONE;
 
 
-	public int curItemSlot = 0;
+	private Attackable curItem = null;
 
 	public Attackable curItem() {
-		if (curItemSlot >= 0 && curItemSlot < belongings.miscs.length && belongings.miscs[curItemSlot] instanceof Attackable) {
-			return (Attackable) belongings.miscs[curItemSlot];
+		if (curItem == null && belongings.miscs[0] instanceof Attackable) {
+			 curItem = (Attackable) belongings.miscs[0];
+		}
+		if (belongings.contains((Item) curItem)) {
+			return curItem;
 		} else {
-			curItemSlot = -1;
-			return null;
+			ArrayList<Item> items = belongings.getAllSimilar((Item) curItem);
+			if (items.isEmpty()) {
+				return curItem = null;
+			} else {
+				return curItem = (Attackable) items.get(0);
+			}
 		}
 	}
 
+	public void setCurItem(Attackable item) {
+		curItem = item;
+	}
 
 	public boolean ready = false;
 	private boolean damageInterrupt = true;
@@ -436,6 +447,7 @@ public class Hero extends Char {
 	private static final String EVASION = "combatskill";
 	private static final String ATTUNEMENT = "attunement";
 	private static final String DISTRIBUTIONPOINTS = "distribution-points";
+	private static final String CUR_ITEM = "cur-item";
 
 	@Override
 	public void storeInBundle(Bundle bundle) {
@@ -462,6 +474,8 @@ public class Hero extends Char {
 		bundle.put(EVASION, assault);
 		bundle.put(ATTUNEMENT, support);
 		bundle.put(DISTRIBUTIONPOINTS, DistributionPoints);
+
+		bundle.put( CUR_ITEM, (Bundlable) curItem);
 		super.storeInBundle(bundle);
 	}
 
@@ -490,6 +504,10 @@ public class Hero extends Char {
 		assault = bundle.getInt(EVASION);
 		support = bundle.getInt(ATTUNEMENT);
 		DistributionPoints = bundle.getInt(DISTRIBUTIONPOINTS);
+
+		if (bundle.contains(CUR_ITEM)) {
+			curItem = (Attackable) bundle.get(CUR_ITEM);
+		}
 		super.restoreFromBundle(bundle);
 	}
 

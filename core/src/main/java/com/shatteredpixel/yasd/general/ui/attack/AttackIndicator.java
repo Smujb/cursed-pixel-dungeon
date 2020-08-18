@@ -106,7 +106,7 @@ public class AttackIndicator extends Tag {
 		int v = Dungeon.hero.visibleEnemies();
 		for (int i=0; i < v; i++) {
 			Mob mob = Dungeon.hero.visibleEnemy( i );
-			if ( Dungeon.hero.canAttack( mob) ) {
+			if ( Dungeon.hero.curItem() != null && Dungeon.hero.curItem().canAttack(mob) ) {
 				candidates.add( mob );
 			}
 		}
@@ -166,6 +166,8 @@ public class AttackIndicator extends Tag {
 		} else {
 			if (lastTarget != null) {
 				Dungeon.hero.curItem().use(lastTarget);
+			} else {
+				checkEnemies();
 			}
 		}
 	}
@@ -181,12 +183,8 @@ public class AttackIndicator extends Tag {
 			@Override
 			public void onSelect( Item item ) {
 				if (item instanceof Attackable) {
-					for (int slot = 0; slot < Dungeon.hero.belongings.miscs.length; slot++) {
-						if (Dungeon.hero.belongings.miscs[slot] == item) {
-							Dungeon.hero.curItemSlot = slot;
-							break;
-						}
-					}
+					Dungeon.hero.setCurItem((Attackable) item);
+					AttackIndicator.this.updateState();
 				}
 			}
 		};

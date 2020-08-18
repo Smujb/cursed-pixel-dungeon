@@ -122,6 +122,11 @@ public class MeleeWeapon extends Weapon implements Attackable {
 	}
 
 	@Override
+	public boolean canAttack(Char enemy) {
+		return canReach(curUser, enemy.pos);
+	}
+
+	@Override
 	public int defenseFactor(Char owner) {
 		return (int) ((max()/2)*defenseMultiplier);
 	}

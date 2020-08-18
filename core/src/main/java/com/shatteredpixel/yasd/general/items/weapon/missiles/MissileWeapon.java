@@ -43,6 +43,7 @@ import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.rings.RingOfSharpshooting;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Projecting;
+import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
@@ -121,6 +122,11 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 	@Override
 	public void use(Char enemy) {
 		cast( curUser, enemy.pos );
+	}
+
+	@Override
+	public boolean canAttack(Char enemy) {
+		return Ballistica.canHit(curUser, enemy, Ballistica.PROJECTILE);
 	}
 
 	@Override
