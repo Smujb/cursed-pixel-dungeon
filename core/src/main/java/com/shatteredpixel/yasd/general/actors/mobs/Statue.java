@@ -152,19 +152,15 @@ public class Statue extends Mob implements Callback {
 	}
 
 	protected void upgradeItems() {
-		int sous = Dungeon.getScaleFactor();
+		int sous = Dungeon.getScaleFactor()*5;
 		EquipableItem item;
 		if (belongings.miscs.length > 0 || belongings.getWeapon() != null || belongings.getArmor() != null) {
 			do {
 				do {
 					item = null;
-					int slot = Random.Int(belongings.miscs.length + 2);
+					int slot = Random.Int(belongings.miscs.length);
 					if (slot < belongings.miscs.length) {
 						item = belongings.miscs[slot];
-					} else if (slot == belongings.miscs.length + 1) {
-						item = belongings.getWeapon();
-					} else if (slot == belongings.miscs.length + 2) {
-						item = belongings.getArmor();
 					}
 				} while (item == null || !item.isUpgradable());//If the item is not upgradeable (An artifact or +3) chose another. Also, if it is null (nothing equipped in that slot)
 				item.upgrade();
