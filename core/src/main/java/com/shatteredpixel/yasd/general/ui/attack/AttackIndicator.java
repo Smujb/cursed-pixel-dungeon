@@ -64,7 +64,7 @@ public class AttackIndicator extends Tag {
 		setSize( 24, 24 );
 
 		active = true;
-		enable(true);
+		enable(Dungeon.hero.ready);
 		visible(true);
 	}
 
@@ -170,6 +170,7 @@ public class AttackIndicator extends Tag {
 				checkEnemies();
 			}
 		}
+		enable(Dungeon.hero.ready);
 	}
 
 	@Override
