@@ -94,6 +94,7 @@ public class MagesStaff extends MeleeWeapon {
 		wand.identify();
 		wand.cursed = false;
 		this.wand = wand;
+		wand.imbued = true;
 		updateWand(false);
 		wand.curCharges = wand.maxCharges;
 		name = Messages.get(wand, "staff_name");
@@ -307,6 +308,7 @@ public class MagesStaff extends MeleeWeapon {
 		wand = (Wand) bundle.get(WAND);
 		if (wand != null) {
 			wand.maxCharges = Math.min(wand.maxCharges, Constants.WAND_CHARGE_CAP);
+			wand.imbued = true;
 			name = Messages.get(wand, "staff_name");
 		}
 	}
