@@ -127,7 +127,16 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 		}
 		if (Dungeon.level.adjacent(curUser.pos, enemy.pos)) {
 			doAttack(curUser, enemy);
-		} else {
+			PinCushion pinCushion = enemy.buff(PinCushion.class);
+			if (pinCushion != null) {
+				MissileWeapon similar = pinCushion.getSimilar(this);
+				if (similar != null) {
+					if (!similar.mergeWithMisc(curUser)) {
+						similar.collect(curUser.belongings.backpack, curUser);
+					}
+				}
+			}
+		} else if (quantity > 1) {
 			cast(curUser, enemy.pos);
 		}
 	}
@@ -136,14 +145,20 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 	public boolean canAttack(Char enemy) {
 		if (curUser == null) {
 			return false;
+		} else if (quantity <= 1) {
+			return Dungeon.level.adjacent(curUser.pos, enemy.pos);
+		} else {
+			return Ballistica.canHit(curUser, enemy, Ballistica.PROJECTILE);
 		}
-		return Ballistica.canHit(curUser, enemy, Ballistica.PROJECTILE);
 	}
+
 
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		//actions.remove( AC_EQUIP );
+		if (isEquipped(hero) && quantity <= 1) {
+			actions.remove(AC_THROW);
+		}
 		return actions;
 	}
 	
@@ -184,6 +199,10 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 
 			}
 		}
+
+		if (quantity < 1 && isEquipped(curUser)) {
+			doUnequip(curUser, false);
+		}
 	}
 	
 	@Override
@@ -222,7 +241,7 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 			Dungeon.level.drop( this, cell ).sprite.drop();
 		}
 	}
-	
+
 	protected void rangedMiss( int cell ) {
 		parent = null;
 		super.onThrow(cell);
@@ -320,9 +339,7 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 		}
 	}
 
-	@Override
-	public boolean doPickUp(Hero hero) {
-		parent = null;
+	private boolean mergeWithMisc(Char hero) {
 		KindofMisc[] miscs = hero.belongings.miscs;
 		for (int i = 0; i < miscs.length; i++) {
 			KindofMisc misc = miscs[i];
@@ -333,8 +350,16 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 					hero.next();
 					return true;
 				}
-				return false;
 			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean doPickUp(Hero hero) {
+		parent = null;
+		if (mergeWithMisc(hero)) {
+			return true;
 		}
 		return super.doPickUp(hero);
 	}

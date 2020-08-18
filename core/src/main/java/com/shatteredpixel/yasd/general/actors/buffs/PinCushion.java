@@ -49,6 +49,16 @@ public class PinCushion extends Buff {
 		items.add(projectile);
 	}
 
+	public MissileWeapon getSimilar(MissileWeapon projectile) {
+		for (MissileWeapon item : items){
+			if (item.isSimilar(projectile)){
+				items.remove(item);
+				return item;
+			}
+		}
+		return null;
+	}
+
 	@Override
 	public void detach() {
 		for (Item item : items)
