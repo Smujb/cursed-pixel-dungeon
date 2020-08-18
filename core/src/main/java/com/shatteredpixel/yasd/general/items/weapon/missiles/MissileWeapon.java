@@ -95,11 +95,6 @@ abstract public class MissileWeapon extends Weapon {
 	}
 
 	@Override
-	public int upgradeLimit() {
-		return -1;
-	}
-
-	@Override
 	public int max() {
 		return Math.max(0, max( power() + RingOfSharpshooting.levelDamageBonus(Dungeon.hero) ));
 	}
@@ -191,7 +186,7 @@ abstract public class MissileWeapon extends Weapon {
 		//2: 66.67% (2/3)
 		//3: 26.67% (4/15)
 		//4: 6.67%  (1/15)
-		quantity = 2;
+		quantity = 3;
 		if (Random.Int(3) == 0) {
 			quantity++;
 			if (Random.Int(5) == 0) {
@@ -327,8 +322,7 @@ abstract public class MissileWeapon extends Weapon {
 		
 		info += "\n\n" + Messages.get( MissileWeapon.class, "stats",
 				Math.round(augment.damageFactor(min())),
-				Math.round(augment.damageFactor(max())),
-				statReq());
+				Math.round(augment.damageFactor(max())));
 
 		if (enchantment != null && (cursedKnown || !enchantment.curse())){
 			info += "\n\n" + Messages.get(Weapon.class, "enchanted", enchantment.name());

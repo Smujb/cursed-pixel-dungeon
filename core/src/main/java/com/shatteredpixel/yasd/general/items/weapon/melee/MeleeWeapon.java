@@ -167,12 +167,12 @@ public class MeleeWeapon extends Weapon implements Attackable {
 		String info = desc();
 
 		if (levelKnown) {
-			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_known", augment.damageFactor(min()), augment.damageFactor(max()), statReq());
+			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_known", augment.damageFactor(min()), augment.damageFactor(max()));
 		} else {
-			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", min(0), max(0), statReq(0));
+			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", min(0), max(0));
 		}
 
-		if (DLY != 1f | ACC != 1f | RCH != 1 | breaksArmor(Dungeon.hero) | !canSurpriseAttack | defenseFactor(Dungeon.hero) > 0 | sneakBenefit) {
+		if (DLY != 1f | ACC != 1f | RCH != 1 | breaksArmor(curUser) | !canSurpriseAttack | defenseFactor(curUser) > 0 | sneakBenefit) {
 
 			info += "\n";
 

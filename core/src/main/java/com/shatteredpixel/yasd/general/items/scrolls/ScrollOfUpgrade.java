@@ -106,7 +106,8 @@ public class ScrollOfUpgrade extends InventoryScroll {
 		} else {
 			item.upgrade();
 		}
-		
+
+		item.timesUpgraded++;
 		Badges.validateItemLevelAquired( item );
 		Statistics.upgradesUsed++;
 		Badges.validateMageUnlock();

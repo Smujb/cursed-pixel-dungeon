@@ -395,7 +395,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 		//+0: 66.67% (2/3)
 		//+1: 26.67% (4/15)
 		//+2: 6.67%  (1/15)
-		int n = 0;
+		int n = Dungeon.getScaleFactor()/2;
 		if (Random.Int(3) == 0) {
 			n++;
 			if (Random.Int(5) == 0){

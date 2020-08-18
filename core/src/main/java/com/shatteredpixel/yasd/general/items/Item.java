@@ -97,6 +97,10 @@ public class Item implements Bundlable {
 	
 	public boolean cursed;
 	public boolean cursedKnown;
+
+	public static final int MAX_SOU = 8;
+	public int timesUpgraded = 0;
+	public int souCap = MAX_SOU;
 	
 	// Unique items persist through revival
 	public boolean unique = false;
@@ -471,25 +475,20 @@ public class Item implements Bundlable {
 	}
 
 	public boolean isUpgradable() {
-		if (upgradeLimit() == -1) {
-			return true;
-		}
-		return level() < upgradeLimit();
+		return true;
 	}
 
-	public int upgradeLimit() {
-		/*int limit = Constants.UPGRADE_LIMIT;
-		if ((this instanceof Armor && ((Armor)this).curseInfusionBonus) || (this instanceof MeleeWeapon && ((MeleeWeapon)this).curseInfusionBonus) || (this instanceof Wand && ((Wand)this).curseInfusionBonus)) {
-			limit++;
+	public boolean limitReached() {
+		if (unique) {
+			return false;
+		} else {
+			return timesUpgraded >= souCap;
 		}
-		 */
-		return -1;
 	}
-	
+
 	public boolean isIdentified() {
 		return levelKnown && cursedKnown;
 	}
-
 
 	public boolean isEquipped(@NotNull Char owner ) {
 		return false;
@@ -580,6 +579,9 @@ public class Item implements Bundlable {
 				}
 			}
 		}
+		if (isUpgradable() && !unique) {
+			desc += "\n\n" + Messages.get(this, "upgrades_held", timesUpgraded, MAX_SOU);
+		}
 		return desc;
 	}
 	
@@ -619,7 +621,7 @@ public class Item implements Bundlable {
 			do {
 				upgrade();
 				upgrade++;
-			} while (Random.Int(level * 2) <= Dungeon.getScaleFactor() && upgrade < 100);
+			} while (Random.Int((int) (level*1.5f)) <= Dungeon.getScaleFactor() && upgrade < 1000);
 			return this;
 		}
 		return random();
@@ -640,6 +642,8 @@ public class Item implements Bundlable {
 	private static final String CURSED_KNOWN	= "cursedKnown";
 	private static final String QUICKSLOT		= "quickslotpos";
 	private static final String DURABILITY      = "durability";
+	private static final String TIMES           = "times_upgraded";
+	private static final String MAX           = "max-sou";
 	
 	@Override
 	public void storeInBundle(  Bundle bundle ) {
@@ -649,6 +653,8 @@ public class Item implements Bundlable {
 		bundle.put( CURSED, cursed );
 		bundle.put( CURSED_KNOWN, cursedKnown );
 		bundle.put( DURABILITY, curDurability );
+		bundle.put( TIMES, timesUpgraded );
+		bundle.put( MAX, souCap );
 		if (Dungeon.quickslot.contains(this)) {
 			bundle.put( QUICKSLOT, Dungeon.quickslot.getSlot(this) );
 		}
@@ -660,7 +666,9 @@ public class Item implements Bundlable {
 		levelKnown	= bundle.getBoolean( LEVEL_KNOWN );
 		cursedKnown	= bundle.getBoolean( CURSED_KNOWN );
 		curDurability = bundle.getFloat( DURABILITY );
-		
+		timesUpgraded = bundle.contains( TIMES ) ? bundle.getInt( TIMES ) : 0;
+		souCap = bundle.contains( MAX ) ? bundle.getInt( MAX ) : MAX_SOU;
+
 		int level = bundle.getInt( LEVEL );
 		level(level);
 		

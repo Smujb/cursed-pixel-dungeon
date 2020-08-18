@@ -278,7 +278,7 @@ abstract public class Weapon extends KindOfWeapon {
 		//+0: 75% (3/4)
 		//+1: 20% (4/20)
 		//+2: 5%  (1/20)
-		int n = 0;
+		int n = Dungeon.getScaleFactor()/2;
 		if (Random.Int(4) == 0) {
 			n++;
 			if (Random.Int(5) == 0) {

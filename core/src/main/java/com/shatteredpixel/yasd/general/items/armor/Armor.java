@@ -307,9 +307,6 @@ public class Armor extends KindofMisc {
 		if (seal != null) {
 			lvl += seal.level();
 		}
-		if (upgradeLimit() > 0) {
-			lvl = Math.min(upgradeLimit(), lvl);
-		}
 		return lvl;
 	}
 	
@@ -328,7 +325,7 @@ public class Armor extends KindofMisc {
 
 		cursed = false;
 
-		if (seal != null && seal.level() < seal.upgradeLimit()) {
+		if (seal != null && seal.isUpgradable()) {
 			seal.upgrade();
 			return this;
 		}
@@ -407,11 +404,11 @@ public class Armor extends KindofMisc {
 		String info = desc();
 		
 		if (levelKnown) {
-			info += "\n\n" + Messages.get(Armor.class, "curr_absorb", DRMin(), DRMax(), statReq());
+			info += "\n\n" + Messages.get(Armor.class, "curr_absorb", DRMin(), DRMax());
 
 			info += " " + Messages.get(Armor.class, "curr_absorb_magic",  magicalDRMin(), magicalDRMax());
 		} else {
-			info += "\n\n" + Messages.get(Armor.class, "avg_absorb", DRMin(0), DRMax(0), statReq(0));
+			info += "\n\n" + Messages.get(Armor.class, "avg_absorb", DRMin(0), DRMax(0));
 
 			if (magicalDRMax() > 0) {
 				info += " " +  Messages.get(Armor.class, "avg_absorb_magic", magicalDRMin(0), magicalDRMax(0));
@@ -490,7 +487,7 @@ public class Armor extends KindofMisc {
 		//+0: 75% (3/4)
 		//+1: 20% (4/20)
 		//+2: 5%  (1/20)
-		int n = 0;
+		int n = Dungeon.getScaleFactor()/2;
 		if (Random.Int(4) == 0) {
 			n++;
 			if (Random.Int(5) == 0) {

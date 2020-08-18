@@ -93,8 +93,7 @@ public class SpiritBow extends Weapon {
 		
 		info += "\n\n" + Messages.get( SpiritBow.class, "stats",
 				Math.round(augment.damageFactor(min())),
-				Math.round(augment.damageFactor(max())),
-				statReq());
+				Math.round(augment.damageFactor(max())));
 		
 		switch (augment) {
 			case SPEED:
@@ -121,7 +120,7 @@ public class SpiritBow extends Weapon {
 		
 		info += "\n\n" + Messages.get(MissileWeapon.class, "distance");
 		
-		return info;
+		return info + statsReqDesc();
 	}
 
 	@Override
@@ -177,11 +176,6 @@ public class SpiritBow extends Weapon {
 		} else {
 			return super.speedFactor(owner);
 		}
-	}
-	
-	@Override
-	public boolean isUpgradable() {
-		return true;
 	}
 	
 	public SpiritArrow knockArrow(){
