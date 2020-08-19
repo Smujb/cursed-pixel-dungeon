@@ -364,8 +364,8 @@ public class Belongings implements Iterable<Item> {
 	//####################### End of stuff for handling chars with belongings ######################
 	//##############################################################################################
 
-	private static final String ARMOR		= "getArmor()";
-	private static final String WEAPON		= "getWeapon()";
+	private static final String ARMOR		= "armor";
+	private static final String WEAPON		= "weapon";
 	private static final String MISC        = "misc";
 
 
@@ -375,28 +375,29 @@ public class Belongings implements Iterable<Item> {
 		for (int i = 0; i < owner.miscSlots(); i++) {//Store all miscs
 			bundle.put( MISC + i, miscs[i]);
 		}
-		bundle.put(ARMOR, getArmor());
-		bundle.put(WEAPON, getWeapon());
 	}
 	
 	public void restoreFromBundle( Bundle bundle ) {
 		
 		backpack.clear();
 		backpack.restoreFromBundle( bundle );
-		//setArmor((Armor) bundle.get(ARMOR));
-		//setWeapon ((KindOfWeapon) bundle.get(WEAPON));
-		if (getWeapon() != null) {
-			getWeapon().activate( owner );
-		}
-		if (getArmor() != null) {
-			getArmor().activate( owner );
-		}
 		miscs = new KindofMisc[owner.miscSlots()];
 		for (int i = 0; i < owner.miscSlots(); i++) {//Restore all miscs
 			miscs[i] = (KindofMisc) bundle.get(MISC + i);
 			if (miscs[i] != null) {
 				miscs[i].activate( owner );
 			}
+		}
+
+		//Old saves
+		if (bundle.contains(WEAPON)) {
+			KindOfWeapon weapon = (KindOfWeapon) bundle.get(WEAPON);
+			weapon.collect(backpack, owner);
+		}
+
+		if (bundle.contains(ARMOR)) {
+			Armor armor = (Armor) bundle.get(ARMOR);
+			armor.collect(backpack, owner);
 		}
 	}
 	
