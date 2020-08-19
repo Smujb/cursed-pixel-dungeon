@@ -32,9 +32,7 @@ import android.content.pm.PackageManager;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -47,9 +45,8 @@ import com.watabou.noosa.Game;
 import com.watabou.utils.FileUtils;
 
 public class AndroidGame extends AndroidApplication {
-	
+
 	public static AndroidApplication instance;
-	public static AndroidApplicationConfiguration config;
 	protected static GLSurfaceView view;
 
 	private static AndroidPlatformSupport support;
@@ -57,8 +54,9 @@ public class AndroidGame extends AndroidApplication {
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		instance = this;
-		
+
 		try {
 			Game.version = getPackageManager().getPackageInfo( getPackageName(), 0 ).versionName;
 		} catch (PackageManager.NameNotFoundException e) {
@@ -74,24 +72,25 @@ public class AndroidGame extends AndroidApplication {
 			Updates.service = UpdateImpl.getUpdateService();
 		}
 
-
 		FileUtils.setDefaultFileProperties( Files.FileType.Local, "" );
 
-		UCEHandler.Builder builder = new UCEHandler.Builder(this);
-		builder.build();
 		// grab preferences directly using our instance first
 		// so that we don't need to rely on Gdx.app, which isn't initialized yet.
 		// Note that we use a different prefs name on android for legacy purposes,
 		// this is the default prefs filename given to an android app (.xml is automatically added to it)
 		CPDSettings.set(instance.getPreferences("ShatteredPixelDungeon"));
-		
+
+		UCEHandler.Builder builder = new UCEHandler.Builder(this);
+		builder.build();
+
 		//set desired orientation (if it exists) before initializing the app.
-		if (CPDSettings.landscape() != null) {
-			AndroidGame.instance.setRequestedOrientation( CPDSettings.landscape() ?
+		Boolean landscape = CPDSettings.landscape();
+		if (landscape != null) {
+			AndroidGame.instance.setRequestedOrientation( landscape ?
 					ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE :
 					ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT );
 		}
-		
+
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.depth = 0;
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -100,30 +99,20 @@ public class AndroidGame extends AndroidApplication {
 		} else {
 			//and rgb565 (default) on older ones for better performance
 		}
-		
+
 		config.useCompass = false;
 		config.useAccelerometer = false;
+		//config.useGyroscope = true;
 
 		if (support == null) support = new AndroidPlatformSupport();
 		else                 support.resetGenerators();
-		
+
 		support.updateSystemUI();
 
-		CPDGame cpdGame = new CPDGame(support);
-		initialize(cpdGame, config);
-		
+		initialize(new CPDGame(support), config);
+
 		view = (GLSurfaceView)graphics.getView();
-	}
 
-	@Override
-	public View initializeForView(ApplicationListener listener) {
-		config = new AndroidApplicationConfiguration();
-		config.useGyroscope = true;  //default is false
-
-		//you may want to switch off sensors that are on by default if they are no longer needed.
-		config.useAccelerometer = false;
-		config.useCompass = false;
-		return initializeForView(listener, config);
 	}
 
 	@Override
@@ -131,7 +120,7 @@ public class AndroidGame extends AndroidApplication {
 		super.onWindowFocusChanged(hasFocus);
 		support.updateSystemUI();
 	}
-	
+
 	@Override
 	public void onMultiWindowModeChanged(boolean isInMultiWindowMode) {
 		super.onMultiWindowModeChanged(isInMultiWindowMode);
