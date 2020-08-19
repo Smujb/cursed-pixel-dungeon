@@ -62,6 +62,6 @@ public class ToxicGas extends Gas implements Hero.Doom {
 		Badges.validateDeathFromGas();
 		
 		Dungeon.fail( getClass() );
-		GLog.n( Messages.get(this, "ondeath") );
+		GLog.negative( Messages.get(this, "ondeath") );
 	}
 }

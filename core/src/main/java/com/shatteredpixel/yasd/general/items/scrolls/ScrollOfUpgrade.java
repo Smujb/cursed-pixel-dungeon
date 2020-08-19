@@ -74,7 +74,7 @@ public class ScrollOfUpgrade extends InventoryScroll {
 				weakenCurse( Dungeon.hero );
 			}
 			if (hadGoodEnchant && !w.hasGoodEnchant()){
-				GLog.w( Messages.get(Weapon.class, "incompatible") );
+				GLog.warning( Messages.get(Weapon.class, "incompatible") );
 			}
 
 		} else if (item instanceof Armor){
@@ -91,7 +91,7 @@ public class ScrollOfUpgrade extends InventoryScroll {
 				weakenCurse( Dungeon.hero );
 			}
 			if (hadGoodGlyph && !a.hasGoodGlyph()){
-				GLog.w( Messages.get(Armor.class, "incompatible") );
+				GLog.warning( Messages.get(Armor.class, "incompatible") );
 			}
 
 		} else if (item instanceof Wand || item instanceof Ring) {
@@ -118,12 +118,12 @@ public class ScrollOfUpgrade extends InventoryScroll {
 	}
 
 	public static void weakenCurse( Hero hero ){
-		GLog.p( Messages.get(ScrollOfUpgrade.class, "weaken_curse") );
+		GLog.positive( Messages.get(ScrollOfUpgrade.class, "weaken_curse") );
 		hero.sprite.emitter().start( ShadowParticle.UP, 0.05f, 5 );
 	}
 
 	public static void removeCurse( Hero hero ){
-		GLog.p( Messages.get(ScrollOfUpgrade.class, "remove_curse") );
+		GLog.positive( Messages.get(ScrollOfUpgrade.class, "remove_curse") );
 		hero.sprite.emitter().start( ShadowParticle.UP, 0.05f, 10 );
 	}
 	

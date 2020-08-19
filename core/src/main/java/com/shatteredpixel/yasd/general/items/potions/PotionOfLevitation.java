@@ -64,7 +64,7 @@ public class PotionOfLevitation extends Potion {
 	public void apply( Hero hero ) {
 		setKnown();
 		Buff.affect( hero, Levitation.class, Levitation.DURATION );
-		GLog.i( Messages.get(this, "float") );
+		GLog.info( Messages.get(this, "float") );
 	}
 	
 	@Override

@@ -19,8 +19,8 @@ public class Alchemy extends Power {
 	@Override
 	protected void onUse(Hero hero) {
 		super.onUse(hero);
-		if (cursed)                                                GLog.w( Messages.get(this, "cursed") );
-		else if (hero.visibleEnemies() > hero.mindVisionEnemies.size()) GLog.i( Messages.get(this, "enemy_near") );
+		if (cursed)                                                GLog.warning( Messages.get(this, "cursed") );
+		else if (hero.visibleEnemies() > hero.mindVisionEnemies.size()) GLog.info( Messages.get(this, "enemy_near") );
 		else {
 			AlchemyScene.setProvider(new Energy());
 			Game.switchScene(AlchemyScene.class);

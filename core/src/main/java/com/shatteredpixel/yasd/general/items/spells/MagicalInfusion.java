@@ -49,7 +49,7 @@ public class MagicalInfusion extends InventorySpell {
 
 		//removeUpgrades(item);
 
-		GLog.p( Messages.get(this, "infuse", item.name()) );
+		GLog.positive( Messages.get(this, "infuse", item.name()) );
 
 		Badges.validateItemLevelAquired(item);
 

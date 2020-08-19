@@ -91,12 +91,12 @@ public class WandOfWarding extends DamageWand {
 		Char ch = Actor.findChar(target);
 		if (ch instanceof Ward){
 			if (!wardAvailable && ((Ward) ch).tier <= 3){
-				GLog.w( Messages.get(this, "no_more_wards"));
+				GLog.warning( Messages.get(this, "no_more_wards"));
 				return false;
 			}
 		} else {
 			if ((currentWardEnergy + 1) > maxWardEnergy){
-				GLog.w( Messages.get(this, "no_more_wards"));
+				GLog.warning( Messages.get(this, "no_more_wards"));
 				return false;
 			}
 		}
@@ -114,7 +114,7 @@ public class WandOfWarding extends DamageWand {
 
 			ch = Actor.findChar(target);
 			if (ch != null && !(ch instanceof Ward)){
-				GLog.w( Messages.get(this, "bad_location"));
+				GLog.warning( Messages.get(this, "bad_location"));
 				Dungeon.level.pressCell(bolt.collisionPos);
 				return;
 			}
@@ -122,7 +122,7 @@ public class WandOfWarding extends DamageWand {
 
 		if (!Dungeon.level.passable(target)){
 
-			GLog.w( Messages.get(this, "bad_location"));
+			GLog.warning( Messages.get(this, "bad_location"));
 			Dungeon.level.pressCell(target);
 			
 		} else if (ch != null){
@@ -134,7 +134,7 @@ public class WandOfWarding extends DamageWand {
 				}
 				ch.sprite.emitter().burst(MagicMissile.WardParticle.UP, ((Ward) ch).tier);
 			} else {
-				GLog.w( Messages.get(this, "bad_location"));
+				GLog.warning( Messages.get(this, "bad_location"));
 				Dungeon.level.pressCell(target);
 			}
 

@@ -91,7 +91,7 @@ public class DisarmingTrap extends Trap{
 					Dungeon.level.mapped[cell+i] = true;
 				GameScene.updateFog(cell, 1);
 
-				GLog.w( Messages.get(this, "disarm") );
+				GLog.warning( Messages.get(this, "disarm") );
 
 				Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 				CellEmitter.get(pos).burst(Speck.factory(Speck.LIGHT), 4);

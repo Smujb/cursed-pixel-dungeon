@@ -87,8 +87,8 @@ public class HornOfPlenty extends Artifact {
 
 		if (action.equals(AC_EAT)){
 
-			if (!isEquipped(hero)) GLog.i( Messages.get(Artifact.class, "need_to_equip") );
-			else if (charge == 0)  GLog.i( Messages.get(this, "no_food") );
+			if (!isEquipped(hero)) GLog.info( Messages.get(Artifact.class, "need_to_equip") );
+			else if (charge == 0)  GLog.info( Messages.get(this, "no_food") );
 			else {
 				//consume as much food as it takes to be full, to a minimum of 1
 				Hunger hunger = Buff.affect(Dungeon.hero, Hunger.class);
@@ -106,7 +106,7 @@ public class HornOfPlenty extends Artifact {
 				hero.busy();
 				SpellSprite.show(hero, SpellSprite.FOOD);
 				Sample.INSTANCE.play(Assets.Sounds.EAT);
-				GLog.i( Messages.get(this, "eat") );
+				GLog.info( Messages.get(this, "eat") );
 
 				hero.spend(Food.TIME_TO_EAT);
 
@@ -141,7 +141,7 @@ public class HornOfPlenty extends Artifact {
 				charge++;
 				
 				if (charge == chargeCap){
-					GLog.p( Messages.get(HornOfPlenty.class, "full") );
+					GLog.positive( Messages.get(HornOfPlenty.class, "full") );
 					partialCharge = 0;
 				}
 				
@@ -195,12 +195,12 @@ public class HornOfPlenty extends Artifact {
 			storedFoodEnergy -= upgrades * Hunger.HUNGRY;
 			if (level() == 10){
 				storedFoodEnergy = 0;
-				GLog.p( Messages.get(this, "maxlevel") );
+				GLog.positive( Messages.get(this, "maxlevel") );
 			} else {
-				GLog.p( Messages.get(this, "levelup") );
+				GLog.positive( Messages.get(this, "levelup") );
 			}
 		} else {
-			GLog.i( Messages.get(this, "feed") );
+			GLog.info( Messages.get(this, "feed") );
 		}
 	}
 	
@@ -245,7 +245,7 @@ public class HornOfPlenty extends Artifact {
 					else                    image = ItemSpriteSheet.ARTIFACT_HORN1;
 
 					if (charge == chargeCap){
-						GLog.p( Messages.get(HornOfPlenty.class, "full") );
+						GLog.positive( Messages.get(HornOfPlenty.class, "full") );
 						partialCharge = 0;
 					}
 
@@ -262,7 +262,7 @@ public class HornOfPlenty extends Artifact {
 		public void onSelect( Item item ) {
 			if (item instanceof Food) {
 				if (item instanceof Blandfruit && ((Blandfruit) item).potionAttrib == null){
-					GLog.w( Messages.get(HornOfPlenty.class, "reject") );
+					GLog.warning( Messages.get(HornOfPlenty.class, "reject") );
 				} else {
 					Hero hero = Dungeon.hero;
 					hero.sprite.operate( hero.pos );

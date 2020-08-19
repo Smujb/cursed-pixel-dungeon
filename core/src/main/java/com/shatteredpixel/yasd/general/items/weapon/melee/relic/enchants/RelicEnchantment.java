@@ -14,7 +14,7 @@ public abstract class RelicEnchantment extends Weapon.Enchantment {
         if (weapon instanceof RelicMeleeWeapon) {
             return relicProc((RelicMeleeWeapon)weapon,attacker,defender,damage);
         } else {
-            GLog.w("Inconceivable!");
+            GLog.warning("Inconceivable!");
             return damage;
         }
     }
@@ -23,7 +23,7 @@ public abstract class RelicEnchantment extends Weapon.Enchantment {
 
     public void activate(RelicMeleeWeapon weapon, Char owner) {
         weapon.use();
-        GLog.p(Messages.get(this,"activated"));
+        GLog.positive(Messages.get(this,"activated"));
     }
 
     @Override

@@ -183,14 +183,14 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	public boolean tryToZap(Char owner, int target ){
 
 		if (owner.buff(MagicImmune.class) != null){
-			GLog.w( Messages.get(this, "no_magic") );
+			GLog.warning( Messages.get(this, "no_magic") );
 			return false;
 		}
 
 		if ( curCharges >= (cursed ? 1 : chargesPerCast())){
 			return true;
 		} else {
-			GLog.w(Messages.get(this, "fizzles"));
+			GLog.warning(Messages.get(this, "fizzles"));
 			return false;
 		}
 	}
@@ -373,7 +373,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 			usesLeftToID--;
 			if (usesLeftToID <= 0) {
 				identify();
-				GLog.p( Messages.get(Wand.class, "identify") );
+				GLog.positive( Messages.get(Wand.class, "identify") );
 				Badges.validateItemLevelAquired( this );
 			}
 		}
@@ -494,7 +494,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 				int cell = shot.collisionPos;
 				
 				if (target == curUser.pos || cell == curUser.pos) {
-					GLog.i( Messages.get(Wand.class, "self_target") );
+					GLog.info( Messages.get(Wand.class, "self_target") );
 					return;
 				}
 
@@ -505,9 +505,9 @@ public abstract class Wand extends KindofMisc implements Attackable {
 					if (diff > 0 && (Random.Float() > miscastChance || curWand.cursed)) {
 						diff = Math.max(3, diff);
 						if (hero.useMP(diff * 3)) {
-							GLog.i( Messages.get(Wand.class, "miscast", curWand.name()) );
+							GLog.info( Messages.get(Wand.class, "miscast", curWand.name()) );
 						} else {
-							GLog.i( Messages.get(Wand.class, "backfire", curWand.name()) );
+							GLog.info( Messages.get(Wand.class, "backfire", curWand.name()) );
 							curWand.wandUsed();
 							return;
 						}
@@ -531,7 +531,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 					
 					if (curWand.cursed){
 						if (!curWand.cursedKnown){
-							GLog.n(Messages.get(Wand.class, "curse_discover", curWand.name()));
+							GLog.negative(Messages.get(Wand.class, "curse_discover", curWand.name()));
 						}
 						CursedWand.cursedZap(curWand,
 								curUser,

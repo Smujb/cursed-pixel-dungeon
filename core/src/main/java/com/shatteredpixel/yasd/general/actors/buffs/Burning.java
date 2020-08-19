@@ -109,7 +109,7 @@ public class Burning extends Buff implements Hero.Doom {
 
 					if (!burnable.isEmpty()){
 						Item toBurn = Random.element(burnable).detach(target.belongings.backpack);
-						GLog.w( Messages.get(this, "burnsup", Messages.capitalize(toBurn.toString())) );
+						GLog.warning( Messages.get(this, "burnsup", Messages.capitalize(toBurn.toString())) );
 						Item result = Fire.burnItem(toBurn);
 						if (result != null) {
 							if (!result.collect( target.belongings.backpack, target)) {
@@ -190,6 +190,6 @@ public class Burning extends Buff implements Hero.Doom {
 		Badges.validateDeathFromFire();
 		
 		Dungeon.fail( getClass() );
-		GLog.n( Messages.get(this, "ondeath") );
+		GLog.negative( Messages.get(this, "ondeath") );
 	}
 }

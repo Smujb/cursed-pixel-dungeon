@@ -44,7 +44,7 @@ public class SmokeBomb extends Power {
 						!Dungeon.level.heroFOV[target] ||
 						Actor.findChar( target ) != null) {
 
-					GLog.w( Messages.get(SmokeBomb.class, "fov") );
+					GLog.warning( Messages.get(SmokeBomb.class, "fov") );
 					return;
 				}
 

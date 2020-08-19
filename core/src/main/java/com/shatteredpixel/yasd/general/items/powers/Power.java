@@ -71,7 +71,7 @@ public abstract class Power extends Item {
 		} else if (mp_cost == -1 || use()) {
 			onUse(hero);
 		} else {
-			GLog.n(Messages.get(this, "no_mp"));
+			GLog.negative(Messages.get(this, "no_mp"));
 		}
 	}
 
@@ -114,13 +114,13 @@ public abstract class Power extends Item {
 				int cell = shot.collisionPos;
 
 				if (target == curUser.pos || cell == curUser.pos) {
-					GLog.i(Messages.get(Wand.class, "self_target"));
+					GLog.info(Messages.get(Wand.class, "self_target"));
 					return;
 				} else if (curUser.buff(MagicImmune.class) != null) {
-					GLog.w(Messages.get(Wand.class, "no_magic"));
+					GLog.warning(Messages.get(Wand.class, "no_magic"));
 					return;
 				} else if (!curPower.use()) {
-					GLog.n(Messages.get(this, "no_mp"));
+					GLog.negative(Messages.get(this, "no_mp"));
 					curPower.spendTime();
 					return;
 				}

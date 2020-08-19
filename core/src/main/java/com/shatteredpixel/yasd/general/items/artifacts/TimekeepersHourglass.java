@@ -84,15 +84,15 @@ public class TimekeepersHourglass extends Artifact {
 
 		if (action.equals(AC_ACTIVATE)){
 
-			if (!isEquipped( hero ))        GLog.i( Messages.get(Artifact.class, "need_to_equip") );
+			if (!isEquipped( hero ))        GLog.info( Messages.get(Artifact.class, "need_to_equip") );
 			else if (activeBuff != null) {
 				if (activeBuff instanceof timeStasis) { //do nothing
 				} else {
 					activeBuff.detach();
-					GLog.i( Messages.get(this, "deactivate") );
+					GLog.info( Messages.get(this, "deactivate") );
 				}
-			} else if (charge <= 0)         GLog.i( Messages.get(this, "no_charge") );
-			else if (cursed)                GLog.i( Messages.get(this, "cursed") );
+			} else if (charge <= 0)         GLog.info( Messages.get(this, "no_charge") );
+			else if (cursed)                GLog.info( Messages.get(this, "cursed") );
 			else GameScene.show(
 						new WndOptions( Messages.get(this, "name"),
 								Messages.get(this, "prompt"),
@@ -101,14 +101,14 @@ public class TimekeepersHourglass extends Artifact {
 							@Override
 							protected void onSelect(int index) {
 								if (index == 0) {
-									GLog.i( Messages.get(TimekeepersHourglass.class, "onstasis") );
+									GLog.info( Messages.get(TimekeepersHourglass.class, "onstasis") );
 									GameScene.flash(0xFFFFFF);
 									Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 
 									activeBuff = new timeStasis();
 									activeBuff.attachTo(Dungeon.hero);
 								} else if (index == 1) {
-									GLog.i( Messages.get(TimekeepersHourglass.class, "onfreeze") );
+									GLog.info( Messages.get(TimekeepersHourglass.class, "onfreeze") );
 									GameScene.flash(0xFFFFFF);
 									Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 
@@ -404,13 +404,13 @@ public class TimekeepersHourglass extends Artifact {
 				hourglass.upgrade();
 				Sample.INSTANCE.play( Assets.Sounds.DEWDROP );
 				if (hourglass.level() == hourglass.levelCap)
-					GLog.p( Messages.get(this, "maxlevel") );
+					GLog.positive( Messages.get(this, "maxlevel") );
 				else
-					GLog.i( Messages.get(this, "levelup") );
+					GLog.info( Messages.get(this, "levelup") );
 				hero.spendAndNext(TIME_TO_PICK_UP);
 				return true;
 			} else {
-				GLog.w( Messages.get(this, "no_hourglass") );
+				GLog.warning( Messages.get(this, "no_hourglass") );
 				return false;
 			}
 		}

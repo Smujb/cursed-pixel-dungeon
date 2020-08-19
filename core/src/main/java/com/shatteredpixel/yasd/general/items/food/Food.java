@@ -80,7 +80,7 @@ public class Food extends Item {
 			detach( hero.belongings.backpack );
 			
 			satisfy(hero);
-			GLog.i( message );
+			GLog.info( message );
 			
 			foodProc( hero );
 			

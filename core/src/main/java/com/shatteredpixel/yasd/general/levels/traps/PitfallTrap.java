@@ -56,7 +56,7 @@ public class PitfallTrap extends Trap {
 	public void activate() {
 		
 		if( Dungeon.bossLevel() || Dungeon.depth >= Constants.MAX_DEPTH){
-			GLog.w(Messages.get(this, "no_pit"));
+			GLog.warning(Messages.get(this, "no_pit"));
 			return;
 		}
 		DelayedPit p = Buff.affect(Dungeon.hero, DelayedPit.class, 1);
@@ -70,9 +70,9 @@ public class PitfallTrap extends Trap {
 		}
 
 		if (pos == Dungeon.hero.pos){
-			GLog.n(Messages.get(this, "triggered_hero"));
+			GLog.negative(Messages.get(this, "triggered_hero"));
 		} else if (Dungeon.level.heroFOV[pos]){
-			GLog.n(Messages.get(this, "triggered"));
+			GLog.negative(Messages.get(this, "triggered"));
 		}
 
 	}

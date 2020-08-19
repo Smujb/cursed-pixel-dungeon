@@ -49,8 +49,6 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 
-import org.jetbrains.annotations.NotNull;
-
 public class BeaconOfReturning extends Spell {
 	
 	{
@@ -105,7 +103,7 @@ public class BeaconOfReturning extends Spell {
 		hero.spend( 1f );
 		hero.busy();
 		
-		GLog.i( Messages.get(this, "set") );
+		GLog.info( Messages.get(this, "set") );
 		
 		hero.sprite.operate( hero.pos );
 		Sample.INSTANCE.play( Assets.Sounds.BEACON );
@@ -114,14 +112,14 @@ public class BeaconOfReturning extends Spell {
 	
 	private void returnBeacon( Hero hero ){
 		if (Dungeon.bossLevel()) {
-			GLog.w( Messages.get(this, "preventing") );
+			GLog.warning( Messages.get(this, "preventing") );
 			return;
 		}
 		
 		for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
 			Char ch = Actor.findChar(hero.pos + PathFinder.NEIGHBOURS8[i]);
 			if (ch != null && ch.alignment == Char.Alignment.ENEMY) {
-				GLog.w( Messages.get(this, "creatures") );
+				GLog.warning( Messages.get(this, "creatures") );
 				return;
 			}
 		}

@@ -138,10 +138,10 @@ public class DriedRose extends Artifact {
 
 			if (!Ghost.Quest.completed())
 				if (!Ghost.Quest.completed())   GameScene.show(new WndUseItem(null, this));
-			else if (ghost != null)         GLog.i( Messages.get(this, "spawned") );
-			else if (!isEquipped( hero ))   GLog.i( Messages.get(Artifact.class, "need_to_equip") );
-			else if (charge != chargeCap)   GLog.i( Messages.get(this, "no_charge") );
-			else if (cursed)                GLog.i( Messages.get(this, "cursed") );
+			else if (ghost != null)         GLog.info( Messages.get(this, "spawned") );
+			else if (!isEquipped( hero ))   GLog.info( Messages.get(Artifact.class, "need_to_equip") );
+			else if (charge != chargeCap)   GLog.info( Messages.get(this, "no_charge") );
+			else if (cursed)                GLog.info( Messages.get(this, "cursed") );
 			else {
 				ArrayList<Integer> spawnPoints = new ArrayList<>();
 				for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
@@ -184,7 +184,7 @@ public class DriedRose extends Artifact {
 					updateQuickslot();
 
 				} else
-					GLog.i( Messages.get(this, "no_space") );
+					GLog.info( Messages.get(this, "no_space") );
 			}
 
 		} else if (action.equals(AC_DIRECT)){
@@ -275,7 +275,7 @@ public class DriedRose extends Artifact {
 				if (charge >= chargeCap) {
 					charge = chargeCap;
 					partialCharge = 0;
-					GLog.p(Messages.get(DriedRose.class, "charged"));
+					GLog.positive(Messages.get(DriedRose.class, "charged"));
 				}
 				updateQuickslot();
 			}
@@ -392,7 +392,7 @@ public class DriedRose extends Artifact {
 					partialCharge--;
 					if (charge == chargeCap){
 						partialCharge = 0f;
-						GLog.p( Messages.get(DriedRose.class, "charged") );
+						GLog.positive( Messages.get(DriedRose.class, "charged") );
 					}
 				}
 			} else if (cursed && Random.Int(100) == 0) {
@@ -479,19 +479,19 @@ public class DriedRose extends Artifact {
 			DriedRose rose = hero.belongings.getItem( DriedRose.class );
 
 			if (rose == null){
-				GLog.w( Messages.get(this, "no_rose") );
+				GLog.warning( Messages.get(this, "no_rose") );
 				return false;
 			} if ( rose.level() >= rose.levelCap ){
-				GLog.i( Messages.get(this, "no_room") );
+				GLog.info( Messages.get(this, "no_room") );
 				hero.spendAndNext(TIME_TO_PICK_UP);
 				return true;
 			} else {
 
 				rose.upgrade();
 				if (rose.level() == rose.levelCap) {
-					GLog.p( Messages.get(this, "maxlevel") );
+					GLog.positive( Messages.get(this, "maxlevel") );
 				} else
-					GLog.i( Messages.get(this, "levelup") );
+					GLog.info( Messages.get(this, "levelup") );
 
 				Sample.INSTANCE.play( Assets.Sounds.DEWDROP );
 				hero.spendAndNext(TIME_TO_PICK_UP);
@@ -928,16 +928,16 @@ public class DriedRose extends Artifact {
 								if (!(item instanceof MeleeWeapon)) {
 									//do nothing, should only happen when window is cancelled
 								} else if (item.unique) {
-									GLog.w( Messages.get(WndGhostHero.class, "cant_unique"));
+									GLog.warning( Messages.get(WndGhostHero.class, "cant_unique"));
 									hide();
 								} else if (!item.isIdentified()) {
-									GLog.w( Messages.get(WndGhostHero.class, "cant_unidentified"));
+									GLog.warning( Messages.get(WndGhostHero.class, "cant_unidentified"));
 									hide();
 								} else if (item.cursed) {
-									GLog.w( Messages.get(WndGhostHero.class, "cant_cursed"));
+									GLog.warning( Messages.get(WndGhostHero.class, "cant_cursed"));
 									hide();
 								} else if (((MeleeWeapon)item).statReq() > rose.ghostStrength()) {
-									GLog.w( Messages.get(WndGhostHero.class, "cant_strength"));
+									GLog.warning( Messages.get(WndGhostHero.class, "cant_strength"));
 									hide();
 								} else {
 									if (item.isEquipped(Dungeon.hero)){
@@ -978,16 +978,16 @@ public class DriedRose extends Artifact {
 								if (!(item instanceof Armor)) {
 									//do nothing, should only happen when window is cancelled
 								} else if (item.unique || ((Armor) item).checkSeal() != null) {
-									GLog.w( Messages.get(WndGhostHero.class, "cant_unique"));
+									GLog.warning( Messages.get(WndGhostHero.class, "cant_unique"));
 									hide();
 								} else if (!item.isIdentified()) {
-									GLog.w( Messages.get(WndGhostHero.class, "cant_unidentified"));
+									GLog.warning( Messages.get(WndGhostHero.class, "cant_unidentified"));
 									hide();
 								} else if (item.cursed) {
-									GLog.w( Messages.get(WndGhostHero.class, "cant_cursed"));
+									GLog.warning( Messages.get(WndGhostHero.class, "cant_cursed"));
 									hide();
 								} else if (((Armor)item).statReq() > rose.ghostStrength()) {
-									GLog.w( Messages.get(WndGhostHero.class, "cant_strength"));
+									GLog.warning( Messages.get(WndGhostHero.class, "cant_strength"));
 									hide();
 								} else {
 									if (item.isEquipped(Dungeon.hero)){

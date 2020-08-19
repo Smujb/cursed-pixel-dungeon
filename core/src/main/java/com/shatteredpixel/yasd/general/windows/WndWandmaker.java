@@ -42,8 +42,6 @@ import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.shatteredpixel.yasd.general.ui.Window;
 import com.shatteredpixel.yasd.general.utils.GLog;
 
-import org.jetbrains.annotations.NotNull;
-
 public class WndWandmaker extends Window {
 
 	private static final int WIDTH		= 120;
@@ -103,7 +101,7 @@ public class WndWandmaker extends Window {
 
 		reward.identify();
 		if (reward.doPickUp( Dungeon.hero )) {
-			GLog.i( Messages.get(Dungeon.hero, "you_now_have", reward.name()) );
+			GLog.info( Messages.get(Dungeon.hero, "you_now_have", reward.name()) );
 		} else {
 			Dungeon.level.drop( reward, wandmaker.pos ).sprite.drop();
 		}

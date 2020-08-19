@@ -90,8 +90,8 @@ public class SandalsOfNature extends Artifact {
 
 		} else if (action.equals(AC_ROOT) && level() > 0){
 
-			if (!isEquipped( hero )) GLog.i( Messages.get(Artifact.class, "need_to_equip") );
-			else if (charge == 0)    GLog.i( Messages.get(this, "no_charge") );
+			if (!isEquipped( hero )) GLog.info( Messages.get(Artifact.class, "need_to_equip") );
+			else if (charge == 0)    GLog.info( Messages.get(this, "no_charge") );
 			else {
 				Buff.prolong(hero, Roots.class, Roots.DURATION);
 				Buff.affect(hero, Earthroot.Armor.class).level(charge);
@@ -190,7 +190,7 @@ public class SandalsOfNature extends Artifact {
 		public void onSelect( Item item ) {
 			if (item != null && item instanceof Plant.Seed) {
 				if (seeds.contains(item.getClass())){
-					GLog.w( Messages.get(SandalsOfNature.class, "already_fed") );
+					GLog.warning( Messages.get(SandalsOfNature.class, "already_fed") );
 				} else {
 					seeds.add(item.getClass());
 
@@ -203,11 +203,11 @@ public class SandalsOfNature extends Artifact {
 						seeds.clear();
 						upgrade();
 						if (level() >= 1 && level() <= 3) {
-							GLog.p( Messages.get(SandalsOfNature.class, "levelup") );
+							GLog.positive( Messages.get(SandalsOfNature.class, "levelup") );
 						}
 
 					} else {
-						GLog.i( Messages.get(SandalsOfNature.class, "absorb_seed") );
+						GLog.info( Messages.get(SandalsOfNature.class, "absorb_seed") );
 					}
 					item.detach(hero.belongings.backpack);
 				}

@@ -80,7 +80,7 @@ public class DisintegrationTrap extends Trap {
 				Hero hero = (Hero)target;
 				if (!hero.isAlive()){
 					Dungeon.fail( getClass() );
-					GLog.n( Messages.get(this, "ondeath") );
+					GLog.negative( Messages.get(this, "ondeath") );
 				}
 			}
 		}

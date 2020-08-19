@@ -415,7 +415,7 @@ public class GameScene extends PixelScene {
 		if (LevelHandler.mode() != LevelHandler.Mode.MOVE) {
 			if (Dungeon.depth == Statistics.deepestFloor
 					&& (LevelHandler.mode() == LevelHandler.Mode.DESCEND || LevelHandler.mode() == LevelHandler.Mode.FALL)) {
-				GLog.h(Messages.get(this, "ascend"), Dungeon.depth);
+				GLog.highlight(Messages.get(this, "ascend"), Dungeon.depth);
 				Sample.INSTANCE.play(Assets.Sounds.DESCEND);
 				
 				for (Char ch : Actor.chars()){
@@ -434,49 +434,49 @@ public class GameScene extends PixelScene {
 
 					if (spawnersAbove > 0) {
 						if (Dungeon.bossLevel()) {
-							GLog.n(Messages.get(this, "spawner_warn_final"));
+							GLog.negative(Messages.get(this, "spawner_warn_final"));
 						} else {
-							GLog.n(Messages.get(this, "spawner_warn"));
+							GLog.negative(Messages.get(this, "spawner_warn"));
 						}
 					}
 				}
 				
 			} else if (LevelHandler.mode() == LevelHandler.Mode.RESET) {
-				GLog.h(Messages.get(this, "warp"));
+				GLog.highlight(Messages.get(this, "warp"));
 			} else {
-				GLog.h(Messages.get(this, "return"), Dungeon.depth);
+				GLog.highlight(Messages.get(this, "return"), Dungeon.depth);
 			}
 
 			switch (Dungeon.level.feeling) {
 				case CHASM:
-					GLog.w(Messages.get(this, "chasm"));
+					GLog.warning(Messages.get(this, "chasm"));
 					break;
 				case WATER:
-					GLog.w(Messages.get(this, "water"));
+					GLog.warning(Messages.get(this, "water"));
 					break;
 				case GRASS:
-					GLog.w(Messages.get(this, "grass"));
+					GLog.warning(Messages.get(this, "grass"));
 					break;
 				case DARK:
-					GLog.w(Messages.get(this, "dark"));
+					GLog.warning(Messages.get(this, "dark"));
 					break;
 				case EVIL:
-					GLog.w(Messages.get(this, "evil"));
+					GLog.warning(Messages.get(this, "evil"));
 					break;
 				case DANGER:
-					GLog.w(Messages.get(this, "danger"));
+					GLog.warning(Messages.get(this, "danger"));
 					break;
 				case EMBER:
-					GLog.w(Messages.get(this, "ember"));
+					GLog.warning(Messages.get(this, "ember"));
 					break;
 				case OPEN:
-					GLog.w(Messages.get(this, "open"));
+					GLog.warning(Messages.get(this, "open"));
 					break;
 				default:
 			}
 			if (Dungeon.level instanceof RegularLevel &&
 					((RegularLevel) Dungeon.level).secretDoors > Random.IntRange(3, 4)) {
-				GLog.w(Messages.get(this, "secrets"));
+				GLog.warning(Messages.get(this, "secrets"));
 			}
 
 			LevelHandler.resetMode();

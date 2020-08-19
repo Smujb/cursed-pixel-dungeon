@@ -64,7 +64,7 @@ public class Dewdrop extends Item {
 				if (effect > 0) {
 					ch.heal(effect,false, true);
 				} else {
-					GLog.i( Messages.get(this, "already_full") );
+					GLog.info( Messages.get(this, "already_full") );
 					return false;
 				}
 

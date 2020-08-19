@@ -215,7 +215,7 @@ public class RipperDemon extends Mob {
 						//don't want to overly punish players with slow move or attack speed
 						spend(GameMath.gate(TICK, enemy.cooldown(), 3*TICK));
 						if (Dungeon.level.heroFOV[pos] || Dungeon.level.heroFOV[leapPos]){
-							GLog.w(Messages.get(RipperDemon.this, "leap"));
+							GLog.warning(Messages.get(RipperDemon.this, "leap"));
 							sprite.parent.addToBack(new TargetedCell(leapPos, Constants.Colours.PURE_RED));
 							Dungeon.hero.interrupt();
 							((RipperSprite)sprite).leapPrep( leapPos );

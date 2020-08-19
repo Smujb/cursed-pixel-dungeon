@@ -81,7 +81,7 @@ public class GreatCrab extends Crab {
 		if ((enemySeen && state != SLEEPING && paralysed == 0)
 				&& ((src.getCause() instanceof Wand && enemy == Dungeon.hero)
 				|| (src.getCause() instanceof Char && enemy == src.getCause()))){
-			GLog.n( Messages.get(this, "noticed") );
+			GLog.negative( Messages.get(this, "noticed") );
 			sprite.showStatus( CharSprite.NEUTRAL, Messages.get(this, "blocked") );
 			Sample.INSTANCE.play( Assets.Sounds.HIT_PARRY, 1, Random.Float(0.96f, 1.05f));
 		} else {

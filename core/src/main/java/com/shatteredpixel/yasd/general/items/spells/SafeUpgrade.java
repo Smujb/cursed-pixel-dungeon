@@ -30,7 +30,7 @@ public class SafeUpgrade extends InventorySpell {
 			item.upgrade();
 		}
 
-		GLog.p( Messages.get(this, "infuse", item.name()) );
+		GLog.positive( Messages.get(this, "infuse", item.name()) );
 
 		Badges.validateItemLevelAquired(item);
 

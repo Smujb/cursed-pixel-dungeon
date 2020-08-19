@@ -83,7 +83,7 @@ public class ScrollOfMagicMapping extends Scroll {
 		}
 		GameScene.updateFog();
 		
-		GLog.i( Messages.get(this, "layout") );
+		GLog.info( Messages.get(this, "layout") );
 		if (noticed) {
 			Sample.INSTANCE.play( Assets.Sounds.SECRET );
 		}

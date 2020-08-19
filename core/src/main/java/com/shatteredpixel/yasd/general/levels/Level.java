@@ -1547,7 +1547,7 @@ public abstract class Level implements Bundlable {
 
 		if (trap != null && trap.active && (hard || trap.visible)) {
 
-			if (!trap.visible) GLog.i(Messages.get(Level.class, "hidden_trap", trap.name));
+			if (!trap.visible) GLog.info(Messages.get(Level.class, "hidden_trap", trap.name));
 			
 			TimekeepersHourglass.timeFreeze timeFreeze =
 					Dungeon.hero.buff(TimekeepersHourglass.timeFreeze.class);

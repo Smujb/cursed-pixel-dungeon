@@ -116,13 +116,13 @@ public class Barrier extends RelicEnchantment {
                         zapFX(enemy.pos);
                         Barrier.super.activate(Crystal,Dungeon.hero);
                     } else {
-                        GLog.n( Messages.get( Barrier.class, "miss_target") );
+                        GLog.negative( Messages.get( Barrier.class, "miss_target") );
                     }
                 } else {
-                    GLog.w( Messages.get( Barrier.class, "no_enemy") );
+                    GLog.warning( Messages.get( Barrier.class, "no_enemy") );
                 }
             } else {
-                GLog.w( Messages.get( Barrier.class, "not_equipped"));
+                GLog.warning( Messages.get( Barrier.class, "not_equipped"));
             }
         }
 

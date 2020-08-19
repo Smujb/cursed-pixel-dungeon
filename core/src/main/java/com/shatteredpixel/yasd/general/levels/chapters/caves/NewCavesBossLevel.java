@@ -820,7 +820,7 @@ public class NewCavesBossLevel extends Level {
 
 							if (ch == Dungeon.hero && !ch.isAlive()) {
 								Dungeon.fail(NewDM300.class);
-								GLog.n( Messages.get(Electricity.class, "ondeath") );
+								GLog.negative( Messages.get(Electricity.class, "ondeath") );
 							}
 						}
 					}

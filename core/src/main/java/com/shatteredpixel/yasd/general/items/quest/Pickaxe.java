@@ -102,7 +102,7 @@ public class Pickaxe extends Weapon {
 		if (action.equals(AC_MINE)) {
 			
 			if (!(Dungeon.level instanceof CavesLevel || Dungeon.level instanceof OldCavesBossLevel)) {
-				GLog.w( Messages.get(this, "no_vein") );
+				GLog.warning( Messages.get(this, "no_vein") );
 				return;
 			}
 			
@@ -127,7 +127,7 @@ public class Pickaxe extends Weapon {
 							
 							DarkGold gold = new DarkGold();
 							if (gold.doPickUp( Dungeon.hero )) {
-								GLog.i( Messages.get(Dungeon.hero, "you_now_have", gold.name()) );
+								GLog.info( Messages.get(Dungeon.hero, "you_now_have", gold.name()) );
 							} else {
 								Dungeon.level.drop( gold, hero.pos ).sprite.drop();
 							}
@@ -140,7 +140,7 @@ public class Pickaxe extends Weapon {
 				}
 			}
 			
-			GLog.w( Messages.get(this, "no_vein") );
+			GLog.warning( Messages.get(this, "no_vein") );
 			
 		}
 	}

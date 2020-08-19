@@ -240,14 +240,14 @@ public class CursedWand {
 								Sample.INSTANCE.play(Assets.Sounds.CURSED);
 								if (!user.isAlive() && origin != null) {
 									Dungeon.fail(origin.getClass());
-									GLog.n(Messages.get(CursedWand.class, "ondeath", origin.name()));
+									GLog.negative(Messages.get(CursedWand.class, "ondeath", origin.name()));
 								}
 							}
 							afterZap.call();
 						}
 					});
 				} else {
-					GLog.i(Messages.get(CursedWand.class, "nothing"));
+					GLog.info(Messages.get(CursedWand.class, "nothing"));
 					afterZap.call();
 				}
 				break;
@@ -300,7 +300,7 @@ public class CursedWand {
 							GameScene.add(sheep);
 							CellEmitter.get(sheep.pos).burst(Speck.factory(Speck.WOOL), 4);
 						} else {
-							GLog.i(Messages.get(CursedWand.class, "nothing"));
+							GLog.info(Messages.get(CursedWand.class, "nothing"));
 						}
 						afterZap.call();
 					}
@@ -358,8 +358,8 @@ public class CursedWand {
 				} while (Random.Int(5) != 0);
 				new Flare(8, 32).color(0xFFFF66, true).show(user.sprite, 2f);
 				Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
-				GLog.p(Messages.get(CursedWand.class, "grass"));
-				GLog.w(Messages.get(CursedWand.class, "fire"));
+				GLog.positive(Messages.get(CursedWand.class, "grass"));
+				GLog.warning(Messages.get(CursedWand.class, "fire"));
 				afterZap.call();
 				break;
 
@@ -385,7 +385,7 @@ public class CursedWand {
 							mimic.items.add(reward);
 							GameScene.add(mimic);
 						} else {
-							GLog.i(Messages.get(CursedWand.class, "nothing"));
+							GLog.info(Messages.get(CursedWand.class, "nothing"));
 						}
 						
 						afterZap.call();
@@ -405,7 +405,7 @@ public class CursedWand {
 					Dungeon.saveAll();
 					if(Messages.lang() != Languages.ENGLISH){
 						//Don't bother doing this joke to none-english speakers, I doubt it would translate.
-						GLog.i(Messages.get(CursedWand.class, "nothing"));
+						GLog.info(Messages.get(CursedWand.class, "nothing"));
 						afterZap.call();
 					} else {
 						GameScene.show(
@@ -426,7 +426,7 @@ public class CursedWand {
 				} catch(IOException e){
 					CPDGame.reportException(e);
 					//oookay maybe don't kill the game if the save failed.
-					GLog.i(Messages.get(CursedWand.class, "nothing"));
+					GLog.info(Messages.get(CursedWand.class, "nothing"));
 					afterZap.call();
 				}
 				break;
@@ -447,9 +447,9 @@ public class CursedWand {
 				if (result.isUpgradable()) result.upgrade();
 				result.cursed = result.cursedKnown = true;
 				if (origin instanceof Wand){
-					GLog.w( Messages.get(CursedWand.class, "transmogrify_wand") );
+					GLog.warning( Messages.get(CursedWand.class, "transmogrify_wand") );
 				} else {
-					GLog.w( Messages.get(CursedWand.class, "transmogrify_other") );
+					GLog.warning( Messages.get(CursedWand.class, "transmogrify_other") );
 				}
 				Dungeon.level.drop(result, user.pos).sprite.drop();
 				afterZap.call();

@@ -137,7 +137,7 @@ public class Mimic extends Mob {
 	protected boolean act() {
 		if (alignment == Alignment.NEUTRAL && state != PASSIVE){
 			alignment = Alignment.ENEMY;
-			GLog.w(Messages.get(this, "reveal") );
+			GLog.warning(Messages.get(this, "reveal") );
 			CellEmitter.get(pos).burst(Speck.factory(Speck.STAR), 10);
 			Sample.INSTANCE.play(Assets.Sounds.MIMIC);
 		}
@@ -206,7 +206,7 @@ public class Mimic extends Mob {
 			enemy = Dungeon.hero;
 			target = Dungeon.hero.pos;
 			enemySeen = true;
-			GLog.w(Messages.get(this, "reveal") );
+			GLog.warning(Messages.get(this, "reveal") );
 			CellEmitter.get(pos).burst(Speck.factory(Speck.STAR), 10);
 			Sample.INSTANCE.play(Assets.Sounds.MIMIC);
 		}

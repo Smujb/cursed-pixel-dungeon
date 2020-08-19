@@ -48,9 +48,9 @@ public class PotionOfMindVision extends Potion {
 		Dungeon.observe();
 		
 		if (Dungeon.level.mobs.size() > 0) {
-			GLog.i( Messages.get(this, "see_mobs") );
+			GLog.info( Messages.get(this, "see_mobs") );
 		} else {
-			GLog.i( Messages.get(this, "see_none") );
+			GLog.info( Messages.get(this, "see_none") );
 		}
 	}
 	

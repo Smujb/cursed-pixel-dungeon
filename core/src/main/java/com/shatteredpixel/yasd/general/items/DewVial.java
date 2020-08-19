@@ -155,7 +155,7 @@ public class DewVial extends Item {
 
 
 			} else {
-				GLog.w(Messages.get(this, "empty"));
+				GLog.warning(Messages.get(this, "empty"));
 			}
 
 		} else if (action.equals(AC_WATER)) {
@@ -169,7 +169,7 @@ public class DewVial extends Item {
 
 				updateQuickslot();
 			} else {
-				GLog.w(Messages.get(this, "empty"));
+				GLog.warning(Messages.get(this, "empty"));
 			}
 		}
 	}
@@ -192,11 +192,11 @@ public class DewVial extends Item {
 
 	public void collectDew( Dewdrop dew ) {
 
-		GLog.i( Messages.get(this, "collected") );
+		GLog.info( Messages.get(this, "collected") );
 		volume += dew.quantity;
 		if (volume >= MAX_VOLUME) {
 			volume = MAX_VOLUME;
-			GLog.p( Messages.get(this, "full") );
+			GLog.positive( Messages.get(this, "full") );
 		}
 
 		updateQuickslot();

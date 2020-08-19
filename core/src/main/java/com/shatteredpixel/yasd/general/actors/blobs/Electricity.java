@@ -83,7 +83,7 @@ public class Electricity extends Blob {
 							ch.damage(Math.round(Random.Float(2 + Dungeon.getScaleFactor() / Constants.CHAPTER_LENGTH)), new Char.DamageSrc(Element.SHOCK, this).ignoreDefense() );
 							if (!ch.isAlive() && ch == Dungeon.hero){
 								Dungeon.fail( getClass() );
-								GLog.n( Messages.get(this, "ondeath") );
+								GLog.negative( Messages.get(this, "ondeath") );
 							}
 						}
 					}

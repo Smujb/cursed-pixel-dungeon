@@ -66,7 +66,7 @@ public class MageNPC extends HeroNPC {
 				Dungeon.gold -= cost();
 				new PotionOfMana().identify().collect();
 			} else {
-				GLog.n(Messages.get(this, "not_enough"));
+				GLog.negative(Messages.get(this, "not_enough"));
 			}
 		}
 	}

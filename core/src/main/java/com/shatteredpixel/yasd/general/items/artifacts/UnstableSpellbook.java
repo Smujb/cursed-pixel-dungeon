@@ -111,10 +111,10 @@ public class UnstableSpellbook extends Artifact {
 
 		if (action.equals( AC_READ )) {
 
-			if (hero.buff( Blindness.class ) != null) GLog.w( Messages.get(this, "blinded") );
-			else if (!isEquipped( hero ))             GLog.i( Messages.get(Artifact.class, "need_to_equip") );
-			else if (charge <= 0)                     GLog.i( Messages.get(this, "no_charge") );
-			else if (cursed)                          GLog.i( Messages.get(this, "cursed") );
+			if (hero.buff( Blindness.class ) != null) GLog.warning( Messages.get(this, "blinded") );
+			else if (!isEquipped( hero ))             GLog.info( Messages.get(Artifact.class, "need_to_equip") );
+			else if (charge <= 0)                     GLog.info( Messages.get(this, "no_charge") );
+			else if (cursed)                          GLog.info( Messages.get(this, "cursed") );
 			else {
 				charge--;
 
@@ -314,13 +314,13 @@ public class UnstableSpellbook extends Artifact {
 						item.detach(hero.belongings.backpack);
 
 						upgrade();
-						GLog.i( Messages.get(UnstableSpellbook.class, "infuse_scroll") );
+						GLog.info( Messages.get(UnstableSpellbook.class, "infuse_scroll") );
 						return;
 					}
 				}
-				GLog.w( Messages.get(UnstableSpellbook.class, "unable_scroll") );
+				GLog.warning( Messages.get(UnstableSpellbook.class, "unable_scroll") );
 			} else if (item instanceof Scroll && !item.isIdentified())
-				GLog.w( Messages.get(UnstableSpellbook.class, "unknown_scroll") );
+				GLog.warning( Messages.get(UnstableSpellbook.class, "unknown_scroll") );
 		}
 	};
 }

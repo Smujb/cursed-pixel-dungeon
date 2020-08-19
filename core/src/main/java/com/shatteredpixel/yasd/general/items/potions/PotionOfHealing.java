@@ -64,7 +64,7 @@ public class PotionOfHealing extends Potion {
 		ch.HP += healing;
 		Buff.affect(ch, Barrier.class).setShield(healing);
 		cure( ch );
-		GLog.p( Messages.get(this, "heal") );
+		GLog.positive( Messages.get(this, "heal") );
 	}
 	
 	public static void cure( Char ch ) {

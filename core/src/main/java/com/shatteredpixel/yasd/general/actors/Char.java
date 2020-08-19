@@ -423,10 +423,10 @@ public abstract class Char extends Actor {
 				if (enemy == Dungeon.hero) {
 
 					Dungeon.fail(getClass());
-					GLog.n(Messages.capitalize(Messages.get(Char.class, "kill", name())));
+					GLog.negative(Messages.capitalize(Messages.get(Char.class, "kill", name())));
 
 				} else if (this == Dungeon.hero) {
-					GLog.i(Messages.capitalize(Messages.get(Char.class, "defeat", enemy.name())));
+					GLog.info(Messages.capitalize(Messages.get(Char.class, "defeat", enemy.name())));
 				}
 			}
 
@@ -638,7 +638,7 @@ public abstract class Char extends Actor {
 			}
 			if (!enemy.isAlive() && enemy == Dungeon.hero){
 				Dungeon.fail(getClass());
-				GLog.n( Messages.capitalize(Messages.get(Char.class, "kill", name())) );
+				GLog.negative( Messages.capitalize(Messages.get(Char.class, "kill", name())) );
 			}
 			return damage;
 		}
@@ -760,7 +760,7 @@ public abstract class Char extends Actor {
 		}
 		if (this.buff(Drowsy.class) != null && dmg > 0) {
 			Buff.detach(this, Drowsy.class);
-			GLog.w(Messages.get(this, "pain_resist"));
+			GLog.warning(Messages.get(this, "pain_resist"));
 		}
 		if (hasBelongings()) {
 			dmg = belongings.affectDamage(dmg, src);

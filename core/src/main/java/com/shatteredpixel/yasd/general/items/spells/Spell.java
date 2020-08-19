@@ -60,7 +60,7 @@ public abstract class Spell extends Item {
 		if (action.equals( AC_CAST )) {
 			
 			if (curUser.buff(MagicImmune.class) != null){
-				GLog.w( Messages.get(this, "no_magic") );
+				GLog.warning( Messages.get(this, "no_magic") );
 				return;
 			}
 			detach( hero.belongings.backpack );

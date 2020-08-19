@@ -44,7 +44,7 @@ public class Alchemize extends Spell implements AlchemyScene.AlchemyProvider {
 	@Override
 	protected void onCast(Hero hero) {
 		if (hero.visibleEnemies() > hero.mindVisionEnemies.size()) {
-			GLog.i( Messages.get(this, "enemy_near") );
+			GLog.info( Messages.get(this, "enemy_near") );
 			return;
 		}
 		detach( curUser.belongings.backpack );

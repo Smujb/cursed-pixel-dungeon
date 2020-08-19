@@ -59,19 +59,19 @@ public class FrozenCarpaccio extends Food {
 	public static void effect(Hero hero){
 		switch (Random.Int( 5 )) {
 			case 0:
-				GLog.i( Messages.get(FrozenCarpaccio.class, "invis") );
+				GLog.info( Messages.get(FrozenCarpaccio.class, "invis") );
 				Buff.affect( hero, Invisibility.class, Invisibility.DURATION );
 				break;
 			case 1:
-				GLog.i( Messages.get(FrozenCarpaccio.class, "hard") );
+				GLog.info( Messages.get(FrozenCarpaccio.class, "hard") );
 				Buff.affect( hero, Barkskin.class ).set( hero.HT / 4, 1 );
 				break;
 			case 2: default:
-				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
+				GLog.info( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero);
 				break;
 			case 3:
-				GLog.i( Messages.get(FrozenCarpaccio.class, "better") );
+				GLog.info( Messages.get(FrozenCarpaccio.class, "better") );
 				if (hero.HP < hero.HT) {
 					hero.HP = Math.min( hero.HP + hero.HT / 4, hero.HT );
 					hero.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );

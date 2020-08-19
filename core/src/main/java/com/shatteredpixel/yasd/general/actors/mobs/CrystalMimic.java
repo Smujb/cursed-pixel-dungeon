@@ -115,7 +115,7 @@ public class CrystalMimic extends Mimic {
 			enemy = Dungeon.hero;
 			target = Dungeon.hero.pos;
 			enemySeen = true;
-			GLog.w(Messages.get(this, "reveal") );
+			GLog.warning(Messages.get(this, "reveal") );
 			CellEmitter.get(pos).burst(Speck.factory(Speck.STAR), 10);
 			Sample.INSTANCE.play(Assets.Sounds.MIMIC, 1, 1.25f);
 		}
@@ -166,7 +166,7 @@ public class CrystalMimic extends Mimic {
 
 		if (item != null && !item.unique && item.level() < 1 ) {
 
-			GLog.w( Messages.get(this, "ate", item.name()) );
+			GLog.warning( Messages.get(this, "ate", item.name()) );
 			if (!item.stackable) {
 				Dungeon.quickslot.convertToPlaceholder(item);
 			}
@@ -201,7 +201,7 @@ public class CrystalMimic extends Mimic {
 					sprite.showStatus(CharSprite.NEGATIVE, Messages.get(Mob.class, "rage"));
 					state = HUNTING;
 				} else {
-					GLog.n( Messages.get(CrystalMimic.class, "escaped"));
+					GLog.negative( Messages.get(CrystalMimic.class, "escaped"));
 					if (Dungeon.level.heroFOV[pos]) CellEmitter.get(pos).burst(Speck.factory(Speck.WOOL), 6);
 					destroy();
 					sprite.killAndErase();

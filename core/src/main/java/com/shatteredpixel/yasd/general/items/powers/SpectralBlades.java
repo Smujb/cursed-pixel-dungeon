@@ -46,7 +46,7 @@ public class SpectralBlades extends Power {
 		}
 
 		if (targets.size() == 0) {
-			GLog.w( Messages.get(this, "no_enemies") );
+			GLog.warning( Messages.get(this, "no_enemies") );
 			return;
 		}
 

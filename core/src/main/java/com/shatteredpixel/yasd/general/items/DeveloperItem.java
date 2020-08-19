@@ -180,7 +180,7 @@ public class DeveloperItem extends Item {
 							if (positive) {
 								try {
 									itemClass[0] = Class.forName(BASE_NAME + text);
-									GLog.p("Successfully fetched item.");
+									GLog.positive("Successfully fetched item.");
 								} catch (ClassNotFoundException e) {
 									CPDGame.reportException(e);
 									CPDGame.scene().addToFront(new WndError(e.getLocalizedMessage()));
@@ -268,9 +268,9 @@ public class DeveloperItem extends Item {
 					}
 					for (int i = 0; i < num; i++) {
 						if (item.collect(ch.belongings.backpack, ch)) {
-							GLog.p("Successfully added item " + item.name() + " to entity #" + ch.id() + "'s backpack.");
+							GLog.positive("Successfully added item " + item.name() + " to entity #" + ch.id() + "'s backpack.");
 						} else {
-							GLog.i("Item " + item.name() + " could not be added to entity #" + ch.id() + "'s backpack, so it was dropped below them.");
+							GLog.info("Item " + item.name() + " could not be added to entity #" + ch.id() + "'s backpack, so it was dropped below them.");
 							Dungeon.level.drop(item, ch.pos).sprite.drop();
 						}
 					}
@@ -342,9 +342,9 @@ public class DeveloperItem extends Item {
 								if (level != null) {
 									icon(new Image(level.loadImg() == null ? level.loadImg() : Assets.Interfaces.SHADOW));
 									WndChooseDepth.this.update();
-									GLog.p("Level exists.");
+									GLog.positive("Level exists.");
 								} else {
-									GLog.n("You won't find anything much there...");
+									GLog.negative("You won't find anything much there...");
 								}
 							}
 						}
@@ -393,9 +393,9 @@ public class DeveloperItem extends Item {
 		super.execute(hero, action);
 		switch (action) {
 			case AC_DEBUG:
-				GLog.p("Current level key: " + Dungeon.key + " (capitalisation important).\n");
+				GLog.positive("Current level key: " + Dungeon.key + " (capitalisation important).\n");
 				int[] coords = Dungeon.level.getXY(hero.pos);
-				GLog.p("Position in map (X, Y): " + coords[0] + ", " + coords[1] + ".");
+				GLog.positive("Position in map (X, Y): " + coords[0] + ", " + coords[1] + ".");
 				break;
 			case AC_MAP:
 				ScrollOfMagicMapping scrollOfMagicMapping = new ScrollOfMagicMapping();
@@ -418,7 +418,7 @@ public class DeveloperItem extends Item {
 			case AC_KILL:
 				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 					mob.die(new Char.DamageSrc(Element.SHADOW).ignoreDefense());
-					GLog.i("All ded");
+					GLog.info("All ded");
 				}
 				break;
 		}

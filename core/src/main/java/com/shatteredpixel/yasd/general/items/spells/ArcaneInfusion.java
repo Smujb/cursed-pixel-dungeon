@@ -32,7 +32,7 @@ public class ArcaneInfusion extends InventorySpell {
 			((Armor) item).inscribe(Random.Int(2) == 0 ? Armor.Glyph.randomUncommon() : Armor.Glyph.randomRare());
 		}
 
-		GLog.p( Messages.get(this, "infuse", item.name()) );
+		GLog.positive( Messages.get(this, "infuse", item.name()) );
 
 		Badges.validateItemLevelAquired(item);
 

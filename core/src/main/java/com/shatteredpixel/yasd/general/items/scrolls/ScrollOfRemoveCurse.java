@@ -75,9 +75,9 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 		Weakness.detach( curUser, Weakness.class );
 
 		if (procced) {
-			GLog.p( Messages.get(this, "cleansed") );
+			GLog.positive( Messages.get(this, "cleansed") );
 		} else {
-			GLog.i( Messages.get(this, "not_cleansed") );
+			GLog.info( Messages.get(this, "not_cleansed") );
 		}
 	}
 

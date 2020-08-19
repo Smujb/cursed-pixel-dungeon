@@ -131,7 +131,7 @@ public class LuckyBadge extends Power {
 
 	public static void doReturn() {
 		if (scoreBeaten) {
-			GLog.p(Messages.get(LuckyBadge.class, "new_high_score", score));
+			GLog.positive(Messages.get(LuckyBadge.class, "new_high_score", score));
 			scoreBeaten = false;
 		}
 		score = 0;

@@ -54,8 +54,6 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class LloydsBeacon extends Artifact {
@@ -120,14 +118,14 @@ public class LloydsBeacon extends Artifact {
 			
 			if (Dungeon.bossLevel()) {
 				hero.spend( LloydsBeacon.TIME_TO_USE );
-				GLog.w( Messages.get(this, "preventing") );
+				GLog.warning( Messages.get(this, "preventing") );
 				return;
 			}
 			
 			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
 				Char ch = Actor.findChar(hero.pos + PathFinder.NEIGHBOURS8[i]);
 				if (ch != null && ch.alignment == Char.Alignment.ENEMY) {
-					GLog.w( Messages.get(this, "creatures") );
+					GLog.warning( Messages.get(this, "creatures") );
 					return;
 				}
 			}
@@ -139,11 +137,11 @@ public class LloydsBeacon extends Artifact {
 			int chargesToUse = Dungeon.depth > 20 ? 2 : 1;
 
 			if (!isEquipped( hero )) {
-				GLog.i( Messages.get(Artifact.class, "need_to_equip") );
+				GLog.info( Messages.get(Artifact.class, "need_to_equip") );
 				QuickSlotButton.cancel();
 
 			} else if (charge < chargesToUse) {
-				GLog.i( Messages.get(this, "no_charge") );
+				GLog.info( Messages.get(this, "no_charge") );
 				QuickSlotButton.cancel();
 
 			} else {
@@ -161,7 +159,7 @@ public class LloydsBeacon extends Artifact {
 			hero.sprite.operate( hero.pos );
 			Sample.INSTANCE.play( Assets.Sounds.BEACON );
 			
-			GLog.i( Messages.get(this, "return") );
+			GLog.info( Messages.get(this, "return") );
 			
 		} else if (action == AC_RETURN) {
 			
@@ -244,11 +242,11 @@ public class LloydsBeacon extends Artifact {
 
 										if (pos == -1 || Dungeon.bossLevel()) {
 
-											GLog.w( Messages.get(ScrollOfTeleportation.class, "no_tele") );
+											GLog.warning( Messages.get(ScrollOfTeleportation.class, "no_tele") );
 
 										} else if (ch.properties().contains(Char.Property.IMMOVABLE)) {
 
-											GLog.w( Messages.get(LloydsBeacon.class, "tele_fail") );
+											GLog.warning( Messages.get(LloydsBeacon.class, "tele_fail") );
 
 										} else  {
 
@@ -299,7 +297,7 @@ public class LloydsBeacon extends Artifact {
 	public Item upgrade() {
 		if (level() == levelCap) return this;
 		chargeCap ++;
-		GLog.p( Messages.get(this, "levelup") );
+		GLog.positive( Messages.get(this, "levelup") );
 		return super.upgrade();
 	}
 

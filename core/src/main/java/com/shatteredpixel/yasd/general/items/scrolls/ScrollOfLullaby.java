@@ -63,7 +63,7 @@ public class ScrollOfLullaby extends Scroll {
 
 		Buff.affect( curUser, Drowsy.class );
 
-		GLog.i( Messages.get(this, "sooth") );
+		GLog.info( Messages.get(this, "sooth") );
 
 		setKnown();
 

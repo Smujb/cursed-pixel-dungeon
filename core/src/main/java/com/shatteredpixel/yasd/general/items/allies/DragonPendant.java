@@ -62,11 +62,11 @@ public abstract class DragonPendant extends KindofMisc {
 
 	private void doSummon(Char ch) {
 		if (charge < CHARGE_CAP) {
-			GLog.w(Messages.get(this, "no_charge"));
+			GLog.warning(Messages.get(this, "no_charge"));
 			return;
 		}
 		if (getDragon() != null) {
-			GLog.w("already_spawned");
+			GLog.warning("already_spawned");
 			return;
 		}
 		ch.spend(1f);
@@ -85,9 +85,9 @@ public abstract class DragonPendant extends KindofMisc {
 				setDragon(dragon);
 				charge = 0f;
 				Item.updateQuickslot();
-				GLog.p(Messages.get(this, "dragon_spawned"));
+				GLog.positive(Messages.get(this, "dragon_spawned"));
 			} else {
-				GLog.n(Messages.get(this, "spawn_failed"));
+				GLog.negative(Messages.get(this, "spawn_failed"));
 			}
 		}
 	}
@@ -134,7 +134,7 @@ public abstract class DragonPendant extends KindofMisc {
 		//Have to enforce this as the dragon looks through hero's miscs for a pendant of its type.
 		for (KindofMisc misc : hero.belongings.miscs) {
 			if (misc != null && misc.getClass() == this.getClass()) {
-				GLog.w(Messages.get(this, "cannot_wear_two"));
+				GLog.warning(Messages.get(this, "cannot_wear_two"));
 				return false;
 			}
 		}

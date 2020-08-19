@@ -136,7 +136,7 @@ public class DM200 extends Mob {
 			GameScene.add(Blob.seed(i, 20, ToxicGas.class));
 		}
 
-		GLog.w(Messages.get(this, "vent"));
+		GLog.warning(Messages.get(this, "vent"));
 		GameScene.add(Blob.seed(trajectory.collisionPos, 100, ToxicGas.class));
 		return true;
 	}
@@ -239,7 +239,7 @@ public class DM200 extends Mob {
 			threatened = false;
 			spend(TICK);
 
-			GLog.w(Messages.get(this, "vent"));
+			GLog.warning(Messages.get(this, "vent"));
 			GameScene.add(Blob.seed(enemy.pos, 15, CorrosiveGas.class).setStrength(Corrosion.defaultStrength(Dungeon.getScaleFactor())));
 			for (int i : PathFinder.NEIGHBOURS8){
 				if (!Dungeon.level.solid(enemy.pos+i)) {

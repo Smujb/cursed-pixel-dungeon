@@ -45,8 +45,6 @@ import com.shatteredpixel.yasd.general.windows.WndOptions;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class ChaliceOfBlood extends Artifact {
@@ -112,7 +110,7 @@ public class ChaliceOfBlood extends Artifact {
 		hero.sprite.operate( hero.pos );
 		hero.busy();
 		hero.spend(3f);
-		GLog.w( Messages.get(this, "onprick") );
+		GLog.warning( Messages.get(this, "onprick") );
 		if (damage <= 0){
 			damage = 1;
 		} else {
@@ -124,7 +122,7 @@ public class ChaliceOfBlood extends Artifact {
 
 		if (!hero.isAlive()) {
 			Dungeon.fail( getClass() );
-			GLog.n( Messages.get(this, "ondeath") );
+			GLog.negative( Messages.get(this, "ondeath") );
 		} else {
 			upgrade();
 		}

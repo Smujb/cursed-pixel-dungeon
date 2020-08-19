@@ -61,9 +61,9 @@ public class StoneOfEnchantment extends InventoryStone {
 		Enchanting.show( curUser, item );
 		
 		if (item instanceof Weapon) {
-			GLog.p(Messages.get(this, "weapon"));
+			GLog.positive(Messages.get(this, "weapon"));
 		} else {
-			GLog.p(Messages.get(this, "armour"));
+			GLog.positive(Messages.get(this, "armour"));
 		}
 		
 		useAnimation();

@@ -77,7 +77,7 @@ public class ScrollOfPsionicBlast extends ExoticScroll {
 			readAnimation();
 		} else {
 			Dungeon.fail( getClass() );
-			GLog.n( Messages.get(this, "ondeath") );
+			GLog.negative( Messages.get(this, "ondeath") );
 		}
 		
 		setKnown();

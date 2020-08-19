@@ -58,10 +58,10 @@ public class Damning extends RelicEnchantment {
                         //Dungeon.hero.spendAndNext(Greataxe.speedFactor(Dungeon.hero));//This is enforced here so that augments make a difference
                         Damning.super.activate(Greataxe,Dungeon.hero);
                     } else {
-                        GLog.n( Messages.get(Damning.class, "short_reach") );
+                        GLog.negative( Messages.get(Damning.class, "short_reach") );
                     }
                 } else {
-                    GLog.w( Messages.get(Damning.class, "no_enemy") );
+                    GLog.warning( Messages.get(Damning.class, "no_enemy") );
                 }
             }
         }

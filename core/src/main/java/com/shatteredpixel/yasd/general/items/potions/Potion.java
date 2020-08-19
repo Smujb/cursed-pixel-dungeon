@@ -330,7 +330,7 @@ public class Potion extends Item {
 	
 	public void shatter( int cell ) {
 		if (Dungeon.level.heroFOV[cell]) {
-			GLog.i( Messages.get(Potion.class, "shatter") );
+			GLog.info( Messages.get(Potion.class, "shatter") );
 			Sample.INSTANCE.play( Assets.Sounds.SHATTER );
 			splash( cell );
 		}

@@ -123,18 +123,18 @@ public class SacrificialFire extends Blob {
                 int volume = fire.volume - exp;
                 if (volume > 0) {
                     fire.seed( Dungeon.level, fire.pos, volume );
-                    GLog.w(Messages.get(SacrificialFire.class, "worthy"));
+                    GLog.warning(Messages.get(SacrificialFire.class, "worthy"));
                 } else {
                     fire.seed( Dungeon.level, fire.pos, 0 );
                     Notes.remove( Notes.Landmark.SACRIFICIAL_FIRE );
 
-                    GLog.p(Messages.get(SacrificialFire.class, "reward"));
+                    GLog.positive(Messages.get(SacrificialFire.class, "reward"));
                     GameScene.effect( new Flare( 7, 32 ).color( 0x66FFFF, true ).show( ch.sprite.parent, DungeonTilemap.tileCenterToWorld( fire.pos ), 2f ) );
                     Dungeon.level.drop( new Ankh(), fire.pos ).sprite.drop();
                 }
             } else {
 
-                GLog.n(Messages.get(SacrificialFire.class, "unworthy"));
+                GLog.negative(Messages.get(SacrificialFire.class, "unworthy"));
 
             }
         }

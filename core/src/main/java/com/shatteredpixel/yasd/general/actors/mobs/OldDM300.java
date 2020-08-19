@@ -111,7 +111,7 @@ public class OldDM300 extends Boss {
 			sprite.emitter().burst( ElmoParticle.FACTORY, 5 );
 			
 			if (Dungeon.level.heroFOV[step] && Dungeon.hero.isAlive()) {
-				GLog.n( Messages.get(this, "repair") );
+				GLog.negative( Messages.get(this, "repair") );
 			}
 		}
 		

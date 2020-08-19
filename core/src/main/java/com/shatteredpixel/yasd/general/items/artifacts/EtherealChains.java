@@ -87,15 +87,15 @@ public class EtherealChains extends Artifact {
 			curUser = hero;
 
 			if (!isEquipped( hero )) {
-				GLog.i( Messages.get(Artifact.class, "need_to_equip") );
+				GLog.info( Messages.get(Artifact.class, "need_to_equip") );
 				QuickSlotButton.cancel();
 
 			} else if (charge < 1) {
-				GLog.i( Messages.get(this, "no_charge") );
+				GLog.info( Messages.get(this, "no_charge") );
 				QuickSlotButton.cancel();
 
 			} else if (cursed) {
-				GLog.w( Messages.get(this, "cursed") );
+				GLog.warning( Messages.get(this, "cursed") );
 				QuickSlotButton.cancel();
 
 			} else {
@@ -114,7 +114,7 @@ public class EtherealChains extends Artifact {
 				//chains cannot be used to go where it is impossible to walk to
 				PathFinder.buildDistanceMap(target, BArray.or(Dungeon.level.passable(), Dungeon.level.avoid(), null));
 				if (PathFinder.distance[curUser.pos] == Integer.MAX_VALUE){
-					GLog.w( Messages.get(EtherealChains.class, "cant_reach") );
+					GLog.warning( Messages.get(EtherealChains.class, "cant_reach") );
 					return;
 				}
 				
@@ -141,7 +141,7 @@ public class EtherealChains extends Artifact {
 	private void chainEnemy(Ballistica chain, final Char user, final Char enemy ){
 		
 		if (enemy.properties().contains(Char.Property.IMMOVABLE)) {
-			GLog.w( Messages.get(this, "cant_pull") );
+			GLog.warning( Messages.get(this, "cant_pull") );
 			return;
 		}
 		
@@ -157,7 +157,7 @@ public class EtherealChains extends Artifact {
 		}
 		
 		if (bestPos == -1) {
-			GLog.i(Messages.get(this, "does_nothing"));
+			GLog.info(Messages.get(this, "does_nothing"));
 			return;
 		}
 		
@@ -165,7 +165,7 @@ public class EtherealChains extends Artifact {
 		
 		int chargeUse = Dungeon.level.distance(enemy.pos, pulledPos);
 		if (chargeUse > charge) {
-			GLog.w( Messages.get(this, "no_charge") );
+			GLog.warning( Messages.get(this, "no_charge") );
 			return;
 		} else {
 			charge -= chargeUse;
@@ -195,7 +195,7 @@ public class EtherealChains extends Artifact {
 		
 		//don't pull if the collision spot is in a wall
 		if (Dungeon.level.solid(chain.collisionPos)){
-			GLog.i( Messages.get(this, "inside_wall"));
+			GLog.info( Messages.get(this, "inside_wall"));
 			return;
 		}
 		
@@ -208,7 +208,7 @@ public class EtherealChains extends Artifact {
 			}
 		}
 		if (!solidFound){
-			GLog.i( Messages.get(EtherealChains.class, "nothing_to_grab") );
+			GLog.info( Messages.get(EtherealChains.class, "nothing_to_grab") );
 			return;
 		}
 		
@@ -216,7 +216,7 @@ public class EtherealChains extends Artifact {
 		
 		int chargeUse = Dungeon.level.distance(user.pos, newHeroPos);
 		if (chargeUse > charge){
-			GLog.w( Messages.get(EtherealChains.class, "no_charge") );
+			GLog.warning( Messages.get(EtherealChains.class, "no_charge") );
 			return;
 		} else {
 			charge -= chargeUse;
@@ -309,7 +309,7 @@ public class EtherealChains extends Artifact {
 
 			if (exp > 100+level()*100 && level() < levelCap){
 				exp -= 100+level()*100;
-				GLog.p( Messages.get(this, "levelup") );
+				GLog.positive( Messages.get(this, "levelup") );
 				upgrade();
 			}
 

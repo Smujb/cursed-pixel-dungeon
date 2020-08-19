@@ -98,14 +98,14 @@ public class PotionOfPurity extends Potion {
 			Sample.INSTANCE.play(Assets.Sounds.SHATTER);
 			
 			setKnown();
-			GLog.i(Messages.get(this, "freshness"));
+			GLog.info(Messages.get(this, "freshness"));
 		}
 		
 	}
 	
 	@Override
 	public void apply( Hero hero ) {
-		GLog.w( Messages.get(this, "protected") );
+		GLog.warning( Messages.get(this, "protected") );
 		Buff.prolong( hero, BlobImmunity.class, BlobImmunity.DURATION );
 		setKnown();
 	}

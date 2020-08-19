@@ -196,7 +196,7 @@ public class Armor extends KindofMisc {
 			/*if (seal.level() > 0){
 				degrade();
 			}*/
-			GLog.i( Messages.get(Armor.class, "detach_seal") );
+			GLog.info( Messages.get(Armor.class, "detach_seal") );
 			hero.sprite.operate(hero.pos);
 			if (!seal.collect()){
 				Dungeon.level.drop(seal, hero.pos);
@@ -231,7 +231,7 @@ public class Armor extends KindofMisc {
 	@Override
 	public boolean doEquip(Hero hero) {
 		if (hero.belongings.getArmor() != null) {
-			GLog.n(Messages.get(Armor.class, "only_wear_one"));
+			GLog.negative(Messages.get(Armor.class, "only_wear_one"));
 			return false;
 		}
 		return super.doEquip(hero);
@@ -344,7 +344,7 @@ public class Armor extends KindofMisc {
 			usesLeftToID--;
 			if (usesLeftToID <= 0) {
 				identify();
-				GLog.p( Messages.get(Armor.class, "identify") );
+				GLog.positive( Messages.get(Armor.class, "identify") );
 				Badges.validateItemLevelAquired( this );
 			}
 		}
@@ -363,7 +363,7 @@ public class Armor extends KindofMisc {
 			usesLeftToID--;
 			if (usesLeftToID <= 0) {
 				identify();
-				GLog.p( Messages.get(Armor.class, "identify") );
+				GLog.positive( Messages.get(Armor.class, "identify") );
 				Badges.validateItemLevelAquired( this );
 			}
 		}

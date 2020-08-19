@@ -905,7 +905,7 @@ public abstract class Mob extends Char {
 		if (Dungeon.hero != null) {
 
 			if (Dungeon.hero.isAlive() && !Dungeon.level.heroFOV[pos]) {
-				GLog.i(Messages.get(this, "died"));
+				GLog.info(Messages.get(this, "died"));
 			}
 
 			if (Dungeon.hero.subClass == HeroSubClass.NECROMANCER && Random.Int(3) == 0) {
@@ -1059,7 +1059,7 @@ public abstract class Mob extends Char {
 	
 	public void yell( String str ) {
 		GLog.newLine();
-		GLog.n( "%s: \"%s\" ", Messages.titleCase(name()), str );
+		GLog.negative( "%s: \"%s\" ", Messages.titleCase(name()), str );
 	}
 
 	//returns true when a mob sees the hero, and is currently targeting them.

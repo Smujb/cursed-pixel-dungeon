@@ -78,7 +78,7 @@ public class ScrollOfTeleportation extends Scroll {
 	public void empoweredRead() {
 		
 		if (Dungeon.bossLevel()){
-			GLog.w( Messages.get(this, "no_tele") );
+			GLog.warning( Messages.get(this, "no_tele") );
 			return;
 		}
 		
@@ -105,7 +105,7 @@ public class ScrollOfTeleportation extends Scroll {
 		if (PathFinder.distance[hero.pos] == Integer.MAX_VALUE
 				|| (!Dungeon.level.passable(pos) && !Dungeon.level.avoid(pos))
 				|| Actor.findChar(pos) != null){
-			GLog.w( Messages.get(ScrollOfTeleportation.class, "cant_reach") );
+			GLog.warning( Messages.get(ScrollOfTeleportation.class, "cant_reach") );
 			return;
 		}
 		
@@ -119,7 +119,7 @@ public class ScrollOfTeleportation extends Scroll {
 	public static void teleportUser(Char  ch ) {
 
 		if (Dungeon.bossLevel()){
-			GLog.w( Messages.get(ScrollOfTeleportation.class, "no_tele") );
+			GLog.warning( Messages.get(ScrollOfTeleportation.class, "no_tele") );
 			return;
 		}
 		
@@ -134,11 +134,11 @@ public class ScrollOfTeleportation extends Scroll {
 		
 		if (pos == -1) {
 			
-			GLog.w( Messages.get(ScrollOfTeleportation.class, "no_tele") );
+			GLog.warning( Messages.get(ScrollOfTeleportation.class, "no_tele") );
 			
 		} else {
 			
-			GLog.i( Messages.get(ScrollOfTeleportation.class, "tele") );
+			GLog.info( Messages.get(ScrollOfTeleportation.class, "tele") );
 			
 			appear( ch, pos );
 			Dungeon.level.occupyCell(ch );
@@ -204,7 +204,7 @@ public class ScrollOfTeleportation extends Scroll {
 					}
 				}
 			}
-			GLog.i( Messages.get(ScrollOfTeleportation.class, "tele") );
+			GLog.info( Messages.get(ScrollOfTeleportation.class, "tele") );
 			appear( hero, pos );
 			Dungeon.level.occupyCell(hero );
 			if (secretDoor && level.getTerrain(doorPos) == Terrain.SECRET_DOOR){

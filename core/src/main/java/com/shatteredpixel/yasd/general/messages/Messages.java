@@ -33,7 +33,6 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.utils.GLog;
-import com.watabou.utils.DeviceCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -135,9 +134,7 @@ public class Messages {
 				return get(c.getSuperclass(), k, baseName, args);
 			} else {
 				String name = "missed_string:"+baseName;
-				if (CPDSettings.debugReport() && DeviceCompat.isDebug()) {
-					GLog.n(name);
-				}
+				GLog.debug(name);
 				return name;
 			}
 		}

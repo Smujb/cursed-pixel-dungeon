@@ -56,7 +56,7 @@ public class ElixirOfMight extends Elixir {
 		
 		hero.updateHT( true );
 		hero.sprite.showStatus( CharSprite.POSITIVE, Messages.get(this, "msg_1", boost.boost() ));
-		GLog.p( Messages.get(this, "msg_2") );
+		GLog.positive( Messages.get(this, "msg_2") );
 	}
 	
 	public String desc() {

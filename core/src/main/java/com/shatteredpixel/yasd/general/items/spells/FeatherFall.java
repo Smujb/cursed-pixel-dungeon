@@ -51,7 +51,7 @@ public class FeatherFall extends Spell {
 		Sample.INSTANCE.play(Assets.Sounds.READ );
 		hero.sprite.emitter().burst( Speck.factory( Speck.JET ), 20);
 		
-		GLog.p(Messages.get(this, "light"));
+		GLog.positive(Messages.get(this, "light"));
 		
 		detach( curUser.belongings.backpack );
 		updateQuickslot();

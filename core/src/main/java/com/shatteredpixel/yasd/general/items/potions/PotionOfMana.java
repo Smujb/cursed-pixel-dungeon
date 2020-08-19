@@ -42,7 +42,7 @@ public class PotionOfMana extends Potion {
 	public void apply( Hero hero ) {
 		setKnown();
 
-		GLog.p(Messages.get(this, "refresh_mp"));
+		GLog.positive(Messages.get(this, "refresh_mp"));
 		hero.mp = hero.maxMP();
 
 		//hero.DistributionPoints += 5;

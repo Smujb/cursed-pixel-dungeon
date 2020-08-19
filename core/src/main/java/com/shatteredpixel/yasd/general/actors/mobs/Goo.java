@@ -201,7 +201,7 @@ public class Goo extends Boss {
 
 			if (Dungeon.level.heroFOV[pos]) {
 				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(this, "!!!") );
-				GLog.n( Messages.get(this, "pumpup") );
+				GLog.negative( Messages.get(this, "pumpup") );
 				Sample.INSTANCE.play( Assets.Sounds.CHARGEUP, 1f, 0.8f );
 			}
 

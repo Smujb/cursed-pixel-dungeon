@@ -175,7 +175,7 @@ public class YogDzewa extends Boss {
 					}
 					if (!ch.isAlive() && ch == Dungeon.hero) {
 						Dungeon.fail(getClass());
-						GLog.n(Messages.get(Char.class, "kill", name()));
+						GLog.negative(Messages.get(Char.class, "kill", name()));
 					}
 				}
 				targetedCells.clear();
@@ -312,7 +312,7 @@ public class YogDzewa extends Boss {
 				Dungeon.hero.viewDistance = Dungeon.level.viewDistance;
 			}
 			Dungeon.observe();
-			GLog.n(Messages.get(this, "darkness"));
+			GLog.negative(Messages.get(this, "darkness"));
 			sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "immune"));
 
 			YogFist fist = (YogFist) Mob.create(fistSummons.remove(0), level);

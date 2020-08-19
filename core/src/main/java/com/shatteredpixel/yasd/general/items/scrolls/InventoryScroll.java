@@ -87,7 +87,7 @@ public abstract class InventoryScroll extends Scroll {
 
 				//If the scroll was identified by use, mana will already have been consumed. Anonymous scrolls are called by the Spellbook and Catalysts.
 				if (!anonymous && !identifiedByUse && curUser instanceof Hero && !((Hero) curUser).useMP(mpCost) ) {
-					GLog.w(Messages.get(InventoryScroll.this, "no_mana"));
+					GLog.warning(Messages.get(InventoryScroll.this, "no_mana"));
 					collect( curUser.belongings.backpack, curUser);
 					return;
 				}

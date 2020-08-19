@@ -149,7 +149,7 @@ public class WndHero extends WndTabbed {
 					CPDGame.scene().addToFront(new WndConfirmIncrease(stat));
 					WndHero.this.hide();
 				} else {
-					GLog.w(Messages.get(WndHero.class,"no_points"));
+					GLog.warning(Messages.get(WndHero.class,"no_points"));
 				}
 			}
 		}

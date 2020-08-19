@@ -16,7 +16,7 @@ public class Degrade extends InventorySpell {
 	@Override
 	protected void onItemSelected(Item item) {
 		item.degrade();
-		GLog.n( Messages.get(this, "degrade", item.name()) );
+		GLog.negative( Messages.get(this, "degrade", item.name()) );
 	}
 
 	@Override

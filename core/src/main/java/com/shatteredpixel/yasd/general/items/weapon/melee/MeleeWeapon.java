@@ -85,7 +85,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 			if (isEquipped(curUser)) {
 				GameScene.selectCell(ATTACK);
 			} else {
-				GLog.i(Messages.get(MeleeWeapon.this, "not_equipped"));
+				GLog.info(Messages.get(MeleeWeapon.this, "not_equipped"));
 			}
 		}
 	}
@@ -100,10 +100,10 @@ public class MeleeWeapon extends Weapon implements Attackable {
 					if (MeleeWeapon.this.canReach(curUser, cell)) {
 						MeleeWeapon.this.doAttack(curUser, ch);
 					} else {
-						GLog.i(Messages.get(MeleeWeapon.this, "out_of_range"));
+						GLog.info(Messages.get(MeleeWeapon.this, "out_of_range"));
 					}
  				} else {
-					GLog.i(Messages.get(MeleeWeapon.this, "no_enemy"));
+					GLog.info(Messages.get(MeleeWeapon.this, "no_enemy"));
 				}
 			}
 		}

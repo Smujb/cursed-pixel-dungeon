@@ -83,8 +83,8 @@ public class TalismanOfForesight extends Artifact {
 
 		if (action.equals(AC_SCRY)){
 
-			if (!isEquipped(hero))  GLog.i( Messages.get(Artifact.class, "need_to_equip") );
-			else if (charge < 5)    GLog.i( Messages.get(this, "low_charge") );
+			if (!isEquipped(hero))  GLog.info( Messages.get(Artifact.class, "need_to_equip") );
+			else if (charge < 5)    GLog.info( Messages.get(this, "low_charge") );
 			else                    GameScene.selectCell(scry);
 		}
 	}
@@ -101,7 +101,7 @@ public class TalismanOfForesight extends Artifact {
 			if (charge >= chargeCap) {
 				charge = chargeCap;
 				partialCharge = 0;
-				GLog.p( Messages.get(Foresight.class, "full_charge") );
+				GLog.positive( Messages.get(Foresight.class, "full_charge") );
 			}
 		}
 	}
@@ -205,7 +205,7 @@ public class TalismanOfForesight extends Artifact {
 				if (exp >= 50 + 50*level() && level() < levelCap) {
 					exp -= 50 + 50*level();
 					upgrade();
-					GLog.p( Messages.get(TalismanOfForesight.class, "levelup") );
+					GLog.positive( Messages.get(TalismanOfForesight.class, "levelup") );
 				}
 				updateQuickslot();
 
@@ -296,7 +296,7 @@ public class TalismanOfForesight extends Artifact {
 
 			if (smthFound && !cursed){
 				if (!warn){
-					GLog.w( Messages.get(this, "uneasy") );
+					GLog.warning( Messages.get(this, "uneasy") );
 					if (target instanceof Hero){
 						((Hero)target).interrupt();
 					}
@@ -317,7 +317,7 @@ public class TalismanOfForesight extends Artifact {
 					updateQuickslot();
 				} else if (charge >= chargeCap) {
 					partialCharge = 0;
-					GLog.p( Messages.get(TalismanOfForesight.class, "full_charge") );
+					GLog.positive( Messages.get(TalismanOfForesight.class, "full_charge") );
 				}
 			}
 

@@ -77,7 +77,7 @@ public class Shopkeeper extends NPC {
 		
 		sprite.killAndErase();
 		CellEmitter.get( pos ).burst( ElmoParticle.FACTORY, 6 );
-		GLog.n(Messages.get(this,"guards"));
+		GLog.negative(Messages.get(this,"guards"));
 		new ShopGuardian().spawnAround(pos);
 		next();
 	}

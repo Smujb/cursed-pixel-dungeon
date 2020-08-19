@@ -108,7 +108,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		
 		if (result == null){
 			//This shouldn't ever interact
-			GLog.n( Messages.get(this, "nothing") );
+			GLog.negative( Messages.get(this, "nothing") );
 			this.collect( curUser.belongings.backpack, curUser);
 		} else {
 			if (item.isEquipped(Dungeon.hero)){
@@ -125,7 +125,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 				Catalog.setSeen(result.getClass());
 			}
 			//TODO visuals
-			GLog.p( Messages.get(this, "morph") );
+			GLog.positive( Messages.get(this, "morph") );
 		}
 		
 	}

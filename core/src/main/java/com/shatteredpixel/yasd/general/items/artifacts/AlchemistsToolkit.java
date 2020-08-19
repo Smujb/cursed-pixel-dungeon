@@ -40,8 +40,6 @@ import com.watabou.noosa.Game;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.GameMath;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class AlchemistsToolkit extends Artifact {
@@ -77,10 +75,10 @@ public class AlchemistsToolkit extends Artifact {
 		super.execute(hero, action);
 
 		if (action.equals(AC_BREW)){
-			if (!isEquipped(hero))                                          GLog.i( Messages.get(this, "need_to_equip") );
-			else if (cursed)                                                GLog.w( Messages.get(this, "cursed") );
-			else if (!alchemyReady)                                         GLog.i( Messages.get(this, "not_ready") );
-			else if (hero.visibleEnemies() > hero.mindVisionEnemies.size()) GLog.i( Messages.get(this, "enemy_near") );
+			if (!isEquipped(hero))                                          GLog.info( Messages.get(this, "need_to_equip") );
+			else if (cursed)                                                GLog.warning( Messages.get(this, "cursed") );
+			else if (!alchemyReady)                                         GLog.info( Messages.get(this, "not_ready") );
+			else if (hero.visibleEnemies() > hero.mindVisionEnemies.size()) GLog.info( Messages.get(this, "enemy_near") );
 			else {
 				
 				AlchemyScene.setProvider(hero.buff(kitEnergy.class));
@@ -195,7 +193,7 @@ public class AlchemistsToolkit extends Artifact {
 					partialCharge -= 1;
 					
 					if (charge == chargeCap){
-						GLog.p( Messages.get(AlchemistsToolkit.class, "full") );
+						GLog.positive( Messages.get(AlchemistsToolkit.class, "full") );
 						partialCharge = 0;
 					}
 					

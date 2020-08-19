@@ -132,7 +132,7 @@ public class DemonSpawner extends Mob {
 		if (spawnRecorded){
 			Statistics.spawnersAlive--;
 		}
-		GLog.h(Messages.get(this, "on_death"));
+		GLog.highlight(Messages.get(this, "on_death"));
 		super.die(cause);
 	}
 

@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.utils;
 
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.Signal;
@@ -39,11 +40,12 @@ public class GLog {
 	public static final String NEGATIVE		= "-- ";
 	public static final String WARNING		= "** ";
 	public static final String HIGHLIGHT	= "@@ ";
+	public static final String DEBUG   		= "[DEBUG]: ";
 	public static final String NEW_LINE	    = "\n";
 	
 	public static Signal<String> update = new Signal<>();
 	
-	public static void i( String text, Object... args ) {
+	public static void info(String text, Object... args ) {
 		
 		if (args.length > 0) {
 			text = Messages.format( text, args );
@@ -57,19 +59,31 @@ public class GLog {
 		update.dispatch( NEW_LINE );
 	}
 
-	public static void p( String text, Object... args ) {
-		i( POSITIVE + text, args );
+	public static void positive(String text, Object... args ) {
+		info( POSITIVE + text, args );
 	}
 	
-	public static void n( String text, Object... args ) {
-		i( NEGATIVE + text, args );
+	public static void negative(String text, Object... args ) {
+		info( NEGATIVE + text, args );
 	}
 	
-	public static void w( String text, Object... args ) {
-		i( WARNING + text, args );
+	public static void warning(String text, Object... args ) {
+		info( WARNING + text, args );
 	}
 	
-	public static void h( String text, Object... args ) {
-		i( HIGHLIGHT + text, args );
+	public static void highlight(String text, Object... args ) {
+		info( HIGHLIGHT + text, args );
+	}
+
+	public static void debug(String text, Object... args ) {
+		if (CPDSettings.debugReport()) {
+			StackTraceElement[] trace = Thread.currentThread().getStackTrace();
+			StringBuilder toLog = new StringBuilder(DEBUG + text);
+			toLog.append("\n" + "Trace:\n");
+			for (StackTraceElement element : trace) {
+				toLog.append(element.toString()).append("\n");
+			}
+			info(toLog.toString(), args);
+		}
 	}
 }

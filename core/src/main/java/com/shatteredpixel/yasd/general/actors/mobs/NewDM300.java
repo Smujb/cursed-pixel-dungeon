@@ -156,7 +156,7 @@ public class NewDM300 extends Boss {
 						turnsSinceLastAbility = 0;
 						spend(TICK);
 
-						GLog.w(Messages.get(this, "vent"));
+						GLog.warning(Messages.get(this, "vent"));
 						if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
 							sprite.zap(enemy.pos);
 							return false;
@@ -191,7 +191,7 @@ public class NewDM300 extends Boss {
 						abilityCooldown = Random.NormalIntRange(MIN_COOLDOWN, MAX_COOLDOWN);
 
 						if (lastAbility == GAS) {
-							GLog.w(Messages.get(this, "vent"));
+							GLog.warning(Messages.get(this, "vent"));
 							if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
 								sprite.zap(enemy.pos);
 								return false;
@@ -201,7 +201,7 @@ public class NewDM300 extends Boss {
 								return true;
 							}
 						} else {
-							GLog.w(Messages.get(this, "rocks"));
+							GLog.warning(Messages.get(this, "rocks"));
 							if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
 								((DM300Sprite)sprite).slam(enemy.pos);
 								return false;
@@ -259,7 +259,7 @@ public class NewDM300 extends Boss {
 
 			if (Dungeon.level.heroFOV[step]) {
 				if (buff(Barrier.class) == null) {
-					GLog.w(Messages.get(this, "shield"));
+					GLog.warning(Messages.get(this, "shield"));
 				}
 				Sample.INSTANCE.play(Assets.Sounds.LIGHTNING);
 				sprite.emitter().start(SparkParticle.STATIC, 0.05f, 20);
@@ -409,7 +409,7 @@ public class NewDM300 extends Boss {
 	public boolean isInvulnerable(Class effect) {
 		if (supercharged && !invulnWarned){
 			invulnWarned = true;
-			GLog.w(Messages.get(this, "charging_hint"));
+			GLog.warning(Messages.get(this, "charging_hint"));
 		}
 		return supercharged;
 	}

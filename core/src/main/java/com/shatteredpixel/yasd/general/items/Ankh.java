@@ -91,7 +91,7 @@ public class Ankh extends Item {
 
 		if (toRevive == Dungeon.hero) {
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
-			GLog.w(Messages.get(Ankh.class, "revive"));
+			GLog.warning(Messages.get(Ankh.class, "revive"));
 			Statistics.ankhsUsed++;
 		}
 

@@ -72,13 +72,13 @@ public class ScrollOfTerror extends Scroll {
 		
 		switch (count) {
 		case 0:
-			GLog.i( Messages.get(this, "none") );
+			GLog.info( Messages.get(this, "none") );
 			break;
 		case 1:
-			GLog.i( Messages.get(this, "one", affected.name()) );
+			GLog.info( Messages.get(this, "one", affected.name()) );
 			break;
 		default:
-			GLog.i( Messages.get(this, "many") );
+			GLog.info( Messages.get(this, "many") );
 		}
 		setKnown();
 

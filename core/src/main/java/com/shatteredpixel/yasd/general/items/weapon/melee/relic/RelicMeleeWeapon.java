@@ -109,7 +109,7 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
         if (isEquipped(hero) & charge >= chargeCap) {
             ((RelicEnchantment) enchantment).activate(this, hero);
         } else {
-            GLog.i(Messages.get(RelicMeleeWeapon.class,"no_charge",name()));
+            GLog.info(Messages.get(RelicMeleeWeapon.class,"no_charge",name()));
         }
     }
 
@@ -194,7 +194,7 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
                     partialCharge--;
                     if (charge >= chargeCap){
                         partialCharge = 0f;
-                        GLog.p( Messages.get(RelicMeleeWeapon.class, "charged"),name() );
+                        GLog.positive( Messages.get(RelicMeleeWeapon.class, "charged"),name() );
                     }
                 }
             }
