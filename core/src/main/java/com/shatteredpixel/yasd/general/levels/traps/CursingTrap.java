@@ -36,8 +36,6 @@ import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -74,33 +72,20 @@ public class CursingTrap extends Trap {
 		}
 	}
 
-	public static void curse(Char hero){
+	public static void curse(Char ch){
+		if (!ch.hasBelongings()) {
+			return;
+		}
 		//items the trap wants to curse because it will create a more negative effect
 		ArrayList<Item> priorityCurse = new ArrayList<>();
 		//items the trap can curse if nothing else is available.
 		ArrayList<Item> canCurse = new ArrayList<>();
 
-		KindofMisc misc1 = hero.belongings.miscs[0];
-		if (misc1 != null){
-			canCurse.add(misc1);
+		for (KindofMisc misc : ch.belongings.miscs) {
+			if (misc != null) {
+				canCurse.add(misc);
+			}
 		}
-		KindofMisc misc2 = hero.belongings.miscs[1];
-		if (misc1 != null){
-			canCurse.add(misc2);
-		}
-		KindofMisc misc3 = hero.belongings.miscs[2];
-		if (misc1 != null){
-			canCurse.add(misc3);
-		}
-		KindofMisc misc4 = hero.belongings.miscs[3];
-		if (misc1 != null){
-			canCurse.add(misc4);
-		}
-		KindofMisc misc5 = hero.belongings.miscs[4];
-		if (misc1 != null){
-			canCurse.add(misc5);
-		}
-
 
 		Collections.shuffle(priorityCurse);
 		Collections.shuffle(canCurse);
@@ -115,24 +100,12 @@ public class CursingTrap extends Trap {
 			}
 		}
 
-		EquipableItem.equipCursed(hero);
+		EquipableItem.equipCursed(ch);
 		GLog.n( Messages.get(CursingTrap.class, "curse") );
 	}
 
 	private static void curse(Item item){
-		item.cursed = item.cursedKnown = true;
-
-		if (item instanceof Weapon){
-			Weapon w = (Weapon) item;
-			if (w.enchantment == null){
-				w.enchant(Weapon.Enchantment.randomCurse());
-			}
-		}
-		if (item instanceof Armor){
-			Armor a = (Armor) item;
-			if (a.glyph == null){
-				a.inscribe(Armor.Glyph.randomCurse());
-			}
-		}
+		item.curse();
+		item.cursedKnown = true;
 	}
 }
