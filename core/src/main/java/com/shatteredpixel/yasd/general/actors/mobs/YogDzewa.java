@@ -183,7 +183,7 @@ public class YogDzewa extends Boss {
 
 			if (abilityCooldown <= 0){
 
-				int beams = 1 + (HT - HP)/400;
+				int beams = (int) (1 + missingHPPercent()*3);
 				HashSet<Integer> affectedCells = new HashSet<>();
 				for (int i = 0; i < beams; i++){
 
@@ -296,7 +296,7 @@ public class YogDzewa extends Boss {
 		if (phase < 4) {
 			HP = Math.max(HP, HT - (HT/4) * phase);
 		} else if (phase == 4) {
-			HP = Math.max(HP, 100);
+			HP = Math.max(HP, HT/10);
 		}
 		int dmgTaken = preHP - HP;
 
@@ -305,7 +305,7 @@ public class YogDzewa extends Boss {
 			summonCooldown -= dmgTaken / 10f;
 		}
 
-		if (phase < 4 && HP <= HT - (HT/3)*phase){
+		if (phase < 4 && HP <= HT - (HT/4)*phase){
 
 			Dungeon.level.viewDistance = Math.max(1, Dungeon.level.viewDistance-1);
 			if (Dungeon.hero.buff(Light.class) == null){
