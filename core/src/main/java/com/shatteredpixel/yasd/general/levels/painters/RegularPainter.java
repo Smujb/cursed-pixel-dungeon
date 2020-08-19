@@ -392,7 +392,9 @@ public abstract class RegularPainter extends Painter {
 			if (Random.Int(2) == 0 && l.feeling == Level.Feeling.DANGER) {
 				trap.reveal();
 			}
-			l.setTrap( trap, trapPos );
+			if (trapPos != null) {
+				l.setTrap(trap, trapPos);
+			}
 		}
 	}
 	
