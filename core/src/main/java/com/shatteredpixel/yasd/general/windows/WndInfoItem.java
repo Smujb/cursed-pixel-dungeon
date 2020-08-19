@@ -75,7 +75,7 @@ public class WndInfoItem extends Window {
 	private void fillFields( Item item ) {
 
 		int color = TITLE_COLOR;
-		if (!item.statScaling.isEmpty()) {
+		if (!item.statScaling.isEmpty() && Dungeon.hero != null) {
 			color = item.bestHeroStat(Dungeon.hero).colour();
 		}
 
