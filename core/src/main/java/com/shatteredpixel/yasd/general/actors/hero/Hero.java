@@ -191,8 +191,12 @@ public class Hero extends Char {
 	private Attackable curItem = null;
 
 	public Attackable curItem() {
-		if (curItem == null && belongings.miscs[0] instanceof Attackable) {
-			 curItem = (Attackable) belongings.miscs[0];
+		if (curItem == null) {
+			if (belongings.miscs[0] instanceof Attackable) {
+				curItem = (Attackable) belongings.miscs[0];
+			} else {
+				return null;
+			}
 		}
 		if (belongings.contains((Item) curItem)) {
 			return curItem;
