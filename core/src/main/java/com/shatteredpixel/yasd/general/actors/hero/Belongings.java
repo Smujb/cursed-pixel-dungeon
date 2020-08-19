@@ -309,7 +309,7 @@ public class Belongings implements Iterable<Item> {
 		speed *= RingOfHaste.speedMultiplier(owner);
 		Armor curArmour = getArmor();
 		//speed *= curArmour.speedMultiplier(ownerID);
-		if (getArmor() != null) {
+		if (curArmour != null) {
 			int aEnc = curArmour.encumbrance();
 			if (aEnc > 0) speed /= Math.pow(1.2, aEnc);
 			if (curArmour.hasGlyph(Swiftness.class, owner)) {
