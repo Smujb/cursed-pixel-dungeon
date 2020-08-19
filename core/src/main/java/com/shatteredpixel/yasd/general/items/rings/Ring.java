@@ -52,7 +52,7 @@ public class Ring extends KindofMisc {
 	
 	private static final Class<?>[] rings = {
 		RingOfResilience.class,
-		//RingOfAttunement.class,
+		RingOfSupport.class,
 		RingOfElements.class,
 		RingOfAssault.class,
 		RingOfFuror.class,
