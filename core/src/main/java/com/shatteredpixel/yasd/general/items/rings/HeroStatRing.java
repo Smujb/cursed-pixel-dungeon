@@ -6,9 +6,9 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 public abstract class HeroStatRing extends Ring {
 	public String statsInfo() {
 		if (isIdentified()){
-			return Messages.get(this, "stats", Math.round(10 * soloMultiplier()));
+			return Messages.get(this, "stats", Math.round(4 * soloMultiplier()));
 		} else {
-			return Messages.get(this, "typical_stats", Math.round(10 * multiplier(0)));
+			return Messages.get(this, "typical_stats", Math.round(4 * multiplier(0)));
 		}
 	}
 
