@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.levels.rooms.special;
 
+import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.actors.mobs.Statue;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
@@ -92,7 +93,7 @@ public class StatueRoom extends LockedRoom {
 			
 		}
 		
-		Statue statue = new Statue();
+		Statue statue = Mob.create(Statue.class, level);
 		statue.pos = cx + cy * level.width();
 		level.mobs.add( statue );
 	}

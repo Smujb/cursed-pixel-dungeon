@@ -208,7 +208,7 @@ public abstract class Mob extends Char {
 	}
 
 	private int normalHP(int level) {
-		return 25 * Item.calcMobPower(level);
+		return 21 * Item.calcMobPower(level);
 	}
 
 	public static final float FACTOR = 0.8f;
@@ -234,11 +234,11 @@ public abstract class Mob extends Char {
 	}
 
 	protected final int normalMax(int level) {
-		return Item.calcMobPower(level) * 12;
+		return Item.calcMobPower(level) * 15;
 	}
 
 	protected final int normalMin(int level) {
-		return Item.calcMobPower(level) * 2;
+		return Item.calcMobPower(level) * 3;
 	}
 
 	private int normalDRRoll(int level) {

@@ -43,6 +43,7 @@ import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
+import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
@@ -79,37 +80,12 @@ public class Statue extends Mob implements Callback {
 	public Statue() {
 		super();
 
-		//belongings.setWeapon((KindOfWeapon) Generator.randomWeapon().level(0).uncurse().identify());
-		//belongings.setArmor((Armor) Generator.randomArmor().level(0).uncurse().identify());
-
 		for (int i = 0; i < belongings.miscs.length; i++) {
 			belongings.miscs[i] = newItem();
 			belongings.miscs[i].activate(this);
 		}
 
 		upgradeItems();
-		
-		HP = HT = 30 + Dungeon.getScaleFactor() * 10;
-	}
-
-	@Override
-	public float sneakSkill(Char enemy) {
-		return defenseSkill(enemy);
-	}
-
-	@Override
-	public float noticeSkill(Char enemy) {
-		return attackSkill(enemy);
-	}
-
-	@Override
-	public int defenseSkill(Char enemy) {
-		return 4 + Dungeon.getScaleFactor();
-	}
-
-	@Override
-	public int attackSkill(Char target) {
-		return 10 + Dungeon.getScaleFactor();
 	}
 
 	@Override
@@ -130,15 +106,27 @@ public class Statue extends Mob implements Callback {
 		do {
 			int type = Random.Int(4);
 			switch (type) {
-				case 0: default:
+				default:
+					item = Generator.randomArmor();
+					if (belongings.getArmor() == null) {
+						con = true;
+					}
+					break;
+				case 0:
 					item = ((KindofMisc) Generator.random(Generator.Category.RING));
 					if (belongings.getMiscsOfType(Ring.class).size() < 3) {
 						con = true;
 					}
 					break;
-				case 2: case 3:
+				case 2:
 					item = ((KindofMisc) Generator.random(Generator.Category.WAND));
 					if (belongings.getMiscsOfType(Wand.class).size() < 3) {
+						con = true;
+					}
+					break;
+				case 3:
+					item = Generator.randomWeapon();
+					if (belongings.getMiscsOfType(MeleeWeapon.class).size() < 3) {
 						con = true;
 					}
 					break;
@@ -246,7 +234,12 @@ public class Statue extends Mob implements Callback {
 
 	protected boolean doAttack( Char enemy ) {
 		if (Dungeon.level.adjacent( pos, enemy.pos )) {
-			return super.doAttack( enemy );
+			ArrayList<KindofMisc> weapons = belongings.getMiscsOfType(MeleeWeapon.class);
+			if (weapons.size() > 0) {
+				return ((MeleeWeapon) Random.element(weapons)).doAttack(this, enemy);
+			} else {
+				return super.doAttack(enemy);
+			}
 		} else if (belongings.getMiscsOfType(Wand.class).size() > 0) {
 			wandZap(enemy);
 			return true;
