@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.utils;
 
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.DeviceCompat;
@@ -76,14 +77,16 @@ public class GLog {
 	}
 
 	public static void debug(String text, Object... args ) {
+		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
+		StringBuilder addToLog = new StringBuilder(DEBUG + text);
+		addToLog.append("\n" + "Trace:\n");
+		for (StackTraceElement element : trace) {
+			addToLog.append(element.toString()).append("\n");
+		}
+		CPDGame.appendLog(addToLog.toString());
+
 		if (CPDSettings.debugReport()) {
-			StackTraceElement[] trace = Thread.currentThread().getStackTrace();
-			StringBuilder toLog = new StringBuilder(DEBUG + text);
-			toLog.append("\n" + "Trace:\n");
-			for (StackTraceElement element : trace) {
-				toLog.append(element.toString()).append("\n");
-			}
-			info(toLog.toString(), args);
+			info(DEBUG + text, args);
 		}
 	}
 }

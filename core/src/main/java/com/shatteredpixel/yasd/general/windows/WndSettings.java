@@ -27,6 +27,8 @@
 
 package com.shatteredpixel.yasd.general.windows;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.Clipboard;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.CPDSettings;
@@ -43,6 +45,7 @@ import com.shatteredpixel.yasd.general.ui.Toolbar;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.ui.Component;
 import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.Random;
 
@@ -58,6 +61,7 @@ public class WndSettings extends WndTabbed {
 	private static final int GAP_LRG 		= 18;
 
 	private DisplayTab display;
+	private DebugTab debug;
 	private UITab ui;
 	private AudioTab audio;
 
@@ -67,15 +71,18 @@ public class WndSettings extends WndTabbed {
 		super();
 
 		display = new DisplayTab();
-		add( display );
+		add(display);
 
 		ui = new UITab();
-		add( ui );
+		add(ui);
 
 		audio = new AudioTab();
-		add( audio );
+		add(audio);
 
-		add( new IconTab(Icons.get(Icons.DISPLAY)){
+		debug = new DebugTab();
+		add(debug);
+
+		add(new IconTab(Icons.get(Icons.DISPLAY)) {
 			@Override
 			protected void select(boolean value) {
 				super.select(value);
@@ -84,7 +91,7 @@ public class WndSettings extends WndTabbed {
 			}
 		});
 
-		add( new IconTab(Icons.get(Icons.PREFS)){
+		add(new IconTab(Icons.get(Icons.PREFS)) {
 			@Override
 			protected void select(boolean value) {
 				super.select(value);
@@ -93,7 +100,7 @@ public class WndSettings extends WndTabbed {
 			}
 		});
 
-		add( new IconTab(Icons.get(Icons.AUDIO)){
+		add(new IconTab(Icons.get(Icons.AUDIO)) {
 			@Override
 			protected void select(boolean value) {
 				super.select(value);
@@ -102,12 +109,39 @@ public class WndSettings extends WndTabbed {
 			}
 		});
 
+		add(new IconTab(Icons.get(Icons.WARNING)) {
+			@Override
+			protected void select(boolean value) {
+				super.select(value);
+				debug.visible = debug.active = value;
+				if (value) last_index = 3;
+			}
+		});
+
+
 		resize(WIDTH, HEIGHT);
 
 		layoutTabs();
 
 		select(last_index);
 
+	}
+
+	private static class DebugTab extends Component {
+		public DebugTab() {
+			super();
+
+			RedButton btnCopyLog = new RedButton(Messages.get(this, "copy_log")) {
+				@Override
+				protected void onClick() {
+					super.onClick();
+					Clipboard clipboard = Gdx.app.getClipboard();
+					clipboard.setContents(CPDGame.getLog());
+				}
+			};
+			btnCopyLog.setRect(0, 0, WIDTH, BTN_HEIGHT);
+			add(btnCopyLog);
+		}
 	}
 
 	private static class DisplayTab extends Group {

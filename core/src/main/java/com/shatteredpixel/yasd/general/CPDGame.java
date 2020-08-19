@@ -142,6 +142,16 @@ public class CPDGame extends Game {
 				"com.shatteredpixel.yasd.general.actors.mobs.Brute.Shielded");
 	}
 
+	private static String log = "";
+
+	public static void appendLog(String string) {
+		log += "\n\n" + string;
+	}
+
+	public static String getLog() {
+		return log;
+	}
+
 	public static void shake(float amount) {
 		Camera.main.shake(GameMath.gate(0.5f, amount*2, 10), 0.2f);
 		if (amount > 0.5f) {
