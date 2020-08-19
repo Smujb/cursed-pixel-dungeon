@@ -243,10 +243,6 @@ public class WndRanking extends WndTabbed {
 			
 			Belongings stuff = Dungeon.hero.belongings;
 
-			addItem(stuff.getWeapon());
-
-			addItem(stuff.getArmor());
-
 			for (KindofMisc misc : stuff.miscs) {
 				if (misc != null) {
 					addItem(misc);
