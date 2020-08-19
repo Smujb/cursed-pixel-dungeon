@@ -148,6 +148,14 @@ public class CPDGame extends Game {
 		log += "\n\n" + string;
 	}
 
+	public static void appendStackTrace(StackTraceElement[] trace) {
+		StringBuilder toLog = new StringBuilder();
+		for (StackTraceElement element : trace) {
+			toLog.append(element.toString()).append("\n");
+		}
+		CPDGame.appendLog(toLog.toString());
+	}
+
 	public static String getLog() {
 		return log;
 	}
@@ -160,7 +168,13 @@ public class CPDGame extends Game {
 			}
 		}
 	}
-	
+
+	@Override
+	protected void logException(Throwable tr) {
+		super.logException(tr);
+		CPDGame.appendStackTrace(tr.getStackTrace());
+	}
+
 	@Override
 	public void create() {
 		super.create();
