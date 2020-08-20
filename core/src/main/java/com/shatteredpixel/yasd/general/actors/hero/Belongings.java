@@ -408,7 +408,7 @@ public class Belongings implements Iterable<Item> {
 	}
 	
 	static void preview(GamesInProgress.Info info, Bundle bundle) {
-		if (bundle.contains( ARMOR )){
+		if (bundle.contains( ARMOR_PREVIEW )){
 			info.armorAppearance = ((Armor)bundle.get( ARMOR_PREVIEW )).appearance();
 		} else {
 			info.armorAppearance = 0;
