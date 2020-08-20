@@ -364,13 +364,19 @@ public class Belongings implements Iterable<Item> {
 	//####################### End of stuff for handling chars with belongings ######################
 	//##############################################################################################
 
+	//legacy
 	private static final String ARMOR		= "armor";
 	private static final String WEAPON		= "weapon";
-	private static final String MISC        = "misc";
+
+
+	private static final String MISC          = "misc";
+	private static final String ARMOR_PREVIEW = "preview";
 
 
 	public void storeInBundle( Bundle bundle ) {
-		
+
+		bundle.put(ARMOR_PREVIEW, getArmor());
+
 		backpack.storeInBundle( bundle );
 		for (int i = 0; i < owner.miscSlots(); i++) {//Store all miscs
 			bundle.put( MISC + i, miscs[i]);
@@ -403,7 +409,7 @@ public class Belongings implements Iterable<Item> {
 	
 	static void preview(GamesInProgress.Info info, Bundle bundle) {
 		if (bundle.contains( ARMOR )){
-			info.armorAppearance = ((Armor)bundle.get( ARMOR )).appearance();
+			info.armorAppearance = ((Armor)bundle.get( ARMOR_PREVIEW )).appearance();
 		} else {
 			info.armorAppearance = 0;
 		}
