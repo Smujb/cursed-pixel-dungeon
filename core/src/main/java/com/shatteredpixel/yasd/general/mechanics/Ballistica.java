@@ -69,7 +69,11 @@ public class Ballistica {
 	public static final int LASER = STOP_TERRAIN | REFLECT;
 
 	public static boolean canHit(@NotNull Char source, @NotNull Char target, int params) {
-		return new Ballistica(source.pos, target.pos, params).collisionPos == target.pos;
+		return canHit(source, target.pos, params);
+	}
+
+	public static boolean canHit(@NotNull Char source, int target, int params) {
+		return new Ballistica(source.pos, target, params).collisionPos == target;
 	}
 
 	public Ballistica(int from, int to, int params) {

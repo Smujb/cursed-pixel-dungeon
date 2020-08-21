@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Crossbow;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -95,11 +96,35 @@ public class Dart extends MissileWeapon {
 		}
 	}
 
+	private Crossbow crossbow = null;
+
+	public void setCrossbow(Crossbow crossbow) {
+		this.crossbow = crossbow;
+	}
+
 	private Crossbow getCrossbow() {
-		if (curUser != null && curUser.belongings.getWeapon() instanceof Crossbow) {
-			return ((Crossbow) curUser.belongings.getWeapon());
-		} else {
+		if (curUser == null) {
 			return null;
+		}
+		if (crossbow == null || !crossbow.isEquipped(curUser)) {
+			crossbow = null;
+			for (KindofMisc misc : curUser.belongings.miscs) {
+				//Pick the highest level crossbow.
+				if (misc instanceof Crossbow && (crossbow == null || misc.level() > crossbow.level())) {
+					crossbow = (Crossbow) misc;
+				}
+			}
+		}
+		return crossbow;
+	}
+
+	@Override
+	public float castDelay(Char user, int dst) {
+		Crossbow crossbow = getCrossbow();
+		if (crossbow == null) {
+			return super.castDelay(user, dst);
+		} else {
+			return crossbow.speedFactor(user);
 		}
 	}
 
