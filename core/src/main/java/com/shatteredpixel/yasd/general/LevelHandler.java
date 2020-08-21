@@ -83,6 +83,14 @@ public class LevelHandler {
 	private static Mode mode;
 	
 
+	private static String loadAsset(Level level) {
+		if (level == null) {
+			return Assets.Interfaces.SHADOW;
+		} else {
+			return level.loadImg();
+		}
+	}
+
 	@Contract(" -> new")
 	private static Thread getThread() {
 		return new Thread() {
@@ -178,7 +186,7 @@ public class LevelHandler {
 
 	public static void doRestore() {
 		mode = Mode.CONTINUE;
-		TextScene.init(Messages.get(Mode.class, Mode.CONTINUE.name()), Messages.get(LevelHandler.class, "continue"), Dungeon.newLevel( Dungeon.keyForDepth(), false).loadImg(), getSpeed(), 0.67f, new Callback() {
+		TextScene.init(Messages.get(Mode.class, Mode.CONTINUE.name()), Messages.get(LevelHandler.class, "continue"), loadAsset(Dungeon.newLevel( Dungeon.keyForDepth(), false)), getSpeed(), 0.67f, new Callback() {
 			@Override
 			public void call() {
 				CPDGame.switchScene(GameScene.class);
@@ -191,7 +199,7 @@ public class LevelHandler {
 		depth = 0;
 		pos = -1;
 		key = Dungeon.keyForDepth();
-		TextScene.init(Messages.get(Mode.class, Mode.DESCEND.name()), Messages.get(LevelHandler.class, "continue"), Dungeon.newLevel( Dungeon.keyForDepth(), false).loadImg(), getSpeed(), 0.67f, new Callback() {
+		TextScene.init(Messages.get(Mode.class, Mode.DESCEND.name()), Messages.get(LevelHandler.class, "continue"), loadAsset(Dungeon.newLevel( Dungeon.keyForDepth(), false)), getSpeed(), 0.67f, new Callback() {
 			@Override
 			public void call() {
 				CPDGame.switchScene(GameScene.class);
@@ -213,7 +221,7 @@ public class LevelHandler {
 		LevelHandler.mode = mode;
 		LevelHandler.key = key;
 		LevelHandler.pos = pos;
-		TextScene.init(msg, Messages.get(LevelHandler.class, "continue"), Dungeon.newLevel( Dungeon.keyForDepth(), false).loadImg(), getSpeed(), 0.67f, new Callback() {
+		TextScene.init(msg, Messages.get(LevelHandler.class, "continue"), loadAsset(Dungeon.newLevel( Dungeon.keyForDepth(depth), false)), getSpeed(), 0.67f, new Callback() {
 			@Override
 			public void call() {
 				CPDGame.switchScene(GameScene.class);
