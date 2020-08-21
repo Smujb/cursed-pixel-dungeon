@@ -29,12 +29,15 @@ package com.shatteredpixel.yasd.general.items.weapon.missiles.darts;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Crossbow;
+import com.shatteredpixel.yasd.general.items.weapon.melee.SwiftCrossbow;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Plant;
@@ -121,11 +124,20 @@ public class Dart extends MissileWeapon {
 	@Override
 	public float castDelay(Char user, int dst) {
 		Crossbow crossbow = getCrossbow();
+		float delay;
 		if (crossbow == null) {
-			return super.castDelay(user, dst);
+			delay = super.castDelay(user, dst);
 		} else {
-			return crossbow.speedFactor(user);
+			delay = crossbow.speedFactor(user);
 		}
+		Char ch = Actor.findChar(dst);
+		if (ch != null) {
+			SwiftCrossbow.SwiftDartAttack swift = ch.buff(SwiftCrossbow.SwiftDartAttack.class);
+			if (swift != null) {
+				delay /= 2f;
+			}
+		}
+		return delay;
 	}
 
 	@Override
@@ -150,10 +162,15 @@ public class Dart extends MissileWeapon {
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
 
-		if (getCrossbow() != null && getCrossbow().enchantment != null && attacker.buff(MagicImmune.class) == null){
-			level(getCrossbow().level());
-			damage = getCrossbow().enchantment.proc(this, attacker, defender, damage);
+		Crossbow crossbow = getCrossbow();
+
+		if (crossbow != null && crossbow.enchantment != null && attacker.buff(MagicImmune.class) == null){
+			level(crossbow.level());
+			damage = crossbow.enchantment.proc(this, attacker, defender, damage);
 			level(0);
+		}
+		if (crossbow instanceof SwiftCrossbow) {
+			Buff.affect(defender, SwiftCrossbow.SwiftDartAttack.class, this.speedFactor(attacker)*2f);
 		}
 		return super.proc(attacker, defender, damage);
 	}
