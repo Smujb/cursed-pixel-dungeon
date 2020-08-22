@@ -195,7 +195,7 @@ public abstract class DragonPendant extends KindofMisc {
 		private static final String RANGED_ATTK_COOLDOWN = "ranged_cooldown";
 
 		private void updatePendant(@NotNull DragonPendant pen) {
-			level = 1 + pen.power();
+			level = 1 + pen.level();
 			updateHT(true);
 		}
 
