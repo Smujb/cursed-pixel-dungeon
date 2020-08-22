@@ -28,19 +28,24 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class Blunt extends MeleeWeapon {
+public class Mace extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.MACE;
+		image = ItemSpriteSheet.Weapons.MACE;
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1f;
-		//accuracyFactor = 1.33f; //33% boost to accuracy
 
 		damageMultiplier = 0.80f;
 
 		statScaling.add(Hero.HeroStat.RESILIENCE);
+	}
+
+	@Override
+	public boolean breaksArmor(Char owner) {
+		return true;
 	}
 }

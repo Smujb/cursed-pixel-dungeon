@@ -122,7 +122,7 @@ public class YASD_log {
 				"_-_ New challenge: Rust. Items can only be half repaired, and Stone of Repair is gone.\n" +
 				"_-_ New Challenge: Collapse. The Dungeon collapses beneath your feet..."));
 
-		changes.addButton(new ChangeButton(new ItemSprite(ItemSpriteSheet.GREATSWORD), "Degradation", "Degradation has been added:\n" +
+		changes.addButton(new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.GREATSWORD), "Degradation", "Degradation has been added:\n" +
 				"_-_ It depends on difficulty level\n" +
 				"_-_ Degraded items lose an upgrade; if they are at +0 they instead become cursed. Cursed items do not degrade.\n" +
 				"_-_ Stones of Repair can be found to repair items fully. Scrolls of Upgrade also do this.\n" +

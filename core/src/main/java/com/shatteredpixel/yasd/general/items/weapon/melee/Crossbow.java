@@ -38,7 +38,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Crossbow extends MeleeWeapon {
 	
 	{
-		image = ItemSpriteSheet.CROSSBOW;
+		image = ItemSpriteSheet.Weapons.CROSSBOW;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1f;
 		

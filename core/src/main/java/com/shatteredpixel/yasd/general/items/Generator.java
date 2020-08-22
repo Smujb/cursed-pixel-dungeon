@@ -203,10 +203,10 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfThornvines;
 import com.shatteredpixel.yasd.general.items.wands.WandOfTransfusion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Axe;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Blunt;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Crossbow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Dual;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Katana;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
@@ -544,7 +544,7 @@ public class Generator {
 					Glove.class,
 					MagesStaff.class,
 					Scimitar.class,
-					Dual.class,
+					Katana.class,
 					Whip.class,
 					Axe.class,
 					Flail.class,
@@ -552,7 +552,7 @@ public class Generator {
 					Dagger.class,
 					Crossbow.class,
 					Sword.class,
-					Blunt.class,
+					Mace.class,
 					Polearm.class,
 					//Heavy.class,
 					Shield.class

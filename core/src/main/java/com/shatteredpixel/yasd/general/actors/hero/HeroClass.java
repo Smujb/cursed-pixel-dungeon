@@ -128,6 +128,10 @@ public enum HeroClass {
 		for (KindofMisc misc : hero.belongings.miscs) {
 			if (misc != null) {
 				misc.activate(hero);
+				misc.upgrade();
+				while (misc.statReq() < misc.bestHeroStatValue(hero) && misc.isUpgradable()) {
+					misc.upgrade();
+				}
 			}
 		}
 	}
@@ -145,7 +149,7 @@ public enum HeroClass {
 		}
 
 		if (HeroSelectScene.curWeapon != null) {
-			hero.belongings.miscs[0] = (KindOfWeapon) HeroSelectScene.curWeapon.upgrade().identify();
+			hero.belongings.miscs[0] = (KindOfWeapon) HeroSelectScene.curWeapon.identify();
 		}
 
 		new PotionBandolier().collect();
@@ -196,7 +200,7 @@ public enum HeroClass {
 
 	private static void initWarrior( Hero hero ) {
 		if (hero.belongings.miscs[0] == null) {
-			hero.belongings.miscs[0] = (KindofMisc) new Sword().upgrade().identify();
+			hero.belongings.miscs[0] = (KindofMisc) new Sword().identify();
 		}
 		hero.belongings.miscs[1] = (Armor) new ChainArmor().identify();
 		ThrowingStone stones = new ThrowingStone();
@@ -214,7 +218,7 @@ public enum HeroClass {
 	private static void initMage( Hero hero ) {
 		MagesStaff staff;
 
-		staff = (MagesStaff) new MagesStaff(new WandOfMagicMissile()).upgrade().identify();
+		staff = (MagesStaff) new MagesStaff(new WandOfMagicMissile()).identify();
 
 		if (hero.belongings.miscs[0] == null) {
 			hero.belongings.miscs[0] = staff;
@@ -235,7 +239,7 @@ public enum HeroClass {
 
 	private static void initRogue( Hero hero ) {
 		if (hero.belongings.miscs[0] == null) {
-			hero.belongings.miscs[0] = (KindofMisc) new Dagger().upgrade().identify();
+			hero.belongings.miscs[0] = (KindofMisc) new Dagger().identify();
 		}
 		hero.belongings.miscs[1] = (Armor) new RogueArmor().identify();
 
@@ -253,7 +257,7 @@ public enum HeroClass {
 	private static void initHuntress( Hero hero ) {
 
 		if (hero.belongings.miscs[0] == null) {
-			hero.belongings.miscs[0] = (KindofMisc) new Glove().upgrade().identify();
+			hero.belongings.miscs[0] = (KindofMisc) new Glove().identify();
 		}
 		hero.belongings.miscs[1] = (Armor) new HuntressArmor().identify();
 		SpiritBow bow = new SpiritBow();
@@ -271,10 +275,10 @@ public enum HeroClass {
 	private static void initPriestess( Hero hero ) {
 
 		if (hero.belongings.miscs[0] == null) {
-			hero.belongings.miscs[0] = (KindofMisc) new RunicBlade().upgrade().identify();
+			hero.belongings.miscs[0] = (KindofMisc) new RunicBlade().identify();
 		}
 		hero.belongings.miscs[1] = (Armor) new PriestessArmor().identify();
-		(hero.belongings.miscs[0] = new PoisonDragonPendant()).upgrade().identify();
+		(hero.belongings.miscs[2] = new PoisonDragonPendant()).identify();
 
 		Dungeon.quickslot.setSlot(0, hero.belongings.getWeapon());
 

@@ -74,7 +74,7 @@ public class v0_4_X_Changes {
 				"_-_ Performance improvements\n" +
 				"_-_ Improved variety of level visuals"));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.FLAIL, null), "Balance Changes",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.FLAIL, null), "Balance Changes",
 				"_-_ Flail max damage increased by ~15%\n" +
 				"_-_ Wand of Frost damage reduction increased from 5% per turn of chill to 7.5%\n" +
 				"_-_ Ring of Furor speed bonus reduced by ~15% for slow weapons, ~0% for fast weapons\n" +

@@ -169,7 +169,7 @@ public class v0_6_X_Changes {
 		changes.hardlight( CharSprite.POSITIVE );
 		changeInfos.add(changes);
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.SWORD, new Lucky().glowing()), "Lucky Enchantment",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.SWORD, new Lucky().glowing()), "Lucky Enchantment",
 				"The Lucky enchant is a nice overall DPS increase, but comes at the cost of consistency. The problem is that with a bit of bad luck it's possible to do 0x damage many times in a row.\n\n" +
 				"Lucky has been adjusted to reign in the extremes of bad luck, and to give a little more strategy to using it.\n\n" +
 				"_-_ Base chance to deal 2x damage reduced to 50% from 60%\n" +
@@ -188,7 +188,7 @@ public class v0_6_X_Changes {
 		changes.hardlight( CharSprite.NEGATIVE );
 		changeInfos.add(changes);
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.SHORTSWORD, new Wayward().glowing()), "Wayward curse",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.SHORTSWORD, new Wayward().glowing()), "Wayward curse",
 				"Wayward's accuracy penalty was very extreme, often making it impossible to win fights without doors. Wayward should punish non-guaranteed attacks, but this extent of this has been lessened.\n\n" +
 				"_-_ Reduced wayward accuracy penalty by 50%"));
 		
@@ -240,7 +240,7 @@ public class v0_6_X_Changes {
 				"_-_ Hero select is now a window, offering more flexibility of where games can be started\n" +
 				"_-_ More details are now shown for games in progress before they are loaded"));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.CROSSBOW, null), "New Weapons",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.CROSSBOW, null), "New Weapons",
 				"Three new weapons have been added!\n" +
 				"\n" +
 				"Throwing spears are a basic tier 3 missile getWeapons, fishing spears have been reduced to tier 2. Tiers 2-5 now each have a basic missile getWeapons.\n" +
@@ -461,7 +461,7 @@ public class v0_6_X_Changes {
 				"Wand of Corrosion:\n" +
 				"_-_ Corrosion damage growth will continue at 1/2 speed when the damage cap is reached, rather than stopping completely."));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.FLAIL, null), "Weapon and Glyph buffs",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.FLAIL, null), "Weapon and Glyph buffs",
 				"Weapons with non-standard accuracy are generally weak, so they have been buffed across the board:\n\n" +
 				"_-_ Flail accuracy penalty reduced by 10%\n" +
 				"_-_ Handaxe accuracy bonus increased by 9.5%\n" +

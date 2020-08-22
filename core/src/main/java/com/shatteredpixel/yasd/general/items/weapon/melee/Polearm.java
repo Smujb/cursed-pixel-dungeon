@@ -33,7 +33,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Polearm extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.GLAIVE;
+		image = ItemSpriteSheet.Weapons.SPEAR;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 0.8f;
 

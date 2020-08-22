@@ -206,66 +206,64 @@ public class ItemSpriteSheet {
 		assignItemRect(BRONZE_KEY, 8, 14);
 	}
 
-	private static final int WEP_TIER1      =                               xy(1, 7);   //8 slots
-	public static final int WORN_SHORTSWORD = WEP_TIER1+0;
-	public static final int CUDGEL          = WEP_TIER1+1;
-	public static final int GLOVES          = WEP_TIER1+2;
-	public static final int PRIMITIVE_SPEAR = WEP_TIER1+3;
-	public static final int DAGGER          = WEP_TIER1+4;
-	public static final int MAGES_STAFF     = WEP_TIER1+5;
-	static{
-		assignItemRect(WORN_SHORTSWORD, 13, 13);
-		assignItemRect(GLOVES,          12, 16);
-		assignItemRect(DAGGER,          12, 13);
-		assignItemRect(MAGES_STAFF,     15, 16);
+	public static int adjustForTier(int image, int tier) {
+		return image + (tier-1) * WIDTH;
 	}
 
-	private static final int WEP_TIER2      =                               xy(9, 7);   //8 slots
-	public static final int SHORTSWORD      = WEP_TIER2+0;
-	public static final int HAND_AXE        = WEP_TIER2+1;
-	public static final int SPEAR           = WEP_TIER2+2;
-	public static final int QUARTERSTAFF    = WEP_TIER2+3;
-	public static final int DIRK            = WEP_TIER2+4;
-	static{
-		assignItemRect(SHORTSWORD,      13, 13);
-		assignItemRect(HAND_AXE,        12, 14);
-		assignItemRect(SPEAR,           16, 16);
-		assignItemRect(QUARTERSTAFF,    16, 16);
-		assignItemRect(DIRK,            13, 14);
+	public static class Weapons {
+
+		private static final int WEAPON      =                               xy(1, 38);   //8 slots
+
+		public static final int MAGES_STAFF 	 = WEAPON+0;
+		public static final int SWORD       	 = WEAPON+1;
+		public static final int SPEAR       	 = WEAPON+2;
+		public static final int GLOVE       	 = WEAPON+3;
+		public static final int AXE         	 = WEAPON+4;
+		public static final int SCIMITAR         = WEAPON+5;
+		public static final int SHORTSWORD		 = WEAPON+6;
+		public static final int GREATSWORD       = WEAPON+7;
+		public static final int SHIELD			 = WEAPON+8;
+		public static final int WHIP 			 = WEAPON+9;
+		public static final int GREATAXE         = WEAPON+10;
+		public static final int MACE 			 = WEAPON+11;
+		public static final int FLAIL 			 = WEAPON+12;
+		public static final int DAGGER			 = WEAPON+13;
+		public static final int KATANA 			 = WEAPON+14;
+		public static final int RUNIC_BLADE		 = WEAPON+15;
+		public static final int QUATERSTAFF		 = WEAPON+16;
+		public static final int CROSSBOW     	 = WEAPON+17;
+		public static final int WORSE_ENCHANT    = WEAPON+15;
 	}
 
-	private static final int WEP_TIER3      =                               xy(1, 8);   //8 slots
-	public static final int SWORD           = WEP_TIER3+0;
-	public static final int MACE            = WEP_TIER3+1;
-	public static final int SCIMITAR        = WEP_TIER3+2;
-	public static final int ROUND_SHIELD    = WEP_TIER3+3;
-	public static final int SAI             = WEP_TIER3+4;
-	public static final int WHIP            = WEP_TIER3+5;
-	public static final int KNUCKLEDUSTER   = WEP_TIER3+6;
-	static{
-		assignItemRect(SWORD,           14, 14);
-		assignItemRect(MACE,            15, 15);
-		assignItemRect(SCIMITAR,        13, 16);
-		assignItemRect(ROUND_SHIELD,    16, 16);
-		assignItemRect(SAI,             16, 16);
-		assignItemRect(WHIP,            14, 14);
-	}
+	public static class Armors {
 
-	private static final int WEP_TIER4      =                               xy(9, 8);   //8 slots
-	public static final int LONGSWORD       = WEP_TIER4+0;
-	public static final int BATTLE_AXE      = WEP_TIER4+1;
-	public static final int FLAIL           = WEP_TIER4+2;
-	public static final int RUNIC_BLADE     = WEP_TIER4+3;
-	public static final int ASSASSINS_BLADE = WEP_TIER4+4;
-	public static final int CROSSBOW        = WEP_TIER4+5;
-	public static final int ROD             = WEP_TIER4+6;
-	static{
-		assignItemRect(LONGSWORD,       15, 15);
-		assignItemRect(BATTLE_AXE,      16, 16);
-		assignItemRect(FLAIL,           14, 14);
-		assignItemRect(RUNIC_BLADE,     14, 14);
-		assignItemRect(ASSASSINS_BLADE, 14, 15);
-		assignItemRect(CROSSBOW,        15, 15);
+		private static final int ARMOR = xy(1, 45);   //8 slots
+
+		public static final int CLOTH             = ARMOR+0;
+		public static final int LEATHER           = ARMOR+1;
+		public static final int MAIL              = ARMOR+2;
+		public static final int SCALE             = ARMOR+3;
+		public static final int PLATE             = ARMOR+4;
+		public static final int WARRIOR           = ARMOR+5;
+		public static final int MAGE              = ARMOR+6;
+		public static final int ROGUE             = ARMOR+7;
+		public static final int HUNTRESS          = ARMOR+8;
+		public static final int STUDDED           = ARMOR+9;
+		public static final int HIDE				= ARMOR+10;
+		public static final int BANDED			= ARMOR+11;
+		public static final int CHAINMAIL_ELVISH  = ARMOR+12;
+		public static final int CHAINMAIL_DWARVISH= ARMOR+13;
+		public static final int LIGHT             = ARMOR+14;
+		public static final int RINGMAIL 			= ARMOR+15;
+		public static final int DISC              = ARMOR+16;
+		public static final int ETHEREAL              = ARMOR+17;
+
+		static{
+			assignItemRect(CLOTH,     15, 16);
+			assignItemRect(MAGE,      15, 15);
+			assignItemRect(ROGUE,     14, 12);
+			assignItemRect(HUNTRESS,  13, 15);
+		}
 	}
 
 	private static final int WEP_TIER5      =                               xy(1, 9);   //8 slots
@@ -276,14 +274,6 @@ public class ItemSpriteSheet {
 	public static final int GREATSHIELD     = WEP_TIER5+4;
 	public static final int GAUNTLETS       = WEP_TIER5+5;
 	public static final int KATANA          = WEP_TIER5+6;
-	static{
-		assignItemRect(GREATSWORD,  16, 16);
-		assignItemRect(WAR_HAMMER,  16, 16);
-		assignItemRect(GLAIVE,      16, 16);
-		assignItemRect(GREATAXE,    12, 16);
-		assignItemRect(GREATSHIELD, 12, 16);
-		assignItemRect(GAUNTLETS,   13, 15);
-	}
 
 	                                                                                    //8 free slots
 

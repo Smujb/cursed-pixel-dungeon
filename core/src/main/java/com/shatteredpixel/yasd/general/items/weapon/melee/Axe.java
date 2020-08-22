@@ -33,7 +33,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Axe extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.BATTLE_AXE;
+		image = ItemSpriteSheet.Weapons.AXE;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 0.9f;
 

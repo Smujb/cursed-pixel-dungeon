@@ -34,7 +34,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Staff extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.QUARTERSTAFF;
+		image = ItemSpriteSheet.Weapons.QUATERSTAFF;
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1f;
 

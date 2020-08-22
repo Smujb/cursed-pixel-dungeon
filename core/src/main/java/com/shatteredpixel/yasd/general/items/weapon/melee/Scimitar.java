@@ -37,7 +37,7 @@ import com.watabou.utils.Random;
 public class Scimitar extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.SCIMITAR;
+		image = ItemSpriteSheet.Weapons.SCIMITAR;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1.2f;
 
@@ -49,7 +49,7 @@ public class Scimitar extends MeleeWeapon {
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
 		if (Random.Int(3) == 0) {
-			Buff.affect( defender, Bleeding.class ).set( damage/3 );
+			Buff.affect( defender, Bleeding.class ).set( damage/3f );
 		}
 		return super.proc(attacker, defender, damage);
 	}

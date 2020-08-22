@@ -34,7 +34,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Flail extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.FLAIL;
+		image = ItemSpriteSheet.Weapons.FLAIL;
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 0.8f;
 

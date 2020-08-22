@@ -33,7 +33,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Dagger extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.ASSASSINS_BLADE;
+		image = ItemSpriteSheet.Weapons.DAGGER;
 		hitSound = Assets.Sounds.HIT_STAB;
 		hitSoundPitch = 0.9f;
 

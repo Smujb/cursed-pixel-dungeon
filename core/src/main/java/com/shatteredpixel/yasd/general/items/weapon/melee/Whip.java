@@ -34,7 +34,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Whip extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.WHIP;
+		image = ItemSpriteSheet.Weapons.WHIP;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1.1f;
 

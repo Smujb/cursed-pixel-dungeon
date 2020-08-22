@@ -234,7 +234,7 @@ public class v0_7_X_Changes {
 				"_-_ Ring of wealth exclusive drops are 20% more common\n" +
 				"_-_ Rare ring of wealth exclusive drops are now 33% more common"));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.LONGSWORD, new ItemSprite.Glowing( 0x440066 )), "Glyph/Enchant Buffs",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.SWORD, new ItemSprite.Glowing( 0x440066 )), "Glyph/Enchant Buffs",
 				"I'm giving some significant buffs to underperforming rare enchants/glyphs:\n\n" +
 				"_-_ Proc chance for corruption enchant increased by ~25% at all levels\n\n" +
 				"_-_ Proc chance for glyph of affection increased by ~50% at +0, scaling to ~10% at +10"));
@@ -344,7 +344,7 @@ public class v0_7_X_Changes {
 				"_-_ Shock bomb cost increased to 6 from 5, now stuns/damages immediately instead of over time with electricity.\n" +
 				"_-_ Regrowth bomb cost increased to 8 from 6, now heals significantly more and spawns more plants."));
 
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.LONGSWORD, new ItemSprite.Glowing(0xFF4400)), "Enchant/Glyph Buffs",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.SWORD, new ItemSprite.Glowing(0xFF4400)), "Enchant/Glyph Buffs",
 				"Continuing from the changes in 0.7.3, I'm still watching enchantment balance and making buffs where there's room to do so:\n\n" +
 				"_-_ Blazing Enchantment bonus damage increased to 2/3 of burning damage, from 1-3.\n" +
 				"_-_ Shocking Enchantment damage increased to 40% from 33%.\n" +
@@ -397,7 +397,7 @@ public class v0_7_X_Changes {
 				"\n" +
 				"Dev commentary will be added here in the future."));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.LONGSWORD, new ItemSprite.Glowing(0xFFFF00)), "Enchantment Changes",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.SWORD, new ItemSprite.Glowing(0xFFFF00)), "Enchantment Changes",
 				"Several changes have been made to enchantments, based on feedback from 0.7.2:\n\n" +
 				"_-_ Precise and swift enchantments have been removed.\n\n" +
 				"_-_ Lucky and blooming are now uncommon enchants, instead of rare and common.\n\n" +
@@ -534,7 +534,7 @@ public class v0_7_X_Changes {
 				"When a recipe asks for any item of a certain type that item no longer has to be identified.\n\n" +
 				"Alchemy guidebook pages now spawn more slowly at earlier stages of the game, and significantly faster at later stages of the game."));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.LONGSWORD, new ItemSprite.Glowing(Constants.Colours.PURE_BLUE)), "Enchantment Overhaul!",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.SWORD, new ItemSprite.Glowing(Constants.Colours.PURE_BLUE)), "Enchantment Overhaul!",
 				"Enchantments have been significantly rebalanced to be less about direct damage and more about utility and situational power. Their design should now be more similar to glyphs.\n\n" +
 				"Buffed Enchants: Chilling, Lucky.\n\n" +
 				"Nerfed Enchants: Blazing, Shocking, Grim, Vampiric\n\n" +
@@ -639,7 +639,7 @@ public class v0_7_X_Changes {
 				"_-_ special wealth drops have a 1/10 chance to award a high value item\n" +
 				"_-_ Wraiths and minion enemies no longer have a chance to generate wealth items"));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.SPEAR, new ItemSprite.Glowing(0x00FFFF)), "Buffed Enchants",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.SPEAR, new ItemSprite.Glowing(0x00FFFF)), "Buffed Enchants",
 				"_-_ Chilling now stacks with itself over multiple procs\n\n" +
 				"_-_ Lucky buffed/reworked. No longer affects damage, now generates bonus items when enemies are killed with a lucky getWeapons."));
 		
@@ -661,7 +661,7 @@ public class v0_7_X_Changes {
 		changes.hardlight( CharSprite.NEGATIVE );
 		changeInfos.add(changes);
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.DIRK, new ItemSprite.Glowing(0xFF4400)), "Nerfed Enchants",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.DAGGER, new ItemSprite.Glowing(0xFF4400)), "Nerfed Enchants",
 				"_-_ Blazing no longer deals direct damage, now instead is more likely to set enemies on fire.\n\n" +
 				"_-_ Shocking no longer deals damage to enemy being attacked, deals more damage to surrounding enemies.\n\n" +
 				"_-_ Vampiric now grants less health when hero is at higher HP.\n\n" +

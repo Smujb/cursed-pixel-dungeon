@@ -34,7 +34,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Greataxe extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.GREATAXE;
+		image = ItemSpriteSheet.Weapons.GREATAXE;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
 

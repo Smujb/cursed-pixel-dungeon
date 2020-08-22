@@ -60,6 +60,14 @@ public class CPDGame extends Game {
 	
 	public CPDGame(PlatformSupport platform ) {
 		super( sceneClass == null ? WelcomeScene.class : sceneClass, platform );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.melee.Katana.class,
+				"com.shatteredpixel.yasd.general.items.weapon.melee.Sai" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.melee.Mace.class,
+				"com.shatteredpixel.yasd.general.items.weapon.melee.Blunt" );
 		
 		//v0.7.0
 		com.watabou.utils.Bundle.addAlias(

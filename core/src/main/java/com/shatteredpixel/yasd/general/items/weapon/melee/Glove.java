@@ -33,7 +33,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Glove extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.GLOVES;
+		image = ItemSpriteSheet.Weapons.GLOVE;
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1.2f;
 

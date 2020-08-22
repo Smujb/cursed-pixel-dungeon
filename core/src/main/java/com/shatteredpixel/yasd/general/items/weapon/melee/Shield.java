@@ -35,7 +35,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Shield extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.GREATSHIELD;
+		image = ItemSpriteSheet.Weapons.SHIELD;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1f;
 
