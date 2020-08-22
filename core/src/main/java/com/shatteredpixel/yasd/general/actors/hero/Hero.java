@@ -273,7 +273,7 @@ public class Hero extends Char {
 
 	private void updateMP() {
 		int oldMax = maxMP;
-		maxMP = 10 + getFocus();
+		maxMP = 10 + getFocus() * Math.round(lvl * 0.5f);
 		mp += (maxMP - oldMax);
 	}
 
