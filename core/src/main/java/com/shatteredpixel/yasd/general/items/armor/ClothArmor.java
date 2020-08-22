@@ -27,14 +27,24 @@
 
 package com.shatteredpixel.yasd.general.items.armor;
 
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
+
 public class ClothArmor extends Armor {
 
 	{
+		image = ItemSpriteSheet.Armors.CLOTH;
+
 		bones = false; //Finding them in bones would be semi-frequent and disappointing.
 	}
 
 	@Override
 	public int appearance() {
 		return 1;
+	}
+
+	@Override
+	//Doesn't scale with level
+	public int image() {
+		return image;
 	}
 }

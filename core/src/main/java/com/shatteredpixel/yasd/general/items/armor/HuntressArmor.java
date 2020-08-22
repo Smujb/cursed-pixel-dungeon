@@ -47,4 +47,10 @@ public class HuntressArmor extends ClothArmor {
 	public int appearance() {
 		return 6;
 	}
+
+	@Override
+	//Doesn't scale with level
+	public int image() {
+		return image;
+	}
 }
