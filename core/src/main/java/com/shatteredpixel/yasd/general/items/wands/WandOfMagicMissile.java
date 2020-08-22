@@ -42,16 +42,13 @@ public class WandOfMagicMissile extends DamageWand {
 		image = ItemSpriteSheet.WAND_MAGIC_MISSILE;
 
 		element = Element.MAGICAL;
+
+		damageMultiplier = 0.5f;
 	}
 
 	@Override
 	public float min(float lvl){
 		return max(lvl);
-	}
-
-	@Override
-	public float max(float lvl){
-		return 8+3*lvl;
 	}
 
 	@Override

@@ -58,16 +58,8 @@ public class WandOfDisintegration extends DamageWand {
 		element = Element.DESTRUCTION;
 
 		statScaling.add(Hero.HeroStat.ASSAULT);
-	}
 
-	@Override
-	public float min(float lvl){
-		return 2+lvl;
-	}
-
-	@Override
-	public float max(float lvl){
-		return 8+7*lvl;
+		damageMultiplier = 1.2f;
 	}
 	
 	@Override

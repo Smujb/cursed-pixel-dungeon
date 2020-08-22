@@ -62,16 +62,8 @@ public class WandOfLivingEarth extends DamageWand {
 		element = Element.EARTH;
 
 		statScaling.add(Hero.HeroStat.RESILIENCE);
-	}
-	
-	@Override
-	public float min(float lvl) {
-		return 4 + lvl;
-	}
-	
-	@Override
-	public float max(float lvl) {
-		return 6 + 3*lvl;
+
+		damageMultiplier = 0.35f;
 	}
 	
 	@Override

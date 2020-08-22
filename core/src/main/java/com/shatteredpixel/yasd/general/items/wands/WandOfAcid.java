@@ -48,15 +48,8 @@ public class WandOfAcid extends DamageWand {
         collisionProperties = Ballistica.STOP_TARGET | Ballistica.STOP_TERRAIN;
 
         element = Element.ACID;
-    }
-    @Override
-    public float min(float lvl) {
-        return 2 + lvl;
-    }
 
-    @Override
-    public float max(float lvl) {
-        return 8 + lvl * 6;
+        damageMultiplier = 0.7f;
     }
 
     @Override

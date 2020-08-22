@@ -58,16 +58,9 @@ public class WandOfFireblast extends DamageWand {
 		collisionProperties = Ballistica.STOP_TERRAIN;
 	}
 
-	//1x/2x/3x damage
 	@Override
-	public float min(float lvl){
-		return (1+lvl) * chargesPerCast();
-	}
-
-	//1x/2x/3x damage
-	@Override
-	public float max(float lvl){
-		return (6+4*lvl) * chargesPerCast();
+	protected float damageMultiplier() {
+		return 0.65f * chargesPerCast();
 	}
 
 	ConeAOE cone;

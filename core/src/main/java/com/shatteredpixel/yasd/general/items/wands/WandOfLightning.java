@@ -57,21 +57,13 @@ public class WandOfLightning extends DamageWand {
 		image = ItemSpriteSheet.WAND_LIGHTNING;
 
 		element = Element.SHOCK;
+
+		damageMultiplier = 1.4f;
 	}
 	
 	private ArrayList<Char> affected = new ArrayList<>();
 
 	private ArrayList<Lightning.Arc> arcs = new ArrayList<>();
-
-	@Override
-	public float min(float lvl){
-		return 5+2*lvl;
-	}
-
-	@Override
-	public float max(float lvl){
-		return 10+9*lvl;
-	}
 	
 	@Override
 	public void onZap(Ballistica bolt) {

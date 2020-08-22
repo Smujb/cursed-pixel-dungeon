@@ -36,15 +36,8 @@ public class WandOfSwarm extends DamageWand {
 
     {
         image = ItemSpriteSheet.WAND_THORNVINES;
-    }
 
-    @Override
-    public float min(float lvl){
-        return 1+lvl;
-    }
-    @Override
-    public float max(float lvl){
-        return 5+5*lvl;
+        damageMultiplier = 0.4f;
     }
 
     @Override

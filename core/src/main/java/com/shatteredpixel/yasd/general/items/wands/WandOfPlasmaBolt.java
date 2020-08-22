@@ -46,15 +46,8 @@ public class WandOfPlasmaBolt extends DamageWand {
         image = ItemSpriteSheet.WAND_PLASMA;
 
         element = Element.PHYSICAL;
-    }
-    @Override
-    public float min(float lvl) {
-        return 4 + 2*lvl;
-    }
 
-    @Override
-    public float max(float lvl) {
-        return 12 + 12*lvl;
+        damageMultiplier = 1.6f;
     }
 
     @Override

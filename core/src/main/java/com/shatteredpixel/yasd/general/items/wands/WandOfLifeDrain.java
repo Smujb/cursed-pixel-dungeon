@@ -48,6 +48,11 @@ public class WandOfLifeDrain extends DamageWand {
 	}
 
     @Override
+    protected float damageMultiplier() {
+        return 0.5f * chargesPerCast();
+    }
+
+    @Override
     //consumes all available charges, needs at least one.
     protected int chargesPerCast() {
         return Math.max(1, curCharges);
@@ -84,13 +89,5 @@ public class WandOfLifeDrain extends DamageWand {
             return Messages.get(this, "stats_desc", maxCharges, min(), max());
         else
             return Messages.get(this, "stats_desc", chargesPerCast(), defaultMin(), defaultMax());
-    }
-    @Override
-    public float min(float lvl){
-        return (1+lvl) * chargesPerCast();
-    }
-    @Override
-    public float max(float lvl){
-        return (6+4*lvl) * chargesPerCast();
     }
 }

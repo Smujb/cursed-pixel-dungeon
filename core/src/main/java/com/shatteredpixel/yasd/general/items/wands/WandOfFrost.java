@@ -48,15 +48,8 @@ public class WandOfFrost extends DamageWand {
 		image = ItemSpriteSheet.WAND_FROST;
 
 		element = Element.COLD;
-	}
-	@Override
-	public float min(float lvl){
-		return 2+lvl;
-	}
 
-	@Override
-	public float max(float lvl){
-		return 5+5*lvl;
+		damageMultiplier = 0.5f;
 	}
 
 	@Override

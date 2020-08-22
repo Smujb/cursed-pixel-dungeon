@@ -60,14 +60,8 @@ public class WandOfPrismaticLight extends DamageWand {
 		collisionProperties = Ballistica.MAGIC_BOLT;
 
 		element = Element.LIGHT;
-	}
-	@Override
-	public float min(float lvl){
-		return 1+lvl;
-	}
-	@Override
-	public float max(float lvl){
-		return 5+4*lvl;
+
+		damageMultiplier = 0.6f;
 	}
 
 	@Override

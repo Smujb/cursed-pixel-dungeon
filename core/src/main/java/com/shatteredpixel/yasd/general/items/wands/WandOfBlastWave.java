@@ -61,15 +61,8 @@ public class WandOfBlastWave extends DamageWand {
 		collisionProperties = Ballistica.PROJECTILE;
 
 		statScaling.add(Hero.HeroStat.ASSAULT);
-	}
-	@Override
-	public float min(float lvl){
-		return 1+lvl;
-	}
 
-	@Override
-	public float max(float lvl){
-		return 5+5*lvl;
+		damageMultiplier = 0.5f;
 	}
 
 	@Override

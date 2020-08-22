@@ -57,6 +57,8 @@ public class WandOfWarding extends DamageWand {
 
 	{
 		image = ItemSpriteSheet.WAND_WARDING;
+
+		damageMultiplier = 1.2f;
 	}
 
 	@Override
@@ -193,11 +195,11 @@ public class WandOfWarding extends DamageWand {
 	}
 
 	private static float realMin(float lvl) {
-		return 2 + lvl;
+		return Math.round(2*lvl);    //level scaling
 	}
 
 	private static float realMax(float lvl) {
-		return 8 + 7 * lvl;
+		return (int) (15*lvl*1.2f);   //level scaling
 	}
 
 	@Override

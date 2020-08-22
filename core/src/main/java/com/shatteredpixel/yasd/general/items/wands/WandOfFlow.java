@@ -53,19 +53,11 @@ public class WandOfFlow extends DamageWand {
         collisionProperties = Ballistica.STOP_TERRAIN;
 
         element = Element.WATER;
+
+        damageMultiplier = 0.8f;
     }
 
     ConeAOE cone;
-
-    @Override
-    public float min(float lvl) {
-        return 1 + lvl;
-    }
-
-    @Override
-    public float max(float lvl) {
-        return 6 + lvl*5;
-    }
 
     @Override
     public void onZap(Ballistica bolt) {
