@@ -51,8 +51,8 @@ import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
-import com.shatteredpixel.yasd.general.windows.WndUseItem;
 import com.shatteredpixel.yasd.general.windows.WndOptions;
+import com.shatteredpixel.yasd.general.windows.WndUseItem;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.noosa.particles.PixelParticle;
@@ -191,6 +191,9 @@ public class MagesStaff extends MeleeWeapon {
 	}
 
 	public Item imbueWand(Wand wand, Char owner) {
+		//Ensure old wand can't still be used
+		this.wand.imbued = false;
+		Dungeon.quickslot.clearItem(this.wand);
 
 		this.wand = null;
 
