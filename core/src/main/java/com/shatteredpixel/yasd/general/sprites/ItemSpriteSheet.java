@@ -249,14 +249,15 @@ public class ItemSpriteSheet {
 		public static final int ROGUE             = ARMOR+7;
 		public static final int HUNTRESS          = ARMOR+8;
 		public static final int STUDDED           = ARMOR+9;
-		public static final int HIDE				= ARMOR+10;
-		public static final int BANDED			= ARMOR+11;
+		public static final int HIDE			  = ARMOR+10;
+		public static final int BANDED			  = ARMOR+11;
 		public static final int CHAINMAIL_ELVISH  = ARMOR+12;
 		public static final int CHAINMAIL_DWARVISH= ARMOR+13;
 		public static final int LIGHT             = ARMOR+14;
-		public static final int RINGMAIL 			= ARMOR+15;
+		public static final int RINGMAIL 		  = ARMOR+15;
 		public static final int DISC              = ARMOR+16;
-		public static final int ETHEREAL              = ARMOR+17;
+		public static final int ICE 			  = ARMOR+17;
+		public static final int PRIESTESS         = ARMOR+18;
 
 		static{
 			assignItemRect(CLOTH,     15, 16);
@@ -266,16 +267,7 @@ public class ItemSpriteSheet {
 		}
 	}
 
-	private static final int WEP_TIER5      =                               xy(1, 9);   //8 slots
-	public static final int GREATSWORD      = WEP_TIER5+0;
-	public static final int WAR_HAMMER      = WEP_TIER5+1;
-	public static final int GLAIVE          = WEP_TIER5+2;
-	public static final int GREATAXE        = WEP_TIER5+3;
-	public static final int GREATSHIELD     = WEP_TIER5+4;
-	public static final int GAUNTLETS       = WEP_TIER5+5;
-	public static final int KATANA          = WEP_TIER5+6;
-
-	                                                                                    //8 free slots
+	//8 free slots
 
 	private static final int MISSILE_WEP    =                               xy(1, 10);  //16 slots. 3 per tier + boomerang
 	public static final int SPIRIT_BOW      = MISSILE_WEP+0;
@@ -340,36 +332,6 @@ public class ItemSpriteSheet {
 	static {
 		for (int i = TIPPED_DARTS; i < TIPPED_DARTS+16; i++)
 			assignItemRect(i, 15, 15);
-	}
-	
-	private static final int ARMOR                  =                               xy(1, 12);  //16 slots
-	public static final int ARMOR_CLOTH             = ARMOR+0;
-	public static final int ARMOR_LEATHER           = ARMOR+1;
-	public static final int ARMOR_MAIL              = ARMOR+2;
-	public static final int ARMOR_SCALE             = ARMOR+3;
-	public static final int ARMOR_PLATE             = ARMOR+4;
-	public static final int ARMOR_WARRIOR           = ARMOR+5;
-	public static final int ARMOR_MAGE              = ARMOR+6;
-	public static final int ARMOR_ROGUE             = ARMOR+7;
-	public static final int ARMOR_HUNTRESS          = ARMOR+8;
-	public static final int ARMOR_STUDDED           = ARMOR+9;
-	public static final int ARMOR_HIDE				= ARMOR+10;
-	public static final int ARMOR_BANDED			= ARMOR+11;
-	public static final int ARMOR_PRIESTESS         = ARMOR+12;
-	public static final int ARMOR_CHAINMAIL_DWARVISH= ARMOR+13;
-	public static final int ARMOR_CHAINMAIL_ORCISH  = ARMOR+14;
-	public static final int ARMOR_RINGMAIL 			= ARMOR+15;
-	public static final int ARMOR_DISC              = TIPPED_DARTS+12;
-	static{
-		assignItemRect(ARMOR_CLOTH,     15, 12);
-		assignItemRect(ARMOR_LEATHER,   14, 13);
-		assignItemRect(ARMOR_MAIL,      14, 12);
-		assignItemRect(ARMOR_SCALE,     14, 11);
-		assignItemRect(ARMOR_PLATE,     12, 12);
-		assignItemRect(ARMOR_WARRIOR,   12, 12);
-		assignItemRect(ARMOR_MAGE,      15, 15);
-		assignItemRect(ARMOR_ROGUE,     14, 12);
-		assignItemRect(ARMOR_HUNTRESS,  13, 15);
 	}
 
 	private static final int WANDS_YAPD              =                      xy(1, 13);  //16 slots

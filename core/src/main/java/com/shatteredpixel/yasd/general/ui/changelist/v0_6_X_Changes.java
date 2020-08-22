@@ -100,7 +100,7 @@ public class v0_6_X_Changes {
 				"Can now be used on getArmors! Armor can be modified to enhance either defense or evasion, at the cost of the other.\n\n" +
 				"Every shop now stocks a runestone of augmentation and an ankh, instead of one or the other."));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARMOR_CLOTH, new Bulk().glowing()), "New Curses",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Armors.CLOTH, new Bulk().glowing()), "New Curses",
 				"Added 4 new curses:\n\n" +
 				"_-_ Friendly curse makes weapons sometimes charm both you and the enemy.\n" +
 				"_-_ Elastic curse lets weapons apply knockback, but reduces damage to 0.\n\n" +

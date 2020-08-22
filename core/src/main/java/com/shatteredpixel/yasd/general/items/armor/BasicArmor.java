@@ -32,7 +32,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class BasicArmor extends Armor {
 
 	{
-		image = ItemSpriteSheet.ARMOR_SCALE;
+		image = ItemSpriteSheet.Armors.SCALE;
 	}
 
 	@Override

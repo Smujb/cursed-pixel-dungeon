@@ -32,7 +32,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class HeavyArmor extends Armor {
 
 	{
-		image = ItemSpriteSheet.ARMOR_PLATE;
+		image = ItemSpriteSheet.Armors.PLATE;
 
 		EVA = 2/3f;
 		magicalDRFactor = 1.4f;

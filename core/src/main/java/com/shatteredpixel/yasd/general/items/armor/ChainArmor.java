@@ -32,7 +32,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class ChainArmor extends Armor {
 
 	{
-		image = ItemSpriteSheet.ARMOR_MAIL;
+		image = ItemSpriteSheet.Armors.MAIL;
 
 		magicalDRFactor = 2/3f;
 		DRfactor = 1.5f;

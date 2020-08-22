@@ -370,7 +370,7 @@ public class v0_7_X_Changes {
 				"_-_ Berserker rate of rage loss over time increased by 33% (it is now 2/3 of what it was pre-0.7.3).\n\n" +
 				"_-_ Freerunner bonus evasion reduced by 20%."));
 
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARMOR_MAIL, new ItemSprite.Glowing(0x88EEFF)), "Glyph Nerfs",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Armors.MAIL, new ItemSprite.Glowing(0x88EEFF)), "Glyph Nerfs",
 				"_-_ Glyph of Thorns bleed amount reduced to 4+lvl from 4+2*lvl, proc rate increased.\n\n" +
 				"_-_ Glyph of Antimagic base damage reduction reduced to 0-4 from 2-4.\n\n" +
 				"_-_ Glyph of Brimstone shield generation removed. The glyph now only protects the user from fire and does not also grant shielding when the user is aflame."));
@@ -476,7 +476,7 @@ public class v0_7_X_Changes {
 				"_-_ Throwing stone durability increased to 5 from 3\n\n" +
 				"_-_ Throwing hammer base damage increased to 10-20 from 8-20"));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARMOR_SCALE, new ItemSprite.Glowing( 0x663300 )), "Enchant/Glyph Buffs",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Armors.SCALE, new ItemSprite.Glowing( 0x663300 )), "Enchant/Glyph Buffs",
 				"_-_ Vampiric now has a chance to heal for large amounts, instead of always healing for small amounts.\n\n" +
 				"_-_ Entanglement no longer roots, now only applies herbal getArmors buff. Amount of herbal getArmors granted reduced to compensate.\n\n" +
 				"_-_ Affection charm duration up to 8-12 from 4-12. This means an affection proc now guarantees a free hit.\n\n" +
@@ -505,7 +505,7 @@ public class v0_7_X_Changes {
 				"_-_ Rockfall traps interact in a 5x5 AOE when cast from reclaim trap\n" +
 				"_-_ Bosses will resist weakening traps"));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARMOR_PLATE, new ItemSprite.Glowing( 0x660022 )), "Enchant/Glyph Nerfs",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Armors.PLATE, new ItemSprite.Glowing( 0x660022 )), "Enchant/Glyph Nerfs",
 				"_-_ Chilling now only stacks the chilled debuff up to 6 turns.\n\n" +
 				"_-_ Thorns now bleeds enemies for a set amount based on getArmors level, instead of scaling with damage dealt.\n\n" +
 				"_-_ Antimagic no longer affects the melee attacks of magic wielding enemies.\n" +
@@ -765,7 +765,7 @@ public class v0_7_X_Changes {
 				"_-_ damage at 1 charge reduced slightly\n" +
 				"_-_ damage at 2/3 charges increased by ~15%"));
 		
-		changes.addButton( new ChangeButton( new ItemSprite(ItemSpriteSheet.ARMOR_LEATHER, new ItemSprite.Glowing(0x222222)), "Other Buffs",
+		changes.addButton( new ChangeButton( new ItemSprite(ItemSpriteSheet.Armors.LEATHER, new ItemSprite.Glowing(0x222222)), "Other Buffs",
 				"_-_ vorpal enchant bleed reduced by 20%\n\n" +
 				"_-_ glyph of potential wand charge bonus increased by 20%\n\n" +
 				"_-_ glyph of stone evasion conversion efficiency increased to 75% from 60%"));

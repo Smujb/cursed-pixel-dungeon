@@ -6,7 +6,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class IceArmor extends Armor {
 
     {
-        image = ItemSpriteSheet.ARMOR_MAIL;
+        image = ItemSpriteSheet.Armors.ICE;
 
         statScaling.add(Hero.HeroStat.FOCUS);
     }

@@ -33,7 +33,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class LightArmor extends Armor {
 
 	{
-		image = ItemSpriteSheet.ARMOR_LEATHER;
+		image = ItemSpriteSheet.Armors.HIDE;
 		DRfactor = 0.7f;
 		magicalDRFactor = 0.6f;
 		EVA = 1.33f;
