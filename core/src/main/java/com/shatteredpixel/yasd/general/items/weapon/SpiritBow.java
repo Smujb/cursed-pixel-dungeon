@@ -71,7 +71,6 @@ public class SpiritBow extends Weapon implements Attackable {
 	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions(hero);
-		actions.remove(AC_EQUIP);
 		actions.add(AC_SHOOT);
 		return actions;
 	}
