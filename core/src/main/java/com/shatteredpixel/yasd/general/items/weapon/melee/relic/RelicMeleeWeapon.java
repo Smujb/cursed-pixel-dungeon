@@ -34,6 +34,7 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
         statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.values()));
 
         unique = true;
+        bones = false;
     }
 
     public static final Class<? extends RelicMeleeWeapon>[] weapons = new Class[] {
