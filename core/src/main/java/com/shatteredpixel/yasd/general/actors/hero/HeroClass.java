@@ -260,8 +260,8 @@ public enum HeroClass {
 			hero.belongings.miscs[0] = (KindofMisc) new Glove().identify();
 		}
 		hero.belongings.miscs[1] = (Armor) new HuntressArmor().identify();
-		SpiritBow bow = new SpiritBow();
-		bow.identify().collect();
+		SpiritBow bow = (SpiritBow) new SpiritBow().identify();
+		hero.belongings.miscs[2] = bow;
 
 		Dungeon.quickslot.setSlot(0, hero.belongings.getWeapon());
 		Dungeon.quickslot.setSlot(1, bow);
