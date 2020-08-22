@@ -255,7 +255,7 @@ public class Armor extends KindofMisc {
 	}
 
 	public int DRMax(int lvl){
-		return Math.round((5 + lvl * 5) * DRfactor);
+		return Math.round(lvl * 7 * DRfactor);
 	}
 
 	public final int DRMin(){
@@ -263,7 +263,7 @@ public class Armor extends KindofMisc {
 	}
 
 	public int DRMin(int lvl){
-		return Math.round((1 + lvl) * DRfactor);
+		return Math.round(lvl * DRfactor);
 	}
 
 	public int DRRoll() {
@@ -279,7 +279,7 @@ public class Armor extends KindofMisc {
 	}
 
 	public int magicalDRMax(float lvl){
-		return Math.round((5 + lvl * 5) * DRfactor);
+		return Math.round(lvl * 7 * magicalDRFactor);
 	}
 
 	public final int magicalDRMin(){
@@ -287,7 +287,7 @@ public class Armor extends KindofMisc {
 	}
 
 	public int magicalDRMin(float lvl){
-		return Math.round((1 + lvl) * magicalDRFactor);
+		return Math.round(lvl * magicalDRFactor);
 	}
 
 	public int magicalDRRoll() {

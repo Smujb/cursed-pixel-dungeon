@@ -74,12 +74,12 @@ public class Pickaxe extends Weapon {
 
 	@Override
 	public int min(float lvl) {
-		return 2;   //tier 2
+		return 5;   //tier 2
 	}
 
 	@Override
 	public int max(float lvl) {
-		return 15;  //tier 2
+		return 50;  //tier 2
 	}
 
 	@Override
