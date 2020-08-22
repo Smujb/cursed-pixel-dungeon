@@ -37,6 +37,11 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
         bones = false;
     }
 
+    @Override
+    public int image() {
+        return image;
+    }
+
     public static final Class<? extends RelicMeleeWeapon>[] weapons = new Class[] {
             //Placeholder for the first button
             null,
