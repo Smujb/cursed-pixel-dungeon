@@ -93,7 +93,8 @@ public abstract class Mob extends Char {
 
 	protected int level = 0;
 
-	public int getLevel() {
+	@Override
+	public int level() {
 		return level;
 	}
 

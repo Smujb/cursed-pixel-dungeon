@@ -231,6 +231,8 @@ public abstract class Char extends Actor {
 		return false;
 	}
 
+	public abstract int level();
+
 	public boolean canInteract(Char ch) {
 		return Dungeon.level.adjacent( pos, ch.pos ) && ch.buff(Vertigo.class) == null;
 	}

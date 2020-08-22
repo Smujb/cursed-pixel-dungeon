@@ -154,7 +154,7 @@ public class Hero extends Char {
 		}
 
 		public float hpBoost(int curLevel) {
-			return (float) (1f + Math.pow(0.70f, Math.max(1, curLevel)));
+			return (float) (1f + Math.pow(0.60f, Math.max(1, curLevel)));
 		}
 
 		public int colour() {
@@ -719,6 +719,11 @@ public class Hero extends Char {
 		}
 
 		return actResult;
+	}
+
+	@Override
+	public int level() {
+		return lvl;
 	}
 
 	@Override
