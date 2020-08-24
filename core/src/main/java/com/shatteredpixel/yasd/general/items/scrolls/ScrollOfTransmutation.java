@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
@@ -102,6 +103,8 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			result = changeStone((Runestone) item);
 		} else if (item instanceof Artifact) {
 			result = changeArtifact( (Artifact)item );
+		} else if (item instanceof Armor) {
+			result = changeArmor( (Armor) item );
 		} else {
 			result = null;
 		}
@@ -147,6 +150,25 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		}
 		
 		return staff;
+	}
+
+	private Armor changeArmor(Armor a ) {
+		Armor n;
+		do {
+			n = Generator.randomArmor();
+		} while (n.getClass() == a.getClass());
+
+		int level = a.trueLevel();
+
+		n.level(level);
+
+		n.glyph = a.glyph;
+		n.curseInfusionBonus = a.curseInfusionBonus;
+		n.levelKnown = a.levelKnown;
+		n.cursedKnown = a.cursedKnown;
+		n.cursed = a.cursed;
+		n.augment = a.augment;
+		return n;
 	}
 	
 	private Weapon changeWeapon( Weapon w ) {
