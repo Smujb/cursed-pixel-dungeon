@@ -58,6 +58,7 @@ public class RipperDemon extends Mob {
 		damageFactor = 1.4f;
 		accuracyFactor = 2f;
 		attackDelay = 0.5f;
+		evasionFactor = 0.5f;
 
 		EXP = 9; //for corrupting
 
