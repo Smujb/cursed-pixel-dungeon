@@ -53,12 +53,6 @@ public class Voltage extends RelicEnchantment {
             return damage;
         }
 
-        if (weapon.charge>=cost & procced){
-            weapon.charge-=cost;
-        } else {
-            return damage;
-        }
-
         return damage;
     }
 
