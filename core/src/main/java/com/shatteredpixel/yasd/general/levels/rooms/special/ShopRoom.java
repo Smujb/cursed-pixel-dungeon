@@ -119,6 +119,29 @@ public class ShopRoom extends SpecialRoom {
 		if (itemsToSpawn == null)
 			itemsToSpawn = generateItems();
 
+		TimekeepersHourglass hourglass = Dungeon.hero.belongings.getItem(TimekeepersHourglass.class);
+		if (hourglass != null){
+			int bags = 0;
+			//creates the given float percent of the remaining bags to be dropped.
+			//this way players who get the hourglass late can still max it, usually.
+			if (level.key.contains(Dungeon.SEWERS_ID)) {
+				bags = (int)Math.ceil(( 5-hourglass.sandBags) * 0.20f );
+			} else if (level.key.contains(Dungeon.PRISON_ID)) {
+				bags = (int)Math.ceil(( 5-hourglass.sandBags) * 0.25f );
+			} else if (level.key.contains(Dungeon.CAVES_ID)) {
+				bags = (int)Math.ceil(( 5-hourglass.sandBags) * 0.50f );
+			} else if (level.key.contains(Dungeon.CITY_ID)) {
+				bags = (int)Math.ceil(( 5-hourglass.sandBags) * 0.80f );
+			} else if (level.key.contains(Dungeon.HALLS_ID)) {
+				bags = (int)Math.ceil(( 5-hourglass.sandBags) * 0.80f );
+			}
+
+			for(int i = 1; i <= bags; i++){
+				itemsToSpawn.add( new TimekeepersHourglass.sandBag());
+				hourglass.sandBags ++;
+			}
+		}
+
 		Point itemPlacement = new Point(entrance());
 		if (itemPlacement.y == top){
 			itemPlacement.y++;
@@ -258,28 +281,6 @@ public class ShopRoom extends SpecialRoom {
 
 		//itemsToSpawn.add( new Ankh() );
 		itemsToSpawn.add( new StoneOfAugmentation() );
-
-		TimekeepersHourglass hourglass = Dungeon.hero.belongings.getItem(TimekeepersHourglass.class);
-		if (hourglass != null){
-			int bags = 0;
-			//creates the given float percent of the remaining bags to be dropped.
-			//this way players who get the hourglass late can still max it, usually.
-			switch (Dungeon.depth) {
-				case 5:
-					bags = (int)Math.ceil(( 5-hourglass.sandBags) * 0.20f ); break;
-				case 11:
-					bags = (int)Math.ceil(( 5-hourglass.sandBags) * 0.25f ); break;
-				case 18:
-					bags = (int)Math.ceil(( 5-hourglass.sandBags) * 0.50f ); break;
-				case 23: case 24:
-					bags = (int)Math.ceil(( 5-hourglass.sandBags) * 0.80f ); break;
-			}
-
-			for(int i = 1; i <= bags; i++){
-				itemsToSpawn.add( new TimekeepersHourglass.sandBag());
-				hourglass.sandBags ++;
-			}
-		}
 
 		for (int i = 0; i < 2; i++) {
 			Item rare;

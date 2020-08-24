@@ -280,11 +280,11 @@ public class Dungeon {
 		return (challenges & mask) != 0;
 	}
 
-	private static final String SEWERS_ID = "sewers";
-	private static final String PRISON_ID = "prison";
-	private static final String CAVES_ID = "caves";
-	private static final String CITY_ID = "city";
-	private static final String HALLS_ID = "halls";
+	public static final String SEWERS_ID = "sewers";
+	public static final String PRISON_ID = "prison";
+	public static final String CAVES_ID = "caves";
+	public static final String CITY_ID = "city";
+	public static final String HALLS_ID = "halls";
 	private static final String LAST_ID = "last";
 	private static final String SURFACE_ID = "surface";
 
