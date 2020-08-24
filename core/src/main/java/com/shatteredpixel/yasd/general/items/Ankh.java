@@ -73,7 +73,7 @@ public class Ankh extends Item {
 	}
 
 	public static void revive(Char toRevive, Ankh ankh) {
-		toRevive.HP = toRevive.HT;
+		toRevive.heal(toRevive.HT/4);
 
 		//ensures that you'll get to act first in almost any case, to prevent reviving and then instantly dying again.
 		PotionOfHealing.cure(toRevive);
