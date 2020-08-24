@@ -71,7 +71,7 @@ public class ShopGuardian extends Statue {
     public static ShopGuardian spawnAt( int pos ) {
         if (Dungeon.level.passable(pos) && Actor.findChar( pos ) == null) {
 
-            ShopGuardian shopGuardian = new  ShopGuardian();
+            ShopGuardian shopGuardian = Mob.create(ShopGuardian.class);
             shopGuardian.pos = pos;
             shopGuardian.state = shopGuardian.HUNTING;
             GameScene.add( shopGuardian, SPAWN_DELAY );
