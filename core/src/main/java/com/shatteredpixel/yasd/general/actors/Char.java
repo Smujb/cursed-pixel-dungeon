@@ -34,6 +34,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
+import com.shatteredpixel.yasd.general.actors.blobs.SacrificialFire;
 import com.shatteredpixel.yasd.general.actors.blobs.ToxicGas;
 import com.shatteredpixel.yasd.general.actors.buffs.Adrenaline;
 import com.shatteredpixel.yasd.general.actors.buffs.Aggression;
@@ -605,6 +606,9 @@ public abstract class Char extends Actor {
 	protected final float affectSneakSkill(float sneakSkill) {
 		if (this.buff(Invisibility.class) != null) {
 			sneakSkill *= 2;
+		}
+		if (this.buff(SacrificialFire.Marked.class) != null) {
+			sneakSkill = 0;
 		}
 		return sneakSkill;
 	}
