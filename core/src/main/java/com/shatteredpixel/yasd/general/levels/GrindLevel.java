@@ -10,6 +10,7 @@ import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.tiled.TiledMapLevel;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -118,6 +119,8 @@ public class GrindLevel extends TiledMapLevel {
 
 			EXP = 0;
 			state = WANDERING;
+
+			immunities.add(ScrollOfPsionicBlast.class);
 		}
 
 		@Override

@@ -91,6 +91,8 @@ public class NewTengu extends Mob {
 
 		HUNTING = new Hunting();
 
+		healthFactor = 0.5f;
+
 		flying = true; //doesn't literally fly, but he is fleet-of-foot enough to avoid hazards
 
 		properties.add(Property.BOSS);
