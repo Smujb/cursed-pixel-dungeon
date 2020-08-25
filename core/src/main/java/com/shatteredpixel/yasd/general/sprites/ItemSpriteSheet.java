@@ -268,7 +268,7 @@ public class ItemSpriteSheet {
 	}
 
 	public static class Shields {
-		private static final int SHIELD = xy(1, 50);
+		private static final int SHIELD = xy(1, 54);
 
 		public static final int ROUND             = SHIELD+0;
 		public static final int WOODEN            = SHIELD+1;
