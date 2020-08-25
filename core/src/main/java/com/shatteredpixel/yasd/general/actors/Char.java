@@ -90,6 +90,7 @@ import com.shatteredpixel.yasd.general.items.powers.Greed;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRetribution;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.wands.WandOfLivingEarth;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Blazing;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Blocking;
@@ -384,6 +385,16 @@ public abstract class Char extends Actor {
 			}
 			if (dmg < 0) {
 				dmg = 0;
+			}
+			Shield.Parry parry = enemy.buff(Shield.Parry.class);
+			if (parry != null) {
+				dmg = parry.absorbDamage(src, dmg);
+				boolean fullParry = dmg <= 0;
+				parry.affectEnemy(this, fullParry);
+				if (fullParry) {
+					Shield.successfulParry(enemy);
+					return false;
+				}
 			}
 			dmg = attackProc(enemy, dmg);
 			dmg = enemy.defenseProc(this, dmg);

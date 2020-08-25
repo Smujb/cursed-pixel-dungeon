@@ -212,7 +212,7 @@ public class ItemSpriteSheet {
 
 	public static class Weapons {
 
-		private static final int WEAPON      =                               xy(1, 38);   //8 slots
+		private static final int WEAPON      =                               xy(1, 38);
 
 		public static final int MAGES_STAFF 	 = WEAPON+0;
 		public static final int SWORD       	 = WEAPON+1;
@@ -237,7 +237,7 @@ public class ItemSpriteSheet {
 
 	public static class Armors {
 
-		private static final int ARMOR = xy(1, 46);   //8 slots
+		private static final int ARMOR = xy(1, 46);
 
 		public static final int CLOTH             = ARMOR+0;
 		public static final int LEATHER           = ARMOR+1;
@@ -265,6 +265,14 @@ public class ItemSpriteSheet {
 			assignItemRect(ROGUE,     14, 12);
 			assignItemRect(HUNTRESS,  13, 15);
 		}
+	}
+
+	public static class Shields {
+		private static final int SHIELD = xy(1, 50);
+
+		public static final int ROUND             = SHIELD+0;
+		public static final int WOODEN            = SHIELD+1;
+		public static final int SPIRITUAL         = SHIELD+2;
 	}
 
 	//8 free slots
