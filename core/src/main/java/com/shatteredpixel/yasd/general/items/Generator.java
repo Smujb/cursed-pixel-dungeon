@@ -157,6 +157,13 @@ import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPetrificatio
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPolymorph;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPrismaticImage;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
+import com.shatteredpixel.yasd.general.items.shield.GreatShield;
+import com.shatteredpixel.yasd.general.items.shield.PanicShield;
+import com.shatteredpixel.yasd.general.items.shield.RoundShield;
+import com.shatteredpixel.yasd.general.items.shield.SpiritualShield;
+import com.shatteredpixel.yasd.general.items.shield.SwiftShield;
+import com.shatteredpixel.yasd.general.items.shield.WarpShield;
+import com.shatteredpixel.yasd.general.items.shield.WoodenShield;
 import com.shatteredpixel.yasd.general.items.spells.Alchemize;
 import com.shatteredpixel.yasd.general.items.spells.AquaBlast;
 import com.shatteredpixel.yasd.general.items.spells.CurseInfusion;
@@ -261,6 +268,7 @@ public class Generator {
 	public enum Category {
 		WEAPON	( 3,    MeleeWeapon.class),
 		ARMOR	( 3,    Armor.class ),
+		SHIELD	( 0,    Shield.class ),
 
 		MISSILE ( 2,    MissileWeapon.class ),
 		MIS_T1  ( 0,    MissileWeapon.class ),
@@ -559,6 +567,18 @@ public class Generator {
 
 			};
 			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 4, 6, 4, /*5,*/ 4 };
+
+			SHIELD.classes = new Class<?>[] {
+					PanicShield.class,
+					RoundShield.class,
+					SpiritualShield.class,
+					WoodenShield.class,
+					GreatShield.class,
+					PanicShield.class,
+					SwiftShield.class,
+					WarpShield.class
+			};
+			SHIELD.probs = new float[] { 1, 1, 1, 1, 1, 1, 1, 1 };
 
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{

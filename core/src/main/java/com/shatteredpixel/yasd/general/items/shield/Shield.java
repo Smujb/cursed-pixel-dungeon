@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.items.shield;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
@@ -63,7 +64,7 @@ public abstract class Shield extends KindofMisc {
 
     protected float chargePerTurn = 2f;
     protected float defenseMultiplier = 1f;
-    protected float damageFactor = 0.2f;
+    protected float damageFactor = 1f;
 
     @Override
     public ArrayList<String> actions(Hero hero) {
@@ -117,8 +118,12 @@ public abstract class Shield extends KindofMisc {
         return charge/MAX_CHARGE;
     }
 
+    public static float defaultMaxDefense(float lvl) {
+        return Math.round(30 * lvl);
+    }
+
     public int maxDefense(float lvl) {
-        return Math.round(30 * lvl * defenseMultiplier);
+        return Math.round(defaultMaxDefense(lvl) * defenseMultiplier);
     }
 
     public int curDefense(float lvl) {
@@ -132,7 +137,9 @@ public abstract class Shield extends KindofMisc {
     }
 
     public void affectEnemy(Char enemy, boolean parry) {
-        enemy.damage(Math.round(maxDefense(power())*damageFactor), new Char.DamageSrc(Element.PHYSICAL, this));
+        if (curUser != null && Dungeon.level.adjacent(curUser.pos, enemy.pos)) {
+            enemy.damage(Math.round(defaultMaxDefense(power()) * damageFactor / 3f), new Char.DamageSrc(Element.PHYSICAL, this));
+        }
     }
 
     public int absorbDamage(Char.DamageSrc src, int damage) {
