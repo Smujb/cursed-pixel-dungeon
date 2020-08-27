@@ -2,7 +2,7 @@ package com.shatteredpixel.yasd.general.items.shield;
 
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class QuickShield extends Shield {
+public class LightShield extends Shield {
 
     {
         image = ItemSpriteSheet.Shields.QUICK;

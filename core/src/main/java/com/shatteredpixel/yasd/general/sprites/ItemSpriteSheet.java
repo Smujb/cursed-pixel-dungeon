@@ -273,10 +273,10 @@ public class ItemSpriteSheet {
 		public static final int ROUND             = SHIELD+0;
 		public static final int WOODEN            = SHIELD+1;
 		public static final int SPIRITUAL         = SHIELD+2;
-		public static final int PANIC         	  = SHIELD+3;
+		public static final int PANIC         	  = SHIELD+3;//TODO gfx
 		public static final int SWIFT         	  = SHIELD+4;
 		public static final int GREAT         	  = SHIELD+5;
-		public static final int WARP         	  = SHIELD+6;
+		public static final int WARP         	  = SHIELD+6;//TODO gfx
 		public static final int QUICK         	  = SHIELD+7;
 		public static final int BARBED         	  = SHIELD+8;
 	}
