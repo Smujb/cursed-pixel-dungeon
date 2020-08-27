@@ -12,7 +12,7 @@ public class SwiftShield extends Shield {
     @Override
     public void affectEnemy(Char enemy, boolean parry) {
         if (parry && curUser != null) {
-            curUser.spend(-PARRY_DURATION);
+            curUser.spend(-parryTime());
         }
     }
 }
