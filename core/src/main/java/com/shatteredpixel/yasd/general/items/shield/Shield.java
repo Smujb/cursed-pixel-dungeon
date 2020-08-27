@@ -86,12 +86,16 @@ public abstract class Shield extends KindofMisc {
         return PARRY_DURATION;
     }
 
-    private void increaseCharge(float value) {
-        charge += value;
+    protected final void setCharge(float value) {
+        charge = value;
         charge = GameMath.gate(0f, charge, MAX_CHARGE);
     }
 
-    private void decreaseCharge(float value) {
+    protected final void increaseCharge(float value) {
+        setCharge(charge + value);
+    }
+
+    protected final void decreaseCharge(float value) {
         increaseCharge(-value);
     }
 
@@ -160,6 +164,10 @@ public abstract class Shield extends KindofMisc {
             Item.updateQuickslot();
             return damage;
         }
+    }
+
+    protected boolean canParry(int damage) {
+        return damage > charge;
     }
 
     @Override
