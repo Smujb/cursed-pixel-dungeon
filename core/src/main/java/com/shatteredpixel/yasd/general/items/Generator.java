@@ -157,8 +157,10 @@ import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPetrificatio
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPolymorph;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPrismaticImage;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
+import com.shatteredpixel.yasd.general.items.shield.BarbedShield;
 import com.shatteredpixel.yasd.general.items.shield.GreatShield;
 import com.shatteredpixel.yasd.general.items.shield.PanicShield;
+import com.shatteredpixel.yasd.general.items.shield.QuickShield;
 import com.shatteredpixel.yasd.general.items.shield.RoundShield;
 import com.shatteredpixel.yasd.general.items.shield.SpiritualShield;
 import com.shatteredpixel.yasd.general.items.shield.SwiftShield;
@@ -576,9 +578,11 @@ public class Generator {
 					GreatShield.class,
 					PanicShield.class,
 					SwiftShield.class,
-					WarpShield.class
+					WarpShield.class,
+					QuickShield.class,
+					BarbedShield.class
 			};
-			SHIELD.probs = new float[] { 1, 1, 1, 1, 1, 1, 1, 1 };
+			SHIELD.probs = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{

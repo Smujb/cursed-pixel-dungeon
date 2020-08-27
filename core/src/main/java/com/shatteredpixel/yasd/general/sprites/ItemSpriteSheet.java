@@ -277,6 +277,8 @@ public class ItemSpriteSheet {
 		public static final int SWIFT         	  = SHIELD+4;
 		public static final int GREAT         	  = SHIELD+5;
 		public static final int WARP         	  = SHIELD+6;
+		public static final int QUICK         	  = SHIELD+7;
+		public static final int BARBED         	  = SHIELD+8;
 	}
 
 	//8 free slots

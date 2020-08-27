@@ -57,7 +57,7 @@ public abstract class Shield extends KindofMisc {
 
     public static final String AC_PARRY = "parry";
 
-    public static final float PARRY_DURATION = 1f;
+    private static final float PARRY_DURATION = 1f;
 
     public static final float MAX_CHARGE = 100f;
     private float charge = MAX_CHARGE;
@@ -78,8 +78,12 @@ public abstract class Shield extends KindofMisc {
         super.execute(hero, action);
         if (action.equals(AC_PARRY)) {
             Buff.affect(hero, Parry.class).setShield(this);
-            hero.spendAndNext(PARRY_DURATION);
+            hero.spendAndNext(parryTime());
         }
+    }
+
+    protected float parryTime() {
+        return PARRY_DURATION;
     }
 
     private void increaseCharge(float value) {
@@ -172,7 +176,11 @@ public abstract class Shield extends KindofMisc {
 
         @Override
         public boolean act() {
-            spend(Shield.PARRY_DURATION);
+            if (shield == null) {
+                spend(PARRY_DURATION);
+            } else {
+                spend(shield.parryTime());
+            }
             detach();
             return true;
         }
