@@ -82,7 +82,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 
-public class NewTengu extends Mob {
+public class NewTengu extends Boss {
 
 	{
 		spriteClass = TenguSprite.class;
