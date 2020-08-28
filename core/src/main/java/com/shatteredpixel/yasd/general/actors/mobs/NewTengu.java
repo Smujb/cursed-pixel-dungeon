@@ -91,7 +91,7 @@ public class NewTengu extends Boss {
 
 		HUNTING = new Hunting();
 
-		healthFactor = 0.5f;
+		healthFactor = 0.25f;
 
 		flying = true; //doesn't literally fly, but he is fleet-of-foot enough to avoid hazards
 
