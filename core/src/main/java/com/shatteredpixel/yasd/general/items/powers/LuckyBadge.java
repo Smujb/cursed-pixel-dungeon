@@ -15,6 +15,7 @@ import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
+import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.food.MeatPie;
 import com.shatteredpixel.yasd.general.items.food.MysteryMeat;
 import com.shatteredpixel.yasd.general.items.food.SmallRation;
@@ -58,15 +59,18 @@ public class LuckyBadge extends Power {
 	public static final String AC_GRIND = "grind";
 	public static final String AC_HOME = "home";
 	public static final String AC_RETURN = "return";
+
 	private static String MOB_LEVEL_FACTOR = "mob_level_factor";
 	private static String MOB_SPAWN_FACTOR = "mob_spawn_factor";
 	private static String SCORE = "score";
 	private static String SCORE_BEATEN = "score_beaten";
+	private static String HERO_HP = "hero_hp";
 
 	public static float mobLevelBoost = 1f;
 	public static float mobSpawnFactor = 1f;
 	public static int score = 0;
 	public static boolean scoreBeaten = false;
+	public static int heroHP;
 
 	public enum Type {NONE, GRIND, SPEED}
 
@@ -116,6 +120,7 @@ public class LuckyBadge extends Power {
 						Game.scene().addToFront(new WndChooseGrind());
 					}
 				});
+				heroHP = hero.HP;
 				break;
 			case AC_HOME:
 				returnKey = Dungeon.key;
@@ -136,6 +141,7 @@ public class LuckyBadge extends Power {
 		}
 		score = 0;
 		Hero hero = Dungeon.hero;
+		hero.HP = heroHP;
 		for (Heap heap : Dungeon.level.heaps.valueList()) {
 			for (Item item : heap.items.toArray(new Item[0])) {
 				((MissileSprite) hero.sprite.parent.recycle(MissileSprite.class)).
@@ -190,6 +196,7 @@ public class LuckyBadge extends Power {
 		bundle.put(MOB_LEVEL_FACTOR, mobLevelBoost);
 		bundle.put(MOB_SPAWN_FACTOR, mobSpawnFactor);
 		bundle.put(SCORE_BEATEN, scoreBeaten);
+		bundle.put(HERO_HP, heroHP);
 	}
 
 	@Override
@@ -202,6 +209,15 @@ public class LuckyBadge extends Power {
 		mobLevelBoost = bundle.getFloat(MOB_LEVEL_FACTOR);
 		mobSpawnFactor = bundle.getFloat(MOB_SPAWN_FACTOR);
 		scoreBeaten = bundle.getBoolean(SCORE_BEATEN);
+		heroHP = bundle.contains(HERO_HP) ? bundle.getInt(HERO_HP) : -1;
+	}
+
+	@Override
+	public boolean collect(Bag container, Char ch) {
+		if (heroHP == -1 && ch instanceof Hero) {
+			heroHP = ch.HP;
+		}
+		return super.collect(container, ch);
 	}
 
 	@Override
