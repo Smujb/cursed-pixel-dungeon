@@ -42,8 +42,8 @@ allprojects {
         appName = 'Cursed Pixel Dungeon'
         appPackageName = 'com.smujamesb.cursedpixeldungeon'
 
-        appVersionCode = 29
-        appVersionName = '0.4.2a'
+        appVersionCode = 30
+        appVersionName = '0.4.3'
         appJavaCompatibility = JavaVersion.VERSION_1_8
 
         appAndroidCompileSDK = 29
