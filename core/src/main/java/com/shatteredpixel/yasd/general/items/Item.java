@@ -98,7 +98,7 @@ public class Item implements Bundlable {
 	public boolean cursed;
 	public boolean cursedKnown;
 
-	public static final int MAX_SOU = 8;
+	public static final int MAX_SOU = 10;
 	public int timesUpgraded = 0;
 	public int souCap = MAX_SOU;
 	
@@ -643,7 +643,7 @@ public class Item implements Bundlable {
 	private static final String QUICKSLOT		= "quickslotpos";
 	private static final String DURABILITY      = "durability";
 	private static final String TIMES           = "times_upgraded";
-	private static final String MAX           = "max-sou";
+	private static final String MAX           = "max_sou";
 	
 	@Override
 	public void storeInBundle(  Bundle bundle ) {

@@ -59,6 +59,7 @@ import com.shatteredpixel.yasd.general.items.spells.BeaconOfReturning;
 import com.shatteredpixel.yasd.general.items.spells.CurseInfusion;
 import com.shatteredpixel.yasd.general.items.spells.Degrade;
 import com.shatteredpixel.yasd.general.items.spells.FeatherFall;
+import com.shatteredpixel.yasd.general.items.spells.MagicalInfusion;
 import com.shatteredpixel.yasd.general.items.spells.MagicalPorter;
 import com.shatteredpixel.yasd.general.items.spells.PhaseShift;
 import com.shatteredpixel.yasd.general.items.spells.ReclaimTrap;
@@ -218,7 +219,8 @@ public abstract class Recipe {
 		new ExoticScroll.ScrollToExotic(),
 		new StewedMeat.threeMeat(),
 		new MeatPie.Recipe(),
-		new SafeUpgrade.Recipe()
+		new SafeUpgrade.Recipe(),
+		new MagicalInfusion.Recipe()
 	};
 	
 	public static Recipe findRecipe(ArrayList<Item> ingredients){

@@ -47,7 +47,7 @@ public class MagicalInfusion extends InventorySpell {
 	@Override
 	protected void onItemSelected( Item item ) {
 
-		//removeUpgrades(item);
+		item.souCap += 5;
 
 		GLog.positive( Messages.get(this, "infuse", item.name()) );
 
@@ -73,8 +73,8 @@ public class MagicalInfusion extends InventorySpell {
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
 
 		{
-			inputs =  new Class[]{ScrollOfUpgrade.class, ScrollOfTransmutation.class};//Scroll of Upgrade + Scroll of Transmutation
-			inQuantity = new int[]{1, 1};
+			inputs =  new Class[]{ScrollOfUpgrade.class, ScrollOfUpgrade.class, ScrollOfTransmutation.class};//Scroll of Upgrade x2 + Scroll of Transmutation
+			inQuantity = new int[]{ 1, 1, 1 };
 
 			cost = 4;
 
