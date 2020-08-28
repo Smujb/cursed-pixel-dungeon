@@ -85,9 +85,6 @@ public class Item implements Bundlable {
 	public int image = 0;
 	public int icon = -1; //used as an identifier for items with randomized images
 
-	public static final float MAXIMUM_DURABILITY = 1000;
-	public float curDurability = MAXIMUM_DURABILITY;
-
 	public boolean stackable = false;
 	protected int quantity = 1;
 	public boolean dropsDownHeap = false;
@@ -641,7 +638,6 @@ public class Item implements Bundlable {
 	private static final String CURSED			= "cursed";
 	private static final String CURSED_KNOWN	= "cursedKnown";
 	private static final String QUICKSLOT		= "quickslotpos";
-	private static final String DURABILITY      = "durability";
 	private static final String TIMES           = "times_upgraded";
 	private static final String MAX           = "max_sou";
 	
@@ -652,7 +648,6 @@ public class Item implements Bundlable {
 		bundle.put( LEVEL_KNOWN, levelKnown );
 		bundle.put( CURSED, cursed );
 		bundle.put( CURSED_KNOWN, cursedKnown );
-		bundle.put( DURABILITY, curDurability );
 		bundle.put( TIMES, timesUpgraded );
 		bundle.put( MAX, souCap );
 		if (Dungeon.quickslot.contains(this)) {
@@ -665,7 +660,6 @@ public class Item implements Bundlable {
 		quantity	= bundle.getInt( QUANTITY );
 		levelKnown	= bundle.getBoolean( LEVEL_KNOWN );
 		cursedKnown	= bundle.getBoolean( CURSED_KNOWN );
-		curDurability = bundle.getFloat( DURABILITY );
 		timesUpgraded = bundle.contains( TIMES ) ? bundle.getInt( TIMES ) : 0;
 		souCap = bundle.contains( MAX ) ? bundle.getInt( MAX ) : MAX_SOU;
 
