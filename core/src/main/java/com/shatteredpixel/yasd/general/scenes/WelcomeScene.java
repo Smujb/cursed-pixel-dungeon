@@ -180,7 +180,7 @@ public class WelcomeScene extends PixelScene {
 				Rankings.INSTANCE.save();
 			} catch (Exception e) {
 				//if we encounter a fatal error, then just clear the rankings
-				FileUtils.deleteFile( Rankings.RANKINGS_FILE );
+				FileUtils.deleteFile( Rankings.rankingsFile() );
 				CPDGame.reportException(e);
 			}
 		}

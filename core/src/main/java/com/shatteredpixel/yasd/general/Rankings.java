@@ -56,8 +56,17 @@ public enum Rankings {
 	INSTANCE;
 	
 	public static final int TABLE_SIZE	= 11;
+
+	public static String rankingsFile() {
+		return rankingsFile(CPDSettings.storyChapter());
+	}
 	
-	public static final String RANKINGS_FILE = "rankings.dat";
+	public static String rankingsFile(StoryChapter ch) {
+		if (CPDSettings.version() <= CPDGame.v0_4_3) {
+			return "rankings.dat";
+		}
+		return ch.toFile() + "rankings.dat";
+	}
 	
 	public ArrayList<Record> records;
 	public int lastRecord;
@@ -223,7 +232,7 @@ public enum Rankings {
 		bundle.put( WON, wonNumber );
 
 		try {
-			FileUtils.bundleToFile( RANKINGS_FILE, bundle);
+			FileUtils.bundleToFile( rankingsFile(), bundle);
 		} catch (IOException e) {
 			CPDGame.reportException(e);
 		}
@@ -239,7 +248,7 @@ public enum Rankings {
 		records = new ArrayList<>();
 		
 		try {
-			Bundle bundle = FileUtils.bundleFromFile( RANKINGS_FILE );
+			Bundle bundle = FileUtils.bundleFromFile( rankingsFile() );
 			
 			for (Bundlable record : bundle.getCollection( RECORDS )) {
 				records.add( (Record)record );
