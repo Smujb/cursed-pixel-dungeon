@@ -30,14 +30,12 @@ package com.shatteredpixel.yasd.general.items;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Statistics;
-import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.effects.Speck;
-import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite.Glowing;
@@ -93,13 +91,6 @@ public class Ankh extends Item {
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 			GLog.warning(Messages.get(Ankh.class, "revive"));
 			Statistics.ankhsUsed++;
-		}
-
-		for (Char ch : Actor.chars()){
-			if (ch instanceof DriedRose.GhostHero && toRevive == Dungeon.hero){
-				((DriedRose.GhostHero) ch).sayAnhk();
-				return;
-			}
 		}
 	}
 	

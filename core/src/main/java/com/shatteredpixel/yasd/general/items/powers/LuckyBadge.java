@@ -14,13 +14,13 @@ import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.food.MeatPie;
 import com.shatteredpixel.yasd.general.items.food.MysteryMeat;
 import com.shatteredpixel.yasd.general.items.food.SmallRation;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.levels.GrindLevel;
@@ -343,12 +343,12 @@ public class LuckyBadge extends Power {
 				weapon.cursedKnown = true;
 				return weapon;
 			} else {
-				Armor armor = Generator.randomArmor();
-				armor.randomHigh();
-				armor.inscribe(Armor.Glyph.random());
-				armor.cursed = false;
-				armor.cursedKnown = true;
-				return armor;
+				Shield shield = (Shield) Generator.random(Generator.Category.SHIELD);
+				shield.randomHigh();
+				//shield.inscribe(Armor.Glyph.random());
+				shield.cursed = false;
+				shield.cursedKnown = true;
+				return shield;
 			}
 		}
 	}

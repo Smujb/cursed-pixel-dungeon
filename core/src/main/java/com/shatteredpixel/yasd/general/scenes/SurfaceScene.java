@@ -31,14 +31,15 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
-import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
+import com.shatteredpixel.yasd.general.items.KindofMisc;
+import com.shatteredpixel.yasd.general.items.allies.DragonPendant;
 import com.shatteredpixel.yasd.general.items.wands.WandOfLivingEarth;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
+import com.shatteredpixel.yasd.general.sprites.DragonSprite;
 import com.shatteredpixel.yasd.general.sprites.EarthGuardianSprite;
-import com.shatteredpixel.yasd.general.sprites.GhostSprite;
 import com.shatteredpixel.yasd.general.sprites.RatSprite;
 import com.shatteredpixel.yasd.general.sprites.WardSprite;
 import com.shatteredpixel.yasd.general.ui.Archs;
@@ -54,8 +55,8 @@ import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.NoosaScript;
-import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.PointerArea;
+import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.Visual;
 import com.watabou.noosa.audio.Music;
 import com.watabou.utils.Point;
@@ -63,6 +64,7 @@ import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
 import java.nio.FloatBuffer;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class SurfaceScene extends PixelScene {
@@ -154,20 +156,17 @@ public class SurfaceScene extends PixelScene {
 		pet.y = SKY_HEIGHT - pet.height;
 		align(pet);
 		
-		//allies. Attempts to pick highest level, but prefers rose > earth > ward.
-		//Rose level is halved because it's easier to upgrade
+		//Allies.
 		CharSprite allySprite = null;
-		
-		//picks the highest between ghost's getWeapons, getArmors, and rose level/2
-		int roseLevel = 0;
-		DriedRose rose = Dungeon.hero.belongings.getItem(DriedRose.class);
-		if (rose != null){
-			roseLevel = rose.level()/2;
-			if (rose.ghostWeapon() != null){
-				roseLevel = Math.max(roseLevel, rose.ghostWeapon().level());
-			}
-			if (rose.ghostArmor() != null){
-				roseLevel = Math.max(roseLevel, rose.ghostArmor().level());
+
+		//picks an ally item
+		int pendantLevel = 0;
+		ArrayList<KindofMisc> pendants = Dungeon.hero.belongings.getMiscsOfType(DragonPendant.class);
+		for (KindofMisc pendant : pendants) {
+			if (pendant instanceof DragonPendant) {
+				if (pendant.level() > pendantLevel) {
+					pendantLevel = pendant.level();
+				}
 			}
 		}
 		
@@ -183,9 +182,8 @@ public class SurfaceScene extends PixelScene {
 			}
 		}
 		
-		if (roseLevel >= 3 && roseLevel >= earthLevel && roseLevel >= wardLevel){
-			allySprite = new GhostSprite();
-			if (dayTime) allySprite.alpha(0.4f);
+		if (pendantLevel >= 3 && pendantLevel >= earthLevel && pendantLevel >= wardLevel){
+			allySprite = new DragonSprite.Poison();
 		} else if (earthLevel >= 3 && earthLevel >= wardLevel){
 			allySprite = new EarthGuardianSprite();
 		} else if (wardLevel >= 3){

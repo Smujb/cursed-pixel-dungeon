@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.actors.mobs;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.LockedFloor;
@@ -38,7 +37,6 @@ import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
-import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.levels.Level;
@@ -89,13 +87,8 @@ public class OldTengu extends Boss {
 	public int attackSkill( Char target ) {
 		return 20;
 	}
-	
-	@Override
-	public int drRoll(Element element) {
-		return Random.NormalIntRange(0, 5);
-	}
 
-	@Override
+    @Override
 	public void damage(int dmg,  DamageSrc src) {
 		
 		OldPrisonBossLevel.State state = ((OldPrisonBossLevel)Dungeon.level).state();
@@ -255,12 +248,6 @@ public class OldTengu extends Boss {
 			if (HP <= HT/2) BossHealthBar.bleed(true);
 			if (HP == HT) {
 				yell(Messages.get(this, "notice_mine", Dungeon.hero.name()));
-				for (Char ch : Actor.chars()){
-					if (ch instanceof DriedRose.GhostHero){
-
-						((DriedRose.GhostHero) ch).sayBoss();
-					}
-				}
 			} else {
 				yell(Messages.get(this, "notice_face", Dungeon.hero.name()));
 			}

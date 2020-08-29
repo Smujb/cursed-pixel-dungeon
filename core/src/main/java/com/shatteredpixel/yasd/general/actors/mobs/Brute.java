@@ -183,7 +183,7 @@ public class Brute extends Mob {
 
 		@Override
 		protected Item createLoot () {
-			return Generator.randomArmor();
+			return Generator.randomShield();
 		}
 
 		//similar to regular brute rate, but deteriorates much slower. 60 turns to death total.

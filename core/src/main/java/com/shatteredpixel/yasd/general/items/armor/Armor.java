@@ -31,7 +31,6 @@ import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Speck;
@@ -196,13 +195,7 @@ public class Armor extends KindofMisc {
 		super.execute(hero, action);
 
 		if (action.equals(AC_DETACH) && seal != null){
-			BrokenSeal.WarriorShield sealBuff = hero.buff(BrokenSeal.WarriorShield.class);
-			if (sealBuff != null) sealBuff.setArmor(null);
-
-			/*if (seal.level() > 0){
-				degrade();
-			}*/
-			GLog.info( Messages.get(Armor.class, "detach_seal") );
+			GLog.info( Messages.get(this, "detach_seal") );
 			hero.sprite.operate(hero.pos);
 			if (!seal.collect()){
 				Dungeon.level.drop(seal, hero.pos);
@@ -219,7 +212,6 @@ public class Armor extends KindofMisc {
 	@Override
 	public void activate(Char ch) {
 		super.activate(ch);
-		if (seal != null) Buff.affect(ch, BrokenSeal.WarriorShield.class).setArmor(this);
 	}
 
 	public void affixSeal(BrokenSeal seal){
@@ -230,14 +222,13 @@ public class Armor extends KindofMisc {
 			Badges.validateItemLevelAquired(this);
 		}*/
 		if (isEquipped(Dungeon.hero)){
-			Buff.affect(Dungeon.hero, BrokenSeal.WarriorShield.class).setArmor(this);
 		}
 	}
 
 	@Override
 	public boolean doEquip(Hero hero) {
 		if (hero.belongings.getArmor() != null) {
-			GLog.negative(Messages.get(Armor.class, "only_wear_one"));
+			GLog.negative(Messages.get(this, "only_wear_one"));
 			return false;
 		}
 		return super.doEquip(hero);
@@ -350,7 +341,7 @@ public class Armor extends KindofMisc {
 			usesLeftToID--;
 			if (usesLeftToID <= 0) {
 				identify();
-				GLog.positive( Messages.get(Armor.class, "identify") );
+				GLog.positive( Messages.get(this, "identify") );
 				Badges.validateItemLevelAquired( this );
 			}
 		}
@@ -369,7 +360,7 @@ public class Armor extends KindofMisc {
 			usesLeftToID--;
 			if (usesLeftToID <= 0) {
 				identify();
-				GLog.positive( Messages.get(Armor.class, "identify") );
+				GLog.positive( Messages.get(this, "identify") );
 				Badges.validateItemLevelAquired( this );
 			}
 		}

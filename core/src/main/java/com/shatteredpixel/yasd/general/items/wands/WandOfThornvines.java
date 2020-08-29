@@ -186,11 +186,6 @@ public class WandOfThornvines extends Wand {
         }
 
         @Override
-        public int drRoll(Element element) {
-            return (int) (1 + level*2);
-        }
-
-        @Override
         public boolean interact(Char ch) {
             Buff.affect(Dungeon.hero, Recharging.class, (HP/(float)HT)*charges);
             die(new DamageSrc(Element.EARTH, null));

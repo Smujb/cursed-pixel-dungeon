@@ -27,11 +27,11 @@
 
 package com.shatteredpixel.yasd.general.ui.changelist;
 
-import com.shatteredpixel.yasd.general.items.Stylus;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Staff;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.ChangesScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.Icons;
 import com.shatteredpixel.yasd.general.ui.Window;
 
@@ -67,7 +67,7 @@ public class v0_5_X_Changes {
 				"_-_ Wand of Transfusion self-damage reduced from 15% max hp to 10% max hp per zap\n\n" +
 				"_-_ Dried Rose charges 20% faster and the ghost hero is stronger, especially at low levels"));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(new Stylus()), "Glyph Balance Changes",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.STYLUS), "Glyph Balance Changes",
 				"_-_ Glyph of Entanglement activates less often but grants significantly more herbal getArmors\n\n" +
 				"_-_ Glyph of Stone getArmors bonus reduced from 2+level to 0+level\n\n" +
 				"_-_ Glyph of Antimagic magical damage resist reduced from 50% of getArmors to 33% of getArmors\n\n" +

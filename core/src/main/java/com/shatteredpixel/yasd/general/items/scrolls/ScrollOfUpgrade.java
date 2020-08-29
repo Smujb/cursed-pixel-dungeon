@@ -35,7 +35,6 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
@@ -77,7 +76,7 @@ public class ScrollOfUpgrade extends InventoryScroll {
 				GLog.warning( Messages.get(Weapon.class, "incompatible") );
 			}
 
-		} else if (item instanceof Armor){
+		} /*else if (item instanceof Armor){
 			Armor a = (Armor) item;
 			boolean wasCursed = a.cursed;
 			boolean hadCursedGlyph = a.hasCurseGlyph();
@@ -94,7 +93,7 @@ public class ScrollOfUpgrade extends InventoryScroll {
 				GLog.warning( Messages.get(Armor.class, "incompatible") );
 			}
 
-		} else if (item instanceof Wand || item instanceof Ring) {
+		}*/ else if (item instanceof Wand || item instanceof Ring) {
 			boolean wasCursed = item.cursed;
 
 			item.upgrade();

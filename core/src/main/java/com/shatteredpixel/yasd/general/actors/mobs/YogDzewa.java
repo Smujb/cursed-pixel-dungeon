@@ -46,7 +46,6 @@ import com.shatteredpixel.yasd.general.effects.Pushing;
 import com.shatteredpixel.yasd.general.effects.TargetedCell;
 import com.shatteredpixel.yasd.general.effects.particles.PurpleParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
-import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -393,12 +392,6 @@ public class YogDzewa extends Boss {
 		if (!BossHealthBar.isAssigned()) {
 			BossHealthBar.assignBoss(this);
 			yell(Messages.get(this, "notice"));
-			for (Char ch : Actor.chars()){
-				if (ch instanceof DriedRose.GhostHero){
-
-					((DriedRose.GhostHero) ch).sayBoss();
-				}
-			}
 			if (phase == 0) {
 				phase = 1;
 				summonCooldown = Random.NormalFloat(MIN_SUMMON_CD, MAX_SUMMON_CD);

@@ -50,7 +50,6 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
-import com.watabou.utils.Random;
 
 public class Necromancer extends Mob {
 	
@@ -89,13 +88,8 @@ public class Necromancer extends Mob {
 			sprite.zap( summoningPos );
 		}
 	}
-	
-	@Override
-	public int drRoll(Element element) {
-		return Random.NormalIntRange(0, 5);
-	}
-	
-	@Override
+
+    @Override
 	public void rollToDropLoot() {
 		lootChance *= ((6f - Dungeon.LimitedDrops.NECRO_HP.count) / 6f);
 		super.rollToDropLoot();

@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.actors.mobs.npcs;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.blobs.CorrosiveGas;
@@ -168,24 +167,6 @@ public class PrismaticImage extends NPC {
 		} else {
 			return 0;
 		}
-	}
-	
-	@Override
-	public int drRoll(Element element) {
-		if (hero != null){
-			return hero.drRoll(Element.PHYSICAL);
-		} else {
-			return 0;
-		}
-	}
-	
-	@Override
-	public int defenseProc(Char enemy, int damage) {
-		damage = super.defenseProc(enemy, damage);
-		if (hero.belongings.getArmor() != null) {
-			damage = hero.belongings.getArmor().proc(enemy, this, damage);
-		}
-		return damage;
 	}
 	
 	@Override

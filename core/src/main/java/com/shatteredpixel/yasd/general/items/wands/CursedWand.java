@@ -375,7 +375,7 @@ public class CursedWand {
 							mimic.HP = mimic.HT;
 							Item reward;
 							do {
-								reward = Generator.random(Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR,
+								reward = Generator.random(Random.oneOf(Generator.Category.WEAPON, Generator.Category.SHIELD,
 										Generator.Category.RING, Generator.Category.WAND));
 							} while (reward.level() < 1);
 							//play vfx/sfx manually as mimic isn't in the scene yet
@@ -441,7 +441,7 @@ public class CursedWand {
 				origin.detach(user.belongings.backpack);
 				Item result;
 				do {
-					result = Generator.random(Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR,
+					result = Generator.random(Random.oneOf(Generator.Category.WEAPON, Generator.Category.SHIELD,
 							Generator.Category.RING, Generator.Category.ARTIFACT));
 				} while (result.cursed);
 				if (result.isUpgradable()) result.upgrade();

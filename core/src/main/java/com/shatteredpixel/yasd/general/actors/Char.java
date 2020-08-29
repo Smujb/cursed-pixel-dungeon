@@ -534,20 +534,6 @@ public abstract class Char extends Actor {
 		}
 	}
 
-	public int drRoll(Element element) {
-		int dr = 0;
-		if (element.isMagical()) {
-			if (hasBelongings()) {
-				dr += belongings.magicalDR();
-			}
-		} else {
-			if (hasBelongings()) {
-				dr += belongings.drRoll();
-			}
-		}
-		return affectDRRoll(element, dr);
-	}
-
 	public int damageRoll() {
 		int damage;
 		if (hasBelongings()) {
@@ -623,6 +609,7 @@ public abstract class Char extends Actor {
 		}
 		return sneakSkill;
 	}
+
 
 	protected final int affectDRRoll(Element element, int dr) {
 		if (element.isMagical()) {
@@ -772,9 +759,6 @@ public abstract class Char extends Actor {
 			return;
 		}
 
-		if (!src.ignores()) {
-			dmg = Math.max(dmg - drRoll(src.getElement()), 0);
-		}
 		if (this.buff(Drowsy.class) != null && dmg > 0) {
 			Buff.detach(this, Drowsy.class);
 			GLog.warning(Messages.get(this, "pain_resist"));
@@ -1186,11 +1170,7 @@ public abstract class Char extends Actor {
 				return true;
 			}
 		}
-		if (hasBelongings()) {
-			return belongings.isImmune(effect);
-		} else {
-			return false;
-		}
+		return false;
 	}
 
 	//similar to isImmune, but only factors in damage.

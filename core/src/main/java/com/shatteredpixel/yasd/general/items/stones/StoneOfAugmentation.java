@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.stones;
 
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -61,13 +60,6 @@ public class StoneOfAugmentation extends InventoryStone {
 		useAnimation();
 		ScrollOfUpgrade.upgrade(curUser);
 		
-	}
-	
-	public void apply( Armor armor, Armor.Augment augment ) {
-		
-		armor.augment = augment;
-		useAnimation();
-		ScrollOfUpgrade.upgrade(curUser);
 	}
 	
 	@Override
@@ -113,22 +105,6 @@ public class StoneOfAugmentation extends InventoryStone {
 					}
 				}
 				
-			} else if (toAugment instanceof Armor){
-				for (final Armor.Augment aug : Armor.Augment.values()){
-					if (((Armor) toAugment).augment != aug){
-						RedButton btnSpeed = new RedButton( Messages.get(this, aug.name()) ) {
-							@Override
-							protected void onClick() {
-								hide();
-								StoneOfAugmentation.this.apply( (Armor) toAugment, aug );
-							}
-						};
-						btnSpeed.setRect( MARGIN, pos + MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT );
-						add( btnSpeed );
-						
-						pos = btnSpeed.bottom();
-					}
-				}
 			}
 			
 			RedButton btnCancel = new RedButton( Messages.get(this, "cancel") ) {

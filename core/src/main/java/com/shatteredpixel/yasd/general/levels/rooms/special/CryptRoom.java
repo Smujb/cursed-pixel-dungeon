@@ -32,10 +32,10 @@ import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
+import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.watabou.utils.Point;
 
 public class CryptRoom extends SpecialRoom {
@@ -78,7 +78,7 @@ public class CryptRoom extends SpecialRoom {
 	private static Item prize(Level level) {
 
 		//1 floor set higher than normal
-		Armor prize = Generator.randomArmor();
+		Shield prize = Generator.randomShield();
 
 		if (Challenges.isItemBlocked(prize)) {
 			return new Gold().random();

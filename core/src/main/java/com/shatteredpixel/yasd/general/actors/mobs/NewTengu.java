@@ -54,7 +54,6 @@ import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
-import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.chapters.prison.NewPrisonBossLevel;
@@ -300,12 +299,6 @@ public class NewTengu extends Boss {
 			if (HP <= HT/2) BossHealthBar.bleed(true);
 			if (HP == HT) {
 				yell(Messages.get(this, "notice_gotcha", Dungeon.hero.name()));
-				for (Char ch : Actor.chars()){
-					if (ch instanceof DriedRose.GhostHero){
-
-						((DriedRose.GhostHero) ch).sayBoss();
-					}
-				}
 			} else {
 				yell(Messages.get(this, "notice_have", Dungeon.hero.name()));
 			}

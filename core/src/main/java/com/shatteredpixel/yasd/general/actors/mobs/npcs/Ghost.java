@@ -38,7 +38,7 @@ import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Generator;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
@@ -199,13 +199,13 @@ public class Ghost extends NPC {
 		private static int depth;
 		
 		public static Weapon weapon;
-		public static Armor armor;
+		public static Shield shield;
 		
 		public static void reset() {
 			spawned = false;
 			
 			weapon = null;
-			armor = null;
+			shield = null;
 		}
 		
 		private static final String NODE		= "sadGhost";
@@ -216,7 +216,7 @@ public class Ghost extends NPC {
 		private static final String PROCESSED	= "processed";
 		private static final String DEPTH		= "depth";
 		private static final String WEAPON		= "getWeapons";
-		private static final String ARMOR		= "getArmors";
+		private static final String SHIELD = "getArmors";
 		
 		public static void storeInBundle( Bundle bundle ) {
 			
@@ -233,7 +233,7 @@ public class Ghost extends NPC {
 				node.put( PROCESSED, processed);
 				
 				node.put( WEAPON, weapon );
-				node.put( ARMOR, armor );
+				node.put( SHIELD, shield );
 			}
 			
 			bundle.put( NODE, node );
@@ -252,7 +252,7 @@ public class Ghost extends NPC {
 				depth	= node.getInt( DEPTH );
 				
 				weapon	= (Weapon)node.get( WEAPON );
-				armor	= (Armor)node.get( ARMOR );
+				shield	= (Shield) node.get(SHIELD);
 			} else {
 				reset();
 			}
@@ -289,7 +289,7 @@ public class Ghost extends NPC {
 				} else {
 					tier = 5;
 				}
-				armor = Generator.randomArmor();
+				shield = (Shield) Generator.random(Generator.Category.SHIELD);
 				weapon = Generator.randomWeapon();
 
 
@@ -306,12 +306,12 @@ public class Ghost extends NPC {
 					itemLevel = 3;
 				}
 				weapon.level(itemLevel);
-				armor.level(itemLevel);
+				shield.level(itemLevel);
 
-				if (Random.Int(4) == 0 || weapon.cursed || armor.cursed){
-					weapon.cursed = armor.cursed = false;
+				if (Random.Int(4) == 0 || weapon.cursed || shield.cursed){
+					weapon.cursed = shield.cursed = false;
 					weapon.enchant();
-					armor.inscribe();
+					//shield.enchant();
 				}
 
 			}
@@ -327,7 +327,7 @@ public class Ghost extends NPC {
 		
 		public static void complete() {
 			weapon = null;
-			armor = null;
+			shield = null;
 			
 			Notes.remove( Notes.Landmark.GHOST );
 		}
@@ -337,7 +337,7 @@ public class Ghost extends NPC {
 		}
 		
 		public static boolean completed(){
-			return processed() && weapon == null && armor == null;
+			return processed() && weapon == null && shield == null;
 		}
 	}
 }

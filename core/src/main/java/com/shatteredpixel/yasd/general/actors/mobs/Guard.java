@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.actors.mobs;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Cripple;
@@ -61,7 +60,7 @@ public class Guard extends Mob {
 
 		EXP = 7;
 
-		loot = Generator.Category.ARMOR;
+		loot = Generator.Category.SHIELD;
 		lootChance = 0.2f; //by default, see rollToDropLoot()
 
 		properties.add(Property.UNDEAD);
@@ -124,12 +123,7 @@ public class Guard extends Mob {
 		return 18;
 	}
 
-	@Override
-	public int drRoll(Element element) {
-		return Random.NormalIntRange(0, 10);
-	}
-
-	@Override
+    @Override
 	protected Item createLoot() {
 		Dungeon.LimitedDrops.GUARD_ARM.increaseCount();
 		return super.createLoot();

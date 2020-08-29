@@ -95,7 +95,7 @@ public class PoisonDartTrap extends Trap {
 							reset(pos, finalTarget.sprite, new PoisonDart(), new Callback() {
 								@Override
 								public void call() {
-									int dmg = Random.NormalIntRange(4, 8) - finalTarget.drRoll(Element.PHYSICAL);
+									int dmg = Random.NormalIntRange(4, 8);
 									finalTarget.damage( dmg, new Char.DamageSrc(Element.TOXIC, this) );
 									if (finalTarget == Dungeon.hero && !finalTarget.isAlive()){
 										Dungeon.fail( trap.getClass() );

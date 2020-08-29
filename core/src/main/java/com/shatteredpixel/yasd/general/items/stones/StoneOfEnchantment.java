@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.items.stones;
 import com.shatteredpixel.yasd.general.effects.Enchanting;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -50,10 +49,6 @@ public class StoneOfEnchantment extends InventoryStone {
 		if (item instanceof Weapon) {
 			
 			((Weapon)item).enchant();
-			
-		} else {
-			
-			((Armor)item).inscribe();
 			
 		}
 		

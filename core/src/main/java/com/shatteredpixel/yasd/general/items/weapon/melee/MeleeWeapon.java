@@ -75,7 +75,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 
 	@Override
 	public int max(float lvl) {
-		return (int) (15*lvl*damageMultiplier);   //level scaling
+		return (int) (5*lvl*damageMultiplier);   //level scaling
 	}
 
 	@Override

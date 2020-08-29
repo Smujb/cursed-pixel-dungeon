@@ -33,7 +33,6 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
@@ -42,6 +41,7 @@ import com.shatteredpixel.yasd.general.items.potions.elixirs.Elixir;
 import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.stones.Runestone;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
@@ -70,6 +70,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 	
 	public static boolean canTransmute(Item item){
 		return item instanceof MeleeWeapon ||
+				item instanceof Shield ||
 				(item instanceof MissileWeapon && !(item instanceof Dart)) ||
 				(item instanceof Potion && !(item instanceof Elixir || item instanceof Brew || item instanceof AlchemicalCatalyst)) ||
 				item instanceof Scroll ||
@@ -103,8 +104,8 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			result = changeStone((Runestone) item);
 		} else if (item instanceof Artifact) {
 			result = changeArtifact( (Artifact)item );
-		} else if (item instanceof Armor) {
-			result = changeArmor( (Armor) item );
+		} else if (item instanceof Shield) {
+			result = changeShield((Shield) item );
 		} else {
 			result = null;
 		}
@@ -152,10 +153,26 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		return staff;
 	}
 
-	private Armor changeArmor(Armor a ) {
+	private com.shatteredpixel.yasd.general.items.shield.Shield changeShield(com.shatteredpixel.yasd.general.items.shield.Shield a ) {
+		com.shatteredpixel.yasd.general.items.shield.Shield s;
+		do {
+			s = Generator.randomShield();
+		} while (s.getClass() == a.getClass());
+
+		int level = a.trueLevel();
+
+		s.level(level);
+
+		s.levelKnown = a.levelKnown;
+		s.cursedKnown = a.cursedKnown;
+		s.cursed = a.cursed;
+		return s;
+	}
+
+	/*private Armor changeArmor(Armor a ) {
 		Armor n;
 		do {
-			n = Generator.randomArmor();
+			n = Generator.randomShield();
 		} while (n.getClass() == a.getClass());
 
 		int level = a.trueLevel();
@@ -169,7 +186,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		n.cursed = a.cursed;
 		n.augment = a.augment;
 		return n;
-	}
+	}*/
 	
 	private Weapon changeWeapon( Weapon w ) {
 		

@@ -35,13 +35,13 @@ import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Honeypot;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.bombs.Bomb;
 import com.shatteredpixel.yasd.general.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.spells.ArcaneCatalyst;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
@@ -268,10 +268,10 @@ public class RingOfWealth extends Ring {
 				result = w;
 				break;
 			case 2:
-				Armor a = Generator.randomArmor();
-				if (!a.hasGoodGlyph() && Random.Int(10) < level) a.inscribe();
-				else if (a.hasCurseGlyph()) a.inscribe(null);
-				result = a;
+				Shield s = (Shield) Generator.random(Generator.Category.SHIELD);
+				//if (!s.hasGoodGlyph() && Random.Int(10) < level) s.inscribe();
+				//else if (s.hasCurseGlyph()) s.inscribe(null);
+				result = s;
 				break;
 			case 3:
 				result = Generator.random(Generator.Category.RING);

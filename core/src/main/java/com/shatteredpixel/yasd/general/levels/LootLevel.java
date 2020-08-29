@@ -41,7 +41,7 @@ public class LootLevel extends SewerLevel {
             addItemToSpawn(new ScrollOfUpgrade());
             addItemToSpawn(new PotionOfExperience());
             addItemToSpawn(Generator.randomWeapon().identify());
-            addItemToSpawn(Generator.randomArmor().identify());
+            addItemToSpawn(Generator.randomShield().identify());
             addItemToSpawn(Generator.randomMissile());
             addItemToSpawn(Generator.random(Generator.Category.SCROLL).identify());
             addItemToSpawn(Generator.random(Generator.Category.STONE).identify());

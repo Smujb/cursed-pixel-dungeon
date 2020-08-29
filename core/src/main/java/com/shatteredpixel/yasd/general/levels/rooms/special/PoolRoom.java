@@ -120,7 +120,7 @@ public class PoolRoom extends SpecialRoom {
 			if (Random.Int(2) == 0) {
 				prize = Generator.randomWeapon();
 			} else {
-				prize = Generator.randomArmor();
+				prize = Generator.randomShield();
 
 			}
 		} while (prize.cursed || Challenges.isItemBlocked(prize));

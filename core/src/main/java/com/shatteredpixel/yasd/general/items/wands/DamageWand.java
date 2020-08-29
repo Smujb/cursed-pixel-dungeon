@@ -52,11 +52,10 @@ public abstract class DamageWand extends Wand{
 		if (curUser == null) {
 			curUser = Dungeon.hero;
 		}
-		damage -= enemy.drRoll(element);
 		damage = element.attackProc(damage, curUser, enemy);
 		damage = enemy.defenseProc(curUser, damage);
 		if (damage > 0) {
-			enemy.damage(damage, new Char.DamageSrc(element, this).ignoreDefense());
+			enemy.damage(damage, new Char.DamageSrc(element, this));
 		}
 		Sample.INSTANCE.play( Assets.Sounds.HIT_MAGIC, 1, 0.8f * Random.Float(0.87f, 1.15f) );
 		return damage;
@@ -77,11 +76,11 @@ public abstract class DamageWand extends Wand{
 	}
 
 	public float min(float lvl) {
-		return Math.round(2*lvl);    //level scaling
+		return Math.round(lvl) * 2;    //level scaling
 	}
 
 	public float max(float lvl) {
-		return (int) (15*lvl*damageMultiplier());   //level scaling
+		return (int) (5 * lvl * damageMultiplier());   //level scaling
 	}
 
 	final int defaultMax() {

@@ -42,7 +42,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
 import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Torch;
-import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
 import com.shatteredpixel.yasd.general.items.keys.SkeletonKey;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
@@ -223,12 +222,6 @@ public class King extends Boss {
 		if (!BossHealthBar.isAssigned()) {
 			BossHealthBar.assignBoss(this);
 			yell(Messages.get(this, "notice"));
-			for (Char ch : Actor.chars()){
-				if (ch instanceof DriedRose.GhostHero){
-
-					((DriedRose.GhostHero) ch).sayBoss();
-				}
-			}
 		}
 	}
 	
@@ -304,13 +297,8 @@ public class King extends Boss {
 				Sample.INSTANCE.play( Assets.Sounds.BONES );
 			}
 		}
-		
-		@Override
-		public int drRoll(Element element) {
-			return Random.NormalIntRange(0, 5);
-		}
 
-		{
+        {
 			immunities.add( Grim.class );
 			immunities.add( Paralysis.class );
 		}

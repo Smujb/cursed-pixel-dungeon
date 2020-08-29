@@ -274,7 +274,6 @@ public abstract class DragonPendant extends KindofMisc {
 			return super.description() + "\n\n" + Messages.get(Dragon.class, "stats",
 					HP, HT,
 					normalMin(level), normalMax(level),
-					normalMinDR(level), normalMaxDR(level),
 					Messages.format( "%d%%", Math.round(accuracyFactor*100)),
 					Messages.format( "%d%%", Math.round(evasionFactor*100)),
 					Messages.format( "%d%%", Math.round(baseSpeed*100)),

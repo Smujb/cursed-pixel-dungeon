@@ -43,7 +43,6 @@ import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.MirrorSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.Random;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -145,17 +144,8 @@ public class MirrorImage extends NPC {
     public boolean canAttack(@NotNull Char enemy) {
 		return super.canAttack(enemy) || (user.belongings.getWeapon() != null && user.belongings.getWeapon().canReach(this, enemy.pos));
 	}
-	
-	@Override
-	public int drRoll(Element element) {
-		if (user != null && user.belongings.getWeapon() != null){
-			return Random.NormalIntRange(0, user.belongings.getWeapon().defenseFactor(this)/2);
-		} else {
-			return 0;
-		}
-	}
-	
-	@Override
+
+    @Override
 	public int attackProc( Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		

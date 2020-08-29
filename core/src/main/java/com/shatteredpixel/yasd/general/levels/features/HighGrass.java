@@ -27,25 +27,20 @@
 
 package com.shatteredpixel.yasd.general.levels.features;
 
-import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.LeafParticle;
 import com.shatteredpixel.yasd.general.items.Dewdrop;
 import com.shatteredpixel.yasd.general.items.Generator;
-import com.shatteredpixel.yasd.general.items.armor.glyphs.Camouflage;
 import com.shatteredpixel.yasd.general.items.artifacts.SandalsOfNature;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 public class HighGrass {
@@ -109,22 +104,6 @@ public class HighGrass {
 					level.drop(new Dewdrop(), pos).sprite.drop();
 				}
 			}
-			
-			if (ch instanceof Hero) {
-				Hero hero = (Hero) ch;
-
-				//Camouflage
-				boolean hasCamoflage = false;
-				if (hero.belongings.getArmor() != null && hero.belongings.getArmor().hasGlyph(Camouflage.class, hero)) {
-					hasCamoflage = true;
-				}
-
-				if (hasCamoflage) {
-					Buff.prolong(hero, Invisibility.class, 3 + hero.belongings.getArmor().level()/2f);
-					Sample.INSTANCE.play( Assets.Sounds.MELD );
-				}
-			}
-			
 		}
 		
 		freezeTrample = false;

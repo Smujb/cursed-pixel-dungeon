@@ -35,11 +35,9 @@ import com.shatteredpixel.yasd.general.actors.blobs.Fire;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Wraith;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
-import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.ElmoParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.bombs.Bomb;
 import com.shatteredpixel.yasd.general.items.food.FrozenCarpaccio;
@@ -283,8 +281,9 @@ public class Heap implements Bundlable {
 
 				//unique and upgraded items can endure the blast
 				} else if (!(item.level() > 0 || item.unique
-						|| (item instanceof Armor && ((Armor) item).checkSeal() != null)))
-					items.remove( item );
+						/*|| (item instanceof Armor && ((Armor) item).checkSeal() != null)*/)) {
+					items.remove(item);
+				}
 
 			}
 

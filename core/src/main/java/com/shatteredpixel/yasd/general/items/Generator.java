@@ -39,21 +39,11 @@ import com.shatteredpixel.yasd.general.items.allies.PoisonDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.StoneDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.VampiricDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.items.armor.BasicArmor;
-import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
-import com.shatteredpixel.yasd.general.items.armor.HeavyArmor;
-import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
-import com.shatteredpixel.yasd.general.items.armor.IceArmor;
-import com.shatteredpixel.yasd.general.items.armor.LightArmor;
-import com.shatteredpixel.yasd.general.items.armor.MageArmor;
-import com.shatteredpixel.yasd.general.items.armor.RogueArmor;
 import com.shatteredpixel.yasd.general.items.artifacts.AlchemistsToolkit;
 import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.artifacts.CapeOfThorns;
 import com.shatteredpixel.yasd.general.items.artifacts.ChaliceOfBlood;
 import com.shatteredpixel.yasd.general.items.artifacts.CloakOfShadows;
-import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.EtherealChains;
 import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
 import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
@@ -120,15 +110,15 @@ import com.shatteredpixel.yasd.general.items.powers.Surprise;
 import com.shatteredpixel.yasd.general.items.powers.Telekinesis;
 import com.shatteredpixel.yasd.general.items.powers.WaterPump;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
-import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
-import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfAssault;
+import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
+import com.shatteredpixel.yasd.general.items.rings.RingOfExecution;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
 import com.shatteredpixel.yasd.general.items.rings.RingOfHaste;
 import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
-import com.shatteredpixel.yasd.general.items.rings.RingOfExecution;
 import com.shatteredpixel.yasd.general.items.rings.RingOfSharpshooting;
+import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
 import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
@@ -159,8 +149,8 @@ import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPrismaticIma
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.shatteredpixel.yasd.general.items.shield.BarbedShield;
 import com.shatteredpixel.yasd.general.items.shield.GreatShield;
-import com.shatteredpixel.yasd.general.items.shield.PanicShield;
 import com.shatteredpixel.yasd.general.items.shield.LightShield;
+import com.shatteredpixel.yasd.general.items.shield.PanicShield;
 import com.shatteredpixel.yasd.general.items.shield.ParryShield;
 import com.shatteredpixel.yasd.general.items.shield.RoundShield;
 import com.shatteredpixel.yasd.general.items.shield.SpiritualShield;
@@ -213,18 +203,17 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfThornvines;
 import com.shatteredpixel.yasd.general.items.wands.WandOfTransfusion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Axe;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Crossbow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Katana;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Katana;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
 import com.shatteredpixel.yasd.general.items.weapon.melee.RunicBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Scimitar;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Shield;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Staff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
@@ -270,8 +259,7 @@ public class Generator {
 
 	public enum Category {
 		WEAPON	( 3,    MeleeWeapon.class),
-		ARMOR	( 3,    Armor.class ),
-		SHIELD	( 0,    Shield.class ),
+		SHIELD	( 3,    com.shatteredpixel.yasd.general.items.shield.Shield.class ),
 
 		MISSILE ( 2,    MissileWeapon.class ),
 		MIS_T1  ( 0,    MissileWeapon.class ),
@@ -564,12 +552,10 @@ public class Generator {
 					Crossbow.class,
 					Sword.class,
 					Mace.class,
-					Polearm.class,
-					//Heavy.class,
-					Shield.class
+					Polearm.class
 
 			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 4, 6, 4, /*5,*/ 4 };
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 4, 6, 4 };
 
 			SHIELD.classes = new Class<?>[] {
 					RoundShield.class,
@@ -584,19 +570,6 @@ public class Generator {
 					ParryShield.class
 			};
 			SHIELD.probs = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-
-			//see Generator.randomArmor
-			ARMOR.classes = new Class<?>[]{
-					RogueArmor.class,
-					MageArmor.class,
-					HuntressArmor.class,
-					LightArmor.class,
-					ChainArmor.class,
-					BasicArmor.class,
-					HeavyArmor.class,
-					IceArmor.class
-			};
-			ARMOR.probs = new float[]{  0, 0, 0, 5, 5, 5, 5, 0 };
 
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{};
@@ -668,11 +641,11 @@ public class Generator {
 					TimekeepersHourglass.class,
 					UnstableSpellbook.class,
 					AlchemistsToolkit.class,
-					DriedRose.class,
+					//DriedRose.class,
 					LloydsBeacon.class,
 					EtherealChains.class
 			};
-			ARTIFACT.defaultProbs = new float[]{0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1};
+			ARTIFACT.defaultProbs = new float[]{0, 1, 0, 1, 1, 1, 1, 1, 1, 1, /*0,*/ 0, 1};
 			ARTIFACT.probs = ARTIFACT.defaultProbs.clone();
 		}
 	}
@@ -713,8 +686,8 @@ public class Generator {
 	public static Item random( Category cat ) {
 		if (cat == null) return random();
 		switch (cat) {
-			case ARMOR:
-				return randomArmor();
+			case SHIELD:
+				return randomShield();
 			case WEAPON:
 				return randomWeapon();
 			case MISSILE:
@@ -751,10 +724,10 @@ public class Generator {
 	}
 
 	@NotNull
-	public static Armor randomArmor() {
-		Armor a = (Armor)Reflection.newInstance(Category.ARMOR.classes[Random.chances(Category.ARMOR.probs)]);
-		a.random();
-		return a;
+	public static com.shatteredpixel.yasd.general.items.shield.Shield randomShield() {
+		com.shatteredpixel.yasd.general.items.shield.Shield s = (com.shatteredpixel.yasd.general.items.shield.Shield) Reflection.newInstance(Category.SHIELD.classes[Random.chances(Category.SHIELD.probs)]);
+		s.random();
+		return s;
 	}
 
 	public static MeleeWeapon randomWeapon() {
@@ -840,11 +813,14 @@ public class Generator {
 
 	public static void restoreFromBundle(Bundle bundle) {
 		reset();
+		Category[] values = Category.values();
 
 		if (bundle.contains(GENERAL_PROBS)){
 			float[] probs = bundle.getFloatArray(GENERAL_PROBS);
 			for (int i = 0; i < probs.length; i++){
-				categoryProbs.put(Category.values()[i], probs[i]);
+				if (i < values.length) {
+					categoryProbs.put(values[i], probs[i]);
+				}
 			}
 		}
 

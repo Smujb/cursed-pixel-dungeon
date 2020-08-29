@@ -346,16 +346,7 @@ public class WandOfLivingEarth extends DamageWand {
 			return Random.NormalIntRange(2, 4 + Dungeon.getScaleFactor() /2);
 		}
 
-		@Override
-		public int drRoll(Element element) {
-			if (Dungeon.isChallenged(Challenges.NO_ARMOR) || element.isMagical()) {
-				return Random.NormalIntRange(wandLevel, 2 + wandLevel);
-			} else {
-				return Random.NormalIntRange(wandLevel, 3 + 6 * wandLevel);
-			}
-		}
-
-		@Override
+        @Override
 		public String description() {
 			if (Dungeon.isChallenged(Challenges.NO_ARMOR)){
 				return Messages.get(this, "desc", wandLevel, 2 + wandLevel);

@@ -36,7 +36,6 @@ import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -99,13 +98,13 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 					procced = true;
 				}
 			}
-			if (item instanceof Armor){
+			/*if (item instanceof Armor){
 				Armor a = (Armor) item;
 				if (a.hasCurseGlyph()){
 					a.inscribe(null);
 					procced = true;
 				}
-			}
+			}*/
 			if (item instanceof Wand){
 				((Wand) item).updateLevel();
 			}
@@ -127,8 +126,6 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 			return true;
 		} else if (item instanceof Weapon){
 			return ((Weapon)item).hasCurseEnchant();
-		} else if (item instanceof Armor){
-			return ((Armor)item).hasCurseGlyph();
 		} else {
 			return false;
 		}

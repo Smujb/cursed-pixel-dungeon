@@ -332,15 +332,6 @@ public class WandOfWarding extends DamageWand {
 		}
 
 		@Override
-		public int drRoll(Element element) {
-			if (tier > 3){
-				return Math.round(Random.NormalIntRange(0, 3 + Dungeon.getScaleFactor() /2) / (7f - tier));
-			} else {
-				return 0;
-			}
-		}
-
-		@Override
         public float attackDelay() {
 			if (tier > 3){
 				return 1f;

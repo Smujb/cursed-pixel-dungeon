@@ -33,7 +33,6 @@ import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.effects.BadgeBanner;
 import com.shatteredpixel.yasd.general.items.Honeypot;
 import com.shatteredpixel.yasd.general.items.artifacts.AlchemistsToolkit;
-import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.UnstableSpellbook;
 import com.shatteredpixel.yasd.general.items.food.Blandfruit;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
@@ -328,7 +327,7 @@ public class v0_7_X_Changes {
 		changes.hardlight( CharSprite.POSITIVE );
 		changeInfos.add(changes);
 
-		changes.addButton( new ChangeButton(new DriedRose(),
+		changes.addButton( new ChangeButton( new ItemSprite(ItemSpriteSheet.ARTIFACT_ROSE1), "Dried Rose",
 				"The Dried Rose's ghost hero has received some buffs and adjustments to go along with other ally improvements:\n\n" +
 				"_-_ The ghost hero can now be given instructions by using the rose after summoning them, and tapping on a location.\n\n" +
 				"_-_ Ghost HP scaling increased to 8 per petal, from 4.\n" +

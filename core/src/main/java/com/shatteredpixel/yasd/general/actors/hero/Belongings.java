@@ -29,41 +29,29 @@ package com.shatteredpixel.yasd.general.actors.hero;
 
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.GamesInProgress;
-import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Berserk;
-import com.shatteredpixel.yasd.general.actors.buffs.Burning;
 import com.shatteredpixel.yasd.general.actors.buffs.Fury;
-import com.shatteredpixel.yasd.general.actors.buffs.Momentum;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
+import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.items.armor.curses.Bulk;
-import com.shatteredpixel.yasd.general.items.armor.glyphs.AntiMagic;
-import com.shatteredpixel.yasd.general.items.armor.glyphs.Brimstone;
-import com.shatteredpixel.yasd.general.items.armor.glyphs.Flow;
-import com.shatteredpixel.yasd.general.items.armor.glyphs.Obfuscation;
-import com.shatteredpixel.yasd.general.items.armor.glyphs.Stone;
-import com.shatteredpixel.yasd.general.items.armor.glyphs.Swiftness;
 import com.shatteredpixel.yasd.general.items.artifacts.CapeOfThorns;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.keys.Key;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
-import com.shatteredpixel.yasd.general.items.rings.RingOfHaste;
 import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRemoveCurse;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
-import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 import org.jetbrains.annotations.NotNull;
@@ -160,44 +148,6 @@ public class Belongings implements Iterable<Item> {
 		return accuracy;
 	}
 
-	public int magicalDR() {
-		int dr = 0;
-		int armDr = 0;
-		if (getArmor() != null) {
-			 armDr = getArmor().magicalDRRoll();
-			if (!getArmor().canTypicallyUse(owner)) {
-				armDr -= 2 * getArmor().encumbrance();
-			}
-		}
-
-		if (armDr > 0) dr += armDr;
-		if (getArmor() != null && getArmor().hasGlyph(AntiMagic.class, owner)) {
-			dr += AntiMagic.drRoll(getArmor().level());
-		}
-
-		return dr;
-	}
-
-	public int drRoll() {
-		int dr = 0;
-		if (getArmor() != null) {
-			dr += getArmor().DRRoll();
-			if (!getArmor().canTypicallyUse(owner)) {
-				dr -= 2 * getArmor().encumbrance();
-			}
-		}
-
-		if (getWeapon() != null) {
-			int wepDr = Random.NormalIntRange(0, getWeapon().defenseFactor(owner));
-			if (!getWeapon().canTypicallyUse(owner)) {
-				wepDr -= 2 * getWeapon().encumbrance();
-			}
-			if (wepDr > 0) dr += wepDr;
-		}
-
-		return dr;
-	}
-
 	public int damageRoll() {
 		int dmg;
 		KindOfWeapon wep = getWeapon();
@@ -223,9 +173,6 @@ public class Belongings implements Iterable<Item> {
 	}
 
 	public int defenseProc(Char enemy, int damage) {
-		if (getArmor() != null) {
-			damage = getArmor().proc(enemy, owner, damage);
-		}
 		return damage;
 	}
 
@@ -241,9 +188,6 @@ public class Belongings implements Iterable<Item> {
 	}
 
 	public int magicalDefenseProc(Char enemy, int damage) {
-		if (getArmor() != null) {
-			damage = getArmor().magicalProc(enemy, owner, damage);
-		}
 		return damage;
 	}
 
@@ -282,82 +226,19 @@ public class Belongings implements Iterable<Item> {
 
 
 	public float affectEvasion(float evasion) {
-		//evasion *= _Unused.evasionMultiplier(owner);
-		Armor CurArmour = getArmor();
-		//evasion *= CurArmour.evasionMultiplier(ownerID);
-		if (CurArmour != null) {
-			if (CurArmour.hasGlyph(Stone.class, owner) && !((Stone) CurArmour.glyph).testingEvasion()) {
-				return 0;
-			}
-			int aEnc = CurArmour.encumbrance();
-			if (aEnc > 0) evasion /= Math.pow(1.5, aEnc);
-
-			Momentum momentum = owner.buff(Momentum.class);
-			if (momentum != null) {
-				evasion += momentum.evasionBonus(Math.max(0, -aEnc));
-
-			}
-			evasion += CurArmour.augment.evasionFactor(CurArmour.level());
-
-			evasion *= CurArmour.EVA;
-		}
-
 		return evasion;
 	}
 
 	public float affectSpeed(float speed) {
-		speed *= RingOfHaste.speedMultiplier(owner);
-		Armor curArmour = getArmor();
-		//speed *= curArmour.speedMultiplier(ownerID);
-		if (curArmour != null) {
-			int aEnc = curArmour.encumbrance();
-			if (aEnc > 0) speed /= Math.pow(1.2, aEnc);
-			if (curArmour.hasGlyph(Swiftness.class, owner)) {
-				boolean enemyNear = false;
-				PathFinder.buildDistanceMap(owner.pos, Dungeon.level.passable(), 2);
-				for (Char ch : Actor.chars()) {
-					if ( PathFinder.distance[ch.pos] != Integer.MAX_VALUE && owner.alignment != ch.alignment) {
-						enemyNear = true;
-						break;
-					}
-				}
-				if (!enemyNear) speed *= (1.2f + 0.04f * curArmour.level());
-			} else if (curArmour.hasGlyph(Flow.class, owner) && Dungeon.level.liquid(owner.pos)) {
-				speed *= (2f + 0.25f*curArmour.level());
-			}
-
-			if (curArmour.hasGlyph(Bulk.class, owner) &&
-					(Dungeon.level.getTerrain(owner.pos) == Terrain.DOOR
-							|| Dungeon.level.getTerrain(owner.pos) == Terrain.OPEN_DOOR)) {
-				speed /= 3f;
-			}
-			speed *= curArmour.speedFactor;
-		}
-
-
 		return speed;
 	}
 
 	public float affectStealth(float stealth) {
-		Armor CurArmour = getArmor();
-		if (CurArmour != null) {
-			if (CurArmour.hasGlyph(Obfuscation.class, owner)) {
-				stealth += 1 + CurArmour.level() / 3f;
-			}
-			stealth *= CurArmour.STE;
-		}
-
 		return stealth;
 	}
 
 	public float affectPerception(float perception) {
 		return perception;
-	}
-
-	public boolean isImmune(Class effect) {
-		return effect == Burning.class
-				&& getArmor() != null
-				&& getArmor().hasGlyph(Brimstone.class, owner);
 	}
 
 	//##############################################################################################
@@ -374,8 +255,6 @@ public class Belongings implements Iterable<Item> {
 
 
 	public void storeInBundle( Bundle bundle ) {
-
-		bundle.put(ARMOR_PREVIEW, getArmor());
 
 		backpack.storeInBundle( bundle );
 		for (int i = 0; i < owner.miscSlots(); i++) {//Store all miscs
@@ -402,16 +281,8 @@ public class Belongings implements Iterable<Item> {
 		}
 
 		if (bundle.contains(ARMOR)) {
-			Armor armor = (Armor) bundle.get(ARMOR);
-			armor.collect(backpack, owner);
-		}
-	}
-	
-	static void preview(GamesInProgress.Info info, Bundle bundle) {
-		if (bundle.contains( ARMOR_PREVIEW )){
-			info.armorAppearance = ((Armor)bundle.get( ARMOR_PREVIEW )).appearance();
-		} else {
-			info.armorAppearance = 0;
+			Shield shield = (Shield) Generator.random(Generator.Category.SHIELD);
+			shield.collect(backpack, owner);
 		}
 	}
 	
@@ -481,14 +352,6 @@ public class Belongings implements Iterable<Item> {
 	}
 	
 	public void observe() {
-
-		if (getWeapon() != null) {
-			getWeapon().identify();
-		}
-
-		if (getArmor() != null) {
-			getArmor().identify();
-		}
 
 		for (int i = 0; i < owner.miscSlots(); i++) {
 			if (miscs[i] != null) {

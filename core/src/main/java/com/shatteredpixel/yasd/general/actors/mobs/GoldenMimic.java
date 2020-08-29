@@ -35,8 +35,6 @@ import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.MimicSprite;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -93,14 +91,7 @@ public class GoldenMimic extends Mimic {
 				if (i.cursed) {
 					i.upgrade();
 				}
-				i.cursed = false;
-				i.cursedKnown = true;
-				if (i instanceof Weapon && ((Weapon) i).hasCurseEnchant()) {
-					((Weapon) i).enchant(null);
-				}
-				if (i instanceof Armor && ((Armor) i).hasCurseGlyph()) {
-					((Armor) i).inscribe(null);
-				}
+				i.uncurse();
 			}
 		}
 	}

@@ -91,16 +91,16 @@ public class WndSadGhost extends Window {
 		add( btnWeapon );
 
 		if (!Dungeon.isChallenged( Challenges.NO_ARMOR )) {
-			RedButton btnArmor = new RedButton( Messages.get(this, "armour") ) {
+			RedButton btnShield = new RedButton( Messages.get(this, "shield") ) {
 				@Override
 				protected void onClick() {
-					selectReward(ghost, Ghost.Quest.armor);
+					selectReward(ghost, Ghost.Quest.shield);
 				}
 			};
-			btnArmor.setRect(0, btnWeapon.bottom() + GAP, WIDTH, BTN_HEIGHT);
-			add(btnArmor);
+			btnShield.setRect(0, btnWeapon.bottom() + GAP, WIDTH, BTN_HEIGHT);
+			add(btnShield);
 
-			resize(WIDTH, (int) btnArmor.bottom());
+			resize(WIDTH, (int) btnShield.bottom());
 		} else {
 			resize(WIDTH, (int) btnWeapon.bottom());
 		}

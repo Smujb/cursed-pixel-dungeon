@@ -56,7 +56,6 @@ import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.allies.Soul;
-import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
@@ -209,25 +208,23 @@ public abstract class Mob extends Char {
 	}
 
 	private int normalHP(int level) {
-		return 21 * Item.calcMobPower(level);
+		return 7 * Item.calcMobPower(level);
 	}
 
-	public static final float FACTOR = 0.8f;
-
 	private int normalAttackSkill(int level) {
-		return (int) (9 + (level*FACTOR));
+		return (int) (9 + (level));
 	}
 
 	private int normalDefenseSkill(int level) {
-		return (int) (3 + (level*FACTOR));
+		return (int) (3 + (level));
 	}
 
 	private int normalPerception(int level) {
-		return (int) (9 + (level*FACTOR));
+		return (int) (9 + (level));
 	}
 
 	private int normalStealth(int level) {
-		return (int) (4 + (level*FACTOR));
+		return (int) (4 + (level));
 	}
 
 	private int normalDamageRoll(int level) {
@@ -235,23 +232,11 @@ public abstract class Mob extends Char {
 	}
 
 	protected final int normalMax(int level) {
-		return Item.calcMobPower(level) * 15;
+		return Item.calcMobPower(level) * 5;
 	}
 
 	protected final int normalMin(int level) {
-		return Item.calcMobPower(level) * 3;
-	}
-
-	private int normalDRRoll(int level) {
-		return Random.NormalIntRange(normalMinDR(level), normalMaxDR(level));
-	}
-
-	protected final int normalMaxDR(int level) {
-		return Item.calcMobPower(level);
-	}
-
-	protected final int normalMinDR(int level) {
-		return Item.calcMobPower(level)/4;
+		return Item.calcMobPower(level) * 2;
 	}
 
 	int findClosest(Char enemy, int pos) {
@@ -306,21 +291,6 @@ public abstract class Mob extends Char {
 			return super.damageRoll();
 		} else {
 			return affectDamageRoll( (int) (normalDamageRoll(level) * damageFactor));
-		}
-	}
-
-	@Override
-	public int drRoll(Element element) {
-		if (hasBelongings()) {
-			return super.drRoll(element);
-		} else {
-			int dr = 0;
-			if (element.isMagical()) {
-				dr = (int) (normalDRRoll(level) * drFactor);
-			} else {
-				dr = (int) (normalDRRoll(level) * elementaldrFactor);
-			}
-			return affectDRRoll(element, dr);
 		}
 	}
 
@@ -1391,14 +1361,8 @@ public abstract class Mob extends Char {
 	public static void holdMobs( Level level ) {
 		heldMobs.clear();
 		for (Mob mob : level.mobs.toArray( new  Mob[0] )) {
-			//preserve the ghost no matter where they are
-			if (mob instanceof DriedRose.GhostHero) {
-				((DriedRose.GhostHero) mob).clearDefensingPos();
-				level.mobs.remove( mob );
-				heldMobs.add(mob);
-				
 			//preserve intelligent allies if they are near the hero
-			} else if (mob.alignment == Alignment.ALLY
+			if (mob.alignment == Alignment.ALLY
 					&& mob.intelligentAlly
 					&& Dungeon.level.distance(Dungeon.hero.pos, mob.pos) <= 3){
 				level.mobs.remove( mob );

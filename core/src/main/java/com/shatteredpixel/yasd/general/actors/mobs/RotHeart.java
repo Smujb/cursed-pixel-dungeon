@@ -41,7 +41,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
 import com.shatteredpixel.yasd.general.plants.Rotberry;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.RotHeartSprite;
-import com.watabou.utils.Random;
 
 public class RotHeart extends Mob {
 
@@ -123,12 +122,7 @@ public class RotHeart extends Mob {
 		return 0;
 	}
 
-	@Override
-	public int drRoll(Element element) {
-		return Random.NormalIntRange(0, 5);
-	}
-	
-	{
+    {
 		immunities.add( Paralysis.class );
 		immunities.add( Amok.class );
 		immunities.add( Sleep.class );

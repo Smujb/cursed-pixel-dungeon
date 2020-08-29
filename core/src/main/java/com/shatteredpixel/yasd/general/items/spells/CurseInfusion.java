@@ -31,7 +31,6 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.quest.MetalShard;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
@@ -68,7 +67,7 @@ public class CurseInfusion extends InventorySpell {
 			if (w instanceof MagesStaff){
 				((MagesStaff) w).updateWand(true);
 			}
-		} else if (item instanceof Armor){
+		} /*else if (item instanceof Armor){
 			Armor a = (Armor) item;
 			if (a.glyph != null){
 				a.inscribe(Armor.Glyph.randomCurse(a.glyph.getClass()));
@@ -76,7 +75,7 @@ public class CurseInfusion extends InventorySpell {
 				a.inscribe(Armor.Glyph.randomCurse());
 			}
 			a.curseInfusionBonus = true;
-		} else if (item instanceof Wand){
+		}*/ else if (item instanceof Wand){
 			((Wand) item).curseInfusionBonus = true;
 			((Wand) item).updateLevel();
 		}

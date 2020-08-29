@@ -31,7 +31,6 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.effects.Enchanting;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -98,7 +97,7 @@ public class ScrollOfEnchantment extends ExoticScroll {
 					}
 				});
 			
-			} else if (item instanceof Armor) {
+			} /*else if (item instanceof Armor) {
 
 				final Armor.Glyph[] glyphs = new Armor.Glyph[3];
 				
@@ -134,7 +133,7 @@ public class ScrollOfEnchantment extends ExoticScroll {
 						//do nothing, reader has to cancel
 					}
 				});
-			} else {
+			}*/ else {
 				//TODO if this can ever be found un-IDed, need logic for that
 				((Item)source).collect();
 			}

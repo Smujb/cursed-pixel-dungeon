@@ -29,8 +29,6 @@ package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.items.Dewdrop;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
 import com.shatteredpixel.yasd.general.items.food.Blandfruit;
 import com.shatteredpixel.yasd.general.items.food.Food;
@@ -74,12 +72,6 @@ public class Challenges {
 			if (item instanceof Food && !(item instanceof SmallRation)) {
 				return true;
 			} else if (item instanceof HornOfPlenty){
-				return true;
-			}
-		}
-
-		if (Dungeon.isChallenged(NO_ARMOR)){
-			if (item instanceof Armor && !(item instanceof ClothArmor)) {
 				return true;
 			}
 		}

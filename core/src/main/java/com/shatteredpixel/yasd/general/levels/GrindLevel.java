@@ -166,10 +166,6 @@ public class GrindLevel extends TiledMapLevel {
 			updateHT(true);
 		}
 
-		@Override
-		public int drRoll(Element element) {
-			return (int) (super.drRoll(element));
-		}
 	}
 
 	public static class GreenGuardian extends Guardian {

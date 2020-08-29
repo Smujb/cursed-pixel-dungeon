@@ -5,7 +5,6 @@ import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.effects.Enchanting;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -28,8 +27,6 @@ public class ArcaneInfusion extends InventorySpell {
 
 		if (item instanceof Weapon) {
 			((Weapon) item).enchant(Random.Int(2) == 0 ? Weapon.Enchantment.randomUncommon() : Weapon.Enchantment.randomRare());
-		} else {
-			((Armor) item).inscribe(Random.Int(2) == 0 ? Armor.Glyph.randomUncommon() : Armor.Glyph.randomRare());
 		}
 
 		GLog.positive( Messages.get(this, "infuse", item.name()) );

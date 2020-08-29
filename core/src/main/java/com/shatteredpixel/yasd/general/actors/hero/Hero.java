@@ -70,7 +70,6 @@ import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.armor.glyphs.Viscosity;
 import com.shatteredpixel.yasd.general.items.artifacts.AlchemistsToolkit;
-import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.EtherealChains;
 import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
 import com.shatteredpixel.yasd.general.items.artifacts.TalismanOfForesight;
@@ -526,13 +525,13 @@ public class Hero extends Char {
 
 	@Override
 	public float sneakSkill(Char enemy) {
-		sneakSkill = 9 + (int) (lvl * Mob.FACTOR) + getExecution();
+		sneakSkill = 9 + (int) (lvl * 0.8f) + getExecution();
 		return super.sneakSkill(enemy);
 	}
 
 	@Override
 	public float noticeSkill(Char enemy) {
-		noticeSkill = 4 + (int) (lvl * Mob.FACTOR) + getAssault();
+		noticeSkill = 4 + (int) (lvl * 0.8f) + getAssault();
 		return super.noticeSkill(enemy);
 	}
 
@@ -545,7 +544,6 @@ public class Hero extends Char {
 		info.shld = bundle.getInt(Char.TAG_SHLD);
 		info.heroClass = HeroClass.restoreInBundle(bundle);
 		info.subClass = HeroSubClass.restoreInBundle(bundle);
-		Belongings.preview(info, bundle);
 	}
 
 	public String className() {
@@ -587,19 +585,20 @@ public class Hero extends Char {
 		Buff.affect(this, StaminaRegen.class);
 	}
 
+	//TODO rework hero sprites
 	public int tier() {
-		return belongings.getArmor() == null ? 0 : belongings.getArmor().appearance();
+		return 6;
 	}
 
 	@Override
 	public int attackSkill(Char target) {
-		attackSkill = 9 + (int) (lvl * Mob.FACTOR) + getResilience();
+		attackSkill = 9 + (int) (lvl * 0.8f) + getResilience();
 		return super.attackSkill(target);
 	}
 
 	@Override
 	public int defenseSkill(Char enemy) {
-		defenseSkill = 3 + (int) (lvl * Mob.FACTOR) + getSupport();
+		defenseSkill = 3 + (int) (lvl * 0.8f) + getSupport();
 		return super.defenseSkill(enemy);
 	}
 
@@ -890,7 +889,6 @@ public class Hero extends Char {
 
 					if (item instanceof Dewdrop
 							|| item instanceof TimekeepersHourglass.sandBag
-							|| item instanceof DriedRose.Petal
 							|| item instanceof Key) {
 						//Do Nothing
 					} else {
@@ -909,7 +907,6 @@ public class Hero extends Char {
 				} else {
 					if (item instanceof Dewdrop
 							|| item instanceof TimekeepersHourglass.sandBag
-							|| item instanceof DriedRose.Petal
 							|| item instanceof Key) {
 						//Do Nothing
 					} else {

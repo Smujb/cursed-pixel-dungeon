@@ -34,7 +34,6 @@ import com.shatteredpixel.yasd.general.items.DewVial;
 import com.shatteredpixel.yasd.general.items.Torch;
 import com.shatteredpixel.yasd.general.items.armor.curses.Bulk;
 import com.shatteredpixel.yasd.general.items.artifacts.CloakOfShadows;
-import com.shatteredpixel.yasd.general.items.artifacts.DriedRose;
 import com.shatteredpixel.yasd.general.items.artifacts.EtherealChains;
 import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
 import com.shatteredpixel.yasd.general.items.artifacts.TalismanOfForesight;
@@ -43,9 +42,9 @@ import com.shatteredpixel.yasd.general.items.artifacts.UnstableSpellbook;
 import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
+import com.shatteredpixel.yasd.general.items.rings.RingOfExecution;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
 import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
-import com.shatteredpixel.yasd.general.items.rings.RingOfExecution;
 import com.shatteredpixel.yasd.general.items.rings.RingOfSharpshooting;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfAugmentation;
@@ -54,9 +53,9 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfCorrosion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfCorruption;
 import com.shatteredpixel.yasd.general.items.weapon.curses.Wayward;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Lucky;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.ChangesScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
@@ -809,7 +808,7 @@ public class v0_6_X_Changes {
 				"_-_ Max charges reduced from 3-8 to 2-6\n\n" +
 				"_-_ Recharge speed has been reduced slightly" ));
 		
-		changes.addButton( new ChangeButton( new DriedRose().upgrade(10),
+		changes.addButton( new ChangeButton( new ItemSprite(ItemSpriteSheet.ARTIFACT_ROSE3), "Dried Rose",
 				"The ghost hero summoned by the rose is now much more capable and is also much less temporary:\n\n" +
 				"_-_ Ghost can now be equipped with a getWeapons and getArmors and uses them just like the hero.\n" +
 				"_-_ Ghost no longer takes damage over time as long as the rose remains equipped.\n" +

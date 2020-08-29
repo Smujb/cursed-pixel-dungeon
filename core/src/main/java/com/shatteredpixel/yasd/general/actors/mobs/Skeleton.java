@@ -39,7 +39,6 @@ import com.shatteredpixel.yasd.general.sprites.SkeletonSprite;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PathFinder;
-import com.watabou.utils.Random;
 
 public class Skeleton extends Mob {
 	
@@ -86,8 +85,7 @@ public class Skeleton extends Mob {
 		for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
 			Char ch = findChar( pos + PathFinder.NEIGHBOURS8[i] );
 			if (ch != null && ch.isAlive()) {
-				int damage = Random.NormalIntRange(6, 12);
-				damage = Math.max( 0,  damage - ch.drRoll(Element.PHYSICAL) );
+				int damage = damageRoll();
 				ch.damage( damage, new DamageSrc(Element.PHYSICAL, this));
 				if (ch == Dungeon.hero && !ch.isAlive()) {
 					heroKilled = true;

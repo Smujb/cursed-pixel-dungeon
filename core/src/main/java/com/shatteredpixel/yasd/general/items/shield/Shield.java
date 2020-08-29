@@ -34,13 +34,20 @@ import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.effects.Speck;
+import com.shatteredpixel.yasd.general.items.BrokenSeal;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
+import com.shatteredpixel.yasd.general.sprites.ItemSprite;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.noosa.particles.Emitter;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.GameMath;
 import com.watabou.utils.Random;
 
@@ -56,6 +63,7 @@ public abstract class Shield extends KindofMisc {
     }
 
     public static final String AC_PARRY = "parry";
+    protected static final String AC_DETACH       = "detach";
 
     private static final float PARRY_DURATION = 1f;
 
@@ -66,10 +74,13 @@ public abstract class Shield extends KindofMisc {
     protected float defenseMultiplier = 1f;
     protected float damageFactor = 1f;
 
+    private BrokenSeal seal;
+
     @Override
     public ArrayList<String> actions(Hero hero) {
         ArrayList<String> actions = super.actions(hero);
         actions.add(AC_PARRY);
+        if (seal != null) actions.add(AC_DETACH);
         return actions;
     }
 
@@ -79,6 +90,13 @@ public abstract class Shield extends KindofMisc {
         if (action.equals(AC_PARRY)) {
             Buff.affect(hero, Parry.class).setShield(this);
             hero.spendAndNext(parryTime());
+        } else if (action.equals(AC_DETACH) && seal != null){
+            GLog.info( Messages.get(this, "detach_seal") );
+            hero.sprite.operate(hero.pos);
+            if (!seal.collect()){
+                Dungeon.level.drop(seal, hero.pos);
+            }
+            seal = null;
         }
     }
 
@@ -97,6 +115,49 @@ public abstract class Shield extends KindofMisc {
 
     protected final void decreaseCharge(float value) {
         increaseCharge(-value);
+    }
+
+    public BrokenSeal checkSeal() {
+        return seal;
+    }
+
+    public void affixSeal(BrokenSeal seal) {
+        this.seal = seal;
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        seal = null;
+    }
+
+    @Override
+    public void setupEmitters(ItemSprite sprite) {
+        super.setupEmitters(sprite);
+        if (seal != null) {
+            Emitter emitter = emitter(sprite);
+            emitter.move(ItemSpriteSheet.film.width(image) / 2f + 2f, ItemSpriteSheet.film.height(image) / 3f);
+            emitter.fillTarget = false;
+            emitter.pour(Speck.factory(Speck.RED_LIGHT), 0.6f);
+        }
+    }
+
+    @Override
+    public int level() {
+        int lvl = super.level();
+        if (seal != null) {
+            lvl += seal.level();
+        }
+        return lvl;
+    }
+
+    @Override
+    public Item upgrade() {
+        if (seal != null && seal.isUpgradable()) {
+            seal.upgrade();
+            return this;
+        }
+        return super.upgrade();
     }
 
     private Charger charger = null;
@@ -127,7 +188,7 @@ public abstract class Shield extends KindofMisc {
     }
 
     public static float defaultMaxDefense(float lvl) {
-        return Math.round(30 * lvl);
+        return Math.round(10 * lvl);
     }
 
     public int maxDefense(float lvl) {
@@ -176,6 +237,23 @@ public abstract class Shield extends KindofMisc {
             return null;
         }
         return Messages.format( "%d%%", Math.round(charge) );
+    }
+
+    private static final String SEAL            = "seal";
+    private static final String CHARGE            = "charge";
+
+    @Override
+    public void storeInBundle(Bundle bundle) {
+        super.storeInBundle(bundle);
+        bundle.put(SEAL, seal);
+        bundle.put(CHARGE, charge);
+    }
+
+    @Override
+    public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle(bundle);
+        seal = (BrokenSeal) bundle.get(SEAL);
+        charge = bundle.getFloat(CHARGE);
     }
 
     public static class Parry extends Buff {

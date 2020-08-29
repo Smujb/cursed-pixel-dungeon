@@ -27,11 +27,10 @@
 
 package com.shatteredpixel.yasd.general.ui.changelist;
 
-import com.shatteredpixel.yasd.general.items.Stylus;
 import com.shatteredpixel.yasd.general.items.armor.HeavyArmor;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
 import com.shatteredpixel.yasd.general.items.weapon.melee.RunicBlade;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.ChangesScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -212,7 +211,7 @@ public class v0_4_X_Changes {
 				"_-_ Arcane styli slightly more common\n" +
 				"_-_ Better item drops on floors 22-24"));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(new Stylus()), "Curse, Enchant, & Glyph Overhaul!",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.STYLUS), "Curse, Enchant, & Glyph Overhaul!",
 				"_-_ 3 new enchants, 10 rebalanced enchants\n" +
 				"_-_ 8 new glyphs, 5 rebalanced glyphs\n" +
 				"_-_ 12 new curse effects\n" +

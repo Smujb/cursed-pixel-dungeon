@@ -53,7 +53,7 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
-public class WandOfTransfusion extends Wand {
+public class WandOfTransfusion extends DamageWand {
 
 	{
 		image = ItemSpriteSheet.WAND_TRANSFUSION;
@@ -95,7 +95,7 @@ public class WandOfTransfusion extends Wand {
 				int charmDuration = 2 + power()/4;
 				if (ch.properties().contains(Char.Property.UNDEAD)) {
 					//harms the undead
-					ch.damage(Random.NormalIntRange(3 + intLevel/2, 6+intLevel), new Char.DamageSrc(Element.LIGHT, this).ignoreDefense());
+					ch.damage(damageRoll(), new Char.DamageSrc(Element.LIGHT, this));
 					ch.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10 + intLevel);
 					Sample.INSTANCE.play(Assets.Sounds.BURNING);
 				} else {

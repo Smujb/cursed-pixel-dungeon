@@ -31,7 +31,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.buffs.ShieldBuff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -68,8 +68,7 @@ public class BrokenSeal extends Item {
 		super.execute(hero, action);
 
 		if (action.equals(AC_AFFIX)){
-			//curItem = this;
-			GameScene.selectItem(armorSelector, WndBag.Mode.ARMOR, Messages.get(this, "prompt"));
+			GameScene.selectItem(armorSelector, WndBag.Mode.SHIELD, Messages.get(this, "prompt"));
 		}
 	}
 
@@ -81,21 +80,17 @@ public class BrokenSeal extends Item {
 	private WndBag.Listener armorSelector = new WndBag.Listener(this) {
 		@Override
 		public void onSelect( Item item ) {
-			if (item instanceof Armor) {
-				Armor armor = (Armor)item;
-				if (!armor.levelKnown){
-					GLog.warning(Messages.get(BrokenSeal.class, "unknown_armor"));
-				} else if (armor.cursed || armor.level() < 0){
-					GLog.warning(Messages.get(BrokenSeal.class, "degraded_armor"));
+			if (item instanceof Shield) {
+				Shield shield = (Shield)item;
+				if (!shield.levelKnown){
+					GLog.warning(Messages.get(BrokenSeal.class, "unknown_shield"));
+				} else if (shield.cursed || shield.level() < 0){
+					GLog.warning(Messages.get(BrokenSeal.class, "degraded_shield"));
 				} else {
 					GLog.positive(Messages.get(BrokenSeal.class, "affix"));
 					Dungeon.hero.sprite.operate(Dungeon.hero.pos);
 					Sample.INSTANCE.play(Assets.Sounds.UNLOCK);
-					//armor.affixSeal((BrokenSeal)curItem);
-					armor.affixSeal((BrokenSeal)source);
-					if (armor.level() > 20) {
-						armor.degrade(armor.level() - 20);
-					}
+					shield.affixSeal((BrokenSeal)source);
 					((Item)source).detach(Dungeon.hero.belongings.backpack);
 				}
 			}
@@ -103,8 +98,6 @@ public class BrokenSeal extends Item {
 	};
 
 	public static class WarriorShield extends ShieldBuff {
-
-		private Armor armor;
 		private float partialShield;
 
 		@Override
@@ -118,7 +111,7 @@ public class BrokenSeal extends Item {
 				partialShield--;
 			}
 			
-			if (shielding() <= 0 && maxShield() <= 0){
+			if (shielding() <= 0){
 				detach();
 			}
 			
@@ -132,18 +125,10 @@ public class BrokenSeal extends Item {
 			}
 		}
 
-		public synchronized void setArmor(Armor arm){
-			armor = arm;
+		public int maxShield() {
+			return Dungeon.hero.levelToScaleFactor();
 		}
 
-		public synchronized int maxShield() {
-			if (armor != null && armor.isEquipped(target)) {
-				return 1 + armor.level();
-			} else {
-				return 0;
-			}
-		}
-		
 		@Override
 		//logic edited slightly as buff should not detach
 		public int absorbDamage(int dmg) {

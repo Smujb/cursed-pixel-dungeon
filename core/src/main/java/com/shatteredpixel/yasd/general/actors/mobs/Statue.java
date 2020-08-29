@@ -39,8 +39,8 @@ import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
@@ -107,8 +107,8 @@ public class Statue extends Mob implements Callback {
 			int type = Random.Int(4);
 			switch (type) {
 				default:
-					item = Generator.randomArmor();
-					if (belongings.getArmor() == null) {
+					item = Generator.randomShield();
+					if (belongings.getMiscsOfType(Shield.class).size() < 3) {
 						con = true;
 					}
 					break;
@@ -142,7 +142,7 @@ public class Statue extends Mob implements Callback {
 	protected void upgradeItems() {
 		int sous = Dungeon.getScaleFactor()*5;
 		EquipableItem item;
-		if (belongings.miscs.length > 0 || belongings.getWeapon() != null || belongings.getArmor() != null) {
+		if (belongings.miscs.length > 0) {
 			do {
 				do {
 					item = null;
@@ -168,7 +168,7 @@ public class Statue extends Mob implements Callback {
 			if (wand instanceof WandOfWarding) {//Wand of Warding cannot zap directly
 				int closest = findClosest(enemy, pos);
 
-				if (closest == -1){
+				if (closest == -1) {
 					sprite.centerEmitter().burst(MagicMissile.WardParticle.FACTORY, 8);
 					spend(TICK);
 					next();
@@ -185,10 +185,7 @@ public class Statue extends Mob implements Callback {
 	@Override
 	public CharSprite sprite() {
 		CharSprite sprite = super.sprite();
-		Armor armor = belongings.getArmor();
-		if (armor != null) {
-			((StatueSprite) sprite).setArmor(armor.appearance());
-		}
+		((StatueSprite) sprite).setArmor(0);
 		return sprite;
 	}
 
@@ -255,8 +252,6 @@ public class Statue extends Mob implements Callback {
 
 	public void dropGear() {
 		ArrayList<Item> items = new ArrayList<>(Arrays.asList(belongings.miscs));
-		items.add(belongings.getWeapon());
-		items.add(belongings.getArmor());
 		for (Item item : items) {
 			if (item != null) {
 				Dungeon.level.drop(item.identify(), pos).sprite.drop();

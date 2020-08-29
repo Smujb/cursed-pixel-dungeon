@@ -55,7 +55,7 @@ public class Golem extends Mob {
 		
 		EXP = 12;
 
-		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR);
+		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.SHIELD);
 		lootChance = 0.125f; //initially, see rollToDropLoot
 		
 		properties.add(Property.INORGANIC);
@@ -81,7 +81,7 @@ public class Golem extends Mob {
 		if (loot == Generator.Category.WEAPON){
 			return Generator.randomWeapon();
 		} else {
-			return Generator.randomArmor();
+			return Generator.randomShield();
 		}
 	}
 

@@ -38,13 +38,7 @@ import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
 import com.shatteredpixel.yasd.general.items.allies.PoisonDragonPendant;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
-import com.shatteredpixel.yasd.general.items.armor.ChainArmor;
 import com.shatteredpixel.yasd.general.items.armor.ClothArmor;
-import com.shatteredpixel.yasd.general.items.armor.HuntressArmor;
-import com.shatteredpixel.yasd.general.items.armor.MageArmor;
-import com.shatteredpixel.yasd.general.items.armor.PriestessArmor;
-import com.shatteredpixel.yasd.general.items.armor.RogueArmor;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.bags.PotionBandolier;
 import com.shatteredpixel.yasd.general.items.bags.PowerHolder;
@@ -63,6 +57,8 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRage;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.yasd.general.items.shield.RoundShield;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
@@ -202,7 +198,7 @@ public enum HeroClass {
 		if (hero.belongings.miscs[0] == null) {
 			hero.belongings.miscs[0] = (KindofMisc) new Sword().identify();
 		}
-		hero.belongings.miscs[1] = (Armor) new ChainArmor().identify();
+		hero.belongings.miscs[1] = (Shield) new RoundShield().identify();
 		ThrowingStone stones = new ThrowingStone();
 		stones.quantity(3).collect();
 		Dungeon.quickslot.setSlot(0, hero.belongings.getWeapon());
@@ -225,7 +221,6 @@ public enum HeroClass {
 		} else {
 			staff.collect();
 		}
-		hero.belongings.miscs[1] = (Armor) new MageArmor().identify();
 
 		new Blink().collect();
 
@@ -241,7 +236,6 @@ public enum HeroClass {
 		if (hero.belongings.miscs[0] == null) {
 			hero.belongings.miscs[0] = (KindofMisc) new Dagger().identify();
 		}
-		hero.belongings.miscs[1] = (Armor) new RogueArmor().identify();
 
 		ThrowingKnife knives = new ThrowingKnife();
 		knives.quantity(3).collect();
@@ -259,9 +253,8 @@ public enum HeroClass {
 		if (hero.belongings.miscs[0] == null) {
 			hero.belongings.miscs[0] = (KindofMisc) new Glove().identify();
 		}
-		hero.belongings.miscs[1] = (Armor) new HuntressArmor().identify();
 		SpiritBow bow = (SpiritBow) new SpiritBow().identify();
-		hero.belongings.miscs[2] = bow;
+		hero.belongings.miscs[1] = bow;
 
 		Dungeon.quickslot.setSlot(0, hero.belongings.getWeapon());
 		Dungeon.quickslot.setSlot(1, bow);
@@ -277,8 +270,7 @@ public enum HeroClass {
 		if (hero.belongings.miscs[0] == null) {
 			hero.belongings.miscs[0] = (KindofMisc) new RunicBlade().identify();
 		}
-		hero.belongings.miscs[1] = (Armor) new PriestessArmor().identify();
-		(hero.belongings.miscs[2] = new PoisonDragonPendant()).identify();
+		(hero.belongings.miscs[1] = new PoisonDragonPendant()).identify();
 
 		Dungeon.quickslot.setSlot(0, hero.belongings.getWeapon());
 

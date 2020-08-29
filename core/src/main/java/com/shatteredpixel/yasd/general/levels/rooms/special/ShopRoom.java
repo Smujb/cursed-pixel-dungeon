@@ -38,7 +38,6 @@ import com.shatteredpixel.yasd.general.items.Honeypot;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.MerchantsBeacon;
 import com.shatteredpixel.yasd.general.items.Torch;
-import com.shatteredpixel.yasd.general.items.armor.Armor;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
@@ -51,6 +50,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRemoveCurse;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfAugmentation;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfRepair;
@@ -178,14 +178,11 @@ public class ShopRoom extends SpecialRoom {
 
 	}
 
-	private Armor generateArmor() {
-		Armor armor = (Armor) Generator.randomArmor().identify();
-		armor.randomHigh();
-		armor.cursed = false;
-		if (armor.hasCurseGlyph()) {
-			armor.inscribe(Armor.Glyph.random());
-		}
-		return armor;
+	private Shield generateShield() {
+		Shield shield = (Shield) Generator.randomShield().identify();
+		shield.randomHigh();
+		shield.cursed = false;
+		return shield;
 	}
 
 	private MeleeWeapon generateWeapon() {
@@ -225,8 +222,8 @@ public class ShopRoom extends SpecialRoom {
 				break;
 		}
 		for (int a = 0; a < Random.IntRange(2,3); a++) {
-			Armor armor = generateArmor();
-			itemsToSpawn.add( armor );
+			Shield shield = generateShield();
+			itemsToSpawn.add( shield );
 		}
 
 		for (int a = 0; a < Random.IntRange(2,3); a++) {
