@@ -1389,7 +1389,7 @@ public class Hero extends Char {
 	public void earnExp(int exp, Class source, boolean show) {
 
 		if (exp > 0 && show) {
-			Dungeon.hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "exp", exp));
+			Dungeon.hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(Mob.class, "exp", exp));
 		}
 		this.exp += exp;
 		float percent = exp / (float) maxExp();
