@@ -188,7 +188,7 @@ public abstract class Shield extends KindofMisc {
     }
 
     public static float defaultMaxDefense(float lvl) {
-        return Math.round(10 * lvl);
+        return Math.round(5 * lvl);
     }
 
     public int maxDefense(float lvl) {
@@ -207,7 +207,8 @@ public abstract class Shield extends KindofMisc {
 
     public void affectEnemy(Char enemy, boolean parry) {
         if (curUser != null && Dungeon.level.adjacent(curUser.pos, enemy.pos)) {
-            enemy.damage(Math.round(defaultMaxDefense(power()) * damageFactor / 3f), new Char.DamageSrc(Element.PHYSICAL, this));
+            int damage = Random.Int(Math.round(defaultMaxDefense(power())/2), Math.round(defaultMaxDefense(power())));
+            enemy.damage(damage, new Char.DamageSrc(Element.PHYSICAL, this));
         }
     }
 
