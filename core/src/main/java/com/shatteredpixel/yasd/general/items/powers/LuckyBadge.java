@@ -421,7 +421,7 @@ public class LuckyBadge extends Power {
 					returnKey = Dungeon.key;
 					returnPos = Dungeon.hero.pos;
 					returnDepth = Dungeon.depth;
-					LevelHandler.move(AC_GRIND, Messages.get(this, AC_GRIND), LevelHandler.Mode.RETURN, 0, -1);
+					LevelHandler.move(AC_GRIND, Messages.get(LuckyBadge.class, AC_GRIND), LevelHandler.Mode.RETURN, 0, -1);
 				}
 			};
 			okButton.setRect(0, pos, WIDTH, BTN_HEIGHT);
