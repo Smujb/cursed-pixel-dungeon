@@ -1,7 +1,9 @@
 package com.shatteredpixel.yasd.general.levels;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.StoryChapter;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
@@ -27,7 +29,15 @@ public class SurfaceLevel extends TiledMapLevel {
 				mobs.add(npc);
 			}
 		}
-		locked = true;
+
+		StoryChapter chapter = CPDSettings.storyChapter();
+		if (chapter != StoryChapter.FIRST) {
+			set(getExitPos(), Terrain.EMPTY);
+			setExit(-1);
+			if (chapter == StoryChapter.SECOND) {
+				set(20 + 4 * SIZE, Terrain.DOOR);
+			}
+		}
 		return build;
 	}
 
