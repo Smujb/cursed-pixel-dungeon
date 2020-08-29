@@ -63,6 +63,50 @@ public class CPDGame extends Game {
 	public CPDGame(PlatformSupport platform ) {
 		super( sceneClass == null ? WelcomeScene.class : sceneClass, platform );
 
+
+		//Replaces removed "shield" weapon and armours with new shields
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.shield.RoundShield.class,
+				"com.shatteredpixel.yasd.general.items.weapon.melee.Shield" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.shield.RoundShield.class,
+				"com.shatteredpixel.yasd.general.items.armor.BasicArmor" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.shield.WarpShield.class,
+				"com.shatteredpixel.yasd.general.items.armor.ChainArmor" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.shield.WoodenShield.class,
+				"com.shatteredpixel.yasd.general.items.armor.ClothArmor" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.shield.GreatShield.class,
+				"com.shatteredpixel.yasd.general.items.armor.HeavyArmor" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.shield.LightShield.class,
+				"com.shatteredpixel.yasd.general.items.armor.HuntressArmor");
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.shield.LightShield.class,
+				"com.shatteredpixel.yasd.general.items.armor.LightArmor");
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.shield.SpiritualShield.class,
+				"com.shatteredpixel.yasd.general.items.armor.MageArmor");
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.shield.WarpShield.class,
+				"com.shatteredpixel.yasd.general.items.armor.PriestessArmor");
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.shield.ParryShield.class,
+				"com.shatteredpixel.yasd.general.items.armor.RogueArmor");
+
+
+		//Renaming
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.melee.Katana.class,
 				"com.shatteredpixel.yasd.general.items.weapon.melee.Sai" );

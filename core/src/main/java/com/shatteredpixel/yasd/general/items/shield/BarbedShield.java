@@ -1,5 +1,6 @@
 package com.shatteredpixel.yasd.general.items.shield;
 
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class BarbedShield extends Shield {
@@ -9,5 +10,7 @@ public class BarbedShield extends Shield {
         damageFactor = 2f;
 
         defenseMultiplier = 0.5f;
+
+        statScaling.add(Hero.HeroStat.EXECUTION);
     }
 }

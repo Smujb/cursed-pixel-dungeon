@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general.items.shield;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class ParryShield extends Shield {
@@ -8,6 +9,8 @@ public class ParryShield extends Shield {
         image = ItemSpriteSheet.Shields.PARRY;
 
         damageFactor = 2f;
+
+        statScaling.add(Hero.HeroStat.EXECUTION);
     }
 
     @Override

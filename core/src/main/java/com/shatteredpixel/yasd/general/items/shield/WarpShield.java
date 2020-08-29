@@ -3,6 +3,7 @@ package com.shatteredpixel.yasd.general.items.shield;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.powers.Blink;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -16,6 +17,8 @@ public class WarpShield extends Shield {
 
         defenseMultiplier = 0.75f;
         chargePerTurn = 1f;
+
+        statScaling.add(Hero.HeroStat.SUPPORT);
     }
 
     @Override
