@@ -70,12 +70,12 @@ public class MeleeWeapon extends Weapon implements Attackable {
 
 	@Override
 	public int min(float lvl) {
-		return Math.round(2*lvl);    //level scaling
+		return Math.round(2 * lvl * damageMultiplier);   //level scaling
 	}
 
 	@Override
 	public int max(float lvl) {
-		return (int) (5*lvl*damageMultiplier);   //level scaling
+		return Math.round(5 * lvl * damageMultiplier);   //level scaling
 	}
 
 	@Override
@@ -179,7 +179,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 		if (levelKnown) {
 			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_known", augment.damageFactor(min()), augment.damageFactor(max()));
 		} else {
-			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", min(0), max(0));
+			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", min(1f), max(1f));
 		}
 
 		if (DLY != 1f | ACC != 1f | RCH != 1 | breaksArmor(curUser) | !canSurpriseAttack | defenseFactor(curUser) > 0 | sneakBenefit) {

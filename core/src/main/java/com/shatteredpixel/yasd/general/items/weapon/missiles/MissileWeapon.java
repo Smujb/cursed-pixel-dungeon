@@ -87,12 +87,12 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 
 	@Override
 	public int min(float lvl) {
-		return Math.round(2 * lvl);    //level scaling
+		return Math.round(2 * lvl * damageMultiplier);   //level scaling
 	}
 
 	@Override
 	public int max(float lvl) {
-		return (int) (4 * lvl * damageMultiplier);   //level scaling
+		return Math.round(4 * lvl * damageMultiplier);   //level scaling
 	}
 
 	@Override
