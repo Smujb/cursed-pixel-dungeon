@@ -35,7 +35,7 @@ public class SurfaceLevel extends TiledMapLevel {
 			set(getExitPos(), Terrain.EMPTY);
 			setExit(-1);
 			if (chapter == StoryChapter.SECOND) {
-				set(20 + 4 * SIZE, Terrain.DOOR);
+				set(20 + 5 * SIZE, Terrain.DOOR);
 			}
 		}
 		return build;
@@ -92,6 +92,11 @@ public class SurfaceLevel extends TiledMapLevel {
 
 	public Actor respawner() {
 		return null;
+	}
+
+	@Override
+	public int fallCell(boolean fallIntoPit) {
+		return getEntrancePos();
 	}
 
 	@Override
