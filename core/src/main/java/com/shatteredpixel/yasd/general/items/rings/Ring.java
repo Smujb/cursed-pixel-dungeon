@@ -192,7 +192,7 @@ public class Ring extends KindofMisc {
 			desc += "\n\n" + statsInfo();
 		}
 		
-		return desc;
+		return desc + statsReqDesc();
 	}
 	
 	protected String statsInfo(){
