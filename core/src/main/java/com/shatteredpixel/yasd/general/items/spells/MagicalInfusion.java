@@ -73,8 +73,8 @@ public class MagicalInfusion extends InventorySpell {
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
 
 		{
-			inputs =  new Class[]{ScrollOfUpgrade.class, ScrollOfUpgrade.class, ScrollOfTransmutation.class};//Scroll of Upgrade x2 + Scroll of Transmutation
-			inQuantity = new int[]{ 1, 1, 1 };
+			inputs =  new Class[]{ScrollOfUpgrade.class, ScrollOfTransmutation.class};//Scroll of Upgrade x2 + Scroll of Transmutation
+			inQuantity = new int[]{ 2, 1 };
 
 			cost = 4;
 
