@@ -299,11 +299,16 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 	}
 
 	public static StoryChapter storyChapter() {
+		StoryChapter chapter;
 		try {
-			return Enum.valueOf(StoryChapter.class, getString(KEY_CHAPTER, StoryChapter.FIRST.name()));
+			chapter = Enum.valueOf(StoryChapter.class, getString(KEY_CHAPTER, StoryChapter.FIRST.name()));
 		} catch (Exception e) {
-			return StoryChapter.FIRST;
+			chapter = StoryChapter.FIRST;
 		}
+		if (!chapter.unlocked()) {
+			chapter = StoryChapter.FIRST;
+		}
+		return chapter;
 	}
 
 	public static void unlockStoryChapter(StoryChapter chapter) {
