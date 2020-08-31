@@ -57,7 +57,7 @@ public class Entrance extends InteractiveCell {
 			hero.ready();
 			return;
 		}
-		if (Dungeon.depth == 1) {
+		if (Dungeon.depth == 0) {
 
 			if (hero.belongings.getItem(Amulet.class) == null) {
 				Game.runOnRenderThread(new Callback() {
@@ -69,10 +69,13 @@ public class Entrance extends InteractiveCell {
 				hero.ready();
 			} else {
 				Badges.silentValidateHappyEnd();
-				if (!Dungeon.testing) {
-					Dungeon.win(Amulet.class);
-					Game.switchScene(SurfaceScene.class);
-				}
+				Dungeon.win(Amulet.class, new Callback() {
+					@Override
+					public void call() {
+						Game.switchScene(SurfaceScene.class);
+					}
+				});
+
 				Dungeon.deleteGame(GamesInProgress.curSlot, true);
 			}
 

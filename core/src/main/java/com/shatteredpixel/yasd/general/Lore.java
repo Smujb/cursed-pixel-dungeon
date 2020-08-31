@@ -27,16 +27,18 @@
 
 package com.shatteredpixel.yasd.general;
 
+import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.SurfaceLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.caves.CavesLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel;
-import com.shatteredpixel.yasd.general.levels.chapters.sewers.FirstLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.halls.HallsLevel;
-import com.shatteredpixel.yasd.general.levels.Level;
+import com.shatteredpixel.yasd.general.levels.chapters.halls.LastLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.prison.PrisonLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.sewers.FirstLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.TextScene;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Callback;
 
 import java.util.HashMap;
@@ -52,23 +54,42 @@ public class Lore {
 		CHAPTERS.put( CavesLevel.class, "caves" );
 		CHAPTERS.put( CityLevel.class, "city" );
 		CHAPTERS.put( HallsLevel.class, "halls" );
+		CHAPTERS.put( LastLevel.class, "outro" );
 	}
 
 	public static void showChapter( Level level ) {
+		showChapter(level.getClass(), level.loadImg(), null);
+	}
 
-		String key = CHAPTERS.get(level.getClass());
+
+	public static void showChapter( Class<? extends Level> levelClass, String img, Callback callback ) {
+
+		String key = CHAPTERS.get(levelClass);
+		if (levelClass == SurfaceLevel.class || levelClass == LastLevel.class) {
+			key += "_" + CPDSettings.storyChapter().name();
+		}
 		if (CPDSettings.watchedCutscene(key) && !CPDSettings.cutscenes()) {
 			return;
 		}
 		String text = Messages.get(Lore.class, key);
+		GLog.negative(key);
 		if (!text.contains("missed_string") && !text.equals("TODO")) {
-			TextScene.init(text, null, level.loadImg(), 5, 0.67f, new Callback() {
+			GLog.negative( " SA");
+			String finalKey = key;
+			TextScene.init(text, null, img, 5, 0.67f, new Callback() {
 				@Override
 				public void call() {
-					CPDSettings.watchedCutscene(key, true);
+					CPDSettings.watchedCutscene(finalKey, true);
 					CPDGame.switchScene(GameScene.class);
+					if (callback != null) {
+						callback.call();
+					}
 				}
 			}, null, false, CPDSettings.watchedCutscene(key));
+		} else {
+			if (callback != null) {
+				callback.call();
+			}
 		}
 	}
 }

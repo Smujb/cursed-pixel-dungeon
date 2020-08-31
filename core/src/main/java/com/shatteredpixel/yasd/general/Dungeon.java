@@ -83,6 +83,7 @@ import com.shatteredpixel.yasd.general.utils.DungeonSeed;
 import com.watabou.noosa.Game;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.Callback;
 import com.watabou.utils.FileUtils;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -790,7 +791,7 @@ public class Dungeon {
 		}
 	}
 	
-	public static void win( Class cause ) {
+	public static void win(Class cause, Callback callback) {
 
 		hero.belongings.identify();
 
@@ -803,7 +804,10 @@ public class Dungeon {
 			Badges.validateChampion(chCount);
 		}
 
-		Rankings.INSTANCE.submit( true, cause );
+		if (!testing) {
+			Rankings.INSTANCE.submit(true, cause);
+		}
+		Lore.showChapter(LastLevel.class, Assets.Interfaces.LOADING_HALLS, callback);
 	}
 
 	//TODO hero max vision is now separate from shadowcaster max vision. Might want to adjust.

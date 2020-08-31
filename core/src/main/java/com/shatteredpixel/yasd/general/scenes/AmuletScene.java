@@ -40,6 +40,7 @@ import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
+import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 public class AmuletScene extends PixelScene {
@@ -70,11 +71,13 @@ public class AmuletScene extends PixelScene {
 		RedButton btnExit = new RedButton( Messages.get(this, "exit") ) {
 			@Override
 			protected void onClick() {
-				if (!Dungeon.testing) {
-					Dungeon.win(Amulet.class);
-				}
+				Dungeon.win(Amulet.class, new Callback() {
+					@Override
+					public void call() {
+						Game.switchScene( RankingsScene.class );
+					}
+				});
 				Dungeon.deleteGame( GamesInProgress.curSlot, true );
-				Game.switchScene( RankingsScene.class );
 			}
 		};
 		btnExit.setSize( WIDTH, BTN_HEIGHT );
