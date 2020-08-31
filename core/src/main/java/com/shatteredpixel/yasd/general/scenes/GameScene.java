@@ -82,6 +82,7 @@ import com.shatteredpixel.yasd.general.ui.Banner;
 import com.shatteredpixel.yasd.general.ui.BusyIndicator;
 import com.shatteredpixel.yasd.general.ui.CharHealthIndicator;
 import com.shatteredpixel.yasd.general.ui.GameLog;
+import com.shatteredpixel.yasd.general.ui.Icons;
 import com.shatteredpixel.yasd.general.ui.LootIndicator;
 import com.shatteredpixel.yasd.general.ui.QuickSlotButton;
 import com.shatteredpixel.yasd.general.ui.ResumeIndicator;
@@ -103,6 +104,7 @@ import com.shatteredpixel.yasd.general.windows.WndInfoPlant;
 import com.shatteredpixel.yasd.general.windows.WndInfoTrap;
 import com.shatteredpixel.yasd.general.windows.WndMessage;
 import com.shatteredpixel.yasd.general.windows.WndOptions;
+import com.shatteredpixel.yasd.general.windows.WndTitledMessage;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Gizmo;
@@ -478,6 +480,9 @@ public class GameScene extends PixelScene {
 		
 		fadeIn();
 
+		if (!CPDSettings.storyChapter().finished() && Dungeon.depth == 0) {
+			add(new WndTitledMessage(Icons.WARNING.get(), Messages.get(this, "unfinished"), Messages.get(this, "unfinished_warning")));
+		}
 	}
 
 	public static AttackIndicator getAttack() {

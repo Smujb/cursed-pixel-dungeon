@@ -12,9 +12,18 @@ public enum StoryChapter {
 		public boolean unlocked() {
 			return true;
 		}
+
+		@Override
+		public boolean finished() {
+			return true;
+		}
 	},
 	SECOND,
 	THIRD;
+
+	public boolean finished() {
+		return false;
+	}
 
 	public String displayName() {
 		return Messages.get(StoryChapter.class, this.toString());

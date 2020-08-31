@@ -806,8 +806,8 @@ public class Dungeon {
 
 		if (!testing) {
 			Rankings.INSTANCE.submit(true, cause);
-			StoryChapter.unlockNext();
 		}
+		StoryChapter.unlockNext();
 		Lore.showChapter(LastLevel.class, Assets.Interfaces.LOADING_HALLS, callback);
 	}
 

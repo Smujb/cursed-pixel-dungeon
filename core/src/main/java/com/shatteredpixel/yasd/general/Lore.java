@@ -72,7 +72,6 @@ public class Lore {
 			return;
 		}
 		String text = Messages.get(Lore.class, key);
-		GLog.negative(key);
 		if (!text.contains("missed_string") && !text.equals("TODO")) {
 			GLog.negative( " SA");
 			String finalKey = key;
