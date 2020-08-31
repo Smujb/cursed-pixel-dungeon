@@ -150,6 +150,8 @@ public class TitleScene extends PixelScene {
 			}
 		};
 		btnChapter.icon(Icons.get(Icons.CHALLENGE_ON));
+		//No use enabling it if the player has only unlocked the first chapter
+		btnChapter.enable(StoryChapter.SECOND.unlocked());
 		add(btnChapter);
 		
 		TitleButton btnRankings = new TitleButton(Messages.get(this, "rankings")){
