@@ -175,8 +175,9 @@ public class AttackIndicator extends Tag {
 				checkEnemies();
 			}
 		}
-		active = Dungeon.hero.ready;
-		enable(Dungeon.hero.ready);
+		active = false;
+		enable(false);
+		visible(true);
 	}
 
 	@Override
