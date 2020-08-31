@@ -214,12 +214,13 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 	
 	//Game State
 	
-	public static final String KEY_LAST_CLASS	= "last_class";
-	public static final String KEY_CHALLENGES	= "challenges";
-	public static final String KEY_INTRO		= "intro";
-	public static final String KEY_TESTING		= "testing";
-	public static final String KEY_CHAPTER		= "chapter";
-	public static final String KEY_RELIC_WEAPON		= "relic_weapon %s";
+	public static final String KEY_LAST_CLASS			= "last_class";
+	public static final String KEY_CHALLENGES			= "challenges";
+	public static final String KEY_INTRO				= "intro";
+	public static final String KEY_TESTING				= "testing";
+	public static final String KEY_CHAPTER				= "chapter";
+	public static final String KEY_CHAPTER_UNLOCKED		= "chapter_unlocked_%s";
+	public static final String KEY_RELIC_WEAPON		 	= "relic_weapon_%s";
 	public static final String KEY_GRINDING_HIGH_SCORE	= "grinding-high-score";
 
 	public static boolean validateGrindingHighScore( int value ) {
@@ -303,6 +304,14 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 		} catch (Exception e) {
 			return StoryChapter.FIRST;
 		}
+	}
+
+	public static void unlockStoryChapter(StoryChapter chapter) {
+		put(Messages.format(KEY_CHAPTER_UNLOCKED, chapter.name().toLowerCase()), true);
+	}
+
+	public static boolean unlockedStoryChapter(StoryChapter chapter) {
+		return getBoolean(Messages.format(KEY_CHAPTER_UNLOCKED, chapter.name().toLowerCase()), false);
 	}
 
 	public static void unlockRelicWep(Class<? extends RelicMeleeWeapon> wepClass, boolean value) {

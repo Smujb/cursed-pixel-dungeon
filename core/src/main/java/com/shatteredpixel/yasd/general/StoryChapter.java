@@ -1,7 +1,6 @@
 package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.watabou.utils.DeviceCompat;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,7 +26,7 @@ public enum StoryChapter {
 	}
 
 	public boolean unlocked() {
-		return DeviceCompat.isDebug();
+		return CPDSettings.unlockedStoryChapter(this);
 	}
 
 	public static String[] strValues() {
@@ -38,5 +37,23 @@ public enum StoryChapter {
 			}
 		}
 		return values.toArray(new String[0]);
+	}
+
+	public StoryChapter nextChapter() {
+		switch (this) {
+			case FIRST: default:
+				return SECOND;
+			case SECOND:
+				return THIRD;
+			case THIRD:
+				return null;
+		}
+	}
+
+	public static void unlockNext() {
+		StoryChapter chapter = CPDSettings.storyChapter().nextChapter();
+		if (chapter == null) return;
+
+		CPDSettings.unlockStoryChapter(chapter);
 	}
 }
