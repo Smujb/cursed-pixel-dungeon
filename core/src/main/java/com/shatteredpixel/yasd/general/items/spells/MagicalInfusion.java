@@ -49,6 +49,8 @@ public class MagicalInfusion extends InventorySpell {
 
 		item.souCap += 5;
 
+		removeUpgrades(item);
+
 		GLog.positive( Messages.get(this, "infuse", item.name()) );
 
 		Badges.validateItemLevelAquired(item);
@@ -58,10 +60,9 @@ public class MagicalInfusion extends InventorySpell {
 	}
 
 	protected void removeUpgrades(Item item) {
-		//Removes 1 to all upgrades randomly. Use with caution.
-		if (item.level() > 0) {
-			item.level(Random.Int(item.level()));
-		}
+		int toRemove = Random.Int(item.timesUpgraded/2, item.timesUpgraded);
+		item.degrade(toRemove);
+		item.timesUpgraded -= toRemove;
 	}
 
 	@Override
