@@ -38,7 +38,6 @@ import com.shatteredpixel.yasd.general.levels.chapters.sewers.FirstLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.TextScene;
-import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Callback;
 
 import java.util.HashMap;
@@ -73,7 +72,6 @@ public class Lore {
 		}
 		String text = Messages.get(Lore.class, key);
 		if (!text.contains("missed_string") && !text.equals("TODO")) {
-			GLog.negative( " SA");
 			String finalKey = key;
 			TextScene.init(text, null, img, 5, 0.67f, new Callback() {
 				@Override

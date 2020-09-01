@@ -240,6 +240,21 @@ public abstract class Shield extends KindofMisc {
         return Messages.format( "%d%%", Math.round(charge) );
     }
 
+    @Override
+    public int price() {
+        int price = 100;
+        if (cursedKnown && cursed) {
+            price /= 2;
+        }
+        if (levelKnown && level() > 0) {
+            price *= (power() + 1);
+        }
+        if (price < 1) {
+            price = 1;
+        }
+        return price;
+    }
+
     private static final String SEAL            = "seal";
     private static final String CHARGE            = "charge";
 
