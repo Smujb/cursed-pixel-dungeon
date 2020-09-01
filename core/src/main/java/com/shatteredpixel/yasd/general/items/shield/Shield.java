@@ -278,7 +278,11 @@ public abstract class Shield extends KindofMisc {
 
         @Override
         public boolean act() {
-            spend(1.5f);
+            if (shield == null) {
+                spend(PARRY_DURATION);
+            } else {
+                spend(shield.parryTime());
+            }
             detach();
             return true;
         }
