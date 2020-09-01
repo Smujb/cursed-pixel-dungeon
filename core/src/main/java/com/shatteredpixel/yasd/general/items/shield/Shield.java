@@ -293,6 +293,7 @@ public abstract class Shield extends KindofMisc {
 
         public int absorbDamage(Char.DamageSrc src, int damage) {
             detach();
+            GLog.debug("parried");
             if (shield == null) {
                 return damage;
             } else {
