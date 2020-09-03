@@ -283,6 +283,10 @@ public class Item implements Bundlable {
 
 	public boolean collect( Bag container,  Char ch ) {
 
+		if (quantity <= 0){
+			return true;
+		}
+
 		ArrayList<Item> items = container.items;
 
 		for (Item item : items) {
@@ -294,7 +298,6 @@ public class Item implements Bundlable {
 			}
 		}
 
-
 		if (!container.canHold(this)) {
 			GLog.negative(Messages.get(Item.class, "pack_full", container.name()));
 			return false;
@@ -305,13 +308,6 @@ public class Item implements Bundlable {
 			return true;
 		}
 
-		for (Item item : items) {
-			if (item instanceof Bag && ((Bag) item).canHold(this)) {
-				curUser = ch;
-				return collect((Bag) item, ch);
-			}
-		}
-
 		if (stackable) {
 			for (Item item : items) {
 				if (isSimilar(item)) {
@@ -320,6 +316,13 @@ public class Item implements Bundlable {
 					curUser = ch;
 					return true;
 				}
+			}
+		}
+
+		for (Item item : items) {
+			if (item instanceof Bag && ((Bag) item).canHold(this)) {
+				curUser = ch;
+				return collect((Bag) item, ch);
 			}
 		}
 
@@ -395,6 +398,7 @@ public class Item implements Bundlable {
 			if (item == this) {
 				container.items.remove(this);
 				item.onDetach();
+				container.grabItems();
 				return this;
 			} else if (item instanceof Bag) {
 				Bag bag = (Bag)item;

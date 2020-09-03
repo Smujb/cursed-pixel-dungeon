@@ -109,6 +109,27 @@ public class Bag extends Item implements Iterable<Item> {
 		updateQuickslot();
 	}
 
+	public void grabItems(){
+		if (owner != null && owner instanceof Hero && this != ((Hero) owner).belongings.backpack) {
+			grabItems(((Hero) owner).belongings.backpack, owner);
+		}
+	}
+
+	public void grabItems( Bag container, Char ch ){
+		for (Item item : container.items.toArray( new Item[0] )) {
+			if (canHold( item )) {
+				int slot = Dungeon.quickslot.getSlot(item);
+				item.detachAll(container);
+				if (!item.collect(this, ch)) {
+					item.collect(container, ch);
+				}
+				if (slot != -1) {
+					Dungeon.quickslot.setSlot(slot, item);
+				}
+			}
+		}
+	}
+
 	@Override
 	public boolean isUpgradable() {
 		return false;
