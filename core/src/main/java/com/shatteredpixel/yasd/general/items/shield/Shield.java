@@ -278,12 +278,8 @@ public abstract class Shield extends KindofMisc {
 
         @Override
         public boolean act() {
-            if (shield == null) {
-                spend(PARRY_DURATION);
-            } else {
-                spend(shield.parryTime());
-            }
-            detach();
+            //See Hero.ready(), detaches the buff when the hero can move again.
+            spend(1f);
             return true;
         }
 
@@ -293,7 +289,6 @@ public abstract class Shield extends KindofMisc {
 
         public int absorbDamage(Char.DamageSrc src, int damage) {
             detach();
-            GLog.debug("parried");
             if (shield == null) {
                 return damage;
             } else {
