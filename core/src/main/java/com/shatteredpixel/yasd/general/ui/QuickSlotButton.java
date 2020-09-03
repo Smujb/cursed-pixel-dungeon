@@ -193,6 +193,14 @@ public class QuickSlotButton extends Button {
 				return CPDAction.QUICKSLOT_3;
 			case 3:
 				return CPDAction.QUICKSLOT_4;
+			case 4:
+				return CPDAction.QUICKSLOT_5;
+			case 5:
+				return CPDAction.QUICKSLOT_6;
+			case 6:
+				return CPDAction.QUICKSLOT_7;
+			case 7:
+				return CPDAction.QUICKSLOT_8;
 			default:
 				return super.keyAction();
 		}

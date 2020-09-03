@@ -63,6 +63,10 @@ public class CPDAction extends GameAction {
 	public static final GameAction QUICKSLOT_2 = new CPDAction("quickslot_2");
 	public static final GameAction QUICKSLOT_3 = new CPDAction("quickslot_3");
 	public static final GameAction QUICKSLOT_4 = new CPDAction("quickslot_4");
+	public static final GameAction QUICKSLOT_5 = new CPDAction("quickslot_5");
+	public static final GameAction QUICKSLOT_6 = new CPDAction("quickslot_6");
+	public static final GameAction QUICKSLOT_7 = new CPDAction("quickslot_7");
+	public static final GameAction QUICKSLOT_8 = new CPDAction("quickslot_8");
 
 	public static final GameAction TAG_ATTACK  = new CPDAction("tag_attack");
 	public static final GameAction TAG_DANGER  = new CPDAction("tag_danger");
