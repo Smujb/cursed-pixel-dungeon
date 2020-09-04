@@ -1,11 +1,11 @@
 package com.shatteredpixel.yasd.general.levels.chapters.airtrial;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.levels.RegularLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.TrialLevel;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.painters.PrisonPainter;
 
-public class AirTrialLevel extends RegularLevel {
+public class AirTrialLevel extends TrialLevel {
 
     @Override
     //TODO new painter

@@ -181,7 +181,28 @@ public class LevelHandler {
 	}
 
 	public static void portSurface() {
+		StoryChapter.Trial.setCurTrial(StoryChapter.Trial.NONE);
 		move(Dungeon.keyForDepth(0), Messages.get(Mode.class, Mode.RETURN.name()), Mode.ASCEND, 0, -1);
+	}
+
+	public static void waterTrial() {
+		StoryChapter.Trial.setCurTrial(StoryChapter.Trial.WATER);
+		move(Dungeon.keyForDepth(1), StoryChapter.Trial.WATER.displayName(), Mode.DESCEND, 1, -1);
+	}
+
+	public static void earthTrial() {
+		StoryChapter.Trial.setCurTrial(StoryChapter.Trial.EARTH);
+		move(Dungeon.keyForDepth(1), StoryChapter.Trial.EARTH.displayName(), Mode.DESCEND, 1, -1);
+	}
+
+	public static void fireTrial() {
+		StoryChapter.Trial.setCurTrial(StoryChapter.Trial.FIRE);
+		move(Dungeon.keyForDepth(1), StoryChapter.Trial.FIRE.displayName(), Mode.DESCEND, 1, -1);
+	}
+
+	public static void airTrial() {
+		StoryChapter.Trial.setCurTrial(StoryChapter.Trial.AIR);
+		move(Dungeon.keyForDepth(1), StoryChapter.Trial.AIR.displayName(), Mode.DESCEND, 1, -1);
 	}
 
 	public static void doRestore() {

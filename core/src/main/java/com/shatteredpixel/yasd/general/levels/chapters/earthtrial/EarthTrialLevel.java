@@ -1,11 +1,11 @@
 package com.shatteredpixel.yasd.general.levels.chapters.earthtrial;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.levels.RegularLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.TrialLevel;
 import com.shatteredpixel.yasd.general.levels.painters.CavesPainter;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 
-public class EarthTrialLevel extends RegularLevel {
+public class EarthTrialLevel extends TrialLevel {
 
     @Override
     //TODO new painter

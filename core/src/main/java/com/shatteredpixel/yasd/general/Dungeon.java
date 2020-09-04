@@ -55,12 +55,15 @@ import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.LootLevel;
 import com.shatteredpixel.yasd.general.levels.SurfaceLevel;
 import com.shatteredpixel.yasd.general.levels.TestBossLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.airtrial.AirTrialLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.caves.CavesLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.caves.NewCavesBossLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.caves.OldCavesBossLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.city.NewCityBossLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.city.OldCityBossLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.earthtrial.EarthTrialLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.firetrial.FireTrialLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.halls.HallsLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.halls.LastLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.halls.NewHallsBossLevel;
@@ -71,6 +74,7 @@ import com.shatteredpixel.yasd.general.levels.chapters.prison.PrisonLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.FirstLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerBossLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.watertrial.WaterTrialLevel;
 import com.shatteredpixel.yasd.general.levels.rooms.secret.SecretRoom;
 import com.shatteredpixel.yasd.general.levels.rooms.special.SpecialRoom;
 import com.shatteredpixel.yasd.general.levels.tiled.TestLevel;
@@ -91,6 +95,7 @@ import com.watabou.utils.Reflection;
 import com.watabou.utils.SparseArray;
 
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -186,7 +191,6 @@ public class Dungeon {
 	public static int depth;
 	public static String key;
 
-	public static boolean underwater = false;
 	public static int gold;
 
 	public static boolean testing = false;
@@ -321,26 +325,35 @@ public class Dungeon {
 		return keyForDepth(depth);
 	}
 
+	@NotNull
 	@Contract(pure = true)
 	static String keyForDepth(int depth) {
 		String key = "none";
-		int depthInChapter = (depth-1)%Constants.CHAPTER_LENGTH;
+		int depthInChapter = (depth - 1) % Constants.CHAPTER_LENGTH;
 		String depthMarker = " - " + depthInChapter;
-		if (depth == 0) {
-			key = SURFACE_ID;
-		} else if (depth <= Constants.CHAPTER_LENGTH) {
-			key = SEWERS_ID + depthMarker;
-		} else if (depth <= Constants.CHAPTER_LENGTH * 2) {
-			key = PRISON_ID + depthMarker;
-		} else if (depth <= Constants.CHAPTER_LENGTH * 3) {
-			key = CAVES_ID + depthMarker;
-		} else if (depth <= Constants.CHAPTER_LENGTH * 4) {
-			key = CITY_ID + depthMarker;
-		} else if (depth <= Constants.CHAPTER_LENGTH * 5) {
-			key = HALLS_ID + depthMarker;
-		} else if (depth == Constants.MAX_DEPTH) {
-			key = LAST_ID;
+
+		StoryChapter.Trial curTrial = StoryChapter.Trial.getCurTrial();
+		if (depth <= 0) {
+			 return SURFACE_ID;
+		} else if (curTrial == StoryChapter.Trial.NONE) {
+			if (depth <= Constants.CHAPTER_LENGTH) {
+				key = SEWERS_ID;
+			} else if (depth <= Constants.CHAPTER_LENGTH * 2) {
+				key = PRISON_ID;
+			} else if (depth <= Constants.CHAPTER_LENGTH * 3) {
+				key = CAVES_ID;
+			} else if (depth <= Constants.CHAPTER_LENGTH * 4) {
+				key = CITY_ID;
+			} else if (depth <= Constants.CHAPTER_LENGTH * 5) {
+				key = HALLS_ID;
+			} else if (depth == Constants.MAX_DEPTH) {
+				key = LAST_ID;
+			}
+		} else if (curTrial != null) {
+			key = curTrial.key();
 		}
+
+		key += depthMarker;
 		return key;
 	}
 	
@@ -362,9 +375,16 @@ public class Dungeon {
 			levelClass = CityLevel.class;
 		} else if (key.contains(HALLS_ID)) {
 			levelClass = HallsLevel.class;
-		} else if (key.equals(LAST_ID)) {
-			levelClass = LastLevel.class;
+		} else if (key.contains(StoryChapter.Trial.WATER.key())) {
+			levelClass = WaterTrialLevel.class;
+		} else if (key.contains(StoryChapter.Trial.EARTH.key())) {
+			levelClass = EarthTrialLevel.class;
+		} else if (key.contains(StoryChapter.Trial.FIRE.key())) {
+			levelClass = FireTrialLevel.class;
+		} else if (key.contains(StoryChapter.Trial.AIR.key())) {
+			levelClass = AirTrialLevel.class;
 		}
+
 		if (levelClass != null) {
 			level = Reflection.newInstance(levelClass);
 		}
@@ -381,11 +401,6 @@ public class Dungeon {
 		return level;
 	}
 
-	@Contract(pure = true)
-	public static boolean underwater() {
-		return underwater;
-	}
-	
 	public static void resetLevel() {
 		
 		Actor.clear();
@@ -559,6 +574,8 @@ public class Dungeon {
 			bundle.put( DIFFICULTY, difficulty );
 			bundle.put( TESTING, testing );
 
+			StoryChapter.Trial.storeInBundle(bundle);
+
 			bundle.put(PORTALS, portalDepths);
 
 			for (int d : droppedItems.keyArray()) {
@@ -651,7 +668,7 @@ public class Dungeon {
 
 		key = bundle.contains(KEY) ? bundle.getString(KEY) : keyForDepth();
 
-		//xPos = bundle.contains(XPOS) ? bundle.getInt(XPOS) : 0;
+		StoryChapter.Trial.restoreFromBundle(bundle);
 
 		Actor.restoreNextID( bundle );
 

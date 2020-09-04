@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.watabou.utils.Bundle;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -64,5 +65,49 @@ public enum StoryChapter {
 		if (chapter == null) return;
 
 		CPDSettings.unlockStoryChapter(chapter);
+	}
+
+	//Only used in StoryChapter.SECOND
+	//Might move later, or use a cleaner method for having alternate depths.
+	public enum Trial {
+		NONE,
+		EARTH,
+		FIRE,
+		WATER,
+		AIR;
+
+		private static Trial curTrial = NONE;
+
+		public String key() {
+			return name().toLowerCase();
+		}
+
+		public String displayName() {
+			return Messages.get(Trial.class, name());
+		}
+
+		public static Trial getCurTrial() {
+			if (CPDSettings.storyChapter() == SECOND) {
+				return curTrial;
+			} else {
+				return curTrial = NONE;
+			}
+		}
+
+		public static void setCurTrial(Trial trial) {
+			curTrial = trial;
+		}
+
+		private static final String TRIAL = "trial";
+
+		public static void storeInBundle(Bundle bundle) {
+			bundle.put(TRIAL, curTrial);
+		}
+
+		public static void restoreFromBundle(Bundle bundle) {
+			if (bundle.contains(TRIAL)) {
+				curTrial = bundle.getEnum(TRIAL, Trial.class);
+			}
+		}
 	}
 }

@@ -1,11 +1,11 @@
 package com.shatteredpixel.yasd.general.levels.chapters.watertrial;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.levels.RegularLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.TrialLevel;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.painters.SewerPainter;
 
-public class WaterTrialLevel extends RegularLevel {
+public class WaterTrialLevel extends TrialLevel {
 
     @Override
     //TODO new painter
