@@ -16,7 +16,7 @@ public class EarthTrialLevel extends TrialLevel {
     @Override
     //TODO new visuals
     public String tilesTex() {
-        return Assets.Environment.TILES_CAVES;
+        return Assets.Environment.TILES_EARTH_TRIAL;
     }
 
     @Override
