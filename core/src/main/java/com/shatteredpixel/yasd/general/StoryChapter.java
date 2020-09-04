@@ -82,6 +82,26 @@ public enum StoryChapter {
 			return name().toLowerCase();
 		}
 
+		public void warpTo() {
+			switch (this) {
+				case NONE:
+					LevelHandler.portSurface();
+					return;
+				case EARTH:
+					LevelHandler.earthTrial();
+					return;
+				case FIRE:
+					LevelHandler.fireTrial();
+					return;
+				case WATER:
+					LevelHandler.waterTrial();
+					return;
+				case AIR:
+					LevelHandler.airTrial();
+					return;
+			}
+		}
+
 		public String displayName() {
 			return Messages.get(Trial.class, name());
 		}

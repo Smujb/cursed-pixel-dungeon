@@ -8,6 +8,7 @@ import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.HeroNPC;
+import com.shatteredpixel.yasd.general.actors.mobs.npcs.TrialGiver;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.tiled.TiledMapLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -36,12 +37,17 @@ public class SurfaceLevel extends TiledMapLevel {
 			setExit(-1);
 			if (chapter == StoryChapter.SECOND) {
 				set(20 + 5 * SIZE, Terrain.DOOR);
+				TrialGiver trialGiver = new TrialGiver();
+				trialGiver.pos = PEDESTAL;
+				mobs.add(trialGiver);
 			}
 		}
 		return build;
 	}
 
 	private static int SIZE = 50;
+
+	private static int PEDESTAL = 2 + 5 * SIZE;
 
 	public static int location(HeroClass heroClass) {
 		switch (heroClass) {

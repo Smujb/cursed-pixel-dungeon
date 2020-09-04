@@ -31,8 +31,6 @@ public class GrindLevel extends TiledMapLevel {
 		viewDistance = 20;
 	}
 
-
-
 	public int spawn;
 	public static String SPAWN = "spawn";
 
