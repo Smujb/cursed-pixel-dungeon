@@ -14,9 +14,8 @@ public class AirTrialLevel extends TrialLevel {
     }
 
     @Override
-    //TODO new visuals
     public String tilesTex() {
-        return Assets.Environment.TILES_PRISON;
+        return Assets.Environment.TILES_AIR_TRIAL;
     }
 
     @Override
