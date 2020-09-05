@@ -78,7 +78,7 @@ public class TrialGiver extends NPC {
             message.setPos(0, titlebar.bottom() + GAP);
             add(message);
 
-            float bottom = message.bottom();
+            float bottom = message.bottom() + GAP;
             for (StoryChapter.Trial trial : StoryChapter.Trial.values()) {
                 if (trial != StoryChapter.Trial.NONE) {
                     RedButton btnTrial = new RedButton(trial.displayName()) {
