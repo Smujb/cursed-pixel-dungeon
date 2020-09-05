@@ -63,9 +63,12 @@ public abstract class Spell extends Item {
 				GLog.warning( Messages.get(this, "no_magic") );
 				return;
 			}
-			detach( hero.belongings.backpack );
-			onCast( hero );
-			
+			Spell spell = (Spell) detach( hero.belongings.backpack );
+			if (spell != null) {
+				spell.onCast( hero );
+			} else {
+				GLog.debug("Could not use spell.");
+			}
 		}
 	}
 	

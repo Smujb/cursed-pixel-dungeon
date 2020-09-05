@@ -192,8 +192,12 @@ public abstract class Scroll extends Item {
 				GLog.negative(Messages.get(this, "cursed"));
 			} else {
 				curUser = hero;
-				detach(hero.belongings.backpack);
-				doRead();
+				Scroll scroll = (Scroll) detach(hero.belongings.backpack);
+				if (scroll != null) {
+					scroll.doRead();
+				} else {
+					GLog.debug("Could not read scroll.");
+				}
 			}
 
 		}

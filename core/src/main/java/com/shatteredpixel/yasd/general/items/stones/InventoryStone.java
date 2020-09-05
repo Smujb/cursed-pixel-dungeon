@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.watabou.noosa.audio.Sample;
 
@@ -60,8 +61,12 @@ public abstract class InventoryStone extends Runestone {
 	public void execute(Hero hero, String action) {
 		super.execute(hero, action);
 		if (action.equals(AC_USE)){
-			detach( hero.belongings.backpack );
-			activate(curUser.pos);
+			InventoryStone stone = (InventoryStone) detach( hero.belongings.backpack );
+			if (stone != null) {
+				activate(curUser.pos);
+			} else {
+				GLog.debug("Could not use stone.");
+			}
 		}
 	}
 	
