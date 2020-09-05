@@ -35,7 +35,8 @@ public abstract class UpdateService {
 		public abstract void onConnectionFailed();
 	}
 
-	public abstract void checkForUpdate( UpdateResultCallback callback );
+
+	public abstract void checkForUpdate( boolean useMetered, UpdateResultCallback callback );
 
 	public abstract void initializeUpdate( AvailableUpdateData update );
 

@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.ui;
 
 import com.shatteredpixel.yasd.AvailableUpdateData;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Chrome;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -43,7 +44,7 @@ public class UpdateNotification extends StyledButton {
 		super( Chrome.Type.GREY_BUTTON_TR, Messages.get(UpdateNotification.class, "title") );
 		textColor( Window.SHPX_COLOR );
 		visible = false;
-		Updates.checkForUpdate();
+		if (CPDSettings.updates()) Updates.checkForUpdate();
 	}
 
 	@Override

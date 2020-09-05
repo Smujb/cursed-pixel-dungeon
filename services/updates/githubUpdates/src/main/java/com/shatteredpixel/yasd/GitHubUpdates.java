@@ -42,9 +42,9 @@ public class GitHubUpdates extends UpdateService {
 	private static Pattern versionCodePattern = Pattern.compile("internal version number: ([0-9]*)", Pattern.CASE_INSENSITIVE);
 
 	@Override
-	public void checkForUpdate(UpdateResultCallback callback) {
+	public void checkForUpdate(boolean useMetered, UpdateResultCallback callback) {
 
-		if (!Game.platform.connectedToUnmeteredNetwork()){
+		if (!useMetered && !Game.platform.connectedToUnmeteredNetwork()){
 			callback.onConnectionFailed();
 			return;
 		}
