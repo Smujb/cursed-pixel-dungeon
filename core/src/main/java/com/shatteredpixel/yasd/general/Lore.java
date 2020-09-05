@@ -29,12 +29,16 @@ package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.SurfaceLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.airtrial.AirTrialLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.caves.CavesLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.city.CityLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.earthtrial.EarthTrialLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.firetrial.FireTrialLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.halls.HallsLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.halls.LastLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.prison.PrisonLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.FirstLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.watertrial.WaterTrialLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.TextScene;
@@ -54,6 +58,10 @@ public class Lore {
 		CHAPTERS.put( CityLevel.class, "city" );
 		CHAPTERS.put( HallsLevel.class, "halls" );
 		CHAPTERS.put( LastLevel.class, "outro" );
+		CHAPTERS.put( WaterTrialLevel.class, "water_trial" );
+		CHAPTERS.put( FireTrialLevel.class, "fire_trial" );
+		CHAPTERS.put( AirTrialLevel.class, "air_trial" );
+		CHAPTERS.put( EarthTrialLevel.class, "earth_trial" );
 	}
 
 	public static void showChapter( Level level ) {
