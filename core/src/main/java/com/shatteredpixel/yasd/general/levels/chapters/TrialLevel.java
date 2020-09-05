@@ -28,7 +28,8 @@ public abstract class TrialLevel extends RegularLevel {
     public void create(String key) {
         super.create(key);
         spawn = getEntrance().centerCell(this);
-        set(getEntrancePos(), Terrain.PEDESTAL);
+        set(spawn, Terrain.PEDESTAL);
+        setEntrance(-1);
     }
 
     @Override
