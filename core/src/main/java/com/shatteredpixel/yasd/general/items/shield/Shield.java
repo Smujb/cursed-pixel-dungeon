@@ -180,7 +180,8 @@ public abstract class Shield extends KindofMisc {
 
     @Override
     public String info() {
-        return desc() + statsReqDesc();
+        String info = "\n\n" + Messages.get(this, "stats_desc", maxDefense(power()), minDefense(power()), minDamage(power()), maxDamage(power()));
+        return desc() + info + statsReqDesc();
     }
 
     public float chargePercent() {
@@ -188,15 +189,27 @@ public abstract class Shield extends KindofMisc {
     }
 
     public static float defaultMaxDefense(float lvl) {
-        return Math.round(5 * lvl);
+        return Math.round(6 * lvl);
+    }
+
+    protected int maxDamage(float lvl) {
+        return Math.round(4 * lvl * defenseMultiplier);
+    }
+
+    protected int minDamage(float lvl) {
+        return Math.round(2 * lvl * defenseMultiplier);
     }
 
     public int maxDefense(float lvl) {
         return Math.round(defaultMaxDefense(lvl) * defenseMultiplier);
     }
 
+    public int minDefense(float lvl) {
+        return Math.round(2 * lvl * defenseMultiplier);
+    }
+
     public int curDefense(float lvl) {
-        return Math.round(maxDefense(lvl) * chargePercent());
+        return Math.max(minDefense(lvl), Math.round(maxDefense(lvl) * chargePercent()));
     }
 
     public static void successfulParry(Char ch) {
@@ -207,13 +220,19 @@ public abstract class Shield extends KindofMisc {
 
     public void affectEnemy(Char enemy, boolean parry) {
         if (curUser != null && Dungeon.level.adjacent(curUser.pos, enemy.pos)) {
-            int damage = Random.Int(Math.round(defaultMaxDefense(power())/2), Math.round(defaultMaxDefense(power())));
+            int damage;
+            if (parry) {
+                damage = maxDamage(power());
+            } else if (charge <= 0) {
+                damage = minDamage(power());
+            } else {
+                damage = Random.NormalIntRange(minDamage(power()), maxDamage(power()));
+            }
             enemy.damage(damage, new Char.DamageSrc(Element.PHYSICAL, this));
         }
     }
 
     public int absorbDamage(Char.DamageSrc src, int damage) {
-        if (charge == 0) return damage;
         int defense = curDefense(power());
         if (defense >= damage) {
             float chargeToLose = (damage / (float) maxDefense(power())) * MAX_CHARGE;
