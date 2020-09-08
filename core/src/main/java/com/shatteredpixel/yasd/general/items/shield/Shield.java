@@ -193,11 +193,11 @@ public abstract class Shield extends KindofMisc {
     }
 
     protected int maxDamage(float lvl) {
-        return Math.round(4 * lvl * defenseMultiplier);
+        return Math.round(4 * lvl * damageFactor);
     }
 
     protected int minDamage(float lvl) {
-        return Math.round(2 * lvl * defenseMultiplier);
+        return Math.round(2 * lvl * damageFactor);
     }
 
     public int maxDefense(float lvl) {
