@@ -109,13 +109,13 @@ public enum Document {
 		ADVENTURERS_GUIDE.pages.put(GUIDE_INTRO_PAGE, 	DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put("Identifying", 		DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put(GUIDE_SEARCH_PAGE, 	DeviceCompat.isDebug());
-		ADVENTURERS_GUIDE.pages.put("Strength", 		DeviceCompat.isDebug());
+		ADVENTURERS_GUIDE.pages.put("Stats", 		DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put("Food", 			DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put("Levelling", 		DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put("Surprise_Attacks", DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put("Dieing", 			DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put("Looting", 		    DeviceCompat.isDebug());
-		ADVENTURERS_GUIDE.pages.put("Magic", 			DeviceCompat.isDebug());
+		ADVENTURERS_GUIDE.pages.put("Ranged_Attacks", 			DeviceCompat.isDebug());
 		
 		//sewers
 		ALCHEMY_GUIDE.pages.put("Potions",              DeviceCompat.isDebug());
