@@ -248,7 +248,8 @@ public abstract class Shield extends KindofMisc {
     }
 
     protected boolean canParry(int damage) {
-        return damage > charge;
+        float chargeToLose = (damage / (float) maxDefense(power())) * MAX_CHARGE;
+        return charge > chargeToLose;
     }
 
     @Override

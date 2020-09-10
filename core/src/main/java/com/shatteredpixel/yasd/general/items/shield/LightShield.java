@@ -8,8 +8,8 @@ public class LightShield extends Shield {
     {
         image = ItemSpriteSheet.Shields.LIGHT;
 
-        defenseMultiplier = 1/3f;
-        chargePerTurn = 10f;
+        defenseMultiplier = 0.5f;
+        chargePerTurn = 5f;
 
         statScaling.add(Hero.HeroStat.ASSAULT);
     }
