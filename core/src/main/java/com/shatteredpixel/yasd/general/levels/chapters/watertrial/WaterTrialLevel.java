@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general.levels.chapters.watertrial;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.actors.mobs.Elemental;
 import com.shatteredpixel.yasd.general.levels.chapters.TrialLevel;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.painters.SewerPainter;
@@ -31,11 +32,11 @@ public class WaterTrialLevel extends TrialLevel {
     //TODO bestiary
     @Override
     public Class<?>[] mobClasses() {
-        return super.mobClasses();
+        return new Class[] {Elemental.Water.class};
     }
 
     @Override
     public float[] mobChances() {
-        return super.mobChances();
+        return new float[]{1f};
     }
 }

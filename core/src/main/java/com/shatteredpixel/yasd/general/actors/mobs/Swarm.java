@@ -62,7 +62,7 @@ public class Swarm extends Mob {
 		lootChance = 0.1f; //by default, see rollToDropLoot()
 	}
 	
-	private static final float SPLIT_DELAY	= 1f;
+	protected static final float SPLIT_DELAY	= 1f;
 	
 	private int generation	= 0;
 	

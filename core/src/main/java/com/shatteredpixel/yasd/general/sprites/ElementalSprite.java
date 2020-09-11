@@ -222,4 +222,37 @@ public abstract class ElementalSprite extends MobSprite {
 			return 0xFFE3E3E3;
 		}
 	}
+
+	public static class Water extends ElementalSprite {
+
+		public Water() {
+			super();
+			int c = texOffset();
+			TextureFilm frames = new TextureFilm( texture, 12, 14 );
+
+			idle = new Animation( 10, true );
+			idle.frames( frames, c+0, c+1, c+2, c+3 );
+
+			run = new Animation( 12, true );
+			run.frames( frames, c+0, c+1, c+3, c+3 );
+
+			attack = new Animation( 20, false );
+			attack.frames( frames, c+4, c+5, c+6, c+7, c+8, c+9, c+10, c+11, c+12, c+13, c+14, c+15);
+
+			zap = attack.clone();
+
+			die = new Animation( 15, false );
+			die.frames( frames, c+16, c+17, c+18, c+19, c+20, c+21, c+22, c+23, c+24 );
+
+			play( idle );
+		}
+
+		@Override
+		protected int texOffset() {return 84;}
+
+		@Override
+		protected Emitter createEmitter() {
+			return null;
+		}
+	}
 }

@@ -27,18 +27,28 @@
 
 package com.shatteredpixel.yasd.general.actors.mobs;
 
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
+import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Burning;
 import com.shatteredpixel.yasd.general.actors.buffs.Chill;
+import com.shatteredpixel.yasd.general.actors.buffs.Corruption;
+import com.shatteredpixel.yasd.general.actors.buffs.DeferredDeath;
+import com.shatteredpixel.yasd.general.actors.buffs.Poison;
+import com.shatteredpixel.yasd.general.effects.Pushing;
+import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfFrost;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.quest.Embers;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.yasd.general.items.wands.CursedWand;
+import com.shatteredpixel.yasd.general.levels.features.Door;
+import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
+import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ElementalSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
@@ -220,6 +230,101 @@ public abstract class Elemental extends Mob {
 				}
 			} );
 			return super.attackProc(enemy, damage);
+		}
+	}
+
+	public static class Water extends Elemental {
+		{
+			spriteClass = ElementalSprite.Water.class;
+
+			//TODO loot?
+		}
+
+		private int generation	= 0;
+
+		private static final String GENERATION	= "generation";
+
+		@Override
+		public void storeInBundle(Bundle bundle) {
+			super.storeInBundle(bundle);
+			bundle.put(GENERATION, generation);
+		}
+
+		@Override
+		public void restoreFromBundle(Bundle bundle) {
+			super.restoreFromBundle(bundle);
+			generation = bundle.getInt(GENERATION);
+		}
+
+		@Override
+		public Element elementalType() {
+			return Element.WATER;
+		}
+
+		@Override
+		public boolean act() {
+
+			if (Dungeon.level.liquid(pos) && HP < HT) {
+				sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
+
+				HP+= 10;
+			}
+
+			return super.act();
+		}
+
+		@Override
+		public int defenseProc(Char enemy, int damage ) {
+
+			if (HP >= damage + 2) {
+				ArrayList<Integer> candidates = new ArrayList<>();
+				boolean[] solid = Dungeon.level.solid();
+
+				int[] neighbours = {pos + 1, pos - 1, pos + Dungeon.level.width(), pos - Dungeon.level.width()};
+				for (int n : neighbours) {
+					if (!solid[n] && Actor.findChar( n ) == null) {
+						candidates.add( n );
+					}
+				}
+
+				if (candidates.size() > 0) {
+
+					Elemental.Water clone = split();
+					clone.HP = (HP - damage) / 2;
+					clone.pos = Random.element( candidates );
+					clone.state = clone.HUNTING;
+
+					if (Dungeon.level.getTerrain(clone.pos) == Terrain.DOOR) {
+						Door.enter( clone.pos );
+					}
+
+					GameScene.add( clone, Swarm.SPLIT_DELAY );
+					Actor.addDelayed( new Pushing( clone, pos, clone.pos ), -1 );
+
+					HP -= clone.HP;
+				}
+			}
+
+			return super.defenseProc(enemy, damage);
+		}
+
+		private Elemental.Water split() {
+			Elemental.Water clone = new Elemental.Water();
+			clone.generation = generation + 1;
+			clone.EXP = 0;
+			if (buff( Burning.class ) != null) {
+				Buff.affect( clone, Burning.class ).reignite( clone );
+			}
+			if (buff( Poison.class ) != null) {
+				Buff.affect( clone, Poison.class ).set(2);
+			}
+			if (buff(Corruption.class ) != null) {
+				Buff.affect( clone, Corruption.class);
+			}
+			if (buff(DeferredDeath.class) != null) {
+				clone.die(new DamageSrc(Element.SHADOW, buff(DeferredDeath.class)));
+			}
+			return clone;
 		}
 	}
 
