@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items;
 
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.allies.AirDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.DarkDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.DragonPendant;
@@ -153,6 +152,7 @@ import com.shatteredpixel.yasd.general.items.shield.LightShield;
 import com.shatteredpixel.yasd.general.items.shield.PanicShield;
 import com.shatteredpixel.yasd.general.items.shield.ParryShield;
 import com.shatteredpixel.yasd.general.items.shield.RoundShield;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.shield.SpiritualShield;
 import com.shatteredpixel.yasd.general.items.shield.SwiftShield;
 import com.shatteredpixel.yasd.general.items.shield.WarpShield;
@@ -246,7 +246,6 @@ import com.shatteredpixel.yasd.general.plants.Stormvine;
 import com.shatteredpixel.yasd.general.plants.Sungrass;
 import com.shatteredpixel.yasd.general.plants.Swiftthistle;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.GameMath;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
@@ -258,20 +257,12 @@ import java.util.LinkedHashMap;
 public class Generator {
 
 	public enum Category {
-		WEAPON	( 3,    MeleeWeapon.class),
-		SHIELD	( 3,    com.shatteredpixel.yasd.general.items.shield.Shield.class ),
+		SHIELD			( 3,    Shield.class ),
+		WEAPON			( 3,    MeleeWeapon.class),
+		WAND			( 3,    Wand.class ),
+		MISSILE 		( 3,    MissileWeapon.class ),
+		DRAGON_PENDANT  ( 3,    DragonPendant.class ),
 
-		MISSILE ( 2,    MissileWeapon.class ),
-		MIS_T1  ( 0,    MissileWeapon.class ),
-		MIS_T2  ( 0,    MissileWeapon.class ),
-		MIS_T3  ( 0,    MissileWeapon.class ),
-		MIS_T4  ( 0,    MissileWeapon.class ),
-		MIS_T5  ( 0,    MissileWeapon.class ),
-
-
-		DRAGON_PENDANT  ( 2,    DragonPendant.class ),
-
-		WAND	( 2,    Wand.class ),
 		RING	( 1,    Ring.class ),
 		ARTIFACT( 1,    Artifact.class),
 
@@ -572,42 +563,23 @@ public class Generator {
 			SHIELD.probs = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
 			//see Generator.randomMissile
-			MISSILE.classes = new Class<?>[]{};
-			MISSILE.probs = new float[]{};
-
-			MIS_T1.classes = new Class<?>[]{
+			MISSILE.classes = new Class<?>[]{
 					ThrowingStone.class,
-					ThrowingKnife.class
-			};
-			MIS_T1.probs = new float[]{ 6, 5 };
-
-			MIS_T2.classes = new Class<?>[]{
+					ThrowingKnife.class,
 					FishingSpear.class,
 					ThrowingClub.class,
-					Shuriken.class
-			};
-			MIS_T2.probs = new float[]{ 6, 5, 4 };
-
-			MIS_T3.classes = new Class<?>[]{
+					Shuriken.class,
 					ThrowingSpear.class,
 					Kunai.class,
-					Bolas.class
-			};
-			MIS_T3.probs = new float[]{ 6, 5, 4 };
-
-			MIS_T4.classes = new Class<?>[]{
+					Bolas.class,
 					Javelin.class,
 					Tomahawk.class,
-					HeavyBoomerang.class
-			};
-			MIS_T4.probs = new float[]{ 6, 5, 4 };
-
-			MIS_T5.classes = new Class<?>[]{
+					HeavyBoomerang.class,
 					Trident.class,
 					ThrowingHammer.class,
 					ForceCube.class
 			};
-			MIS_T5.probs = new float[]{ 6, 5, 4 };
+			MISSILE.probs = new float[]{0, 0, 6, 5, 4, 6, 5, 4, 6, 5, 4, 6, 5, 4};
 
 			FOOD.classes = new Class<?>[]{
 					Food.class,
@@ -651,14 +623,6 @@ public class Generator {
 	}
 
 	private static final String CATEGORY_PROBS = "_probs";
-
-	private static final float[][] floorSetTierProbs = new float[][] {
-			{0, 70, 20,  8,  2},
-			{0, 25, 50, 20,  5},
-			{0,  0, 40, 50, 10},
-			{0,  0, 20, 40, 40},
-			{0,  0,  0, 20, 80}
-	};
 
 	private static HashMap<Category,Float> categoryProbs = new LinkedHashMap<>();
 
@@ -736,24 +700,9 @@ public class Generator {
 		return w;
 	}
 
-	public static final Category[] misTiers = new Category[]{
-			Category.MIS_T1,
-			Category.MIS_T2,
-			Category.MIS_T3,
-			Category.MIS_T4,
-			Category.MIS_T5
-	};
+	public static MissileWeapon randomMissile() {
 
-	public static MissileWeapon randomMissile(){
-		return randomMissile(Dungeon.depth / 5);
-	}
-
-	public static MissileWeapon randomMissile(int floorSet) {
-
-		floorSet = (int)GameMath.gate(0, floorSet, floorSetTierProbs.length-1);
-
-		Category c = misTiers[Random.chances(floorSetTierProbs[floorSet])];
-		MissileWeapon w = (MissileWeapon)Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+		MissileWeapon w = (MissileWeapon)Reflection.newInstance(Category.MISSILE.classes[Random.chances(Category.MISSILE.probs)]);
 		w.random();
 		return w;
 	}

@@ -202,20 +202,14 @@ public class ShopRoom extends SpecialRoom {
 		
 		switch (Dungeon.depth) {
 			case 5:
-				itemsToSpawn.add(Generator.random(Generator.misTiers[1]).quantity(2).identify());
-				break;
-
 			case 11:
-				itemsToSpawn.add(Generator.random(Generator.misTiers[2]).quantity(2).identify());
-				break;
-
 			case 17:
-				itemsToSpawn.add(Generator.random(Generator.misTiers[3]).quantity(2).identify());
+				itemsToSpawn.add(Generator.randomMissile().quantity(2).identify());
 				break;
 
 			case 23:
 			case 24:
-				itemsToSpawn.add(Generator.random(Generator.misTiers[4]).quantity(2).identify());
+				itemsToSpawn.add(Generator.randomMissile().quantity(2).identify());
 				itemsToSpawn.add( new Torch() );
 				itemsToSpawn.add( new Torch() );
 				itemsToSpawn.add( new Torch() );
