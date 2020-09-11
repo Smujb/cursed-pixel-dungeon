@@ -237,6 +237,11 @@ public abstract class Elemental extends Mob {
 		{
 			spriteClass = ElementalSprite.Water.class;
 
+			EXP = 2;
+
+			damageFactor = 0.7f;
+			healthFactor = 2f;
+
 			//TODO loot?
 		}
 

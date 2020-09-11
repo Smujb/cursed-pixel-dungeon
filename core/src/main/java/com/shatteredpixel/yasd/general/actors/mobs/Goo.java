@@ -63,7 +63,7 @@ public class Goo extends Boss {
 
 		damageFactor = 1.5f;
 		healthFactor = 0.8f;
-		spriteClass = GooSprite.class;
+		spriteClass = GooSprite.BossGoo.class;
 
 		properties.add(Property.BOSS);
 		properties.add(Property.DEMONIC);

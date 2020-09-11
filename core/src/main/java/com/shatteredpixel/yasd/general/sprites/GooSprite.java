@@ -36,37 +36,40 @@ import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
-public class GooSprite extends MobSprite {
+public abstract class GooSprite extends MobSprite {
 	
 	private Animation pump;
 	private Animation pumpAttack;
 
 	private Emitter spray;
 
-	public GooSprite() {
+	public static final int WIDTH = 12;
+
+	public GooSprite(int row) {
 		super();
 		
 		texture( Assets.Sprites.GOO );
 		
 		TextureFilm frames = new TextureFilm( texture, 20, 14 );
+		int offset = row * WIDTH;
 		
 		idle = new Animation( 10, true );
-		idle.frames( frames, 2, 1, 0, 0, 1 );
+		idle.frames( frames, 2+offset, 1+offset, 0+offset, 0+offset, 1+offset );
 		
 		run = new Animation( 15, true );
-		run.frames( frames, 3, 2, 1, 2 );
+		run.frames( frames, 3+offset, 2+offset, 1+offset, 2+offset );
 		
 		pump = new Animation( 20, true );
-		pump.frames( frames, 4, 3, 2, 1, 0 );
+		pump.frames( frames, 4+offset, 3+offset, 2+offset, 1+offset, 0+offset );
 
 		pumpAttack = new Animation ( 20, false );
-		pumpAttack.frames( frames, 4, 3, 2, 1, 0, 7);
+		pumpAttack.frames( frames, 4+offset, 3+offset, 2+offset, 1+offset, 0+offset, 7+offset);
 
 		attack = new Animation( 10, false );
-		attack.frames( frames, 8, 9, 10 );
+		attack.frames( frames, 8+offset, 9+offset, 10+offset );
 		
 		die = new Animation( 10, false );
-		die.frames( frames, 5, 6, 7 );
+		die.frames( frames, 5+offset, 6+offset, 7+offset );
 		
 		play(idle);
 
@@ -153,6 +156,20 @@ public class GooSprite extends MobSprite {
 			ch.onAttackComplete();
 		} else if (anim == die) {
 			spray.killAndErase();
+		}
+	}
+
+	public static class BossGoo extends GooSprite {
+
+		public BossGoo() {
+			super(0);
+		}
+	}
+
+	public static class WaterTrialGoo extends GooSprite {
+
+		public WaterTrialGoo() {
+			super(1);
 		}
 	}
 }
