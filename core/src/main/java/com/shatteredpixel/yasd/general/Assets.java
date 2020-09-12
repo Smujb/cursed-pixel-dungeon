@@ -303,5 +303,6 @@ public class Assets {
 		public static final String DRAGONS       = "sprites/dragons.png";
 		public static final String LIGHTNING_TOWER       = "sprites/littower.png";
 		public static final String WATER_LARVA       = "sprites/water_larva.png";
+		public static final String NIGHTMARE	       = "sprites/nightmare.png";
 	}
 }

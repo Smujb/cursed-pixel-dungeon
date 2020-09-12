@@ -118,9 +118,11 @@ public class Wraith extends Mob {
 		return super.act();
 	}
 
-	private void convert() {
-		this.alignment = Alignment.ALLY;
-		sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "converted"));
+	protected void convert() {
+		if (this.alignment != Alignment.ALLY) {
+			this.alignment = Alignment.ALLY;
+			sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "converted"));
+		}
 	}
 
 	public static Wraith spawnAt( int pos ) {

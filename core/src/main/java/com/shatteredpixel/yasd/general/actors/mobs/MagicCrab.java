@@ -32,7 +32,7 @@ public class MagicCrab extends Mob {
 
     @Override
     protected Item createLoot() {
-        //(9-count) / 9 chance of getting healing, otherwise mystery meat
+        //(4-count) / 4 chance of getting healing, otherwise frozen carpaccio
         if (Random.Float() < ((4f - Dungeon.LimitedDrops.MAGIC_CRAB_HP.count) / 4f)) {
             Dungeon.LimitedDrops.MAGIC_CRAB_HP.count++;
             return (Item)loot;
