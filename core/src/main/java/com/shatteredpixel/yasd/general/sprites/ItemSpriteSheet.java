@@ -143,7 +143,6 @@ public class ItemSpriteSheet {
 	public static final int SHATTPOT        = SINGLE_USE+8;
 	public static final int MASTERY         = SINGLE_USE+13;
 	public static final int KIT             = SINGLE_USE+14;
-	public static final int AMULET          = SINGLE_USE+15;
 	static{
 		assignItemRect(ANKH,            10, 16);
 		assignItemRect(STYLUS,          12, 13);
@@ -156,7 +155,6 @@ public class ItemSpriteSheet {
 		assignItemRect(SHATTPOT,        14, 12);
 		assignItemRect(MASTERY,         13, 16);
 		assignItemRect(KIT,             16, 15);
-		assignItemRect(AMULET,          16, 16);
 	}
 	
 	private static final int BOMBS          =                               xy(1, 5);   //16 slots
@@ -205,6 +203,14 @@ public class ItemSpriteSheet {
 		assignItemRect(SKELETON_KEY, 8, 14);
 		assignItemRect(BRONZE_KEY, 8, 14);
 	}
+
+	private static final int AMULET          =                               xy(1, 7);   //16 slots
+	public static final int MAIN_AMULET 	= AMULET+0;
+	public static final int AMULET_EMPTY 	= AMULET+1;
+	public static final int AMULET_FIRE 	= AMULET+2;
+	public static final int AMULET_AIR 		= AMULET+3;
+	public static final int AMULET_WATER 	= AMULET+4;
+	public static final int AMULET_EARTH	= AMULET+5;
 
 	public static int adjustForTier(int image, int tier) {
 		return image + (tier-1) * WIDTH;

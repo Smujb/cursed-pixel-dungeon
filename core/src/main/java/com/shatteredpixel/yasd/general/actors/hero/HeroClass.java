@@ -29,8 +29,11 @@ package com.shatteredpixel.yasd.general.actors.hero;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
+import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.StoryChapter;
+import com.shatteredpixel.yasd.general.items.Amulet;
 import com.shatteredpixel.yasd.general.items.BrokenSeal;
 import com.shatteredpixel.yasd.general.items.DeveloperItem;
 import com.shatteredpixel.yasd.general.items.Item;
@@ -119,6 +122,10 @@ public enum HeroClass {
 			case PRIESTESS:
 				initPriestess( hero );
 				break;
+		}
+
+		if (CPDSettings.storyChapter() == StoryChapter.SECOND) {
+			new Amulet.EmptyAmulet().collect();
 		}
 
 		for (KindofMisc misc : hero.belongings.miscs) {

@@ -7,6 +7,7 @@ import com.shatteredpixel.yasd.general.actors.blobs.SpawnerGas;
 import com.shatteredpixel.yasd.general.actors.buffs.LockedFloor;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
+import com.shatteredpixel.yasd.general.items.Amulet;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRetribution;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
@@ -76,5 +77,12 @@ public class Nightmare extends Boss {
         }
         LockedFloor lock = Dungeon.hero.buff(LockedFloor.class);
         if (lock != null) lock.addTime(dmg*2);
+    }
+
+    @Override
+    public void die(DamageSrc cause) {
+        super.die(cause);
+        Dungeon.level.drop(new Amulet.WaterGem(), pos).sprite.drop(pos);
+        Dungeon.level.unseal();
     }
 }

@@ -45,7 +45,7 @@ public class Amulet extends Item {
 	private static final String AC_END = "END";
 	
 	{
-		image = ItemSpriteSheet.AMULET;
+		image = ItemSpriteSheet.MAIN_AMULET;
 		
 		unique = true;
 	}
@@ -113,4 +113,33 @@ public class Amulet extends Item {
 		return false;
 	}
 
+	public static class EmptyAmulet extends Item {
+		{
+			image = ItemSpriteSheet.AMULET_EMPTY;
+		}
+	}
+
+	public static class WaterGem extends Item {
+		{
+			image = ItemSpriteSheet.AMULET_WATER;
+		}
+	}
+
+	public static class FireGem extends Item {
+		{
+			image = ItemSpriteSheet.AMULET_FIRE;
+		}
+	}
+
+	public static class AirGem extends Item {
+		{
+			image = ItemSpriteSheet.AMULET_AIR;
+		}
+	}
+
+	public static class EarthGem extends Item {
+		{
+			image = ItemSpriteSheet.AMULET_EARTH;
+		}
+	}
 }
