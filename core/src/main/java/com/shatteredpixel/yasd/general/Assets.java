@@ -109,7 +109,6 @@ public class Assets {
 
 		public static final String BUFFS_SMALL	= "interfaces/buffs.png";
 		public static final String BUFFS_LARGE	= "interfaces/large_buffs.png";
-		public static final String CONS_ICONS   = "interfaces/consumable_icons.png";
 	}
 
 	//these points to resource bundles, not raw asset files

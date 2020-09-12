@@ -232,6 +232,7 @@ public enum Element {
 				ch.sprite.parent.add(
 						new Beam.DeathRay(ch.sprite.center(), DungeonTilemap.raisedTileCenterToWorld(cell)));
 				attack.call();
+				Sample.INSTANCE.play( Assets.Sounds.HIT_MAGIC );
 				break;
 			case FIRE:
 				MagicMissile.boltFromChar(ch.sprite.parent,
@@ -247,6 +248,7 @@ public enum Element {
 								}
 							}
 						});
+				Sample.INSTANCE.play( Assets.Sounds.BURNING );
 				break;
 			case WATER:
 				MagicMissile.boltFromChar(ch.sprite.parent,
@@ -262,6 +264,7 @@ public enum Element {
 								}
 							}
 						});
+				Sample.INSTANCE.play( Assets.Sounds.WATER );
 				break;
 			case COLD:
 				MagicMissile.boltFromChar(ch.sprite.parent,
@@ -277,7 +280,7 @@ public enum Element {
 								}
 							}
 						});
-				Sample.INSTANCE.play(Assets.Sounds.ZAP);
+				Sample.INSTANCE.play(Assets.Sounds.SHATTER);
 				break;
 			case EARTH:
 				MagicMissile.boltFromChar( ch.sprite.parent,
@@ -285,6 +288,7 @@ public enum Element {
 						ch.sprite,
 						cell,
 						attack);
+				Sample.INSTANCE.play( Assets.Sounds.HIT_MAGIC );
 				break;
 			case GRASS:
 				MagicMissile.boltFromChar( ch.sprite.parent,
@@ -292,6 +296,7 @@ public enum Element {
 						ch.sprite,
 						cell,
 						attack);
+				Sample.INSTANCE.play( Assets.Sounds.GRASS );
 				break;
 			case CHAOS:
 				MagicMissile.boltFromChar( ch.sprite.parent,
@@ -299,6 +304,7 @@ public enum Element {
 						ch.sprite,
 						cell,
 						attack);
+				Sample.INSTANCE.play( Assets.Sounds.DEBUFF );
 				break;
 			case TOXIC:
 				MagicMissile.boltFromChar(ch.sprite.parent,
@@ -314,6 +320,7 @@ public enum Element {
 								}
 							}
 						});
+				Sample.INSTANCE.play( Assets.Sounds.GAS );
 				break;
 			case AIR: case LIGHT:
 				ch.sprite.parent.add(
@@ -325,6 +332,7 @@ public enum Element {
 					}
 				}
 				attack.call();
+				Sample.INSTANCE.play( Assets.Sounds.DEBUFF );
 				break;
 			case ACID:
 				MagicMissile.boltFromChar(ch.sprite.parent,
@@ -340,6 +348,7 @@ public enum Element {
 								}
 							}
 						});
+				Sample.INSTANCE.play( Assets.Sounds.GAS );
 				break;
 			case SHOCK:
 				ch.sprite.parent.add(
@@ -371,6 +380,7 @@ public enum Element {
 								}
 							}
 						});
+				Sample.INSTANCE.play( Assets.Sounds.DEBUFF );
 				break;
 		}
 	}
