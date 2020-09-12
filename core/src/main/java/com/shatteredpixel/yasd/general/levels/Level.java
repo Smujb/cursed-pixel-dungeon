@@ -232,7 +232,7 @@ public abstract class Level implements Bundlable {
 
 	//Cache map flags to use later and improve performance.
 	private FlagCache passable = new FlagCache();
-	private FlagCache losBlocking = new FlagCache();
+	public FlagCache losBlocking = new FlagCache();
 	private FlagCache flammable = new FlagCache();
 	private FlagCache secret = new FlagCache();
 	private FlagCache solid = new FlagCache();
@@ -243,15 +243,15 @@ public abstract class Level implements Bundlable {
 
 	private FlagCache[] caches = new FlagCache[] {passable, losBlocking, flammable, secret, solid, avoid, liquid, pit, openSpace};
 
-	private static class FlagCache {
+	public static class FlagCache {
 
-		public boolean[] data = null;
+		private boolean[] data = null;
 
 		boolean isValid(Level level) {
 			return data != null && data.length == level.getMap().length && CPDSettings.mapCache();
 		}
 
-		void invalidate() {
+		public void invalidate() {
 			data = null;
 		}
 	}

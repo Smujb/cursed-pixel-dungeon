@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.actors.blobs;
 
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.effects.BlobEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 
@@ -34,7 +35,7 @@ public class SmokeScreen extends Gas {
 
 	@Override
 	public void affectCell(int cell) {
-
+		Dungeon.level.losBlocking.invalidate();
 	}
 
 	@Override
