@@ -34,6 +34,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
@@ -91,20 +92,13 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 					item.cursed = false;
 				}
 			}
-			if (item instanceof Weapon){
-				Weapon w = (Weapon) item;
+			if (item instanceof Enchantable){
+				Enchantable w = (Enchantable) item;
 				if (w.hasCurseEnchant()){
 					w.enchant(null);
 					procced = true;
 				}
 			}
-			/*if (item instanceof Armor){
-				Armor a = (Armor) item;
-				if (a.hasCurseGlyph()){
-					a.inscribe(null);
-					procced = true;
-				}
-			}*/
 			if (item instanceof Wand){
 				((Wand) item).updateLevel();
 			}

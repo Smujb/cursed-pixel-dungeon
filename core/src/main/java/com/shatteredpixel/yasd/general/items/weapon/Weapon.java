@@ -322,7 +322,12 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 	public boolean hasEnchant(Class<?extends Enchantment> type, Char owner) {
 		return enchantment != null && enchantment.getClass() == type && owner.buff(MagicImmune.class) == null;
 	}
-	
+
+	@Override
+	public Enchantment getEnchantment() {
+		return enchantment;
+	}
+
 	//these are not used to process specific enchant effects, so magic immune doesn't affect them
 	@Override
 	public boolean hasGoodEnchant(){

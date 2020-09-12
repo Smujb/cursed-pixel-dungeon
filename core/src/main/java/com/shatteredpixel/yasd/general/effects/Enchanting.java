@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.effects;
 
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -56,8 +57,11 @@ public class Enchanting extends ItemSprite {
 	public Enchanting( Item item ) {
 		super( item.image(), null );
 		originToCenter();
-
-		color = item.glowing().color;
+		if (item.glowing() != null) {
+			color = item.glowing().color;
+		} else {
+			color = Constants.Colours.PURE_WHITE;
+		}
 
 		phase = Phase.FADE_IN;
 		duration = FADE_IN_TIME;

@@ -32,6 +32,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Shopkeeper;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Honeypot;
@@ -50,12 +51,9 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRemoveCurse;
-import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfAugmentation;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfRepair;
-import com.shatteredpixel.yasd.general.items.weapon.Weapon;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.darts.TippedDart;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
@@ -178,24 +176,6 @@ public class ShopRoom extends SpecialRoom {
 
 	}
 
-	private Shield generateShield() {
-		Shield shield = (Shield) Generator.randomShield().identify();
-		shield.randomHigh();
-		shield.cursed = false;
-		return shield;
-	}
-
-	private MeleeWeapon generateWeapon() {
-		MeleeWeapon weapon;
-		weapon = (MeleeWeapon) Generator.random(Generator.Category.WEAPON).identify();
-		weapon.randomHigh();
-		weapon.cursed = false;
-		if (weapon.hasCurseEnchant()) {
-			weapon.enchant(Weapon.Enchantment.random());
-		}
-		return weapon;
-	}
-
 	private ArrayList<Item> generateItems() {
 
 		ArrayList<Item> itemsToSpawn = new ArrayList<>();
@@ -230,6 +210,9 @@ public class ShopRoom extends SpecialRoom {
 			toAdd.identify();
 			if (toAdd.cursed) {
 				toAdd.uncurse();
+				if (toAdd instanceof Enchantable) {
+					((Enchantable) toAdd).enchant();
+				}
 			}
 			itemsToSpawn.add( toAdd );
 		}

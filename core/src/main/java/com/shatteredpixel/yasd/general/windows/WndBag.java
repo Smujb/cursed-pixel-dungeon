@@ -34,6 +34,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.items.Attackable;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Item;
@@ -54,7 +55,6 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.spells.Recycle;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
-import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -425,7 +425,7 @@ public class WndBag extends WndTabbed {
 									mode == Mode.QUICKSLOT && (item.defaultAction != null) ||
 									mode == Mode.WEAPON && (item instanceof MeleeWeapon) ||
 									mode == Mode.SHIELD && (item instanceof Shield) ||
-									mode == Mode.ENCHANTABLE && (item instanceof Weapon) ||
+									mode == Mode.ENCHANTABLE && (item instanceof Enchantable) ||
 									mode == Mode.WAND && (item instanceof Wand) ||
 									mode == Mode.SEED && SandalsOfNature.canUseSeed(item) ||
 									mode == Mode.FOOD && (item instanceof Food) ||

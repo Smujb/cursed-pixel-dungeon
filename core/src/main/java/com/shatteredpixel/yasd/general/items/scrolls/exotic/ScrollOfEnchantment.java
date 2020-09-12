@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.items.scrolls.exotic;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.effects.Enchanting;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
@@ -60,11 +61,11 @@ public class ScrollOfEnchantment extends ExoticScroll {
 		@Override
 		public void onSelect(final Item item) {
 			
-			if (item instanceof Weapon) {
+			if (item instanceof Enchantable) {
 
 				final Weapon.Enchantment[] enchants = new Weapon.Enchantment[3];
 				
-				Class<? extends Weapon.Enchantment> existing = ((Weapon) item).enchantment != null ? ((Weapon) item).enchantment.getClass() : null;
+				Class<? extends Weapon.Enchantment> existing = ((Enchantable) item).getEnchantment() != null ? ((Enchantable) item).getEnchantment().getClass() : null;
 				enchants[0] = Weapon.Enchantment.randomCommon( existing );
 				enchants[1] = Weapon.Enchantment.randomUncommon( existing );
 				enchants[2] = Weapon.Enchantment.random( existing, enchants[0].getClass(), enchants[1].getClass());
@@ -81,7 +82,7 @@ public class ScrollOfEnchantment extends ExoticScroll {
 					@Override
 					protected void onSelect(int index) {
 						if (index < 3) {
-							((Weapon) item).enchant(enchants[index]);
+							((Enchantable) item).enchant(enchants[index]);
 							GLog.positive(Messages.get(StoneOfEnchantment.class, "getWeapons"));
 							((ScrollOfEnchantment)source).readAnimation();
 							

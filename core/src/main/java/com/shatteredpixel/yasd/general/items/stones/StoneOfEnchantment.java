@@ -29,8 +29,8 @@ package com.shatteredpixel.yasd.general.items.stones;
 
 import com.shatteredpixel.yasd.general.effects.Enchanting;
 import com.shatteredpixel.yasd.general.effects.Speck;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -46,20 +46,16 @@ public class StoneOfEnchantment extends InventoryStone {
 	@Override
 	protected void onItemSelected(Item item) {
 		
-		if (item instanceof Weapon) {
+		if (item instanceof Enchantable) {
 			
-			((Weapon)item).enchant();
+			((Enchantable)item).enchant();
 			
 		}
 		
 		curUser.sprite.emitter().start( Speck.factory( Speck.LIGHT ), 0.1f, 5 );
 		Enchanting.show( curUser, item );
 		
-		if (item instanceof Weapon) {
-			GLog.positive(Messages.get(this, "weapon"));
-		} else {
-			GLog.positive(Messages.get(this, "armour"));
-		}
+		GLog.positive(Messages.get(this, "item"));
 		
 		useAnimation();
 		

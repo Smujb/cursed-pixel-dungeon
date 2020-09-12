@@ -14,5 +14,6 @@ public class SwiftShield extends Shield {
         if (parry && curUser != null) {
             curUser.spend(-parryTime());
         }
+        proc(curUser, enemy, 0, parry);
     }
 }

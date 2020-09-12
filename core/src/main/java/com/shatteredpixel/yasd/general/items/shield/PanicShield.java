@@ -13,10 +13,10 @@ public class PanicShield extends Shield {
     }
 
     @Override
-    public void affectEnemy(Char enemy, boolean parry) {
-        super.affectEnemy(enemy, parry);
+    public int proc(Char attacker, Char enemy, int damage, boolean parry) {
         if (parry && curUser != null && curUser.hpPercent() <= 0.25f) {
             ScrollOfTeleportation.teleportUser(curUser);
         }
+        return super.proc(attacker, enemy, damage, parry);
     }
 }

@@ -33,11 +33,14 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.BrokenSeal;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
+import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -54,7 +57,7 @@ import com.watabou.utils.Random;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class Shield extends KindofMisc {
+public abstract class Shield extends KindofMisc implements Enchantable {
 
     {
         defaultAction = AC_PARRY;
@@ -140,6 +143,10 @@ public abstract class Shield extends KindofMisc {
             emitter.fillTarget = false;
             emitter.pour(Speck.factory(Speck.RED_LIGHT), 0.6f);
         }
+        Emitter emitter = emitter(sprite);
+        if (enchantment != null && !enchantment.curse() && cursedKnown) {
+            emitter.pour(Speck.factory(Speck.HALO), 0.15f);
+        }
     }
 
     @Override
@@ -167,6 +174,32 @@ public abstract class Shield extends KindofMisc {
         super.activate(ch);
         charger = new Charger();
         charger.attachTo(ch);
+    }
+
+    @Override
+    public Item random() {
+        //+0: 75% (3/4)
+        //+1: 20% (4/20)
+        //+2: 5%  (1/20)
+        int n = Dungeon.getScaleFactor()/2;
+        if (Random.Int(4) == 0) {
+            n++;
+            if (Random.Int(5) == 0) {
+                n++;
+            }
+        }
+        level(n);
+
+        //30% chance to be cursed
+        //10% chance to be enchanted
+        float effectRoll = Random.Float();
+        if (effectRoll < 0.5f) {
+            enchant(Weapon.Enchantment.randomCurse());
+            cursed = true;
+        } else if (effectRoll >= 0.8f){
+            enchant();
+        }
+        return this;
     }
 
     @Override
@@ -228,8 +261,16 @@ public abstract class Shield extends KindofMisc {
             } else {
                 damage = Random.NormalIntRange(minDamage(power()), maxDamage(power()));
             }
+            damage = proc(curUser, enemy, damage, parry);
             enemy.damage(damage, new Char.DamageSrc(Element.PHYSICAL, this));
         }
+    }
+
+    public int proc(Char attacker, Char enemy, int damage, boolean parry) {
+        if (enchantment != null && attacker.buff(MagicImmune.class) == null) {
+            damage = enchantment.proc(this, attacker, enemy, damage);
+        }
+        return damage;
     }
 
     public int absorbDamage(Char.DamageSrc src, int damage) {
@@ -277,12 +318,14 @@ public abstract class Shield extends KindofMisc {
 
     private static final String SEAL            = "seal";
     private static final String CHARGE            = "charge";
+    private static final String ENCHANTMENT            = "enchantment";
 
     @Override
     public void storeInBundle(Bundle bundle) {
         super.storeInBundle(bundle);
         bundle.put(SEAL, seal);
         bundle.put(CHARGE, charge);
+        bundle.put(ENCHANTMENT, enchantment);
     }
 
     @Override
@@ -290,6 +333,77 @@ public abstract class Shield extends KindofMisc {
         super.restoreFromBundle(bundle);
         seal = (BrokenSeal) bundle.get(SEAL);
         charge = bundle.getFloat(CHARGE);
+        enchantment = (Weapon.Enchantment) bundle.get(ENCHANTMENT);
+    }
+
+    private Weapon.Enchantment enchantment = null;
+
+    @Override
+    public Item enchant(Weapon.Enchantment enchantment) {
+        this.enchantment = enchantment;
+        updateQuickslot();
+        return this;
+    }
+
+    @Override
+    public ItemSprite.Glowing glowing() {
+        return enchantment != null && cursedKnown ? enchantment.glowing() : null;
+    }
+
+    @Override
+    public Item enchant() {
+
+        Class<? extends Weapon.Enchantment> oldEnchantment = enchantment != null ? enchantment.getClass() : null;
+        Weapon.Enchantment ench = Weapon.Enchantment.random( oldEnchantment );
+
+        return enchant( ench );
+    }
+
+    @Override
+    public boolean hasEnchant(Class<? extends Weapon.Enchantment> type, Char owner) {
+        return enchantment != null && enchantment.getClass() == type && owner.buff(MagicImmune.class) == null;
+    }
+
+    @Override
+    public boolean hasGoodEnchant(){
+        return enchantment != null && !enchantment.curse();
+    }
+
+    @Override
+    public boolean hasCurseEnchant(){
+        return enchantment != null && enchantment.curse();
+    }
+
+    @Override
+    public Weapon.Enchantment getEnchantment() {
+        return enchantment;
+    }
+
+    @Override
+    public int enchPower() {
+        return level();
+    }
+
+    @Override
+    public boolean isSimilar(Item item) {
+        boolean similar = super.isSimilar(item);
+        if (similar && item instanceof Shield) {
+            if (enchantment == null && ((Shield) item).enchantment == null) {
+                return true;
+            } else if (enchantment != null) {
+                return ((Shield) item).hasEnchant(enchantment.getClass(), curUser);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String name() {
+        //return enchantment != null && (cursedKnown || !enchantment.curse()) ? enchantment.name( super.name() ) : super.name();
+        return Weapon.Enchantment.getName(this.getClass(), enchantment, cursedKnown);
     }
 
     public static class Parry extends Buff {

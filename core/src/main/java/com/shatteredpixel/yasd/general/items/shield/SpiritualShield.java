@@ -18,10 +18,10 @@ public class SpiritualShield extends Shield {
     }
 
     @Override
-    public void affectEnemy(Char enemy, boolean parry) {
-        super.affectEnemy(enemy, parry);
-        if (curUser != null && parry) {
-            Buff.affect(curUser, Recharging.class, Recharging.DURATION);
+    public int proc(Char attacker, Char enemy, int damage, boolean parry) {
+        if (parry) {
+            Buff.affect(attacker, Recharging.class, Recharging.DURATION);
         }
+        return super.proc(attacker, enemy, damage, parry);
     }
 }
