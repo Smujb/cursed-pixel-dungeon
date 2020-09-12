@@ -199,30 +199,39 @@ public class ShopRoom extends SpecialRoom {
 	private ArrayList<Item> generateItems() {
 
 		ArrayList<Item> itemsToSpawn = new ArrayList<>();
-		
-		switch (Dungeon.depth) {
-			case 5:
-			case 11:
-			case 17:
-				itemsToSpawn.add(Generator.randomMissile().quantity(2).identify());
-				break;
 
-			case 23:
-			case 24:
-				itemsToSpawn.add(Generator.randomMissile().quantity(2).identify());
-				itemsToSpawn.add( new Torch() );
-				itemsToSpawn.add( new Torch() );
-				itemsToSpawn.add( new Torch() );
-				break;
-		}
-		for (int a = 0; a < Random.IntRange(2,3); a++) {
-			Shield shield = generateShield();
-			itemsToSpawn.add( shield );
+		if (Dungeon.depth == 24) {
+			itemsToSpawn.add(new Torch());
+			itemsToSpawn.add(new Torch());
+			itemsToSpawn.add(new Torch());
 		}
 
-		for (int a = 0; a < Random.IntRange(2,3); a++) {
-			MeleeWeapon weapon = generateWeapon();
-			itemsToSpawn.add( weapon );
+		for (int a = 0; a < Random.IntRange(3, 6); a++) {
+			Item toAdd;
+			switch (Random.Int(5)) {
+				default: case 0:
+					toAdd = Generator.random(Generator.Category.WEAPON);
+					break;
+				case 1:
+					toAdd = Generator.random(Generator.Category.SHIELD);
+					break;
+				case 2:
+					toAdd = Generator.random(Generator.Category.WAND);
+					break;
+				case 3:
+					toAdd = Generator.random(Generator.Category.MISSILE);
+					break;
+				case 4:
+					toAdd = Generator.random(Generator.Category.DRAGON_PENDANT);
+					break;
+			}
+			toAdd.level(0);
+			toAdd.randomHigh();
+			toAdd.identify();
+			if (toAdd.cursed) {
+				toAdd.uncurse();
+			}
+			itemsToSpawn.add( toAdd );
 		}
 
 		itemsToSpawn.add(new StoneOfRepair());
@@ -276,14 +285,10 @@ public class ShopRoom extends SpecialRoom {
 		for (int i = 0; i < 2; i++) {
 			Item rare;
 			switch (Random.Int(3)) {
-				case 0:
-				default:
-					rare = Generator.random(Generator.Category.WAND);
-					break;
-				case 1:
+				case 1: case 0:
 					rare = Generator.random(Generator.Category.RING);
 					break;
-				case 2:
+				case 2: default:
 					rare = Generator.random(Generator.Category.ARTIFACT);
 					break;
 			}
