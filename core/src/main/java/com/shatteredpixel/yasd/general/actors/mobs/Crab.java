@@ -38,7 +38,7 @@ import com.watabou.utils.Reflection;
 public class Crab extends Mob {
 
 	{
-		spriteClass = CrabSprite.class;
+		spriteClass = CrabSprite.Crab.class;
 
 		healthFactor = 0.5f;
 		baseSpeed = 2f;

@@ -30,26 +30,29 @@ package com.shatteredpixel.yasd.general.sprites;
 import com.shatteredpixel.yasd.general.Assets;
 import com.watabou.noosa.TextureFilm;
 
-public class CrabSprite extends MobSprite {
+public abstract class CrabSprite extends MobSprite {
+	private static final int WIDTH = 16;
 
-	public CrabSprite() {
+	public CrabSprite(int row) {
 		super();
 
 		texture( Assets.Sprites.CRAB );
 
 		TextureFilm frames = new TextureFilm( texture, 16, 16 );
 
+		int offset = row*WIDTH;
+
 		idle = new Animation( 5, true );
-		idle.frames( frames, 0, 1, 0, 2 );
+		idle.frames( frames, 0+offset, 1+offset, 0+offset, 2+offset );
 
 		run = new Animation( 15, true );
-		run.frames( frames, 3, 4, 5, 6 );
+		run.frames( frames, 3+offset, 4+offset, 5+offset, 6+offset );
 
 		attack = new Animation( 12, false );
-		attack.frames( frames, 7, 8, 9 );
+		attack.frames( frames, 7+offset, 8+offset, 9+offset );
 
 		die = new Animation( 12, false );
-		die.frames( frames, 10, 11, 12, 13 );
+		die.frames( frames, 10+offset, 11+offset, 12+offset, 13+offset );
 
 		play( idle );
 	}
@@ -57,5 +60,33 @@ public class CrabSprite extends MobSprite {
 	@Override
 	public int blood() {
 		return 0xFFFFEA80;
+	}
+
+	public static class Crab extends CrabSprite {
+		public Crab() {
+			super(0);
+		}
+	}
+
+	public static class GreatCrab extends CrabSprite {
+		public GreatCrab() {
+			super(1);
+		}
+	}
+
+	public static class MagicCrab extends CrabSprite {
+		public MagicCrab() {
+			super(2);
+			TextureFilm frames = new TextureFilm( texture, 16, 16 );
+			int offset = 2*WIDTH;
+
+			run.frames( frames, 3+offset, 4+offset, 5+offset, 6+offset, 7+offset);
+
+			attack = new Animation( 12, false );
+			attack.frames( frames, 8+offset, 9+offset, 10+offset );
+
+			die = new Animation( 12, false );
+			die.frames( frames, 11+offset, 12+offset, 13+offset, 14+offset, 15+offset );
+		}
 	}
 }

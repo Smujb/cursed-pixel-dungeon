@@ -35,7 +35,7 @@ import com.shatteredpixel.yasd.general.items.food.MysteryMeat;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
-import com.shatteredpixel.yasd.general.sprites.GreatCrabSprite;
+import com.shatteredpixel.yasd.general.sprites.CrabSprite;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -43,7 +43,7 @@ import com.watabou.utils.Random;
 public class GreatCrab extends Crab {
 
 	{
-		spriteClass = GreatCrabSprite.class;
+		spriteClass = CrabSprite.GreatCrab.class;
 
 		perceptionFactor = 0.3f;
 		evasionFactor = 0f;

@@ -35,9 +35,9 @@ import com.shatteredpixel.yasd.general.actors.mobs.npcs.Ghost;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
+import com.shatteredpixel.yasd.general.sprites.CrabSprite;
 import com.shatteredpixel.yasd.general.sprites.FetidRatSprite;
 import com.shatteredpixel.yasd.general.sprites.GnollTricksterSprite;
-import com.shatteredpixel.yasd.general.sprites.GreatCrabSprite;
 import com.shatteredpixel.yasd.general.ui.RedButton;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.shatteredpixel.yasd.general.ui.Window;
@@ -67,7 +67,7 @@ public class WndSadGhost extends Window {
 				message = PixelScene.renderTextBlock( Messages.get(this, "gnoll")+Messages.get(this, "give_item"), 6 );
 				break;
 			case 3:
-				titlebar.icon( new GreatCrabSprite());
+				titlebar.icon(new CrabSprite.GreatCrab());
 				titlebar.label( Messages.get(this, "crab_title") );
 				message = PixelScene.renderTextBlock( Messages.get(this, "crab")+Messages.get(this, "give_item"), 6 );
 				break;

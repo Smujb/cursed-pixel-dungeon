@@ -2,6 +2,7 @@ package com.shatteredpixel.yasd.general.levels.chapters.watertrial;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.mobs.Elemental;
+import com.shatteredpixel.yasd.general.actors.mobs.MagicCrab;
 import com.shatteredpixel.yasd.general.actors.mobs.WaterLarva;
 import com.shatteredpixel.yasd.general.actors.mobs.WaterTrialGoo;
 import com.shatteredpixel.yasd.general.levels.chapters.TrialLevel;
@@ -34,11 +35,11 @@ public class WaterTrialLevel extends TrialLevel {
     //TODO bestiary
     @Override
     public Class<?>[] mobClasses() {
-        return new Class[] {Elemental.Water.class, WaterTrialGoo.class, WaterLarva.class};
+        return new Class[] {Elemental.Water.class, WaterTrialGoo.class, WaterLarva.class, MagicCrab.class};
     }
 
     @Override
     public float[] mobChances() {
-        return new float[]{2f, 1f, 3f};
+        return new float[]{2f, 1f, 3f, 2f};
     }
 }
