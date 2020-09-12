@@ -1,7 +1,9 @@
 package com.shatteredpixel.yasd.general.actors.mobs;
 
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
+import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.effects.Pushing;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.WaterLarvaSprite;
@@ -75,6 +77,7 @@ public class WaterLarva extends Mob {
             if (sprite.visible) {
                 Actor.addDelayed( new Pushing( child, pos, child.pos ), -1 );
             }
+            new Flare(8, 8).color(Constants.Colours.PURE_BLUE, true).show(child.sprite, 1f);
         }
     }
 

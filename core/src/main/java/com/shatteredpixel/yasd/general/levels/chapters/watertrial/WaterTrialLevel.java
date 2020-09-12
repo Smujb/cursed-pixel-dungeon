@@ -14,7 +14,10 @@ public class WaterTrialLevel extends TrialLevel {
     @Override
     //TODO new painter
     protected Painter painter() {
-        return new SewerPainter();
+        return new SewerPainter()
+                .setWater(feeling == Feeling.WATER ? 1.00f : 0.75f, 5)
+                .setGrass(feeling == Feeling.GRASS ? 0.50f : 0.20f, 4)
+                .setTraps(nTraps(), trapClasses(), trapChances());
     }
 
     @Override
