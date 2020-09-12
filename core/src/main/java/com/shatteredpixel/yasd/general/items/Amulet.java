@@ -114,32 +114,89 @@ public class Amulet extends Item {
 	}
 
 	public static class EmptyAmulet extends Item {
+
 		{
 			image = ItemSpriteSheet.AMULET_EMPTY;
+
+			unique = true;
+		}
+
+		@Override
+		public boolean isUpgradable() {
+			return false;
+		}
+
+		@Override
+		public boolean isIdentified() {
+			return true;
 		}
 	}
 
 	public static class WaterGem extends Item {
 		{
 			image = ItemSpriteSheet.AMULET_WATER;
+			unique = true;
+		}
+
+		@Override
+		public boolean isUpgradable() {
+			return false;
+		}
+
+		@Override
+		public boolean isIdentified() {
+			return true;
 		}
 	}
 
 	public static class FireGem extends Item {
 		{
 			image = ItemSpriteSheet.AMULET_FIRE;
+			unique = true;
+		}
+
+		@Override
+		public boolean isUpgradable() {
+			return false;
+		}
+
+		@Override
+		public boolean isIdentified() {
+			return true;
 		}
 	}
 
 	public static class AirGem extends Item {
 		{
 			image = ItemSpriteSheet.AMULET_AIR;
+			unique = true;
+		}
+
+		@Override
+		public boolean isUpgradable() {
+			return false;
+		}
+
+		@Override
+		public boolean isIdentified() {
+			return true;
 		}
 	}
 
 	public static class EarthGem extends Item {
 		{
 			image = ItemSpriteSheet.AMULET_EARTH;
+			unique = true;
+		}
+
+		@Override
+		public boolean isUpgradable() {
+			return false;
+		}
+
+		@Override
+		public boolean isIdentified() {
+			return true;
 		}
 	}
 }
