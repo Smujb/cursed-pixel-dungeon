@@ -31,6 +31,7 @@ public class WaterTrialGoo extends Mob {
         baseSpeed = 2f;
         damageFactor = 2/3f;
         healthFactor = 2f;
+        evasionFactor = 0.7f;
     }
 
     private int pumpedUp = 0;

@@ -32,7 +32,6 @@ public class WaterTrialLevel extends TrialLevel {
         return Assets.Interfaces.LOADING_SEWERS;
     }
 
-    //TODO bestiary
     @Override
     public Class<?>[] mobClasses() {
         return new Class[] {Elemental.Water.class, WaterTrialGoo.class, WaterLarva.class, MagicCrab.class};
@@ -40,6 +39,6 @@ public class WaterTrialLevel extends TrialLevel {
 
     @Override
     public float[] mobChances() {
-        return new float[]{2f, 1f, 3f, 2f};
+        return new float[]{3f, 1f, 5f, 3f};
     }
 }
