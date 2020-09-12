@@ -7,7 +7,6 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.GooWarn;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
-import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.ElmoParticle;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -79,9 +78,7 @@ public class WaterTrialGoo extends Mob {
     public boolean act() {
 
         if (Dungeon.level.liquid(pos) && HP < HT) {
-            sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
-
-            HP+= 3;
+            heal(HT/10, false, true);
         }
 
         return super.act();

@@ -38,7 +38,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Corruption;
 import com.shatteredpixel.yasd.general.actors.buffs.DeferredDeath;
 import com.shatteredpixel.yasd.general.actors.buffs.Poison;
 import com.shatteredpixel.yasd.general.effects.Pushing;
-import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfFrost;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.quest.Embers;
@@ -270,9 +269,7 @@ public abstract class Elemental extends Mob {
 		public boolean act() {
 
 			if (Dungeon.level.liquid(pos) && HP < HT) {
-				sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
-
-				HP+= 10;
+				heal(HT/10, false, true);
 			}
 
 			return super.act();

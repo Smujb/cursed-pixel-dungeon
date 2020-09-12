@@ -115,6 +115,7 @@ public class Goo extends Boss {
 
 		if (Dungeon.level.liquid(pos) && HP < HT) {
 			sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
+			heal(HT/30, false, true);
 			if (HP*2 >= HT) {
 				BossHealthBar.bleed(false);
 				((GooSprite)sprite).spray(false);
