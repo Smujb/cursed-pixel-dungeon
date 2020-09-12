@@ -54,7 +54,7 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.spells.Recycle;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
-import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
+import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -425,7 +425,7 @@ public class WndBag extends WndTabbed {
 									mode == Mode.QUICKSLOT && (item.defaultAction != null) ||
 									mode == Mode.WEAPON && (item instanceof MeleeWeapon) ||
 									mode == Mode.SHIELD && (item instanceof Shield) ||
-									mode == Mode.ENCHANTABLE && (item instanceof MeleeWeapon || item instanceof SpiritBow) ||
+									mode == Mode.ENCHANTABLE && (item instanceof Weapon) ||
 									mode == Mode.WAND && (item instanceof Wand) ||
 									mode == Mode.SEED && SandalsOfNature.canUseSeed(item) ||
 									mode == Mode.FOOD && (item instanceof Food) ||

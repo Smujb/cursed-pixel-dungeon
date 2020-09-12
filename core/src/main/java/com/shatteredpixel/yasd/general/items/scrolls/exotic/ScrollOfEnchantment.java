@@ -60,7 +60,7 @@ public class ScrollOfEnchantment extends ExoticScroll {
 		@Override
 		public void onSelect(final Item item) {
 			
-			if (item instanceof Weapon){
+			if (item instanceof Weapon) {
 
 				final Weapon.Enchantment[] enchants = new Weapon.Enchantment[3];
 				
@@ -97,43 +97,7 @@ public class ScrollOfEnchantment extends ExoticScroll {
 					}
 				});
 			
-			} /*else if (item instanceof Armor) {
-
-				final Armor.Glyph[] glyphs = new Armor.Glyph[3];
-				
-				Class<? extends Armor.Glyph> existing = ((Armor) item).glyph != null ? ((Armor) item).glyph.getClass() : null;
-				glyphs[0] = Armor.Glyph.randomCommon( existing );
-				glyphs[1] = Armor.Glyph.randomUncommon( existing );
-				glyphs[2] = Armor.Glyph.random( existing, glyphs[0].getClass(), glyphs[1].getClass());
-				
-				GameScene.show(new WndOptions(Messages.titleCase(ScrollOfEnchantment.this.name()),
-						Messages.get(ScrollOfEnchantment.class, "getArmors") +
-						"\n\n" +
-						Messages.get(ScrollOfEnchantment.class, "cancel_warn"),
-						glyphs[0].name(),
-						glyphs[1].name(),
-						glyphs[2].name(),
-						Messages.get(ScrollOfEnchantment.class, "cancel")){
-					
-					@Override
-					protected void onSelect(int index) {
-						if (index < 3) {
-							((Armor) item).inscribe(glyphs[index]);
-							GLog.positive(Messages.get(StoneOfEnchantment.class, "getArmors"));
-							((ScrollOfEnchantment)source).readAnimation();
-							
-							Sample.INSTANCE.play( Assets.Sounds.READ );
-							Invisibility.dispel();
-							Enchanting.show(curUser, item);
-						}
-					}
-					
-					@Override
-					public void onBackPressed() {
-						//do nothing, reader has to cancel
-					}
-				});
-			}*/ else {
+			} else {
 				//TODO if this can ever be found un-IDed, need logic for that
 				((Item)source).collect();
 			}

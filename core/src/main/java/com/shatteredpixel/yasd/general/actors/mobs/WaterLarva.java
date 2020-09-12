@@ -87,8 +87,8 @@ public class WaterLarva extends Mob {
         if (partnerID == -1){
             createPartner();
         } else {
-            WaterLarva larva = (WaterLarva) Actor.findById(partnerID);
-            if (larva == null || !larva.isAlive()) {
+            Actor actor = Actor.findById(partnerID);
+            if (actor == null || actor instanceof WaterLarva && !((WaterLarva) actor).isAlive()) {
                 spend(2f);
                 //Create partner after acting
                 partnerID = -1;

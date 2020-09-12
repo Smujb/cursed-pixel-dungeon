@@ -340,6 +340,22 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 	}
 
 	@Override
+	public boolean isSimilar(Item item) {
+		boolean similar = super.isSimilar(item);
+		if (similar && item instanceof Weapon) {
+			if (enchantment == null && ((Weapon) item).enchantment == null) {
+				return true;
+			} else if (enchantment != null) {
+				return ((Weapon) item).hasEnchant(enchantment.getClass(), curUser);
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+
+	@Override
 	public ItemSprite.Glowing glowing() {
 		return enchantment != null && cursedKnown ? enchantment.glowing() : null;
 	}
