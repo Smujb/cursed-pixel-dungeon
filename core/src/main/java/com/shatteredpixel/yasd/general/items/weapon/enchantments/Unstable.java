@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.enchantments;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.watabou.utils.Random;
@@ -53,7 +54,7 @@ public class Unstable extends Weapon.Enchantment {
 	};
 
 	@Override
-	public int proc( Weapon weapon, Char attacker, Char defender, int damage ) {
+	public int proc(Enchantable weapon, Char attacker, Char defender, int damage ) {
 		
 		int conservedDamage = 0;
 		if (attacker.buff(Kinetic.ConservedDamage.class) != null) {

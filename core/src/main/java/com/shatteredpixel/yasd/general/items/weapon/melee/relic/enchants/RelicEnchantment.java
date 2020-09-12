@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee.relic.enchants;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.relic.RelicMeleeWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -10,7 +11,7 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 
 public abstract class RelicEnchantment extends Weapon.Enchantment {
     @Override
-    public int proc(Weapon weapon, Char attacker, Char defender, int damage) {
+    public int proc(Enchantable weapon, Char attacker, Char defender, int damage) {
         if (weapon instanceof RelicMeleeWeapon) {
             return relicProc((RelicMeleeWeapon)weapon,attacker,defender,damage);
         } else {

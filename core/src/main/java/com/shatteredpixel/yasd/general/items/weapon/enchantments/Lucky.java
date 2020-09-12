@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.items.weapon.enchantments;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
@@ -43,8 +44,8 @@ public class Lucky extends Weapon.Enchantment {
 	private static ItemSprite.Glowing GREEN = new ItemSprite.Glowing( Constants.Colours.PURE_GREEN );
 	
 	@Override
-	public int proc( Weapon weapon, Char attacker, Char defender, int damage ) {
-		int level = Math.max( 0, weapon.level() );
+	public int proc(Enchantable weapon, Char attacker, Char defender, int damage ) {
+		int level = Math.max( 0, weapon.enchPower() );
 
 		// lvl 0 - 10%
 		// lvl 1 ~ 12%

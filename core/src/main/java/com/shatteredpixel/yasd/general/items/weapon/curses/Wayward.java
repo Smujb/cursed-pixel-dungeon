@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.curses;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 
@@ -36,7 +37,7 @@ public class Wayward extends Weapon.Enchantment {
 	private static ItemSprite.Glowing BLACK = new ItemSprite.Glowing( 0x000000 );
 
 	@Override
-	public int proc( Weapon weapon, Char attacker, Char defender, int damage ) {
+	public int proc(Enchantable weapon, Char attacker, Char defender, int damage ) {
 		//no proc effect, see weapon.accuracyFactor for effect
 		return damage*3;
 	}

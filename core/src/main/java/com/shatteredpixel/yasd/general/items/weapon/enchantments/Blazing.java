@@ -32,6 +32,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Burning;
 import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite.Glowing;
@@ -42,17 +43,17 @@ public class Blazing extends Weapon.Enchantment {
 	private static ItemSprite.Glowing ORANGE = new ItemSprite.Glowing( 0xFF4400 );
 	
 	@Override
-	public int proc( Weapon weapon, Char attacker, Char defender, int damage ) {
+	public int proc(Enchantable weapon, Char attacker, Char defender, int damage ) {
 		// lvl 0 - 33%
 		// lvl 1 - 50%
 		// lvl 2 - 60%
-		int level = Math.max( 0, weapon.level() );
+		int level = Math.max( 0, weapon.enchPower() );
 		
 		if (Random.Int( level + 3 ) >= 2) {
 			
 			if (defender.buff(Burning.class) != null){
 				Buff.affect(defender, Burning.class).reignite(defender, 8f);
-				int burnDamage = Random.NormalIntRange( weapon.level() + 1, 2*weapon.level() + 4 );
+				int burnDamage = Random.NormalIntRange( weapon.enchPower() + 1, 2*weapon.enchPower() + 4 );
 				defender.damage( burnDamage, new Char.DamageSrc(Element.FIRE, this).ignoreDefense() );
 			} else {
 				Buff.affect(defender, Burning.class).reignite(defender, 8f);

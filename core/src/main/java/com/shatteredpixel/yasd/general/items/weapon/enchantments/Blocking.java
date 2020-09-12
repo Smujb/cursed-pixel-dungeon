@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -44,9 +45,9 @@ public class Blocking extends Weapon.Enchantment {
 	private static ItemSprite.Glowing BLUE = new ItemSprite.Glowing( Constants.Colours.PURE_BLUE );
 	
 	@Override
-	public int proc(Weapon weapon, Char attacker, Char defender, int damage) {
+	public int proc(Enchantable weapon, Char attacker, Char defender, int damage) {
 		
-		int level = Math.max( 0, weapon.level() );
+		int level = Math.max( 0, weapon.enchPower() );
 		
 		Buff.prolong(attacker, BlockBuff.class, 2 + level/2f).setBlocking(level + 2);
 		

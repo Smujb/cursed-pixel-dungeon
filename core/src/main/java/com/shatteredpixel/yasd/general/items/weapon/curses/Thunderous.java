@@ -5,6 +5,7 @@ import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Lightning;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Shocking;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -28,7 +29,7 @@ public class Thunderous extends Weapon.Enchantment {
 	}
 
 	@Override
-	public int proc(Weapon weapon, Char attacker, Char defender, int damage) {
+	public int proc(Enchantable weapon, Char attacker, Char defender, int damage) {
 
 		if (attacker instanceof Hero) {
 			Hero hero = ((Hero)attacker);

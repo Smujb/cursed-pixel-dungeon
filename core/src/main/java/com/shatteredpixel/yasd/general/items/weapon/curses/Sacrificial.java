@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.items.weapon.curses;
 
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -40,7 +41,7 @@ public class Sacrificial extends Weapon.Enchantment {
 	private static ItemSprite.Glowing BLACK = new ItemSprite.Glowing( 0x000000 );
 
 	@Override
-	public int proc(Weapon weapon, Char attacker, Char defender, int damage ) {
+	public int proc(Enchantable weapon, Char attacker, Char defender, int damage ) {
 
 		if (Random.Int(3) == 0) {
 			int procDMG = defender.HP;

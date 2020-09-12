@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.enchantments;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 
@@ -36,7 +37,7 @@ public class Projecting extends Weapon.Enchantment {
 	private static ItemSprite.Glowing PURPLE = new ItemSprite.Glowing( 0x8844CC );
 
 	@Override
-	public int proc(Weapon weapon, Char attacker, Char defender, int damage) {
+	public int proc(Enchantable weapon, Char attacker, Char defender, int damage) {
 		//Does nothing as a proc, instead increases getWeapons range.
 		//See getWeapons.reachFactor, and MissileWeapon.throwPos;
 		return damage;

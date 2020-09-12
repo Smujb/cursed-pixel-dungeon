@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.enchantments;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite.Glowing;
@@ -38,13 +39,13 @@ public class Vampiric extends Weapon.Enchantment {
 	private static ItemSprite.Glowing RED = new ItemSprite.Glowing( 0x660022 );
 
 	@Override
-	public int proc( Weapon weapon, Char attacker, Char defender, int damage ) {
+	public int proc(Enchantable weapon, Char attacker, Char defender, int damage ) {
 
 		//heals for up to 30% of damage dealt, based on missing HP, ultimately normally distributed
 		float 	missingPercent = (attacker.HT - attacker.HP) / (float)attacker.HT,
 				maxHeal = (.025f + missingPercent * .125f) * 2, // min max heal is .025%, consistent with shattered.
 				healPercent = 0;
-		int tries = 1 + weapon.level()/5;
+		int tries = 1 + weapon.enchPower()/5;
 		do {
 			healPercent = Math.max(healPercent, Random.NormalFloat(0,maxHeal));
 		} while(tries-- > 0);

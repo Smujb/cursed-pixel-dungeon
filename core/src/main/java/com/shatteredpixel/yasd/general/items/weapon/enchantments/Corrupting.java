@@ -37,6 +37,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.PinCushion;
 import com.shatteredpixel.yasd.general.actors.buffs.SoulMark;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.watabou.utils.Random;
@@ -46,10 +47,10 @@ public class Corrupting extends Weapon.Enchantment {
 	private static ItemSprite.Glowing BLACK = new ItemSprite.Glowing( 0x440066 );
 	
 	@Override
-	public int proc(Weapon weapon, Char attacker, Char defender, int damage) {
+	public int proc(Enchantable weapon, Char attacker, Char defender, int damage) {
 		if (defender.buff(Corruption.class) != null || !(defender instanceof Mob)) return damage;
 		
-		int level = Math.max( 0, weapon.level() );
+		int level = Math.max( 0, weapon.enchPower() );
 		
 		// lvl 0 - 20%
 		// lvl 1 ~ 23%

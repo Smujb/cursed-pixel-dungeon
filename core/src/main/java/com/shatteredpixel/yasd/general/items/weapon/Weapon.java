@@ -34,6 +34,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Speck;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
@@ -71,7 +72,7 @@ import com.watabou.utils.Reflection;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-abstract public class Weapon extends KindOfWeapon {
+abstract public class Weapon extends KindOfWeapon implements Enchantable {
 
 	public float    ACC = 1f;	// Accuracy modifier
 	public float	DLY	= 1f;	// Speed modifier
@@ -299,7 +300,8 @@ abstract public class Weapon extends KindOfWeapon {
 
 		return this;
 	}
-	
+
+	@Override
 	public Weapon enchant( Enchantment ench ) {
 		if (ench == null || !ench.curse()) curseInfusionBonus = false;
 		enchantment = ench;
@@ -307,6 +309,7 @@ abstract public class Weapon extends KindOfWeapon {
 		return this;
 	}
 
+	@Override
 	public Weapon enchant() {
 
 		Class<? extends Enchantment> oldEnchantment = enchantment != null ? enchantment.getClass() : null;
@@ -315,17 +318,25 @@ abstract public class Weapon extends KindOfWeapon {
 		return enchant( ench );
 	}
 
+	@Override
 	public boolean hasEnchant(Class<?extends Enchantment> type, Char owner) {
 		return enchantment != null && enchantment.getClass() == type && owner.buff(MagicImmune.class) == null;
 	}
 	
 	//these are not used to process specific enchant effects, so magic immune doesn't affect them
+	@Override
 	public boolean hasGoodEnchant(){
 		return enchantment != null && !enchantment.curse();
 	}
 
+	@Override
 	public boolean hasCurseEnchant(){
 		return enchantment != null && enchantment.curse();
+	}
+
+	@Override
+	public int enchPower() {
+		return level();
 	}
 
 	@Override
@@ -336,8 +347,8 @@ abstract public class Weapon extends KindOfWeapon {
 	public static abstract class Enchantment implements Bundlable {
 
 		//Why is this static when it takes an enchant as an argument? Well, it prevents me doing a null-check every time I want to use it (as enchantment can be null and often is)
-		public static String getName(Class<? extends Weapon> weaponClass, Enchantment ench, boolean showEnchant) {
-			String name = Messages.get(weaponClass, "name");
+		public static String getName(Class<? extends Item> itemClass, Enchantment ench, boolean showEnchant) {
+			String name = Messages.get(itemClass, "name");
 			if (ench != null && showEnchant) {
 				name = ench.name(name);
 			}
@@ -366,7 +377,7 @@ abstract public class Weapon extends KindOfWeapon {
 		};
 		
 			
-		public abstract int proc( Weapon weapon, Char attacker, Char defender, int damage );
+		public abstract int proc(Enchantable weapon, Char attacker, Char defender, int damage );
 
 		public String name() {
 			if (!curse())

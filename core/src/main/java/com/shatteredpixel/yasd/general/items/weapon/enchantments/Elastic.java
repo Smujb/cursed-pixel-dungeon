@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.enchantments;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.wands.WandOfBlastWave;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -39,11 +40,11 @@ public class Elastic extends Weapon.Enchantment {
 	private static ItemSprite.Glowing PINK = new ItemSprite.Glowing( 0xFF00FF );
 	
 	@Override
-	public int proc(Weapon weapon, Char attacker, Char defender, int damage ) {
+	public int proc(Enchantable weapon, Char attacker, Char defender, int damage ) {
 		// lvl 0 - 20%
 		// lvl 1 - 33%
 		// lvl 2 - 43%
-		int level = Math.max( 0, weapon.level() );
+		int level = Math.max( 0, weapon.enchPower() );
 		
 		if (Random.Int( level/3 + 5 ) > 3) {
 			//trace a ballistica to our target (which will also extend past them
