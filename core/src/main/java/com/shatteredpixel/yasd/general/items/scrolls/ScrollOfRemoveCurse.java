@@ -115,7 +115,7 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 	}
 	
 	public static boolean uncursable( Item item ){
-		if (item instanceof EquipableItem && (!item.isIdentified() || item.cursed)){
+		if (item instanceof EquipableItem && (!item.cursedKnown || item.cursed)){
 			return true;
 		} else if (item instanceof Enchantable){
 			return ((Enchantable)item).hasCurseEnchant();
