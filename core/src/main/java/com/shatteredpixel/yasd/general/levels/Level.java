@@ -169,6 +169,7 @@ public abstract class Level implements Bundlable {
 		GRASS,
 		DARK,
 		EVIL,
+		//FIXME this is disabled for now as it is rather broken, if I can't fix it i'll have to remove it
 		OPEN,
 		EMBER,
 		DANGER
@@ -532,9 +533,9 @@ public abstract class Level implements Bundlable {
 					case 4:
 						feeling = Feeling.EVIL;
 						break;
-					case 5:
-						feeling = Feeling.OPEN;
-						break;
+					//case 5:
+					//	feeling = Feeling.OPEN;
+					//	break;
 					case 6:
 						feeling = Feeling.EMBER;
 						break;
@@ -579,9 +580,9 @@ public abstract class Level implements Bundlable {
 		Terrain terrain = WALL;
 		if (feeling == Feeling.CHASM) {
 			terrain = CHASM;
-		} else if (feeling == Feeling.OPEN) {
+		} /*else if (feeling == Feeling.OPEN) {
 			terrain = EMPTY;
-		}
+		}*/
 		Arrays.fill( map, terrain );
 		
 		visited     = new boolean[length];
@@ -864,7 +865,7 @@ public abstract class Level implements Bundlable {
 	}
 
 	public Terrain tunnelTile() {
-		return (feeling == Feeling.CHASM || feeling == Feeling.OPEN) ? EMPTY_SP : EMPTY;
+		return (feeling == Feeling.CHASM) ? EMPTY_SP : EMPTY;
 	}
 
 	public Terrain grassTile( boolean tall ) {
