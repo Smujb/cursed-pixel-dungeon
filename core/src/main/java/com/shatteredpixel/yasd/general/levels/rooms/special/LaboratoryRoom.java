@@ -37,23 +37,24 @@ import com.shatteredpixel.yasd.general.items.journal.AlchemyPage;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.journal.Document;
 import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
+import com.shatteredpixel.yasd.general.levels.rooms.LockedRoom;
+import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class LaboratoryRoom extends SpecialRoom {
+public class LaboratoryRoom extends LockedRoom {
 
-	public void paint( Level level ) {
-		
+	@Override
+	public void paintRoom(Level level) {
 		Painter.fill( level, this, Terrain.WALL );
 		Painter.fill( level, this, 1, Terrain.EMPTY_SP );
-		
+
 		Door entrance = entrance();
-		
+
 		Point pot = null;
 		if (entrance.x == left) {
 			pot = new Point( right-1, Random.Int( 2 ) == 0 ? top + 1 : bottom - 1 );
@@ -65,21 +66,21 @@ public class LaboratoryRoom extends SpecialRoom {
 			pot = new Point( Random.Int( 2 ) == 0 ? left + 1 : right - 1, top+1 );
 		}
 		Painter.set( level, pot, Terrain.ALCHEMY );
-		
-		int chapter = 1 + Dungeon.depth /Constants.CHAPTER_LENGTH;
+
+		int chapter = 1 + Dungeon.depth / Constants.CHAPTER_LENGTH;
 		Blob.seed( pot.x + level.width() * pot.y, 1 + chapter*10 + Random.NormalIntRange(0, 10), Alchemy.class, level );
-		
+
 		int n = Random.NormalIntRange( 1, 3 );
 		for (int i=0; i < n; i++) {
 			int pos;
 			do {
 				pos = level.pointToCell(random());
 			} while (
-				level.getTerrain(pos) != Terrain.EMPTY_SP ||
-				level.heaps.get( pos ) != null);
+					level.getTerrain(pos) != Terrain.EMPTY_SP ||
+							level.heaps.get( pos ) != null);
 			level.drop( prize( level ), pos );
 		}
-		
+
 		//guide pages
 		Collection<String> allPages = Document.ALCHEMY_GUIDE.pages();
 		ArrayList<String> missingPages = new ArrayList<>();
@@ -88,7 +89,7 @@ public class LaboratoryRoom extends SpecialRoom {
 				missingPages.add(page);
 			}
 		}
-		
+
 		//4 pages in sewers, 6 in prison, 9 in caves+
 		int chapterTarget;
 		if (missingPages.size() <= 3){
@@ -98,7 +99,7 @@ public class LaboratoryRoom extends SpecialRoom {
 		} else {
 			chapterTarget = 1;
 		}
-		
+
 		if(!missingPages.isEmpty() && chapter >= chapterTarget){
 
 			//for each chapter ahead of the target chapter, drop 1 additional page
@@ -116,16 +117,8 @@ public class LaboratoryRoom extends SpecialRoom {
 				level.drop(p, pos);
 			}
 		}
-
-		/*if (level instanceof RegularLevel && ((RegularLevel)level).hasPitRoom()){
-			entrance.set( Door.Type.REGULAR );
-		} else {
-			entrance.set( Door.Type.LOCKED );
-			level.addItemToSpawn( new IronKey(Dungeon.xPos, Dungeon.depth, Dungeon.zPos) );
-		}*/
-		
 	}
-	
+
 	private static Item prize( Level level ) {
 
 		Item prize = level.findPrizeItem( Potion.class );
