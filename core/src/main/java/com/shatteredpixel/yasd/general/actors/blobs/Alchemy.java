@@ -62,15 +62,13 @@ public class Alchemy extends Blob implements AlchemyScene.AlchemyProvider {
 	
 	public static int alchPos;
 	
-	//1 volume is kept in reserve
-	
 	@Override
 	public int getEnergy() {
-		return Math.max(0, cur[alchPos] - 1);
+		return Math.max(0, Dungeon.gold/100);
 	}
 	
 	@Override
 	public void spendEnergy(int reduction) {
-		cur[alchPos] = Math.max(1, cur[alchPos] - reduction);
+		Dungeon.gold -= reduction*100;
 	}
 }
