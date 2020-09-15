@@ -119,6 +119,13 @@ public abstract class DragonPendant extends KindofMisc {
 		}
 	}
 
+	public void charge(int amt) {
+		charge += amt;
+		if (charge > CHARGE_CAP) {
+			charge = CHARGE_CAP;
+		}
+	}
+
 	@Override
 	public Item upgrade() {
 		super.upgrade();

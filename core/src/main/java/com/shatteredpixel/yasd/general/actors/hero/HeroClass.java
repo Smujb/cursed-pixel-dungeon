@@ -66,9 +66,9 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
+import com.shatteredpixel.yasd.general.items.weapon.melee.InscribedKnife;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MegaStick;
-import com.shatteredpixel.yasd.general.items.weapon.melee.RunicBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
@@ -274,8 +274,11 @@ public enum HeroClass {
 
 	private static void initPriestess( Hero hero ) {
 
+		InscribedKnife knife = (InscribedKnife) new InscribedKnife().identify();
 		if (hero.belongings.miscs[0] == null) {
-			hero.belongings.miscs[0] = (KindofMisc) new RunicBlade().identify();
+			hero.belongings.miscs[0] = knife;
+		} else {
+			knife.collect();
 		}
 		(hero.belongings.miscs[1] = new PoisonDragonPendant()).identify();
 

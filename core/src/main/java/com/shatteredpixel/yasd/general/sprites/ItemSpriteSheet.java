@@ -239,6 +239,7 @@ public class ItemSpriteSheet {
 		public static final int QUATERSTAFF		 = WEAPON+16;
 		public static final int CROSSBOW     	 = WEAPON+17;
 		public static final int WORSE_ENCHANT    = WEAPON+15;
+		public static final int INSCRIBED_KNIFE  = WEAPON+16;
 	}
 
 	public static class Armors {
