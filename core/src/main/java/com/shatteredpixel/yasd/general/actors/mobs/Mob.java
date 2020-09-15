@@ -48,7 +48,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.buffs.Sleep;
 import com.shatteredpixel.yasd.general.actors.buffs.SoulMark;
 import com.shatteredpixel.yasd.general.actors.buffs.Terror;
-import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.effects.Speck;
@@ -751,9 +750,7 @@ public abstract class Mob extends Char {
 	@Override
 	public int attackProc(Char enemy, int damage) {
 		damage = super.attackProc(enemy, damage);
-		if (buff(Weakness.class) != null){
-			damage *= 0.67f;
-		}
+		if (enemy instanceof Mob && ((Mob)enemy).alignment == Alignment.ENEMY && Dungeon.hero.subClass == HeroSubClass.MEDIC) ((Mob)enemy).aggro(this);
 		return damage;
 	}
 
