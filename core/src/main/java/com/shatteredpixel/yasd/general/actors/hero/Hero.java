@@ -143,18 +143,32 @@ public class Hero extends Char {
 	}
 
 	public enum HeroStat {
-		EXECUTION,
+		EXECUTION {
+			{
+				baseBoost = 0.3f;
+			}
+		},
 		FOCUS,
-		RESILIENCE,
+		RESILIENCE {
+			{
+				baseBoost = 0.4f;
+			}
+		},
 		ASSAULT,
-		SUPPORT;
+		SUPPORT {
+			{
+				baseBoost = 0.3f;
+			}
+		};
+
+		protected float baseBoost = 0.35f;
 
 		public String getName() {
 			return Messages.get(HeroStat.class, name());
 		}
 
 		public float hpBoost(int curLevel) {
-			return (float) (1 + (0.35f * Math.pow(0.9f, Math.max(0, curLevel-1))));
+			return (float) (1 + (baseBoost * Math.pow(0.9f, Math.max(0, curLevel-1))));
 		}
 
 		public int colour() {
