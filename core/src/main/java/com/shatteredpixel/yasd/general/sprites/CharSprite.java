@@ -32,6 +32,7 @@ import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.effects.DarkBlock;
 import com.shatteredpixel.yasd.general.effects.EmoIcon;
 import com.shatteredpixel.yasd.general.effects.FloatingText;
@@ -627,6 +628,10 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	public void update() {
 		
 		super.update();
+
+		if (ch != null && ch.alignment == Char.Alignment.ALLY && Dungeon.hero.heroClass == HeroClass.PRIESTESS) {
+			visible = true;
+		}
 		
 		if (paused && listener != null) {
 			listener.onComplete( curAnim );
