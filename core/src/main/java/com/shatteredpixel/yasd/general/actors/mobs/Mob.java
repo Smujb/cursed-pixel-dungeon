@@ -1052,7 +1052,11 @@ public abstract class Mob extends Char {
 		for (Mob mob : Dungeon.level.mobs.toArray( new  Mob[0] )) {
 			//Mobs get less suspicion increase drop-off distance on swarm intelligence.
 			float increase = SUSPICION_THRESHOLD - Dungeon.level.distance(pos, mob.pos)/(Dungeon.isChallenged(Challenges.SWARM_INTELLIGENCE) ? 5f : 3f);
-			mob.increaseSuspicion(increase);
+			if (mob.alignment == alignment) {
+				mob.increaseSuspicion(increase);
+			} else if (mob.alignment == Alignment.ALLY) {
+				mob.increaseSuspicion(SUSPICION_THRESHOLD);
+			}
 		}
 		increaseSuspicion(SUSPICION_THRESHOLD);
 	}
