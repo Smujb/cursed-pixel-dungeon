@@ -33,14 +33,14 @@ public class InscribedKnife extends MeleeWeapon {
 
         bones = false;
 
-        defaultAction = AC_CURSE;
-
         usesTargeting = true;
 
         unique = true;
+
+        statScaling.add(Hero.HeroStat.SUPPORT);
     }
     private float charge = 0;
-    private int maxCharge = 40;
+    private static final int MAX_CHARGE = 40;
 
     private static final String AC_CURSE = "CURSE";
     private static final String AC_SUMMON = "SUMMON";
@@ -63,7 +63,7 @@ public class InscribedKnife extends MeleeWeapon {
 
     private void charge(float amount) {
         charge += amount;
-        charge = Math.min(charge,maxCharge);
+        charge = Math.min(charge, MAX_CHARGE);
     }
 
     private void loseCharge(float amount) {
@@ -103,7 +103,7 @@ public class InscribedKnife extends MeleeWeapon {
 
     @Override
     public String desc() {
-        return super.desc() + "\n\n" + Messages.get(this, "charge_desc", (int)charge, maxCharge);
+        return super.desc() + "\n\n" + Messages.get(this, "charge_desc", (int)charge, MAX_CHARGE);
     }
 
     protected CellSelector.Listener curse = new CellSelector.Listener() {
