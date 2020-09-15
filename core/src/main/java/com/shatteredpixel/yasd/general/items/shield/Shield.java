@@ -390,8 +390,8 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         if (similar && item instanceof Shield) {
             if (enchantment == null && ((Shield) item).enchantment == null) {
                 return true;
-            } else if (enchantment != null) {
-                return ((Shield) item).hasEnchant(enchantment.getClass(), curUser);
+            } else if (enchantment != null && ((Shield)item).enchantment != null) {
+                return enchantment.getClass() == ((Shield) item).enchantment.getClass();
             } else {
                 return false;
             }

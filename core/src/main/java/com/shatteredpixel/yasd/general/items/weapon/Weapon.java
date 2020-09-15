@@ -350,8 +350,8 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 		if (similar && item instanceof Weapon) {
 			if (enchantment == null && ((Weapon) item).enchantment == null) {
 				return true;
-			} else if (enchantment != null) {
-				return ((Weapon) item).hasEnchant(enchantment.getClass(), curUser);
+			} else if (enchantment != null && ((Weapon)item).enchantment != null) {
+				return enchantment.getClass() == ((Weapon) item).enchantment.getClass();
 			} else {
 				return false;
 			}
