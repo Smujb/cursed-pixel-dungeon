@@ -157,7 +157,7 @@ public class Hero extends Char {
 		ASSAULT,
 		SUPPORT {
 			{
-				baseBoost = 0.3f;
+				baseBoost = 0.25f;
 			}
 		};
 
