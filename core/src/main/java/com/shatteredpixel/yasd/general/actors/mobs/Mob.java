@@ -211,19 +211,19 @@ public abstract class Mob extends Char {
 	}
 
 	private int normalAttackSkill(int level) {
-		return (int) (9 + (level));
+		return 9 + (level);
 	}
 
 	private int normalDefenseSkill(int level) {
-		return (int) (3 + (level));
+		return 3 + (level);
 	}
 
 	private int normalPerception(int level) {
-		return (int) (9 + (level));
+		return 9 + (level);
 	}
 
 	private int normalStealth(int level) {
-		return (int) (4 + (level));
+		return 4 + (level);
 	}
 
 	private int normalDamageRoll(int level) {
@@ -231,11 +231,11 @@ public abstract class Mob extends Char {
 	}
 
 	protected final int normalMax(int level) {
-		return Item.calcMobPower(level) * 5;
+		return Item.calcMobPower(level) * 10;
 	}
 
 	protected final int normalMin(int level) {
-		return Item.calcMobPower(level) * 2;
+		return Item.calcMobPower(level) * 5;
 	}
 
 	int findClosest(Char enemy, int pos) {
