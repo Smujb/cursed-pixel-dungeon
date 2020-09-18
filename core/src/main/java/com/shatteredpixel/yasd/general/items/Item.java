@@ -581,7 +581,7 @@ public class Item implements Bundlable {
 			}
 		}
 		if (isUpgradable() && !unique) {
-			desc += "\n\n" + Messages.get(this, "upgrades_held", timesUpgraded, MAX_SOU);
+			desc += "\n\n" + Messages.get(this, "upgrades_held", timesUpgraded, souCap);
 		}
 		return desc;
 	}
