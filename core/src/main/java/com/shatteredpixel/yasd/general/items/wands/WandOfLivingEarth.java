@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.wands;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -95,7 +94,7 @@ public class WandOfLivingEarth extends DamageWand {
 		//shooting at the guardian
 		if (guardian != null && guardian == ch){
 			guardian.sprite.centerEmitter().burst(MagicMissile.EarthParticle.ATTRACT, 8 + power() / 2);
-			guardian.setInfo(curUser, power(), armorToAdd);
+			guardian.setInfo(curUser, this, armorToAdd);
 			processSoulMark(guardian, chargesPerCast());
 
 		//shooting the guardian at a location
@@ -103,7 +102,7 @@ public class WandOfLivingEarth extends DamageWand {
 
 			//create a new guardian
 			guardian = new EarthGuardian();
-			guardian.setInfo(curUser, power(), buff.armor);
+			guardian.setInfo(curUser, this, buff.armor);
 
 			//if the collision pos is occupied (likely will be), then spawn the guardian in the
 			//adjacent cell which is closes to the user of the wand.
@@ -161,7 +160,7 @@ public class WandOfLivingEarth extends DamageWand {
 					curUser.sprite.centerEmitter().burst(MagicMissile.EarthParticle.ATTRACT, 8 + power() / 2);
 				} else {
 					guardian.sprite.centerEmitter().burst(MagicMissile.EarthParticle.ATTRACT, 8 + power() / 2);
-					guardian.setInfo(curUser, power(), armorToAdd);
+					guardian.setInfo(curUser, this, armorToAdd);
 					if (ch.alignment == Char.Alignment.ENEMY || ch.buff(Amok.class) != null) {
 						guardian.aggro(ch);
 					}
@@ -198,7 +197,7 @@ public class WandOfLivingEarth extends DamageWand {
 
 		if (guardian != null){
 			guardian.sprite.centerEmitter().burst(MagicMissile.EarthParticle.ATTRACT, 8 + power() / 2);
-			guardian.setInfo(Dungeon.hero, power(), armor);
+			guardian.setInfo(Dungeon.hero, this, armor);
 		} else {
 			attacker.sprite.centerEmitter().burst(MagicMissile.EarthParticle.ATTRACT, 8 + power() / 2);
 			Buff.affect(attacker, RockArmor.class).addArmor(power(), armor);
@@ -223,17 +222,17 @@ public class WandOfLivingEarth extends DamageWand {
 
 	public static class RockArmor extends Buff {
 
-		private int wandLevel;
+		private float wandPower;
 		private int armor;
 
-		private void addArmor( int wandLevel, int toAdd ){
-			this.wandLevel = Math.max(this.wandLevel, wandLevel);
+		private void addArmor( float wandPower, int toAdd ){
+			this.wandPower = Math.max(this.wandPower, wandPower);
 			armor += toAdd;
 			armor = Math.min(armor, 2*armorToGuardian());
 		}
 
 		private int armorToGuardian(){
-			return 8 + wandLevel*4;
+			return (int) (8 * wandPower);
 		}
 
 		public int absorb( int damage ) {
@@ -274,14 +273,14 @@ public class WandOfLivingEarth extends DamageWand {
 		@Override
 		public void storeInBundle( Bundle bundle) {
 			super.storeInBundle(bundle);
-			bundle.put(WAND_LEVEL, wandLevel);
+			bundle.put(WAND_LEVEL, wandPower);
 			bundle.put(ARMOR, armor);
 		}
 
 		@Override
 		public void restoreFromBundle( Bundle bundle) {
 			super.restoreFromBundle(bundle);
-			wandLevel = bundle.getInt(WAND_LEVEL);
+			wandPower = bundle.getInt(WAND_LEVEL);
 			armor = bundle.getInt(ARMOR);
 		}
 	}
@@ -295,6 +294,8 @@ public class WandOfLivingEarth extends DamageWand {
 			state = HUNTING;
 			intelligentAlly = true;
 			WANDERING = new Wandering();
+
+			evasionFactor = 0.5f;
 
 			//before other mobs
 			actPriority = MOB_PRIO + 1;
@@ -311,49 +312,22 @@ public class WandOfLivingEarth extends DamageWand {
 			return Element.EARTH;
 		}
 
-		private int wandLevel = -1;
+		private float wandPower = 1f;
 
-		private void setInfo(Char owner, int wandLevel, int healthToAdd){
-			if (wandLevel > this.wandLevel) {
-				this.wandLevel = wandLevel;
-				HT = 16 + 16 * wandLevel;
+		private void setInfo(Char owner, Wand wand, int healthToAdd){
+			if (wand.power() > this.wandPower) {
+				this.wandPower = wand.power();
+				level = wand.level();
+				updateHT(true);
 			}
 			HP = Math.min(HT, HP + healthToAdd);
-			//half of hero's evasion
-			if (owner instanceof Hero) {
-				defenseSkill = (((Hero)owner).lvl + 4)/2;
-			} else {
-				defenseSkill = (Dungeon.getScaleFactor() + 4)/2;
-			}
-
 			alignment = owner.alignment;
-		}
-
-		@Override
-		public int attackSkill(Char target) {
-			//same as the hero
-			return 2*defenseSkill + 5;
 		}
 
 		@Override
 		public int attackProc(Char enemy, int damage) {
 			if (enemy instanceof Mob) ((Mob)enemy).aggro(this);
 			return super.attackProc(enemy, damage);
-		}
-
-		@Override
-		public int damageRoll() {
-			return Random.NormalIntRange(2, 4 + Dungeon.getScaleFactor() /2);
-		}
-
-        @Override
-		public String description() {
-			if (Dungeon.isChallenged(Challenges.NO_ARMOR)){
-				return Messages.get(this, "desc", wandLevel, 2 + wandLevel);
-			} else {
-				return Messages.get(this, "desc", wandLevel, 3 + 6*wandLevel);
-			}
-			
 		}
 
 		private static final String DEFENSE = "defense";
@@ -363,14 +337,14 @@ public class WandOfLivingEarth extends DamageWand {
 		public void storeInBundle( Bundle bundle) {
 			super.storeInBundle(bundle);
 			bundle.put(DEFENSE, defenseSkill);
-			bundle.put(WAND_LEVEL, wandLevel);
+			bundle.put(WAND_LEVEL, wandPower);
 		}
 
 		@Override
 		public void restoreFromBundle( Bundle bundle) {
 			super.restoreFromBundle(bundle);
 			defenseSkill = bundle.getInt(DEFENSE);
-			wandLevel = bundle.getInt(WAND_LEVEL);
+			wandPower = bundle.getInt(WAND_LEVEL);
 		}
 
 		private class Wandering extends Mob.Wandering{
@@ -378,8 +352,8 @@ public class WandOfLivingEarth extends DamageWand {
 			@Override
 			public boolean act(boolean enemyInFOV, boolean justAlerted) {
 				if (!enemyInFOV){
-					Buff.affect(Dungeon.hero, RockArmor.class).addArmor(wandLevel, HP);
-					Dungeon.hero.sprite.centerEmitter().burst(MagicMissile.EarthParticle.ATTRACT, 8 + wandLevel/2);
+					Buff.affect(Dungeon.hero, RockArmor.class).addArmor(wandPower, HP);
+					Dungeon.hero.sprite.centerEmitter().burst(MagicMissile.EarthParticle.ATTRACT, (int) (8 + wandPower/2));
 					destroy();
 					sprite.die();
 					return true;

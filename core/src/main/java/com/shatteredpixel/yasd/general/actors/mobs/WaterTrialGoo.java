@@ -158,8 +158,8 @@ public class WaterTrialGoo extends Mob {
     }
 
     @Override
-    public boolean attack(Char enemy, boolean guaranteed) {
-        boolean result = super.attack( enemy, guaranteed);
+    public boolean attack(Char enemy, boolean guaranteed, int dmg) {
+        boolean result = super.attack( enemy, guaranteed, dmg);
         pumpedUp = 0;
         return result;
     }

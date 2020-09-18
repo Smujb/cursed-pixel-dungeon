@@ -341,8 +341,8 @@ public class WandOfWarding extends DamageWand {
 		}
 
 		@Override
-		public boolean attack(Char enemy, boolean guaranteed) {
-			boolean hit = super.attack(enemy, true);
+		public boolean attack(Char enemy, boolean guaranteed, int dmg) {
+			boolean hit = super.attack(enemy, true, dmg);
 			if (hit) {
 				totalZaps++;
 				switch (tier) {

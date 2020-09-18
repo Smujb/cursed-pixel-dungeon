@@ -78,32 +78,28 @@ public class WandOfTransfusion extends DamageWand {
 		if (ch instanceof Mob){
 			
 			processSoulMark(ch, chargesPerCast());
-			int selfDmg = 5 + power()*2;
+			int selfDmg = 3 * power();
 			
 			//this wand does different things depending on the target.
 			
 			//heals/shields an ally or a charmed enemy while damaging self
 			if (ch.alignment == Char.Alignment.ALLY || ch.buff(Charm.class) != null){
 				
-				float healing = selfDmg + power();
+				float healing = selfDmg + 2 * power();
 
 				ch.heal((int) healing, true);
 
 			//for enemies...
 			} else {
-				int intLevel = power();
-				int charmDuration = 2 + power()/4;
 				if (ch.properties().contains(Char.Property.UNDEAD)) {
 					//harms the undead
 					ch.damage(damageRoll(), new Char.DamageSrc(Element.LIGHT, this));
-					ch.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10 + intLevel);
+					ch.sprite.emitter().start(ShadowParticle.UP, 0.05f, 2 * power());
 					Sample.INSTANCE.play(Assets.Sounds.BURNING);
 				} else {
-					//charms living enemies
-					charmDuration *= 2;
-					ch.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, 3 + intLevel/2 );
+					ch.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, 3 * power() );
 				}
-				Buff.affect(ch, Charm.class, charmDuration).object = curUser.id();
+				Buff.affect(ch, Charm.class, 3 * power()).object = curUser.id();
 			}
 			if (!freeCharge) {
 				damageHero(selfDmg);
