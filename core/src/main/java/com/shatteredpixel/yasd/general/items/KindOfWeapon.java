@@ -82,7 +82,11 @@ abstract public class KindOfWeapon extends KindofMisc {
 	}
 
 	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
-		return attacker.attack(enemy, guaranteed, damageRoll(attacker));
+		boolean attack = attacker.attack(enemy, guaranteed, damageRoll(attacker));
+		if (attack) {
+			hitSound(Random.Float(0.87f, 1.15f));
+		}
+		return attack;
 	}
 
 	public void fx(Char attacker, int pos, Callback callback) {

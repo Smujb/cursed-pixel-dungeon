@@ -572,15 +572,7 @@ public class Hero extends Char {
 
 	@Override
 	public void hitSound(float pitch) {
-		KindOfWeapon weapon = belongings.getWeapon();
-		if ( weapon != null ){
-			weapon.hitSound(pitch);
-		} /*else if (RingOfForce.getBuffedBonus(this, RingOfForce.Force.class) > 0) {
-			//pitch deepens by 2.5% (additive) per point of strength, down to 75%
-			super.hitSound( pitch * GameMath.gate( 0.75f, 1.25f - 0.025f*STR(), 1f) );
-		} */else {
-			super.hitSound(pitch * 1.1f);
-		}
+		//All handled in KindOfWeapon.attack()
 	}
 
 	@Override
