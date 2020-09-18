@@ -345,10 +345,10 @@ public abstract class Char extends Actor {
 	}
 
 	public final boolean attack(Char enemy) {
-		return attack(enemy, false);
+		return attack(enemy, false, damageRoll());
 	}
 
-	public boolean attack(Char enemy, boolean guaranteed) {
+	public boolean attack(Char enemy, boolean guaranteed, int dmg) {
 
 		if (enemy == null || enemy == this) return false;
 
@@ -366,12 +366,9 @@ public abstract class Char extends Actor {
 
 		} else if (hit(this, enemy) || guaranteed) {
 
-			int dmg;
 			Preparation prep = buff(Preparation.class);
 			if (prep != null) {
 				dmg = prep.damageRoll(this);
-			} else {
-				dmg = damageRoll();
 			}
 
 			if (hasBelongings()) {

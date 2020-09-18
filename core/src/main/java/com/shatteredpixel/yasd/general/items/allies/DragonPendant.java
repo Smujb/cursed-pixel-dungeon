@@ -268,11 +268,11 @@ public abstract class DragonPendant extends KindofMisc {
 		}
 
 		@Override
-		public boolean attack(Char enemy, boolean guaranteed) {
+		public boolean attack(Char enemy, boolean guaranteed, int dmg) {
 			if (!hasMeleeAttack || range > 1) {
 				rangedAttackCooldown = 25;
 			}
-			return super.attack(enemy, guaranteed);
+			return super.attack(enemy, guaranteed, dmg);
 		}
 
 		private DragonPendant getPendant() {

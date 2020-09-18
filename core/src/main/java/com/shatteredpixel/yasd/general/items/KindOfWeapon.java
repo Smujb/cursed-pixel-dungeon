@@ -82,7 +82,7 @@ abstract public class KindOfWeapon extends KindofMisc {
 	}
 
 	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
-		return attacker.attack(enemy, guaranteed);
+		return attacker.attack(enemy, guaranteed, damageRoll(attacker));
 	}
 
 	public void fx(Char attacker, int pos, Callback callback) {
