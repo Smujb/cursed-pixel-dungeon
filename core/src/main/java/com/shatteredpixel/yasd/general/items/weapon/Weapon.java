@@ -45,6 +45,7 @@ import com.shatteredpixel.yasd.general.items.weapon.curses.Fragile;
 import com.shatteredpixel.yasd.general.items.weapon.curses.Friendly;
 import com.shatteredpixel.yasd.general.items.weapon.curses.Polarized;
 import com.shatteredpixel.yasd.general.items.weapon.curses.Sacrificial;
+import com.shatteredpixel.yasd.general.items.weapon.curses.Sapping;
 import com.shatteredpixel.yasd.general.items.weapon.curses.Thunderous;
 import com.shatteredpixel.yasd.general.items.weapon.curses.Wayward;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Blazing;
@@ -393,7 +394,7 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 		};
 		
 		private static final Class<?>[] curses = new Class<?>[]{
-				Annoying.class, Displacing.class, Exhausting.class, Fragile.class,
+				Annoying.class, Displacing.class, Exhausting.class, Fragile.class, Sapping.class,
 				Sacrificial.class, Wayward.class, Polarized.class, Friendly.class, Thunderous.class
 		};
 		
