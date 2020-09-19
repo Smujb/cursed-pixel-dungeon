@@ -1,5 +1,6 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
@@ -43,6 +44,9 @@ public class InscribedKnife extends MeleeWeapon {
         unique = true;
 
         damageMultiplier = 0.6f;
+
+        hitSound = Assets.Sounds.HIT_MAGIC;
+        hitSoundPitch = 1.5f;
 
         statScaling.add(Hero.HeroStat.SUPPORT);
     }

@@ -171,6 +171,46 @@ public class MeleeWeapon extends Weapon implements Attackable {
 		return this;
 	}
 
+	protected boolean hasProperties() {
+		return DLY != 1f | ACC != 1f | RCH != 1 | breaksArmor(curUser) | !canSurpriseAttack | defenseFactor(curUser) > 0 | sneakBenefit;
+	}
+
+	protected String propsDesc() {
+		String info = "";
+		if (DLY > 1f) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "delay_increase", Math.round((DLY - 1f) * 100));
+		} else if (DLY < 1f) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "delay_decrease", Math.round((1f - DLY) * 100));
+		}
+
+		if (ACC > 1f) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "acc_increase", Math.round((ACC - 1f) * 100));
+		} else if (ACC < 1f) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "acc_decrease", Math.round((1f - ACC) * 100));
+		}
+
+		if (RCH > 1) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "reach_increase", RCH - 1);
+		}
+
+		if (breaksArmor(curUser)) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "breaks_armour");
+		}
+
+		if (!canSurpriseAttack) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "cant_surprise_attk");
+		}
+
+		if (defenseFactor(curUser) > 0) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "blocks", 0, defenseFactor(Dungeon.hero));
+		}
+
+		if (sneakBenefit) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "sneak_benefit");
+		}
+		return info;
+	}
+
 	@Override
 	public String info() {
 
@@ -182,41 +222,8 @@ public class MeleeWeapon extends Weapon implements Attackable {
 			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", min(1f), max(1f));
 		}
 
-		if (DLY != 1f | ACC != 1f | RCH != 1 | breaksArmor(curUser) | !canSurpriseAttack | defenseFactor(curUser) > 0 | sneakBenefit) {
-
-			info += "\n";
-
-			if (DLY > 1f) {
-				info += "\n" + Messages.get(MeleeWeapon.class, "delay_increase", Math.round((DLY-1f)*100));
-			} else if (DLY < 1f) {
-				info += "\n" + Messages.get(MeleeWeapon.class, "delay_decrease", Math.round((1f-DLY)*100));
-			}
-
-			if (ACC > 1f) {
-				info += "\n" + Messages.get(MeleeWeapon.class, "acc_increase", Math.round((ACC-1f)*100));
-			} else if (ACC < 1f) {
-				info += "\n" + Messages.get(MeleeWeapon.class, "acc_decrease", Math.round((1f-ACC)*100));
-			}
-
-			if (RCH > 1) {
-				info += "\n" + Messages.get(MeleeWeapon.class, "reach_increase", RCH - 1);
-			}
-
-			if (breaksArmor(curUser)) {
-				info += "\n" + Messages.get(MeleeWeapon.class, "breaks_armour");
-			}
-
-			if (!canSurpriseAttack) {
-				info += "\n" + Messages.get(MeleeWeapon.class, "cant_surprise_attk");
-			}
-
-			if (defenseFactor(curUser) > 0) {
-				info += "\n" + Messages.get(MeleeWeapon.class, "blocks", 0,  defenseFactor(Dungeon.hero));
-			}
-
-			if (sneakBenefit) {
-				info += "\n" + Messages.get(MeleeWeapon.class, "sneak_benefit");
-			}
+		if (hasProperties()) {
+			info += "\n" + propsDesc();
 		}
 
 		switch (augment) {

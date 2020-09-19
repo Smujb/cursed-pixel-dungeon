@@ -66,10 +66,10 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.InscribedKnife;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MegaStick;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -203,7 +203,7 @@ public enum HeroClass {
 
 	private static void initWarrior( Hero hero ) {
 		if (hero.belongings.miscs[0] == null) {
-			hero.belongings.miscs[0] = (KindofMisc) new Sword().identify();
+			hero.belongings.miscs[0] = (KindofMisc) new Greataxe().identify();
 		}
 		hero.belongings.miscs[1] = (Shield) new RoundShield().identify();
 		ThrowingStone stones = new ThrowingStone();
