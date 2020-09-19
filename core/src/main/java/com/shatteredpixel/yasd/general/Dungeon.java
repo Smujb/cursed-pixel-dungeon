@@ -85,6 +85,7 @@ import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.ui.QuickSlotButton;
 import com.shatteredpixel.yasd.general.utils.BArray;
 import com.shatteredpixel.yasd.general.utils.DungeonSeed;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.Game;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
@@ -350,7 +351,7 @@ public class Dungeon {
 			} else if (depth <= Constants.CHAPTER_LENGTH * 5) {
 				key = HALLS_ID;
 			} else if (depth == Constants.MAX_DEPTH) {
-				key = LAST_ID;
+				return LAST_ID;
 			}
 		} else if (curTrial != null) {
 			key = curTrial.key();
@@ -363,6 +364,7 @@ public class Dungeon {
 	public static Level newLevel( String key, boolean create
 			/*Allows me to use newLevel without switching to that level.
 			Also increases performance when the level isn't actually going to be used.*/) {
+		GLog.debug(key);
 
 		Level level = null;
 		Class<? extends Level> levelClass = null;
