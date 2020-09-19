@@ -88,7 +88,7 @@ public abstract class Trap implements Bundlable {
 	}
 
 	private void onStateChange() {
-		Dungeon.level.onTrapModified();
+		if (Dungeon.level != null) Dungeon.level.onTrapModified();
 	}
 
 	public Trap hide() {
