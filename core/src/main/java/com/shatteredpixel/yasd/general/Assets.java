@@ -199,17 +199,7 @@ public class Assets {
 		public static final String HEALTH_CRITICAL  = "sounds/health_critical.mp3";
 		public static final String HIT_ARROW        = "sounds/hit_arrow.mp3";
 
-
 		public static final String[] all = new String[]{
-				CLICK, BADGE, GOLD,
-				OPEN, UNLOCK, ITEM, DEWDROP, HIT, MISS, STEP, WATER, GRASS, TRAMPLE, STURDY,
-				DESCEND, EAT, READ, LULLABY, DRINK, SHATTER, ZAP, LIGHTNING, LEVELUP, DEATH,
-				CHALLENGE, CURSED, TRAP, EVOKE, TOMB, ALERT, MELD, BOSS, BLAST, PLANT, RAY, BEACON,
-				TELEPORT, CHARMS, MASTERY, PUFF, ROCKS, BURNING, FALLING, GHOST, SECRET, BONES,
-				BEE, DEGRADE, MIMIC
-		};
-
-		/*public static final String[] all = new String[]{
 				CLICK, BADGE, GOLD,
 
 				OPEN, UNLOCK, ITEM, DEWDROP, STEP, WATER, GRASS, TRAMPLE, STURDY,
@@ -222,7 +212,7 @@ public class Assets {
 				CHALLENGE, CURSED, TRAP, EVOKE, TOMB, ALERT, MELD, BOSS, BLAST, PLANT, RAY, BEACON,
 				TELEPORT, CHARMS, MASTERY, PUFF, ROCKS, BURNING, FALLING, GHOST, SECRET, BONES,
 				BEE, DEGRADE, MIMIC, DEBUFF, CHARGEUP, GAS, CHAINS
-		};*/
+		};
 	}
 
 	public static class Splashes {
