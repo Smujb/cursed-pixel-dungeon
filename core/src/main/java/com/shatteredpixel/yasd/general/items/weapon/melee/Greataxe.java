@@ -41,7 +41,7 @@ public class Greataxe extends MeleeWeapon {
 	{
 		image = ItemSpriteSheet.Weapons.GREATAXE;
 		hitSound = Assets.Sounds.HIT_CRUSH;
-		hitSoundPitch = 0.5f;
+		hitSoundPitch = 0.7f;
 
 		DLY = 2f;
 		ACC = 1.5f;

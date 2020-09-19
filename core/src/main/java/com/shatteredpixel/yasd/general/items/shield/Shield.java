@@ -226,7 +226,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     }
 
     public static float defaultMaxDefense(float lvl) {
-        return Math.round(6 * lvl);
+        return Math.round(10 * lvl);
     }
 
     protected int maxDamage(float lvl) {
