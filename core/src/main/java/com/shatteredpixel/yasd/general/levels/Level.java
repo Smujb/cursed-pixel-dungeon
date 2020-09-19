@@ -232,15 +232,15 @@ public abstract class Level implements Bundlable {
 	}
 
 	//Cache map flags to use later and improve performance.
-	private FlagCache passable = new FlagCache();
-	public FlagCache losBlocking = new FlagCache();
-	private FlagCache flammable = new FlagCache();
-	private FlagCache secret = new FlagCache();
-	private FlagCache solid = new FlagCache();
-	private FlagCache avoid = new FlagCache();
-	private FlagCache liquid = new FlagCache();
-	private FlagCache pit = new FlagCache();
-	private FlagCache openSpace = new FlagCache();
+	public final FlagCache passable = new FlagCache();
+	public final FlagCache losBlocking = new FlagCache();
+	public final FlagCache flammable = new FlagCache();
+	public final FlagCache secret = new FlagCache();
+	public final FlagCache solid = new FlagCache();
+	public final FlagCache avoid = new FlagCache();
+	public final FlagCache liquid = new FlagCache();
+	public final FlagCache pit = new FlagCache();
+	public final FlagCache openSpace = new FlagCache();
 
 	private FlagCache[] caches = new FlagCache[] {passable, losBlocking, flammable, secret, solid, avoid, liquid, pit, openSpace};
 
@@ -1453,7 +1453,7 @@ public abstract class Level implements Bundlable {
 		return traps;
 	}
 
-	private void onTrapModified() {
+	public void onTrapModified() {
 		secret.invalidate();
 		avoid.invalidate();
 		passable.invalidate();
