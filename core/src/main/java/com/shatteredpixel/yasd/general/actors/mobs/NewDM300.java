@@ -327,7 +327,7 @@ public class NewDM300 extends Boss {
 		if (Dungeon.level.adjacent(pos, target.pos)){
 			int oppositeAdjacent = target.pos + (target.pos - pos);
 			Ballistica trajectory = new Ballistica(target.pos, oppositeAdjacent, Ballistica.MAGIC_BOLT);
-			WandOfBlastWave.throwChar(target, trajectory, 2, false);
+			WandOfBlastWave.throwChar(target, trajectory, 2, 0);
 			if (target == Dungeon.hero){
 				Dungeon.hero.interrupt();
 			}

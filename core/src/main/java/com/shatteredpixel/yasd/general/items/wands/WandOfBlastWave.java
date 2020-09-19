@@ -62,7 +62,7 @@ public class WandOfBlastWave extends DamageWand {
 
 		statScaling.add(Hero.HeroStat.ASSAULT);
 
-		damageMultiplier = 0.5f;
+		damageMultiplier = 0.3f;
 	}
 
 	@Override
@@ -83,14 +83,7 @@ public class WandOfBlastWave extends DamageWand {
 				processSoulMark(ch, chargesPerCast());
 				if (ch.alignment != Char.Alignment.ALLY) hit(ch);
 
-				if (ch.isAlive()) {
-					Ballistica trajectory = new Ballistica(ch.pos, ch.pos + i, Ballistica.MAGIC_BOLT);
-					int strength = 1 + Math.round(power() / 2f);
-					throwChar(ch, trajectory, strength);
-				} else if (ch == Dungeon.hero){
-					Dungeon.fail( getClass() );
-					GLog.negative( Messages.get( this, "ondeath") );
-				}
+				throwChar(ch, ch.pos + i);
 			}
 		}
 
@@ -101,25 +94,41 @@ public class WandOfBlastWave extends DamageWand {
 			hit(ch);
 
 			if (ch.isAlive() && bolt.path.size() > bolt.dist+1) {
-				Ballistica trajectory = new Ballistica(ch.pos, bolt.path.get(bolt.dist + 1), Ballistica.MAGIC_BOLT);
+				/*Ballistica trajectory = new Ballistica(ch.pos, bolt.path.get(bolt.dist + 1), Ballistica.MAGIC_BOLT);
 				int strength = power() + 3;
-				throwChar(ch, trajectory, strength);
+				throwChar(ch, trajectory, strength);*/
+				throwChar(ch, bolt.path.get(bolt.dist + 1));
 			}
 		}
 		
 	}
 
-	public static void throwChar(final Char ch, final Ballistica trajectory, int power){
-		throwChar(ch, trajectory, power, true);
+	private void throwChar(Char ch, int dest) {
+		if (ch.isAlive()) {
+			Ballistica trajectory = new Ballistica(ch.pos, dest, Ballistica.MAGIC_BOLT);
+			int strength = 2 + Math.round(power() / 2f);
+			//Mob gets damaged a second time if they hit a wall
+			throwChar(ch, trajectory, strength, (int) (damageRoll() * Math.pow(0.9f, trajectory.dist)));
+		} else if (ch == Dungeon.hero){
+			Dungeon.fail( getClass() );
+			GLog.negative( Messages.get( this, "ondeath") );
+		}
 	}
 
-	public static void throwChar(final Char ch, final Ballistica trajectory, int power, boolean collideDmg){
+	public static void throwChar(final Char ch, final Ballistica trajectory, int power){
+		throwChar(ch, trajectory, power, Math.max(0, power-trajectory.dist * (ch.HT/20)));
+	}
+
+	public static void throwChar(final Char ch, final Ballistica trajectory, int power, int collideDmg){
 
 		if (ch.properties().contains(Char.Property.BOSS)) {
 			power /= 2;
 		}
-
-		int dist = Math.min(trajectory.dist, power);
+		int dist;
+		if (power > trajectory.dist) {
+			power = trajectory.dist;
+		}
+		dist = power;
 
 		boolean collided = dist == trajectory.dist;
 
@@ -148,9 +157,8 @@ public class WandOfBlastWave extends DamageWand {
 		if (newPos == ch.pos) return;
 
 		final int finalDist = dist;
-		final boolean finalCollided = collided && collideDmg;
+		final boolean finalCollided = collided && collideDmg > 0;
 		final int initialpos = ch.pos;
-
 		Actor.addDelayed(new Pushing(ch, ch.pos, newPos, new Callback() {
 			public void call() {
 				if (initialpos != ch.pos) {
@@ -160,7 +168,7 @@ public class WandOfBlastWave extends DamageWand {
 				}
 				ch.pos = newPos;
 				if (finalCollided && ch.isAlive()) {
-					ch.damage(Random.NormalIntRange((finalDist + 1) / 2, finalDist), new Char.DamageSrc(Element.PHYSICAL, null));
+					ch.damage(collideDmg, new Char.DamageSrc(Element.PHYSICAL, null));
 					Paralysis.prolong(ch, Paralysis.class, Random.NormalIntRange((finalDist + 1) / 2, finalDist));
 				}
 				Dungeon.level.occupyCell(ch);
