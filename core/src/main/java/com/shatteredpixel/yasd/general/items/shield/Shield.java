@@ -262,6 +262,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
     public void affectEnemy(Char enemy, boolean parry) {
         if (curUser != null && Dungeon.level.adjacent(curUser.pos, enemy.pos)) {
+            if (damageFactor == 0f) return;
             int damage;
             if (parry) {
                 damage = maxDamage(power());
