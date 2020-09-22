@@ -75,9 +75,9 @@ public class AmuletScene extends PixelScene {
 					@Override
 					public void call() {
 						Game.switchScene( RankingsScene.class );
+						Dungeon.deleteGame( GamesInProgress.curSlot, true );
 					}
 				});
-				Dungeon.deleteGame( GamesInProgress.curSlot, true );
 			}
 		};
 		btnExit.setSize( WIDTH, BTN_HEIGHT );

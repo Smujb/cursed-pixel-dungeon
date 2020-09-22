@@ -155,13 +155,7 @@ public class TextScene extends PixelScene {
 		float p = timeLeft / fadeTime;
 
 		if ((thread == null || !thread.isAlive()) && skippable) {
-			Callback callback = new Callback() {
-				@Override
-				public void call() {
-					CPDGame.switchScene(GameScene.class);
-				}
-			};
-			BtnCallback btnCallback = new BtnCallback(Messages.get(this, "skip"), callback);
+			BtnCallback btnCallback = new BtnCallback(Messages.get(this, "skip"), onFinish);
 			btnCallback.setRect(4, Camera.main.height- Window.BTN_HEIGHT, btnCallback.reqWidth() + 6, Window.BTN_HEIGHT-4);
 			add(btnCallback);
 		}

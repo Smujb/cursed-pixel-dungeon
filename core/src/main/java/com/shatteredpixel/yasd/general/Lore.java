@@ -75,11 +75,8 @@ public class Lore {
 		if (levelClass == SurfaceLevel.class || levelClass == LastLevel.class) {
 			key += "_" + CPDSettings.storyChapter().name();
 		}
-		if (CPDSettings.watchedCutscene(key) && !CPDSettings.cutscenes()) {
-			return;
-		}
 		String text = Messages.get(Lore.class, key);
-		if (!text.contains("missed_string") && !text.equals("TODO")) {
+		if ((!CPDSettings.watchedCutscene(key) || CPDSettings.cutscenes()) && !text.contains("missed_string") && !text.equals("TODO")) {
 			String finalKey = key;
 			TextScene.init(text, null, img, 5, 0.67f, new Callback() {
 				@Override
