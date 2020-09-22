@@ -145,23 +145,23 @@ public class Hero extends Char {
 	public enum HeroStat {
 		EXECUTION {
 			{
-				baseBoost = 0.3f;
+				baseBoost = 0.25f;
 			}
 		},
 		FOCUS,
 		RESILIENCE {
 			{
-				baseBoost = 0.4f;
+				baseBoost = 0.35f;
 			}
 		},
 		ASSAULT,
 		SUPPORT {
 			{
-				baseBoost = 0.25f;
+				baseBoost = 0.2f;
 			}
 		};
 
-		protected float baseBoost = 0.35f;
+		protected float baseBoost = 0.3f;
 
 		public String getName() {
 			return Messages.get(HeroStat.class, name());
@@ -275,7 +275,7 @@ public class Hero extends Char {
 	@Override
 	public void updateHT(boolean boostHP) {
 		int preHT = HT;
-		HT = 40 + HTBoost;
+		HT = 100 + HTBoost;
 		for (HeroStat stat : HeroStat.values()) {
 			for (int i = 1; i < getStat(stat); i++) {
 				HT *= stat.hpBoost(i);
