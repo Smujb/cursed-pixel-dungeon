@@ -43,7 +43,7 @@ public class WandOfMagicMissile extends DamageWand {
 
 		element = Element.MAGICAL;
 
-		damageMultiplier = 0.5f;
+		damageMultiplier = 2/3f;
 	}
 
 	@Override
