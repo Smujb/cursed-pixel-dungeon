@@ -305,6 +305,9 @@ public class Dungeon {
 		staticLevels.put("city - 4", NewCityBossLevel.class);
 		staticLevels.put("halls - 4", NewHallsBossLevel.class);
 		staticLevels.put("water - 4", WaterTrialBossLevel.class);
+		staticLevels.put("earth - 4", DeadEndLevel.class);
+		staticLevels.put("fire - 4", DeadEndLevel.class);
+		staticLevels.put("air - 4", DeadEndLevel.class);
 		
 		//First level spawns different mobs and rooms. Might rework later.
 		staticLevels.put("sewers - 0", FirstLevel.class);
