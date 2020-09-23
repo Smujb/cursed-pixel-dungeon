@@ -68,6 +68,7 @@ import com.shatteredpixel.yasd.general.levels.chapters.halls.HallsLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.halls.LastLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.halls.NewHallsBossLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.halls.OldHallsBossLevel;
+import com.shatteredpixel.yasd.general.levels.chapters.hell.HellLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.prison.NewPrisonBossLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.prison.OldPrisonBossLevel;
 import com.shatteredpixel.yasd.general.levels.chapters.prison.PrisonLevel;
@@ -294,6 +295,7 @@ public class Dungeon {
 	public static final String CITY_ID = "city";
 	public static final String HALLS_ID = "halls";
 	private static final String LAST_ID = "last";
+	private static final String HELL_ID = "hell";
 	private static final String SURFACE_ID = "surface";
 
 	public static HashMap<String, Class<? extends Level>> staticLevels = new HashMap<>();
@@ -342,7 +344,7 @@ public class Dungeon {
 		StoryChapter.Trial curTrial = StoryChapter.Trial.getCurTrial();
 		if (depth <= 0) {
 			 return SURFACE_ID;
-		} else if (curTrial == StoryChapter.Trial.NONE) {
+		} else if (CPDSettings.storyChapter() == StoryChapter.FIRST) {
 			if (depth <= Constants.CHAPTER_LENGTH) {
 				key = SEWERS_ID;
 			} else if (depth <= Constants.CHAPTER_LENGTH * 2) {
@@ -356,8 +358,12 @@ public class Dungeon {
 			} else if (depth == Constants.MAX_DEPTH) {
 				return LAST_ID;
 			}
-		} else if (curTrial != null) {
-			key = curTrial.key();
+		} else if (CPDSettings.storyChapter() == StoryChapter.SECOND) {
+			if (curTrial != null) {
+				key = curTrial.key();
+			} else {
+				key = HELL_ID;
+			}
 		}
 
 		key += depthMarker;
@@ -391,6 +397,8 @@ public class Dungeon {
 			levelClass = FireTrialLevel.class;
 		} else if (key.contains(StoryChapter.Trial.AIR.key())) {
 			levelClass = AirTrialLevel.class;
+		} else if (key.contains(HELL_ID)) {
+			levelClass = HellLevel.class;
 		}
 
 		if (levelClass != null) {
