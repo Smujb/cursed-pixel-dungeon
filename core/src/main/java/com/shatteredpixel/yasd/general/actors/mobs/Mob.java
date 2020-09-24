@@ -1051,7 +1051,6 @@ public abstract class Mob extends Char {
 				mob.increaseSuspicion(increase);
 			}
 		}
-		increaseSuspicion(SUSPICION_THRESHOLD);
 	}
 
 	private void increaseSuspicion(float amount) {
