@@ -1431,6 +1431,7 @@ public class Hero extends Char {
 			}
 
 			updateHT(true);
+			updateMP();
 		}
 
 		if (levelUp) {
