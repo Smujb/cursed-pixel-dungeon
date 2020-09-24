@@ -1677,7 +1677,7 @@ public abstract class Level implements Bundlable {
 						((Hero)c).mindVisionEnemies.add(mob);
 					}
 
-				} else if (mob.alignment == Char.Alignment.ENEMY && c.notice(mob, 3) && !fieldOfView[p]) {
+				} else if (mob.alignment == Char.Alignment.ENEMY && c.notice(mob) && !fieldOfView[p]) {
 					/*if (!oldMindVisionEnemies.contains(mob)) {
 						GLog.i(Messages.get(Hero.class, "mob_nearby", mob.name));
 					}*/

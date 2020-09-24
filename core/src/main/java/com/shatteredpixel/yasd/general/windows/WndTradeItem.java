@@ -131,8 +131,8 @@ public class WndTradeItem extends WndInfoItem {
 		boolean steal = true;
 		float chance = 1f;
 		if (shopkeeper != null) {
-			chance = 1f - shopkeeper.noticeChance(Dungeon.hero, 4);
-			steal = shopkeeper.notice(Dungeon.hero, 4);
+			chance = 1f - shopkeeper.noticeChance(Dungeon.hero);
+			steal = shopkeeper.notice(Dungeon.hero);
 		}
 		boolean finalSteal = steal;
 		RedButton btnSteal = new RedButton(Messages.get(this, "steal", Math.min(100, (int) (chance * 100)))) {

@@ -219,11 +219,11 @@ public abstract class Mob extends Char {
 	}
 
 	private int normalPerception(int level) {
-		return 9 + (level);
+		return 5 + (level);
 	}
 
 	private int normalStealth(int level) {
-		return 4 + (level);
+		return 5 + (level);
 	}
 
 	private int normalDamageRoll(int level) {
@@ -821,8 +821,6 @@ public abstract class Mob extends Char {
 			alerted = true;
 		}
 
-		notice();
-
 		if (Dungeon.isChallenged(Challenges.CORROSION)) {
 			int amount = Math.min( (int) (100*((float)dmg/(float)HT)), 100);
 			GameScene.add(Blob.seed(this.pos, amount, DemonGas.class).setStrength(Corrosion.defaultStrength(Dungeon.getScaleFactor())));
@@ -1049,10 +1047,8 @@ public abstract class Mob extends Char {
 		for (Mob mob : Dungeon.level.mobs.toArray( new  Mob[0] )) {
 			//Mobs get less suspicion increase drop-off distance on swarm intelligence.
 			float increase = SUSPICION_THRESHOLD - Dungeon.level.distance(pos, mob.pos)/(Dungeon.isChallenged(Challenges.SWARM_INTELLIGENCE) ? 5f : 3f);
-			if (mob.alignment == alignment) {
+			if (mob.alignment == alignment && mob != this) {
 				mob.increaseSuspicion(increase);
-			} else if (mob.alignment == Alignment.ALLY) {
-				mob.increaseSuspicion(SUSPICION_THRESHOLD);
 			}
 		}
 		increaseSuspicion(SUSPICION_THRESHOLD);
@@ -1063,7 +1059,7 @@ public abstract class Mob extends Char {
 		if (suspicion > MAX_SUSPICION) {
 			suspicion = MAX_SUSPICION;
 		}
-		if (suspicion > SUSPICION_THRESHOLD && sprite != null) {
+		if (Math.round(suspicion) == SUSPICION_THRESHOLD && sprite != null) {
 			sprite.showAlert();
 		}
 	}
@@ -1073,7 +1069,7 @@ public abstract class Mob extends Char {
 		if (suspicion < 0) {
 			suspicion = 0;
 		}
-		if (suspicion < SUSPICION_THRESHOLD && sprite != null) {
+		if (Math.round(suspicion) == SUSPICION_THRESHOLD && sprite != null) {
 			sprite.showLost();
 		}
 	}
@@ -1082,12 +1078,14 @@ public abstract class Mob extends Char {
 		if (enemy == null) {
 			return false;
 		}
-		if (notice(enemy, state.noticeFactor())) {
+		if (notice(enemy)) {
 			increaseSuspicion(1);
 			return true;
 		} else {
-			//Swarm Intelligence causes mobs to forget you slower.
-			decreaseSuspicion(Dungeon.isChallenged(Challenges.SWARM_INTELLIGENCE) ? 2/3f : 1.5f);
+			if (!fieldOfView(enemy.pos)) {
+				//Swarm Intelligence causes mobs to forget you slower.
+				decreaseSuspicion(Dungeon.isChallenged(Challenges.SWARM_INTELLIGENCE) ? 2 / 3f : 1.5f);
+			}
 			return false;
 		}
 	}

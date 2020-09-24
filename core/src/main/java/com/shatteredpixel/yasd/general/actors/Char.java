@@ -108,6 +108,7 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.GameMath;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
@@ -1004,23 +1005,27 @@ public abstract class Char extends Actor {
 		}
 	}
 
-	public final boolean notice( Char defender, float factor) {
-		return Random.Float() < noticeChance(defender, factor);
+	public final boolean notice(Char defender) {
+		return Random.Float() < noticeChance(defender);
 	}
 
-	public float noticeChance( Char defender, float factor) {
+	public float noticeChance(Char defender) {
 		if (Dungeon.level.distance(pos, defender.pos) < viewDistance) {
-			float perception = (noticeSkill(defender)) / ((Dungeon.level.distance(pos, defender.pos)+1)/2f);
-			if (!fieldOfView(defender.pos)) {
-				perception /= 2f;
-			}
-			perception *= factor;
+			float perception = noticeSkill(defender);
 			float stealth = defender.sneakSkill(this);
+
 			//Enforced here so we don't get division by zero error
-			if (stealth == 0) {
+			if (stealth == 0 && perception == 0) {
 				return 1f;
 			}
-			return perception/(perception + stealth);
+			float chance = perception/(perception + stealth);
+			if (fieldOfView(defender.pos)) {
+				chance *= 2;
+			} else {
+				chance /= 2;
+			}
+			//Chance can be over 1, but that will just make notice() always return true and it results in odd messages for stealing from shops.
+			return GameMath.gate(0f, chance, 1f);
 		} else {
 			return 0f;
 		}

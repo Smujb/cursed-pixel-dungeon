@@ -150,7 +150,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 				enemy = ((Mob) curUser).getEnemy();
 			}
 			if (enemy != null) {
-				bonus = 1f-enemy.noticeChance(curUser, 3);
+				bonus = 1f-enemy.noticeChance(curUser);
 			}
 			if (enemy instanceof Mob && ((Mob) enemy).surprisedBy(curUser) && curUser.canSurpriseAttack()) {
 				damage *= (2 + bonus);
