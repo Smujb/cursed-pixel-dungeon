@@ -1005,10 +1005,13 @@ public abstract class Char extends Actor {
 		}
 	}
 
+	//Returns true if notice is successful, false if not.
 	public final boolean notice(Char defender) {
 		return Random.Float() < noticeChance(defender);
 	}
 
+	//Returns chance to notice where 1f = guaranteed and 0f = impossible and anything in between is a chance
+	//Eg 0.32f = 32% chance
 	public float noticeChance(Char defender) {
 		if (Dungeon.level.distance(pos, defender.pos) < viewDistance) {
 			float perception = noticeSkill(defender);
