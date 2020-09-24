@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.StoryChapter;
 import com.shatteredpixel.yasd.general.items.Amulet;
 import com.shatteredpixel.yasd.general.items.BrokenSeal;
 import com.shatteredpixel.yasd.general.items.DeveloperItem;
+import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
@@ -77,6 +78,7 @@ import com.shatteredpixel.yasd.general.scenes.HeroSelectScene;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.DeviceCompat;
+import com.watabou.utils.Reflection;
 
 import org.jetbrains.annotations.Contract;
 
@@ -182,6 +184,12 @@ public enum HeroClass {
 		new TomeOfMastery().collect();
 		new MegaStick().collect();
 		new DeveloperItem().collect();
+		for (Class<?> itemClass : Generator.Category.SHIELD.classes) {
+			Item item = (Item) Reflection.newInstance(itemClass);
+			if (item != null) {
+				item.collect();
+			}
+		}
 	}
 
 	@Contract(pure = true)
