@@ -62,6 +62,7 @@ public class CPDGame extends Game {
 	public static final int v0_4_4 = 31;
 	public static final int v0_4_5 = 33;
 	public static final int v0_4_6 = 36;
+	public static final int v0_4_7 = 38;
 	
 	public CPDGame(PlatformSupport platform ) {
 		super( sceneClass == null ? WelcomeScene.class : sceneClass, platform );
