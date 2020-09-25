@@ -179,7 +179,7 @@ import com.shatteredpixel.yasd.general.items.stones.StoneOfDisarming;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfFlock;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfIntuition;
-import com.shatteredpixel.yasd.general.items.stones.StoneOfRepair;
+import com.shatteredpixel.yasd.general.items.stones.StoneOfProtection;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfShock;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.wands.WandOfAcid;
@@ -498,7 +498,7 @@ public class Generator {
 					StoneOfBlink.class,
 					StoneOfDeepenedSleep.class,
 					StoneOfClairvoyance.class,
-					StoneOfRepair.class,
+					StoneOfProtection.class,
 					StoneOfBlast.class,
 					StoneOfAffection.class,
 					StoneOfAugmentation.class  //1 is sold in each shop

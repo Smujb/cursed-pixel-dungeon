@@ -94,7 +94,7 @@ public abstract class DragonPendant extends KindofMisc {
 
 	@Override
 	public String desc() {
-		String desc = super.desc() + " " + Messages.get(DragonPendant.class, "stats_desc", statReq()) + "\n\n";
+		String desc = super.desc() + "\n\n";
 		Dragon dragon = getDragon();
 		if (dragon != null) {
 			desc += dragon.description();

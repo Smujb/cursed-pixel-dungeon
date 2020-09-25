@@ -48,7 +48,7 @@ import com.shatteredpixel.yasd.general.items.stones.StoneOfDisarming;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfFlock;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfIntuition;
-import com.shatteredpixel.yasd.general.items.stones.StoneOfRepair;
+import com.shatteredpixel.yasd.general.items.stones.StoneOfProtection;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfShock;
 import com.shatteredpixel.yasd.general.journal.Catalog;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -319,7 +319,7 @@ public abstract class Scroll extends Item {
 			stones.put(ScrollOfRetribution.class,   StoneOfBlast.class);
 			amnts.put(ScrollOfRetribution.class,    2);
 			
-			stones.put(ScrollOfRage.class,          StoneOfRepair.class);
+			stones.put(ScrollOfRage.class,          StoneOfProtection.class);
 			amnts.put(ScrollOfRage.class,           3);
 			
 			stones.put(ScrollOfRecharging.class,    StoneOfShock.class);

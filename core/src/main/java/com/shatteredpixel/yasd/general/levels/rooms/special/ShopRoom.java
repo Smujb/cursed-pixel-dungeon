@@ -53,7 +53,7 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfAugmentation;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
-import com.shatteredpixel.yasd.general.items.stones.StoneOfRepair;
+import com.shatteredpixel.yasd.general.items.stones.StoneOfProtection;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.darts.TippedDart;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
@@ -217,7 +217,7 @@ public class ShopRoom extends SpecialRoom {
 			itemsToSpawn.add( toAdd );
 		}
 
-		itemsToSpawn.add(new StoneOfRepair());
+		itemsToSpawn.add(new StoneOfProtection());
 		
 		itemsToSpawn.add( TippedDart.randomTipped(2) );
 

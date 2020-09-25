@@ -501,7 +501,7 @@ public class ItemSpriteSheet {
 	}
 	
 	private static final int STONES             =                           xy(1, 21);  //16 slots
-	public static final int STONE_REPAIR = STONES+0;
+	public static final int STONE_PROTECT = STONES+0;
 	public static final int STONE_AUGMENTATION  = STONES+1;
 	public static final int STONE_AFFECTION     = STONES+2;
 	public static final int STONE_BLAST         = STONES+3;

@@ -57,6 +57,7 @@ public class ShopGuardian extends Statue {
     public ShopGuardian() {
         super();
         ankhs = 0;
+        state = WANDERING;
     }
 
     public void spawnAround( int pos ) {

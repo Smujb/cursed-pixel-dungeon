@@ -27,20 +27,24 @@
 
 package com.shatteredpixel.yasd.general.items.stones;
 
-import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.actors.Actor;
+import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.items.powers.BubbleShield;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
-import com.shatteredpixel.yasd.general.windows.WndBag;
 
-public class StoneOfRepair extends InventoryStone {
+public class StoneOfProtection extends Runestone {
 
 	{
-		mode = WndBag.Mode.REPAIRABLE;
-		image = ItemSpriteSheet.STONE_REPAIR;
+		image = ItemSpriteSheet.STONE_PROTECT;
 	}
 
 	@Override
-	protected void onItemSelected(Item item) {
-
+	protected void activate(int cell) {
+		Char ch = Actor.findChar(cell);
+		if (ch != null) {
+			Buff.affect(ch, BubbleShield.BubbleShieldBuff.class);
+		}
 	}
 
 	@Override
