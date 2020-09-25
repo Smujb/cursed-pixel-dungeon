@@ -222,6 +222,7 @@ public abstract class DragonPendant extends KindofMisc {
 
 		private void updatePendant(@NotNull DragonPendant pen) {
 			level = 1 + pen.level();
+			alignment = pen.curUser.alignment;
 			updateHT(true);
 		}
 
