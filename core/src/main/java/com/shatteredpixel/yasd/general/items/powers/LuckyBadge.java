@@ -127,6 +127,7 @@ public class LuckyBadge extends Power {
 				returnPos = hero.pos;
 				returnDepth = Dungeon.depth;
 				LevelHandler.move(AC_HOME, Messages.get(this, AC_HOME), LevelHandler.Mode.RETURN, 0, -1);
+				heroHP = hero.HP;
 				break;
 			case AC_RETURN:
 				doReturn();
