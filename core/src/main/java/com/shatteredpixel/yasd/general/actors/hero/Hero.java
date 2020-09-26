@@ -1033,29 +1033,23 @@ public class Hero extends Char {
 	}
 
 	private boolean actAttack(@NotNull HeroAction.Attack action) {
-		if (doAttack(action.target)) {
+		Char enemy = action.target;
+		if (action.item != null && action.item.canAttack(enemy) && action.item.use(enemy)) {
+			//Don't attack again, don't move closer
+			curAction = null;
 			return false;
 		} else {
 
-			if (fieldOfView[enemy.pos] && getCloser(enemy.pos)) {
-
+			if (fieldOfView(enemy.pos) && getCloser(enemy.pos)) {
+				//Move closer to the enemy
 				return true;
 
 			} else {
+				//Do nothing
 				ready();
 				return false;
 			}
 		}
-	}
-
-	public boolean doAttack(Char enemy) {
-		this.enemy = enemy;
-		StaminaRegen.regen = false;
-		if (enemy.isAlive() && canAttack(enemy) && !isCharmedBy(enemy) && belongings.getWeapon() != null) {
-			belongings.getWeapon().doAttack(this, enemy);
-			return true;
-		}
-		return false;
 	}
 
 	public Char enemy() {
@@ -1346,7 +1340,7 @@ public class Hero extends Char {
 			if (ch.alignment != Alignment.ENEMY && ch.buff(Amok.class) == null) {
 				curAction = new HeroAction.Interact(ch);
 			} else {
-				curAction = new HeroAction.Attack(ch);
+				curAction = new HeroAction.Attack(ch, curItem());
 			}
 
 		} else if ((heap = Dungeon.level.heaps.get(cell)) != null

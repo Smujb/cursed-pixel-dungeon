@@ -119,9 +119,9 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 	}
 
 	@Override
-	public void use(Char enemy) {
+	public boolean use(Char enemy) {
 		if (curUser == null) {
-			return;
+			return false;
 		}
 		if (Dungeon.level.adjacent(curUser.pos, enemy.pos)) {
 			doAttack(curUser, enemy);
@@ -134,9 +134,12 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 					}
 				}
 			}
+			return true;
 		} else if (quantity > 1) {
 			cast(curUser, enemy.pos);
+			return true;
 		}
+		return false;
 	}
 
 	@Override

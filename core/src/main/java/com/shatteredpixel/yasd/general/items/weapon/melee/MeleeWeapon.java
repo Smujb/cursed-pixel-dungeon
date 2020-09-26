@@ -120,10 +120,12 @@ public class MeleeWeapon extends Weapon implements Attackable {
 	};
 
 	@Override
-	public void use(Char enemy) {
+	public boolean use(Char enemy) {
 		if (curUser != null && isEquipped(curUser) && canReach(curUser, enemy.pos)) {
 			doAttack(curUser, enemy);
+			return true;
 		}
+		return false;
 	}
 
 	@Override

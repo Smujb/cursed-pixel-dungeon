@@ -165,10 +165,12 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	}
 
 	@Override
-	public void use(Char enemy) {
+	public boolean use(Char enemy) {
 		if (curUser != null && isEquipped(curUser) && tryToZap(curUser, enemy.pos)) {
 			zap(enemy.pos);
+			return true;
 		}
+		return false;
 	}
 
 	@Override

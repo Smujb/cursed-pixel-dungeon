@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.actors.hero;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.levels.interactive.InteractiveArea;
 
 public class HeroAction {
@@ -99,8 +100,10 @@ public class HeroAction {
 	
 	public static class Attack extends HeroAction {
 		public Char target;
-		public Attack(Char target) {
+		public Attackable item;
+		public Attack(Char target, Attackable item) {
 			this.target = target;
+			this.item = item;
 		}
 	}
 }

@@ -16,7 +16,7 @@ public class CrushAttackIndicator extends AttackIndicator {
 	protected void onClick() {
 		if (enabled && lastTarget != null) {
 			if (Dungeon.hero.canAttack(lastTarget)){
-				Dungeon.hero.curAction = new HeroAction.Attack( lastTarget);
+				Dungeon.hero.curAction = new HeroAction.Attack( lastTarget, Dungeon.hero.curItem());
 				Dungeon.hero.next();
 			}
 		}

@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.ui.attack;
 
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.HeroAction;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Item;
@@ -170,7 +171,9 @@ public class AttackIndicator extends Tag {
 			onLongClick();
 		} else {
 			if (lastTarget != null) {
-				Dungeon.hero.curItem().use(lastTarget);
+				//Dungeon.hero.curItem().use(lastTarget);
+				Dungeon.hero.curAction = new HeroAction.Attack(lastTarget, Dungeon.hero.curItem());
+				Dungeon.hero.next();
 			} else {
 				checkEnemies();
 			}

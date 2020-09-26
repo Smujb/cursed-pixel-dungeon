@@ -182,8 +182,9 @@ public class SpiritBow extends Weapon implements Attackable {
 	}
 
 	@Override
-	public void use(Char enemy) {
+	public boolean use(Char enemy) {
 		knockArrow().cast(curUser, enemy.pos);
+		return true;
 	}
 
 	@Override
