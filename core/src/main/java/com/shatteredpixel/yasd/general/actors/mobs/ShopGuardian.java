@@ -57,7 +57,8 @@ public class ShopGuardian extends Statue {
     public ShopGuardian() {
         super();
         ankhs = 0;
-        state = WANDERING;
+        state = HUNTING;
+        enemy = Dungeon.hero;
     }
 
     public void spawnAround( int pos ) {

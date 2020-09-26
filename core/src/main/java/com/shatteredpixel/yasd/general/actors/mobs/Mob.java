@@ -206,35 +206,35 @@ public abstract class Mob extends Char {
 		}
 	}
 
-	private int normalHP(int level) {
+	protected static int normalHP(int level) {
 		return 7 * Item.calcMobPower(level);
 	}
 
-	private int normalAttackSkill(int level) {
+	protected static int normalAttackSkill(int level) {
 		return 9 + (level);
 	}
 
-	private int normalDefenseSkill(int level) {
+	protected static int normalDefenseSkill(int level) {
 		return 3 + (level);
 	}
 
-	private int normalPerception(int level) {
+	protected static int normalPerception(int level) {
 		return 5 + (level);
 	}
 
-	private int normalStealth(int level) {
+	protected static int normalStealth(int level) {
 		return 5 + (level);
 	}
 
-	private int normalDamageRoll(int level) {
+	protected static int normalDamageRoll(int level) {
 		return Random.NormalIntRange(normalMin(level), normalMax(level));
 	}
 
-	protected final int normalMax(int level) {
+	protected static int normalMax(int level) {
 		return Item.calcMobPower(level) * 10;
 	}
 
-	protected final int normalMin(int level) {
+	protected static int normalMin(int level) {
 		return Item.calcMobPower(level) * 5;
 	}
 

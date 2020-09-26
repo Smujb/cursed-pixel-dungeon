@@ -64,6 +64,8 @@ public class Statue extends Mob implements Callback {
 
 		EXP = 0;
 		state = PASSIVE;
+
+		healthFactor = 3f;
 		
 		properties.add(Property.INORGANIC);
 
@@ -86,6 +88,26 @@ public class Statue extends Mob implements Callback {
 		}
 
 		upgradeItems();
+	}
+
+	@Override
+	public int attackSkill(Char target) {
+		return normalAttackSkill(level);
+	}
+
+	@Override
+	public int defenseSkill(Char enemy) {
+		return normalDefenseSkill(level);
+	}
+
+	@Override
+	public float sneakSkill(Char enemy) {
+		return normalStealth(level);
+	}
+
+	@Override
+	public float noticeSkill(Char enemy) {
+		return normalPerception(level);
 	}
 
 	@Override
