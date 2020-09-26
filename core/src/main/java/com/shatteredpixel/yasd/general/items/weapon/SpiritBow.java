@@ -188,7 +188,7 @@ public class SpiritBow extends Weapon implements Attackable {
 	}
 
 	@Override
-	public boolean canAttack(Char enemy) {
+	public boolean canUse(Char enemy) {
 		return Ballistica.canHit(curUser, enemy, Ballistica.PROJECTILE);
 	}
 

@@ -174,7 +174,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	}
 
 	@Override
-	public boolean canAttack(Char enemy) {
+	public boolean canUse(Char enemy) {
 		return Ballistica.canHit(curUser, enemy, collisionProperties(enemy.pos));
 	}
 

@@ -1034,7 +1034,7 @@ public class Hero extends Char {
 
 	private boolean actAttack(@NotNull HeroAction.Attack action) {
 		Char enemy = action.target;
-		if (action.item != null && action.item.canAttack(enemy) && action.item.use(enemy)) {
+		if (action.item != null && action.item.canUse(enemy) && action.item.use(enemy)) {
 			//Don't attack again, don't move closer
 			curAction = null;
 			return false;

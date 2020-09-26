@@ -4,5 +4,5 @@ import com.shatteredpixel.yasd.general.actors.Char;
 
 public interface Attackable {
     boolean use(Char enemy);
-    boolean canAttack(Char enemy);
+    boolean canUse(Char enemy);
 }
