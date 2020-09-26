@@ -87,7 +87,9 @@ abstract public class KindOfWeapon extends KindofMisc {
 		if (breaksArmor(attacker)) {
 			src.ignoreDefense();
 		}
-		boolean attack = attacker.attack(enemy, guaranteed, damageRoll(attacker), src);
+		int damage = damageRoll(attacker);
+		damage = proc(attacker, enemy, damage);
+		boolean attack = attacker.attack(enemy, guaranteed, damage, src);
 		if (attack) {
 			hitSound(Random.Float(0.87f, 1.15f));
 		}
