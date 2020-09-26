@@ -143,7 +143,7 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 	}
 
 	@Override
-	public boolean canAttack(Char enemy) {
+	public boolean canUse(Char enemy) {
 		if (curUser == null) {
 			return false;
 		} else if (quantity <= 1) {

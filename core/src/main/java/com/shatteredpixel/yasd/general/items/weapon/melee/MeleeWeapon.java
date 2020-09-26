@@ -129,7 +129,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 	}
 
 	@Override
-	public boolean canAttack(Char enemy) {
+	public boolean canUse(Char enemy) {
 		return canReach(curUser, enemy.pos);
 	}
 
