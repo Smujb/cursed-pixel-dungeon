@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.items;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.utils.BArray;
@@ -82,7 +83,11 @@ abstract public class KindOfWeapon extends KindofMisc {
 	}
 
 	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
-		boolean attack = attacker.attack(enemy, guaranteed, damageRoll(attacker));
+		Char.DamageSrc src = new Char.DamageSrc(Element.PHYSICAL, this);
+		if (breaksArmor(attacker)) {
+			src.ignoreDefense();
+		}
+		boolean attack = attacker.attack(enemy, guaranteed, damageRoll(attacker), src);
 		if (attack) {
 			hitSound(Random.Float(0.87f, 1.15f));
 		}

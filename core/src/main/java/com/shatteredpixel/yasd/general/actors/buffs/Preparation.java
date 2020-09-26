@@ -84,13 +84,12 @@ public class Preparation extends Buff implements ActionIndicator.Action {
 			}
 		}
 
-		public int damageRoll(Char attacker){
-			int dmg = attacker.damageRoll();
+		public int damageRoll(Char attacker, int damage){
 			for( int i = 1; i < damageRolls; i++){
 				int newDmg = attacker.damageRoll();
-				if (newDmg > dmg) dmg = newDmg;
+				if (newDmg > damage) damage = newDmg;
 			}
-			return Math.round(dmg * (1f + baseDmgBonus));
+			return Math.round(damage * (1f + baseDmgBonus));
 		}
 
 		public static AttackLevel getLvl(float turnsInvis){
@@ -144,8 +143,8 @@ public class Preparation extends Buff implements ActionIndicator.Action {
 		ActionIndicator.clearAction(this);
 	}
 
-	public int damageRoll( Char attacker ){
-		return AttackLevel.getLvl(turnsPrep).damageRoll(attacker);
+	public int damageRoll(Char attacker, int damage){
+		return AttackLevel.getLvl(turnsPrep).damageRoll(attacker, damage);
 	}
 
 	public boolean canKO( Char defender ){

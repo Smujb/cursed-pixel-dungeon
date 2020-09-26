@@ -114,9 +114,9 @@ public class DM200 extends Mob {
 	}
 
 	@Override
-	public boolean attack(Char enemy, boolean guaranteed, int dmg) {
+	public boolean attack(Char enemy, boolean guaranteed, int dmg, DamageSrc src) {
 		if (beside(enemy)) {
-			return super.attack(enemy, guaranteed, dmg);
+			return super.attack(enemy, guaranteed, dmg, src);
 		} else {
 			return zap(enemy);
 		}

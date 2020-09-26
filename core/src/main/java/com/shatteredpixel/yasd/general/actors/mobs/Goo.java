@@ -211,8 +211,8 @@ public class Goo extends Boss {
 	}
 
 	@Override
-	public boolean attack(Char enemy, boolean guaranteed, int dmg) {
-		boolean result = super.attack( enemy, guaranteed, dmg);
+	public boolean attack(Char enemy, boolean guaranteed, int dmg, DamageSrc src) {
+		boolean result = super.attack( enemy, guaranteed, dmg, src);
 		pumpedUp = 0;
 		return result;
 	}

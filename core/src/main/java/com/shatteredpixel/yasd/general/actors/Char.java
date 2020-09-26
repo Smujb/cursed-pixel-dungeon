@@ -95,7 +95,6 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfLivingEarth;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Blazing;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Blocking;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Grim;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
 import com.shatteredpixel.yasd.general.levels.features.Door;
@@ -346,10 +345,10 @@ public abstract class Char extends Actor {
 	}
 
 	public final boolean attack(Char enemy) {
-		return attack(enemy, false, damageRoll());
+		return attack(enemy, false, damageRoll(), defaultSrc());
 	}
 
-	public boolean attack(Char enemy, boolean guaranteed, int dmg) {
+	public boolean attack(Char enemy, boolean guaranteed, int dmg, DamageSrc src) {
 
 		if (enemy == null || enemy == this) return false;
 
@@ -369,18 +368,9 @@ public abstract class Char extends Actor {
 
 			Preparation prep = buff(Preparation.class);
 			if (prep != null) {
-				dmg = prep.damageRoll(this);
+				dmg = prep.damageRoll(this, dmg);
 			}
 
-			if (hasBelongings()) {
-				if (belongings.getWeapon() instanceof MissileWeapon) {//Missile Weapons are always equipped in slot 1
-					dmg = belongings.getWeapon().damageRoll(this);
-				}
-			}
-			DamageSrc src = defaultSrc();
-			if (hasBelongings() && belongings.getWeapon() != null && belongings.getWeapon().breaksArmor(this)) {
-				src.ignoreDefense();
-			}
 			if (dmg < 0) {
 				dmg = 0;
 			}
