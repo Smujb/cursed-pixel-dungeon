@@ -177,9 +177,6 @@ public class Belongings implements Iterable<Item> {
 	}
 
 	public int attackProc(Char enemy, int damage) {
-		KindOfWeapon wep = getWeapon();
-
-		if (wep != null) damage = wep.proc(owner, enemy, damage);
 		return damage;
 	}
 
