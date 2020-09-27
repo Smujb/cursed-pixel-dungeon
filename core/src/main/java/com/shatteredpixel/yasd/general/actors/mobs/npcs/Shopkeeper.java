@@ -61,7 +61,12 @@ public class Shopkeeper extends NPC {
 		spend( TICK );
 		return true;
 	}
-	
+
+	@Override
+	public float noticeSkill(Char enemy) {
+		return 5 + Dungeon.getScaleFactor();
+	}
+
 	@Override
 	public void damage(int dmg,  DamageSrc src) {
 		flee();
