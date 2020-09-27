@@ -104,6 +104,7 @@ import com.shatteredpixel.yasd.general.levels.interactive.InteractiveArea;
 import com.shatteredpixel.yasd.general.levels.terrain.KindOfTerrain;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.traps.Trap;
+import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Swiftthistle;
 import com.shatteredpixel.yasd.general.scenes.AlchemyScene;
@@ -1162,7 +1163,8 @@ public class Hero extends Char {
 		for (Mob m : Dungeon.level.mobs.toArray(new Mob[0])) {
 			if (fieldOfView[m.pos] && m.alignment == Alignment.ENEMY) {
 				visible.add(m);
-				if (!visibleEnemies.contains(m)) {
+				//Manually check LoS so hero isn't constantly interrupted
+				if (!visibleEnemies.contains(m) && Ballistica.canHit(this, m, Ballistica.STOP_TERRAIN)) {
 					newMob = true;
 				}
 
