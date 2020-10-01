@@ -44,6 +44,7 @@ import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.keys.Key;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
+import com.shatteredpixel.yasd.general.items.rings.RingOfHaste;
 import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
@@ -227,7 +228,7 @@ public class Belongings implements Iterable<Item> {
 	}
 
 	public float affectSpeed(float speed) {
-		return speed;
+		return speed * RingOfHaste.speedMultiplier(owner);
 	}
 
 	public float affectStealth(float stealth) {
