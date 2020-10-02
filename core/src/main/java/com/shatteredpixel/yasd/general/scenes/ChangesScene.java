@@ -38,6 +38,7 @@ import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
 import com.shatteredpixel.yasd.general.ui.ScrollPane;
 import com.shatteredpixel.yasd.general.ui.Window;
 import com.shatteredpixel.yasd.general.ui.changelist.ChangeInfo;
+import com.shatteredpixel.yasd.general.ui.changelist.CursedChanges;
 import com.shatteredpixel.yasd.general.ui.changelist.YASD_log;
 import com.shatteredpixel.yasd.general.ui.changelist.v0_1_X_Changes;
 import com.shatteredpixel.yasd.general.ui.changelist.v0_2_X_Changes;
@@ -93,10 +94,13 @@ public class ChangesScene extends PixelScene {
 		final ArrayList<ChangeInfo> changeInfos = new ArrayList<>();
 		
 		switch (changesSelected){
-			case 0: default:
-				YASD_log.addAllChanges(changeInfos);
+			default:
+				CursedChanges.addAllChanges(changeInfos);
 				break;
 			case 1:
+				YASD_log.addAllChanges(changeInfos);
+				break;
+			case 2:
 				v0_7_X_Changes.addAllChanges(changeInfos);
 				v0_6_X_Changes.addAllChanges(changeInfos);
 				v0_5_X_Changes.addAllChanges(changeInfos);
@@ -158,8 +162,8 @@ public class ChangesScene extends PixelScene {
 				panel.innerWidth(),
 				panel.innerHeight() + 2);
 		list.scrollTo(0, 0);
-		
-		RedButton btn0_7 = new RedButton("MainGame"){
+
+		RedButton btnCPD = new RedButton("Cursed PD"){
 			@Override
 			protected void onClick() {
 				super.onClick();
@@ -169,11 +173,11 @@ public class ChangesScene extends PixelScene {
 				}
 			}
 		};
-		if (changesSelected == 0) btn0_7.textColor(Window.TITLE_COLOR);
-		btn0_7.setRect(list.left()-3, list.bottom()+5, 69, 14);
-		add(btn0_7);
-		
-		RedButton btn0_6 = new RedButton("Shattered PD"){
+		if (changesSelected == 0) btnCPD.textColor(Window.TITLE_COLOR);
+		btnCPD.setRect(0, list.bottom()+5, w/3f, 14);
+		add(btnCPD);
+
+		RedButton btnPPD = new RedButton("YASD/Powered PD"){
 			@Override
 			protected void onClick() {
 				super.onClick();
@@ -183,23 +187,23 @@ public class ChangesScene extends PixelScene {
 				}
 			}
 		};
-		if (changesSelected == 1) btn0_6.textColor(Window.TITLE_COLOR);
-		btn0_6.setRect(btn0_7.right() + 2, btn0_7.top(), 68, 14);
-		add(btn0_6);
+		if (changesSelected == 1) btnPPD.textColor(Window.TITLE_COLOR);
+		btnPPD.setRect(btnCPD.right() + 2, list.bottom()+5, w/3f, 14);
+		add(btnPPD);
 		
-//		RedButton btnOld = new RedButton("v0.6-v0.1"){
-//			@Override
-//			protected void onClick() {
-//				super.onClick();
-//				if (changesSelected != 2) {
-//					changesSelected = 2;
-//					MainGame.seamlessResetScene();
-//				}
-//			}
-//		};
-//		if (changesSelected == 2) btnOld.textColor(Window.TITLE_COLOR);
-//		btnOld.setRect(btn0_6.right() + 2, btn0_7.top(), 45, 14);
-//		add(btnOld);
+		RedButton btnSPD = new RedButton("Shattered PD"){
+			@Override
+			protected void onClick() {
+				super.onClick();
+				if (changesSelected != 2) {
+					changesSelected = 2;
+					CPDGame.seamlessResetScene();
+				}
+			}
+		};
+		if (changesSelected == 2) btnSPD.textColor(Window.TITLE_COLOR);
+		btnSPD.setRect(btnPPD.right() + 2, btnPPD.top(), w/3f, 14);
+		add(btnSPD);
 
 		Archs archs = new Archs();
 		archs.setSize( Camera.main.width, Camera.main.height );

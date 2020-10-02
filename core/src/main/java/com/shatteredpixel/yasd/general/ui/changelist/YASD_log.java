@@ -27,31 +27,165 @@
 
 package com.shatteredpixel.yasd.general.ui.changelist;
 
+import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.items.spells.MagicalInfusion;
+import com.shatteredpixel.yasd.general.levels.traps.GuardianTrap;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.ChangesScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
+import com.shatteredpixel.yasd.general.sprites.GuardSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.sprites.PiranhaSprite;
+import com.shatteredpixel.yasd.general.sprites.RatSprite;
 import com.shatteredpixel.yasd.general.sprites.ShopkeeperSprite;
 import com.shatteredpixel.yasd.general.sprites.StatueSprite;
 import com.shatteredpixel.yasd.general.sprites.WraithSprite;
 import com.shatteredpixel.yasd.general.ui.Icons;
 import com.shatteredpixel.yasd.general.ui.Window;
+import com.watabou.noosa.Image;
 
 import java.util.ArrayList;
 
 public class YASD_log {
-	
-	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+
+	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ) {
+		add_v0_4_X_Changes(changeInfos);
+		add_v0_3_X_Changes(changeInfos);
 		add_v0_2_X_Changes(changeInfos);
 		add_v0_1_X_Changes(changeInfos);
 	}
 
+	private static void add_v0_4_X_Changes(ArrayList<ChangeInfo> changeInfos) {
+		ChangeInfo changes = new ChangeInfo( "0.4", true, "");
+		changes.hardlight( Window.TITLE_COLOR );
+		changeInfos.add( changes );
+
+		//Changes
+		changes = new ChangeInfo(Messages.get(ChangesScene.class, "changes"),false,null);
+		changes.hardlight( Window.TITLE_COLOR );
+		changeInfos.add( changes );
+
+		changes.addButton( new ChangeButton(new Image( Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+				"Fixed various critical errors preventing the game being finishable:\n" +
+						"_-_ Fixed DM 300 often softlocking the game\n" +
+						"_-_ Fixed DM 300 exit not working\n" +
+						"_-_ Fixed Dwarf King exit not working\n" +
+						"_-_ Fixed Dwarf King fight softlocking if you can't do enough damage\n" +
+						"_-_ Fixed Yog exit not working"));
+
+		changes.addButton( new ChangeButton(Icons.get(Icons.SHPX), "Ported Shattered Pixel Dungeon V0.8.1",
+				"This includes almost all of it's features and improvements."));
+
+		changes.addButton(new ChangeButton(new PiranhaSprite(), "Diving",
+				"Diving mechanic changed:\n" +
+						"_-_ Underwater levels are now half the size of their parent level\n" +
+						"_-_ Loot on underwater levels is now 3 down from 10\n" +
+						"_-_ Bubbles are now 5 down from 10"));
+
+		changes.addButton( new ChangeButton(Icons.get(Icons.PREFS), "Keybindings",
+				"Android now supports keybindings for controllers. The volume keys can also be bound."));
+
+		//New
+		changes = new ChangeInfo(Messages.get(ChangesScene.class, "new"),false,null);
+		changes.hardlight( Window.TITLE_COLOR );
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.WEAPON_HOLDER), "Equipment",
+				"Equipment properties for Wands, Weapons and Armour are all randomly generated rather than individual presets existing.\n" +
+						"_-_ Wands are either bolt, aoe, ally or support and have a random element\n" +
+						"_-_ Weapons and Armours have all their properties (Eg accuracy multiplier) randomised between -50% (half of normal) and +100% (twice normal)"));
+
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.KIT), "New Rogue item",
+				"Rogue now has a new unique item that lets him change the properties of weapons."));
+
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Armors.MAGE), "Magic defense",
+				"Magical DR is now based off focus not armour upgrade level."));
+
+		//Buffs
+		changes = new ChangeInfo(Messages.get(ChangesScene.class, "buffs"), false, null);
+		changes.hardlight( CharSprite.POSITIVE );
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton(new GuardianTrap.GuardianSprite(), "Guardians",
+				"Guardians from the traps no longer have have Ankhs as this made them more harmful than they should be"));
+
+		changes.addButton( new ChangeButton(new RatSprite(), "Mobs",
+				"Mobs do a little more damage, except slimes who do ~33% less."));
+
+		//Nerfs
+		changes = new ChangeInfo(Messages.get(ChangesScene.class, "nerfs"), false, null);
+		changes.hardlight( CharSprite.NEGATIVE );
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton(new GuardSprite(), "Enemy armour",
+				"Enemy DR/armour scaling nerfed as it made fast weapons non-viable"));
+	}
+
+	private static void add_v0_3_X_Changes(ArrayList<ChangeInfo> changeInfos) {
+		ChangeInfo changes = new ChangeInfo( "0.3", true, "");
+		changes.hardlight( Window.TITLE_COLOR );
+		changeInfos.add( changes );
+
+		//Changes
+		changes = new ChangeInfo(Messages.get(ChangesScene.class, "changes"),false,null);
+		changes.hardlight( Window.TITLE_COLOR );
+		changeInfos.add( changes );
+
+		changes.addButton( new ChangeButton(new Image( Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+				"Fixed:\n" +
+						"_-_ Hero current HP not increasing on level up\n" +
+						"_-_ A variety of crashes related to the hero not having weapons\n" +
+						"_-_ Crashes with Artifacts"));
+
+		changes.addButton( new ChangeButton(Icons.get(Icons.SHPX), "Ported Shattered Pixel Dungeon V0.8.0",
+				"This includes almost all of it's features and improvements."));
+
+		changes.addButton( new ChangeButton(Icons.get(Icons.ROGUE), "Reworked Rogue",
+				"_-_ Rogue no longer starts with the Cloak of Shadows, instead he must rely on Stealth\n" +
+						"_-_ Asassin's Preparation buff is reworked to work based off noticing/being noticed by enemies."));
+
+
+		//New
+		changes = new ChangeInfo(Messages.get(ChangesScene.class, "new"),false,null);
+		changes.hardlight( Window.TITLE_COLOR );
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARTIFACT_CLOAK), "New Stealth system",
+				"Completely reworked the stealth system. Now, the hero and mobs have a stealth and perception stat. This also means, with a low chance, mobs can be detected through walls."));
+
+		changes.addButton( new ChangeButton(new Image( Assets.Environment.TILES_SEWERS, 80, 80, 16, 16), "Bronze Locked Doors",
+				"Now, there are two types of locked doors in the dungeon: Bronze and Silver. They are identical but a Bronze key can't open a Silver door and neither can a Silver key open a Bronze door."));
+
+		changes.addButton( new ChangeButton(new Image( Assets.Environment.TILES_SEWERS, 48, 64, 16, 16), "Bombable Walls",
+				"These walls have a crack on them and can be blown up by bombs. They occasionally replace barricade walls, and a hidden variant may replace hidden doors."));
+
+		//Buffs
+		changes = new ChangeInfo(Messages.get(ChangesScene.class, "buffs"), false, null);
+		changes.hardlight( CharSprite.POSITIVE );
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton(Icons.get(Icons.CHALLENGE_ON), "Difficulty",
+				"Lowered the difficulty on easy and a little on medium, but kept the same on hard. There is also an \"Impossible\" difficulty for players who beat the game on all 4 classes."));
+
+		//Nerfs
+		changes = new ChangeInfo(Messages.get(ChangesScene.class, "nerfs"), false, null);
+		changes.hardlight( CharSprite.NEGATIVE );
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_DAMNATION), "Wand of Damnation nerfed",
+				"Wand of Damnation's ability to one shot enemies so easily proved too powerful. Deferred death now lasts much longer."));
+
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_THORNVINES), "Wand of Thornvines fixed",
+				"Wand of Thornvines had a bug that made the Thornvine basically invulnerable at high levels. This is no longer possible."));
+
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_LIFE_DRAIN), "Wand of Life Drain nerfed",
+				"Wand of Life drain now only heals user for half of the damage it deals."));
+	}
+
 	private static void add_v0_2_X_Changes(ArrayList<ChangeInfo> changeInfos) {
-		ChangeInfo changes = new ChangeInfo( "0.2 - release", true, "");
+		ChangeInfo changes = new ChangeInfo( "0.2", true, "");
 		changes.hardlight( Window.TITLE_COLOR );
 		changeInfos.add( changes );
 
@@ -135,7 +269,7 @@ public class YASD_log {
 				"_-_ This will send them to an alternative map, where they have limited air.\n" +
 				"_-_ This area is full of Piranhas, and a new mob stolen from Prismatic PD: Jellyfish"));
 
-		changes.addButton(new ChangeButton(HeroClass.WARRIOR.icon(), "Stats system", "Added a stat system:\n" +
+		changes.addButton(new ChangeButton(Icons.get(HeroClass.WARRIOR), "Stats system", "Added a stat system:\n" +
 				"_-_ When leveling up, hero will get distribution points. These can be used to upgrade skills.\n" +
 				"_-_ Power - increases the hero's strength.\n" +
 				"_-_ Focus - increases the damage of the hero's wands\n" +
@@ -166,11 +300,11 @@ public class YASD_log {
 		ChangeInfo changes = new ChangeInfo( "0.1 - release", true, "");
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
-		
+
 		changes = new ChangeInfo(Messages.get(ChangesScene.class, "changes"),false,null);
 		changes.hardlight( Window.TITLE_COLOR );
 		changeInfos.add(changes);
-		
+
 		changes.addButton(new ChangeButton(Icons.get(Icons.COMPASS), "Equipment System Reworked", "The equipment system has been completely overhauled:\n" +
 				"_-_ The hero now has 5 equip slots, and Wands must be equipped\n" +
 				"_-_ Each slot can hold a weapon, armour, a wand, a ring or an artifact\n" +
@@ -178,7 +312,7 @@ public class YASD_log {
 				"_-_ When using multiple armours, all defense rolls will be added together and all glyphs will proc from left to right, and strength requirements will be increased."));
 
 		changes.addButton(new ChangeButton(Icons.get(Icons.RANKINGS), "Upgrade Limits", "All items are capped at +3"));
-		
+
 		changes = new ChangeInfo(Messages.get(ChangesScene.class, "new"),false,null);
 		changes.hardlight( Window.TITLE_COLOR );
 		changeInfos.add(changes);
@@ -193,6 +327,7 @@ public class YASD_log {
 				"_-_ Functionality is basically the same as YAPD\n" +
 				"_-_ Consumes all charges, heavy damage, heals the hero if the enemy is not undead"));
 	}
-	
-	
+
+
+
 }
