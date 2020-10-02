@@ -6,10 +6,19 @@ import com.shatteredpixel.yasd.general.items.allies.PoisonDragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.armor.curses.Bulk;
 import com.shatteredpixel.yasd.general.items.armor.glyphs.AntiMagic;
+import com.shatteredpixel.yasd.general.items.potions.brews.BrewOfHolyWater;
+import com.shatteredpixel.yasd.general.items.shield.RoundShield;
 import com.shatteredpixel.yasd.general.items.spells.MagicalInfusion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
+import com.shatteredpixel.yasd.general.items.weapon.curses.Sapping;
+import com.shatteredpixel.yasd.general.items.weapon.curses.Thunderous;
+import com.shatteredpixel.yasd.general.items.weapon.enchantments.Grim;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Kinetic;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
+import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingHammer;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.ChangesScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
@@ -32,11 +41,118 @@ public class CursedChanges {
     }
 
     public static void add_0_4_Changes(ArrayList<ChangeInfo> changeInfos) {
+        ChangeInfo changes = new ChangeInfo("CPD 0.4.0", true, "");
+        changes.hardlight(Window.TITLE_COLOR);
+        changeInfos.add(changes);
 
+        changes = new ChangeInfo(Messages.get(ChangesScene.class, "changes"), false, null);
+        changes.hardlight(CharSprite.WARNING);
+        changeInfos.add(changes);
+
+        changes.addButton( new ChangeButton(Icons.WARRIOR.get(), "Stat System",
+                "The game's stat system has been completely reworked. Upgrading a stat gives you HP rather than leveling up, and the game's equipment is split into 5 categories: Melee Weapons, Shields, Armour, Dragon Pendants and Wands. Each requires one stat, and some from each category may optionally be able to require a different stat (eg Spiritual Shield requires x Resilience _or_ Focus."));
+
+
+        changes.addButton( new ChangeButton(new Sword(),
+                "Items equipped in different slots can attack independently. You can choose which one to use. A wand or missile weapon can also be assigned to the attack slot."));
+
+
+        changes.addButton( new ChangeButton(new Greataxe(),
+                "Greataxe reworked. Now takes 2 turns to attack, is 50% more accurate, and has a chance to paralyse the enemy."));
+
+        changes = new ChangeInfo(Messages.get(ChangesScene.class, "new"), false, null);
+        changes.hardlight(Window.TITLE_COLOR);
+        changeInfos.add(changes);
+
+        changes.addButton( new ChangeButton(new RoundShield(),
+                "Shields added.\n" +
+                        "Shields replace armour completely. They are less passive than armour so make Warrior more interesting, as his primary stat is focused around them.\n\n" +
+                        "Shields have limited charge. When this charge is exhausted, their defense is weaker. This makes them ineffective for simply facetanking enemies completely"));
+
+        changes.addButton( new ChangeButton(new Sword().enchant(new Sapping()),
+                "New curse: Sapping\n" +
+                        "Deals +50% damage... as deferred damge. No base damage at all!"));
+
+        changes = new ChangeInfo(Messages.get(ChangesScene.class, "buffs"), false, null);
+        changes.hardlight( CharSprite.POSITIVE );
+        changeInfos.add(changes);
+
+
+        Image itemIcon = new Image(Assets.Sprites.ITEM_ICONS);
+        itemIcon.frame(ItemSpriteSheet.Icons.film.get(ItemSpriteSheet.Icons.SCROLL_UPGRADE));
+        changes.addButton(new ChangeButton(itemIcon, "Item Upgrades",
+                "All items now have upgrades scaling with depth."));
+
+        changes.addButton( new ChangeButton(new ThrowingHammer().enchant(new Grim()),
+                "Missile weapons can be enchanted!"));
+
+        changes.addButton( new ChangeButton(new Glove(),
+                "Starting items are upgraded to the highest you can handle with your current stats."));
+
+        changes = new ChangeInfo(Messages.get(ChangesScene.class, "nerfs"), false, null);
+        changes.hardlight( CharSprite.NEGATIVE );
+        changeInfos.add(changes);
+
+        changes.addButton( new ChangeButton(Icons.WARNING.get(), "Upgrade Limits",
+                "Items now have a form of upgrade limit again. Since tiers have been removed, Magical Infusion can increase this limit. All items can only receive 10 upgrades from SoU at base, however natural upgrades do not count"));
     }
 
     public static void add_0_3_Changes(ArrayList<ChangeInfo> changeInfos) {
+        ChangeInfo changes = new ChangeInfo("CPD 0.3.0", true, "New Cursed PD is built off Powered PD/YASD not Shattered directly, so it has some of its features (equipping anything in any slot, new wands, etc) that are not listed here.");
+        changes.hardlight(Window.TITLE_COLOR);
+        changeInfos.add(changes);
 
+        changes = new ChangeInfo(Messages.get(ChangesScene.class, "changes"), false, null);
+        changes.hardlight(CharSprite.WARNING);
+        changeInfos.add(changes);
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.MASTERY, null), "Tome of Mastery changed:",
+                "Hero no longer starts with the tome, each class has 5 subclasses. All but one of these subclasses are shared with another class (for example both Warrior and Mage can become a Warlock)."));
+
+        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.BADGE, null), "Lucky Badge reworked",
+                "_-_ No longer makes enemies drop items, instead sends you to a special depth when activated where enemies drop items and spawn rapidly\n" +
+                        "_-_ Ring of Wealth is a separate item that doesn't drop Scrolls of Upgrade"));
+
+        changes.addButton( new ChangeButton(Icons.WARNING.get(), "Upgrade Limits",
+                "Upgrade limits have been completely removed. Instead, upgrading an item increases it's strength requirement (Wands now require Focus and Dragon Pendants Attunement). Rings scale slower the more you upgrade them and so effectively cap at a certain point."));
+
+
+        changes = new ChangeInfo(Messages.get(ChangesScene.class, "new"), false, null);
+        changes.hardlight(Window.TITLE_COLOR);
+        changeInfos.add(changes);
+
+        changes.addButton( new ChangeButton(new Sword().enchant(new Thunderous()),
+                "New curse: Thunderous\n" +
+                        "Works like shocking, but arcs to all mobs including the defender. Arc damge is the player's current MP. Downside? Only procs at full mana, and uses it all!"));
+
+        changes.addButton( new ChangeButton(new Image(Assets.Interfaces.TOOLBAR_DARK, 0, 0, 16, 16), "Dark UI",
+                "Optional dark UI in settings."));
+
+        changes.addButton( new ChangeButton(new Image(Assets.Interfaces.LOADING_SEWERS), "Story",
+                "WIP story has been added to the game. At the end of certain levels, more story will be shown."));
+
+        changes.addButton(new ChangeButton(new BrewOfHolyWater(), "New Alchemy recipies:\n" +
+                "_-_ Holy Water - crafted from dew + healing. Spawns gas that heals everything it touches.\n" +
+                "_-_ Purified Goo Blob - crafted from dew + blob of goo. Gives a short duration of Aquatic Rejuvenation and restores hunger.\n" +
+                "_-_ Degrade spell - Crafted from 1 Scroll of Upgrade + Scroll of Retribution. Reduces the level of an item.\n" +
+                "_-_ Safe Infusion - Works like Magical Infusion, but does not remove upgrades\n" +
+                "_-_ Arcne Infusion - Applies an uncommon or rare enchantment along with the upgrade"));
+
+        changes = new ChangeInfo(Messages.get(ChangesScene.class, "buffs"), false, null);
+        changes.hardlight( CharSprite.POSITIVE );
+        changeInfos.add(changes);
+
+        Image itemIcon = new Image(Assets.Sprites.ITEM_ICONS);
+        itemIcon.frame(ItemSpriteSheet.Icons.film.get(ItemSpriteSheet.Icons.SCROLL_UPGRADE));
+        changes.addButton(new ChangeButton(itemIcon, "Item Upgrades",
+                "Items in special rooms (eg piranha rooms) always have upgrades scaling with depth."));
+
+        changes = new ChangeInfo(Messages.get(ChangesScene.class, "nerfs"), false, null);
+        changes.hardlight( CharSprite.NEGATIVE );
+        changeInfos.add(changes);
+
+        changes.addButton(new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.SWORD, Kinetic.YELLOW), "Enchantments nerfed",
+                "All enchantments have had their proc chances reduced by half or more."));
     }
 
     public static void add_old_Changes(ArrayList<ChangeInfo> changeInfos) {
@@ -74,11 +190,6 @@ public class CursedChanges {
 
         changes.addButton(new ChangeButton(new ItemSprite(ItemSpriteSheet.Armors.PLATE, AntiMagic.TEAL), "Anti Magic Glyph removed",
                 "This glyph was far too powerful, especially alongside Ring of Elements."));
-
-
-        changes = new ChangeInfo(Messages.get(ChangesScene.class, "changes"),false,null);
-        changes.hardlight( CharSprite.WARNING );
-        changeInfos.add(changes);
 
         changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), "Bug Fixes",
                 "Fixed many instances of 'Save File not Found'"));
