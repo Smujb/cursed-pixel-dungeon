@@ -39,7 +39,7 @@ import com.watabou.utils.Bundle;
 
 public class Kinetic extends Weapon.Enchantment {
 	
-	private static ItemSprite.Glowing YELLOW = new ItemSprite.Glowing( 0xFFFF00 );
+	public static ItemSprite.Glowing YELLOW = new ItemSprite.Glowing( 0xFFFF00 );
 	
 	@Override
 	public int proc(Enchantable weapon, Char attacker, Char defender, int damage) {
