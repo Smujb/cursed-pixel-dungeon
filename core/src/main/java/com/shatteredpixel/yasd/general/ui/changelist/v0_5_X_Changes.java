@@ -49,7 +49,7 @@ public class v0_5_X_Changes {
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
 		
-		changes.addButton( new ChangeButton(Icons.get(Icons.YENDOR), "Developer Commentary",
+		changes.addButton( new ChangeButton(Icons.get(Icons.SHPX), "Developer Commentary",
 				"_-_ Released February 8th, 2017\n" +
 				"_-_ 233 days after Shattered v0.4.0\n" +
 				"_-_ 115 days after Shattered v0.4.3\n" +
