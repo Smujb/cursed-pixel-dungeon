@@ -163,7 +163,12 @@ public class ChangesScene extends PixelScene {
 				panel.innerHeight() + 2);
 		list.scrollTo(0, 0);
 
-		RedButton btnCPD = new RedButton("Cursed PD"){
+		String[] labels = new String[] {"Cursed PD", "YASD/Powered PD", "Shattered PD"};
+		if (w < 200) {
+			labels = new String[] {"CPD", "YASD/PPD", "SPD"};
+		}
+
+		RedButton btnCPD = new RedButton(labels[0]){
 			@Override
 			protected void onClick() {
 				super.onClick();
@@ -177,7 +182,7 @@ public class ChangesScene extends PixelScene {
 		btnCPD.setRect(0, list.bottom()+5, w/3f, 14);
 		add(btnCPD);
 
-		RedButton btnPPD = new RedButton("YASD/Powered PD"){
+		RedButton btnPPD = new RedButton(labels[1]){
 			@Override
 			protected void onClick() {
 				super.onClick();
@@ -191,7 +196,7 @@ public class ChangesScene extends PixelScene {
 		btnPPD.setRect(btnCPD.right() + 2, list.bottom()+5, w/3f, 14);
 		add(btnPPD);
 		
-		RedButton btnSPD = new RedButton("Shattered PD"){
+		RedButton btnSPD = new RedButton(labels[2]){
 			@Override
 			protected void onClick() {
 				super.onClick();
