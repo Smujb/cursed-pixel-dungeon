@@ -120,11 +120,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 
 		if (action.equals(AC_ZAP)) {
 
-			if (!(isEquipped(hero) || imbued)) execute(hero, AC_EQUIP);
-			else {
-				execute(hero, AC_ZAP_OVERRIDE);
-
-			}
+			if ((isEquipped(hero) || imbued)) execute(hero, AC_ZAP_OVERRIDE);
 
 		} else if (action.equals(AC_ZAP_OVERRIDE)) {//This is used by Mage's Staff as the Wand in the staff is never equipped.
 			curUser = hero;
