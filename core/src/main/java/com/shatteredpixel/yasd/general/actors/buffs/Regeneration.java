@@ -33,6 +33,8 @@ import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.artifacts.ChaliceOfBlood;
+import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.utils.GLog;
 
 public class Regeneration extends Buff {
 	
@@ -49,6 +51,10 @@ public class Regeneration extends Buff {
 		if (Dungeon.isChallenged(Challenges.BLOODLUST)) {
 			target.damage(target.HT/100, new Char.DamageSrc(Element.META, this).ignoreDefense());
 			spend(1f);
+			if (!target.isAlive()) {
+				GLog.negative(Messages.get(this, "death"));
+				Dungeon.fail(Regeneration.class);
+			}
 			return true;
 		}
 		if (target.isAlive()) {
