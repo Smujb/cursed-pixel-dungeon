@@ -141,7 +141,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
-		if (Dungeon.isChallenged(Challenges.BLOODLUST)) {
+		if (Dungeon.isChallenged(Challenges.BLOODLUST) && attacker instanceof Hero) {
 			attacker.heal(Math.round((attacker.HT/10f)*DLY), true, true);
 		}
 		return super.proc(attacker, defender, damage);
