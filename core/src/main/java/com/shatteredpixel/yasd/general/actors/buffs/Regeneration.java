@@ -49,7 +49,7 @@ public class Regeneration extends Buff {
 	@Override
 	public boolean act() {
 		if (Dungeon.isChallenged(Challenges.BLOODLUST)) {
-			target.damage(target.HT/100, new Char.DamageSrc(Element.META, this).ignoreDefense());
+			if (Dungeon.depth > 0) target.damage(target.HT/100, new Char.DamageSrc(Element.META, this).ignoreDefense());
 			spend(1f);
 			if (!target.isAlive()) {
 				GLog.negative(Messages.get(this, "death"));
