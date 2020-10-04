@@ -1139,7 +1139,7 @@ public class Hero extends Char {
 	@Override
 	public void damage(int dmg, @NotNull DamageSrc src) {
 		int preHP = HP;
-		if (!(src.getCause() instanceof Hunger || src.getCause() instanceof Viscosity.DeferedDamage) && damageInterrupt) {
+		if (!(src.getCause() instanceof Hunger || src.getCause() instanceof Viscosity.DeferedDamage || src.getCause() instanceof Regeneration) && damageInterrupt) {
 			interrupt();
 			resting = false;
 		}

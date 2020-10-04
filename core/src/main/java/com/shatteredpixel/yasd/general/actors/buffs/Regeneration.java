@@ -27,7 +27,10 @@
 
 package com.shatteredpixel.yasd.general.actors.buffs;
 
+import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.Element;
+import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.artifacts.ChaliceOfBlood;
 
@@ -43,6 +46,11 @@ public class Regeneration extends Buff {
 	
 	@Override
 	public boolean act() {
+		if (Dungeon.isChallenged(Challenges.BLOODLUST)) {
+			target.damage(target.HT/100, new Char.DamageSrc(Element.META, this).ignoreDefense());
+			spend(1f);
+			return true;
+		}
 		if (target.isAlive()) {
 
 			if (target.HP < regencap() && !(target instanceof Hero && ((Hero)target).isStarving())) {

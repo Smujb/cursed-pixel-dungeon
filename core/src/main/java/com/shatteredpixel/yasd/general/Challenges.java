@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.items.Dewdrop;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.artifacts.ChaliceOfBlood;
 import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
 import com.shatteredpixel.yasd.general.items.food.Blandfruit;
 import com.shatteredpixel.yasd.general.items.food.Food;
@@ -48,8 +49,9 @@ public class Challenges {
 	public static final int NO_SCROLLS		    = 64;
 	public static final int COLLAPSING_FLOOR    = 128;
 	public static final int CORROSION			= 256;
+	public static final int BLOODLUST			= 512;
 
-	public static final int MAX_VALUE           = 511;
+	public static final int MAX_VALUE           = 1023;
 
 	public static final String[] NAME_IDS = {
 			"no_food",
@@ -60,11 +62,12 @@ public class Challenges {
 			"darkness",
 			"no_scrolls",
 			"collapsing_floor",
-			"corrosion"
+			"corrosion",
+			"bloodlust"
 	};
 
 	public static final int[] MASKS = {
-			NO_FOOD, NO_ARMOR, NO_HEALING, NO_HERBALISM, SWARM_INTELLIGENCE, DARKNESS, NO_SCROLLS, COLLAPSING_FLOOR, CORROSION
+			NO_FOOD, NO_ARMOR, NO_HEALING, NO_HERBALISM, SWARM_INTELLIGENCE, DARKNESS, NO_SCROLLS, COLLAPSING_FLOOR, CORROSION, BLOODLUST
 	};
 
 	public static boolean isItemBlocked( Item item ){
@@ -93,6 +96,10 @@ public class Challenges {
 
 		if (Dungeon.isChallenged(NO_SCROLLS)) {
 			return item instanceof ScrollOfUpgrade;
+		}
+
+		if (Dungeon.isChallenged(BLOODLUST)) {
+			return item instanceof ChaliceOfBlood;
 		}
 
 		return false;

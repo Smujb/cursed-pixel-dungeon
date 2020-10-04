@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
+import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -136,6 +137,14 @@ public class MeleeWeapon extends Weapon implements Attackable {
 	@Override
 	public int defenseFactor(Char owner) {
 		return (int) ((max()/2)*defenseMultiplier);
+	}
+
+	@Override
+	public int proc(Char attacker, Char defender, int damage) {
+		if (Dungeon.isChallenged(Challenges.BLOODLUST)) {
+			attacker.heal(Math.round((attacker.HT/10f)*DLY), true, true);
+		}
+		return super.proc(attacker, defender, damage);
 	}
 
 	@Override

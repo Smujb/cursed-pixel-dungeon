@@ -44,7 +44,7 @@ public class WndChallenges extends Window {
 
 	private static final int WIDTH		   = 120;
 	private static final int TTL_HEIGHT    = 18;
-	private static final int BTN_HEIGHT    = 18;
+	private static final int BTN_HEIGHT    = 16;
 	private static final int GAP           = 1;
 
 	private boolean editable;

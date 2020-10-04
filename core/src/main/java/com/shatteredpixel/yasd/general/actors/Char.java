@@ -742,7 +742,7 @@ public abstract class Char extends Actor {
 		}
 
 		BubbleShield.BubbleShieldBuff shield = buff(BubbleShield.BubbleShieldBuff.class);
-		if ( shield != null ) {
+		if ( shield != null && !src.ignores() ) {
 			shield.detach();
 			return;
 		}
