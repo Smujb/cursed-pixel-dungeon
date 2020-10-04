@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.sprites;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.watabou.noosa.TextureFilm;
+import com.watabou.utils.GameMath;
 
 public class ItemSpriteSheet {
 
@@ -211,6 +212,12 @@ public class ItemSpriteSheet {
 	public static final int AMULET_AIR 		= AMULET+3;
 	public static final int AMULET_WATER 	= AMULET+4;
 	public static final int AMULET_EARTH	= AMULET+5;
+
+	private static final int FLASK          =                               xy(1, 8);   //16 slots
+	public static int flask(int charges) {
+		return FLASK + 4 - (int) GameMath.gate(0, charges, 4);
+	}
+	public static final int FLASK_CHARGE = FLASK + 5;
 
 	public static int adjustForTier(int image, int tier) {
 		return image + (tier-1) * WIDTH;

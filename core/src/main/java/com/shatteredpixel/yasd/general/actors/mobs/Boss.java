@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general.actors.mobs;
 
 import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -21,6 +22,7 @@ public class Boss extends Mob {
 			} while (!Dungeon.level.passable(pos + ofs));
 			Dungeon.level.drop( new ScrollOfUpgrade(), pos + ofs ).sprite.drop( pos );
 		}
+		Dungeon.level.drop(new CrimsonFlask.Charge(), pos);
 		super.die(cause);
 	}
 }

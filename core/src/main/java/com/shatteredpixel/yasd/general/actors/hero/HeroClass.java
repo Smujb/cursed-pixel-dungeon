@@ -35,6 +35,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.StoryChapter;
 import com.shatteredpixel.yasd.general.items.Amulet;
 import com.shatteredpixel.yasd.general.items.BrokenSeal;
+import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.items.DeveloperItem;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
@@ -129,6 +130,8 @@ public enum HeroClass {
 		if (CPDSettings.storyChapter() == StoryChapter.SECOND) {
 			new Amulet.EmptyAmulet().collect();
 		}
+
+		new CrimsonFlask().collect();
 
 		for (KindofMisc misc : hero.belongings.miscs) {
 			if (misc != null) {

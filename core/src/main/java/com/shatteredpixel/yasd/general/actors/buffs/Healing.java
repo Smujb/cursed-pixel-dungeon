@@ -50,9 +50,9 @@ public class Healing extends Buff {
 	
 	@Override
 	public boolean act(){
-		
-		target.HP = Math.min(target.HT, target.HP + healingThisTick());
-		
+
+		target.heal(healingThisTick(), false, true);
+
 		healingLeft -= healingThisTick();
 		
 		if (healingLeft <= 0){
