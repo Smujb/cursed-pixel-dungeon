@@ -66,7 +66,6 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.GameMath;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
@@ -157,11 +156,6 @@ public class Armor extends KindofMisc {
 		
 		augment = bundle.getEnum(AUGMENT, Augment.class);
 
-	}
-
-	@Override
-	public int image() {
-		return ItemSpriteSheet.adjustForTier(image, 1 + Math.round(GameMath.gate(0, level()/10f, 4)));
 	}
 
 	@Override

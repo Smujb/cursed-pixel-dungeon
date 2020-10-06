@@ -221,11 +221,6 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         return desc() + info + statsReqDesc();
     }
 
-    @Override
-    public int image() {
-        return ItemSpriteSheet.adjustForTier(image, 1 + Math.round(GameMath.gate(0, level()/10f, 4)));
-    }
-
     public float chargePercent() {
         return charge/MAX_CHARGE;
     }

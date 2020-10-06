@@ -39,9 +39,7 @@ import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.CellSelector;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
-import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
-import com.watabou.utils.GameMath;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -77,11 +75,6 @@ public class MeleeWeapon extends Weapon implements Attackable {
 	@Override
 	public int max(float lvl) {
 		return Math.round(5 * lvl * damageMultiplier);   //level scaling
-	}
-
-	@Override
-	public int image() {
-		return ItemSpriteSheet.adjustForTier(image, 1 + Math.round(GameMath.gate(0, level()/10f, 4)));
 	}
 
 	@Override

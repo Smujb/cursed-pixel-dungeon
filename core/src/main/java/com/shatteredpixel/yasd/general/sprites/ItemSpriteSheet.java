@@ -219,10 +219,6 @@ public class ItemSpriteSheet {
 	}
 	public static final int FLASK_CHARGE = FLASK + 5;
 
-	public static int adjustForTier(int image, int tier) {
-		return image + (tier-1) * WIDTH;
-	}
-
 	public static class Weapons {
 
 		private static final int WEAPON      =                               xy(1, 38);
@@ -235,7 +231,7 @@ public class ItemSpriteSheet {
 		public static final int SCIMITAR         = WEAPON+5;
 		public static final int SHORTSWORD		 = WEAPON+6;
 		public static final int GREATSWORD       = WEAPON+7;
-		public static final int SHIELD			 = WEAPON+8;
+		public static final int CHAIN_WHIP		 = WEAPON+8;
 		public static final int WHIP 			 = WEAPON+9;
 		public static final int GREATAXE         = WEAPON+10;
 		public static final int MACE 			 = WEAPON+11;
@@ -247,6 +243,30 @@ public class ItemSpriteSheet {
 		public static final int CROSSBOW     	 = WEAPON+17;
 		public static final int WORSE_ENCHANT    = WEAPON+18;
 		public static final int INSCRIBED_KNIFE  = WEAPON+19;
+		public static final int SWIFT_CROSSBOW   = WEAPON+20;
+		public static final int SICKLE           = WEAPON+21;
+	}
+
+	public static class Shields {
+		private static final int SHIELD 	=								 xy(1, 42);
+
+		public static final int ROUND             = SHIELD+0;
+		public static final int WOODEN            = SHIELD+1;
+		public static final int SPIRITUAL         = SHIELD+2;
+		public static final int PANIC         	  = SHIELD+3;//TODO: current sprite is WIP
+		public static final int SWIFT         	  = SHIELD+4;
+		public static final int GREAT         	  = SHIELD+5;
+		public static final int WARP         	  = SHIELD+6;
+		public static final int LIGHT			  = SHIELD+7;
+		public static final int BARBED         	  = SHIELD+8;
+		public static final int PARRY         	  = SHIELD+9;
+		//TODO name SHIELD+10
+		public static final int REINFORCED        = SHIELD+11;
+		public static final int ROYAL             = SHIELD+12;
+		public static final int DEMONIC           = SHIELD+13;
+		public static final int HERO              = SHIELD+14;
+		//TODO name SHIELD+15
+		public static final int LACERATING        = SHIELD+16;
 	}
 
 	public static class Armors {
@@ -279,21 +299,6 @@ public class ItemSpriteSheet {
 			assignItemRect(ROGUE,     14, 12);
 			assignItemRect(HUNTRESS,  13, 15);
 		}
-	}
-
-	public static class Shields {
-		private static final int SHIELD = xy(1, 54);
-
-		public static final int ROUND             = SHIELD+0;
-		public static final int WOODEN            = SHIELD+1;
-		public static final int SPIRITUAL         = SHIELD+2;
-		public static final int PANIC         	  = SHIELD+3;//TODO: current sprite is WIP
-		public static final int SWIFT         	  = SHIELD+4;
-		public static final int GREAT         	  = SHIELD+5;
-		public static final int WARP         	  = SHIELD+6;
-		public static final int LIGHT			  = SHIELD+7;
-		public static final int BARBED         	  = SHIELD+8;
-		public static final int PARRY         	  = SHIELD+9;
 	}
 
 	//8 free slots
