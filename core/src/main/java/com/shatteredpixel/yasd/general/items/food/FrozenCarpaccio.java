@@ -32,7 +32,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.effects.Speck;
+import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -71,10 +71,7 @@ public class FrozenCarpaccio extends Food {
 				break;
 			case 3:
 				GLog.info( Messages.get(FrozenCarpaccio.class, "better") );
-				if (hero.HP < hero.HT) {
-					hero.HP = Math.min( hero.HP + hero.HT / 4, hero.HT );
-					hero.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
-				}
+				hero.heal(hero.HT/4);
 				break;
 		}
 	}

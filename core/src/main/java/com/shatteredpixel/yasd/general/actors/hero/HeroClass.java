@@ -131,10 +131,6 @@ public enum HeroClass {
 			new Amulet.EmptyAmulet().collect();
 		}
 
-		CrimsonFlask flask = new CrimsonFlask();
-		flask.collect();
-		Dungeon.quickslot.setSlot(0, flask);
-
 		for (KindofMisc misc : hero.belongings.miscs) {
 			if (misc != null) {
 				misc.activate(hero);
@@ -180,6 +176,10 @@ public enum HeroClass {
 
 		new ScrollOfIdentify().identify().collect();
 
+		CrimsonFlask flask = new CrimsonFlask();
+		flask.collect();
+		Dungeon.quickslot.setSlot(0, flask);
+
 		if (Dungeon.testing) {
 			initTest(hero);
 		}
@@ -189,10 +189,14 @@ public enum HeroClass {
 		new TomeOfMastery().collect();
 		new MegaStick().collect();
 		new DeveloperItem().collect();
-		for (Class<?> itemClass : Generator.Category.SHIELD.classes) {
+		for (Class<?> itemClass : Generator.Category.WEAPON.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);
 			if (item != null) {
-				item.collect();
+				item.identify().collect();
+				item.upgrade();
+				while (item.statReq() < item.bestHeroStatValue(hero) && item.isUpgradable()) {
+					item.upgrade();
+				}
 			}
 		}
 	}

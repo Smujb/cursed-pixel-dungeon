@@ -221,7 +221,7 @@ public class ItemSpriteSheet {
 
 	public static class Weapons {
 
-		private static final int WEAPON      =                               xy(1, 38);
+		private static final int WEAPON      =                               xy(1, 39);
 
 		public static final int MAGES_STAFF 	 = WEAPON+0;
 		public static final int SWORD       	 = WEAPON+1;
@@ -248,7 +248,7 @@ public class ItemSpriteSheet {
 	}
 
 	public static class Shields {
-		private static final int SHIELD 	=								 xy(1, 42);
+		private static final int SHIELD 	=								 xy(1, 43);
 
 		public static final int ROUND             = SHIELD+0;
 		public static final int WOODEN            = SHIELD+1;
