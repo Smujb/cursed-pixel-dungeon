@@ -30,7 +30,7 @@ package com.shatteredpixel.yasd.general.items.potions.elixirs;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.items.quest.GooBlob;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -139,7 +139,7 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{PotionOfHealing.class, GooBlob.class};
+			inputs =  new Class[]{PotionOfOvergrowth.class, GooBlob.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 6;

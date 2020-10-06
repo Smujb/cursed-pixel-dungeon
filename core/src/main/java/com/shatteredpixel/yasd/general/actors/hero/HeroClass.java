@@ -52,7 +52,7 @@ import com.shatteredpixel.yasd.general.items.bags.ScrollHolder;
 import com.shatteredpixel.yasd.general.items.bags.VelvetPouch;
 import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.food.SmallRation;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
@@ -227,7 +227,7 @@ public enum HeroClass {
 
 		new BrokenSeal().collect();
 		
-		new PotionOfHealing().identify();
+		new PotionOfOvergrowth().identify();
 		new ScrollOfRage().identify();
 		hero.increaseResilience();
 	}

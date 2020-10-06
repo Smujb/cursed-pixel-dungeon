@@ -33,7 +33,7 @@ import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfFrost;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHaste;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLevitation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
@@ -54,7 +54,7 @@ public class SecretLaboratoryRoom extends SecretRoom {
 	
 	private static HashMap<Class<? extends Potion>, Float> potionChances = new HashMap<>();
 	static{
-		potionChances.put(PotionOfHealing.class,        1f);
+		potionChances.put(PotionOfOvergrowth.class,        1f);
 		potionChances.put(PotionOfMindVision.class,     2f);
 		potionChances.put(PotionOfFrost.class,          3f);
 		potionChances.put(PotionOfLiquidFlame.class,    3f);

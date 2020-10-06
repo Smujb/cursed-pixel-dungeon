@@ -39,8 +39,7 @@ import com.shatteredpixel.yasd.general.effects.Beam;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Pushing;
 import com.shatteredpixel.yasd.general.effects.Speck;
-import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -57,13 +56,11 @@ public class Necromancer extends Mob {
 		spriteClass = NecromancerSprite.class;
 
 		healthFactor = 0.8f;
-		//HP = HT = 40;
-		//defenseSkill = 13;
 		
 		EXP = 7;
 
-        loot = new PotionOfHealing();
-		lootChance = 0.2f; //see createloot
+        loot = new PotionOfOvergrowth();
+		lootChance = 0.2f;
 
 		
 		HUNTING = new Hunting();
@@ -87,18 +84,6 @@ public class Necromancer extends Mob {
 			summoningEmitter.pour(Speck.factory(Speck.RATTLE), 0.2f);
 			sprite.zap( summoningPos );
 		}
-	}
-
-    @Override
-	public void rollToDropLoot() {
-		lootChance *= ((6f - Dungeon.LimitedDrops.NECRO_HP.count) / 6f);
-		super.rollToDropLoot();
-	}
-	
-	@Override
-	protected Item createLoot(){
-		Dungeon.LimitedDrops.NECRO_HP.count++;
-		return super.createLoot();
 	}
 	
 	@Override

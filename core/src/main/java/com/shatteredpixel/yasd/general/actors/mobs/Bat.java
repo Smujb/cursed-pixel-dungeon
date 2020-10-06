@@ -27,10 +27,8 @@
 
 package com.shatteredpixel.yasd.general.actors.mobs;
 
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
-import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfShielding;
 import com.shatteredpixel.yasd.general.sprites.BatSprite;
 
 public class Bat extends Mob {
@@ -50,25 +48,13 @@ public class Bat extends Mob {
 		
 		flying = true;
 		
-		loot = new PotionOfHealing();
+		loot = new PotionOfShielding();
 		lootChance = 0.1667f; //by default, see rollToDropLoot()
 	}
 
 	@Override
 	public Element elementalType() {
 		return Element.DRAIN;
-	}
-	
-	@Override
-	public void rollToDropLoot() {
-		lootChance *= ((7f - Dungeon.LimitedDrops.BAT_HP.count) / 7f);
-		super.rollToDropLoot();
-	}
-	
-	@Override
-	protected Item createLoot(){
-		Dungeon.LimitedDrops.BAT_HP.count++;
-		return super.createLoot();
 	}
 	
 }

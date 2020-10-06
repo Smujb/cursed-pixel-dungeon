@@ -27,36 +27,31 @@
 
 package com.shatteredpixel.yasd.general.items.potions;
 
-import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.buffs.Barrier;
-import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.items.CrimsonFlask;
-import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.Dungeon;
+import com.shatteredpixel.yasd.general.actors.blobs.Blob;
+import com.shatteredpixel.yasd.general.actors.blobs.Regrowth;
+import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
-import com.shatteredpixel.yasd.general.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 
-public class PotionOfHealing extends Potion {
+public class PotionOfOvergrowth extends Potion {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_HEALING;
+		icon = ItemSpriteSheet.Icons.POTION_OVERGROWTH;
 
 		bones = true;
 	}
-	
-	@Override
-	public void apply( Hero hero ) {
-		setKnown();
-		applybuff( hero );
-	}
 
-	public void applybuff( Char ch ) {
-		//33% of missing HP is restored, another 33% is shielded.
-		int healing = (ch.HT-ch.HP)/3;
-		ch.HP += healing;
-		Buff.affect(ch, Barrier.class).setShield(healing);
-		CrimsonFlask.cure( ch );
-		GLog.positive( Messages.get(this, "heal") );
+	@Override
+	public void shatter(int cell) {
+		if(Dungeon.level.heroFOV[cell]) {
+			setKnown();
+			splash(cell);
+			Sample.INSTANCE.play(Assets.Sounds.SHATTER);
+		}
+
+		GameScene.add(Blob.seed(cell, 400, Regrowth.class));
 	}
 
 	@Override

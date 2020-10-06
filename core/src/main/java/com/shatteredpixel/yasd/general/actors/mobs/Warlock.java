@@ -27,14 +27,11 @@
 
 package com.shatteredpixel.yasd.general.actors.mobs;
 
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.sprites.WarlockSprite;
-import com.watabou.utils.Random;
 
 public class Warlock extends Mob {
 	
@@ -56,8 +53,7 @@ public class Warlock extends Mob {
 		EXP = 11;
 
 		attackDelay = 2f;
-		
-		loot = Generator.Category.POTION;
+
 		lootChance = 0.5f;
 
 		properties.add(Property.UNDEAD);
@@ -85,28 +81,6 @@ public class Warlock extends Mob {
 
 	@Override
 	public Item createLoot(){
-		// 1/6 chance for healing, scaling to 0 over 8 drops
-		if (Random.Int(2) == 0 && Random.Int(8) > Dungeon.LimitedDrops.WARLOCK_HP.count ){
-			Dungeon.LimitedDrops.WARLOCK_HP.drop();
-			return new PotionOfHealing();
-		} else {
-			Item i = Generator.random(Generator.Category.POTION);
-			int healingTried = 0;
-			while (i instanceof PotionOfHealing){
-				healingTried++;
-				i = Generator.random(Generator.Category.POTION);
-			}
-
-			//return the attempted healing potion drops to the pool
-			if (healingTried > 0){
-				for (int j = 0; j < Generator.Category.POTION.classes.length; j++){
-					if (Generator.Category.POTION.classes[j] == PotionOfHealing.class){
-						Generator.Category.POTION.probs[j] += healingTried;
-					}
-				}
-			}
-
-			return i;
-		}
+		return Generator.random(Generator.Category.POTION);
 	}
 }

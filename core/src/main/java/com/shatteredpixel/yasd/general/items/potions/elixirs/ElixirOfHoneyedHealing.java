@@ -38,7 +38,7 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Bee;
 import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.items.Honeypot;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
@@ -83,7 +83,7 @@ public class ElixirOfHoneyedHealing extends Elixir {
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{PotionOfHealing.class, Honeypot.ShatteredPot.class};
+			inputs =  new Class[]{PotionOfOvergrowth.class, Honeypot.ShatteredPot.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 4;

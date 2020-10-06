@@ -50,7 +50,7 @@ import com.shatteredpixel.yasd.general.items.artifacts.UnstableSpellbook;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfFrost;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHaste;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLevitation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
@@ -220,7 +220,7 @@ public enum Catalog {
 		ARTIFACTS.seen.put( TimekeepersHourglass.class,     false);
 		ARTIFACTS.seen.put( UnstableSpellbook.class,        false);
 	
-		POTIONS.seen.put( PotionOfHealing.class,            false);
+		POTIONS.seen.put( PotionOfOvergrowth.class,            false);
 		POTIONS.seen.put( PotionOfMana.class,           false);
 		POTIONS.seen.put( PotionOfLiquidFlame.class,        false);
 		POTIONS.seen.put( PotionOfFrost.class,              false);

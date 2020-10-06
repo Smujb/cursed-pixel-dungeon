@@ -115,20 +115,7 @@ public class Dungeon {
 		UPGRADE_SCROLLS,
 		ENCHANT_STONE,
 
-		//Health potion sources
-		//enemies
-		CRAB_HP,
-		NECRO_HP,
-		BAT_HP,
-		WARLOCK_HP,
-		MAGIC_CRAB_HP,
-		//Demon spawners are already limited in their spawnrate, no need to limit their health drops
-
-		//alchemy
-		COOKING_HP,
-		BLANDFRUIT_SEED,
-
-		//Other limited enemy drops
+		//Limited enemy drops
 		SLIME_WEP,
 		SKELE_WEP,
 		THEIF_MISC,
