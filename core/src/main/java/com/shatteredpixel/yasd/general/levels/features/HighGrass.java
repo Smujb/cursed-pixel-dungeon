@@ -49,7 +49,11 @@ public class HighGrass {
 	//yes this is a bit ugly, oh well.
 	private static boolean freezeTrample = false;
 
-	public static void trample( Level level, int pos ) {
+	public static void trample( Level level, int pos) {
+		trample(level, pos, false);
+	}
+
+	public static void trample( Level level, int pos, boolean alwaysDrop ) {
 		
 		if (freezeTrample) return;
 		
@@ -90,17 +94,20 @@ public class HighGrass {
 			}
 			
 			if (naturalismLevel >= 0) {
+				//Guarantees a seed, a stone or dew when "alwaysDrop" is true
+				int toGuarantee = Random.Int(3);
+
 				// Seed, scales from 1/20 to 1/4
-				if (Random.Int(20 - (naturalismLevel * 4)) == 0) {
+				if (Random.Int(20 - (naturalismLevel * 4)) == 0 || (toGuarantee == 0 && alwaysDrop)) {
 					level.drop(Generator.random(Generator.Category.SEED), pos).sprite.drop();
 				}
 
-				if (Random.Int(30 - (naturalismLevel * 5)) == 0) {//Stones more rarely drop
+				if (Random.Int(30 - (naturalismLevel * 5)) == 0 || (toGuarantee == 1 && alwaysDrop)) {//Stones more rarely drop
 					level.drop(Generator.random(Generator.Category.STONE), pos).sprite.drop();
 				}
 				
 				// Dew, scales from 1/6 to 1/3
-				if (Random.Int(24 - (naturalismLevel * 3)) <= 3) {
+				if (Random.Int(24 - (naturalismLevel * 3)) <= 3 || (toGuarantee == 2 && alwaysDrop)) {
 					level.drop(new Dewdrop(), pos).sprite.drop();
 				}
 			}
