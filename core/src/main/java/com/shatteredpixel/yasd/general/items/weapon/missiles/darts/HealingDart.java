@@ -30,7 +30,7 @@ package com.shatteredpixel.yasd.general.items.weapon.missiles.darts;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Healing;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
+import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class HealingDart extends TippedDart {
@@ -44,7 +44,7 @@ public class HealingDart extends TippedDart {
 		
 		//heals 30 hp at base, scaling with enemy HT
 		Buff.affect( defender, Healing.class ).setHeal((int)(0.5f*defender.HT + 30), 0.25f, 0);
-		PotionOfHealing.cure( defender );
+		CrimsonFlask.cure( defender );
 		
 		if (attacker.alignment == defender.alignment){
 			return 0;

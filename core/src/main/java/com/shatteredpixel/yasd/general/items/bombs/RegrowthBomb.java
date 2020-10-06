@@ -36,8 +36,8 @@ import com.shatteredpixel.yasd.general.actors.blobs.Regrowth;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Healing;
 import com.shatteredpixel.yasd.general.effects.Splash;
+import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.items.Generator;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.items.wands.WandOfRegrowth;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.plants.Plant;
@@ -80,7 +80,7 @@ public class RegrowthBomb extends Bomb {
 					if (ch.alignment == Dungeon.hero.alignment) {
 						//same as a healing potion
 						Buff.affect( ch, Healing.class ).setHeal((int)(0.8f*ch.HT + 14), 0.25f, 0);
-						PotionOfHealing.cure(ch);
+						CrimsonFlask.cure(ch);
 					}
 				} else if (Dungeon.level.terrainIsOneOf(i, Terrain.EMPTY, Terrain.EMBERS, Terrain.EMPTY_DECO, Terrain.GRASS, Terrain.HIGH_GRASS, Terrain.FURROWED_GRASS)){
 					

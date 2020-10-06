@@ -68,7 +68,7 @@ public class FrozenCarpaccio extends Food {
 				break;
 			case 2: default:
 				GLog.info( Messages.get(FrozenCarpaccio.class, "refresh") );
-				PotionOfHealing.cure(hero);
+				CrimsonFlask.cure(hero);
 				break;
 			case 3:
 				GLog.info( Messages.get(FrozenCarpaccio.class, "better") );

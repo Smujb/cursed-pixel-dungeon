@@ -34,7 +34,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.MagicalSleep;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
+import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -54,7 +54,7 @@ public class Dreamfoil extends Plant {
 				Buff.affect(ch, MagicalSleep.class);
 			} else if (ch instanceof Hero){
 				GLog.info( Messages.get(this, "refreshed") );
-				PotionOfHealing.cure(ch);
+				CrimsonFlask.cure(ch);
 				
 				if (((Hero) ch).subClass == HeroSubClass.WARDEN){
 					Buff.affect(ch, BlobImmunity.class, BlobImmunity.DURATION/2f);

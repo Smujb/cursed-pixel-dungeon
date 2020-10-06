@@ -29,17 +29,9 @@ package com.shatteredpixel.yasd.general.items.potions;
 
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Barrier;
-import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
-import com.shatteredpixel.yasd.general.actors.buffs.Blindness;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.Cripple;
-import com.shatteredpixel.yasd.general.actors.buffs.Drowsy;
-import com.shatteredpixel.yasd.general.actors.buffs.Poison;
-import com.shatteredpixel.yasd.general.actors.buffs.Slow;
-import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
-import com.shatteredpixel.yasd.general.actors.buffs.Vulnerable;
-import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -63,22 +55,8 @@ public class PotionOfHealing extends Potion {
 		int healing = (ch.HT-ch.HP)/3;
 		ch.HP += healing;
 		Buff.affect(ch, Barrier.class).setShield(healing);
-		cure( ch );
+		CrimsonFlask.cure( ch );
 		GLog.positive( Messages.get(this, "heal") );
-	}
-	
-	public static void cure( Char ch ) {
-		Buff.detach( ch, Poison.class );
-		Buff.detach( ch, Cripple.class );
-		Buff.detach( ch, Weakness.class );
-		Buff.detach( ch, Vulnerable.class );
-		Buff.detach( ch, Bleeding.class );
-
-		Buff.detach( ch, Blindness.class );
-		Buff.detach( ch, Drowsy.class );
-		Buff.detach( ch, Slow.class );
-		Buff.detach( ch, Vertigo.class);
-		
 	}
 
 	@Override

@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Healing;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Bee;
+import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.items.Honeypot;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -50,7 +51,7 @@ public class ElixirOfHoneyedHealing extends Elixir {
 	@Override
 	public void apply(Hero hero) {
 		Buff.affect( hero, Healing.class ).setHeal((int)(0.8f*hero.HT + 14), 0.25f, 0);
-		PotionOfHealing.cure(hero);
+		CrimsonFlask.cure(hero);
 		Buff.affect(hero, Hunger.class).satisfy(Hunger.STARVING/5f);
 	}
 	
@@ -64,7 +65,7 @@ public class ElixirOfHoneyedHealing extends Elixir {
 		Char ch = Actor.findChar(cell);
 		if (ch != null){
 			Buff.affect( ch, Healing.class ).setHeal((int)(0.8f*ch.HT + 14), 0.25f, 0);
-			PotionOfHealing.cure(ch);
+			CrimsonFlask.cure(ch);
 			if (ch instanceof Bee && ch.alignment != curUser.alignment){
 				ch.alignment = Char.Alignment.ALLY;
 				((Bee)ch).setPotInfo(-1, null);

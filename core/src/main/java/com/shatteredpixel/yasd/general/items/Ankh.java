@@ -36,7 +36,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Flare;
 import com.shatteredpixel.yasd.general.effects.Speck;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfHealing;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite.Glowing;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -74,7 +73,7 @@ public class Ankh extends Item {
 		toRevive.heal(toRevive.HT/4);
 
 		//ensures that you'll get to act first in almost any case, to prevent reviving and then instantly dying again.
-		PotionOfHealing.cure(toRevive);
+		CrimsonFlask.cure(toRevive);
 		Buff.detach(toRevive, Paralysis.class);
 		toRevive.spend(-toRevive.cooldown());
 		if (Dungeon.hero.fieldOfView[toRevive.pos]) {
