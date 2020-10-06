@@ -93,7 +93,7 @@ public class HighGrass {
 				}
 			}
 			
-			if (naturalismLevel >= 0) {
+			if (naturalismLevel >= 0 || alwaysDrop) {
 				//Guarantees a seed, a stone or dew when "alwaysDrop" is true
 				int toGuarantee = Random.Int(3);
 
