@@ -1,27 +1,23 @@
 package com.shatteredpixel.yasd.general.items.shield;
 
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.Recharging;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class SpiritualShield extends Shield {
-
+public class MidasShield extends Shield {
     {
-        image = ItemSpriteSheet.Shields.SPIRITUAL;
+        image = ItemSpriteSheet.Shields.ROYAL;
 
-        defenseMultiplier = 0.8f;
-        damageFactor = 0.5f;
+        defenseMultiplier = 0.7f;
 
         statScaling.add(Hero.HeroStat.FOCUS);
     }
 
     @Override
     public int proc(Char attacker, Char enemy, int damage, boolean parry) {
-        if (parry) {
-            Buff.affect(attacker, Recharging.class, Recharging.DURATION/4);
-        }
+        if (!enemy.isAlive()) Dungeon.level.drop(new Gold().random(4), enemy.pos).sprite.drop();
         return super.proc(attacker, enemy, damage, parry);
     }
 }

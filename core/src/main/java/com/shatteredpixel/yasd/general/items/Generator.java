@@ -148,7 +148,9 @@ import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPrismaticIma
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.shatteredpixel.yasd.general.items.shield.BarbedShield;
 import com.shatteredpixel.yasd.general.items.shield.GreatShield;
+import com.shatteredpixel.yasd.general.items.shield.LaceratingShield;
 import com.shatteredpixel.yasd.general.items.shield.LightShield;
+import com.shatteredpixel.yasd.general.items.shield.MidasShield;
 import com.shatteredpixel.yasd.general.items.shield.PanicShield;
 import com.shatteredpixel.yasd.general.items.shield.ParryShield;
 import com.shatteredpixel.yasd.general.items.shield.RoundShield;
@@ -568,9 +570,11 @@ public class Generator {
 					WarpShield.class,
 					LightShield.class,
 					BarbedShield.class,
-					ParryShield.class
+					ParryShield.class,
+					MidasShield.class,
+					LaceratingShield.class
 			};
-			SHIELD.probs = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+			SHIELD.probs = new float[] { 3, 2, 1, 2, 2, 2, 3, 2, 2, 3, 1, 2 };
 
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{
