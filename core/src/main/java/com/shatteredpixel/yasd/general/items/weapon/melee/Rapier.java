@@ -43,6 +43,7 @@ public class Rapier extends MeleeWeapon {
 
     public static void moveChar(Char ch, int newPos) {
         int initialPos = ch.pos;
+        if (Dungeon.level.solid(newPos) || Actor.findChar(newPos) != null || !Char.canOccupy(ch, Dungeon.level, newPos)) return;
         Actor.addDelayed(new Pushing(ch, ch.pos, newPos, new Callback() {
             public void call() {
                 if (initialPos != ch.pos) {
