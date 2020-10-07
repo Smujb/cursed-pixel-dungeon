@@ -311,6 +311,8 @@ public class MagesStaff extends MeleeWeapon {
 		wand = (Wand) bundle.get(WAND);
 		if (wand != null) {
 			wand.imbued = true;
+			wand.updateLevel();
+			wand.maxCharges++;
 			name = Messages.get(wand, "staff_name");
 		}
 	}
