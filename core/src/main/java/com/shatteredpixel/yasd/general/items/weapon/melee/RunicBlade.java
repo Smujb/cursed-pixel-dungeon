@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class RunicBlade extends MeleeWeapon {
@@ -38,11 +39,23 @@ public class RunicBlade extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
 
+		damageMultiplier = 0.75f;
+
 		statScaling.add(Hero.HeroStat.FOCUS);
 	}
 
 	@Override
-	public int max(float lvl) {
-		return (int) (super.max(lvl*1.5f)*0.7f);
+	protected boolean hasProperties() {
+		return true;
+	}
+
+	@Override
+	public int enchPower() {
+		return 2 + level() * 2;
+	}
+
+	@Override
+	protected String propsDesc() {
+		return super.propsDesc() + "\n" + Messages.get(this, "enchant_boost");
 	}
 }

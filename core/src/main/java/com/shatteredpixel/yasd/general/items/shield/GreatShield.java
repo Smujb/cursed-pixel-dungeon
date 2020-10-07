@@ -9,7 +9,7 @@ public class GreatShield extends Shield {
 
         chargePerTurn = 0.5f;
 
-        defenseMultiplier = 2f;
+        defenseMultiplier = 1.75f;
         damageFactor = 1.5f;
     }
 }

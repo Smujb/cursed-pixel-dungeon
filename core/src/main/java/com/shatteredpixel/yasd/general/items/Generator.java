@@ -148,12 +148,15 @@ import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPrismaticIma
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.shatteredpixel.yasd.general.items.shield.BarbedShield;
 import com.shatteredpixel.yasd.general.items.shield.GreatShield;
+import com.shatteredpixel.yasd.general.items.shield.HeroShield;
 import com.shatteredpixel.yasd.general.items.shield.LaceratingShield;
 import com.shatteredpixel.yasd.general.items.shield.LightShield;
 import com.shatteredpixel.yasd.general.items.shield.MidasShield;
 import com.shatteredpixel.yasd.general.items.shield.PanicShield;
 import com.shatteredpixel.yasd.general.items.shield.ParryShield;
+import com.shatteredpixel.yasd.general.items.shield.ReinforcedShield;
 import com.shatteredpixel.yasd.general.items.shield.RoundShield;
+import com.shatteredpixel.yasd.general.items.shield.RunicShield;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.shield.SpiritualShield;
 import com.shatteredpixel.yasd.general.items.shield.SwiftShield;
@@ -572,9 +575,12 @@ public class Generator {
 					BarbedShield.class,
 					ParryShield.class,
 					MidasShield.class,
-					LaceratingShield.class
+					LaceratingShield.class,
+					HeroShield.class,
+					ReinforcedShield.class,
+					RunicShield.class
 			};
-			SHIELD.probs = new float[] { 3, 2, 1, 2, 2, 2, 3, 2, 2, 3, 1, 2 };
+			SHIELD.probs = new float[] { 3, 2, 1, 2, 2, 2, 3, 2, 2, 3, 1, 2, 2, 3, 1 };
 
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{
