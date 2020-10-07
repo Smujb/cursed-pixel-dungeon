@@ -25,8 +25,9 @@ public class Rapier extends MeleeWeapon {
         if (attack.path.size() > 2) {
             int newDefPos = attack.path.get(2);
             int newAttkPos = defender.pos;
-            moveChar(defender, newDefPos);
-            moveChar(attacker, newAttkPos);
+            moveChar(defender, newDefPos, true);
+            //Don't check for chars as previous char having moved won't have registered yet.
+            moveChar(attacker, newAttkPos, false);
         }
         return super.proc(attacker, defender, damage);
     }
@@ -41,9 +42,9 @@ public class Rapier extends MeleeWeapon {
         return super.propsDesc() + "\n" + Messages.get(this, "advance_enemy");
     }
 
-    public static void moveChar(Char ch, int newPos) {
+    public static void moveChar(Char ch, int newPos, boolean checkChars) {
         int initialPos = ch.pos;
-        if (Dungeon.level.solid(newPos) || Actor.findChar(newPos) != null || !Char.canOccupy(ch, Dungeon.level, newPos)) return;
+        if (Dungeon.level.solid(newPos) || (Actor.findChar(newPos) != null && checkChars) || !Char.canOccupy(ch, Dungeon.level, newPos)) return;
         Actor.addDelayed(new Pushing(ch, ch.pos, newPos, new Callback() {
             public void call() {
                 if (initialPos != ch.pos) {
