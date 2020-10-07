@@ -4,6 +4,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Pushing;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -17,6 +18,8 @@ public class Rapier extends MeleeWeapon {
         hitSound = Assets.Sounds.HIT_STAB;
         hitSoundPitch = 1.5f;
         damageFactor = 0.8f;
+
+        statScaling.add(Hero.HeroStat.ASSAULT);
     }
 
     @Override

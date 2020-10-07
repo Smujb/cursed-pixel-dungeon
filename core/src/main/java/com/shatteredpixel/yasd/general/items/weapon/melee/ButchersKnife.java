@@ -5,6 +5,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Cripple;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
@@ -15,6 +16,8 @@ public class ButchersKnife extends MeleeWeapon {
 
         hitSound = Assets.Sounds.HIT_CRUSH;
         DLY = 1.5f;
+
+        statScaling.add(Hero.HeroStat.SUPPORT);
     }
 
     @Override
