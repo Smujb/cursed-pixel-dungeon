@@ -53,7 +53,7 @@ import java.util.ArrayList;
 public class WandOfFireblast extends DamageWand {
 
 	{
-		image = ItemSpriteSheet.WAND_FIREBOLT;
+		image = ItemSpriteSheet.Wands.FIREBLAST;
 
 		collisionProperties = Ballistica.STOP_TERRAIN;
 	}

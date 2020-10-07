@@ -48,7 +48,7 @@ import java.util.ArrayList;
 
 public class WandOfFlow extends DamageWand {
     {
-        image = ItemSpriteSheet.WAND_FLOW;
+        image = ItemSpriteSheet.Wands.FLOW;
 
         collisionProperties = Ballistica.STOP_TERRAIN;
 

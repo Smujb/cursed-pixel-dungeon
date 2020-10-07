@@ -45,7 +45,7 @@ import com.watabou.utils.Random;
 public class WandOfDamnation extends Wand {
 
     {
-        image = ItemSpriteSheet.WAND_DAMNATION;
+        image = ItemSpriteSheet.Wands.DAMNATION;
     }
 
     @Override

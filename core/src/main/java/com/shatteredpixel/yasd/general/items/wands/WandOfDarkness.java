@@ -51,7 +51,7 @@ import com.watabou.utils.Random;
 public class WandOfDarkness extends Wand {
 
     {
-        image = ItemSpriteSheet.WAND_STENCH;
+        image = ItemSpriteSheet.Wands.DARKNESS;
 
         collisionProperties = Ballistica.STOP_TARGET | Ballistica.STOP_TERRAIN;
     }

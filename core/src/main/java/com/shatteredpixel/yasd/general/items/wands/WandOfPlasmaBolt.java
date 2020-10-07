@@ -43,7 +43,7 @@ import com.watabou.utils.Callback;
 
 public class WandOfPlasmaBolt extends DamageWand {
     {
-        image = ItemSpriteSheet.WAND_PLASMA;
+        image = ItemSpriteSheet.Wands.PLASMA;
 
         element = Element.PHYSICAL;
 

@@ -40,7 +40,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class WandOfLifeDrain extends DamageWand {
 
 	{
-        image = ItemSpriteSheet.WAND_LIFE_DRAIN;
+        image = ItemSpriteSheet.Wands.LIFE_DRAIN;
 
         element = Element.DRAIN;
 

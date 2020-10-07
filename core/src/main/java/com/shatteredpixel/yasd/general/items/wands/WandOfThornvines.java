@@ -53,7 +53,7 @@ import com.watabou.utils.Random;
 
 public class WandOfThornvines extends Wand {
     {
-        image = ItemSpriteSheet.WAND_THORNVINES;
+        image = ItemSpriteSheet.Wands.THORNVINES;
         collisionProperties = Ballistica.STOP_TARGET | Ballistica.STOP_TERRAIN;
     }
 

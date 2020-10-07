@@ -54,7 +54,7 @@ import java.util.ArrayList;
 public class WandOfLightning extends DamageWand {
 
 	{
-		image = ItemSpriteSheet.WAND_LIGHTNING;
+		image = ItemSpriteSheet.Wands.LIGHTNING;
 
 		element = Element.SHOCK;
 

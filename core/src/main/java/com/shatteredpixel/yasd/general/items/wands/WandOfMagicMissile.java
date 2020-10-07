@@ -39,7 +39,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class WandOfMagicMissile extends DamageWand {
 
 	{
-		image = ItemSpriteSheet.WAND_MAGIC_MISSILE;
+		image = ItemSpriteSheet.Wands.MAGIC_MISSILE;
 
 		element = Element.MAGICAL;
 

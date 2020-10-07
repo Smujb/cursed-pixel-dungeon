@@ -44,7 +44,7 @@ import static com.shatteredpixel.yasd.general.actors.blobs.Blob.seed;
 
 public class WandOfAcid extends DamageWand {
     {
-        image = ItemSpriteSheet.WAND_ACID;
+        image = ItemSpriteSheet.Wands.ACID;
         collisionProperties = Ballistica.STOP_TARGET | Ballistica.STOP_TERRAIN;
 
         element = Element.ACID;

@@ -35,7 +35,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class WandOfSwarm extends DamageWand {
 
     {
-        image = ItemSpriteSheet.WAND_THORNVINES;
+        image = ItemSpriteSheet.Wands.SWARM;
 
         damageMultiplier = 0.4f;
     }

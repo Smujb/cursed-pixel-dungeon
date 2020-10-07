@@ -452,7 +452,7 @@ public class v0_6_X_Changes {
 				"_-_ Increased soul mark chance scaling by 100%\n\n" +
 				"Soul mark chance reaches pre-adjustment levels at a +2 wand, and grows from there."));
 		
-		changes.addButton( new ChangeButton( new ItemSprite(ItemSpriteSheet.WAND_MAGIC_MISSILE, null), "Minor Wand buffs",
+		changes.addButton( new ChangeButton( new ItemSprite(ItemSpriteSheet.Wands.MAGIC_MISSILE, null), "Minor Wand buffs",
 				"Wand of Corruption:\n" +
 				"_-_ Reduced the corruption resistance of wraiths by ~40%\n" +
 				"_-_ Enemies now drop their loot (including ranged weapons) when corrupted.\n" +

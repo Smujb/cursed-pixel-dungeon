@@ -56,7 +56,7 @@ import com.watabou.utils.Random;
 public class WandOfWarding extends DamageWand {
 
 	{
-		image = ItemSpriteSheet.WAND_WARDING;
+		image = ItemSpriteSheet.Wands.WARDING;
 
 		damageMultiplier = 1.2f;
 	}

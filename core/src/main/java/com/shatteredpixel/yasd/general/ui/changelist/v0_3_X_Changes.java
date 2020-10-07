@@ -283,7 +283,7 @@ public class v0_3_X_Changes {
 				"_-_ Battlemage reworked, staff now deals bonus effects when used as a melee getWeapons.\n\n" +
 				"_-_ Warlock reworked, gains more health and fullness from gaining exp, but food no longer restores hunger."));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_DISINTEGRATION, null), "Wand Rework!",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Wands.DECIMATION, null), "Wand Rework!",
 				"Removed Wands:\n" +
 				"Flock, Blink, Teleportation, Avalanche\n" +
 				"\n" +

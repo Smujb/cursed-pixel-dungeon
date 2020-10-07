@@ -174,13 +174,13 @@ public class YASD_log {
 		changes.hardlight( CharSprite.NEGATIVE );
 		changeInfos.add(changes);
 
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_DAMNATION), "Wand of Damnation nerfed",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Wands.DAMNATION), "Wand of Damnation nerfed",
 				"Wand of Damnation's ability to one shot enemies so easily proved too powerful. Deferred death now lasts much longer."));
 
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_THORNVINES), "Wand of Thornvines fixed",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Wands.THORNVINES), "Wand of Thornvines fixed",
 				"Wand of Thornvines had a bug that made the Thornvine basically invulnerable at high levels. This is no longer possible."));
 
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_LIFE_DRAIN), "Wand of Life Drain nerfed",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Wands.LIFE_DRAIN), "Wand of Life Drain nerfed",
 				"Wand of Life drain now only heals user for half of the damage it deals."));
 	}
 
@@ -209,7 +209,7 @@ public class YASD_log {
 		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARTIFACT_SANDALS, null), "Tall Grass",
 				"Tall grass can now rarely drop Stones."));
 
-		changes.addButton(new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_DAMNATION, null), "New Wands", "Added several wands from YAPD and some original ones too:\n" +
+		changes.addButton(new ChangeButton(new ItemSprite(ItemSpriteSheet.Wands.DAMNATION, null), "New Wands", "Added several wands from YAPD and some original ones too:\n" +
 				"_-_ Wand of Damnation\n" +
 				"_-_ Wand of Acid\n" +
 				"_-_ Wand of Darkness\n" +
@@ -292,7 +292,7 @@ public class YASD_log {
 
 		changes.addButton(new ChangeButton(Icons.get(Icons.DEPTH), "Morale System", "Morale system was too unfair and has been reworked to no only be affected by attacks, not bleed/poison."));
 
-		changes.addButton(new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_MAGIC_MISSILE_YAPD, null), "Wand balance", "Wands have been nerfed, as the stat \"Focus\" affects them:\n" +
+		changes.addButton(new ChangeButton(new ItemSprite(ItemSpriteSheet.Wands.MAGIC_MISSILE, null), "Wand balance", "Wands have been nerfed, as the stat \"Focus\" affects them:\n" +
 				"Wands on average now do less damage. Wands that do not do direct damage have had other changes."));
 	}
 
@@ -323,7 +323,7 @@ public class YASD_log {
 				"_-_ You can increase Morale a little by eating or leveling up, and a lot through Scrolls of Lullaby and Beer or Whiskey\n" +
 				"_-_ Be careful though, as Beer and Whiskey will also permanently increase the rate at which the hero loses morale"));
 
-		changes.addButton(new ChangeButton(new ItemSprite(ItemSpriteSheet.WAND_LIFE_DRAIN, null), "Wand of Life Drain", "Wand of Life Drain from YAPD has been added:\n" +
+		changes.addButton(new ChangeButton(new ItemSprite(ItemSpriteSheet.Wands.LIFE_DRAIN, null), "Wand of Life Drain", "Wand of Life Drain from YAPD has been added:\n" +
 				"_-_ Functionality is basically the same as YAPD\n" +
 				"_-_ Consumes all charges, heavy damage, heals the hero if the enemy is not undead"));
 	}

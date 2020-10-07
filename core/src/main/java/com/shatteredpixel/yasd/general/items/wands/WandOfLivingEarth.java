@@ -56,7 +56,7 @@ import com.watabou.utils.Random;
 public class WandOfLivingEarth extends DamageWand {
 	
 	{
-		image = ItemSpriteSheet.WAND_LIVING_EARTH;
+		image = ItemSpriteSheet.Wands.LIVING_EARTH;
 
 		element = Element.EARTH;
 

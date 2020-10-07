@@ -74,7 +74,7 @@ import java.util.HashMap;
 public class WandOfCorruption extends Wand {
 
 	{
-		image = ItemSpriteSheet.WAND_CORRUPTION;
+		image = ItemSpriteSheet.Wands.CORRUPTION;
 
 		element = Element.SHADOW;
 	}

@@ -270,6 +270,46 @@ public class ItemSpriteSheet {
 		public static final int LACERATING        = SHIELD+16;
 	}
 
+	public static class Wands {
+		private static final int WANDS_ROW_1 =                           xy(1, 47);
+		private static final int WANDS_ROW_2 =                           xy(1, 48);
+
+		public static final int MAGIC_MISSILE  = WANDS_ROW_1+0;
+		public static final int FIREBLAST = WANDS_ROW_1+1;
+		public static final int FROST          = WANDS_ROW_1+2;
+		public static final int LIGHTNING      = WANDS_ROW_1+3;
+		public static final int DECIMATION	   = WANDS_ROW_1+4;
+		public static final int PRISMATIC_LIGHT= WANDS_ROW_1+5;
+		public static final int CORROSION      = WANDS_ROW_1+6;
+		public static final int LIVING_EARTH   = WANDS_ROW_1+7;
+		public static final int BLAST_WAVE     = WANDS_ROW_1+8;
+		public static final int CORRUPTION     = WANDS_ROW_1+9;
+		public static final int WARDING        = WANDS_ROW_1+10;
+		public static final int REGROWTH       = WANDS_ROW_1+11;
+		public static final int TRANSFUSION    = WANDS_ROW_1+12;
+		public static final int FLOW           = WANDS_ROW_1+13;
+
+		//TODO names for rest of WANDS + 14 to WANDS + 27
+		public static final int SWARM 		   = WANDS_ROW_1+17;
+
+		public static final int DISINTEGRATION 	 	= WANDS_ROW_1+28;
+		public static final int SMITING	 		 	= WANDS_ROW_1+29;
+		public static final int VOLTAGE	         	= WANDS_ROW_1+30;
+		public static final int ACID                = WANDS_ROW_1+31;
+		static {
+			for (int i = WANDS_ROW_1; i < FLOW; i++)
+				assignItemRect(i, 14, 14);
+		}
+
+		public static final int PLASMA              = WANDS_ROW_2+0;
+		public static final int DARKNESS = WANDS_ROW_2+1;
+		public static final int ICE_BARRIER         = WANDS_ROW_2+2;
+		public static final int PERSUASION          = WANDS_ROW_2+3;
+		public static final int DAMNATION           = WANDS_ROW_2+4;
+		public static final int THORNVINES          = WANDS_ROW_2+5;
+		public static final int LIFE_DRAIN          = WANDS_ROW_2+6;
+	}
+
 	public static class Armors {
 
 		private static final int ARMOR = xy(1, 46);
@@ -369,36 +409,7 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 15, 15);
 	}
 
-	private static final int WANDS_YAPD              =                      xy(1, 13);  //16 slots
-	public static final int WAND_MAGIC_MISSILE_YAPD  = WANDS_YAPD+0;
-	public static final int WAND_DISINTEGRATION_YAPD = WANDS_YAPD+1;
-	public static final int WAND_ACID                = WANDS_YAPD+4;
-	public static final int WAND_PLASMA              = WANDS_YAPD+5;
-	public static final int WAND_STENCH     		 = WANDS_YAPD+6;
-	public static final int WAND_DAMNATION           = WANDS_YAPD+9;
-	public static final int WAND_THORNVINES          = WANDS_YAPD+10;
-	public static final int WAND_LIFE_DRAIN          = WANDS_YAPD+11;
 
-	private static final int WANDS              =                           xy(1, 14);  //16 slots
-	public static final int WAND_MAGIC_MISSILE  = WANDS+0;
-	public static final int WAND_FIREBOLT       = WANDS+1;
-	public static final int WAND_FROST          = WANDS+2;
-	public static final int WAND_LIGHTNING      = WANDS+3;
-	public static final int WAND_DISINTEGRATION = WANDS+4;
-	public static final int WAND_PRISMATIC_LIGHT= WANDS+5;
-	public static final int WAND_CORROSION      = WANDS+6;
-	public static final int WAND_LIVING_EARTH   = WANDS+7;
-	public static final int WAND_BLAST_WAVE     = WANDS+8;
-	public static final int WAND_CORRUPTION     = WANDS+9;
-	public static final int WAND_WARDING        = WANDS+10;
-	public static final int WAND_REGROWTH       = WANDS+11;
-	public static final int WAND_TRANSFUSION    = WANDS+12;
-	public static final int WAND_FLOW           = WANDS+13;
-	static {
-		for (int i = WANDS; i < WANDS+16; i++)
-			assignItemRect(i, 14, 14);
-		assignItemRect(WAND_FLOW, 16,16);
-	}
 
 
 	private static final int RINGS          =                               xy(1, 15);  //16 slots
