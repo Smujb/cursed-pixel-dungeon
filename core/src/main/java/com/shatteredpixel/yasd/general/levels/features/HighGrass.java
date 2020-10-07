@@ -71,7 +71,7 @@ public class HighGrass {
 				}
 			}
 			
-		} else {
+		} else if (level.getTerrain(pos) == Terrain.HIGH_GRASS) {
 			if (ch instanceof Hero && ((Hero) ch).heroClass == HeroClass.HUNTRESS){
 				Dungeon.level.set(pos, Terrain.FURROWED_GRASS);
 				freezeTrample = true;
