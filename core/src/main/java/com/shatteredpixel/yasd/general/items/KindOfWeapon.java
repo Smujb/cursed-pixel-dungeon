@@ -60,7 +60,7 @@ abstract public class KindOfWeapon extends KindofMisc {
 	public boolean doAttack(Char attacker, Char enemy) {
 		attacker.busy();
 		if (attacker.sprite != null && (attacker.sprite.visible || enemy.sprite.visible)) {
-			attacker.spend( attacker.attackDelay() );
+			attacker.spend( this.speedFactor(attacker) );
 			attacker.sprite.attack(enemy.pos, new Callback() {
 				@Override
 				public void call() {
@@ -76,7 +76,7 @@ abstract public class KindOfWeapon extends KindofMisc {
 			return false;
 		} else {
 			attack(attacker, enemy, false);
-			attacker.spend( attacker.attackDelay() );
+			attacker.spend( this.speedFactor(attacker) );
 			attacker.next();
 			return true;
 		}
