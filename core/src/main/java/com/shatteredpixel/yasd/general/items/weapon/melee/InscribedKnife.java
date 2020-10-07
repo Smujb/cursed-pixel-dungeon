@@ -43,7 +43,7 @@ public class InscribedKnife extends MeleeWeapon {
 
         unique = true;
 
-        damageMultiplier = 0.6f;
+        damageFactor = 0.6f;
 
         hitSound = Assets.Sounds.HIT_MAGIC;
         hitSoundPitch = 1.5f;

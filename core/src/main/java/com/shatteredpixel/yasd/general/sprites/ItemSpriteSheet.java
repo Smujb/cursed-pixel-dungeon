@@ -246,6 +246,8 @@ public class ItemSpriteSheet {
 		public static final int SWIFT_CROSSBOW   = WEAPON+20;
 		public static final int SICKLE           = WEAPON+21;
 		public static final int HOE              = WEAPON+22;
+		public static final int RAPIER           = WEAPON+23;
+		public static final int BUTCHER_KNIFE    = WEAPON+24;
 	}
 
 	public static class Shields {

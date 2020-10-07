@@ -43,7 +43,7 @@ public class Crossbow extends MeleeWeapon {
 		hitSoundPitch = 1f;
 		
 		//check Dart.class for additional properties
-		damageMultiplier = 0.75f;
+		damageFactor = 0.75f;
 
 		statScaling.add(Hero.HeroStat.ASSAULT);
 	}

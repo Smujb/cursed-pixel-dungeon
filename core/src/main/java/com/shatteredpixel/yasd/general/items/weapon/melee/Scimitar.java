@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
@@ -43,7 +44,7 @@ public class Scimitar extends MeleeWeapon {
 
 		DLY = 1f;
 
-		damageMultiplier = 0.80f;
+		damageFactor = 0.80f;
 	}
 
 	@Override
@@ -52,5 +53,15 @@ public class Scimitar extends MeleeWeapon {
 			Buff.affect( defender, Bleeding.class ).set( damage/3f );
 		}
 		return super.proc(attacker, defender, damage);
+	}
+
+	@Override
+	protected boolean hasProperties() {
+		return true;
+	}
+
+	@Override
+	protected String propsDesc() {
+		return super.propsDesc() + "\n" + Messages.get(this, "causes_bleed");
 	}
 }

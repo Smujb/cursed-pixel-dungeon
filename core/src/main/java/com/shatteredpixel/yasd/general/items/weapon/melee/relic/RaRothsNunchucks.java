@@ -10,7 +10,7 @@ public class RaRothsNunchucks extends RelicMeleeWeapon {
         ACC = 0.7f;
         RCH = 3;
         DLY = 0.5f;
-        damageMultiplier = 0.5f;
+        damageFactor = 0.5f;
         canSurpriseAttack = false;
     }
 

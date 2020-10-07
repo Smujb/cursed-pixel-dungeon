@@ -80,7 +80,7 @@ public class MagesStaff extends MeleeWeapon {
 		unique = true;
 		bones = false;
 
-		damageMultiplier = 0.8f;
+		damageFactor = 0.8f;
 
 		statScaling.add(Hero.HeroStat.FOCUS);
 	}

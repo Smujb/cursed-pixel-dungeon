@@ -9,7 +9,7 @@ public class SwiftCrossbow extends Crossbow {
     {
         image = ItemSpriteSheet.Weapons.SWIFT_CROSSBOW;
 
-        damageMultiplier = 0.5f;
+        damageFactor = 0.5f;
     }
 
     @Override

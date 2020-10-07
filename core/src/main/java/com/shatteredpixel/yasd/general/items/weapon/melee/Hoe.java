@@ -21,7 +21,7 @@ public class Hoe extends MeleeWeapon {
         hitSound = Assets.Sounds.HIT_PARRY;
         hitSoundPitch = 0.6f;
 
-        damageMultiplier = 0.85f;
+        damageFactor = 0.85f;
 
         statScaling.add(Hero.HeroStat.FOCUS);
     }

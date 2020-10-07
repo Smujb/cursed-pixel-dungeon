@@ -39,6 +39,6 @@ public class Katana extends MeleeWeapon {
 
 		DLY = 0.6f; //fast
 
-		damageMultiplier = 0.5f;
+		damageFactor = 0.5f;
 	}
 }

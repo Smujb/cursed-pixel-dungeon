@@ -41,6 +41,6 @@ public class Glove extends MeleeWeapon {
 		
 		bones = false;
 
-		damageMultiplier = 0.5f;
+		damageFactor = 0.5f;
 	}
 }

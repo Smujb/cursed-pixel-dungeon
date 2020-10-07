@@ -189,7 +189,7 @@ public enum HeroClass {
 		new TomeOfMastery().collect();
 		new MegaStick().collect();
 		new DeveloperItem().collect();
-		for (Class<?> itemClass : Generator.Category.SHIELD.classes) {
+		for (Class<?> itemClass : Generator.Category.WEAPON.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);
 			if (item != null) {
 				item.identify().collect();

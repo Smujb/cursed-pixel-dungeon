@@ -53,7 +53,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 		defaultAction = AC_ATTACK;
 	}
 
-	public float damageMultiplier = 1f;
+	public float damageFactor = 1f;
 	public float defenseMultiplier = 0f;
 
 	public boolean sneakBenefit = false;
@@ -69,12 +69,12 @@ public class MeleeWeapon extends Weapon implements Attackable {
 
 	@Override
 	public int min(float lvl) {
-		return Math.round(2 * lvl * damageMultiplier);   //level scaling
+		return Math.round(2 * lvl * damageFactor);   //level scaling
 	}
 
 	@Override
 	public int max(float lvl) {
-		return Math.round(5 * lvl * damageMultiplier);   //level scaling
+		return Math.round(5 * lvl * damageFactor);   //level scaling
 	}
 
 	@Override

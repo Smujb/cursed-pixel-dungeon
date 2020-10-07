@@ -37,7 +37,7 @@ public class Dagger extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_STAB;
 		hitSoundPitch = 0.9f;
 
-		damageMultiplier = 0.80f;
+		damageFactor = 0.80f;
 		sneakBenefit = true;
 	}
 }

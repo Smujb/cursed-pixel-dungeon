@@ -8,7 +8,7 @@ public class ThonothsAxe extends RelicMeleeWeapon {
     {
         image = ItemSpriteSheet.THONOTHS_AXE;
         ACC = 2f;
-        damageMultiplier = 0.74f;
+        damageFactor = 0.74f;
     }
 
     @Override

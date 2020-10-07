@@ -208,6 +208,7 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfThornvines;
 import com.shatteredpixel.yasd.general.items.wands.WandOfTransfusion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Axe;
+import com.shatteredpixel.yasd.general.items.weapon.melee.ButchersKnife;
 import com.shatteredpixel.yasd.general.items.weapon.melee.ChainWhip;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Crossbow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
@@ -220,6 +221,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Rapier;
 import com.shatteredpixel.yasd.general.items.weapon.melee.RunicBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Scimitar;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sickle;
@@ -558,10 +560,12 @@ public class Generator {
 					ChainWhip.class,
 					Sickle.class,
 					SwiftCrossbow.class,
-					Hoe.class
+					Hoe.class,
+					ButchersKnife.class,
+					Rapier.class
 
 			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 4, 6, 4, 3, 3, 2, 1, 2 };
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 4, 6, 4, 3, 3, 2, 1, 2, 3, 1 };
 
 			SHIELD.classes = new Class<?>[] {
 					RoundShield.class,

@@ -39,7 +39,7 @@ public class RunicBlade extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
 
-		damageMultiplier = 0.75f;
+		damageFactor = 0.75f;
 
 		statScaling.add(Hero.HeroStat.FOCUS);
 	}

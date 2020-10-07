@@ -39,7 +39,7 @@ public class Mace extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1f;
 
-		damageMultiplier = 0.80f;
+		damageFactor = 0.80f;
 
 		statScaling.add(Hero.HeroStat.RESILIENCE);
 	}

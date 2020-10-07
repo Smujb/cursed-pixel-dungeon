@@ -38,6 +38,6 @@ public class Axe extends MeleeWeapon {
 		hitSoundPitch = 0.9f;
 
 		ACC = 1.33f; //33% boost to accuracy
-		damageMultiplier = 0.80f;
+		damageFactor = 0.80f;
 	}
 }

@@ -40,7 +40,7 @@ public class Flail extends MeleeWeapon {
 
 		ACC = 0.8f; //0.8x accuracy
 
-		damageMultiplier = 1.5f;
+		damageFactor = 1.5f;
 
 		canSurpriseAttack = false;
 	}

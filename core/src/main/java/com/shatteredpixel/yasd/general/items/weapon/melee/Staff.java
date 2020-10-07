@@ -38,7 +38,7 @@ public class Staff extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1f;
 
-		damageMultiplier = 0.7f;
+		damageFactor = 0.7f;
 	}
 
 	@Override

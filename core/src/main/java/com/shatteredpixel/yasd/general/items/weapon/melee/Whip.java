@@ -40,7 +40,7 @@ public class Whip extends MeleeWeapon {
 
 		RCH = 3;    //lots of extra reach
 
-		damageMultiplier = 0.6f;
+		damageFactor = 0.6f;
 
 		statScaling.add(Hero.HeroStat.ASSAULT);
 	}
