@@ -44,7 +44,7 @@ public abstract class LockedRoom extends SpecialRoom {
 		if (level instanceof RegularLevel) {
 			RegularLevel regularLevel = ((RegularLevel)level);
 			if (regularLevel.hasPitRoom()) {
-				entrance().set(Door.Type.BRONZE);
+				setBronzeKeyDoor(level);
 			} else {
 				switch (Random.Int(10)) {
 					case 0: default:
