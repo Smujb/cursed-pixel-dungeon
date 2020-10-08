@@ -17,20 +17,16 @@ public class Rapier extends MeleeWeapon {
 
         hitSound = Assets.Sounds.HIT_STAB;
         hitSoundPitch = 1.5f;
-        damageFactor = 0.8f;
+        damageFactor = 0.7f;
 
         statScaling.add(Hero.HeroStat.ASSAULT);
     }
 
     @Override
     public int proc(Char attacker, Char defender, int damage) {
-        Ballistica attack = new Ballistica(attacker.pos, defender.pos, Ballistica.STOP_CHARS | Ballistica.STOP_TERRAIN);
-        if (attack.path.size() > 2) {
-            int newDefPos = attack.path.get(2);
-            int newAttkPos = defender.pos;
-            moveChar(defender, newDefPos, true);
-            //Don't check for chars as previous char having moved won't have registered yet.
-            moveChar(attacker, newAttkPos, false);
+        if (!advance(attacker, defender)) {
+            //40% extra damage if enemy is against a wall
+            damage *= 1.4;
         }
         return super.proc(attacker, defender, damage);
     }
@@ -42,12 +38,29 @@ public class Rapier extends MeleeWeapon {
 
     @Override
     protected String propsDesc() {
-        return super.propsDesc() + "\n" + Messages.get(this, "advance_enemy");
+        return super.propsDesc() + "\n" + Messages.get(this, "advance_enemy") + "\n" + Messages.get(this, "damage_wall", 40);
     }
 
-    public static void moveChar(Char ch, int newPos, boolean checkChars) {
+    public static boolean advance(Char attacker, Char defender) {
+        Ballistica attack = new Ballistica(attacker.pos, defender.pos, Ballistica.STOP_CHARS | Ballistica.STOP_TERRAIN);
+        if (attack.path.size() > 2) {
+            int newDefPos = attack.path.get(2);
+            int newAttkPos = defender.pos;
+            //Ensure the attacker only moves if the defender has.
+            if (moveChar(defender, newDefPos, true)) {
+                //Don't check for chars as previous char having moved won't have registered yet.
+                moveChar(attacker, newAttkPos, false);
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean moveChar(Char ch, int newPos, boolean checkChars) {
         int initialPos = ch.pos;
-        if (Dungeon.level.solid(newPos) || (Actor.findChar(newPos) != null && checkChars) || !Char.canOccupy(ch, Dungeon.level, newPos)) return;
+        //Ensure destination is passable, and prevent large chars moving into spaces they can't move out of.
+        if (Dungeon.level.solid(newPos) || (Actor.findChar(newPos) != null && checkChars) || !Char.canOccupy(ch, Dungeon.level, newPos)) return false;
         Actor.addDelayed(new Pushing(ch, ch.pos, newPos, new Callback() {
             public void call() {
                 if (initialPos != ch.pos) {
@@ -62,5 +75,6 @@ public class Rapier extends MeleeWeapon {
                 }
             }
         }), -1);
+        return true;
     }
 }
