@@ -1,5 +1,6 @@
 package com.shatteredpixel.yasd.general.actors.mobs;
 
+import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
@@ -22,7 +23,9 @@ public class Boss extends Mob {
 			} while (!Dungeon.level.passable(pos + ofs));
 			Dungeon.level.drop( new ScrollOfUpgrade(), pos + ofs ).sprite.drop( pos );
 		}
-		Dungeon.level.drop(new CrimsonFlask.Charge(), pos);
+		if (!Dungeon.isChallenged(Challenges.NO_HEALING)) {
+			Dungeon.level.drop(new CrimsonFlask.Charge(), pos);
+		}
 		super.die(cause);
 	}
 }

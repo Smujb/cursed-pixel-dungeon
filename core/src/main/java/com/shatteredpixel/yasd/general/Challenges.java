@@ -27,14 +27,13 @@
 
 package com.shatteredpixel.yasd.general;
 
+import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.items.Dewdrop;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.artifacts.ChaliceOfBlood;
 import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
-import com.shatteredpixel.yasd.general.items.food.Blandfruit;
 import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.food.SmallRation;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 
 public class Challenges {
@@ -80,10 +79,7 @@ public class Challenges {
 		}
 
 		if (Dungeon.isChallenged(NO_HEALING)){
-			if (item instanceof PotionOfOvergrowth){
-				return true;
-			} else if (item instanceof Blandfruit
-					&& ((Blandfruit) item).potionAttrib instanceof PotionOfOvergrowth){
+			if (item instanceof CrimsonFlask.Charge){
 				return true;
 			}
 		}
