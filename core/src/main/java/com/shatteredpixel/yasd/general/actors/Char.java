@@ -1014,8 +1014,6 @@ public abstract class Char extends Actor {
 			float chance = perception/(perception + stealth);
 			if (fieldOfView(defender.pos)) {
 				chance *= 2;
-			} else {
-				chance /= 2;
 			}
 			//Chance can be over 1, but that will just make notice() always return true and it results in odd messages for stealing from shops.
 			return GameMath.gate(0f, chance, 1f);
