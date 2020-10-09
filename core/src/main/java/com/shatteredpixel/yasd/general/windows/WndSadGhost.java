@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.windows;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -50,60 +49,57 @@ public class WndSadGhost extends Window {
 	private static final float GAP		= 2;
 	
 	public WndSadGhost( final Ghost ghost, final int type ) {
-		
+
 		super();
-		
+
 		IconTitle titlebar = new IconTitle();
 		RenderedTextBlock message;
-		switch (type){
-			case 1:default:
-				titlebar.icon( new FetidRatSprite() );
-				titlebar.label( Messages.get(this, "rat_title") );
-				message = PixelScene.renderTextBlock( Messages.get(this, "rat")+Messages.get(this, "give_item"), 6 );
+		switch (type) {
+			case 1:
+			default:
+				titlebar.icon(new FetidRatSprite());
+				titlebar.label(Messages.get(this, "rat_title"));
+				message = PixelScene.renderTextBlock(Messages.get(this, "rat") + Messages.get(this, "give_item"), 6);
 				break;
 			case 2:
-				titlebar.icon( new GnollTricksterSprite() );
-				titlebar.label( Messages.get(this, "gnoll_title") );
-				message = PixelScene.renderTextBlock( Messages.get(this, "gnoll")+Messages.get(this, "give_item"), 6 );
+				titlebar.icon(new GnollTricksterSprite());
+				titlebar.label(Messages.get(this, "gnoll_title"));
+				message = PixelScene.renderTextBlock(Messages.get(this, "gnoll") + Messages.get(this, "give_item"), 6);
 				break;
 			case 3:
 				titlebar.icon(new CrabSprite.GreatCrab());
-				titlebar.label( Messages.get(this, "crab_title") );
-				message = PixelScene.renderTextBlock( Messages.get(this, "crab")+Messages.get(this, "give_item"), 6 );
+				titlebar.label(Messages.get(this, "crab_title"));
+				message = PixelScene.renderTextBlock(Messages.get(this, "crab") + Messages.get(this, "give_item"), 6);
 				break;
 
 		}
 
-		titlebar.setRect( 0, 0, WIDTH, 0 );
-		add( titlebar );
+		titlebar.setRect(0, 0, WIDTH, 0);
+		add(titlebar);
 
 		message.maxWidth(WIDTH);
 		message.setPos(0, titlebar.bottom() + GAP);
-		add( message );
-		
-		RedButton btnWeapon = new RedButton( Messages.get(this, "weapon") ) {
+		add(message);
+
+		RedButton btnWeapon = new RedButton(Messages.get(this, "weapon")) {
 			@Override
 			protected void onClick() {
-				selectReward( ghost, Ghost.Quest.weapon );
+				selectReward(ghost, Ghost.Quest.weapon);
 			}
 		};
-		btnWeapon.setRect( 0, message.top() + message.height() + GAP, WIDTH, BTN_HEIGHT );
-		add( btnWeapon );
+		btnWeapon.setRect(0, message.top() + message.height() + GAP, WIDTH, BTN_HEIGHT);
+		add(btnWeapon);
 
-		if (!Dungeon.isChallenged( Challenges.NO_ARMOR )) {
-			RedButton btnShield = new RedButton( Messages.get(this, "shield") ) {
-				@Override
-				protected void onClick() {
-					selectReward(ghost, Ghost.Quest.shield);
-				}
-			};
-			btnShield.setRect(0, btnWeapon.bottom() + GAP, WIDTH, BTN_HEIGHT);
-			add(btnShield);
+		RedButton btnShield = new RedButton(Messages.get(this, "shield")) {
+			@Override
+			protected void onClick() {
+				selectReward(ghost, Ghost.Quest.shield);
+			}
+		};
+		btnShield.setRect(0, btnWeapon.bottom() + GAP, WIDTH, BTN_HEIGHT);
+		add(btnShield);
 
-			resize(WIDTH, (int) btnShield.bottom());
-		} else {
-			resize(WIDTH, (int) btnWeapon.bottom());
-		}
+		resize(WIDTH, (int) btnShield.bottom());
 	}
 	
 	private void selectReward( Ghost ghost, Item reward ) {
