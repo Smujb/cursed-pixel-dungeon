@@ -1236,7 +1236,7 @@ public abstract class Char extends Actor {
 
 	@Contract(value = "null, _ -> false", pure = true)
 	public static boolean hasProp(@Nullable Char ch, Property p){
-		return (ch != null && ch.properties.contains(p));
+		return (ch != null && ch.properties().contains(p));
 	}
 
 	public static class DamageSrc {
