@@ -91,12 +91,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     public void execute(Hero hero, String action) {
         super.execute(hero, action);
         if (action.equals(AC_PARRY)) {
-            if (isEquipped(hero)) {
-                Buff.affect(hero, Parry.class).setShield(this);
-                hero.spendAndNext(parryTime());
-            } else {
-                GLog.negative(Messages.get(this, "not_equipped"));
-            }
+            doParry(hero);
         } else if (action.equals(AC_DETACH) && seal != null){
             GLog.info( Messages.get(this, "detach_seal") );
             hero.sprite.operate(hero.pos);
@@ -104,6 +99,15 @@ public abstract class Shield extends KindofMisc implements Enchantable {
                 Dungeon.level.drop(seal, hero.pos);
             }
             seal = null;
+        }
+    }
+
+    public void doParry(Char ch) {
+        if (isEquipped(ch)) {
+            Buff.affect(ch, Parry.class).setShield(this);
+            ch.spendAndNext(parryTime());
+        } else {
+            GLog.negative(Messages.get(this, "not_equipped"));
         }
     }
 
