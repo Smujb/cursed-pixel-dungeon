@@ -127,18 +127,18 @@ public class DewVial extends Item {
 
 			if (volume > 0) {
 
-				float missingHealthPercent = 1f - (hero.HP / (float) hero.HT);
+				float missingMPPercent = 1f - (hero.mp / (float) hero.maxMP());
 
 				//trimming off 0.01 drops helps with floating point errors
-				int dropsNeeded = (int) Math.ceil((missingHealthPercent / 0.05f) - 0.01f);
+				int dropsNeeded = (int) Math.ceil((missingMPPercent / 0.05f) - 0.01f);
 				dropsNeeded = (int) GameMath.gate(1, dropsNeeded, volume);
 
 				//20 drops for a full heal normally
-				int heal = Math.round(hero.HT * 0.05f * dropsNeeded);
+				int heal = Math.round(hero.mp * 0.1f * dropsNeeded);
 
-				int effect = Math.min(hero.HT - hero.HP, heal);
+				int effect = Math.min(hero.maxMP() - hero.mp, heal);
 				if (effect > 0) {
-					hero.HP += effect;
+					hero.mp += effect;
 					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1 + dropsNeeded / 5);
 					hero.sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "value", effect));
 				}
