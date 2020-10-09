@@ -106,6 +106,14 @@ public class CrimsonFlask extends Item {
         }
     }
 
+    public boolean gainCharge() {
+        if (charges < 4) {
+            charges++;
+            return true;
+        }
+        return false;
+    }
+
     public void doDrink(Char ch) {
         if (charges > 0) {
             charges--;
@@ -150,9 +158,12 @@ public class CrimsonFlask extends Item {
         public boolean collect(Bag container, Char ch) {
             CrimsonFlask flask = ch.belongings.getItem(CrimsonFlask.class);
             if (flask != null) {
-                flask.charges++;
-                GLog.positive(Messages.get(this, "collect"));
-                return true;
+                if (flask.gainCharge()) {
+                    GLog.positive(Messages.get(this, "collect"));
+                    return true;
+                }
+                GLog.negative(Messages.get(this, "flask_full"));
+                return false;
             }
             GLog.negative(Messages.get(this, "no_flask"));
             return false;
