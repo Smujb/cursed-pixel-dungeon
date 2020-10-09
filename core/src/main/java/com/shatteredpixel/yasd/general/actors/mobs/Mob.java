@@ -193,6 +193,7 @@ public abstract class Mob extends Char {
 
 	public Mob() {
 		level = Dungeon.getScaleFactor();
+		updateHT(true);
 	}
 
 	@Override
