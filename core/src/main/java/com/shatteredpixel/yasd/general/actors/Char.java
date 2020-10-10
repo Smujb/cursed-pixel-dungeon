@@ -508,6 +508,7 @@ public abstract class Char extends Actor {
 		if (hasBelongings()) {
 			evasion = belongings.affectEvasion(evasion);
 		}
+		if (buff(Shield.Parry.class) != null) return 0;
 		return affectDefenseSkill(enemy, Math.round(evasion));
 	}
 
