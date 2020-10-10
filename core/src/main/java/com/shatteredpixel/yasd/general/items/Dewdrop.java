@@ -58,7 +58,7 @@ public class Dewdrop extends Item {
 			} else {
 
 				//20 drops for a full heal
-				int heal = Math.round( ch.HT * 0.05f * quantity );
+				int heal = Math.round( ch.HT * 0.01f * quantity );
 
 				int effect = Math.min( ch.HT - ch.HP, heal );
 				if (effect > 0) {
