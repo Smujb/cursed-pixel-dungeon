@@ -58,6 +58,7 @@ import com.shatteredpixel.yasd.general.items.allies.Soul;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
+import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Lucky;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.levels.Level;
@@ -338,7 +339,7 @@ public abstract class Mob extends Char {
 	
 	@Override
 	protected boolean act() {
-		
+		Buff.detach(buff(Shield.Parry.class));
 		super.act();
 		
 		if (Dungeon.level.liquid(pos) && elementalType() == Element.WATER) {

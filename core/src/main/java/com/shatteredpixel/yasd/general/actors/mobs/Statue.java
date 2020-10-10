@@ -252,13 +252,18 @@ public class Statue extends Mob implements Callback {
 	}
 
 	protected boolean doAttack( Char enemy ) {
-		if (Dungeon.level.adjacent( pos, enemy.pos )) {
+		if (Dungeon.level.adjacent(pos, enemy.pos)) {
 			ArrayList<KindofMisc> weapons = belongings.getMiscsOfType(MeleeWeapon.class);
-			if (weapons.size() > 0) {
+			ArrayList<KindofMisc> shields = belongings.getMiscsOfType(Shield.class);
+			if (shields.size() > 0 && (Random.Int(2) == 0 || weapons.isEmpty())) {
+				((Shield) Random.element(shields)).doParry(this);
+				return true;
+			} else if (weapons.size() > 0) {
 				return ((MeleeWeapon) Random.element(weapons)).doAttack(this, enemy);
 			} else {
 				return super.doAttack(enemy);
 			}
+
 		} else if (belongings.getMiscsOfType(Wand.class).size() > 0) {
 			wandZap(enemy);
 			return true;
