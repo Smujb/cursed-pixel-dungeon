@@ -27,6 +27,7 @@ import com.shatteredpixel.yasd.general.windows.WndOptions;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 
 import java.util.ArrayList;
@@ -107,7 +108,7 @@ public class CrimsonFlask extends Item {
     }
 
     public boolean gainCharge() {
-        if (charges < 4) {
+        if (charges < MAX_CHARGES) {
             charges++;
             return true;
         }
@@ -146,6 +147,20 @@ public class CrimsonFlask extends Item {
         Buff.detach( ch, Slow.class );
         Buff.detach( ch, Vertigo.class);
 
+    }
+
+    public static final String CHARGE = "charge";
+
+    @Override
+    public void storeInBundle(Bundle bundle) {
+        super.storeInBundle(bundle);
+        bundle.put(CHARGE, charges);
+    }
+
+    @Override
+    public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle(bundle);
+        charges = bundle.contains(CHARGE) ? bundle.getInt(CHARGE) : MAX_CHARGES;
     }
 
     public static class Charge extends Item {
