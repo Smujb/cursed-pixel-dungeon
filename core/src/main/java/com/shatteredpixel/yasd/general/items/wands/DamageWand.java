@@ -76,11 +76,11 @@ public abstract class DamageWand extends Wand{
 	}
 
 	public float min(float lvl) {
-		return Math.round(lvl) * 2 * damageMultiplier();    //level scaling
+		return 8 * lvl * damageMultiplier();    //level scaling
 	}
 
 	public float max(float lvl) {
-		return (5 * lvl * damageMultiplier());   //level scaling
+		return 20 * lvl * damageMultiplier();   //level scaling
 	}
 
 	final int defaultMax() {

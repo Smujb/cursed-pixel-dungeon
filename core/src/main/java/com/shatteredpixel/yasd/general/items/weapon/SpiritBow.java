@@ -126,12 +126,12 @@ public class SpiritBow extends Weapon implements Attackable {
 
 	@Override
 	public int min(float lvl) {
-		return Math.round(2 * lvl);    //level scaling
+		return Math.round(6 * lvl);    //level scaling
 	}
 
 	@Override
 	public int max(float lvl) {
-		return Math.round(4 * lvl);   //level scaling
+		return Math.round(12 * lvl);   //level scaling
 	}
 	
 	private int targetPos;

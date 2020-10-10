@@ -276,7 +276,7 @@ public class Hero extends Char {
 	@Override
 	public void updateHT(boolean boostHP) {
 		int preHT = HT;
-		HT = 100 + HTBoost;
+		HT = 200 + HTBoost;
 		for (HeroStat stat : HeroStat.values()) {
 			for (int i = 1; i < getStat(stat); i++) {
 				HT *= stat.hpBoost(i);

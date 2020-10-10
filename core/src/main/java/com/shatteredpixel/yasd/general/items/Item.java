@@ -29,6 +29,7 @@ package com.shatteredpixel.yasd.general.items;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Difficulty;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -170,7 +171,7 @@ public class Item implements Bundlable {
 	}
 
 	public int statReq(int level) {
-		return level/2 + 1;
+		return level;
 	}
 
 	public final int statReq() {
@@ -668,6 +669,7 @@ public class Item implements Bundlable {
 		souCap = bundle.contains( MAX ) ? bundle.getInt( MAX ) : MAX_SOU;
 
 		int level = bundle.getInt( LEVEL );
+		if (Dungeon.version <= CPDGame.v0_4_8) level /= 2;
 		level(level);
 		
 		cursed	= bundle.getBoolean( CURSED );

@@ -209,7 +209,7 @@ public abstract class Mob extends Char {
 	}
 
 	protected static int normalHP(int level) {
-		return 9 * Item.calcMobPower(level);
+		return 16 * Item.calcMobPower(level);
 	}
 
 	protected static int normalAttackSkill(int level) {
@@ -233,11 +233,11 @@ public abstract class Mob extends Char {
 	}
 
 	protected static int normalMax(int level) {
-		return Item.calcMobPower(level) * 10;
+		return Item.calcMobPower(level) * 20;
 	}
 
 	protected static int normalMin(int level) {
-		return Item.calcMobPower(level) * 5;
+		return Item.calcMobPower(level) * 10;
 	}
 
 	int findClosest(Char enemy, int pos) {
