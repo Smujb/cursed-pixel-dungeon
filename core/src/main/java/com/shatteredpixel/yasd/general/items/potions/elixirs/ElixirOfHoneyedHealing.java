@@ -63,8 +63,8 @@ public class ElixirOfHoneyedHealing extends Elixir {
 		}
 		
 		Char ch = Actor.findChar(cell);
-		if (ch != null){
-			Buff.affect( ch, Healing.class ).setHeal((int)(0.8f*ch.HT + 14), 0.25f, 0);
+		if (ch != null) {
+			ch.heal(ch.HT/3, true, true);
 			CrimsonFlask.cure(ch);
 			if (ch instanceof Bee && ch.alignment != curUser.alignment){
 				ch.alignment = Char.Alignment.ALLY;
