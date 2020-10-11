@@ -24,7 +24,7 @@ public class Boss extends Mob {
 			Dungeon.level.drop( new ScrollOfUpgrade(), pos + ofs ).sprite.drop( pos );
 		}
 		if (!Dungeon.isChallenged(Challenges.NO_HEALING)) {
-			Dungeon.level.drop(new CrimsonFlask.Charge(), pos);
+			Dungeon.level.drop(new CrimsonFlask.Charge().quantity(Dungeon.difficulty.flaskChargesPerBoss()), pos);
 		}
 		super.die(cause);
 	}

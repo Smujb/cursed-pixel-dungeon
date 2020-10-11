@@ -107,9 +107,9 @@ public class CrimsonFlask extends Item {
         }
     }
 
-    public boolean gainCharge() {
+    public boolean gainCharge(int amt) {
         if (charges < MAX_CHARGES) {
-            charges++;
+            charges += amt;
             return true;
         }
         return false;
@@ -167,13 +167,15 @@ public class CrimsonFlask extends Item {
 
         {
             image = ItemSpriteSheet.FLASK_CHARGE;
+
+            stackable = true;
         }
 
         @Override
         public boolean collect(Bag container, Char ch) {
             CrimsonFlask flask = ch.belongings.getItem(CrimsonFlask.class);
             if (flask != null) {
-                if (flask.gainCharge()) {
+                if (flask.gainCharge(quantity)) {
                     GLog.positive(Messages.get(this, "collect"));
                     return true;
                 }

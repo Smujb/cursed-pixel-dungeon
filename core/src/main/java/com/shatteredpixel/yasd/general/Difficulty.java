@@ -59,6 +59,19 @@ public enum Difficulty {
 		}
 	}
 
+	public int flaskChargesPerBoss() {
+		switch (this) {
+			case EASY:
+				return 4;
+			case MEDIUM: default:
+				return 3;
+			case HARD:
+				return 2;
+			case IMPOSSIBLE:
+				return 1;
+		}
+	}
+
 	@Contract(pure = true)
 	public static Difficulty fromInt(int diff) {
 		switch (diff) {
