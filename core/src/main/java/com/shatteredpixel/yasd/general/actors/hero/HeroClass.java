@@ -74,6 +74,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MegaStick;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.Crossbow;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.HeroSelectScene;
 import com.watabou.noosa.Image;
@@ -187,8 +188,9 @@ public enum HeroClass {
 
 	public static void initTest(Hero hero) {
 		new TomeOfMastery().collect();
-		new MegaStick().collect();
+		new MegaStick().identify().collect();
 		new DeveloperItem().collect();
+		new Crossbow().identify().collect();
 		for (Class<?> itemClass : Generator.Category.WEAPON.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);
 			if (item != null) {

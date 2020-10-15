@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
@@ -37,9 +36,6 @@ import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.shatteredpixel.yasd.general.scenes.CellSelector;
-import com.shatteredpixel.yasd.general.scenes.GameScene;
-import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -48,24 +44,12 @@ import java.util.Arrays;
 public class MeleeWeapon extends Weapon implements Attackable {
 	{
 		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.EXECUTION));
-
-		usesTargeting = true;
-		defaultAction = AC_ATTACK;
 	}
 
 	public float damageFactor = 1f;
 	public float defenseMultiplier = 0f;
 
 	public boolean sneakBenefit = false;
-
-	private static final String AC_ATTACK = "attack";
-
-	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions(hero);
-		actions.add(AC_ATTACK);
-		return actions;
-	}
 
 	@Override
 	public int min(float lvl) {
@@ -76,42 +60,6 @@ public class MeleeWeapon extends Weapon implements Attackable {
 	public int max(float lvl) {
 		return Math.round(20 * lvl * damageFactor);   //level scaling
 	}
-
-	@Override
-	public void execute(Hero hero, String action) {
-		super.execute(hero, action);
-		if (action.equals(AC_ATTACK)) {
-			if (isEquipped(curUser)) {
-				GameScene.selectCell(ATTACK);
-			} else {
-				GLog.info(Messages.get(MeleeWeapon.this, "not_equipped"));
-			}
-		}
-	}
-
-	private final CellSelector.Listener ATTACK = new CellSelector.Listener() {
-
-		@Override
-		public void onSelect(Integer cell) {
-			if (cell != null && curUser != null) {
-				Char ch = Actor.findChar(cell);
-				if (ch != null) {
-					if (MeleeWeapon.this.canReach(curUser, cell)) {
-						MeleeWeapon.this.doAttack(curUser, ch);
-					} else {
-						GLog.info(Messages.get(MeleeWeapon.this, "out_of_range"));
-					}
- 				} else {
-					GLog.info(Messages.get(MeleeWeapon.this, "no_enemy"));
-				}
-			}
-		}
-
-		@Override
-		public String prompt() {
-			return Messages.get(MeleeWeapon.this, "select_cell");
-		}
-	};
 
 	@Override
 	public boolean use(Char enemy) {
