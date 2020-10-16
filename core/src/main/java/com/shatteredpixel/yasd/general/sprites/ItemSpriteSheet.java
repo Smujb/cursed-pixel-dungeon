@@ -290,7 +290,9 @@ public class ItemSpriteSheet {
 		public static final int FLOW           = WANDS_ROW_1+13;
 
 		//TODO names for rest of WANDS + 14 to WANDS + 27
-		public static final int SWARM 		   = WANDS_ROW_1+17;
+		public static final int SWARM 		   	   = WANDS_ROW_1+17;
+		public static final int MALAISE 		   = WANDS_ROW_1+23;
+		public static final int BINDING 		   = WANDS_ROW_1+27;
 
 		public static final int DISINTEGRATION 	 	= WANDS_ROW_1+28;
 		public static final int SMITING	 		 	= WANDS_ROW_1+29;
