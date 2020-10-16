@@ -33,12 +33,10 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.darts.Dart;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
-import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Crossbow extends MeleeWeapon {
 	
 	{
-		image = ItemSpriteSheet.Weapons.CROSSBOW;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1f;
 		

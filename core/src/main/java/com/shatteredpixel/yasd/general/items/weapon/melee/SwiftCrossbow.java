@@ -7,7 +7,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class SwiftCrossbow extends Crossbow {
 
     {
-        image = ItemSpriteSheet.Weapons.SWIFT_CROSSBOW;
+        image = ItemSpriteSheet.Ranged.SWIFT_CROSSBOW;
 
         damageFactor = 0.5f;
     }

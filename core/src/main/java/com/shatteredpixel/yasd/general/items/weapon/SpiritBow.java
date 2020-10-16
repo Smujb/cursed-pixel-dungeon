@@ -55,7 +55,7 @@ public class SpiritBow extends Weapon implements Attackable {
 	public static final String AC_SHOOT		= "SHOOT";
 	
 	{
-		image = ItemSpriteSheet.SPIRIT_BOW;
+		image = ItemSpriteSheet.Ranged.SPIRIT_BOW;
 		
 		defaultAction = AC_SHOOT;
 		usesTargeting = true;
@@ -195,7 +195,7 @@ public class SpiritBow extends Weapon implements Attackable {
 	public class SpiritArrow extends MissileWeapon {
 		
 		{
-			image = ItemSpriteSheet.SPIRIT_ARROW;
+			image = ItemSpriteSheet.Ranged.SPIRIT_ARROW;
 
 			hitSound = Assets.Sounds.HIT_ARROW;
 		}

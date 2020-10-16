@@ -4,7 +4,6 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Bolt extends Ammo {
     {
-        //TODO rework ranged weapon sprites
-        image = ItemSpriteSheet.FISHING_SPEAR;
+        image = ItemSpriteSheet.Ranged.BOLT;
     }
 }

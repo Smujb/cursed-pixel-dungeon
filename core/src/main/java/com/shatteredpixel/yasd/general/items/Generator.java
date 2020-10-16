@@ -59,12 +59,12 @@ import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfFrost;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHaste;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLevitation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMana;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfPurity;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfToxicGas;
@@ -210,7 +210,6 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Axe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.ButchersKnife;
 import com.shatteredpixel.yasd.general.items.weapon.melee.ChainWhip;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Crossbow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
@@ -226,7 +225,6 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.RunicBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Scimitar;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sickle;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Staff;
-import com.shatteredpixel.yasd.general.items.weapon.melee.SwiftCrossbow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.Bolas;
@@ -552,20 +550,18 @@ public class Generator {
 					Flail.class,
 					RunicBlade.class,
 					Dagger.class,
-					Crossbow.class,
 					Sword.class,
 					Mace.class,
 					Polearm.class,
 					Greataxe.class,
 					ChainWhip.class,
 					Sickle.class,
-					SwiftCrossbow.class,
 					Hoe.class,
 					ButchersKnife.class,
 					Rapier.class
 
 			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 4, 6, 4, 3, 3, 2, 1, 2, 3, 1 };
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1 };
 
 			SHIELD.classes = new Class<?>[] {
 					RoundShield.class,

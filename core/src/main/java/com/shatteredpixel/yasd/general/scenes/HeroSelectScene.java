@@ -415,7 +415,7 @@ public class HeroSelectScene extends PixelScene {
 					break;
 				case HUNTRESS:
 					tabIcons = new Image[]{
-							new ItemSprite(ItemSpriteSheet.SPIRIT_BOW, null),
+							new ItemSprite(ItemSpriteSheet.Ranged.SPIRIT_BOW, null),
 							new ItemSprite(ItemSpriteSheet.Weapons.GLOVE, null),
 							new Image(Assets.Environment.TILES_SEWERS, 112, 96, 16, 16 )
 					};

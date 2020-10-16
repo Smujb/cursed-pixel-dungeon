@@ -8,7 +8,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Crossbow extends RangedWeapon {
 
     {
-        image = ItemSpriteSheet.Weapons.CROSSBOW;
+        image = ItemSpriteSheet.Ranged.CROSSBOW;
 
         hitSound = Assets.Sounds.HIT_ARROW;
         hitSoundPitch = 0.7f;

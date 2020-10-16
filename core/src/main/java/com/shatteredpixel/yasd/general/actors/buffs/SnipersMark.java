@@ -102,7 +102,7 @@ public class SnipersMark extends FlavourBuff implements ActionIndicator.Action {
 	
 	@Override
 	public Image getIcon() {
-		return new ItemSprite(ItemSpriteSheet.SPIRIT_BOW, null);
+		return new ItemSprite(ItemSpriteSheet.Ranged.SPIRIT_BOW, null);
 	}
 	
 	@Override

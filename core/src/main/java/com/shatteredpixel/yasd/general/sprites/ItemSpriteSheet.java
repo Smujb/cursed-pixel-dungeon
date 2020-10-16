@@ -91,7 +91,6 @@ public class ItemSpriteSheet {
 	public static final int DEWDROP         = UNCOLLECTIBLE+1;
 	public static final int PETAL           = UNCOLLECTIBLE+2;
 	public static final int SANDBAG         = UNCOLLECTIBLE+3;
-	public static final int SPIRIT_ARROW    = UNCOLLECTIBLE+4;
 	
 	public static final int GUIDE_PAGE      = UNCOLLECTIBLE+6;
 	public static final int ALCH_PAGE       = UNCOLLECTIBLE+7;
@@ -103,7 +102,6 @@ public class ItemSpriteSheet {
 		assignItemRect(DEWDROP,     10, 10);
 		assignItemRect(PETAL,       8,  8);
 		assignItemRect(SANDBAG,     10, 10);
-		assignItemRect(SPIRIT_ARROW,11, 11);
 		
 		assignItemRect(GUIDE_PAGE,  10, 11);
 		assignItemRect(ALCH_PAGE,   10, 11);
@@ -240,10 +238,10 @@ public class ItemSpriteSheet {
 		public static final int KATANA 			 = WEAPON+14;
 		public static final int RUNIC_BLADE		 = WEAPON+15;
 		public static final int QUATERSTAFF		 = WEAPON+16;
-		public static final int CROSSBOW     	 = WEAPON+17;
+		//TODO WEAPON+17
 		public static final int WORSE_ENCHANT    = WEAPON+18;
 		public static final int INSCRIBED_KNIFE  = WEAPON+19;
-		public static final int SWIFT_CROSSBOW   = WEAPON+20;
+		//TODO WEAPON+20
 		public static final int SICKLE           = WEAPON+21;
 		public static final int HOE              = WEAPON+22;
 		public static final int RAPIER           = WEAPON+23;
@@ -304,12 +302,30 @@ public class ItemSpriteSheet {
 		}
 
 		public static final int PLASMA              = WANDS_ROW_2+0;
-		public static final int DARKNESS = WANDS_ROW_2+1;
+		public static final int DARKNESS 			= WANDS_ROW_2+1;
 		public static final int ICE_BARRIER         = WANDS_ROW_2+2;
 		public static final int PERSUASION          = WANDS_ROW_2+3;
 		public static final int DAMNATION           = WANDS_ROW_2+4;
 		public static final int THORNVINES          = WANDS_ROW_2+5;
 		public static final int LIFE_DRAIN          = WANDS_ROW_2+6;
+	}
+
+	public static class Ranged {
+		private static final int RANGED_ROW_1 =                           xy(1, 51);
+		//...
+		//...
+		private static final int RANGED_AMMO =                           xy(1, 55);
+
+		public static final int CROSSBOW = 			RANGED_ROW_1+0;
+		public static final int SWIFT_CROSSBOW =    RANGED_ROW_1+1;
+		//...
+		public static final int SPIRIT_BOW =    RANGED_ROW_1+6;
+
+
+		public static final int BOLT = RANGED_AMMO+0;
+
+		public static final int SPIRIT_ARROW = RANGED_AMMO+3;
+
 	}
 
 	public static class Armors {
@@ -347,7 +363,6 @@ public class ItemSpriteSheet {
 	//8 free slots
 
 	private static final int MISSILE_WEP    =                               xy(1, 10);  //16 slots. 3 per tier + boomerang
-	public static final int SPIRIT_BOW      = MISSILE_WEP+0;
 	
 	public static final int DART            = MISSILE_WEP+1;
 	public static final int THROWING_KNIFE  = MISSILE_WEP+2;
@@ -370,7 +385,6 @@ public class ItemSpriteSheet {
 	public static final int FORCE_CUBE      = MISSILE_WEP+15;
 	
 	static{
-		assignItemRect(SPIRIT_BOW,      16, 16);
 		
 		assignItemRect(DART,            15, 15);
 		assignItemRect(THROWING_KNIFE,  12, 13);

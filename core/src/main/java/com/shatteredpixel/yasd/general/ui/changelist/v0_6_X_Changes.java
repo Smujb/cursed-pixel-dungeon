@@ -239,7 +239,7 @@ public class v0_6_X_Changes {
 				"_-_ Hero select is now a window, offering more flexibility of where games can be started\n" +
 				"_-_ More details are now shown for games in progress before they are loaded"));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Weapons.CROSSBOW, null), "New Weapons",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.Ranged.CROSSBOW, null), "New Weapons",
 				"Three new weapons have been added!\n" +
 				"\n" +
 				"Throwing spears are a basic tier 3 missile getWeapons, fishing spears have been reduced to tier 2. Tiers 2-5 now each have a basic missile getWeapons.\n" +
