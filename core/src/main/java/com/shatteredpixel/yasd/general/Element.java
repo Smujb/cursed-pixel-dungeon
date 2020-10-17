@@ -51,7 +51,7 @@ import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.ammo.Arrow;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -217,7 +217,7 @@ public enum Element {
 					attack.call();
 				} else {
 					((MissileSprite) ch.sprite.parent.recycle(MissileSprite.class)).
-							reset(ch.pos, cell, new ThrowingKnife(), attack);
+							reset(ch.pos, cell, new Arrow(), attack);
 				}
 				break;
 			case MAGICAL:
