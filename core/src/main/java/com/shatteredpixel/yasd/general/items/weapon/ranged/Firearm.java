@@ -13,6 +13,9 @@ public class Firearm extends RangedWeapon {
 
     {
         image = ItemSpriteSheet.Ranged.RIFLE;
+
+        //Bullets are super fast.
+        speed = 600f;
     }
 
     @Override
