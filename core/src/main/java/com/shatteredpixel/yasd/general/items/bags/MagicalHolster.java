@@ -30,7 +30,8 @@ package com.shatteredpixel.yasd.general.items.bags;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.bombs.Bomb;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.RangedWeapon;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.ammo.Ammo;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class MagicalHolster extends Bag {
@@ -44,7 +45,7 @@ public class MagicalHolster extends Bag {
 	
 	@Override
 	public boolean canHold( Item item ) {
-		if (item instanceof Wand || item instanceof MissileWeapon || item instanceof Bomb){
+		if (item instanceof Wand || item instanceof RangedWeapon || item instanceof Ammo || item instanceof Bomb){
 			return super.canHold(item);
 		} else {
 			return false;
@@ -62,8 +63,6 @@ public class MagicalHolster extends Bag {
 		for (Item item : items) {
 			if (item instanceof Wand) {
 				((Wand)item).stopCharging();
-			} else if (item instanceof MissileWeapon){
-				((MissileWeapon) item).holster = false;
 			}
 		}
 	}
