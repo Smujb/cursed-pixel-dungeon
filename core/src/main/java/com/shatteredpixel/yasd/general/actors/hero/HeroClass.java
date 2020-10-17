@@ -72,8 +72,6 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.InscribedKnife;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MegaStick;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.HeroSelectScene;
 import com.watabou.noosa.Image;
@@ -225,10 +223,7 @@ public enum HeroClass {
 		}
 		RoundShield shield = (RoundShield) new RoundShield().identify();
 		hero.belongings.miscs[1] = shield;
-		ThrowingStone stones = new ThrowingStone();
-		stones.quantity(3).collect();
 		Dungeon.quickslot.setSlot(1, shield);
-		Dungeon.quickslot.setSlot(2, stones);
 
 		new BrokenSeal().collect();
 		
@@ -261,11 +256,6 @@ public enum HeroClass {
 		if (hero.belongings.miscs[0] == null) {
 			hero.belongings.miscs[0] = (KindofMisc) new Dagger().identify();
 		}
-
-		ThrowingKnife knives = new ThrowingKnife();
-		knives.quantity(3).collect();
-
-		Dungeon.quickslot.setSlot(1, knives);
 		
 		new ScrollOfMagicMapping().identify();
 		new PotionOfInvisibility().identify();
