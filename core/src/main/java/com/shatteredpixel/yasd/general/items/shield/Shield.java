@@ -418,6 +418,8 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
         private Shield shield;
 
+        private static final String SHIELD = "shield";
+
         @Override
         public boolean act() {
             //See Hero.ready(), detaches the buff when the hero can move again.
@@ -442,6 +444,18 @@ public abstract class Shield extends KindofMisc implements Enchantable {
             if (shield != null) {
                 shield.affectEnemy(enemy, parry);
             }
+        }
+
+        @Override
+        public void storeInBundle(Bundle bundle) {
+            super.storeInBundle(bundle);
+            bundle.put(SHIELD, shield);
+        }
+
+        @Override
+        public void restoreFromBundle(Bundle bundle) {
+            super.restoreFromBundle(bundle);
+            shield = (Shield) bundle.get(SHIELD);
         }
     }
 

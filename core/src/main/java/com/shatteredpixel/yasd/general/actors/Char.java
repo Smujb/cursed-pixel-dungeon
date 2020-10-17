@@ -375,8 +375,9 @@ public abstract class Char extends Actor {
 			if (dmg < 0) {
 				dmg = 0;
 			}
-			ParryBuff parry = enemy.buff(ParryBuff.class);
-			if (parry != null) {
+			ParryBuff[] parries = enemy.buffs(ParryBuff.class).toArray(new ParryBuff[0]);
+			if (parries.length > 0) {
+				ParryBuff parry = parries[0];
 				if (src.breaksShields()) {
 					enemy.sprite.showStatus(CharSprite.NEGATIVE, Messages.get(Shield.class, "parry_fail"));
 					parry.detach();

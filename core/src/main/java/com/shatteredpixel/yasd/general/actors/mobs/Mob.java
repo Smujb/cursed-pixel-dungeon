@@ -106,6 +106,7 @@ public abstract class Mob extends Char {
 	public float evasionFactor = 1f;
 	public float perceptionFactor = 1f;
 	public float stealthFactor = 1f;
+	protected boolean canParry = false;
 
 	public int range = 1;
 	public boolean hasMeleeAttack = true;
@@ -240,6 +241,13 @@ public abstract class Mob extends Char {
 		return Item.calcMobPower(level) * 10;
 	}
 
+	private static final float MAX_PARRY_CHARGE = 100f;
+	private float parryCharge = MAX_PARRY_CHARGE;
+
+	protected static int normalMaxDefense(int level) {
+		return Item.calcMobPower(level) * 40;
+	}
+
 	int findClosest(Char enemy, int pos) {
 		int closest = -1;
 		boolean[] passable = Dungeon.level.passable();
@@ -331,6 +339,16 @@ public abstract class Mob extends Char {
 			perception = affectNoticeSkill(enemy, normalPerception(level) * perceptionFactor);
 		}
 		return perception;
+	}
+
+
+
+	public int maxDefense() {
+		return normalMaxDefense(level);
+	}
+
+	public int defense() {
+		return Math.round(maxDefense() * (parryCharge/MAX_PARRY_CHARGE));
 	}
 
 	public CharSprite sprite() {
@@ -729,6 +747,11 @@ public abstract class Mob extends Char {
 		if ( buff(Adrenaline.class) != null) delay /= 1.5f;
 		return delay;
 	}
+
+	protected void doParry() {
+		Buff.affect(this, Parry.class).setMob(this);
+		spendAndNext(Actor.TICK);
+	}
 	
 	protected boolean doAttack( Char enemy ) {
 
@@ -1030,9 +1053,51 @@ public abstract class Mob extends Char {
 		GLog.negative( "%s: \"%s\" ", Messages.titleCase(name()), str );
 	}
 
-	//returns true when a mob sees the hero, and is currently targeting them.
-	public boolean focusingHero() {
-		return enemySeen && (target == Dungeon.hero.pos);
+	public static class Parry extends ParryBuff {
+
+		private Mob mob;
+
+		private static final String MOB = "mob";
+
+		public void setMob(Mob mob) {
+			this.mob = mob;
+		}
+
+		@Override
+		public int absorbDamage(DamageSrc src, int damage) {
+			if (mob == null) return damage;
+			detach();
+			int defense = mob.defense();
+			if (defense >= damage) {
+				float chargeToLose = (damage / (float) defense) * MAX_PARRY_CHARGE;
+				mob.parryCharge -= chargeToLose;
+				return 0;
+			} else {
+				damage -= defense;
+				mob.parryCharge = 0;
+				return damage;
+			}
+		}
+
+		@Override
+		public void affectEnemy(Char enemy, boolean parry) {
+			if (mob == null) return;
+			int damage = mob.damageRoll()/2;
+			if (parry) damage *= 2;
+			enemy.damage(damage, mob);
+		}
+
+		@Override
+		public void storeInBundle(Bundle bundle) {
+			super.storeInBundle(bundle);
+			bundle.put(MOB, mob);
+		}
+
+		@Override
+		public void restoreFromBundle(Bundle bundle) {
+			super.restoreFromBundle(bundle);
+			mob = (Mob) bundle.get(MOB);
+		}
 	}
 
 	public interface AiState {
@@ -1254,6 +1319,11 @@ public abstract class Mob extends Char {
 			if (enemyInFOV && !isCharmedBy( enemy ) && canAttack( enemy ) && threshold()) {
 
 				target = enemy.pos;
+
+				if (Dungeon.level.adjacent(pos, enemy.pos) && canParry && Random.Float() < (parryCharge/MAX_PARRY_CHARGE)) {
+					doParry();
+					return true;
+				}
 				return doAttack( enemy );
 
 			} else {
