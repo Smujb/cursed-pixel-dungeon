@@ -34,6 +34,7 @@ import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
+import com.shatteredpixel.yasd.general.actors.buffs.ParryBuff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.BrokenSeal;
@@ -45,9 +46,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
-import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.shatteredpixel.yasd.general.utils.GLog;
-import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Bundle;
@@ -415,7 +414,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         return Weapon.Enchantment.getName(this.getClass(), enchantment, cursedKnown);
     }
 
-    public static class Parry extends Buff {
+    public static class Parry extends ParryBuff {
 
         private Shield shield;
 
@@ -443,17 +442,6 @@ public abstract class Shield extends KindofMisc implements Enchantable {
             if (shield != null) {
                 shield.affectEnemy(enemy, parry);
             }
-        }
-
-        @Override
-        public int icon() {
-            return BuffIndicator.ARMOR;
-        }
-
-        @Override
-        public void tintIcon(Image icon) {
-            super.tintIcon(icon);
-            icon.hardlight(0.5f, 0.5f, 0.5f);
         }
     }
 

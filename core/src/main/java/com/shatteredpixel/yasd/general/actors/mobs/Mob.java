@@ -45,6 +45,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Charm;
 import com.shatteredpixel.yasd.general.actors.buffs.Corrosion;
 import com.shatteredpixel.yasd.general.actors.buffs.Corruption;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
+import com.shatteredpixel.yasd.general.actors.buffs.ParryBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Sleep;
 import com.shatteredpixel.yasd.general.actors.buffs.SoulMark;
 import com.shatteredpixel.yasd.general.actors.buffs.Terror;
@@ -58,7 +59,6 @@ import com.shatteredpixel.yasd.general.items.allies.Soul;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
-import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Lucky;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.levels.Level;
@@ -339,7 +339,7 @@ public abstract class Mob extends Char {
 	
 	@Override
 	protected boolean act() {
-		Buff.detach(buff(Shield.Parry.class));
+		Buff.detach(buff(ParryBuff.class));
 		super.act();
 		
 		if (Dungeon.level.liquid(pos) && elementalType() == Element.WATER) {

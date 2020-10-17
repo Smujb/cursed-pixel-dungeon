@@ -68,6 +68,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.MindVision;
 import com.shatteredpixel.yasd.general.actors.buffs.Momentum;
 import com.shatteredpixel.yasd.general.actors.buffs.Ooze;
 import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
+import com.shatteredpixel.yasd.general.actors.buffs.ParryBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Poison;
 import com.shatteredpixel.yasd.general.actors.buffs.Preparation;
 import com.shatteredpixel.yasd.general.actors.buffs.ShieldBuff;
@@ -374,7 +375,7 @@ public abstract class Char extends Actor {
 			if (dmg < 0) {
 				dmg = 0;
 			}
-			Shield.Parry parry = enemy.buff(Shield.Parry.class);
+			ParryBuff parry = enemy.buff(ParryBuff.class);
 			if (parry != null) {
 				if (src.breaksShields()) {
 					enemy.sprite.showStatus(CharSprite.NEGATIVE, Messages.get(Shield.class, "parry_fail"));

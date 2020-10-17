@@ -54,6 +54,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.MindVision;
 import com.shatteredpixel.yasd.general.actors.buffs.Momentum;
 import com.shatteredpixel.yasd.general.actors.buffs.MpRegen;
 import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
+import com.shatteredpixel.yasd.general.actors.buffs.ParryBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Preparation;
 import com.shatteredpixel.yasd.general.actors.buffs.Regeneration;
 import com.shatteredpixel.yasd.general.actors.buffs.SnipersMark;
@@ -93,7 +94,6 @@ import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
-import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
@@ -747,7 +747,7 @@ public class Hero extends Char {
 		AttackIndicator.updateStates();
 
 		GameScene.ready();
-		Buff.detach(buff(Shield.Parry.class));
+		Buff.detach(buff(ParryBuff.class));
 	}
 
 	public void interrupt() {
