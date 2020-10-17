@@ -102,12 +102,12 @@ public class AboutScene extends PixelScene {
 
 		CreditsBlock assets = new CreditsBlock(true,
 				Window.TITLE_COLOR,
-				"Assets for Yet Another Shattered Dungeon",
+				"Assets for Yet Another Shattered Dungeon and Cursed Pixel Dungeon",
 				null,
-				"Most of the assets are inherited from Shattered Pixel Dungeon" +
+				"Many of the assets are inherited from Shattered Pixel Dungeon" +
 						"\nAll of the soundtracks not in Shattered were made by the developer" +
 						"\nA few of the sprites, such as Wand of Flow, are also made by the developer" +
-						"\nMost original graphics are made by the user _Ømicrónrg9_ from my Discord server, as well as a few by other members" +
+						"\nMost original graphics are made by the users _Ømicrónrg9_ and _krauzxe_ from my Discord server, as well as a few by other members" +
 						"\nVarious images and inspiration are also taken from _Yet Another Pixel Dungeon_",
 				null,
 				null);
