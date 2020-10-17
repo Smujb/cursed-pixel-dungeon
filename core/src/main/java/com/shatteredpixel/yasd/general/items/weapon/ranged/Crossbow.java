@@ -16,6 +16,10 @@ public class Crossbow extends RangedWeapon {
         hitSound = Assets.Sounds.HIT_ARROW;
         hitSoundPitch = 0.7f;
         speed = 400f;
+
+        reloadTime = 3f;
+        curAmmo = MAX_AMMO = 6;
+        damageMultiplier = 1.5f;
     }
 
     @Override

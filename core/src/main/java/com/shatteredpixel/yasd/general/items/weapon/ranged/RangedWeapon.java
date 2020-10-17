@@ -2,7 +2,6 @@ package com.shatteredpixel.yasd.general.items.weapon.ranged;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.PinCushion;
@@ -81,7 +80,7 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
     };
 
     private void doReload(int amount) {
-        curUser.spend(Actor.TICK);
+        curUser.spend(reloadTime);
         curUser.busy();
 
         Sample.INSTANCE.play(Assets.Sounds.TRAP);
@@ -123,18 +122,20 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
     protected int range = 10;
     protected float damageMultiplier = 1f;
 
+    protected float reloadTime = 1f;
+
     @Override
     public int min(float lvl) {
-        return Math.round(6 * lvl * damageMultiplier);   //level scaling
+        return Math.round(8 * lvl * damageMultiplier);   //level scaling
     }
 
     @Override
     public int max(float lvl) {
-        return Math.round(12 * lvl * damageMultiplier);   //level scaling
+        return Math.round(16 * lvl * damageMultiplier);   //level scaling
     }
 
     protected int MAX_AMMO = 8;
-    private int curAmmo = MAX_AMMO;
+    protected int curAmmo = MAX_AMMO;
 
     public abstract Class<? extends Ammo> ammoClass();
 

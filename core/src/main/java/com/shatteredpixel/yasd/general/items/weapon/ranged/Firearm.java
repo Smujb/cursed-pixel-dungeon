@@ -17,6 +17,9 @@ public class Firearm extends RangedWeapon {
         //Bullets are super fast.
         speed = 600f;
         range = 16;
+
+        curAmmo = MAX_AMMO = 4;
+        damageMultiplier = 1.25f;
     }
 
     @Override
