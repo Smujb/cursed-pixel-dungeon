@@ -227,27 +227,13 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Sickle;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Staff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.Bolas;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.FishingSpear;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.ForceCube;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.HeavyBoomerang;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.Javelin;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.Kunai;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.Shuriken;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingClub;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingHammer;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingSpear;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.Tomahawk;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.Trident;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Bow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Crossbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Firearm;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.ImpactCrossbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Longbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.MarksmansBow;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.PrecisionRifle;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.RangedWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.ShredderCrossbow;
 import com.shatteredpixel.yasd.general.plants.Blindweed;
@@ -281,7 +267,6 @@ public class Generator {
 		RANGED 			( 3, 	  RangedWeapon.class),
 		DRAGON_PENDANT  ( 3,    DragonPendant.class ),
 
-		MISSILE 		( 3,    MissileWeapon.class ),
 		RING	( 1,    Ring.class ),
 		ARTIFACT( 1,    Artifact.class),
 
@@ -591,25 +576,6 @@ public class Generator {
 			};
 			SHIELD.probs = new float[] { 3, 2, 1, 2, 2, 2, 3, 2, 2, 3, 1, 2, 2, 3, 1 };
 
-			//see Generator.randomMissile
-			MISSILE.classes = new Class<?>[]{
-					ThrowingStone.class,
-					ThrowingKnife.class,
-					FishingSpear.class,
-					ThrowingClub.class,
-					Shuriken.class,
-					ThrowingSpear.class,
-					Kunai.class,
-					Bolas.class,
-					Javelin.class,
-					Tomahawk.class,
-					HeavyBoomerang.class,
-					Trident.class,
-					ThrowingHammer.class,
-					ForceCube.class
-			};
-			MISSILE.probs = new float[]{0, 0, 6, 5, 4, 6, 5, 4, 6, 5, 4, 6, 5, 4};
-
 			RANGED.classes = new Class<?>[] {
 					Bow.class,
 					Firearm.class,
@@ -617,9 +583,10 @@ public class Generator {
 					MarksmansBow.class,
 					ShredderCrossbow.class,
 					ImpactCrossbow.class,
-					Longbow.class
+					Longbow.class,
+					PrecisionRifle.class
 			};
-			RANGED.probs = new float[]{3, 3, 3, 2, 1, 3, 2};
+			RANGED.probs = new float[]{3, 3, 3, 2, 1, 3, 2, 2};
 
 			FOOD.classes = new Class<?>[]{
 					Food.class,
@@ -694,8 +661,6 @@ public class Generator {
 				return randomShield();
 			case WEAPON:
 				return randomWeapon();
-			case MISSILE:
-				return randomMissile();
 			case ARTIFACT:
 				Item item = randomArtifact();
 				//if we're out of artifacts, return a ring instead.
@@ -740,11 +705,8 @@ public class Generator {
 		return w;
 	}
 
-	public static MissileWeapon randomMissile() {
-
-		MissileWeapon w = (MissileWeapon)Reflection.newInstance(Category.MISSILE.classes[Random.chances(Category.MISSILE.probs)]);
-		w.random();
-		return w;
+	public static RangedWeapon randomRanged() {
+		return (RangedWeapon) random(Category.RANGED);
 	}
 
 	//enforces uniqueness of artifacts throughout a run.

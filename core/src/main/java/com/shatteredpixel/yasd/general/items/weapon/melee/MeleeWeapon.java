@@ -31,7 +31,6 @@ import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
@@ -48,8 +47,6 @@ public class MeleeWeapon extends Weapon implements Attackable {
 
 	public float damageFactor = 1f;
 	public float defenseMultiplier = 0f;
-
-	public boolean sneakBenefit = false;
 
 	@Override
 	public int min(float lvl) {
@@ -90,28 +87,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 
 	@Override
 	public int damageRoll(Char owner) {
-
-		int damage = augment.damageFactor(super.damageRoll( owner ));
-
-		if (sneakBenefit) {
-			Char enemy = null;
-			float bonus = 0;
-			if (curUser instanceof Hero) {
-				enemy = ((Hero) curUser).enemy();
-			} else if (curUser instanceof Mob) {
-				enemy = ((Mob) curUser).getEnemy();
-			}
-			if (enemy != null) {
-				bonus = 1f-enemy.noticeChance(curUser);
-			}
-			if (enemy instanceof Mob && ((Mob) enemy).surprisedBy(curUser) && curUser.canSurpriseAttack()) {
-				damage *= (2 + bonus);
-				if (damage < max()) {
-					damage = max();
-				}
-			}
-		}
-		return damage;
+		return augment.damageFactor(super.damageRoll( owner ));
 	}
 
 	@Override

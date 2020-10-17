@@ -68,6 +68,76 @@ public class CPDGame extends Game {
 	public CPDGame(PlatformSupport platform ) {
 		super( sceneClass == null ? WelcomeScene.class : sceneClass, platform );
 
+		//Replaces missile weapons and crossbow "melee" weapons with ranged weapons
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.Crossbow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.melee.Crossbow" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.ShredderCrossbow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.melee.SwiftCrossbow" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.Trident" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.ShredderCrossbow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.Tomahawk" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingSpear");
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.ImpactCrossbow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingHammer" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.ImpactCrossbow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingClub" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.Shuriken" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.Kunai" );
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.Longbow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.Javelin" );
+
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.HeavyBoomerang" );
+
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.ImpactCrossbow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.ForceCube" );
+
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.FishingSpear" );
+
+
+		com.watabou.utils.Bundle.addAlias(
+				com.shatteredpixel.yasd.general.items.weapon.ranged.ShredderCrossbow.class,
+				"com.shatteredpixel.yasd.general.items.weapon.missiles.Bolas" );
+
+
 
 		//Replaces removed "shield" weapon and armours with new shields
 		com.watabou.utils.Bundle.addAlias(

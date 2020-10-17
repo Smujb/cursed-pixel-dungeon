@@ -1,6 +1,7 @@
 package com.shatteredpixel.yasd.general.items.weapon.ranged;
 
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Rapier;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -11,6 +12,8 @@ public class ImpactCrossbow extends Crossbow {
 
         damageMultiplier = 1.8f;
         range = 3;
+
+        statScaling.add(Hero.HeroStat.RESILIENCE);
     }
 
     @Override

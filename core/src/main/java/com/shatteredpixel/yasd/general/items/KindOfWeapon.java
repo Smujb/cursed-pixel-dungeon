@@ -32,6 +32,8 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.utils.BArray;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
@@ -44,6 +46,7 @@ abstract public class KindOfWeapon extends KindofMisc {
 	protected float hitSoundPitch = 1f;
 
 	public boolean canSurpriseAttack = true;
+	public boolean sneakBenefit = false;
 
 	public boolean breaksArmor(Char owner) {
 		return false;
@@ -108,7 +111,29 @@ abstract public class KindOfWeapon extends KindofMisc {
 	abstract public int max(float lvl);
 
 	public int damageRoll( Char owner ) {
-		return Random.NormalIntRange(min(), max());
+		return affectDamage(Random.NormalIntRange(min(), max()));
+	}
+
+	public int affectDamage(int damage) {
+		if (sneakBenefit) {
+			Char enemy = null;
+			float bonus = 0;
+			if (curUser instanceof Hero) {
+				enemy = ((Hero) curUser).enemy();
+			} else if (curUser instanceof Mob) {
+				enemy = ((Mob) curUser).getEnemy();
+			}
+			if (enemy != null) {
+				bonus = 1f-enemy.noticeChance(curUser);
+			}
+			if (enemy instanceof Mob && ((Mob) enemy).surprisedBy(curUser) && curUser.canSurpriseAttack()) {
+				damage *= (2 + bonus);
+				if (damage < max()) {
+					damage = max();
+				}
+			}
+		}
+		return damage;
 	}
 	
 	public float accuracyFactor( Char owner ) {

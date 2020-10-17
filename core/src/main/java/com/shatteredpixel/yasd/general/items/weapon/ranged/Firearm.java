@@ -20,6 +20,7 @@ public class Firearm extends RangedWeapon {
 
         curAmmo = MAX_AMMO = 4;
         damageMultiplier = 1.25f;
+        range = 8;
     }
 
     @Override

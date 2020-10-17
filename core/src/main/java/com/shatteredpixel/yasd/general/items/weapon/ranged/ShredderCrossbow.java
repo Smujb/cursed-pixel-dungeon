@@ -3,6 +3,7 @@ package com.shatteredpixel.yasd.general.items.weapon.ranged;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class ShredderCrossbow extends Crossbow {
@@ -15,6 +16,8 @@ public class ShredderCrossbow extends Crossbow {
         DLY = 0.4f;
 
         curAmmo = MAX_AMMO = 10;
+
+        statScaling.add(Hero.HeroStat.SUPPORT);
     }
 
     @Override

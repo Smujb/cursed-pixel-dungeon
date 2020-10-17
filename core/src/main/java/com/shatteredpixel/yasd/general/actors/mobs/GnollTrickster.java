@@ -35,15 +35,14 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Burning;
 import com.shatteredpixel.yasd.general.actors.buffs.Poison;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Ghost;
-import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.ammo.Arrow;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.ammo.Bolt;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.ammo.Bullet;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.GnollTricksterSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
-
-import org.jetbrains.annotations.NotNull;
 
 public class GnollTrickster extends Gnoll {
 
@@ -61,7 +60,7 @@ public class GnollTrickster extends Gnoll {
 		state = WANDERING;
 
 		//at half quantity, see createLoot()
-		loot = Generator.Category.MISSILE;
+		loot = Random.oneOf(new Arrow(), new Bolt(), new Bullet());
 		lootChance = 1f;
 
 		properties.add(Property.MINIBOSS);
@@ -104,9 +103,8 @@ public class GnollTrickster extends Gnoll {
 	
 	@Override
 	protected Item createLoot() {
-		MissileWeapon drop = (MissileWeapon)super.createLoot();
-		//half quantity, rounded up
-		drop.quantity((drop.quantity()+1)/2);
+		Item drop = super.createLoot();
+		drop.quantity(2);
 		return drop;
 	}
 	

@@ -199,7 +199,7 @@ public class ShopRoom extends SpecialRoom {
 					toAdd = Generator.random(Generator.Category.WAND);
 					break;
 				case 3:
-					toAdd = Generator.random(Generator.Category.MISSILE);
+					toAdd = Generator.random(Generator.Category.RANGED);
 					break;
 				case 4:
 					toAdd = Generator.random(Generator.Category.DRAGON_PENDANT);

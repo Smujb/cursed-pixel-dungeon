@@ -81,7 +81,7 @@ public class ArmoryRoom extends LockedRoom {
 			case 2:
 				return Generator.randomShield();
 			case 3: default:
-				return Generator.randomMissile();
+				return Generator.randomRanged();
 		}
 	}
 }

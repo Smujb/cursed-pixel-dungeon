@@ -195,7 +195,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			if (w instanceof MeleeWeapon) {
 				n = Generator.randomWeapon();
 			} else {
-				n = Generator.randomMissile();
+				n = Generator.randomRanged();
 			}
 		} while (Challenges.isItemBlocked(n) || n.getClass() == w.getClass());
 		

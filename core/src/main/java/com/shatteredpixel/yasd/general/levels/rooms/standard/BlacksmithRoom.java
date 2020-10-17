@@ -63,7 +63,7 @@ public class BlacksmithRoom extends StandardRoom {
 				Generator.random( Random.oneOf(
 						Generator.Category.SHIELD,
 						Generator.Category.WEAPON,
-						Generator.Category.MISSILE
+						Generator.Category.RANGED
 				) ), pos );
 		}
 		
