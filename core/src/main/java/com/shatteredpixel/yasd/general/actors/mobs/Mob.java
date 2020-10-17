@@ -1081,6 +1081,7 @@ public abstract class Mob extends Char {
 		}
 		if (notice(enemy)) {
 			increaseSuspicion(1);
+			if (suspicion <= SUSPICION_THRESHOLD) checkEnemy(enemy);
 			return true;
 		} else {
 			if (!fieldOfView(enemy.pos)) {
