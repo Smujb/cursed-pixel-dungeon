@@ -96,6 +96,10 @@ abstract public class KindOfWeapon extends KindofMisc {
 		return attack;
 	}
 
+	protected boolean canAttack(int pos) {
+		return canReach(curUser, pos);
+	}
+
 	public void fx(Char attacker, int pos, Callback callback) {
 		callback.call();
 	}

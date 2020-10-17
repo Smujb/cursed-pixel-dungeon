@@ -110,6 +110,11 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
     }
 
     @Override
+    protected boolean canAttack(int pos) {
+        return super.canAttack(pos) && curAmmo > 0;
+    }
+
+    @Override
     public boolean doAttack(Char attacker, Char enemy) {
         loseAmmo(1);
         return super.doAttack(attacker, enemy);

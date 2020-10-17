@@ -147,7 +147,7 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 			if (cell != null && curUser != null) {
 				Char ch = Actor.findChar(cell);
 				if (ch != null) {
-					if (Weapon.this.canReach(curUser, cell)) {
+					if (Weapon.this.canAttack(cell)) {
 						Weapon.this.doAttack(curUser, ch);
 					} else {
 						GLog.info(Messages.get(Weapon.this, "out_of_range"));
