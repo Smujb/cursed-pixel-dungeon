@@ -242,6 +242,14 @@ import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingSpear;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.Tomahawk;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.Trident;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.Bow;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.Crossbow;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.Firearm;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.ImpactCrossbow;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.Longbow;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.MarksmansBow;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.RangedWeapon;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.ShredderCrossbow;
 import com.shatteredpixel.yasd.general.plants.Blindweed;
 import com.shatteredpixel.yasd.general.plants.Dreamfoil;
 import com.shatteredpixel.yasd.general.plants.Earthroot;
@@ -270,9 +278,10 @@ public class Generator {
 		SHIELD			( 3,    Shield.class ),
 		WEAPON			( 3,    MeleeWeapon.class),
 		WAND			( 3,    Wand.class ),
-		MISSILE 		( 3,    MissileWeapon.class ),
+		RANGED 			( 3, 	  RangedWeapon.class),
 		DRAGON_PENDANT  ( 3,    DragonPendant.class ),
 
+		MISSILE 		( 3,    MissileWeapon.class ),
 		RING	( 1,    Ring.class ),
 		ARTIFACT( 1,    Artifact.class),
 
@@ -600,6 +609,17 @@ public class Generator {
 					ForceCube.class
 			};
 			MISSILE.probs = new float[]{0, 0, 6, 5, 4, 6, 5, 4, 6, 5, 4, 6, 5, 4};
+
+			RANGED.classes = new Class<?>[] {
+					Bow.class,
+					Firearm.class,
+					Crossbow.class,
+					MarksmansBow.class,
+					ShredderCrossbow.class,
+					ImpactCrossbow.class,
+					Longbow.class
+			};
+			RANGED.probs = new float[]{3, 3, 3, 2, 1, 3, 2};
 
 			FOOD.classes = new Class<?>[]{
 					Food.class,

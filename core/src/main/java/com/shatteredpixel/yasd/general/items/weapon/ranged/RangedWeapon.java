@@ -92,9 +92,9 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
     public String info() {
         String info = "\n\n";
         if (isIdentified()) {
-            info += Messages.get(this, "stats_known", min(), max(), Math.round(reloadTime));
+            info += Messages.get(this, "stats_known", min(), max(), range, Math.round(reloadTime));
         } else {
-            info += Messages.get(this, "stats_unknown", min(1), max(1), Math.round(reloadTime));
+            info += Messages.get(this, "stats_unknown", min(1), max(1), range, Math.round(reloadTime));
         }
         return desc() + info + statsReqDesc();
     }

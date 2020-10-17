@@ -52,10 +52,10 @@ import com.shatteredpixel.yasd.general.items.bags.ScrollHolder;
 import com.shatteredpixel.yasd.general.items.bags.VelvetPouch;
 import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.food.SmallRation;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.items.powers.Blink;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
@@ -74,9 +74,6 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MegaStick;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone;
-import com.shatteredpixel.yasd.general.items.weapon.ranged.Bow;
-import com.shatteredpixel.yasd.general.items.weapon.ranged.Crossbow;
-import com.shatteredpixel.yasd.general.items.weapon.ranged.Firearm;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.HeroSelectScene;
 import com.watabou.noosa.Image;
@@ -192,12 +189,8 @@ public enum HeroClass {
 		new TomeOfMastery().collect();
 		new MegaStick().identify().collect();
 		new DeveloperItem().collect();
-		new Crossbow().identify().collect();
-		new Bow().identify().collect();
-		new Bow().identify().collect();
-		new Firearm().identify().collect();
 
-		for (Class<?> itemClass : Generator.Category.WEAPON.classes) {
+		for (Class<?> itemClass : Generator.Category.RANGED.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);
 			if (item != null) {
 				item.identify().collect();

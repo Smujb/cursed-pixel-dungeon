@@ -50,6 +50,7 @@ import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.effects.particles.SmokeParticle;
 import com.shatteredpixel.yasd.general.effects.particles.SnowParticle;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.MarksmansBow;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -629,7 +630,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 		
 		super.update();
 
-		if (ch != null && ch.alignment == Char.Alignment.ALLY && Dungeon.hero.heroClass == HeroClass.PRIESTESS) {
+		if (ch != null && ch.isAlive() && ((ch.alignment == Char.Alignment.ALLY && Dungeon.hero.heroClass == HeroClass.PRIESTESS) || ch.buff(MarksmansBow.Marked.class) != null)) {
 			visible = true;
 		}
 		

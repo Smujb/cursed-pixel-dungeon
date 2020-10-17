@@ -315,8 +315,6 @@ public class ItemSpriteSheet {
 
 	public static class Ranged {
 		private static final int RANGED_ROW_1 =                           xy(1, 51);
-		//...
-		//...
 		private static final int RANGED_AMMO =                           xy(1, 55);
 
 		public static final int CROSSBOW = 			RANGED_ROW_1+0;
@@ -327,14 +325,17 @@ public class ItemSpriteSheet {
 		public static final int SPIRIT_BOW =    	RANGED_ROW_1+6;
 		public static final int BOW	 =    			RANGED_ROW_1+7;
 		//..
-		public static final int MARKSMAN_BOW =    	RANGED_ROW_1+11;
+		public static final int LONGBOW		 			= RANGED_ROW_1+9;
+		//..
+		public static final int MARKSMAN_BOW 			= RANGED_ROW_1+11;
+		public static final int SHREDDER_CROSSBOW 		= RANGED_ROW_1+13;
+		public static final int IMPACT_CROSSBOW 		= RANGED_ROW_1+14;
 
 
-		public static final int BOLT 	= RANGED_AMMO+0;
-		public static final int ARROW 	= RANGED_AMMO+1;
-		public static final int BULLET	= RANGED_AMMO+2;
-
-		public static final int SPIRIT_ARROW = RANGED_AMMO+3;
+		public static final int BOLT 			= RANGED_AMMO+0;
+		public static final int ARROW 			= RANGED_AMMO+1;
+		public static final int BULLET			= RANGED_AMMO+2;
+		public static final int SPIRIT_ARROW 	= RANGED_AMMO+3;
 
 	}
 
