@@ -125,7 +125,7 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
         PinCushion p = Buff.affect(enemy, PinCushion.class);
         Ammo projectile = Reflection.forceNewInstance(ammoClass());
         boolean attack = super.attack(attacker, enemy, guaranteed);
-        if (attack) {
+        if (attack && enemy.isAlive()) {
             p.stick(projectile);
         } else {
             Dungeon.level.drop(projectile, enemy.pos).sprite.drop();
