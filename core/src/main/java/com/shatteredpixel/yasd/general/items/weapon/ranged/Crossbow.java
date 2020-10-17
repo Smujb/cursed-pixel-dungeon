@@ -10,7 +10,7 @@ public class Crossbow extends RangedWeapon {
     {
         image = ItemSpriteSheet.Ranged.CROSSBOW;
 
-        hitSound = Assets.Sounds.HIT_ARROW;
+        hitSound = Assets.Sounds.ATK_CROSSBOW;
         hitSoundPitch = 0.7f;
         speed = 400f;
     }

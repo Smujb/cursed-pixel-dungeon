@@ -198,6 +198,7 @@ public class Assets {
 		public static final String HEALTH_WARN      = "sounds/health_warn.mp3";
 		public static final String HEALTH_CRITICAL  = "sounds/health_critical.mp3";
 		public static final String HIT_ARROW        = "sounds/hit_arrow.mp3";
+		public static final String BOW_STRETCH        = "sounds/bow_stretch.wav";
 
 		public static final String[] all = new String[]{
 				CLICK, BADGE, GOLD,
@@ -205,7 +206,7 @@ public class Assets {
 				OPEN, UNLOCK, ITEM, DEWDROP, STEP, WATER, GRASS, TRAMPLE, STURDY,
 
 				HIT, MISS, HIT_SLASH, HIT_STAB, HIT_CRUSH, HIT_MAGIC, HIT_STRONG, HIT_PARRY,
-				HIT_ARROW, ATK_SPIRITBOW, ATK_CROSSBOW, HEALTH_WARN, HEALTH_CRITICAL,
+				HIT_ARROW, ATK_SPIRITBOW, ATK_CROSSBOW, BOW_STRETCH, HEALTH_WARN, HEALTH_CRITICAL,
 
 				DESCEND, EAT, READ, LULLABY, DRINK, SHATTER, ZAP, LIGHTNING, LEVELUP, DEATH,
 

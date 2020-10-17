@@ -322,14 +322,17 @@ public class ItemSpriteSheet {
 		public static final int CROSSBOW = 			RANGED_ROW_1+0;
 		public static final int SWIFT_CROSSBOW =    RANGED_ROW_1+1;
 		public static final int HEAVY_PISTOL =    	RANGED_ROW_1+2;
-		//...
+		//..
+		public static final int RIFLE =		    	RANGED_ROW_1+5;
 		public static final int SPIRIT_BOW =    	RANGED_ROW_1+6;
 		public static final int BOW	 =    			RANGED_ROW_1+7;
 		//..
 		public static final int MARKSMAN_BOW =    	RANGED_ROW_1+11;
 
 
-		public static final int BOLT = RANGED_AMMO+0;
+		public static final int BOLT 	= RANGED_AMMO+0;
+		public static final int ARROW 	= RANGED_AMMO+1;
+		public static final int BULLET	= RANGED_AMMO+2;
 
 		public static final int SPIRIT_ARROW = RANGED_AMMO+3;
 
