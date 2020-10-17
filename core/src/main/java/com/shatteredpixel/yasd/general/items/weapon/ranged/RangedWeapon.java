@@ -50,7 +50,7 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
 
     public static RangedWeapon curWeapon = null;
 
-    private WndBag.Listener selector = new WndBag.Listener() {
+    private final WndBag.Listener selector = new WndBag.Listener() {
         @Override
         public void onSelect(Item item) {
             curWeapon = null;
