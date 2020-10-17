@@ -57,6 +57,7 @@ import com.shatteredpixel.yasd.general.items.spells.Recycle;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.RangedWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -106,7 +107,8 @@ public class WndBag extends WndTabbed {
 		RECYCLABLE,
 		NOT_EQUIPPED,
 		REPAIRABLE,
-		ATTACKABLE
+		ATTACKABLE,
+		RANGED_WEAPON_AMMO
 	}
 
 	protected static final int COLS_P    = 5;
@@ -432,13 +434,14 @@ public class WndBag extends WndTabbed {
 									mode == Mode.POTION && (item instanceof Potion) ||
 									mode == Mode.SCROLL && (item instanceof Scroll) ||
 									mode == Mode.UNIDED_POTION_OR_SCROLL && (!item.isIdentified() && (item instanceof Scroll || item instanceof Potion)) ||
-									mode == Mode.EQUIPMENT && (item instanceof EquipableItem || item instanceof Wand) ||
+									mode == Mode.EQUIPMENT && item instanceof EquipableItem ||
 									mode == Mode.ALCHEMY && Recipe.usableInRecipe(item) ||
 									mode == Mode.TRANMSUTABLE && ScrollOfTransmutation.canTransmute(item) ||
 									mode == Mode.NOT_EQUIPPED && !item.isEquipped(Dungeon.hero) ||
 									mode == Mode.EQUIPPED && item.isEquipped(Dungeon.hero) ||
 									mode == Mode.RECYCLABLE && Recycle.isRecyclable(item) ||
 									mode == Mode.ATTACKABLE && item instanceof Attackable ||
+									mode == Mode.RANGED_WEAPON_AMMO && RangedWeapon.curWeapon != null && (RangedWeapon.curWeapon.getClass().isInstance(item) || RangedWeapon.curWeapon.ammoClass().isInstance(item)) ||
 									mode == Mode.ALL
 
 							);

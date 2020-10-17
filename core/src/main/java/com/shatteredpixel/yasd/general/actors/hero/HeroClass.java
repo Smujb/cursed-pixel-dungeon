@@ -194,6 +194,7 @@ public enum HeroClass {
 		new DeveloperItem().collect();
 		new Crossbow().identify().collect();
 		new Bow().identify().collect();
+		new Bow().identify().collect();
 		new Firearm().identify().collect();
 
 		for (Class<?> itemClass : Generator.Category.WEAPON.classes) {

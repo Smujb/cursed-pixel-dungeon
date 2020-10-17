@@ -16,6 +16,7 @@ public class Firearm extends RangedWeapon {
 
         //Bullets are super fast.
         speed = 600f;
+        range = 16;
     }
 
     @Override

@@ -127,7 +127,7 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 			doAttack(curUser, enemy);
 			PinCushion pinCushion = enemy.buff(PinCushion.class);
 			if (pinCushion != null) {
-				MissileWeapon similar = pinCushion.getSimilar(this);
+				MissileWeapon similar = (MissileWeapon) pinCushion.getSimilar(this);
 				if (similar != null) {
 					if (!similar.mergeWithMisc(curUser)) {
 						similar.collect(curUser.belongings.backpack, curUser);

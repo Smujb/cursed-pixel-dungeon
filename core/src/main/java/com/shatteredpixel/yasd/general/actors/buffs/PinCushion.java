@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.actors.buffs;
 
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
 import com.watabou.utils.Bundle;
 
 import java.util.ArrayList;
@@ -37,9 +36,9 @@ import java.util.Collection;
 
 public class PinCushion extends Buff {
 
-	private ArrayList<MissileWeapon> items = new ArrayList<>();
+	private ArrayList<Item> items = new ArrayList<>();
 
-	public void stick(MissileWeapon projectile){
+	public void stick(Item projectile){
 		for (Item item : items){
 			if (item.isSimilar(projectile)){
 				item.merge(projectile);
@@ -49,8 +48,8 @@ public class PinCushion extends Buff {
 		items.add(projectile);
 	}
 
-	public MissileWeapon getSimilar(MissileWeapon projectile) {
-		for (MissileWeapon item : items){
+	public Item getSimilar(Item projectile) {
+		for (Item item : items){
 			if (item.isSimilar(projectile)){
 				items.remove(item);
 				return item;
@@ -76,7 +75,7 @@ public class PinCushion extends Buff {
 
 	@Override
 	public void restoreFromBundle( Bundle bundle) {
-		items = new ArrayList<>((Collection<MissileWeapon>) ((Collection<?>) bundle.getCollection(ITEMS)));
+		items = new ArrayList<>((Collection<Item>) ((Collection<?>) bundle.getCollection(ITEMS)));
 		super.restoreFromBundle( bundle );
 	}
 }
