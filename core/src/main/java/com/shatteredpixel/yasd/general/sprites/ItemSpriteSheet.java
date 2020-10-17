@@ -238,10 +238,10 @@ public class ItemSpriteSheet {
 		public static final int KATANA 			 = WEAPON+14;
 		public static final int RUNIC_BLADE		 = WEAPON+15;
 		public static final int QUATERSTAFF		 = WEAPON+16;
-		//TODO WEAPON+17
-		public static final int WORSE_ENCHANT    = WEAPON+18;
+		public static final int ROYAL_HALBERD	 = WEAPON+17;
+		public static final int PLAIN_SWORD		 = WEAPON+18;
 		public static final int INSCRIBED_KNIFE  = WEAPON+19;
-		//TODO WEAPON+20
+		public static final int PITCHFORK		 = WEAPON+20;
 		public static final int SICKLE           = WEAPON+21;
 		public static final int HOE              = WEAPON+22;
 		public static final int RAPIER           = WEAPON+23;

@@ -219,8 +219,11 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Katana;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Pitchfork;
+import com.shatteredpixel.yasd.general.items.weapon.melee.PlainSword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Rapier;
+import com.shatteredpixel.yasd.general.items.weapon.melee.RoyalHalberd;
 import com.shatteredpixel.yasd.general.items.weapon.melee.RunicBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Scimitar;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sickle;
@@ -552,10 +555,13 @@ public class Generator {
 					Sickle.class,
 					Hoe.class,
 					ButchersKnife.class,
-					Rapier.class
+					Rapier.class,
+					RoyalHalberd.class,
+					PlainSword.class,
+					Pitchfork.class
 
 			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1 };
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2 };
 
 			SHIELD.classes = new Class<?>[] {
 					RoundShield.class,

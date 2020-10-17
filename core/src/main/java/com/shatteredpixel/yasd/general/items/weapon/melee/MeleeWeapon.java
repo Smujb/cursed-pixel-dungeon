@@ -136,6 +136,9 @@ public class MeleeWeapon extends Weapon implements Attackable {
 		if (sneakBenefit) {
 			info += "\n" + Messages.get(MeleeWeapon.class, "sneak_benefit");
 		}
+
+		if (!canBeParried) info += "\n" + Messages.get(MeleeWeapon.class, "cant_be_parried");
+
 		return info;
 	}
 

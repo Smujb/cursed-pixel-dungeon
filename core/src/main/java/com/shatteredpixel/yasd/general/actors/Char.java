@@ -376,12 +376,17 @@ public abstract class Char extends Actor {
 			}
 			Shield.Parry parry = enemy.buff(Shield.Parry.class);
 			if (parry != null) {
-				dmg = parry.absorbDamage(src, dmg);
-				boolean fullParry = dmg <= 0;
-				parry.affectEnemy(this, fullParry);
-				if (fullParry) {
-					Shield.successfulParry(enemy);
-					return false;
+				if (src.breaksShields()) {
+					enemy.sprite.showStatus(CharSprite.NEGATIVE, Messages.get(Shield.class, "parry_fail"));
+					parry.detach();
+				} else {
+					dmg = parry.absorbDamage(src, dmg);
+					boolean fullParry = dmg <= 0;
+					parry.affectEnemy(this, fullParry);
+					if (fullParry) {
+						Shield.successfulParry(enemy);
+						return false;
+					}
 				}
 			}
 			dmg = attackProc(enemy, dmg);
@@ -809,7 +814,7 @@ public abstract class Char extends Actor {
 		}
 
 		int shielded = dmg;
-		if (!src.breaksShields()){
+		if (!src.ignoresBarriers()){
 			for (ShieldBuff s : buffs(ShieldBuff.class)){
 				dmg = s.absorbDamage(dmg);
 				if (dmg == 0) break;
@@ -1244,6 +1249,7 @@ public abstract class Char extends Actor {
 		private Object cause;
 		private Element element;
 		private boolean ignores = false;
+		private boolean ignoreBarrier = false;
 		private boolean breakShields = false;
 
 		public DamageSrc(Element element) {
@@ -1263,6 +1269,11 @@ public abstract class Char extends Actor {
 			return cause;
 		}
 
+		public DamageSrc ignoreBarrier() {
+			this.ignoreBarrier = true;
+			return this;
+		}
+
 		public DamageSrc breakShields() {
 			this.breakShields = true;
 			return this;
@@ -1270,6 +1281,10 @@ public abstract class Char extends Actor {
 
 		boolean breaksShields() {
 			return breakShields;
+		}
+
+		boolean ignoresBarriers() {
+			return ignoreBarrier;
 		}
 
 		public DamageSrc ignoreDefense() {

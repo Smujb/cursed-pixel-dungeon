@@ -47,6 +47,7 @@ abstract public class KindOfWeapon extends KindofMisc {
 
 	public boolean canSurpriseAttack = true;
 	public boolean sneakBenefit = false;
+	public boolean canBeParried = true;
 
 	public boolean breaksArmor(Char owner) {
 		return false;
@@ -87,9 +88,9 @@ abstract public class KindOfWeapon extends KindofMisc {
 
 	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
 		Char.DamageSrc src = new Char.DamageSrc(Element.PHYSICAL, this);
-		if (breaksArmor(attacker)) {
-			src.ignoreDefense();
-		}
+		if (breaksArmor(attacker)) src.ignoreDefense();
+		if (!canBeParried) src.breakShields();
+
 		int damage = damageRoll(attacker);
 		damage = proc(attacker, enemy, damage);
 		boolean attack = attacker.attack(enemy, guaranteed, damage, src);
