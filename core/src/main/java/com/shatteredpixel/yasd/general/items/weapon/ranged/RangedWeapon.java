@@ -66,7 +66,7 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
             } else if (RangedWeapon.this.ammoClass().isInstance(item)) {
                 amount = Math.min(item.quantity(), req);
                 if (item.quantity() == amount) {
-                    item.detach(Dungeon.hero.belongings.backpack);
+                    item.detachAll(Dungeon.hero.belongings.backpack);
                 } else if (item.quantity() > amount) {
                     item.split(amount);
                 } else {
