@@ -121,9 +121,7 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
         Ammo projectile = Reflection.forceNewInstance(ammoClass());
         boolean attack = super.attack(attacker, enemy, guaranteed);
         if (attack) {
-            if (p.target == enemy) {
-                p.stick(projectile);
-            }
+            p.stick(projectile);
         } else {
             Dungeon.level.drop(projectile, enemy.pos).sprite.drop();
         }
