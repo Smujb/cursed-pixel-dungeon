@@ -612,7 +612,7 @@ public class Generator {
 					RingOfSharpshooting.class,
 					RingOfTenacity.class,
 					RingOfWealth.class};
-			RING.defaultProbs = new float[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+			RING.defaultProbs = new float[]{1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1};
 			RING.probs = RING.defaultProbs.clone();
 
 			ARTIFACT.classes = new Class<?>[]{
