@@ -12,6 +12,7 @@ public class ImpactCrossbow extends Crossbow {
 
         damageMultiplier = 1.8f;
         range = 3;
+        DLY = 1.5f;
 
         statScaling.add(Hero.HeroStat.RESILIENCE);
     }
