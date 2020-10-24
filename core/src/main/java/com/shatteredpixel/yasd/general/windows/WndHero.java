@@ -34,6 +34,9 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
+import com.shatteredpixel.yasd.general.actors.mobs.npcs.hero.MageNPC;
+import com.shatteredpixel.yasd.general.items.storage.Storage;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
@@ -273,6 +276,18 @@ public class WndHero extends WndTabbed {
 			statSlot( Messages.get(this, "depth"), Statistics.deepestFloor );
 
 			pos += GAP;
+
+			if (hero.heroClass == HeroClass.MAGE) {
+				RedButton button = new RedButton(Messages.get(MageNPC.class, "view")) {
+					@Override
+					protected void onClick() {
+						GameScene.show(new WndStorage(Storage.getItems()));
+					}
+				};
+				button.setRect(0, pos, width, BTN_HEIGHT);
+				add(button);
+				pos = button.bottom() + GAP;
+			}
 		}
 
 		private void statSlot( String label, String value ) {

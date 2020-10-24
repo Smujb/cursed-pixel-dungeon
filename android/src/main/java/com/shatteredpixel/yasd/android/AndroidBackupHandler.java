@@ -37,6 +37,7 @@ import android.os.ParcelFileDescriptor;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Rankings;
 import com.shatteredpixel.yasd.general.StoryChapter;
+import com.shatteredpixel.yasd.general.items.storage.Storage;
 import com.shatteredpixel.yasd.general.journal.Journal;
 
 import java.io.File;
@@ -67,13 +68,20 @@ public class AndroidBackupHandler extends BackupAgent {
 				fullBackupFile(file, data);
 			}
 		}
+
 		file = getFile( getFilesDir(), Badges.BADGES_FILE );
 		if (file != null){
 			fullBackupFile( file , data);
 		}
+
 		file = getFile( getFilesDir(), Journal.JOURNAL_FILE );
 		if (file != null){
 			fullBackupFile( file , data);
+		}
+
+		file = getFile( getFilesDir(), Storage.STORAGE_FILE);
+		if (file != null) {
+			fullBackupFile( file, data );
 		}
 	}
 	

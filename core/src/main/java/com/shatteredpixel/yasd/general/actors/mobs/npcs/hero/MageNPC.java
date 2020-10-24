@@ -7,6 +7,8 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.HeroNPC;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMana;
+import com.shatteredpixel.yasd.general.items.storage.Storage;
+import com.shatteredpixel.yasd.general.windows.WndStorage;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.ui.Window;
@@ -26,6 +28,7 @@ public class MageNPC extends HeroNPC {
 	public boolean interact(Char ch) {
 		ArrayMap<String, Class<? extends Window>> options = new ArrayMap<>();
 		options.put(Messages.get(MageNPC.this, "mana"), WndBuyManaPotion.class);
+		options.put(Messages.get(MageNPC.this, "view"), ViewStored.class);
 		//options.put(Messages.get(MageNPC.this, "advice"), Advice.class);
 		options.put(Messages.get(MageNPC.this, "nothing"), NoResponse.class);
 		CPDGame.runOnRenderThread(new Callback() {
@@ -45,7 +48,13 @@ public class MageNPC extends HeroNPC {
 
 	public static final class Advice extends WndHeroNPCChat {
 		public Advice() {
-			super(HeroClass.MAGE, Messages.get(WarriorNPC.class, "advice_response"));
+			super(HeroClass.MAGE, Messages.get(MageNPC.class, "advice_response"));
+		}
+	}
+
+	public static final class ViewStored extends WndStorage {
+		public ViewStored() {
+			super(Storage.getItems());
 		}
 	}
 
