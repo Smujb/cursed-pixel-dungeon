@@ -217,6 +217,12 @@ public class ItemSpriteSheet {
 	}
 	public static final int FLASK_CHARGE = FLASK + 5;
 
+	private static final int BLUEPRINT		 =                               xy(1, 9);   //16 slots
+	public static final int GUN_BLUEPRINT 		= BLUEPRINT+0;
+	public static final int BOW_BLUEPRINT 		= BLUEPRINT+1;
+	public static final int SWORD_BLUEPRINT 	= BLUEPRINT+2;
+	public static final int CROSSBOW_BLUEPRINT 	= BLUEPRINT+3;
+
 	public static class Weapons {
 
 		private static final int WEAPON      =                               xy(1, 39);
