@@ -69,7 +69,7 @@ public class MysteryMeat extends Food {
 				break;
 			case 2:
 				GLog.warning( Messages.get(MysteryMeat.class, "not_well") );
-				Buff.affect( hero, Poison.class ).set( hero.HT / 5f );
+				Buff.affect( hero, Poison.class ).set( hero.lvl );
 				break;
 			case 3:
 				GLog.warning( Messages.get(MysteryMeat.class, "stuffed") );
