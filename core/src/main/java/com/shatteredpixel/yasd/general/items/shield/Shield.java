@@ -283,6 +283,8 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
     public int absorbDamage(Char.DamageSrc src, int damage) {
         int defense = curDefense(power());
+        int enc = encumbrance();
+        if (enc > 0) damage *= Math.pow(1.2, enc);
         if (defense >= damage) {
             float chargeToLose = (damage / (float) maxDefense(power())) * MAX_CHARGE;
             decreaseCharge(chargeToLose);
