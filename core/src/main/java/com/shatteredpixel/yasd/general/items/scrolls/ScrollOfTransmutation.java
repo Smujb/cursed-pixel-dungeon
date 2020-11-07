@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.allies.DragonPendant;
 import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
@@ -78,6 +79,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 				item instanceof Wand ||
 				item instanceof Plant.Seed ||
 				item instanceof Runestone ||
+				item instanceof DragonPendant ||
 				item instanceof Artifact;
 	}
 	
@@ -106,6 +108,8 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			result = changeArtifact( (Artifact)item );
 		} else if (item instanceof Shield) {
 			result = changeShield((Shield) item );
+		} else if (item instanceof DragonPendant) {
+			result = changePendant((DragonPendant) item);
 		} else {
 			result = null;
 		}
@@ -187,6 +191,19 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		n.augment = a.augment;
 		return n;
 	}*/
+
+	private DragonPendant changePendant( DragonPendant d ) {
+		DragonPendant n;
+		do {
+			n = (DragonPendant) Generator.random(Generator.Category.DRAGON_PENDANT);
+		} while (Challenges.isItemBlocked(n) || n.getClass() == d.getClass());
+		int level = d.trueLevel();
+		n.level(level);
+		n.levelKnown = d.levelKnown;
+		n.cursedKnown = d.cursedKnown;
+		n.cursed = d.cursed;
+		return n;
+	}
 	
 	private Weapon changeWeapon( Weapon w ) {
 		
