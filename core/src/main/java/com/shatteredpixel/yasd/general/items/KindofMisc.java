@@ -140,5 +140,3 @@ public abstract class KindofMisc extends EquipableItem {
 	}
 
 }
-
-

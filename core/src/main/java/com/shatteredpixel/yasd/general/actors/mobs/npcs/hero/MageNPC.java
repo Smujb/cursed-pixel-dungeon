@@ -28,7 +28,7 @@ public class MageNPC extends HeroNPC {
 	public boolean interact(Char ch) {
 		ArrayMap<String, Class<? extends Window>> options = new ArrayMap<>();
 		options.put(Messages.get(MageNPC.this, "mana"), WndBuyManaPotion.class);
-		options.put(Messages.get(MageNPC.this, "view"), ViewStored.class);
+		options.put(Messages.get(MageNPC.class, "view_storage"), ViewStored.class);
 		//options.put(Messages.get(MageNPC.this, "advice"), Advice.class);
 		options.put(Messages.get(MageNPC.this, "nothing"), NoResponse.class);
 		CPDGame.runOnRenderThread(new Callback() {
