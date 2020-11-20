@@ -60,7 +60,7 @@ public class MagicalInfusion extends InventorySpell {
 	}
 
 	protected void removeUpgrades(Item item) {
-		int toRemove = Random.Int(item.timesUpgraded/2, item.timesUpgraded);
+		int toRemove = Random.Int(0, item.timesUpgraded/2);
 		item.degrade(toRemove);
 		item.timesUpgraded -= toRemove;
 	}
