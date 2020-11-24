@@ -147,7 +147,7 @@ public class WndStorage extends Window {
             };
             btnTake.setRect(0, bottom, width, BTN_HEIGHT);
             add(btnTake);
-            bottom += BTN_HEIGHT + GAP;
+            bottom += BTN_HEIGHT;
             resize(width, bottom);
         }
     }
