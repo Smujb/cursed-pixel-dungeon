@@ -31,9 +31,13 @@ apply plugin: 'kotlin'
 sourceCompatibility = targetCompatibility = appJavaCompatibility
 
 ext.appMainClass = "com.shatteredpixel.yasd.desktop.DesktopLauncher"
-sourceSets.main.resources.srcDirs = [new File(project(':core').projectDir, "/src/main/assets"),
+/*sourceSets.main.resources.srcDirs = [new File(project(':core').projectDir, "/src/main/assets"),
                                      new File(project(':desktop').projectDir,"/src/main/assets")]
-
+*/
+processResources {
+    from new File(project(':core').projectDir, "/src/main/assets")
+    from new File(project(':desktop').projectDir, "/src/main/assets")
+}
 sourceSets {
     debug
     release

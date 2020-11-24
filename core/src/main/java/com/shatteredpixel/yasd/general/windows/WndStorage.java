@@ -28,8 +28,8 @@ public class WndStorage extends Window {
     private final ArrayList<ItemSlot> slots = new ArrayList<>();
     private final ArrayList<Item> items;
 
-    public WndStorage(ArrayList<Item> it) {
-        items = it;
+    public WndStorage() {
+        items = Storage.getItems();
         itemList = new ScrollPane(new Component()) {
             @Override
             public void onClick(float x, float y) {
