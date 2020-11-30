@@ -400,17 +400,9 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 				Math.round(augment.damageFactor(min())),
 				Math.round(augment.damageFactor(max())));
 
-		if (enchantment != null && (cursedKnown || !enchantment.curse())){
+		if (enchantment != null && (cursedKnown || !enchantment.curse())) {
 			info += "\n\n" + Messages.get(Weapon.class, "enchanted", enchantment.name());
 			info += " " + Messages.get(enchantment, "desc");
-		}
-
-		if (cursed() && isEquipped( Dungeon.hero )) {
-			info += "\n\n" + Messages.get(Weapon.class, "cursed_worn");
-		} else if (cursedKnown && cursed()) {
-			info += "\n\n" + Messages.get(Weapon.class, "cursed");
-		} else if (!isIdentified() && cursedKnown){
-			info += "\n\n" + Messages.get(Weapon.class, "not_cursed");
 		}
 
 		info += "\n\n" + Messages.get(MissileWeapon.class, "distance");
@@ -426,7 +418,7 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 		}
 		
 		
-		return info + statsReqDesc();
+		return info + upgradableItemDesc();
 	}
 	
 	@Override

@@ -576,24 +576,27 @@ public class Item implements Bundlable {
 		return emitter;
 	}
 
+	//Simple function that is called when an ItemSprite is created to setup its emitters.
 	public void setupEmitters(ItemSprite sprite) {
 		Emitter emitter = emitter(sprite);
 		if (visiblyCursed()) {
 			emitter.pour(ShadowParticle.CURSE, 0.15f);
 		}
 	}
-	
+
+	//If the item is upgradeable, append the desc showing stat scaling, upgrades out of cap, and curse intensity
 	public String info() {
-		return desc() + statsReqDesc();
+		return desc() + (isUpgradable() ? upgradableItemDesc() : "");
 	}
 
-	public String statsReqDesc() {
+	public String upgradableItemDesc() {
 		String desc = "";
 		if (!statScaling.isEmpty()) {
 			desc += "\n\n";
 			if (statScaling.equals(Arrays.asList(Hero.HeroStat.values()))) {
 				desc += Messages.get(this, "scales_any", statReq());
 			} else {
+				//Currently only supports requiring 1 or 2 stats. Might want to support 3, but I have no reason to support more. This code could be improved though.
 				if (statScaling.size() == 1) {
 					desc += Messages.get(this, "requires_stats_1", statReq(), statScaling.get(0).getName());
 				} else {
@@ -601,9 +604,10 @@ public class Item implements Bundlable {
 				}
 			}
 		}
-		if (isUpgradable() && !unique) {
-			desc += "\n\n" + Messages.get(this, "upgrades_held", timesUpgraded, souCap);
-		}
+
+		if (isUpgradable() && !unique) desc += "\n\n" + Messages.get(this, "upgrades_held", timesUpgraded, souCap);
+		if (visiblyCursed()) desc += "\n\n" + Messages.get(this, "curse_intensity", curseIntensity);
+		else desc += "\n\n" + Messages.get(this, "free_of_curse");
 		return desc;
 	}
 	

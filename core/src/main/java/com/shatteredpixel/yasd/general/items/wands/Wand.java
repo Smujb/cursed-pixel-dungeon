@@ -263,17 +263,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 
 	@Override
 	public String info() {
-		String desc = desc();
-
-		desc += "\n\n" + statsDesc();
-
-		if (cursed() && cursedKnown) {
-			desc += "\n\n" + Messages.get(Wand.class, "cursed");
-		} else if (!isIdentified() && cursedKnown){
-			desc += "\n\n" + Messages.get(Wand.class, "not_cursed");
-		}
-
-		return desc + statsReqDesc();
+		return desc() + "\n\n" + statsDesc() + upgradableItemDesc();
 	}
 
 	public String statsDesc(){

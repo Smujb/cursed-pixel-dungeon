@@ -188,11 +188,11 @@ public enum HeroClass {
 		new MegaStick().identify().collect();
 		new DeveloperItem().collect();
 
-		for (Class<?> itemClass : Generator.Category.RANGED.classes) {
+		for (Class<?> itemClass : Generator.Category.WEAPON.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);
 			if (item != null) {
+				item.random();
 				item.identify().collect();
-				item.upgrade();
 				while (item.statReq() < item.bestHeroStatValue(hero) && item.isUpgradable()) {
 					item.upgrade();
 				}

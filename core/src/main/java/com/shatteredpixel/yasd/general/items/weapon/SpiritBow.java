@@ -121,7 +121,7 @@ public class SpiritBow extends Weapon implements Attackable {
 		
 		info += "\n\n" + Messages.get(MissileWeapon.class, "distance");
 		
-		return info + statsReqDesc();
+		return info + upgradableItemDesc();
 	}
 
 	@Override

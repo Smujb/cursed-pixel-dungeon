@@ -171,16 +171,8 @@ public class MeleeWeapon extends Weapon implements Attackable {
 			info += "\n\n" + Messages.get(Weapon.class, "enchanted", enchantment.name());
 			info += " " + Messages.get(enchantment, "desc");
 		}
-
-		if (Dungeon.hero != null && cursed() && isEquipped( Dungeon.hero )) {
-			info += "\n\n" + Messages.get(Weapon.class, "cursed_worn");
-		} else if (visiblyCursed()) {
-			info += "\n\n" + Messages.get(Weapon.class, "cursed");
-		} else if (!isIdentified() && cursedKnown){
-			info += "\n\n" + Messages.get(Weapon.class, "not_cursed");
-		}
 		
-		return info + statsReqDesc();
+		return info + upgradableItemDesc();
 	}
 
 	@Override

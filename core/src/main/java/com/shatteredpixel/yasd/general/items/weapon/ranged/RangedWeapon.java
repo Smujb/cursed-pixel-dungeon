@@ -96,7 +96,7 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
         } else {
             info += Messages.get(this, "stats_unknown", min(1), max(1), range, Math.round(reloadTime));
         }
-        return desc() + info + statsReqDesc();
+        return desc() + info + upgradableItemDesc();
     }
 
     //Regular throw speed is 240f. Arrows, bolts and bullets should be faster than that.

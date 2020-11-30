@@ -221,7 +221,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     @Override
     public String info() {
         String info = "\n\n" + Messages.get(this, "stats_desc", maxDefense(power()), minDefense(power()), minDamage(power()), maxDamage(power()));
-        return desc() + info + statsReqDesc();
+        return desc() + info + upgradableItemDesc();
     }
 
     public float chargePercent() {
