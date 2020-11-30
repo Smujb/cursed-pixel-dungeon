@@ -137,7 +137,7 @@ public class WaterOfTransmutation extends WellWater {
 		n.curseInfusionBonus = w.curseInfusionBonus;
 		n.levelKnown = w.levelKnown;
 		n.cursedKnown = w.cursedKnown;
-		n.cursed = w.cursed;
+		n.curseIntensity = w.curseIntensity;
 		n.augment = w.augment;
 
 		return n;
@@ -161,7 +161,7 @@ public class WaterOfTransmutation extends WellWater {
 		
 		n.levelKnown = r.levelKnown;
 		n.cursedKnown = r.cursedKnown;
-		n.cursed = r.cursed;
+		n.curseIntensity = r.curseIntensity;
 		
 		return n;
 	}
@@ -171,7 +171,7 @@ public class WaterOfTransmutation extends WellWater {
 
 		if (n != null && !Challenges.isItemBlocked(n)){
 			n.cursedKnown = a.cursedKnown;
-			n.cursed = a.cursed;
+			n.curseIntensity = a.curseIntensity;
 			n.levelKnown = a.levelKnown;
 			n.transferUpgrade(a.visiblyUpgraded());
 			return n;
@@ -194,7 +194,7 @@ public class WaterOfTransmutation extends WellWater {
 		
 		n.levelKnown = w.levelKnown;
 		n.cursedKnown = w.cursedKnown;
-		n.cursed = w.cursed;
+		n.curseIntensity = w.curseIntensity;
 		n.curseInfusionBonus = w.curseInfusionBonus;
 		
 		return n;

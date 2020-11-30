@@ -56,7 +56,7 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 	@Override
 	public void empoweredRead() {
 		for (Item item : curUser.belongings){
-			if (item.cursed){
+			if (item.cursed()){
 				item.cursedKnown = true;
 			}
 		}
@@ -86,9 +86,9 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 		for (Item item : items) {
 			if (item != null) {
 				item.cursedKnown = true;
-				if (item.cursed) {
+				if (item.cursed()) {
 					procced = true;
-					item.cursed = false;
+					item.uncurse();
 				}
 			}
 			if (item instanceof Enchantable){
@@ -115,7 +115,7 @@ public class ScrollOfRemoveCurse extends InventoryScroll {
 	}
 	
 	public static boolean uncursable( Item item ){
-		if (item instanceof EquipableItem && (!item.cursedKnown || item.cursed)){
+		if (item instanceof EquipableItem && (!item.cursedKnown || item.cursed())){
 			return true;
 		} else if (item instanceof Enchantable){
 			return ((Enchantable)item).hasCurseEnchant();

@@ -92,9 +92,15 @@ public class Item implements Bundlable {
 	
 	private int level = 0;
 	public boolean levelKnown = false;
-	
-	public boolean cursed;
+
+
+	public static final int MAX_CURSE_INTENSITY = 20;
+	public int curseIntensity = 0;
 	public boolean cursedKnown;
+	
+	public boolean cursed() {
+		return curseIntensity > 0;
+	}
 
 	public static final int MAX_SOU = 10;
 	public int timesUpgraded = 0;
@@ -115,13 +121,27 @@ public class Item implements Bundlable {
 		}
 	};
 
+	protected int randomCurseIntensity() {
+		return 1 + Random.Int(4);
+	}
+
+	public void increaseCurseIntensity(int amt) {
+		curseIntensity += amt;
+		if (curseIntensity > MAX_CURSE_INTENSITY) curseIntensity = MAX_CURSE_INTENSITY;
+	}
+
+	public void reduceCurseIntensity(int amt) {
+		curseIntensity -= amt;
+		if (curseIntensity < 0) curseIntensity = 0;
+	}
+
 	public Item curse() {
-		cursed = true;
+		curseIntensity += randomCurseIntensity();
 		return this;
 	}
 
 	public Item uncurse() {
-		cursed = false;
+		curseIntensity--;
 		updateQuickslot();
 		return this;
 	}
@@ -473,7 +493,7 @@ public class Item implements Bundlable {
 	}
 	
 	public boolean visiblyCursed() {
-		return cursed && cursedKnown;
+		return cursed() && cursedKnown;
 	}
 
 	public boolean isUpgradable() {
@@ -558,7 +578,7 @@ public class Item implements Bundlable {
 
 	public void setupEmitters(ItemSprite sprite) {
 		Emitter emitter = emitter(sprite);
-		if (cursed && cursedKnown) {
+		if (visiblyCursed()) {
 			emitter.pour(ShadowParticle.CURSE, 0.15f);
 		}
 	}
@@ -640,7 +660,7 @@ public class Item implements Bundlable {
 	private static final String QUANTITY		= "quantity";
 	private static final String LEVEL			= "level";
 	private static final String LEVEL_KNOWN		= "levelKnown";
-	private static final String CURSED			= "cursed";
+	private static final String CURSE_INTENSITY = "curse-intensity";
 	private static final String CURSED_KNOWN	= "cursedKnown";
 	private static final String QUICKSLOT		= "quickslotpos";
 	private static final String TIMES           = "times_upgraded";
@@ -651,7 +671,7 @@ public class Item implements Bundlable {
 		bundle.put( QUANTITY, quantity );
 		bundle.put( LEVEL, level );
 		bundle.put( LEVEL_KNOWN, levelKnown );
-		bundle.put( CURSED, cursed );
+		bundle.put(CURSE_INTENSITY, curseIntensity);
 		bundle.put( CURSED_KNOWN, cursedKnown );
 		bundle.put( TIMES, timesUpgraded );
 		bundle.put( MAX, souCap );
@@ -672,7 +692,7 @@ public class Item implements Bundlable {
 		if (Dungeon.version <= CPDGame.v0_4_8) level /= 2;
 		level(level);
 		
-		cursed	= bundle.getBoolean( CURSED );
+		curseIntensity = bundle.contains(CURSE_INTENSITY) ? bundle.getInt(CURSE_INTENSITY) : 0;
 
 		//only want to populate slot on first load.
 		if (Dungeon.hero == null) {

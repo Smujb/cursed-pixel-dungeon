@@ -117,7 +117,7 @@ public class Heap implements Bundlable {
 	
 	public Heap setHauntedIfCursed(){
 		for (Item item : items) {
-			if (item.cursed) {
+			if (item.cursed()) {
 				haunted = true;
 				item.cursedKnown = true;
 				break;

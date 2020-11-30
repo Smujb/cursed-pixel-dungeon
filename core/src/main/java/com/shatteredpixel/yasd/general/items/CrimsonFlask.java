@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class CrimsonFlask extends Item {
 
     {
-        cursed = false;
+        uncurse();
         cursedKnown = true;
 
         defaultAction = AC_DRINK;

@@ -120,7 +120,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			this.collect( curUser.belongings.backpack, curUser);
 		} else {
 			if (item.isEquipped(Dungeon.hero)){
-				item.cursed = false; //to allow it to be unequipped
+				item.uncurse(); //to allow it to be unequipped
 				((EquipableItem)item).doUnequip(Dungeon.hero, false);
 				((EquipableItem)result).doEquip(Dungeon.hero);
 			} else {
@@ -169,7 +169,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 
 		s.levelKnown = a.levelKnown;
 		s.cursedKnown = a.cursedKnown;
-		s.cursed = a.cursed;
+		s.curseIntensity = a.curseIntensity;
 		return s;
 	}
 
@@ -201,7 +201,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		n.level(level);
 		n.levelKnown = d.levelKnown;
 		n.cursedKnown = d.cursedKnown;
-		n.cursed = d.cursed;
+		n.curseIntensity = d.curseIntensity;
 		return n;
 	}
 	
@@ -225,7 +225,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		n.curseInfusionBonus = w.curseInfusionBonus;
 		n.levelKnown = w.levelKnown;
 		n.cursedKnown = w.cursedKnown;
-		n.cursed = w.cursed;
+		n.curseIntensity = w.curseIntensity;
 		n.augment = w.augment;
 		
 		return n;
@@ -249,7 +249,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		
 		n.levelKnown = r.levelKnown;
 		n.cursedKnown = r.cursedKnown;
-		n.cursed = r.cursed;
+		n.curseIntensity = r.curseIntensity;
 		
 		return n;
 	}
@@ -259,7 +259,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		
 		if (n != null && !Challenges.isItemBlocked(n)){
 			n.cursedKnown = a.cursedKnown;
-			n.cursed = a.cursed;
+			n.curseIntensity = a.curseIntensity;
 			n.levelKnown = a.levelKnown;
 			n.transferUpgrade(a.visiblyUpgraded());
 			return n;
@@ -282,7 +282,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		
 		n.levelKnown = w.levelKnown;
 		n.cursedKnown = w.cursedKnown;
-		n.cursed = w.cursed;
+		n.curseIntensity = w.curseIntensity;
 		n.curseInfusionBonus = w.curseInfusionBonus;
 		
 		return n;

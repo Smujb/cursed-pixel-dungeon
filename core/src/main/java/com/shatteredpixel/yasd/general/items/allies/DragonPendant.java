@@ -190,7 +190,7 @@ public abstract class DragonPendant extends KindofMisc {
 	@Override
 	public int price() {
 		int price = 75;
-		if (cursed && cursedKnown) {
+		if (cursed() && cursedKnown) {
 			price /= 2;
 		}
 		if (levelKnown) {

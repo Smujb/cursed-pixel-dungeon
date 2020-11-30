@@ -156,7 +156,7 @@ public class Statue extends Mob implements Callback {
 		} while (!con || Challenges.isItemBlocked(item));
 
 		item.level(0);
-		item.cursed = false;
+		item.uncurse();
 		item.identify();
 		return item;
 	}

@@ -55,7 +55,7 @@ public class CurseInfusion extends InventorySpell {
 		CellEmitter.get(curUser.pos).burst(ShadowParticle.UP, 5);
 		Sample.INSTANCE.play(Assets.Sounds.CURSED);
 		
-		item.cursed = true;
+		item.curse();
 		if (item instanceof MeleeWeapon || item instanceof SpiritBow) {
 			Weapon w = (Weapon) item;
 			if (w.enchantment != null) {

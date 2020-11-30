@@ -172,9 +172,9 @@ public class MeleeWeapon extends Weapon implements Attackable {
 			info += " " + Messages.get(enchantment, "desc");
 		}
 
-		if (Dungeon.hero != null && cursed && isEquipped( Dungeon.hero )) {
+		if (Dungeon.hero != null && cursed() && isEquipped( Dungeon.hero )) {
 			info += "\n\n" + Messages.get(Weapon.class, "cursed_worn");
-		} else if (cursedKnown && cursed) {
+		} else if (visiblyCursed()) {
 			info += "\n\n" + Messages.get(Weapon.class, "cursed");
 		} else if (!isIdentified() && cursedKnown){
 			info += "\n\n" + Messages.get(Weapon.class, "not_cursed");
@@ -189,7 +189,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 		if (hasGoodEnchant()) {
 			price *= 1.5;
 		}
-		if (cursedKnown && (cursed || hasCurseEnchant())) {
+		if (cursedKnown && cursed()) {
 			price /= 2;
 		}
 		if (levelKnown && level() > 0) {
@@ -199,5 +199,10 @@ public class MeleeWeapon extends Weapon implements Attackable {
 			price = 1;
 		}
 		return price;
+	}
+
+	@Override
+	public boolean cursed() {
+		return super.cursed() || hasCurseEnchant();
 	}
 }

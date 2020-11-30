@@ -29,7 +29,7 @@ public class Storage {
         item.souCap = Item.MAX_SOU;
         item.identify();
         item.level(0);
-        item.cursed = false;
+        item.uncurse();
         if (item instanceof Enchantable) ((Enchantable) item).enchant(null);
         return item;
     }

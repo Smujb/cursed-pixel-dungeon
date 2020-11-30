@@ -136,7 +136,7 @@ public class TrapsRoom extends SpecialRoom {
 			} else {
 				prize = Generator.randomShield();
 			}
-		} while (prize.cursed || Challenges.isItemBlocked(prize));
+		} while (prize.cursed() || Challenges.isItemBlocked(prize));
 		prize.cursedKnown = true;
 
 		prize = prize.randomHigh();

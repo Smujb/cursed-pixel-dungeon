@@ -321,7 +321,7 @@ public class LloydsBeacon extends Artifact {
 		@Override
 		public boolean act() {
 			LockedFloor lock = target.buff(LockedFloor.class);
-			if (charge < chargeCap && !cursed && (lock == null || lock.regenOn())) {
+			if (charge < chargeCap && !cursed() && (lock == null || lock.regenOn())) {
 				partialCharge += 1 / (100f - (chargeCap - charge)*10f);
 
 				if (partialCharge >= 1) {

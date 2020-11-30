@@ -189,7 +189,7 @@ public class Blacksmith extends NPC {
 			return Messages.get(Blacksmith.class, "un_ided");
 		}
 		
-		if (item1.cursed || item2.cursed) {
+		if (item1.cursed() || item2.cursed()) {
 			return Messages.get(Blacksmith.class, "cursed");
 		}
 		

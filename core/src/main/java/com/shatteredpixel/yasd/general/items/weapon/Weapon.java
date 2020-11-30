@@ -316,7 +316,7 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 			}
 		}
 		
-		cursed = false;
+		uncurse();
 		
 		return super.upgrade();
 	}
@@ -346,9 +346,9 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 		//30% chance to be cursed
 		//10% chance to be enchanted
 		float effectRoll = Random.Float();
-		if (effectRoll < 0.5f) {
+		if (effectRoll < 0.7f) {
 			enchant(Enchantment.randomCurse());
-			cursed = true;
+			curse();
 		} else if (effectRoll >= 0.8f){
 			enchant();
 		}

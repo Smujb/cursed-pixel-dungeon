@@ -51,7 +51,7 @@ public class LuckyBadge extends Power {
 	{
 		image = ItemSpriteSheet.BADGE;
 
-		cursed = false;
+		uncurse();
 
 		defaultAction = AC_INFO;
 	}
@@ -332,7 +332,7 @@ public class LuckyBadge extends Power {
 					result = Generator.random(Generator.Category.DRAGON_PENDANT);
 			}
 			result.randomHigh();
-			result.cursed = false;
+			result.uncurse();
 			result.cursedKnown = true;
 			return result;
 		} else { //10% chance
@@ -340,14 +340,14 @@ public class LuckyBadge extends Power {
 				Weapon weapon = Generator.randomWeapon();
 				weapon.randomHigh();
 				weapon.enchant(Weapon.Enchantment.random());
-				weapon.cursed = false;
+				weapon.uncurse();
 				weapon.cursedKnown = true;
 				return weapon;
 			} else {
 				Shield shield = (Shield) Generator.random(Generator.Category.SHIELD);
 				shield.randomHigh();
 				//shield.inscribe(Armor.Glyph.random());
-				shield.cursed = false;
+				shield.uncurse();
 				shield.cursedKnown = true;
 				return shield;
 			}

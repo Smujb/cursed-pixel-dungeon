@@ -97,9 +97,9 @@ public class UnstableSpellbook extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && charge > 0 && !cursed)
+		if (isEquipped( hero ) && charge > 0 && !cursed())
 			actions.add(AC_READ);
-		if (isEquipped( hero ) && level() < levelCap && !cursed)
+		if (isEquipped( hero ) && level() < levelCap && !cursed())
 			actions.add(AC_ADD);
 		return actions;
 	}
@@ -114,7 +114,7 @@ public class UnstableSpellbook extends Artifact {
 			if (hero.buff( Blindness.class ) != null) GLog.warning( Messages.get(this, "blinded") );
 			else if (!isEquipped( hero ))             GLog.info( Messages.get(Artifact.class, "need_to_equip") );
 			else if (charge <= 0)                     GLog.info( Messages.get(this, "no_charge") );
-			else if (cursed)                          GLog.info( Messages.get(this, "cursed") );
+			else if (cursed())                          GLog.info( Messages.get(this, "cursed") );
 			else {
 				charge--;
 
@@ -238,7 +238,7 @@ public class UnstableSpellbook extends Artifact {
 		String desc = super.desc();
 
 		if (isEquipped(Dungeon.hero)) {
-			if (cursed) {
+			if (cursed()) {
 				desc += "\n\n" + Messages.get(this, "desc_cursed");
 			}
 			
@@ -276,7 +276,7 @@ public class UnstableSpellbook extends Artifact {
 		@Override
 		public boolean act() {
 			LockedFloor lock = target.buff(LockedFloor.class);
-			if (charge < chargeCap && !cursed && (lock == null || lock.regenOn())) {
+			if (charge < chargeCap && !cursed() && (lock == null || lock.regenOn())) {
 				partialCharge += 1 / (120f - (chargeCap - charge)*5f);
 
 				if (partialCharge >= 1) {

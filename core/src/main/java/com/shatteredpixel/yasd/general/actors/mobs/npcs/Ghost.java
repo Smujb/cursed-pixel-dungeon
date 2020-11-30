@@ -308,10 +308,12 @@ public class Ghost extends NPC {
 				weapon.level(itemLevel);
 				shield.level(itemLevel);
 
-				if (Random.Int(4) == 0 || weapon.cursed || shield.cursed){
-					weapon.cursed = shield.cursed = false;
+				if (Random.Int(4) == 0 || weapon.cursed() || shield.cursed()){
+					weapon.uncurse();
+					shield.uncurse();
+
 					weapon.enchant();
-					//shield.enchant();
+					shield.enchant();
 				}
 
 			}

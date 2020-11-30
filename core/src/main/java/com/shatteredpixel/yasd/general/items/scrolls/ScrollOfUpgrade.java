@@ -61,7 +61,7 @@ public class ScrollOfUpgrade extends InventoryScroll {
 		//...yes this is rather messy
 		if (item instanceof Weapon){
 			Weapon w = (Weapon) item;
-			boolean wasCursed = w.cursed;
+			int oldCurseIntensity = w.curseIntensity;
 			boolean hadCursedEnchant = w.hasCurseEnchant();
 			boolean hadGoodEnchant = w.hasGoodEnchant();
 
@@ -69,7 +69,7 @@ public class ScrollOfUpgrade extends InventoryScroll {
 
 			if (w.cursedKnown && hadCursedEnchant && !w.hasCurseEnchant()){
 				removeCurse( Dungeon.hero );
-			} else if (w.cursedKnown && wasCursed && !w.cursed){
+			} else if (w.cursedKnown && w.curseIntensity < oldCurseIntensity){
 				weakenCurse( Dungeon.hero );
 			}
 			if (hadGoodEnchant && !w.hasGoodEnchant()){
@@ -94,11 +94,11 @@ public class ScrollOfUpgrade extends InventoryScroll {
 			}
 
 		}*/ else if (item instanceof Wand || item instanceof Ring) {
-			boolean wasCursed = item.cursed;
+			boolean wasCursed = item.cursed();
 
 			item.upgrade();
 
-			if (wasCursed && !item.cursed){
+			if (wasCursed && !item.cursed()){
 				removeCurse( Dungeon.hero );
 			}
 

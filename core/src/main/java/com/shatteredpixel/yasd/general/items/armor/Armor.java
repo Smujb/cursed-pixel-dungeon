@@ -314,7 +314,7 @@ public class Armor extends KindofMisc {
 			inscribe(null);
 		}
 
-		cursed = false;
+		uncurse();
 
 		if (seal != null && seal.isUpgradable()) {
 			seal.upgrade();
@@ -444,9 +444,9 @@ public class Armor extends KindofMisc {
 			info += " " + glyph.desc();
 		}
 		
-		if (cursed && isEquipped( Dungeon.hero )) {
+		if (cursed() && isEquipped( Dungeon.hero )) {
 			info += "\n\n" + Messages.get(Armor.class, "cursed_worn");
-		} else if (cursedKnown && cursed) {
+		} else if (visiblyCursed()) {
 			info += "\n\n" + Messages.get(Armor.class, "cursed");
 		} else if (seal != null) {
 			info += "\n\n" + Messages.get(Armor.class, "seal_attached");
@@ -490,9 +490,9 @@ public class Armor extends KindofMisc {
 		//30% chance to be cursed
 		//15% chance to be inscribed
 		float effectRoll = Random.Float();
-		if (effectRoll < 0.5f) {
+		if (effectRoll < 0.7f) {
 			inscribe(Glyph.randomCurse());
-			cursed = true;
+			curse();
 		} else if (effectRoll >= 0.8f){
 			inscribe();
 		}
@@ -508,7 +508,7 @@ public class Armor extends KindofMisc {
 		if (hasGoodGlyph()) {
 			price *= 1.5;
 		}
-		if (cursedKnown && (cursed || hasCurseGlyph())) {
+		if (cursedKnown && (cursed())) {
 			price /= 2;
 		}
 		if (levelKnown && level() > 0) {
@@ -520,7 +520,12 @@ public class Armor extends KindofMisc {
 		return price;
 	}
 
-	public Armor inscribe( Glyph glyph ) {
+	@Override
+	public boolean cursed() {
+		return super.cursed() || hasCurseGlyph();
+	}
+
+	public Armor inscribe(Glyph glyph ) {
 		if (glyph == null || !glyph.curse()) curseInfusionBonus = false;
 		this.glyph = glyph;
 		updateQuickslot();

@@ -73,7 +73,7 @@ public class CloakOfShadows extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && !cursed && (charge > 0 || stealthed))
+		if (isEquipped( hero ) && !cursed() && (charge > 0 || stealthed))
 			actions.add(AC_STEALTH);
 		return actions;
 	}
@@ -87,7 +87,7 @@ public class CloakOfShadows extends Artifact {
 
 			if (!stealthed){
 				if (!isEquipped(hero)) GLog.info( Messages.get(Artifact.class, "need_to_equip") );
-				else if (cursed)       GLog.info( Messages.get(this, "cursed") );
+				else if (cursed())       GLog.info( Messages.get(this, "cursed") );
 				else if (charge <= 0)  GLog.info( Messages.get(this, "no_charge") );
 				else {
 					stealthed = true;

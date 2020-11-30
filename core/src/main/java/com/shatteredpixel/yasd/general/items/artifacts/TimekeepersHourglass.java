@@ -72,7 +72,7 @@ public class TimekeepersHourglass extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && charge > 0 && !cursed)
+		if (isEquipped( hero ) && charge > 0 && !cursed())
 			actions.add(AC_ACTIVATE);
 		return actions;
 	}
@@ -92,7 +92,7 @@ public class TimekeepersHourglass extends Artifact {
 					GLog.info( Messages.get(this, "deactivate") );
 				}
 			} else if (charge <= 0)         GLog.info( Messages.get(this, "no_charge") );
-			else if (cursed)                GLog.info( Messages.get(this, "cursed") );
+			else if (cursed())                GLog.info( Messages.get(this, "cursed") );
 			else GameScene.show(
 						new WndOptions( Messages.get(this, "name"),
 								Messages.get(this, "prompt"),
@@ -174,7 +174,7 @@ public class TimekeepersHourglass extends Artifact {
 		String desc = super.desc();
 
 		if (isEquipped( Dungeon.hero )){
-			if (!cursed) {
+			if (!cursed()) {
 				if (level() < levelCap )
 					desc += "\n\n" + Messages.get(this, "desc_hint");
 
@@ -220,7 +220,7 @@ public class TimekeepersHourglass extends Artifact {
 		public boolean act() {
 
 			LockedFloor lock = target.buff(LockedFloor.class);
-			if (charge < chargeCap && !cursed && (lock == null || lock.regenOn())) {
+			if (charge < chargeCap && !cursed() && (lock == null || lock.regenOn())) {
 				partialCharge += 1 / (90f - (chargeCap - charge)*3f);
 
 				if (partialCharge >= 1) {
@@ -231,7 +231,7 @@ public class TimekeepersHourglass extends Artifact {
 						partialCharge = 0;
 					}
 				}
-			} else if (cursed && Random.Int(10) == 0)
+			} else if (cursed() && Random.Int(10) == 0)
 				target.spend( TICK );
 
 			updateQuickslot();
@@ -400,7 +400,7 @@ public class TimekeepersHourglass extends Artifact {
 		@Override
 		public boolean doPickUp( Hero hero ) {
 			TimekeepersHourglass hourglass = hero.belongings.getItem( TimekeepersHourglass.class );
-			if (hourglass != null && !hourglass.cursed) {
+			if (hourglass != null && !hourglass.cursed()) {
 				hourglass.upgrade();
 				Sample.INSTANCE.play( Assets.Sounds.DEWDROP );
 				if (hourglass.level() == hourglass.levelCap)

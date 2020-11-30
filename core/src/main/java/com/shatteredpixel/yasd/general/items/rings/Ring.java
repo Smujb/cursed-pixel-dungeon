@@ -177,10 +177,10 @@ public class Ring extends KindofMisc {
 		
 		String desc = isKnown() ? super.desc() : Messages.get(this, "unknown_desc");
 		
-		if (cursed && isEquipped( Dungeon.hero )) {
+		if (cursed() && isEquipped( Dungeon.hero )) {
 			desc += "\n\n" + Messages.get(Ring.class, "cursed_worn");
 			
-		} else if (cursed && cursedKnown) {
+		} else if (cursed() && cursedKnown) {
 			desc += "\n\n" + Messages.get(Ring.class, "curse_known");
 			
 		} else if (!isIdentified() && cursedKnown){
@@ -204,7 +204,7 @@ public class Ring extends KindofMisc {
 		super.upgrade();
 		
 		if (Random.Int(3) == 0) {
-			cursed = false;
+			uncurse();
 		}
 		
 		return this;
@@ -237,8 +237,8 @@ public class Ring extends KindofMisc {
 		level(n);
 		
 		//30% chance to be cursed
-		if (Random.Float() < 0.3f) {
-			cursed = true;
+		if (Random.Float() < 0.5f) {
+			curse();
 		}
 		
 		return this;
@@ -259,7 +259,7 @@ public class Ring extends KindofMisc {
 	@Override
 	public int price() {
 		int price = 75;
-		if (cursed && cursedKnown) {
+		if (cursed() && cursedKnown) {
 			price /= 2;
 		}
 		if (levelKnown) {
@@ -330,7 +330,7 @@ public class Ring extends KindofMisc {
 	}
 	
 	public int soloBonus(){
-		if (cursed){
+		if (cursed()){
 			return Math.min( 0, Ring.this.level()-2 );
 		} else {
 			return Ring.this.level()+1;

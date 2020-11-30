@@ -68,7 +68,7 @@ public class BrokenSeal extends Item {
 		super.execute(hero, action);
 
 		if (action.equals(AC_AFFIX)){
-			GameScene.selectItem(armorSelector, WndBag.Mode.SHIELD, Messages.get(this, "prompt"));
+			GameScene.selectItem(shieldSelector, WndBag.Mode.SHIELD, Messages.get(this, "prompt"));
 		}
 	}
 
@@ -77,14 +77,14 @@ public class BrokenSeal extends Item {
 		return level() < 3;
 	}
 
-	private WndBag.Listener armorSelector = new WndBag.Listener(this) {
+	private final WndBag.Listener shieldSelector = new WndBag.Listener(this) {
 		@Override
 		public void onSelect( Item item ) {
 			if (item instanceof Shield) {
 				Shield shield = (Shield)item;
 				if (!shield.levelKnown){
 					GLog.warning(Messages.get(BrokenSeal.class, "unknown_shield"));
-				} else if (shield.cursed || shield.level() < 0){
+				} else if (cursed() || shield.level() < 0){
 					GLog.warning(Messages.get(BrokenSeal.class, "degraded_shield"));
 				} else {
 					GLog.positive(Messages.get(BrokenSeal.class, "affix"));

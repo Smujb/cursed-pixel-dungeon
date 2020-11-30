@@ -75,7 +75,7 @@ public class HornOfPlenty extends Artifact {
 		ArrayList<String> actions = super.actions( hero );
 		if (isEquipped( hero ) && charge > 0)
 			actions.add(AC_EAT);
-		if (isEquipped( hero ) && level() < levelCap && !cursed)
+		if (isEquipped( hero ) && level() < levelCap && !cursed())
 			actions.add(AC_STORE);
 		return actions;
 	}
@@ -159,7 +159,7 @@ public class HornOfPlenty extends Artifact {
 		String desc = super.desc();
 
 		if ( isEquipped( Dungeon.hero ) ){
-			if (!cursed) {
+			if (!cursed()) {
 				if (level() < levelCap)
 					desc += "\n\n" +Messages.get(this, "desc_hint");
 			} else {
@@ -225,7 +225,7 @@ public class HornOfPlenty extends Artifact {
 	public class hornRecharge extends ArtifactBuff{
 
 		public void gainCharge(float levelPortion) {
-			if (cursed) return;
+			if (cursed()) return;
 			
 			if (charge < chargeCap) {
 

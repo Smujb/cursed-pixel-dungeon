@@ -253,7 +253,7 @@ public abstract class Recipe {
 	}
 	
 	public static boolean usableInRecipe(Item item){
-		return !item.cursed && (!(item instanceof EquipableItem) || item instanceof AlchemistsToolkit);
+		return !item.cursed() && (!(item instanceof EquipableItem) || item instanceof AlchemistsToolkit);
 	}
 }
 

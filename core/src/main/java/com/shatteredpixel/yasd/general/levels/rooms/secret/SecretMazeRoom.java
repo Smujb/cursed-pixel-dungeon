@@ -106,7 +106,7 @@ public class SecretMazeRoom extends SecretRoom {
 			} else {
 				prize = Generator.randomShield();
 			}
-		} while (prize.cursed || Challenges.isItemBlocked(prize));
+		} while (prize.cursed() || Challenges.isItemBlocked(prize));
 		
 		//33% chance for an extra update.
 		if (Random.Int(3) == 0){

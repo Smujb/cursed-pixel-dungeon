@@ -208,7 +208,7 @@ public class ShopRoom extends SpecialRoom {
 			toAdd.level(0);
 			toAdd.randomHigh();
 			toAdd.identify();
-			if (toAdd.cursed) {
+			if (toAdd.cursed()) {
 				toAdd.uncurse();
 				if (toAdd instanceof Enchantable) {
 					((Enchantable) toAdd).enchant();
@@ -275,7 +275,7 @@ public class ShopRoom extends SpecialRoom {
 					rare = Generator.random(Generator.Category.ARTIFACT);
 					break;
 			}
-			rare.cursed = false;
+			rare.uncurse();
 			rare.cursedKnown = true;
 			rare.levelKnown = true;
 			rare.randomHigh();

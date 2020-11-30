@@ -111,9 +111,9 @@ public class SpiritBow extends Weapon implements Attackable {
 			info += " " + Messages.get(enchantment, "desc");
 		}
 		
-		if (cursed && isEquipped( Dungeon.hero )) {
+		if (cursed() && isEquipped( Dungeon.hero )) {
 			info += "\n\n" + Messages.get(Weapon.class, "cursed_worn");
-		} else if (cursedKnown && cursed) {
+		} else if (cursedKnown && cursed()) {
 			info += "\n\n" + Messages.get(Weapon.class, "cursed");
 		} else if (!isIdentified() && cursedKnown){
 			info += "\n\n" + Messages.get(Weapon.class, "not_cursed");

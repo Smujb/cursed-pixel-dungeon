@@ -148,7 +148,7 @@ public class Bones {
 							return new Gold(item.price());
 						}
 
-						artifact.cursed = true;
+						artifact.curse();
 						artifact.cursedKnown = true;
 
 						return artifact;
@@ -159,7 +159,7 @@ public class Bones {
 				}
 				
 				if (item.isUpgradable() && !(item instanceof MissileWeapon)) {
-					item.cursed = true;
+					item.curse();
 					item.cursedKnown = true;
 				}
 				

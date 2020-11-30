@@ -202,7 +202,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         float effectRoll = Random.Float();
         if (effectRoll < 0.5f) {
             enchant(Weapon.Enchantment.randomCurse());
-            cursed = true;
+            curse();
         } else if (effectRoll >= 0.8f){
             enchant();
         }
@@ -314,7 +314,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     @Override
     public int price() {
         int price = 100;
-        if (cursedKnown && cursed) {
+        if (cursedKnown && cursed()) {
             price /= 2;
         }
         if (levelKnown && level() > 0) {

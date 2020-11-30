@@ -19,7 +19,7 @@ public class Alchemy extends Power {
 	@Override
 	protected void onUse(Hero hero) {
 		super.onUse(hero);
-		if (cursed)                                                GLog.warning( Messages.get(this, "cursed") );
+		if (cursed())                                                GLog.warning( Messages.get(this, "cursed") );
 		else if (hero.visibleEnemies() > hero.mindVisionEnemies.size()) GLog.info( Messages.get(this, "enemy_near") );
 		else {
 			AlchemyScene.setProvider(new Energy());
@@ -30,7 +30,7 @@ public class Alchemy extends Power {
 	@Override
 	public String desc() {
 		String result = Messages.get(this, "desc");
-		if (cursed)             result += "\n\n" + Messages.get(this, "desc_cursed");
+		if (cursed())             result += "\n\n" + Messages.get(this, "desc_cursed");
 		else                    result += "\n\n" + Messages.get(this, "desc_hint");
 
 		return result;

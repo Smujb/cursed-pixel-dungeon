@@ -72,7 +72,7 @@ public class DeveloperItem extends Item {
 	{
 		image = ItemSpriteSheet.SKULL;
 
-		cursed = false;
+		uncurse();
 	}
 
 	@Override

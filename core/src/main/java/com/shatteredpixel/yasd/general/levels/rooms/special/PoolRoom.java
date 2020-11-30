@@ -123,7 +123,7 @@ public class PoolRoom extends SpecialRoom {
 				prize = Generator.randomShield();
 
 			}
-		} while (prize.cursed || Challenges.isItemBlocked(prize));
+		} while (prize.cursed() || Challenges.isItemBlocked(prize));
 		prize.cursedKnown = true;
 		
 		prize = prize.randomHigh();

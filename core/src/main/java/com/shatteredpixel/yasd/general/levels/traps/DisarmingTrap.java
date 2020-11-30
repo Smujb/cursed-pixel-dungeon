@@ -72,7 +72,7 @@ public class DisarmingTrap extends Trap{
 
 			KindOfWeapon weapon = hero.belongings.getWeapon();
 
-			if (weapon != null && !weapon.cursed) {
+			if (weapon != null && !weapon.cursed()) {
 
 				int cell;
 				int tries = 20;

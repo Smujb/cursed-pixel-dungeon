@@ -185,7 +185,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 			return false;
 		}
 
-		if ( curCharges >= (cursed ? 1 : chargesPerCast())){
+		if ( curCharges >= (cursed() ? 1 : chargesPerCast())){
 			return true;
 		} else {
 			GLog.warning(Messages.get(this, "fizzles"));
@@ -267,7 +267,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 
 		desc += "\n\n" + statsDesc();
 
-		if (cursed && cursedKnown) {
+		if (cursed() && cursedKnown) {
 			desc += "\n\n" + Messages.get(Wand.class, "cursed");
 		} else if (!isIdentified() && cursedKnown){
 			desc += "\n\n" + Messages.get(Wand.class, "not_cursed");
@@ -296,7 +296,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	
 	@Override
 	public int level() {
-		if (!cursed && curseInfusionBonus){
+		if (!cursed() && curseInfusionBonus){
 			curseInfusionBonus = false;
 			updateLevel();
 		}
@@ -315,8 +315,8 @@ public abstract class Wand extends KindofMisc implements Attackable {
 
 		super.upgrade();
 
-		if (Random.Int(3) == 0) {
-			cursed = false;
+		if (Random.Int(2) == 0) {
+			curse();
 		}
 
 		updateLevel();
@@ -372,7 +372,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 			}
 		}
 		
-		curCharges -= cursed ? 1 : chargesPerCast();
+		curCharges -= cursed() ? 1 : chargesPerCast();
 
 		MagicCharge buff = curUser.buff(MagicCharge.class);
 		if (buff != null && buff.level() > super.level()){
@@ -406,8 +406,8 @@ public abstract class Wand extends KindofMisc implements Attackable {
 		curCharges += n;
 		
 		//30% chance to be cursed
-		if (Random.Float() < 0.3f) {
-			cursed = true;
+		if (Random.Float() < 0.5f) {
+			curse();
 		}
 
 		return this;
@@ -416,7 +416,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	@Override
 	public int price() {
 		int price = 75;
-		if (cursed && cursedKnown) {
+		if (cursed() && cursedKnown) {
 			price /= 2;
 		}
 		if (levelKnown) {
@@ -496,7 +496,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 					Hero hero = ((Hero)curUser);
 					int diff = curWand.encumbrance();
 					float miscastChance = (float) Math.pow(0.8f, diff);
-					if (diff > 0 && (Random.Float() > miscastChance || curWand.cursed)) {
+					if (diff > 0 && (Random.Float() > miscastChance || curWand.cursed())) {
 						diff = Math.max(3, diff);
 						if (hero.useMP(diff * 3)) {
 							GLog.info( Messages.get(Wand.class, "miscast", curWand.name()) );
@@ -523,7 +523,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 
 					Invisibility.dispel();
 					
-					if (curWand.cursed){
+					if (curWand.cursed()){
 						if (!curWand.cursedKnown){
 							GLog.negative(Messages.get(Wand.class, "curse_discover", curWand.name()));
 						}

@@ -64,7 +64,7 @@ public class AlchemistsToolkit extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && !cursed)
+		if (isEquipped( hero ) && !cursed())
 			actions.add(AC_BREW);
 		return actions;
 	}
@@ -76,7 +76,7 @@ public class AlchemistsToolkit extends Artifact {
 
 		if (action.equals(AC_BREW)){
 			if (!isEquipped(hero))                                          GLog.info( Messages.get(this, "need_to_equip") );
-			else if (cursed)                                                GLog.warning( Messages.get(this, "cursed") );
+			else if (cursed())                                                GLog.warning( Messages.get(this, "cursed") );
 			else if (!alchemyReady)                                         GLog.info( Messages.get(this, "not_ready") );
 			else if (hero.visibleEnemies() > hero.mindVisionEnemies.size()) GLog.info( Messages.get(this, "enemy_near") );
 			else {
@@ -139,7 +139,7 @@ public class AlchemistsToolkit extends Artifact {
 		String result = Messages.get(this, "desc");
 
 		if (isEquipped(Dungeon.hero)) {
-			if (cursed)             result += "\n\n" + Messages.get(this, "desc_cursed");
+			if (cursed())             result += "\n\n" + Messages.get(this, "desc_cursed");
 			else if (!alchemyReady) result += "\n\n" + Messages.get(this, "desc_warming");
 			else                    result += "\n\n" + Messages.get(this, "desc_hint");
 		}
@@ -176,7 +176,7 @@ public class AlchemistsToolkit extends Artifact {
 		public void gainCharge(float levelPortion) {
 			alchemyReady = true;
 			
-			if (cursed) return;
+			if (cursed()) return;
 			
 			if (charge < chargeCap) {
 				

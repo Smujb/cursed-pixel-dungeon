@@ -71,7 +71,7 @@ public class SandalsOfNature extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && level() < 3 && !cursed)
+		if (isEquipped( hero ) && level() < 3 && !cursed())
 			actions.add(AC_FEED);
 		if (isEquipped( hero ) && charge > 0)
 			actions.add(AC_ROOT);
@@ -129,7 +129,7 @@ public class SandalsOfNature extends Artifact {
 		if ( isEquipped ( Dungeon.hero ) ){
 			desc += "\n\n";
 
-			if (!cursed)
+			if (!cursed())
 				desc += Messages.get(this, "desc_hint");
 			else
 				desc += Messages.get(this, "desc_cursed");

@@ -92,7 +92,7 @@ public class MagesStaff extends MeleeWeapon {
 	public MagesStaff(Wand wand){
 		this();
 		wand.identify();
-		wand.cursed = false;
+		wand.uncurse();
 		this.wand = wand;
 		wand.imbued = true;
 		updateWand(false);
@@ -144,7 +144,7 @@ public class MagesStaff extends MeleeWeapon {
 				return;
 			}
 
-			wand.cursed = cursed || hasCurseEnchant();
+			wand.curseIntensity = curseIntensity;
 			wand.execute(hero, Wand.AC_ZAP_OVERRIDE);
 		}
 	}
@@ -339,7 +339,7 @@ public class MagesStaff extends MeleeWeapon {
 				if (!item.isIdentified()) {
 					GLog.warning(Messages.get(MagesStaff.class, "id_first"));
 					return;
-				} else if (item.cursed){
+				} else if (item.cursed()){
 					GLog.warning(Messages.get(MagesStaff.class, "cursed"));
 					return;
 				}

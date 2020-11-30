@@ -88,7 +88,7 @@ public class GoldenMimic extends Mimic {
 		//all existing prize items are guaranteed uncursed
 		for (Item i : items) {
 			if (i instanceof EquipableItem) {
-				if (i.cursed) {
+				if (i.cursed()) {
 					i.upgrade();
 				}
 				i.uncurse();

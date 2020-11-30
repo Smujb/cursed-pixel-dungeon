@@ -98,7 +98,7 @@ public abstract class KindofMisc extends EquipableItem {
 			activate( hero );
 
 			cursedKnown = true;
-			if (cursed) {
+			if (cursed()) {
 				equipCursed( hero );
 				GLog.negative( Messages.get(this, "equip_cursed", this) );
 			}

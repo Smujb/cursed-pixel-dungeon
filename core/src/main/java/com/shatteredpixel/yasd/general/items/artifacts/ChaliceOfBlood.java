@@ -60,7 +60,7 @@ public class ChaliceOfBlood extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped( hero ) && level() < levelCap && !cursed)
+		if (isEquipped( hero ) && level() < levelCap && !cursed())
 			actions.add(AC_PRICK);
 		return actions;
 	}
@@ -160,7 +160,7 @@ public class ChaliceOfBlood extends Artifact {
 
 		if (isEquipped (Dungeon.hero)){
 			desc += "\n\n";
-			if (cursed)
+			if (cursed())
 				desc += Messages.get(this, "desc_cursed");
 			else if (level() == 0)
 				desc += Messages.get(this, "desc_1");

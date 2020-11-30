@@ -72,7 +72,7 @@ public class EtherealChains extends Artifact {
 	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped(hero) && charge > 0 && !cursed)
+		if (isEquipped(hero) && charge > 0 && !cursed())
 			actions.add(AC_CAST);
 		return actions;
 	}
@@ -94,7 +94,7 @@ public class EtherealChains extends Artifact {
 				GLog.info( Messages.get(this, "no_charge") );
 				QuickSlotButton.cancel();
 
-			} else if (cursed) {
+			} else if (cursed()) {
 				GLog.warning( Messages.get(this, "cursed") );
 				QuickSlotButton.cancel();
 
@@ -264,7 +264,7 @@ public class EtherealChains extends Artifact {
 
 		if (isEquipped( Dungeon.hero )){
 			desc += "\n\n";
-			if (cursed)
+			if (cursed())
 				desc += Messages.get(this, "desc_cursed");
 			else
 				desc += Messages.get(this, "desc_equipped");
@@ -278,9 +278,9 @@ public class EtherealChains extends Artifact {
 		public boolean act() {
 			int chargeTarget = 5+(level()*2);
 			LockedFloor lock = target.buff(LockedFloor.class);
-			if (charge < chargeTarget && !cursed && (lock == null || lock.regenOn())) {
+			if (charge < chargeTarget && !cursed() && (lock == null || lock.regenOn())) {
 				partialCharge += 1 / (40f - (chargeTarget - charge)*2f);
-			} else if (cursed && Random.Int(100) == 0){
+			} else if (cursed() && Random.Int(100) == 0){
 				Buff.prolong( target, Cripple.class, 10f);
 			}
 
@@ -297,7 +297,7 @@ public class EtherealChains extends Artifact {
 		}
 
 		public void gainExp( float levelPortion ) {
-			if (cursed || levelPortion == 0) return;
+			if (cursed() || levelPortion == 0) return;
 
 			exp += Math.round(levelPortion*100);
 

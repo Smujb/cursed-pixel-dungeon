@@ -26,7 +26,7 @@ public class Soul extends Item {
     {
         image = ItemSpriteSheet.SOUL;
         unique = true;
-        cursed = false;
+        uncurse();
     }
     private Class<? extends Mob> mob = Rat.class;
 

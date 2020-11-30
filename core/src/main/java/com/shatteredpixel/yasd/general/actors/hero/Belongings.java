@@ -394,7 +394,7 @@ public class Belongings implements Iterable<Item> {
 
 		for (int i = 0; i < owner.miscSlots(); i++) {//Restore all miscs
 			if (miscs[i] != null) {
-				miscs[i].cursed = false;
+				miscs[i].uncurse();
 				miscs[i].activate( owner );
 			}
 		}
