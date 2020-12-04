@@ -277,7 +277,7 @@ public class WndHero extends WndTabbed {
 			pos += GAP;
 
 			if (hero.heroClass == HeroClass.MAGE) {
-				RedButton button = new RedButton(Messages.get(MageNPC.class, "view")) {
+				RedButton button = new RedButton(Messages.get(MageNPC.class, "view_storage")) {
 					@Override
 					protected void onClick() {
 						GameScene.show(new WndStorage());
