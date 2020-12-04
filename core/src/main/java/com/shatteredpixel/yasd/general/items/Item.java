@@ -568,6 +568,7 @@ public class Item implements Bundlable {
 	}
 
 	@NotNull
+	//Creates a new emitter and adds it to the group. Do not randomly call this unless needed as it will cause unnecessary memory usage.
 	public final Emitter emitter(ItemSprite sprite) {
 		Emitter emitter = new CPDEmitter();
 		emitter.pos( sprite );

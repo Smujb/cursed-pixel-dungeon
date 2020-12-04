@@ -154,6 +154,7 @@ import com.shatteredpixel.yasd.general.items.shield.LightShield;
 import com.shatteredpixel.yasd.general.items.shield.MidasShield;
 import com.shatteredpixel.yasd.general.items.shield.PanicShield;
 import com.shatteredpixel.yasd.general.items.shield.ParryShield;
+import com.shatteredpixel.yasd.general.items.shield.PestilentShield;
 import com.shatteredpixel.yasd.general.items.shield.ReinforcedShield;
 import com.shatteredpixel.yasd.general.items.shield.RoundShield;
 import com.shatteredpixel.yasd.general.items.shield.RunicShield;
@@ -578,9 +579,10 @@ public class Generator {
 					LaceratingShield.class,
 					HeroShield.class,
 					ReinforcedShield.class,
-					RunicShield.class
+					RunicShield.class,
+					PestilentShield.class
 			};
-			SHIELD.probs = new float[] { 3, 2, 1, 2, 2, 2, 3, 2, 2, 3, 1, 2, 2, 3, 1 };
+			SHIELD.probs = new float[] { 3, 2, 1, 2, 2, 2, 3, 2, 2, 3, 1, 2, 2, 3, 1, 2 };
 
 			RANGED.classes = new Class<?>[] {
 					Bow.class,
