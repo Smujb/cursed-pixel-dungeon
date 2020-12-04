@@ -106,7 +106,7 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
     public void fx(Char attacker, int pos, Callback callback) {
         //Rather than directly calling the callback, call it when the missile hits the enemy
         ((MissileSprite)attacker.sprite.parent.recycle( MissileSprite.class )).
-                reset( attacker.pos, pos, Reflection.newInstance(ammoClass()), callback, speed);
+                reset( attacker.pos, pos, Reflection.newInstance(ammoClass()), callback);
     }
 
     @Override
