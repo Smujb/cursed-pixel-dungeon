@@ -396,7 +396,7 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 
 	@Override
 	public int enchPower() {
-		return level();
+		return cursed() ? curseIntensity : level();
 	}
 
 	@Override

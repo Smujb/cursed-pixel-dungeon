@@ -391,7 +391,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
     @Override
     public int enchPower() {
-        return level();
+        return cursed() ? curseIntensity : level();
     }
 
     @Override

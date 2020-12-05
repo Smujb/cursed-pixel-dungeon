@@ -43,7 +43,7 @@ public class Sacrificial extends Weapon.Enchantment {
 	@Override
 	public int proc(Enchantable weapon, Char attacker, Char defender, int damage ) {
 
-		if (Random.Int(3) == 0) {
+		if (Random.Int(5+weapon.enchPower()) <= weapon.enchPower()) {
 			int procDMG = defender.HP;
 			if (Math.round(procDMG/2f) >= attacker.HP) {//Use Math.round rather than integer division so that odd damage doesn't have a small chance of killing the player
 				procDMG = (attacker.HP - 1)*2;

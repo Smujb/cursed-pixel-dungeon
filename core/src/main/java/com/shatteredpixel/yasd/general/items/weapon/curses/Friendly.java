@@ -43,7 +43,7 @@ public class Friendly extends Weapon.Enchantment {
 	@Override
 	public int proc(Enchantable weapon, Char attacker, Char defender, int damage ) {
 		
-		if (Random.Int(10) == 0){
+		if (Random.Int(5+weapon.enchPower()) <= weapon.enchPower()){
 
 			Buff.affect( attacker, Charm.class, Charm.DURATION ).object = defender.id();
 			attacker.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, 5 );

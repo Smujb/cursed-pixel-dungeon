@@ -49,7 +49,7 @@ public class Fragile extends Weapon.Enchantment {
 		if (Random.Float() > chance) {
 			Buff.affect(defender, Paralysis.class, Paralysis.DURATION);
 		}
-		if (hits < 150) hits++;
+		if (hits < (15 + weapon.enchPower())*10) hits++;
 		return damage;
 	}
 
