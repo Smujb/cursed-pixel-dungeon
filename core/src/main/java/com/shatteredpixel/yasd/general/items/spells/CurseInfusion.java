@@ -33,11 +33,6 @@ import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.quest.MetalShard;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRemoveCurse;
-import com.shatteredpixel.yasd.general.items.wands.Wand;
-import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
-import com.shatteredpixel.yasd.general.items.weapon.Weapon;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.watabou.noosa.audio.Sample;
@@ -55,30 +50,8 @@ public class CurseInfusion extends InventorySpell {
 		CellEmitter.get(curUser.pos).burst(ShadowParticle.UP, 5);
 		Sample.INSTANCE.play(Assets.Sounds.CURSED);
 		
-		item.curse();
-		if (item instanceof MeleeWeapon || item instanceof SpiritBow) {
-			Weapon w = (Weapon) item;
-			if (w.enchantment != null) {
-				w.enchant(Weapon.Enchantment.randomCurse(w.enchantment.getClass()));
-			} else {
-				w.enchant(Weapon.Enchantment.randomCurse());
-			}
-			w.curseInfusionBonus = true;
-			if (w instanceof MagesStaff){
-				((MagesStaff) w).updateWand(true);
-			}
-		} /*else if (item instanceof Armor){
-			Armor a = (Armor) item;
-			if (a.glyph != null){
-				a.inscribe(Armor.Glyph.randomCurse(a.glyph.getClass()));
-			} else {
-				a.inscribe(Armor.Glyph.randomCurse());
-			}
-			a.curseInfusionBonus = true;
-		}*/ else if (item instanceof Wand){
-			((Wand) item).curseInfusionBonus = true;
-			((Wand) item).updateLevel();
-		}
+		if (!item.cursed()) item.curse();
+		item.increaseCurseIntensity(3);
 		updateQuickslot();
 	}
 	

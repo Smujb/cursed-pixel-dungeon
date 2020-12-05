@@ -443,8 +443,8 @@ public class Item implements Bundlable {
 		return level;
 	}
 
-	public int level(){
-		return trueLevel();
+	public int level() {
+		return trueLevel() + (int) (curseIntensity/5f);
 	}
 
 	public Item level( int value ){
