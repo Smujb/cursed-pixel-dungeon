@@ -214,13 +214,16 @@ public class Hero extends Char {
 			}
 		}
 		if (belongings.contains((Item) curItem)) {
+			((Item) curItem).setUser(this);
 			return curItem;
 		} else {
 			ArrayList<Item> items = belongings.getAllSimilar((Item) curItem);
 			if (items.isEmpty()) {
 				return curItem = null;
 			} else {
-				return curItem = (Attackable) items.get(0);
+				curItem = (Attackable) items.get(0);
+				((Item) curItem).setUser(this);
+				return curItem;
 			}
 		}
 	}
