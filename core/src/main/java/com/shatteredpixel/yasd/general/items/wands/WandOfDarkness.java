@@ -60,7 +60,7 @@ public class WandOfDarkness extends Wand {
     public void onZap(Ballistica bolt) {
         float level = power();
         int pos = bolt.collisionPos;
-        DarkGas gas = Blob.seed(pos, (int) (30 + 5 * level), DarkGas.class);
+        DarkGas gas = Blob.seed(pos, (int) (100 + 10 * level), DarkGas.class);
         CellEmitter.center(bolt.collisionPos).burst(SmokeParticle.SPEW, 10 );
         gas.setStrength(2 + (int) level);
         gas.setOwner(curUser);
