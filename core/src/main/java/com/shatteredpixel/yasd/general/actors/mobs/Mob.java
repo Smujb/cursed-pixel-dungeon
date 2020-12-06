@@ -36,6 +36,7 @@ import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
+import com.shatteredpixel.yasd.general.actors.blobs.DarkGas;
 import com.shatteredpixel.yasd.general.actors.blobs.DemonGas;
 import com.shatteredpixel.yasd.general.actors.buffs.Adrenaline;
 import com.shatteredpixel.yasd.general.actors.buffs.Aggression;
@@ -44,6 +45,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Charm;
 import com.shatteredpixel.yasd.general.actors.buffs.Corrosion;
 import com.shatteredpixel.yasd.general.actors.buffs.Corruption;
+import com.shatteredpixel.yasd.general.actors.buffs.DeferredDeath;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.buffs.ParryBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Sleep;
@@ -904,6 +906,16 @@ public abstract class Mob extends Char {
 					Dungeon.hero.sprite.emitter().burst(ShadowParticle.CURSE, 6);
 				}
 			}
+		}
+
+		DarkGas.MindBreak mindBreak = buff(DarkGas.MindBreak.class);
+		if (mindBreak != null && !isImmune(Corruption.class)) {
+			mindBreak.detach();
+			updateHT(true);
+			HP = HT;
+			Buff.affect(this, DeferredDeath.class, DarkGas.MindBreak.MOB_LIFETIME);
+			Buff.affect(this, Corruption.class);
+			return;
 		}
 
 		super.die(cause);

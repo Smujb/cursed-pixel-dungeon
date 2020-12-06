@@ -64,6 +64,7 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRage;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.shield.RoundShield;
+import com.shatteredpixel.yasd.general.items.wands.WandOfDarkness;
 import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.yasd.general.items.wands.WandOfVoltage;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
@@ -189,6 +190,7 @@ public enum HeroClass {
 		new MegaStick().identify().collect();
 		new DeveloperItem().collect();
 		new WandOfVoltage().identify().collect();
+		new WandOfDarkness().identify().collect();
 
 		for (Class<?> itemClass : Generator.Category.WEAPON.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);

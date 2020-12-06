@@ -29,12 +29,13 @@ package com.shatteredpixel.yasd.general.items.wands;
 
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.DeferredDeath;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
+import com.shatteredpixel.yasd.general.items.weapon.enchantments.Grim;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -99,5 +100,14 @@ public class WandOfDamnation extends Wand {
         particle.speed.set(0, 5);
         particle.setSize( 0.5f, 2f);
         particle.shuffleXY(1f);
+    }
+
+    public static class DeferredDeath extends com.shatteredpixel.yasd.general.actors.buffs.DeferredDeath {
+
+        //Do not simply kill the target like the basic deferred death buff, spare anything immune to Grim.
+        @Override
+        protected void killTarget() {
+            target.damage(target.HP, new Char.DamageSrc(Element.SHADOW, new Grim()));
+        }
     }
 }

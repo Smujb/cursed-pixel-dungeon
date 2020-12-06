@@ -31,15 +31,14 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.buffs.Aggression;
-import com.shatteredpixel.yasd.general.actors.buffs.Barrier;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
 import com.shatteredpixel.yasd.general.effects.BlobEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.ui.BuffIndicator;
+import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
@@ -61,41 +60,10 @@ public class DarkGas extends Blob {
             for (int i = area.left; i < area.right; i++){
                 for (int j = area.top; j < area.bottom; j++){
                     cell = i + j*l.width();
-                    l.pressCell(cell);
                     if (cur[cell] > 0 && (ch = Actor.findChar( cell )) != null) {
                         if (!ch.isImmune(this.getClass())) {
-                            if (ch instanceof Hero) {
-                                ch.damage(Random.Int(Math.max(1,strength/2), strength+2), new Char.DamageSrc(Element.SHADOW, this).ignoreDefense() );//Take some direct damage, cap scaling with max HP and never 0. Also prevents the hero standing in it for bonus shielding/sneakSkill without consequence
-                            } else {
-                                Buff.prolong(ch, Aggression.class, 3);
-                            }
-
-                            for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-                                if (l.distance(mob.pos, cell) < 6) {//All mobs within 5-tile radius are attracted to the location
-                                    mob.beckon(cell);
-                                }
-                            }
-
-                            Char owner = (Char) Actor.findById(ownerID);
-                            if (owner != null) {
-                                int existingShield = 0;
-                                Barrier barrier = owner.buff(Barrier.class);
-                                if (barrier != null) {//Extend shield if possible
-                                    existingShield = barrier.shielding();
-                                }
-                                int shield = owner.HT / 30 + existingShield;
-                                int healing = shield/3;
-                                if (shield > strength/2 + 2 & healing > 0 & !(owner.HP >= owner.HT)) {//Converts some shielding to HP if it grows enough
-                                    healing = Math.min(owner.missingHP(),healing);
-                                    shield -= healing;
-                                    owner.sprite.emitter().burst( Speck.factory(Speck.HEALING), 4 );
-                                    owner.heal(healing);
-                                }
-                                shield = Math.min(shield,strength*2);//Caps at current strength * 2
-                                if (shield > 1f) {//If it won't even last a turn, adding it is useless
-                                    Buff.affect(owner, Barrier.class).setShield(shield);
-                                }
-                            }
+                            ch.damage(Random.Int(Math.max(1,strength/2), strength+2), new Char.DamageSrc(Element.SHADOW, this).ignoreDefense() );
+                            Buff.affect(ch, MindBreak.class, 3);
                         }
                     }
                 }
@@ -144,5 +112,34 @@ public class DarkGas extends Blob {
     @Override
     public String tileDesc() {
         return Messages.get(this, "desc");
+    }
+
+    public static class MindBreak extends FlavourBuff {
+
+        {
+            type = buffType.NEGATIVE;
+        }
+
+        public static final float MOB_LIFETIME = 15f;
+
+        @Override
+        public int icon() {
+            return BuffIndicator.VERTIGO;
+        }
+
+        @Override
+        public void tintIcon(Image icon) {
+            icon.hardlight(1f, 0.8f, 0f);
+        }
+
+        @Override
+        public String toString() {
+            return Messages.get(this, "name");
+        }
+
+        @Override
+        public String desc() {
+            return Messages.get(this, "desc", dispTurns());
+        }
     }
 }

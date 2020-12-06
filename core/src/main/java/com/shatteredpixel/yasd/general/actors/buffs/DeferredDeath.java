@@ -32,7 +32,6 @@ import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.Miasma;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
-import com.shatteredpixel.yasd.general.items.weapon.enchantments.Grim;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
@@ -83,9 +82,12 @@ public class DeferredDeath extends FlavourBuff {
     public void detach() {
         super.detach();
         GameScene.add(Blob.seed(target.pos, 100, Miasma.class));
-        if (!target.isImmune(Grim.class)) {
-            target.die(defaultSrc());
-        }
+        killTarget();
         CellEmitter.get(target.pos).burst(ShadowParticle.UP, 20);
+    }
+
+    //Instantly kill the target regardless of resistances
+    protected void killTarget() {
+        target.die(defaultSrc());
     }
 }
