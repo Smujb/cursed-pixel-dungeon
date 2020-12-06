@@ -50,6 +50,7 @@ import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.effects.particles.SmokeParticle;
 import com.shatteredpixel.yasd.general.effects.particles.SnowParticle;
+import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.MarksmansBow;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -97,7 +98,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	protected float shadowOffset    = 0.25f;
 
 	public enum State {
-		BURNING, LEVITATING, INVISIBLE, PARALYSED, FROZEN, ILLUMINATED, CHILLED, DARKENED, MARKED, HEALING, SHIELDED, POISONED, BLEEDING, WEAKENED, BLESSED, OOZE, VERTIGO, WET, BERSERK, PURITY, ADRENALINE, AMOK
+		BURNING, LEVITATING, INVISIBLE, PARALYSED, FROZEN, ILLUMINATED, CHILLED, DARKENED, MARKED, HEALING, SHIELDED, POISONED, BLEEDING, WEAKENED, BLESSED, OOZE, VERTIGO, WET, BERSERK, PURITY, ADRENALINE, AMOK, CHARGED
 	}
 	
 	protected Animation idle;
@@ -126,6 +127,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 	protected Emitter wet;
 	protected Emitter amok;
 	protected Emitter burningSmoke;
+	protected Emitter charged;
 	
 	protected IceBlock iceBlock;
 	protected DarkBlock darkBlock;
@@ -394,43 +396,43 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 		switch (state) {
 			case BURNING:
 				burning = emitter();
-				burning.pour( FlameParticle.FACTORY, 0.06f );
+				burning.pour(FlameParticle.FACTORY, 0.06f);
 				if (visible) {
-					Sample.INSTANCE.play( Assets.Sounds.BURNING );
+					Sample.INSTANCE.play(Assets.Sounds.BURNING);
 				}
 				burningSmoke = emitter();
-				burningSmoke.pour( SmokeParticle.FACTORY, 0.2f );
+				burningSmoke.pour(SmokeParticle.FACTORY, 0.2f);
 				break;
 			case LEVITATING:
 				levitation = emitter();
-				levitation.pour( Speck.factory( Speck.JET ), 0.02f );
+				levitation.pour(Speck.factory(Speck.JET), 0.02f);
 				break;
 			case INVISIBLE:
 				if (invisible != null) {
 					invisible.killAndErase();
 				}
-				invisible = new AlphaTweener( this, 0.4f, 0.4f );
-				if (parent != null){
+				invisible = new AlphaTweener(this, 0.4f, 0.4f);
+				if (parent != null) {
 					parent.add(invisible);
 				} else
-					alpha( 0.4f );
+					alpha(0.4f);
 				break;
 			case PARALYSED:
 				paused = true;
 				break;
 			case FROZEN:
-				iceBlock = IceBlock.freeze( this );
+				iceBlock = IceBlock.freeze(this);
 				paused = true;
 				break;
 			case ILLUMINATED:
-				GameScene.effect( light = new TorchHalo( this ) );
+				GameScene.effect(light = new TorchHalo(this));
 				break;
 			case CHILLED:
 				chilled = emitter();
 				chilled.pour(SnowParticle.FACTORY, 0.1f);
 				break;
 			case DARKENED:
-				darkBlock = DarkBlock.darken( this );
+				darkBlock = DarkBlock.darken(this);
 				break;
 			case MARKED:
 				marked = emitter();
@@ -441,7 +443,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 				healing.pour(Speck.factory(Speck.HEALING), 0.5f);
 				break;
 			case SHIELDED:
-				GameScene.effect( shield = new ShieldHalo( this ));
+				GameScene.effect(shield = new ShieldHalo(this));
 				break;
 			case POISONED:
 				poisoned = emitter();
@@ -449,11 +451,11 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 				break;
 			case WEAKENED:
 				weakened = emitter();
-				weakened.pour(GooSprite.GooParticle.FACTORY, 0.1f );
+				weakened.pour(GooSprite.GooParticle.FACTORY, 0.1f);
 				break;
 			case BLEEDING:
 				bleeding = emitter();
-				bleeding.pour( BloodParticle.FACTORY, 0.1f );
+				bleeding.pour(BloodParticle.FACTORY, 0.1f);
 				break;
 			case WET:
 				wet = emitter();
@@ -475,7 +477,7 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 				redBlock = RedBlock.darken(this);
 				break;
 			case PURITY:
-				GameScene.effect( redShield = new RedShieldHalo( this ));
+				GameScene.effect(redShield = new RedShieldHalo(this));
 				break;
 			case ADRENALINE:
 				yellowBlock = YellowBlock.darken(this);
@@ -483,6 +485,10 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 			case AMOK:
 				amok = emitter();
 				amok.pour(Speck.factory(Speck.ANGRY), 0.5f);
+				break;
+			case CHARGED:
+				charged = emitter();
+				charged.pour(SparkParticle.FACTORY, 0.1f);
 				break;
 		}
 	}
@@ -620,6 +626,12 @@ public class CharSprite extends MovieClip implements Tweener.Listener, MovieClip
 				if (amok != null) {
 					amok.on = false;
 					amok = null;
+				}
+				break;
+			case CHARGED:
+				if (charged != null) {
+					charged.on = false;
+					charged = null;
 				}
 				break;
 		}
