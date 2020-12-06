@@ -6,6 +6,7 @@ import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -24,6 +25,8 @@ public class WandOfVoltage extends DamageWand {
         damageMultiplier = 0.75f;
 
         element = Element.SHOCK;
+
+        statScaling.add(Hero.HeroStat.SUPPORT);
     }
 
     private static final float SHOCK_DAMAGE_FACTOR = 0.2f;
