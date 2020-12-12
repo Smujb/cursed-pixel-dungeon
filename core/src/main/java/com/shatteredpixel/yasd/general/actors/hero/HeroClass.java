@@ -196,6 +196,7 @@ public enum HeroClass {
 			Item item = (Item) Reflection.newInstance(itemClass);
 			if (item != null) {
 				item.random();
+				item.uncurse();
 				item.identify().collect();
 				while (item.statReq() < item.bestHeroStatValue(hero) && item.isUpgradable()) {
 					item.upgrade();

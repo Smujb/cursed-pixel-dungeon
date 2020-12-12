@@ -297,9 +297,9 @@ public class ItemSpriteSheet {
 
 		//TODO names for rest of WANDS + 14 to WANDS + 27
 		public static final int SWARM 		   	   = WANDS_ROW_1+17;
-		public static final int MALAISE 		   = WANDS_ROW_1+23;
-		public static final int BINDING 		   = WANDS_ROW_1+25;
-		public static final int WARPING 		   = WANDS_ROW_1+27;
+		public static final int MALAISE 		   = WANDS_ROW_1+22;
+		public static final int BINDING 		   = WANDS_ROW_1+24;
+		public static final int WARPING 		   = WANDS_ROW_1+26;
 
 		public static final int DISINTEGRATION 	 	= WANDS_ROW_1+28;
 		public static final int SMITING	 		 	= WANDS_ROW_1+29;
