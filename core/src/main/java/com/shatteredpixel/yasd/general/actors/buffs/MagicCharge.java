@@ -39,7 +39,7 @@ public class MagicCharge extends FlavourBuff {
 		announced = true;
 	}
 
-	public static float DURATION = 4f;
+	public static float DURATION = 10f;
 
 	private int level = 0;
 

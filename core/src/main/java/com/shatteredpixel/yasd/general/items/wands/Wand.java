@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.wands;
 
 import com.shatteredpixel.yasd.general.Badges;
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -293,11 +292,11 @@ public abstract class Wand extends KindofMisc implements Attackable {
 		int lvl = super.level();
 		if (curUser != null) {
 			MagicCharge buff = curUser.buff(MagicCharge.class);
-			if (buff != null && buff.level() > lvl){
-				return buff.level();
+			if (buff != null){
+				lvl += buff.level();
 			}
 		}
-		return lvl + (curseInfusionBonus ? Constants.CURSE_INFUSION_BONUS_AMT : 0);
+		return lvl;
 	}
 	
 	@Override
