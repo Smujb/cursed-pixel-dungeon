@@ -304,8 +304,8 @@ public abstract class Wand extends KindofMisc implements Attackable {
 
 		super.upgrade();
 
-		if (Random.Int(2) == 0) {
-			curse();
+		if (Random.Int(5) == 0) {
+			uncurse();
 		}
 
 		updateLevel();
