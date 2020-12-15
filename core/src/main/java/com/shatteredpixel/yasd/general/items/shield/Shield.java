@@ -259,7 +259,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     }
 
     public void affectEnemy(Char enemy, boolean parry) {
-        if (curUser != null && Dungeon.level.adjacent(curUser.pos, enemy.pos)) {
+        if (canAffectEnemy(enemy)) {
             if (damageFactor == 0f) return;
             int damage;
             if (parry) {
@@ -272,6 +272,10 @@ public abstract class Shield extends KindofMisc implements Enchantable {
             damage = proc(curUser, enemy, damage, parry);
             enemy.damage(damage, new Char.DamageSrc(Element.PHYSICAL, this));
         }
+    }
+
+    public boolean canAffectEnemy(Char enemy) {
+        return curUser != null && Dungeon.level.adjacent(curUser.pos, enemy.pos);
     }
 
     public int proc(Char attacker, Char enemy, int damage, boolean parry) {
