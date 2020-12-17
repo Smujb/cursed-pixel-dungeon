@@ -359,7 +359,7 @@ public abstract class Mob extends Char {
 	
 	@Override
 	protected boolean act() {
-		Buff.detach(buff(ParryBuff.class));
+		for (ParryBuff buff : buffs(ParryBuff.class)) buff.detach();
 		super.act();
 		
 		if (Dungeon.level.liquid(pos) && elementalType() == Element.WATER) {

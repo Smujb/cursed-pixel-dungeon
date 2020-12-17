@@ -750,7 +750,7 @@ public class Hero extends Char {
 		AttackIndicator.updateStates();
 
 		GameScene.ready();
-		Buff.detach(buff(ParryBuff.class));
+		for (ParryBuff buff : buffs(ParryBuff.class)) buff.detach();
 	}
 
 	public void interrupt() {
