@@ -35,6 +35,7 @@ public class Storage {
     }
 
     public static void add(Item item) {
+        if (item.unique) return;
 
         items = getItems();
         if (items.size() >= MAX_ITEMS) return;
