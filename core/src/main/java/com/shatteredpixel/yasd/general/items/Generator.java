@@ -220,6 +220,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
+import com.shatteredpixel.yasd.general.items.weapon.melee.HeroSword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Hoe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Katana;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
@@ -567,10 +568,11 @@ public class Generator {
 					Rapier.class,
 					RoyalHalberd.class,
 					PlainSword.class,
-					Pitchfork.class
+					Pitchfork.class,
+					HeroSword.class
 
 			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2 };
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2, 2 };
 
 			SHIELD.classes = new Class<?>[] {
 					RoundShield.class,
