@@ -153,14 +153,17 @@ import com.shatteredpixel.yasd.general.items.shield.LaceratingShield;
 import com.shatteredpixel.yasd.general.items.shield.LightShield;
 import com.shatteredpixel.yasd.general.items.shield.MidasShield;
 import com.shatteredpixel.yasd.general.items.shield.PanicShield;
-import com.shatteredpixel.yasd.general.items.shield.ParryShield;
+import com.shatteredpixel.yasd.general.items.shield.ParryingDagger;
 import com.shatteredpixel.yasd.general.items.shield.PestilentShield;
+import com.shatteredpixel.yasd.general.items.shield.ReflexShield;
 import com.shatteredpixel.yasd.general.items.shield.ReinforcedShield;
 import com.shatteredpixel.yasd.general.items.shield.RoundShield;
 import com.shatteredpixel.yasd.general.items.shield.RunicShield;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
+import com.shatteredpixel.yasd.general.items.shield.SorcererShield;
 import com.shatteredpixel.yasd.general.items.shield.SpiritualShield;
 import com.shatteredpixel.yasd.general.items.shield.SwiftShield;
+import com.shatteredpixel.yasd.general.items.shield.TitanShield;
 import com.shatteredpixel.yasd.general.items.shield.WarpShield;
 import com.shatteredpixel.yasd.general.items.shield.WoodenShield;
 import com.shatteredpixel.yasd.general.items.spells.Alchemize;
@@ -579,15 +582,18 @@ public class Generator {
 					WarpShield.class,
 					LightShield.class,
 					BarbedShield.class,
-					ParryShield.class,
+					ParryingDagger.class,
 					MidasShield.class,
 					LaceratingShield.class,
 					HeroShield.class,
 					ReinforcedShield.class,
 					RunicShield.class,
-					PestilentShield.class
+					PestilentShield.class,
+					SorcererShield.class,
+					TitanShield.class,
+					ReflexShield.class
 			};
-			SHIELD.probs = new float[] { 3, 2, 1, 2, 2, 2, 3, 2, 2, 3, 1, 2, 2, 3, 1, 2 };
+			SHIELD.probs = new float[] { 3, 2, 1, 2, 2, 2, 3, 2, 2, 3, 1, 2, 2, 3, 1, 2, 3, 1, 1 };
 
 			RANGED.classes = new Class<?>[] {
 					Bow.class,

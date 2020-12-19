@@ -4,9 +4,9 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class ParryShield extends Shield {
+public class ParryingDagger extends Shield {
     {
-        image = ItemSpriteSheet.Shields.PARRY;
+        image = ItemSpriteSheet.Shields.DAGGER;
 
         damageFactor = 2f;
 

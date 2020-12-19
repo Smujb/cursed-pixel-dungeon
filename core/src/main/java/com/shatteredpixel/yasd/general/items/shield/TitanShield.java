@@ -2,11 +2,12 @@ package com.shatteredpixel.yasd.general.items.shield;
 
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class TitanShield extends Shield {
 
     {
-        //TODO image
+        image = ItemSpriteSheet.Shields.TITAN;
 
         defenseMultiplier = 1.5f;
         damageFactor = 1.5f;

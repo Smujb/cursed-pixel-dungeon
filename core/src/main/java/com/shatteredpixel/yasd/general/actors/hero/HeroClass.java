@@ -192,7 +192,7 @@ public enum HeroClass {
 		new WandOfVoltage().identify().collect();
 		new WandOfDarkness().identify().collect();
 
-		for (Class<?> itemClass : Generator.Category.WAND.classes) {
+		for (Class<?> itemClass : Generator.Category.SHIELD.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);
 			if (item != null) {
 				item.random();

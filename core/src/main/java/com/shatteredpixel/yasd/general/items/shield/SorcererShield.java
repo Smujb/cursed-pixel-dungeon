@@ -4,10 +4,11 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicCharge;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class SorcererShield extends Shield {
     {
-        //TODO image
+        image = ItemSpriteSheet.Shields.SORCERER;
 
         defenseMultiplier = 0.8f;
         damageFactor = 0.5f;

@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general;
 import com.shatteredpixel.yasd.general.actors.mobs.Brute;
 import com.shatteredpixel.yasd.general.items.rings.RingOfAssault;
 import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
+import com.shatteredpixel.yasd.general.items.shield.ParryingDagger;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.levels.chapters.prison.OldPrisonBossLevel;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -180,8 +181,12 @@ public class CPDGame extends Game {
 				"com.shatteredpixel.yasd.general.items.armor.PriestessArmor");
 
 		com.watabou.utils.Bundle.addAlias(
-				com.shatteredpixel.yasd.general.items.shield.ParryShield.class,
+				ParryingDagger.class,
 				"com.shatteredpixel.yasd.general.items.armor.RogueArmor");
+
+		com.watabou.utils.Bundle.addAlias(
+				ParryingDagger.class,
+				"com.shatteredpixel.yasd.general.items.shield.ParryShield");
 
 
 		//Renaming
