@@ -121,7 +121,7 @@ public class CrimsonFlask extends Item {
             Camera.main.shake(4f, 1f);
             GameScene.flash(Constants.Colours.PURE_WHITE);
             Sample.INSTANCE.play(Assets.Sounds.DRINK);
-            Buff.affect(ch, Healing.class).setHeal(Math.round(ch.HT*0.75f), 0.05f, 0);
+            Buff.affect(ch, Healing.class).setHeal(Math.round(ch.HT*0.75f), 0.1f, 0);
             cure(ch);
             ch.busy();
             ch.spend(HEAL_TIME);
