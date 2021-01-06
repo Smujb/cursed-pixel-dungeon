@@ -56,7 +56,7 @@ import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.spells.Recycle;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
+import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.RangedWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;

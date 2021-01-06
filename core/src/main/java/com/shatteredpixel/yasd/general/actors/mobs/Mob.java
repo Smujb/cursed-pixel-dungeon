@@ -62,7 +62,7 @@ import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Lucky;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
+import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;

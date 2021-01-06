@@ -36,7 +36,7 @@ import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
+import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;

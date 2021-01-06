@@ -39,7 +39,7 @@ import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.Recipe;
 import com.shatteredpixel.yasd.general.items.artifacts.AlchemistsToolkit;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.darts.Dart;
+import com.shatteredpixel.yasd.general.items.unused.missiles.darts.Dart;
 import com.shatteredpixel.yasd.general.journal.Journal;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;

@@ -14,7 +14,7 @@ public class SwiftCrossbow extends Crossbow {
 
     @Override
     public String desc() {
-        return Messages.get(Crossbow.class,"desc") + "\n\n" + Messages.get(this,"swift");
+        return super.desc() + "\n\n" + Messages.get(this,"swift");
     }
 
     public static class SwiftDartAttack extends FlavourBuff {}

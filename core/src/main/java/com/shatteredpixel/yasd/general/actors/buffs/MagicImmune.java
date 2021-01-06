@@ -27,7 +27,7 @@
 
 package com.shatteredpixel.yasd.general.actors.buffs;
 
-import com.shatteredpixel.yasd.general.items.armor.glyphs.AntiMagic;
+import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.AntiMagic;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.noosa.Image;

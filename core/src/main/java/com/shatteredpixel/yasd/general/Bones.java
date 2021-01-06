@@ -32,7 +32,7 @@ import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
+import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.FileUtils;
 import com.watabou.utils.Random;

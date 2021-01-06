@@ -35,7 +35,7 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Splash;
 import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.MissileWeapon;
+import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.CellSelector;

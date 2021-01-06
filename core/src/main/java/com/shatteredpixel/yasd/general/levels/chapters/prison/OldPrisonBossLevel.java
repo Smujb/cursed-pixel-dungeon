@@ -40,7 +40,7 @@ import com.shatteredpixel.yasd.general.actors.mobs.OldTengu;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.keys.IronKey;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.HeavyBoomerang;
+import com.shatteredpixel.yasd.general.items.unused.missiles.HeavyBoomerang;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.rooms.MazeRoom;
 import com.shatteredpixel.yasd.general.levels.rooms.Room;

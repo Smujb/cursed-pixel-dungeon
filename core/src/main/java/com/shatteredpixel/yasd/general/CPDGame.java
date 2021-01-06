@@ -84,63 +84,63 @@ public class CPDGame extends Game {
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.Trident" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.Trident" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.ShredderCrossbow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.Tomahawk" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.Tomahawk" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingStone" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.ThrowingStone" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingSpear");
+				"com.shatteredpixel.yasd.general.items.unused.missiles.ThrowingSpear");
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingKnife" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.ThrowingKnife" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.ImpactCrossbow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingHammer" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.ThrowingHammer" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.ImpactCrossbow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.ThrowingClub" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.ThrowingClub" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.Shuriken" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.Shuriken" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.Kunai" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.Kunai" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.Longbow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.Javelin" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.Javelin" );
 
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.HeavyBoomerang" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.HeavyBoomerang" );
 
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.ImpactCrossbow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.ForceCube" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.ForceCube" );
 
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.Bow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.FishingSpear" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.FishingSpear" );
 
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.weapon.ranged.ShredderCrossbow.class,
-				"com.shatteredpixel.yasd.general.items.weapon.missiles.Bolas" );
+				"com.shatteredpixel.yasd.general.items.unused.missiles.Bolas" );
 
 
 
@@ -151,39 +151,39 @@ public class CPDGame extends Game {
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.shield.RoundShield.class,
-				"com.shatteredpixel.yasd.general.items.armor.BasicArmor" );
+				"com.shatteredpixel.yasd.general.items.unused.armor.BasicArmor" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.shield.WarpShield.class,
-				"com.shatteredpixel.yasd.general.items.armor.ChainArmor" );
+				"com.shatteredpixel.yasd.general.items.unused.armor.ChainArmor" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.shield.WoodenShield.class,
-				"com.shatteredpixel.yasd.general.items.armor.ClothArmor" );
+				"com.shatteredpixel.yasd.general.items.unused.armor.ClothArmor" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.shield.GreatShield.class,
-				"com.shatteredpixel.yasd.general.items.armor.HeavyArmor" );
+				"com.shatteredpixel.yasd.general.items.unused.armor.HeavyArmor" );
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.shield.LightShield.class,
-				"com.shatteredpixel.yasd.general.items.armor.HuntressArmor");
+				"com.shatteredpixel.yasd.general.items.unused.armor.HuntressArmor");
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.shield.LightShield.class,
-				"com.shatteredpixel.yasd.general.items.armor.LightArmor");
+				"com.shatteredpixel.yasd.general.items.unused.armor.LightArmor");
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.shield.SpiritualShield.class,
-				"com.shatteredpixel.yasd.general.items.armor.MageArmor");
+				"com.shatteredpixel.yasd.general.items.unused.armor.MageArmor");
 
 		com.watabou.utils.Bundle.addAlias(
 				com.shatteredpixel.yasd.general.items.shield.WarpShield.class,
-				"com.shatteredpixel.yasd.general.items.armor.PriestessArmor");
+				"com.shatteredpixel.yasd.general.items.unused.armor.PriestessArmor");
 
 		com.watabou.utils.Bundle.addAlias(
 				ParryingDagger.class,
-				"com.shatteredpixel.yasd.general.items.armor.RogueArmor");
+				"com.shatteredpixel.yasd.general.items.unused.armor.RogueArmor");
 
 		com.watabou.utils.Bundle.addAlias(
 				ParryingDagger.class,

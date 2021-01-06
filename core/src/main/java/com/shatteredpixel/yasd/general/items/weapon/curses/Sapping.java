@@ -3,7 +3,7 @@ package com.shatteredpixel.yasd.general.items.weapon.curses;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.items.Enchantable;
-import com.shatteredpixel.yasd.general.items.armor.glyphs.Viscosity;
+import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Viscosity;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 

@@ -29,7 +29,7 @@ package com.shatteredpixel.yasd.general.sprites;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.darts.ParalyticDart;
+import com.shatteredpixel.yasd.general.items.unused.missiles.darts.ParalyticDart;
 import com.watabou.noosa.MovieClip;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.utils.Callback;

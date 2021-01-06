@@ -35,7 +35,7 @@ import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Poison;
-import com.shatteredpixel.yasd.general.items.weapon.missiles.darts.PoisonDart;
+import com.shatteredpixel.yasd.general.items.unused.missiles.darts.PoisonDart;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.sprites.MissileSprite;
 import com.watabou.noosa.audio.Sample;

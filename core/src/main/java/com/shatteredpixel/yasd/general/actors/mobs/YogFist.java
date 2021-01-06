@@ -42,7 +42,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Ooze;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.LeafParticle;
-import com.shatteredpixel.yasd.general.items.armor.glyphs.Viscosity;
+import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Viscosity;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;

@@ -32,7 +32,7 @@ import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.effects.BadgeBanner;
 import com.shatteredpixel.yasd.general.items.DewVial;
 import com.shatteredpixel.yasd.general.items.Torch;
-import com.shatteredpixel.yasd.general.items.armor.curses.Bulk;
+import com.shatteredpixel.yasd.general.items.unused.armor.curses.Bulk;
 import com.shatteredpixel.yasd.general.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.yasd.general.items.artifacts.EtherealChains;
 import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;

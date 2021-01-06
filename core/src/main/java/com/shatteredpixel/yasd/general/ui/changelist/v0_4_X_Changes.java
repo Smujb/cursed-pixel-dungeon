@@ -27,7 +27,7 @@
 
 package com.shatteredpixel.yasd.general.ui.changelist;
 
-import com.shatteredpixel.yasd.general.items.armor.HeavyArmor;
+import com.shatteredpixel.yasd.general.items.unused.armor.HeavyArmor;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
 import com.shatteredpixel.yasd.general.items.weapon.melee.RunicBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;

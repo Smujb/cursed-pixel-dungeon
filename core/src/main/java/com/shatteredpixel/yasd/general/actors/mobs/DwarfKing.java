@@ -46,7 +46,7 @@ import com.shatteredpixel.yasd.general.effects.particles.ElmoParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.armor.glyphs.Viscosity;
+import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Viscosity;
 import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
 import com.shatteredpixel.yasd.general.items.powers.HeroicLeap;
 import com.shatteredpixel.yasd.general.items.powers.MoltenEarth;
