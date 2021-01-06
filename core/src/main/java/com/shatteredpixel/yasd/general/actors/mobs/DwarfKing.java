@@ -81,6 +81,8 @@ public class DwarfKing extends Boss {
 		healthFactor = 1.3f;
 
 		properties.add(Property.BOSS);
+
+		rematchLevel = "dwarf_king";
 	}
 
 	private int phase = 1;

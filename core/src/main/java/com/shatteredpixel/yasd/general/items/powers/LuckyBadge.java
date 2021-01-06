@@ -9,6 +9,7 @@ import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.actors.mobs.Boss;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Gold;
@@ -45,6 +46,7 @@ import com.watabou.utils.Random;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LuckyBadge extends Power {
 
@@ -57,14 +59,15 @@ public class LuckyBadge extends Power {
 	}
 
 	public static final String AC_GRIND = "grind";
-	public static final String AC_HOME = "home";
+	public static final String AC_REMATCH = "rematch";
 	public static final String AC_RETURN = "return";
 
-	private static String MOB_LEVEL_FACTOR = "mob_level_factor";
-	private static String MOB_SPAWN_FACTOR = "mob_spawn_factor";
-	private static String SCORE = "score";
-	private static String SCORE_BEATEN = "score_beaten";
-	private static String HERO_HP = "hero_hp";
+	private static final String MOB_LEVEL_FACTOR = "mob_level_factor";
+	private static final String MOB_SPAWN_FACTOR = "mob_spawn_factor";
+	private static final String SCORE = "score";
+	private static final String SCORE_BEATEN = "score_beaten";
+	private static final String HERO_HP = "hero_hp";
+	private static final String BOSS_REFIGHTS = "boss_refights";
 
 	public static float mobLevelBoost = 1f;
 	public static float mobSpawnFactor = 1f;
@@ -90,6 +93,8 @@ public class LuckyBadge extends Power {
 	private static int returnDepth = -1;
 	private static boolean latestDropWasRare = false;
 
+	public static ArrayList<String> rematchLevels = new ArrayList<>(Arrays.asList("goo", "tengu"));
+
 	@Override
 	public boolean isIdentified() {
 		return true;
@@ -98,13 +103,13 @@ public class LuckyBadge extends Power {
 	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = new ArrayList<>();
-		if (Dungeon.key.equals(AC_GRIND) || Dungeon.key.equals(AC_HOME)) {
+		if (Dungeon.key.equals(AC_GRIND) || Dungeon.key.equals(AC_REMATCH)) {
 			actions.add(AC_RETURN);
 		} else {
 			if (type == Type.GRIND) {
 				actions.add(AC_GRIND);
 			}
-			actions.add(AC_HOME);
+			actions.add(AC_REMATCH);
 		}
 		return actions;
 	}
@@ -122,11 +127,13 @@ public class LuckyBadge extends Power {
 				});
 				heroHP = hero.HP;
 				break;
-			case AC_HOME:
-				returnKey = Dungeon.key;
-				returnPos = hero.pos;
-				returnDepth = Dungeon.depth;
-				LevelHandler.move(AC_HOME, Messages.get(this, AC_HOME), LevelHandler.Mode.RETURN, 0, -1);
+			case AC_REMATCH:
+				CPDGame.runOnRenderThread(new Callback() {
+					@Override
+					public void call() {
+						Game.scene().addToFront(new WndChooseRefight());
+					}
+				});
 				heroHP = hero.HP;
 				break;
 			case AC_RETURN:
@@ -198,6 +205,7 @@ public class LuckyBadge extends Power {
 		bundle.put(MOB_SPAWN_FACTOR, mobSpawnFactor);
 		bundle.put(SCORE_BEATEN, scoreBeaten);
 		bundle.put(HERO_HP, heroHP);
+		bundle.put(BOSS_REFIGHTS, rematchLevels.toArray(new String[0]));
 	}
 
 	@Override
@@ -211,6 +219,7 @@ public class LuckyBadge extends Power {
 		mobSpawnFactor = bundle.getFloat(MOB_SPAWN_FACTOR);
 		scoreBeaten = bundle.getBoolean(SCORE_BEATEN);
 		heroHP = bundle.contains(HERO_HP) ? bundle.getInt(HERO_HP) : -1;
+		rematchLevels = new ArrayList<>(Arrays.asList(bundle.getStringArray(BOSS_REFIGHTS)));
 	}
 
 	@Override
@@ -364,6 +373,41 @@ public class LuckyBadge extends Power {
 				return Generator.random(Generator.Category.ELIXIR);
 			case 3:
 				return new MeatPie();
+		}
+	}
+
+	public static class WndChooseRefight extends Window {
+		public WndChooseRefight() {
+			IconTitle titlebar = new IconTitle();
+			titlebar.icon( new Image(Assets.Interfaces.LOADING_SEWERS));
+			titlebar.label(Messages.get(this, "title"));
+			titlebar.setRect(0, 0, WIDTH, 0);
+			add( titlebar );
+
+			float pos = titlebar.bottom() + GAP;
+
+			RenderedTextBlock message = PixelScene.renderTextBlock( Messages.get(this, "body", CPDSettings.getGrindingHighScore()), 6 );
+			message.maxWidth(WIDTH);
+			message.setPos(0, pos);
+			add( message );
+
+			pos = message.bottom() + GAP;
+
+			for (String bossID : rematchLevels) {
+				RedButton button = new RedButton(Messages.get(Boss.class, bossID)) {
+					@Override
+					protected void onClick() {
+						returnKey = Dungeon.key;
+						returnPos = Dungeon.hero.pos;
+						returnDepth = Dungeon.depth;
+						LevelHandler.move(bossID, Messages.get(this, AC_REMATCH), LevelHandler.Mode.RETURN, 0, -1);
+					}
+				};
+				button.setRect(0, pos, WIDTH, BTN_HEIGHT);
+				add(button);
+				pos += button.height() + GAP;
+			}
+			resize(WIDTH, (int) (pos + GAP));
 		}
 	}
 

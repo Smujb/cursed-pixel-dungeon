@@ -80,6 +80,8 @@ public class YogDzewa extends Boss {
 		properties.add(Property.BOSS);
 		properties.add(Property.IMMOVABLE);
 		properties.add(Property.DEMONIC);
+
+		rematchLevel = "yog-dzewa";
 	}
 
 	private int phase = 0;

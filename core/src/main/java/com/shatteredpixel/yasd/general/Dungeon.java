@@ -34,7 +34,14 @@ import com.shatteredpixel.yasd.general.actors.buffs.Awareness;
 import com.shatteredpixel.yasd.general.actors.buffs.Light;
 import com.shatteredpixel.yasd.general.actors.buffs.MindVision;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.actors.mobs.Boss;
+import com.shatteredpixel.yasd.general.actors.mobs.DwarfKing;
+import com.shatteredpixel.yasd.general.actors.mobs.Goo;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.actors.mobs.NewDM300;
+import com.shatteredpixel.yasd.general.actors.mobs.NewTengu;
+import com.shatteredpixel.yasd.general.actors.mobs.Nightmare;
+import com.shatteredpixel.yasd.general.actors.mobs.YogDzewa;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Blacksmith;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Ghost;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Imp;
@@ -283,7 +290,16 @@ public class Dungeon {
 		staticLevels.put("earth - 4", DeadEndLevel.class);
 		staticLevels.put("fire - 4", DeadEndLevel.class);
 		staticLevels.put("air - 4", DeadEndLevel.class);
-		
+
+		//Boss refights
+		staticLevels.put(Boss.rematchLevel(Goo.class), SewerBossLevel.class);
+		staticLevels.put(Boss.rematchLevel(NewTengu.class), NewPrisonBossLevel.class);
+		staticLevels.put(Boss.rematchLevel(NewDM300.class), NewCavesBossLevel.class);
+		staticLevels.put(Boss.rematchLevel(DwarfKing.class), NewCityBossLevel.class);
+		staticLevels.put(Boss.rematchLevel(YogDzewa.class), NewHallsBossLevel.class);
+
+		staticLevels.put(Boss.rematchLevel(Nightmare.class), WaterTrialBossLevel.class);
+
 		//First level spawns different mobs and rooms. Might rework later.
 		staticLevels.put("sewers - 0", FirstLevel.class);
 		//Amulet depth

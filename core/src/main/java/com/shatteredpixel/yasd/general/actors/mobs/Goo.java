@@ -68,6 +68,8 @@ public class Goo extends Boss {
 		properties.add(Property.BOSS);
 		properties.add(Property.DEMONIC);
 		properties.add(Property.ACIDIC);
+
+		rematchLevel = "goo";
 	}
 
 	private int pumpedUp = 0;

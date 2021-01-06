@@ -69,7 +69,6 @@ import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Heap.Type;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
-import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Viscosity;
 import com.shatteredpixel.yasd.general.items.artifacts.AlchemistsToolkit;
 import com.shatteredpixel.yasd.general.items.artifacts.EtherealChains;
 import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
@@ -94,11 +93,12 @@ import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Viscosity;
+import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
-import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
-import com.shatteredpixel.yasd.general.levels.GrindLevel;
+import com.shatteredpixel.yasd.general.levels.SurfaceLevel;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
 import com.shatteredpixel.yasd.general.levels.interactive.InteractiveArea;
 import com.shatteredpixel.yasd.general.levels.terrain.KindOfTerrain;
@@ -1508,7 +1508,7 @@ public class Hero extends Char {
 			}
 		}
 
-		if (Dungeon.level instanceof GrindLevel && Dungeon.key.equals(LuckyBadge.AC_GRIND)) {
+		if (Dungeon.depth == 0 && !(Dungeon.level instanceof SurfaceLevel)) {
 			Ankh.revive(this, null);
 			GLog.positive(Messages.get(LuckyBadge.class, "saved_death"));
 			LuckyBadge.doReturn();

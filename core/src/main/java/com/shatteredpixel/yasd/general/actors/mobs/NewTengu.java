@@ -97,6 +97,8 @@ public class NewTengu extends Boss {
 		properties.add(Property.BOSS);
 
 		viewDistance = 12;
+
+		rematchLevel = "tengu";
 	}
 
 	@Override

@@ -55,6 +55,8 @@ public class NewDM300 extends Boss {
 		properties.add(Property.BOSS);
 		properties.add(Property.INORGANIC);
 		properties.add(Property.LARGE);
+
+		rematchLevel = "dm-300";
 	}
 
 	public int pylonsActivated = 0;
