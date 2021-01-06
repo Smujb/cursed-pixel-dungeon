@@ -5,12 +5,12 @@ import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Boss;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Heap;
@@ -93,7 +93,7 @@ public class LuckyBadge extends Power {
 	private static int returnDepth = -1;
 	private static boolean latestDropWasRare = false;
 
-	public static ArrayList<String> rematchLevels = new ArrayList<>(Arrays.asList("goo", "tengu"));
+	public static ArrayList<String> rematchLevels = new ArrayList<>();
 
 	@Override
 	public boolean isIdentified() {
@@ -103,7 +103,7 @@ public class LuckyBadge extends Power {
 	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = new ArrayList<>();
-		if (Dungeon.key.equals(AC_GRIND) || Dungeon.key.equals(AC_REMATCH)) {
+		if (Dungeon.key.equals(AC_GRIND) || rematchLevels.contains(Dungeon.key)) {
 			actions.add(AC_RETURN);
 		} else {
 			if (type == Type.GRIND) {
@@ -128,13 +128,17 @@ public class LuckyBadge extends Power {
 				heroHP = hero.HP;
 				break;
 			case AC_REMATCH:
-				CPDGame.runOnRenderThread(new Callback() {
-					@Override
-					public void call() {
-						Game.scene().addToFront(new WndChooseRefight());
-					}
-				});
-				heroHP = hero.HP;
+				if (rematchLevels.isEmpty()) {
+					GLog.negative(Messages.get(Boss.class, "not_fought"));
+				} else {
+					CPDGame.runOnRenderThread(new Callback() {
+						@Override
+						public void call() {
+							Game.scene().addToFront(new WndChooseRefight());
+						}
+					});
+					heroHP = hero.HP;
+				}
 				break;
 			case AC_RETURN:
 				doReturn();
@@ -171,7 +175,9 @@ public class LuckyBadge extends Power {
 		}
 		for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
 			if (mob.alignment == Char.Alignment.ENEMY || mob instanceof GrindLevel.Guardian) {
-				mob.die(new Char.DamageSrc(Element.META));
+				//Remove but don't kill the mob, so it doesn't drop loot
+				mob.sprite.emitter().burst( ShadowParticle.CURSE, 5 );
+				Dungeon.level.mobs.remove(mob);
 			}
 		}
 		Game.scene().add(new Delayer(2f) {
@@ -400,7 +406,7 @@ public class LuckyBadge extends Power {
 						returnKey = Dungeon.key;
 						returnPos = Dungeon.hero.pos;
 						returnDepth = Dungeon.depth;
-						LevelHandler.move(bossID, Messages.get(this, AC_REMATCH), LevelHandler.Mode.RETURN, 0, -1);
+						LevelHandler.move(bossID, Messages.get(this, AC_REMATCH), LevelHandler.Mode.RESET, 0, -1);
 					}
 				};
 				button.setRect(0, pos, WIDTH, BTN_HEIGHT);

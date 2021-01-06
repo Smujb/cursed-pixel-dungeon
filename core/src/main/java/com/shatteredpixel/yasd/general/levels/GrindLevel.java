@@ -6,6 +6,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
@@ -17,6 +18,7 @@ import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.StatueSprite;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -110,6 +112,54 @@ public class GrindLevel extends TiledMapLevel {
 		return 10;
 	}
 
+	public static class LootBuff extends Buff {
+
+		public void setLoot(int amt) {
+			lootAmt = amt;
+		}
+
+		private int lootAmt = 0;
+
+		@Override
+		public boolean act() {
+			spend(TICK);
+			return true;
+		}
+
+		@Override
+		public void detach() {
+			super.detach();
+			GLog.negative(" dsa");
+			if (target != null && !target.isAlive()) {
+				for (int i = 0; i < lootAmt; i++) {
+					int pos;
+					do {
+						pos = Dungeon.level.randomRespawnCell();
+					} while (Random.Int(Dungeon.level.distance(pos, target.pos)) != 0);
+					Dungeon.level.drop(LuckyBadge.tryForBonusDrop(), pos).sprite.drop(target.pos);
+					LuckyBadge.score++;
+				}
+			}
+			if (CPDSettings.validateGrindingHighScore(LuckyBadge.score)) {
+				LuckyBadge.scoreBeaten = true;
+			}
+ 		}
+
+ 		public static final String LOOT_AMT = "loot_amt";
+
+		@Override
+		public void storeInBundle(Bundle bundle) {
+			super.storeInBundle(bundle);
+			bundle.put(LOOT_AMT, lootAmt);
+		}
+
+		@Override
+		public void restoreFromBundle(Bundle bundle) {
+			super.restoreFromBundle(bundle);
+			lootAmt = bundle.getInt(LOOT_AMT);
+		}
+	}
+
 	public static class Guardian extends Mob {
 
 		{
@@ -121,6 +171,10 @@ public class GrindLevel extends TiledMapLevel {
 			immunities.add(ScrollOfPsionicBlast.class);
 		}
 
+		public Guardian() {
+			Buff.affect(this, LootBuff.class).setLoot(Math.round(3 + 2 * LuckyBadge.mobLevelBoost));
+		}
+
 		@Override
 		public String description() {
 			return Messages.get(Guardian.class,"desc") + "\n\n" + super.description();
@@ -129,24 +183,6 @@ public class GrindLevel extends TiledMapLevel {
 		@Override
 		public int defenseSkill(Char enemy) {
 			return 0;
-		}
-
-		@Override
-		public void die(DamageSrc cause) {
-			if (cause.getElement() != Element.META) {
-				for (int i = 0; i < 3 + 2 * LuckyBadge.mobLevelBoost; i++) {
-					int ofs;
-					do {
-						ofs = PathFinder.NEIGHBOURS8[Random.Int(8)];
-					} while (!Dungeon.level.passable(pos + ofs));
-					Dungeon.level.drop(LuckyBadge.tryForBonusDrop(), pos + ofs).sprite.drop(pos);
-					LuckyBadge.score++;
-				}
-				if (CPDSettings.validateGrindingHighScore(LuckyBadge.score)) {
-					LuckyBadge.scoreBeaten = true;
-				}
-			}
-			super.die(cause);
 		}
 
 		@Override
