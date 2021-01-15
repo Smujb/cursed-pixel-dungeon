@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -197,10 +196,7 @@ public class MagesStaff extends MeleeWeapon {
 
 		this.wand = null;
 
-		//syncs the level of the two items.
-		int targetLevel = Math.max(this.level() - (curseInfusionBonus ? Constants.CURSE_INFUSION_BONUS_AMT : 0), wand.level());
-		//if the staff's level is being overridden by the wand, preserve 1 upgrade
-		if (wand.level() >= this.level() && this.level() > (curseInfusionBonus ? Constants.CURSE_INFUSION_BONUS_AMT : 0)) targetLevel++;
+		int targetLevel = getNewLevel(trueLevel(), wand.trueLevel());
 		if (owner instanceof Hero && wand.isEquipped(owner)) {
 			wand.doUnequip(((Hero)owner), false);
 		}
@@ -348,11 +344,7 @@ public class MagesStaff extends MeleeWeapon {
 					applyWand((Wand)item);
 				} else {
 					final int newLevel =
-							item.level() >= level() ?
-									level() > 0 ?
-										item.level() + 1
-										: item.level()
-									: level();
+							getNewLevel(trueLevel(), item.trueLevel());
 					GameScene.show(
 							new WndOptions("",
 									Messages.get(MagesStaff.class, "warning", newLevel),
@@ -388,6 +380,11 @@ public class MagesStaff extends MeleeWeapon {
 			updateQuickslot();
 		}
 	};
+
+	private static int getNewLevel(int staffLvl, int wndLvl) {
+		if (staffLvl > 0) wndLvl++;
+		return Math.max(staffLvl, wndLvl);
+	}
 
 	private final Emitter.Factory StaffParticleFactory = new Emitter.Factory() {
 		@Override
