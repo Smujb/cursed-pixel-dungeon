@@ -1,6 +1,8 @@
 package com.shatteredpixel.yasd.general.levels.chapters.firetrial;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.actors.mobs.Elemental;
+import com.shatteredpixel.yasd.general.actors.mobs.Kupua;
 import com.shatteredpixel.yasd.general.levels.chapters.TrialLevel;
 import com.shatteredpixel.yasd.general.levels.painters.CityPainter;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
@@ -30,14 +32,19 @@ public class FireTrialLevel extends TrialLevel {
         return Assets.Interfaces.LOADING_CITY;
     }
 
-    //TODO bestiary
     @Override
     public Class<?>[] mobClasses() {
-        return super.mobClasses();
+        return new Class[] {
+                Elemental.Fire.Adult.class,
+                Kupua.class
+        };
     }
 
     @Override
     public float[] mobChances() {
-        return super.mobChances();
+        return new float[] {
+                2f,
+                1f
+        };
     }
 }

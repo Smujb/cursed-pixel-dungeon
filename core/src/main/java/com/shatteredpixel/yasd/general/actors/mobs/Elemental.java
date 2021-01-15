@@ -31,6 +31,8 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.blobs.Blob;
+import com.shatteredpixel.yasd.general.actors.blobs.Inferno;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Burning;
 import com.shatteredpixel.yasd.general.actors.buffs.Chill;
@@ -148,6 +150,18 @@ public abstract class Elemental extends Mob {
 		@Override
 		public Element elementalType() {
 			return Element.FIRE;
+		}
+
+		public static class Adult extends Fire {
+			{
+				spriteClass = ElementalSprite.AdultFire.class;
+			}
+
+			@Override
+			protected boolean act() {
+				GameScene.add(Blob.seed(pos, 20, Inferno.class));
+				return super.act();
+			}
 		}
 	}
 

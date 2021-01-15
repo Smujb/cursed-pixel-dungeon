@@ -28,11 +28,13 @@
 package com.shatteredpixel.yasd.general.sprites;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.effects.particles.ElmoParticle;
 import com.shatteredpixel.yasd.general.effects.particles.FlameParticle;
 import com.shatteredpixel.yasd.general.effects.particles.RainbowParticle;
+import com.shatteredpixel.yasd.general.effects.particles.SmokeParticle;
 import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.particles.Emitter;
@@ -220,6 +222,26 @@ public abstract class ElementalSprite extends MobSprite {
 		@Override
 		public int blood() {
 			return 0xFFE3E3E3;
+		}
+	}
+
+	public static class AdultFire extends ElementalSprite {
+
+		@Override
+		protected int texOffset() {
+			return 70;
+		}
+
+		@Override
+		protected Emitter createEmitter() {
+			Emitter emitter = emitter();
+			emitter.pour(SmokeParticle.FACTORY, 0.025f);
+			return emitter;
+		}
+
+		@Override
+		public int blood() {
+			return Constants.Colours.YELLOW;
 		}
 	}
 

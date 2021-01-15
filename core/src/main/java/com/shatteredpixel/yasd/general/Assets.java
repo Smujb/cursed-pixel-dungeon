@@ -295,5 +295,6 @@ public class Assets {
 		public static final String WATER_LARVA       = "sprites/water_larva.png";
 		public static final String NIGHTMARE	       = "sprites/nightmare.png";
 		public static final String HELL_MOBS	       = "sprites/hell_mobs.png";
+		public static final String KUPUA = "sprites/kupua_sprite.png";
 	}
 }
