@@ -241,7 +241,7 @@ public class ItemSpriteSheet {
 		public static final int MACE 			 = WEAPON+11;
 		public static final int FLAIL 			 = WEAPON+12;
 		public static final int DAGGER			 = WEAPON+13;
-		public static final int KATANA 			 = WEAPON+14;
+		public static final int WAKIZASHI		 = WEAPON+14;
 		public static final int RUNIC_BLADE		 = WEAPON+15;
 		public static final int QUATERSTAFF		 = WEAPON+16;
 		public static final int ROYAL_HALBERD	 = WEAPON+17;
@@ -253,6 +253,10 @@ public class ItemSpriteSheet {
 		public static final int RAPIER           = WEAPON+23;
 		public static final int BUTCHER_KNIFE    = WEAPON+24;
 		public static final int HERO_SWORD		 = WEAPON+25;
+		public static final int KATANA			 = WEAPON+26;
+		public static final int TACHI			 = WEAPON+27;
+		public static final int FALCHION		 = WEAPON+28;
+		public static final int ESTOC			 = WEAPON+29;
 	}
 
 	public static class Shields {

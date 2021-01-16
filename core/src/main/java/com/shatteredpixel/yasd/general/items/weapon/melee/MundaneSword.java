@@ -4,7 +4,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
-public class PlainSword extends MeleeWeapon {
+public class MundaneSword extends MeleeWeapon {
 
     {
         image = ItemSpriteSheet.Weapons.PLAIN_SWORD;
@@ -16,11 +16,6 @@ public class PlainSword extends MeleeWeapon {
     @Override
     public int enchPower() {
         return level()/2;
-    }
-
-    @Override
-    protected boolean hasProperties() {
-        return true;
     }
 
     @Override

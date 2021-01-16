@@ -57,12 +57,7 @@ public class Greataxe extends MeleeWeapon {
 		return super.proc(attacker, defender, damage);
 	}
 
-	@Override
-	protected boolean hasProperties() {
-		return true;
-	}
-
-	@Override
+    @Override
 	protected String propsDesc() {
 		return super.propsDesc() + "\n" + Messages.get(this, "causes_paralysis");
 	}

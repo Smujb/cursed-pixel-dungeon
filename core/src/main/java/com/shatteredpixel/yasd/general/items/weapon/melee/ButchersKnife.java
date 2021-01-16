@@ -30,11 +30,6 @@ public class ButchersKnife extends MeleeWeapon {
     }
 
     @Override
-    protected boolean hasProperties() {
-        return true;
-    }
-
-    @Override
     protected String propsDesc() {
         return super.propsDesc() + "\n" + Messages.get(this, "causes_bleed") + "\n" + Messages.get(this, "causes_cripple");
     }

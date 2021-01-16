@@ -217,6 +217,8 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Axe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.ButchersKnife;
 import com.shatteredpixel.yasd.general.items.weapon.melee.ChainWhip;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Estoc;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Falchion;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
@@ -227,7 +229,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Pitchfork;
-import com.shatteredpixel.yasd.general.items.weapon.melee.PlainSword;
+import com.shatteredpixel.yasd.general.items.weapon.melee.MundaneSword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Rapier;
 import com.shatteredpixel.yasd.general.items.weapon.melee.RoyalHalberd;
@@ -236,6 +238,8 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Scimitar;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sickle;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Staff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Tachi;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Wakizashi;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Bow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Crossbow;
@@ -567,12 +571,16 @@ public class Generator {
 					ButchersKnife.class,
 					Rapier.class,
 					RoyalHalberd.class,
-					PlainSword.class,
+					MundaneSword.class,
 					Pitchfork.class,
-					HeroSword.class
+					HeroSword.class,
+					Estoc.class,
+					Falchion.class,
+					Wakizashi.class,
+					Tachi.class
 
 			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2, 2 };
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2, 2, 2, 2, 3, 2 };
 
 			SHIELD.classes = new Class<?>[] {
 					RoundShield.class,

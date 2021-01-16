@@ -44,7 +44,6 @@ import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
 import com.shatteredpixel.yasd.general.items.allies.DragonPendant;
 import com.shatteredpixel.yasd.general.items.allies.PoisonDragonPendant;
-import com.shatteredpixel.yasd.general.items.relics.EtherealChains;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.bags.PotionBandolier;
 import com.shatteredpixel.yasd.general.items.bags.PowerHolder;
@@ -58,6 +57,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
 import com.shatteredpixel.yasd.general.items.powers.Blink;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
+import com.shatteredpixel.yasd.general.items.relics.EtherealChains;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
@@ -195,7 +195,7 @@ public enum HeroClass {
 			if (item != null) {
 				item.random();
 				item.uncurse();
-				item.identify().collect();
+				item.identify().level(59).collect();
 				while (item.statReq() < item.bestHeroStatValue(hero) && item.isUpgradable()) {
 					item.upgrade();
 				}

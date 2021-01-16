@@ -44,12 +44,7 @@ public class RunicBlade extends MeleeWeapon {
 		statScaling.add(Hero.HeroStat.FOCUS);
 	}
 
-	@Override
-	protected boolean hasProperties() {
-		return true;
-	}
-
-	@Override
+    @Override
 	public int enchPower() {
 		return 2 + level() * 2;
 	}

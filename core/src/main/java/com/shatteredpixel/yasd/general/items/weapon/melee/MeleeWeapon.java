@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Random;
@@ -99,10 +100,6 @@ public class MeleeWeapon extends Weapon implements Attackable {
 		return this;
 	}
 
-	protected boolean hasProperties() {
-		return DLY != 1f | ACC != 1f | RCH != 1 | breaksArmor(curUser) | !canSurpriseAttack | defenseFactor(curUser) > 0 | sneakBenefit;
-	}
-
 	protected String propsDesc() {
 		String info = "";
 		if (DLY > 1f) {
@@ -139,6 +136,8 @@ public class MeleeWeapon extends Weapon implements Attackable {
 
 		if (!canBeParried) info += "\n" + Messages.get(MeleeWeapon.class, "cant_be_parried");
 
+		if (slotsUsed > 1) info += "\n" + Messages.get(KindofMisc.class, "requires_slots", slotsUsed);
+
 		return info;
 	}
 
@@ -153,8 +152,9 @@ public class MeleeWeapon extends Weapon implements Attackable {
 			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", min(1f), max(1f));
 		}
 
-		if (hasProperties()) {
-			info += "\n" + propsDesc();
+		String props = propsDesc();
+		if (!props.isEmpty()) {
+			info += "\n" + props;
 		}
 
 		switch (augment) {

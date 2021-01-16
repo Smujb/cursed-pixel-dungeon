@@ -542,7 +542,8 @@ public abstract class Char extends Actor {
 	}
 
 	public int miscSlots() {
-		return Constants.MISC_SLOTS;
+		if (hasBelongings()) return belongings.miscSlots();
+		else return Constants.MISC_SLOTS;
 	}
 
 	//FIXME possibly migrate this to a seperate class and use static vars?

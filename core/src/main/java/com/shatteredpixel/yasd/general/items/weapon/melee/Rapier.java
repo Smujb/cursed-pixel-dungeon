@@ -32,11 +32,6 @@ public class Rapier extends MeleeWeapon {
     }
 
     @Override
-    protected boolean hasProperties() {
-        return true;
-    }
-
-    @Override
     protected String propsDesc() {
         return super.propsDesc() + "\n" + Messages.get(this, "advance_enemy") + "\n" + Messages.get(this, "damage_wall", 40);
     }

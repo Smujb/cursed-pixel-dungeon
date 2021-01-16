@@ -31,11 +31,6 @@ public class ChainWhip extends Whip {
     }
 
     @Override
-    protected boolean hasProperties() {
-        return true;
-    }
-
-    @Override
     protected String propsDesc() {
         return super.propsDesc() + "\n" + Messages.get(this, "causes_paralysis");
     }

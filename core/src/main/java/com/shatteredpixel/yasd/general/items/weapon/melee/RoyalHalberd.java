@@ -25,11 +25,6 @@ public class RoyalHalberd extends MeleeWeapon {
     }
 
     @Override
-    protected boolean hasProperties() {
-        return true;
-    }
-
-    @Override
     protected String propsDesc() {
         return super.propsDesc() + "\n" + Messages.get(this, "damage_range");
     }

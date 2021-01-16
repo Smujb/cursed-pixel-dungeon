@@ -246,8 +246,10 @@ public class WndBag extends WndTabbed {
 		// Equipped items
 		Belongings stuff = Dungeon.hero.belongings;
 
-		for (KindofMisc item : stuff.miscs) {
-			placeItem(item != null ? item : new Placeholder( ItemSpriteSheet.RING_HOLDER ));
+		KindofMisc[] miscs = stuff.miscs;
+		for (int i = 0; i < Dungeon.hero.miscSlots(); i++) {
+			KindofMisc item = miscs[i];
+			placeItem(item != null ? item : new Placeholder(ItemSpriteSheet.RING_HOLDER));
 		}
 
 		//the container itself if it's not the root backpack

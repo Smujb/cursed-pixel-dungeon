@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.actors.hero;
 
 import com.shatteredpixel.yasd.general.Badges;
+import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Berserk;
@@ -97,17 +98,18 @@ public class Belongings implements Iterable<Item> {
 	//########################## Stuff for handling chars with belongings ##########################
 	//##############################################################################################
 
-	public boolean canEquip(int slot) {//Use for setting specific properties for each slot.
+	public boolean canEquipItem(int slot) {//Use for setting specific properties for each slot.
 		return miscs[slot] == null;
 	}
 
-	public boolean canEquip() {//Use for setting specific properties for each slot.
-		for (int i = 0; i < miscs.length; i++) {
-			if (canEquip(i)) {
-				return true;
+	public boolean canEquip(int slotsReq) {//Use for setting specific properties for each slot.
+		int slots = 0;
+		for (int i = 0; i < owner.miscSlots(); i++) {
+			if (canEquipItem(i)) {
+				slots++;
 			}
 		}
-		return false;
+		return slots >= slotsReq;
 	}
 
 	public ArrayList<KindofMisc> getMiscsOfType(Class type ) {//Find equipped items of a certain kind
@@ -237,6 +239,12 @@ public class Belongings implements Iterable<Item> {
 
 	public float affectPerception(float perception) {
 		return perception;
+	}
+
+	public int miscSlots() {
+		int slots = Constants.MISC_SLOTS;
+		if (miscs != null) for (KindofMisc misc : miscs) if (misc != null) slots -= (misc.slotsUsed-1);
+		return slots;
 	}
 
 	//##############################################################################################

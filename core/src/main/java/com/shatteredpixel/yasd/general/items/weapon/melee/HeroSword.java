@@ -20,11 +20,6 @@ public class HeroSword extends MeleeWeapon {
     }
 
     @Override
-    protected boolean hasProperties() {
-        return true;
-    }
-
-    @Override
     protected String propsDesc() {
         return super.propsDesc() + Messages.get(this, "bless_bonus");
     }

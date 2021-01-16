@@ -42,13 +42,19 @@ public abstract class KindofMisc extends EquipableItem {
 
 	private static final float TIME_TO_EQUIP = 1f;
 
+	public int slotsUsed = 1;
+
 	@Override
 	public boolean doEquip(final Hero hero) {
 		final KindofMisc[] miscs = hero.belongings.miscs;
-		if (!hero.belongings.canEquip()) {
+		if (!hero.belongings.canEquip(slotsUsed)) {
+			if (slotsUsed > 1) {
+				GLog.negative(Messages.get(this, "requires_slots", slotsUsed));
+				return false;
+			}
 
-			String[] miscNames = new String[miscs.length];
-			for (int i = 0; i < miscs.length; i++) {
+			String[] miscNames = new String[hero.miscSlots()];
+			for (int i = 0; i < hero.miscSlots(); i++) {
 				miscNames[i] = miscs[i].toString();
 			}
 
@@ -86,7 +92,7 @@ public abstract class KindofMisc extends EquipableItem {
 		} else {
 
 			for (int i = 0; i < miscs.length; i++) {
-				if (hero.belongings.canEquip(i)) {
+				if (hero.belongings.canEquipItem(i)) {
 					hero.belongings.miscs[i] = this;
 					break;
 				}
