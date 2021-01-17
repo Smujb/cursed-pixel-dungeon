@@ -326,6 +326,7 @@ public class ItemSpriteSheet {
 		public static final int DAMNATION           = WANDS_ROW_2+4;
 		public static final int THORNVINES          = WANDS_ROW_2+5;
 		public static final int LIFE_DRAIN          = WANDS_ROW_2+6;
+		public static final int DEMONIC_MISSILE     = WANDS_ROW_2+7;
 	}
 
 	public static class Ranged {
