@@ -33,7 +33,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class Sword extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.Weapons.GREATSWORD;
+		image = ItemSpriteSheet.Weapons.SWORD;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
 	}
