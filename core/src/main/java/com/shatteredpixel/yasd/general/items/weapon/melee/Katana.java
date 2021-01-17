@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
@@ -46,6 +47,8 @@ public class Katana extends MeleeWeapon {
 		slotsUsed = 2;
 
 		ACC = 1.2f;
+
+		statScaling.add(Hero.HeroStat.RESILIENCE);
 	}
 
 	@Override

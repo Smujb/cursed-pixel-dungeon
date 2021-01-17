@@ -1,5 +1,6 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Wakizashi extends Katana {
@@ -9,5 +10,7 @@ public class Wakizashi extends Katana {
         slotsUsed = 1;
         DLY = 0.7f;
         damageFactor = 0.5f;
+
+        statScaling.remove(Hero.HeroStat.RESILIENCE);
     }
 }

@@ -228,6 +228,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Katana;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
+import com.shatteredpixel.yasd.general.items.weapon.melee.MidnightCutlass;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Pitchfork;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MundaneSword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
@@ -577,10 +578,11 @@ public class Generator {
 					Estoc.class,
 					Falchion.class,
 					Wakizashi.class,
-					Tachi.class
+					Tachi.class,
+					MidnightCutlass.class
 
 			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2, 2, 2, 2, 3, 2 };
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2, 2, 2, 2, 3, 2, 1 };
 
 			SHIELD.classes = new Class<?>[] {
 					RoundShield.class,
