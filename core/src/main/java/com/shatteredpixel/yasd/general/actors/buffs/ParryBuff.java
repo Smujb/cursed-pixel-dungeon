@@ -14,7 +14,7 @@ public abstract class ParryBuff extends Buff {
 
     @Override
     public boolean attachTo(@NotNull Char target) {
-        if (target instanceof Mob) target.sprite.showStatus(CharSprite.NEGATIVE, Messages.get(Shield.class, "parry_prep"));
+        if (target instanceof Mob && target.sprite != null) target.sprite.showStatus(CharSprite.NEGATIVE, Messages.get(Shield.class, "parry_prep"));
         return super.attachTo(target);
     }
 
