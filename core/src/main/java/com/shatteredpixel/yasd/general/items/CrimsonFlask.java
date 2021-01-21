@@ -109,7 +109,7 @@ public class CrimsonFlask extends Item {
 
     public boolean gainCharge(int amt) {
         if (charges < MAX_CHARGES) {
-            charges += Math.min(charges-MAX_CHARGES, amt);
+            charges += Math.min(MAX_CHARGES-charges, amt);
             return true;
         }
         return false;
