@@ -244,13 +244,13 @@ public class Goo extends Boss {
 
 	@Override
 	public void die( DamageSrc cause ) {
+		if (!isRematch()) Dungeon.level.drop( new SkeletonKey( Dungeon.key ), pos ).sprite.drop();
 		
 		super.die( cause );
 		
 		Dungeon.level.unseal();
 		
 		GameScene.bossSlain();
-		if (!isRematch()) Dungeon.level.drop( new SkeletonKey( Dungeon.key ), pos ).sprite.drop();
 		
 		//60% chance of 2 blobs, 30% chance of 3, 10% chance for 4. Average of 2.5
 		int blobs = Random.chances(new  float[]{0, 0, 6, 3, 1});
