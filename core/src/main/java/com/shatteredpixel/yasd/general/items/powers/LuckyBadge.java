@@ -109,7 +109,7 @@ public class LuckyBadge extends Power {
 			if (type == Type.GRIND) {
 				actions.add(AC_GRIND);
 			}
-			actions.add(AC_REMATCH);
+			if (!rematchLevels.isEmpty()) actions.add(AC_REMATCH);
 		}
 		return actions;
 	}
