@@ -141,7 +141,7 @@ public class Item implements Bundlable {
 	}
 
 	public Item uncurse() {
-		curseIntensity--;
+		reduceCurseIntensity(1);
 		updateQuickslot();
 		return this;
 	}
