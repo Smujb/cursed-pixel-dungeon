@@ -28,7 +28,7 @@ public class Boss extends Mob {
 	@Override
 	public void die(DamageSrc cause) {
 		if (rematchLevel != null && !isRematch()) {
-			LuckyBadge.rematchLevels.add(rematchLevel);
+			LuckyBadge.addRematch(rematchLevel);
 			if (!Dungeon.isChallenged(Challenges.NO_HEALING)) {
 				Dungeon.level.drop(new CrimsonFlask.Charge().quantity(Dungeon.difficulty.flaskChargesPerBoss()), pos);
 			}
@@ -37,7 +37,7 @@ public class Boss extends Mob {
 	}
 
 	protected boolean isRematch() {
-		return LuckyBadge.rematchLevels.contains(rematchLevel);
+		return LuckyBadge.rematchLevels().contains(rematchLevel);
 	}
 
 	public static String rematchLevel(Class<? extends Boss> cl) {

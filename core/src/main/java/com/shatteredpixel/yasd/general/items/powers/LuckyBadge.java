@@ -93,7 +93,19 @@ public class LuckyBadge extends Power {
 	private static int returnDepth = -1;
 	private static boolean latestDropWasRare = false;
 
-	public static ArrayList<String> rematchLevels = new ArrayList<>();
+	private ArrayList<String> rematchLevels = new ArrayList<>();
+
+	public static ArrayList<String> rematchLevels() {
+		LuckyBadge badge = Dungeon.hero.belongings.getItem(LuckyBadge.class);
+		if (badge == null) return new ArrayList<>();
+		else return badge.rematchLevels;
+	}
+
+	public static void addRematch(String boss) {
+		LuckyBadge badge = Dungeon.hero.belongings.getItem(LuckyBadge.class);
+		if (badge == null) return;
+		badge.rematchLevels.add(boss);
+	}
 
 	@Override
 	public boolean isIdentified() {
@@ -399,7 +411,7 @@ public class LuckyBadge extends Power {
 
 			pos = message.bottom() + GAP;
 
-			for (String bossID : rematchLevels) {
+			for (String bossID : rematchLevels()) {
 				RedButton button = new RedButton(Messages.get(Boss.class, bossID)) {
 					@Override
 					protected void onClick() {
