@@ -49,7 +49,7 @@ import com.shatteredpixel.yasd.general.items.unused.missiles.HeavyBoomerang;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.Patch;
 import com.shatteredpixel.yasd.general.levels.interactive.Entrance;
-import com.shatteredpixel.yasd.general.levels.interactive.Exit;
+import com.shatteredpixel.yasd.general.levels.interactive.LevelSwitchArea;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.traps.TenguDartTrap;
@@ -264,7 +264,7 @@ public class NewPrisonBossLevel extends Level {
 	private static Terrain H = SECRET_DOOR;
 
 	private static final Point endStart = new Point( startHallway.left+2, startHallway.top+2);
-	private static final Point levelExit = new Point( endStart.x+12, endStart.y+6);
+	private static final Point levelExit = new Point( endStart.x+11, endStart.y+6);
 	private static final Terrain[] endMap = new Terrain[]{
 			W, W, D, W, W, W, W, W, W, W, W, W, W, W,
 			W, e, e, e, W, W, W, W, W, W, W, W, W, W,
@@ -325,8 +325,7 @@ public class NewPrisonBossLevel extends Level {
 			cell += width();
 		}
 
-		int exit = pointToCell(levelExit);
-		interactiveAreas.add(new Exit().setPos(this, exit));
+		interactiveAreas.add(new LevelSwitchArea().setPos(levelExit.x, levelExit.y, levelExit.x+1, levelExit.y+3));
 	}
 
 	//keep track of removed items as the level is changed. Dump them back into the level at the end.
