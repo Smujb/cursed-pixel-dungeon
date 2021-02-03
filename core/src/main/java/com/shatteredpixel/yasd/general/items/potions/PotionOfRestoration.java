@@ -27,31 +27,29 @@
 
 package com.shatteredpixel.yasd.general.items.potions;
 
-import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.actors.blobs.Blob;
-import com.shatteredpixel.yasd.general.actors.blobs.Regrowth;
-import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.actors.Actor;
+import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
+import com.shatteredpixel.yasd.general.actors.buffs.Healing;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
-import com.watabou.noosa.audio.Sample;
 
-public class PotionOfOvergrowth extends Potion {
+public class PotionOfRestoration extends Potion {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_OVERGROWTH;
+		icon = ItemSpriteSheet.Icons.POTION_RESTORATION;
 
 		bones = true;
+
+
 	}
 
 	@Override
 	public void shatter(int cell) {
-		if(Dungeon.level.heroFOV[cell]) {
-			setKnown();
-			splash(cell);
-			Sample.INSTANCE.play(Assets.Sounds.SHATTER);
+		Char ch = Actor.findChar(cell);
+		if (ch == null) super.shatter(cell);
+		else {
+			Buff.affect(ch, Healing.class).setHeal((int) (ch.HT*0.75f), 0.005f, 0);
 		}
-
-		GameScene.add(Blob.seed(cell, 400, Regrowth.class));
 	}
 
 	@Override

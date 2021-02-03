@@ -33,12 +33,11 @@ import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Healing;
-import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Bee;
 import com.shatteredpixel.yasd.general.items.CrimsonFlask;
 import com.shatteredpixel.yasd.general.items.Honeypot;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
@@ -50,9 +49,7 @@ public class ElixirOfHoneyedHealing extends Elixir {
 	
 	@Override
 	public void apply(Hero hero) {
-		Buff.affect( hero, Healing.class ).setHeal((int)(0.8f*hero.HT + 14), 0.25f, 0);
-		CrimsonFlask.cure(hero);
-		Buff.affect(hero, Hunger.class).satisfy(Hunger.STARVING/5f);
+		shatter(hero.pos);
 	}
 	
 	@Override
@@ -64,7 +61,7 @@ public class ElixirOfHoneyedHealing extends Elixir {
 		
 		Char ch = Actor.findChar(cell);
 		if (ch != null) {
-			ch.heal(ch.HT/3, true, true);
+			Buff.affect(ch, Healing.class).setHeal(ch.HT, 0.005f, 0);
 			CrimsonFlask.cure(ch);
 			if (ch instanceof Bee && ch.alignment != curUser.alignment){
 				ch.alignment = Char.Alignment.ALLY;
@@ -83,7 +80,7 @@ public class ElixirOfHoneyedHealing extends Elixir {
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{PotionOfOvergrowth.class, Honeypot.ShatteredPot.class};
+			inputs =  new Class[]{PotionOfRestoration.class, Honeypot.ShatteredPot.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 4;

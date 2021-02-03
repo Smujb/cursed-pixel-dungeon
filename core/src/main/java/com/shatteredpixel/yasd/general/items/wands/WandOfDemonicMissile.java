@@ -19,6 +19,11 @@ public class WandOfDemonicMissile extends WandOfMagicMissile {
     @Override
     public void onZap(Ballistica bolt) {
         super.onZap(bolt);
-        curUser.damage(Math.round(curUser.HT*0.05f), new Char.DamageSrc(element, this));
+        curUser.damage(Math.round(curUser.HT*getPercentHPDamage()), new Char.DamageSrc(element, this));
+    }
+
+    //Damage increases slightly per missing charge
+    private float getPercentHPDamage() {
+        return 0.05f + 0.01f * (maxCharges-curCharges);
     }
 }

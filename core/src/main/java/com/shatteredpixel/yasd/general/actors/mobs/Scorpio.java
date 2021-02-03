@@ -35,7 +35,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Light;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.sprites.AcidicSprite;
 import com.shatteredpixel.yasd.general.sprites.ScorpioSprite;
 import com.watabou.utils.Random;
@@ -93,7 +93,7 @@ public class Scorpio extends Mob {
 		Class<?extends Potion> loot;
 		do{
 			loot = (Class<? extends Potion>) Random.oneOf(Generator.Category.POTION.classes);
-		} while (loot == PotionOfOvergrowth.class);
+		} while (loot == PotionOfRestoration.class);
 
 		return Reflection.newInstance(loot);
 	}

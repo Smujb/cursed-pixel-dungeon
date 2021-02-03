@@ -31,7 +31,6 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.GameMath;
 
 public class Healing extends Buff {
 
@@ -39,6 +38,8 @@ public class Healing extends Buff {
 	
 	private float percentHealPerTick;
 	private int flatHealPerTick;
+
+	private float storedHealing = 0;
 	
 	{
 		//unlike other buffs, this one acts after the hero and takes priority against other effects
@@ -49,11 +50,15 @@ public class Healing extends Buff {
 	}
 	
 	@Override
-	public boolean act(){
+	public boolean act() {
 
-		target.heal(healingThisTick(), false, true);
-
-		healingLeft -= healingThisTick();
+		storedHealing += healingThisTick();
+		int toHeal = (int) storedHealing;
+		if (toHeal > 0) {
+			target.heal(toHeal, false, true);
+			storedHealing -= toHeal;
+			healingLeft -= toHeal;
+		}
 		
 		if (healingLeft <= 0){
 			detach();
@@ -64,9 +69,8 @@ public class Healing extends Buff {
 		return true;
 	}
 	
-	private int healingThisTick(){
-		return (int)GameMath.gate(1,
-				Math.round(healingLeft * percentHealPerTick) + flatHealPerTick,
+	private float healingThisTick(){
+		return Math.min(Math.round(healingLeft * percentHealPerTick) + flatHealPerTick,
 				healingLeft);
 	}
 	
@@ -89,6 +93,7 @@ public class Healing extends Buff {
 	private static final String LEFT = "left";
 	private static final String PERCENT = "percent";
 	private static final String FLAT = "flat";
+	private static final String STORED = "stored";
 	
 	@Override
 	public void storeInBundle( Bundle bundle) {
@@ -96,6 +101,7 @@ public class Healing extends Buff {
 		bundle.put(LEFT, healingLeft);
 		bundle.put(PERCENT, percentHealPerTick);
 		bundle.put(FLAT, flatHealPerTick);
+		bundle.put(STORED, storedHealing);
 	}
 	
 	@Override
@@ -104,6 +110,7 @@ public class Healing extends Buff {
 		healingLeft = bundle.getInt(LEFT);
 		percentHealPerTick = bundle.getFloat(PERCENT);
 		flatHealPerTick = bundle.getInt(FLAT);
+		storedHealing = bundle.getFloat(STORED);
 	}
 	
 	@Override

@@ -64,7 +64,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfLevitation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMana;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfPurity;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfToxicGas;
@@ -395,7 +395,7 @@ public class Generator {
 
 			POTION.classes = new Class<?>[]{
 					PotionOfMana.class,
-					PotionOfOvergrowth.class,
+					PotionOfRestoration.class,
 					PotionOfMindVision.class,
 					PotionOfFrost.class,
 					PotionOfLiquidFlame.class,

@@ -5,7 +5,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.HolyWater;
 import com.shatteredpixel.yasd.general.items.Dewdrop;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
@@ -22,7 +22,7 @@ public class BrewOfHolyWater extends Brew {
 			Sample.INSTANCE.play( Assets.Sounds.SHATTER );
 		}
 
-		GameScene.add( Blob.seed( cell, 1000, HolyWater.class ) );
+		GameScene.add( Blob.seed( cell, 250, HolyWater.class ) );
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class BrewOfHolyWater extends Brew {
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
 
 		{
-			inputs =  new Class[]{Dewdrop.class, PotionOfOvergrowth.class};
+			inputs =  new Class[]{Dewdrop.class, PotionOfRestoration.class};
 			inQuantity = new int[]{1, 1};
 
 			cost = 8;

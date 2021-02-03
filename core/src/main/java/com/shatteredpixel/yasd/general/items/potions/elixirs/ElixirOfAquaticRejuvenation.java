@@ -30,7 +30,7 @@ package com.shatteredpixel.yasd.general.items.potions.elixirs;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.quest.GooBlob;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -75,7 +75,7 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 		public boolean act() {
 			
 			if (Dungeon.level.liquid()[target.pos] && target.HP < target.HT){
-				float healAmt = GameMath.gate( 1, target.HT/50f, left );
+				float healAmt = GameMath.gate( 1, target.HT/100f, left );
 				healAmt = Math.min(healAmt, target.HT - target.HP);
 				if (Random.Float() < (healAmt % 1)){
 					healAmt = (float)Math.ceil(healAmt);
@@ -139,7 +139,7 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
 		
 		{
-			inputs =  new Class[]{PotionOfOvergrowth.class, GooBlob.class};
+			inputs =  new Class[]{PotionOfRestoration.class, GooBlob.class};
 			inQuantity = new int[]{1, 1};
 			
 			cost = 6;

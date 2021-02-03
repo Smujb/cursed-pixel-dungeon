@@ -31,7 +31,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.effects.Pushing;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.SpawnerSprite;
@@ -54,7 +54,7 @@ public class DemonSpawner extends Mob {
 
         state = PASSIVE;
 
-		loot = PotionOfOvergrowth.class;
+		loot = PotionOfRestoration.class;
 		lootChance = 1f;
 
 		properties.add(Property.IMMOVABLE);

@@ -39,7 +39,7 @@ import com.shatteredpixel.yasd.general.effects.Beam;
 import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Pushing;
 import com.shatteredpixel.yasd.general.effects.Speck;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -59,7 +59,7 @@ public class Necromancer extends Mob {
 		
 		EXP = 7;
 
-        loot = new PotionOfOvergrowth();
+        loot = new PotionOfRestoration();
 		lootChance = 0.2f;
 
 		

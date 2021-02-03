@@ -90,7 +90,7 @@ public class Potion extends Item {
 	private static final float TIME_TO_DRINK = 1f;
 
 	private static final Class<?>[] potions = {
-			PotionOfOvergrowth.class,
+			PotionOfRestoration.class,
 			PotionOfExperience.class,
 			PotionOfToxicGas.class,
 			PotionOfLiquidFlame.class,
@@ -127,7 +127,6 @@ public class Potion extends Item {
 		mustThrowPots.add(PotionOfLiquidFlame.class);
 		mustThrowPots.add(PotionOfParalyticGas.class);
 		mustThrowPots.add(PotionOfFrost.class);
-		mustThrowPots.add(PotionOfOvergrowth.class);
 		
 		//exotic
 		mustThrowPots.add(PotionOfCorrosiveGas.class);
@@ -464,7 +463,7 @@ public class Potion extends Item {
 			types.put(Sorrowmoss.Seed.class,    PotionOfToxicGas.class);
 			types.put(Starflower.Seed.class,    PotionOfExperience.class);
 			types.put(Stormvine.Seed.class,     PotionOfLevitation.class);
-			types.put(Sungrass.Seed.class,      PotionOfOvergrowth.class);
+			types.put(Sungrass.Seed.class,      PotionOfRestoration.class);
 			types.put(Swiftthistle.Seed.class,  PotionOfHaste.class);
 		}
 		
@@ -521,7 +520,7 @@ public class Potion extends Item {
 			}
 
 
-			while (result instanceof PotionOfOvergrowth
+			while (result instanceof PotionOfRestoration
 					&& (Dungeon.isChallenged(Challenges.NO_HEALING))) {
 				result = Generator.randomUsingDefaults(Generator.Category.POTION);
 			}

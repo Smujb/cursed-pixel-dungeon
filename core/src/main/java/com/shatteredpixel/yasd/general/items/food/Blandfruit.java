@@ -37,7 +37,7 @@ import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfFrost;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHaste;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLevitation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
@@ -138,7 +138,7 @@ public class Blandfruit extends Food {
 
 		potionAttrib.image = ItemSpriteSheet.BLANDFRUIT;
 
-		if (potionAttrib instanceof PotionOfOvergrowth){
+		if (potionAttrib instanceof PotionOfRestoration){
 			name = Messages.get(this, "sunfruit");
 			potionGlow = new ItemSprite.Glowing( 0x2EE62E );
 		} else if (potionAttrib instanceof PotionOfMana){

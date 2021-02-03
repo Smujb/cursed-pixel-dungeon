@@ -48,7 +48,7 @@ public class AlchemicalCatalyst extends Potion {
 	
 	private static HashMap<Class<? extends Potion>, Float> potionChances = new HashMap<>();
 	static{
-		potionChances.put(PotionOfOvergrowth.class,        3f);
+		potionChances.put(PotionOfRestoration.class,        3f);
 		potionChances.put(PotionOfMindVision.class,     2f);
 		potionChances.put(PotionOfFrost.class,          2f);
 		potionChances.put(PotionOfLiquidFlame.class,    2f);

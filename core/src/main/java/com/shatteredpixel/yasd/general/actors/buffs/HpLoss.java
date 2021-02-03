@@ -27,70 +27,29 @@
 
 package com.shatteredpixel.yasd.general.actors.buffs;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.items.artifacts.ChaliceOfBlood;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.utils.GLog;
 
-public class Regeneration extends Buff {
+public class HpLoss extends Buff {
 	
 	{
 		//unlike other buffs, this one acts after the hero and takes priority against other effects
 		//healing is much more useful if you get some of it off before taking damage
 		actPriority = HERO_PRIO - 1;
 	}
-	
-	private static final float REGENERATION_DELAY = 10;
-	
+
 	@Override
 	public boolean act() {
-		if (Dungeon.isChallenged(Challenges.BLOODLUST) && target instanceof Hero) {
-			if (Dungeon.depth > 0) target.damage(target.HT/100, new Char.DamageSrc(Element.META, this).ignoreDefense());
-			spend(1f);
-			if (!target.isAlive()) {
-				GLog.negative(Messages.get(this, "death"));
-				Dungeon.fail(Regeneration.class);
-			}
-			return true;
+		if (Dungeon.depth > 0)
+			target.damage(target.HT / 100, new Char.DamageSrc(Element.META, this).ignoreDefense());
+		if (!target.isAlive()) {
+			GLog.negative(Messages.get(this, "death"));
+			Dungeon.fail(HpLoss.class);
 		}
-		if (target.isAlive()) {
-
-			if (target.HP < regencap() && !(target instanceof Hero && ((Hero)target).isStarving())) {
-				LockedFloor lock = target.buff(LockedFloor.class);
-				if (target.HP > 0 && (lock == null || lock.regenOn())) {
-					target.heal(1);
-					if (target.HP == regencap() && target instanceof Hero) {
-						((Hero) target).resting = false;
-					}
-				}
-			}
-
-			ChaliceOfBlood.chaliceRegen regenBuff = Dungeon.hero.buff( ChaliceOfBlood.chaliceRegen.class);
-
-			if (regenBuff != null) {
-				if (regenBuff.isCursed()) {
-					spend( REGENERATION_DELAY * 1.5f );
-				} else {
-					spend( REGENERATION_DELAY - regenBuff.itemLevel()*0.9f );
-				}
-			} else {
-				spend( REGENERATION_DELAY/Math.max(1, target.level()));
-			}
-			
-		} else {
-			
-			diactivate();
-			
-		}
-		
+		spend(1f);
 		return true;
-	}
-	
-	public int regencap(){
-		return target.HT;
 	}
 }

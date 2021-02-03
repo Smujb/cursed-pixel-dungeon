@@ -35,7 +35,7 @@ import com.shatteredpixel.yasd.general.items.Honeypot;
 import com.shatteredpixel.yasd.general.items.artifacts.AlchemistsToolkit;
 import com.shatteredpixel.yasd.general.items.artifacts.UnstableSpellbook;
 import com.shatteredpixel.yasd.general.items.food.Blandfruit;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMirrorImage;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRetribution;
@@ -981,7 +981,7 @@ public class v0_7_X_Changes {
 				"_-_ damage dealt now scales with missing player HP. At very low HP scroll is still an instakill on most enemies\n\n" +
 				"Scroll of psionic blast still exists however. It is now an exotic scroll!"));
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.POTION_CRIMSON, null), new PotionOfOvergrowth().trueName(),
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.POTION_CRIMSON, null), new PotionOfRestoration().trueName(),
 				"_-_ Speed of healing effects (e.g. potion of healing) have been reduced slightly. Overall heal amounts unchanged."));
 		
 		changes.addButton( new ChangeButton(new Honeypot(),

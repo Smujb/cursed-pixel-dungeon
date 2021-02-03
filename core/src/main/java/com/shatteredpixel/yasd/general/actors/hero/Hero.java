@@ -56,7 +56,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.MpRegen;
 import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
 import com.shatteredpixel.yasd.general.actors.buffs.ParryBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Preparation;
-import com.shatteredpixel.yasd.general.actors.buffs.Regeneration;
+import com.shatteredpixel.yasd.general.actors.buffs.HpLoss;
 import com.shatteredpixel.yasd.general.actors.buffs.SnipersMark;
 import com.shatteredpixel.yasd.general.actors.buffs.StaminaRegen;
 import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
@@ -590,7 +590,7 @@ public class Hero extends Char {
 	}
 
 	public void live() {
-		Buff.affect(this, Regeneration.class);
+		if (Dungeon.isChallenged(Challenges.BLOODLUST)) Buff.affect(this, HpLoss.class);
 		Buff.affect(this, Hunger.class);
 		Buff.affect(this, MpRegen.class);
 		Buff.affect(this, StaminaRegen.class);
@@ -1142,7 +1142,7 @@ public class Hero extends Char {
 	@Override
 	public void damage(int dmg, @NotNull DamageSrc src) {
 		int preHP = HP;
-		if (!(src.getCause() instanceof Hunger || src.getCause() instanceof Viscosity.DeferedDamage || src.getCause() instanceof Regeneration) && damageInterrupt) {
+		if (!(src.getCause() instanceof Hunger || src.getCause() instanceof Viscosity.DeferedDamage || src.getCause() instanceof HpLoss) && damageInterrupt) {
 			interrupt();
 			resting = false;
 		}

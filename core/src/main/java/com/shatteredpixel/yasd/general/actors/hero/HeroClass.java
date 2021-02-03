@@ -54,7 +54,7 @@ import com.shatteredpixel.yasd.general.items.food.SmallRation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.powers.Blink;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.relics.EtherealChains;
@@ -230,7 +230,7 @@ public enum HeroClass {
 
 		new BrokenSeal().collect();
 		
-		new PotionOfOvergrowth().identify();
+		new PotionOfRestoration().identify();
 		new ScrollOfRage().identify();
 		hero.increaseResilience();
 	}

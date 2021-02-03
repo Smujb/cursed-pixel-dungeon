@@ -42,7 +42,7 @@ import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.Recipe;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfFrost;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfOvergrowth;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.quest.GooBlob;
@@ -352,7 +352,7 @@ public class Bomb extends Item {
 			validIngredients.put(PotionOfInvisibility.class,    Flashbang.class);
 			validIngredients.put(ScrollOfRecharging.class,      ShockBomb.class);
 			
-			validIngredients.put(PotionOfOvergrowth.class,         RegrowthBomb.class);
+			validIngredients.put(PotionOfRestoration.class,         RegrowthBomb.class);
 			validIngredients.put(ScrollOfRemoveCurse.class,     HolyBomb.class);
 			
 			validIngredients.put(GooBlob.class,                 ArcaneBomb.class);
