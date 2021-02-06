@@ -1,6 +1,5 @@
 package com.shatteredpixel.yasd.general.actors.mobs.npcs;
 
-import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
@@ -58,11 +57,6 @@ public abstract class HeroNPC extends NPC {
 	@Override
 	public String name() {
 		return Messages.titleCase(heroClass().title());
-	}
-
-	@Override
-	public String description() {
-		return Messages.get(this, "desc_" + CPDSettings.storyChapter().name());
 	}
 
 	@NotNull
