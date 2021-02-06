@@ -5,10 +5,13 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Terror;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
 public class MidnightCutlass extends Scimitar {
     {
+        image = ItemSpriteSheet.Weapons.MIDNIGHT_CUTLASS;
+
         damageFactor = 0.5f;
 
         statScaling.add(Hero.HeroStat.FOCUS);

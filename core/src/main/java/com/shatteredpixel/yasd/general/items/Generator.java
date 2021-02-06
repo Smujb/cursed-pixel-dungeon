@@ -214,6 +214,7 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfThornvines;
 import com.shatteredpixel.yasd.general.items.wands.WandOfTransfusion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfVoltage;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
+import com.shatteredpixel.yasd.general.items.weapon.Arachia;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Axe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.ButchersKnife;
 import com.shatteredpixel.yasd.general.items.weapon.melee.ChainWhip;
@@ -581,10 +582,11 @@ public class Generator {
 					Falchion.class,
 					Wakizashi.class,
 					Tachi.class,
-					MidnightCutlass.class
+					MidnightCutlass.class,
+					Arachia.class
 
 			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2, 2, 2, 2, 3, 2, 1 };
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2, 2, 2, 2, 3, 2, 1, 3 };
 
 			SHIELD.classes = new Class<?>[] {
 					RoundShield.class,

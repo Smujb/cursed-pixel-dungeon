@@ -258,6 +258,7 @@ public class ItemSpriteSheet {
 		public static final int FALCHION		 = WEAPON+28;
 		public static final int ESTOC			 = WEAPON+29;
 		public static final int MIDNIGHT_CUTLASS = WEAPON+30;
+		public static final int ARACHIA			 = WEAPON+30;
 	}
 
 	public static class Shields {
