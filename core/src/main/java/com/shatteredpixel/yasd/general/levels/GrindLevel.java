@@ -18,7 +18,6 @@ import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.StatueSprite;
-import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -129,7 +128,6 @@ public class GrindLevel extends TiledMapLevel {
 		@Override
 		public void detach() {
 			super.detach();
-			GLog.negative(" dsa");
 			if (target != null && !target.isAlive()) {
 				for (int i = 0; i < lootAmt; i++) {
 					int pos;
