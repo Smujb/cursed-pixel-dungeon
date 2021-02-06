@@ -125,6 +125,6 @@ public class Healing extends Buff {
 	
 	@Override
 	public String desc() {
-		return Messages.get(this, "desc", healingThisTick(), healingLeft);
+		return Messages.get(this, "desc", Math.round(healingThisTick()), healingLeft);
 	}
 }
