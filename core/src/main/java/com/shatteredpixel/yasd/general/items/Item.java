@@ -608,7 +608,7 @@ public class Item implements Bundlable {
 
 		if (isUpgradable() && !unique) desc += "\n\n" + Messages.get(this, "upgrades_held", timesUpgraded, souCap);
 		if (visiblyCursed()) desc += "\n\n" + Messages.get(this, "curse_intensity", curseIntensity);
-		else desc += "\n\n" + Messages.get(this, "free_of_curse");
+		else if (cursedKnown) desc += "\n\n" + Messages.get(this, "free_of_curse");
 		return desc;
 	}
 	
