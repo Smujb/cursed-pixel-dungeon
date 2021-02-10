@@ -24,6 +24,8 @@ import java.util.Arrays;
 public class MageNPC extends HeroNPC {
 
 	private static final String WAND_GIVEN = "wand_given";
+	//TODO special stuff
+	private static final String IS_TEACHER = "is_teacher";
 
 	@Override
 	public HeroClass heroClass() {
@@ -70,6 +72,7 @@ public class MageNPC extends HeroNPC {
 	public final class Teacher extends WndHeroNPCChat {
 		public Teacher() {
 			super(MageNPC.this, Messages.get(MageNPC.class, "teach_response"));
+			addQuestFlag(IS_TEACHER);
 		}
 	}
 
