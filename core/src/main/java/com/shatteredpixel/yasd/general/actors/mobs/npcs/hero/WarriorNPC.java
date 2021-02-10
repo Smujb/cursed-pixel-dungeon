@@ -41,18 +41,20 @@ public class WarriorNPC extends HeroNPC {
 		}
 		if (ch instanceof Hero) {
 			Hero h = (Hero) ch;
-			if (h.heroClass == HeroClass.ROGUE) {
-				if (h.subClass != HeroSubClass.BRAWLER || h.getResilience() < 5) {
-					addQuestFlag(SPOKEN_AS_ROGUE);
-					introduction = Messages.get(this, "rogue");
-				} else if (questlineFlagCompleted(SPOKEN_AS_ROGUE)) {
-					introduction = Messages.get(this, "rogue_redeem");
-				}
-			}
 			if (new ArrayList<>(Arrays.asList(HeroClass.WARRIOR.subClasses())).contains(h.subClass) && !questlineFlagCompleted(SHIELD_GIVEN)) {
 				options.put(Messages.get(this, "training"), WndChat.asCallback(new Training()));
 			} else if (h.getResilience() > 6) {
 				options.put(Messages.get(this, "teach"), WndChat.asCallback(new Teacher()));
+			}
+
+			if (h.heroClass == HeroClass.ROGUE) {
+				if (h.subClass != HeroSubClass.BRAWLER || h.getResilience() < 5) {
+					addQuestFlag(SPOKEN_AS_ROGUE);
+					introduction = Messages.get(this, "rogue");
+					options.clear();
+				} else if (questlineFlagCompleted(SPOKEN_AS_ROGUE)) {
+					introduction = Messages.get(this, "rogue_redeem");
+				}
 			}
 		}
 		String finalIntroduction = introduction;
