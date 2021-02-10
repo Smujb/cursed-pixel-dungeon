@@ -30,8 +30,12 @@ package com.shatteredpixel.yasd.general.actors.mobs.npcs;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.Heap;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class NPC extends Mob {
 
@@ -41,6 +45,18 @@ public abstract class NPC extends Mob {
 
 		alignment = Alignment.NEUTRAL;
 		state = PASSIVE;
+	}
+
+	private static final String QUEST_FLAGS = "quest_flags";
+
+	private ArrayList<String> questlineFlags = new ArrayList<>();
+
+	public void addQuestFlag(String flag) {
+		questlineFlags.add(flag);
+	}
+
+	public boolean questlineFlagCompleted(String flag) {
+		return questlineFlags.contains(flag);
 	}
 
 	protected void throwItem() {
@@ -56,5 +72,17 @@ public abstract class NPC extends Mob {
 
 	@Override
 	public void beckon( int cell ) {
+	}
+
+	@Override
+	public void storeInBundle(Bundle bundle) {
+		super.storeInBundle(bundle);
+		bundle.put(QUEST_FLAGS, questlineFlags.toArray(new String[0]));
+	}
+
+	@Override
+	public void restoreFromBundle(Bundle bundle) {
+		super.restoreFromBundle(bundle);
+		questlineFlags = new ArrayList<>(Arrays.asList(bundle.getStringArray(QUEST_FLAGS)));
 	}
 }

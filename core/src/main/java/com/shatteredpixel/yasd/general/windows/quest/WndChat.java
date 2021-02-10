@@ -9,6 +9,7 @@ import com.shatteredpixel.yasd.general.ui.Window;
 import com.shatteredpixel.yasd.general.windows.IconTitle;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Component;
+import com.watabou.utils.Callback;
 import com.watabou.utils.Reflection;
 
 public class WndChat extends Window {
@@ -20,7 +21,7 @@ public class WndChat extends Window {
 		this(icon, title, message, new ArrayMap<>());
 	}
 
-	public WndChat(Image icon, String title, String message, ArrayMap<String, Class<? extends Window>> options) {
+	public WndChat(Image icon, String title, String message, ArrayMap<String, Callback> options) {
 		super();
 
 		Component titlebar = new IconTitle( icon, title );
@@ -40,9 +41,8 @@ public class WndChat extends Window {
 			RedButton button = new RedButton(option) {
 				@Override
 				protected void onClick() {
-					final Window window = Reflection.forceNewInstance(options.get(option));
 					hide();
-					CPDGame.scene().addToFront(window);
+					options.get(option).call();
 				}
 			};
 			button.setRect(0, bottom, width, BTN_HEIGHT);
@@ -50,5 +50,18 @@ public class WndChat extends Window {
 			bottom += BTN_HEIGHT;
 		}
 		resize(width, bottom);
+	}
+
+	public static Callback asCallback(Window window) {
+		return new Callback() {
+			@Override
+			public void call() {
+				CPDGame.scene().addToFront(window);
+			}
+		};
+	}
+
+	public static Callback asCallback(Class<? extends Window> window) {
+		return asCallback(Reflection.newInstance(window));
 	}
 }
