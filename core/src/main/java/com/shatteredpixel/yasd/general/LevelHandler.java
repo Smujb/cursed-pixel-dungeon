@@ -212,7 +212,7 @@ public class LevelHandler {
 			public void call() {
 				CPDGame.switchScene(GameScene.class);
 			}
-		}, getThread(), CPDSettings.fastInterlevelScene(), false);
+		}, getThread(), CPDSettings.fasterLoading(), false);
 	}
 
 	public static void doInit() {
@@ -234,7 +234,7 @@ public class LevelHandler {
 					throw new RuntimeException(e);
 				}
 			}
-		}, CPDSettings.fastInterlevelScene(), false);
+		}, CPDSettings.fasterLoading(), false);
 	}
 
 	public static void move(String key, String msg, Mode mode, int depth, int pos) {
@@ -247,7 +247,7 @@ public class LevelHandler {
 			public void call() {
 				CPDGame.switchScene(GameScene.class);
 			}
-		}, getThread(), CPDSettings.fastInterlevelScene(), false);
+		}, getThread(), CPDSettings.fasterLoading(), false);
 	}
 
 	public static void resetMode() {

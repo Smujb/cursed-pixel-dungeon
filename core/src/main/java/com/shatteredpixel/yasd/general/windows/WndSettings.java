@@ -236,7 +236,7 @@ public class WndSettings extends WndTabbed {
 		OptionSlider optBrightness;
 		OptionSlider optVisGrid;
 		CheckBox chkCutscenes;
-		CheckBox chkInterlevelScene;
+		CheckBox chkFastLoad;
 		OptionSlider particles;
 
 		@Override
@@ -341,15 +341,15 @@ public class WndSettings extends WndTabbed {
 			chkCutscenes.checked(CPDSettings.cutscenes());
 			add(chkCutscenes);
 
-			chkInterlevelScene = new CheckBox( Messages.get(this, "fast") ) {
+			chkFastLoad = new CheckBox( Messages.get(this, "fast") ) {
 				@Override
 				protected void onClick() {
 					super.onClick();
-					CPDSettings.fastInterlevelScene(checked());
+					CPDSettings.fasterLoading(checked());
 				}
 			};
-			chkInterlevelScene.checked(CPDSettings.fastInterlevelScene());
-			add(chkInterlevelScene);
+			chkFastLoad.checked(CPDSettings.fasterLoading());
+			add(chkFastLoad);
 
 			particles = new OptionSlider(Messages.get(this, "particles"), "1", "6", 1, 6) {
 				@Override
@@ -409,13 +409,13 @@ public class WndSettings extends WndTabbed {
 
 			if (width > 200){
 				chkCutscenes.setRect(0, bottom + GAP, width/2-GAP/2, SLIDER_HEIGHT);
-				chkInterlevelScene.setRect(chkCutscenes.right() + GAP, chkCutscenes.top(), width/2-GAP/2, SLIDER_HEIGHT);
+				chkFastLoad.setRect(chkCutscenes.right() + GAP, chkCutscenes.top(), width/2-GAP/2, SLIDER_HEIGHT);
 			} else {
 				chkCutscenes.setRect(0, bottom + GAP, width, SLIDER_HEIGHT);
-				chkInterlevelScene.setRect(0, chkCutscenes.bottom() + GAP, width, SLIDER_HEIGHT);
+				chkFastLoad.setRect(0, chkCutscenes.bottom() + GAP, width, SLIDER_HEIGHT);
 			}
 
-			bottom = chkInterlevelScene.bottom() + 1;
+			bottom = chkFastLoad.bottom() + 1;
 
 			particles.setRect(0, bottom, width, SLIDER_HEIGHT);
 			height = particles.bottom();

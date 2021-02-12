@@ -225,7 +225,9 @@ public class PixelScene extends Scene {
 	}
 
 	protected void fadeIn( int color, boolean light ) {
-		fadeIn(color, light, DEFAULT_FADE_TIME);
+		float fadeTime = DEFAULT_FADE_TIME;
+		if (CPDSettings.fasterLoading()) fadeTime /=3;
+		fadeIn(color, light, fadeTime);
 	}
 	
 	public static void showBadge( Badges.Badge badge ) {

@@ -159,11 +159,11 @@ public class CPDSettings extends com.watabou.utils.GameSettings {
 		return getBoolean(Messages.format(KEY_CUTSCENE, sceneID), false );
 	}
 
-	public static void fastInterlevelScene( boolean value ){
+	public static void fasterLoading(boolean value ){
 		put( KEY_FAST_INTERLEVEL_SCENE, value );
 	}
 
-	public static boolean fastInterlevelScene() {
+	public static boolean fasterLoading() {
 		return getBoolean( KEY_FAST_INTERLEVEL_SCENE, false );
 	}
 
