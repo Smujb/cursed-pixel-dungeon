@@ -13,6 +13,6 @@ public abstract class HeroStatRing extends Ring {
 	}
 
 	public static int statBonus(Char target, Class<? extends RingBuff> buffClass) {
-		return (int) (4 * multiplier(target, buffClass));
+		return Math.round(4 * multiplier(target, buffClass));
 	}
 }
