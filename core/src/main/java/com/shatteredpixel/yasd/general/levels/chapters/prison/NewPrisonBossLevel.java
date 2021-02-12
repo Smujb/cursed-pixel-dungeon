@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Bones;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
+import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
@@ -325,7 +326,7 @@ public class NewPrisonBossLevel extends Level {
 			cell += width();
 		}
 
-		interactiveAreas.add(new LevelSwitchArea().setPos(levelExit.x, levelExit.y, levelExit.x+1, levelExit.y+3));
+		interactiveAreas.add(new LevelSwitchArea().initVars(Dungeon.keyForDepth(Dungeon.depth+1), Messages.get(LevelHandler.Mode.class, LevelHandler.Mode.DESCEND.name()), -1, Dungeon.depth + 1).setPos(levelExit.x, levelExit.y, levelExit.x+1, levelExit.y+3));
 	}
 
 	//keep track of removed items as the level is changed. Dump them back into the level at the end.

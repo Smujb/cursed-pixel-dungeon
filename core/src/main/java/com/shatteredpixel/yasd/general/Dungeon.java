@@ -326,7 +326,7 @@ public class Dungeon {
 
 	@NotNull
 	@Contract(pure = true)
-	static String keyForDepth(int depth) {
+    public static String keyForDepth(int depth) {
 		String key = "none";
 		int depthInChapter = (depth - 1) % Constants.CHAPTER_LENGTH;
 		String depthMarker = " - " + depthInChapter;
