@@ -33,34 +33,35 @@ public class WarriorNPC extends HeroNPC {
 	@Override
 	public boolean interact(Char ch) {
 		ArrayMap<String, Callback> options = new ArrayMap<>();
-		String introduction = Messages.get(WarriorNPC.this, "introduction", ch.name());
-		if (!questlineFlagCompleted(REASON_HERE_QUESTION)) {
-			options.put(Messages.get(WarriorNPC.this, "for_dungeon"), WndChat.asCallback(new ForDungeonResponse()));
-			options.put(Messages.get(WarriorNPC.this, "for_amulet"), WndChat.asCallback(new ForAmuletResponse()));
-			introduction += Messages.get(this, "why_here");
-		}
-		if (ch instanceof Hero) {
-			Hero h = (Hero) ch;
-			if (new ArrayList<>(Arrays.asList(HeroClass.WARRIOR.subClasses())).contains(h.subClass) && !questlineFlagCompleted(SHIELD_GIVEN)) {
-				options.put(Messages.get(this, "training"), WndChat.asCallback(new Training()));
-			} else if (h.getResilience() > 6) {
-				options.put(Messages.get(this, "teach"), WndChat.asCallback(new Teacher()));
-			}
 
-			if (h.heroClass == HeroClass.ROGUE) {
-				if (h.subClass != HeroSubClass.BRAWLER || h.getResilience() < 5) {
-					addQuestFlag(SPOKEN_AS_ROGUE);
-					introduction = Messages.get(this, "rogue");
-					options.clear();
-				} else if (questlineFlagCompleted(SPOKEN_AS_ROGUE)) {
-					introduction = Messages.get(this, "rogue_redeem");
-				}
-			}
-		}
-		String finalIntroduction = introduction;
 		CPDGame.runOnRenderThread(new Callback() {
 			@Override
 			public void call() {
+				String introduction = Messages.get(WarriorNPC.this, "introduction", ch.name());
+				if (!questlineFlagCompleted(REASON_HERE_QUESTION)) {
+					options.put(Messages.get(WarriorNPC.this, "for_dungeon"), WndChat.asCallback(new ForDungeonResponse()));
+					options.put(Messages.get(WarriorNPC.this, "for_amulet"), WndChat.asCallback(new ForAmuletResponse()));
+					introduction += Messages.get(this, "why_here");
+				}
+				if (ch instanceof Hero) {
+					Hero h = (Hero) ch;
+					if (new ArrayList<>(Arrays.asList(HeroClass.WARRIOR.subClasses())).contains(h.subClass) && !questlineFlagCompleted(SHIELD_GIVEN)) {
+						options.put(Messages.get(this, "training"), WndChat.asCallback(new Training()));
+					} else if (h.getResilience() > 6) {
+						options.put(Messages.get(this, "teach"), WndChat.asCallback(new Teacher()));
+					}
+
+					if (h.heroClass == HeroClass.ROGUE) {
+						if (h.subClass != HeroSubClass.BRAWLER || h.getResilience() < 5) {
+							addQuestFlag(SPOKEN_AS_ROGUE);
+							introduction = Messages.get(this, "rogue");
+							options.clear();
+						} else if (questlineFlagCompleted(SPOKEN_AS_ROGUE)) {
+							introduction = Messages.get(this, "rogue_redeem");
+						}
+					}
+				}
+				String finalIntroduction = introduction;
 				CPDGame.scene().addToFront(new WndHeroNPCChat(WarriorNPC.this, finalIntroduction, options));
 			}
 		});

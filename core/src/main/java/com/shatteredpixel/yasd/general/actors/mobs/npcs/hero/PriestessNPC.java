@@ -19,11 +19,13 @@ public class PriestessNPC extends HeroNPC {
 		String text = Messages.get(PriestessNPC.this, "introduction", ch.name());
 		if (ch instanceof Hero && ((Hero) ch).heroClass == HeroClass.MAGE)
 			text += Messages.get(PriestessNPC.this, "extra_dialog_mage");
-		/*if (ch.hasBelongings() && ch.belongings.getItem(Relic.class) != null) {
-			options.put(Messages.get(PriestessNPC.class, "give_relic"), );
-		}*/
+
 		String finalText = text;
 		CPDGame.runOnRenderThread(new Callback() {
+			/*if (ch.hasBelongings() && ch.belongings.getItem(Relic.class) != null) {
+				options.put(Messages.get(PriestessNPC.class, "give_relic"), );
+			}*/
+
 			@Override
 			public void call() {
 				GameScene.show(new WndHeroNPCChat(PriestessNPC.this, finalText, options));

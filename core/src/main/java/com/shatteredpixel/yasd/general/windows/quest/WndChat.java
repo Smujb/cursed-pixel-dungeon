@@ -56,7 +56,12 @@ public class WndChat extends Window {
 		return new Callback() {
 			@Override
 			public void call() {
-				CPDGame.scene().addToFront(window);
+				CPDGame.runOnRenderThread(new Callback() {
+					@Override
+					public void call() {
+						CPDGame.scene().addToFront(window);
+					}
+				});
 			}
 		};
 	}

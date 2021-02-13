@@ -35,20 +35,21 @@ public class MageNPC extends HeroNPC {
 	@Override
 	public boolean interact(Char ch) {
 		ArrayMap<String, Callback> options = new ArrayMap<>();
-		options.put(Messages.get(MageNPC.this, "mana"), WndChat.asCallback(WndBuyManaPotion.class));
-		options.put(Messages.get(MageNPC.class, "view_storage"), WndChat.asCallback(WndStorage.class));
-		if (ch instanceof Hero) {
-			Hero h = (Hero) ch;
-			if (new ArrayList<>(Arrays.asList(HeroClass.MAGE.subClasses())).contains(h.subClass) && !questlineFlagCompleted(WAND_GIVEN)) {
-				options.put(Messages.get(MageNPC.class, "ask_magic"), WndChat.asCallback(new Magic()));
-			} else if (h.getFocus() > 6) {
-				options.put(Messages.get(MageNPC.class, "ask_teach"), WndChat.asCallback(new Teacher()));
-			}
-		}
-		options.put(Messages.get(MageNPC.this, "nothing"), WndChat.asCallback(new NoResponse()));
+
 		CPDGame.runOnRenderThread(new Callback() {
 			@Override
 			public void call() {
+				options.put(Messages.get(MageNPC.this, "mana"), WndChat.asCallback(WndBuyManaPotion.class));
+				options.put(Messages.get(MageNPC.class, "view_storage"), WndChat.asCallback(WndStorage.class));
+				if (ch instanceof Hero) {
+					Hero h = (Hero) ch;
+					if (new ArrayList<>(Arrays.asList(HeroClass.MAGE.subClasses())).contains(h.subClass) && !questlineFlagCompleted(WAND_GIVEN)) {
+						options.put(Messages.get(MageNPC.class, "ask_magic"), WndChat.asCallback(new Magic()));
+					} else if (h.getFocus() > 6) {
+						options.put(Messages.get(MageNPC.class, "ask_teach"), WndChat.asCallback(new Teacher()));
+					}
+				}
+				options.put(Messages.get(MageNPC.this, "nothing"), WndChat.asCallback(new NoResponse()));
 				GameScene.show(new WndHeroNPCChat(MageNPC.this, Messages.get(MageNPC.this, "introduction", ch.name()), options));
 			}
 		});
