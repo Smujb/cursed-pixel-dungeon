@@ -83,6 +83,6 @@ public abstract class NPC extends Mob {
 	@Override
 	public void restoreFromBundle(Bundle bundle) {
 		super.restoreFromBundle(bundle);
-		questlineFlags = new ArrayList<>(Arrays.asList(bundle.getStringArray(QUEST_FLAGS)));
+		if (bundle.contains(QUEST_FLAGS)) questlineFlags = new ArrayList<>(Arrays.asList(bundle.getStringArray(QUEST_FLAGS)));
 	}
 }
