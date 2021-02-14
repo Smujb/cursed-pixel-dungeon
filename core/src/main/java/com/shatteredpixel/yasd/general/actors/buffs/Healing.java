@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.GameMath;
 
 public class Healing extends Buff {
 
@@ -70,7 +71,7 @@ public class Healing extends Buff {
 	}
 	
 	private float healingThisTick(){
-		return Math.min(Math.round(healingLeft * percentHealPerTick) + flatHealPerTick,
+		return GameMath.gate(0.05f, healingLeft * percentHealPerTick + flatHealPerTick,
 				healingLeft);
 	}
 	
