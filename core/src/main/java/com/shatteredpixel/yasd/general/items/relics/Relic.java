@@ -1,10 +1,13 @@
 package com.shatteredpixel.yasd.general.items.relics;
 
+import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.watabou.utils.Callback;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,12 +23,16 @@ public abstract class Relic extends KindofMisc {
     protected static final float MAX_CHARGE = 100;
     protected float charge = MAX_CHARGE;
 
+    protected float damageMultiplier = 1f;
+
     private static final String AC_ACTIVATE = "activate";
+    private static final String AC_FINISHER = "finisher";
 
     @Override
     public ArrayList<String> actions(Hero hero) {
         ArrayList<String> actions = super.actions(hero);
         actions.add(AC_ACTIVATE);
+        actions.add(AC_FINISHER);
         return actions;
     }
 
@@ -35,6 +42,72 @@ public abstract class Relic extends KindofMisc {
         if (action.equals(AC_ACTIVATE) && canActivate()) {
             doActivate();
         }
+    }
+
+    public boolean doAttack(Char attacker, Char defender) {
+        attacker.busy();
+        if (attacker.sprite != null && (attacker.sprite.visible || defender.sprite.visible)) {
+            attacker.spend( 1f );
+            attacker.sprite.attack(defender.pos, new Callback() {
+                @Override
+                public void call() {
+                    attack(attacker, defender, false);
+                    attacker.next();
+                }
+            });
+            return false;
+        } else {
+            attack(attacker, defender, false);
+            attacker.spend( 1f );
+            attacker.next();
+            return true;
+        }
+    }
+
+    public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
+        Char.DamageSrc src = new Char.DamageSrc(Element.PHYSICAL, this);
+        int damage = damageRoll();
+        damage = proc(attacker, enemy, damage);
+        return attacker.attack(enemy, guaranteed, damage, src);
+    }
+
+    protected int damageRoll(float lvl) {
+        return Math.round(Random.NormalFloat(min(lvl), max(lvl)));
+    }
+
+    protected int damageRoll() {
+        return Random.NormalIntRange(min(), max());
+    }
+
+    public final int min() {
+        return Math.round(min(power()));
+    }
+
+    public final int max(){
+        return Math.round(max(power()));
+    }
+
+    public float min(float lvl) {
+        return 8 * lvl * damageMultiplier;    //level scaling
+    }
+
+    public float max(float lvl) {
+        return 20 * lvl * damageMultiplier;   //level scaling
+    }
+
+    final int defaultMin() {
+        return (int) min(1f);
+    }
+
+    final int defaultMax() {
+        return (int) max(1f);
+    }
+
+    protected abstract boolean critCondition(Char enemy);
+
+    protected int proc(Char attacker, Char defender, int damage) {
+        if (critCondition(defender) || damage*2 >= defender.HP) damage *= 2;
+        return damage;
     }
 
     protected void doActivate() {

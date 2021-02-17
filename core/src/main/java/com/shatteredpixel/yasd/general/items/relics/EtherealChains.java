@@ -26,6 +26,11 @@ public class EtherealChains extends Relic {
     }
 
     @Override
+    protected boolean critCondition(Char enemy) {
+        return false;
+    }
+
+    @Override
     protected void doActivate() {
         GameScene.selectCell(caster);
     }

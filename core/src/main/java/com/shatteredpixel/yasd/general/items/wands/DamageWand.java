@@ -62,17 +62,18 @@ public abstract class DamageWand extends Wand{
 	}
 
 
-	public final int min() {
-		return (int) min(power());
-	}
 
 
 	final int defaultMin() {
 		return (int) min(1f);
 	}
 
+	public final int min() {
+		return Math.round(min(power()));
+	}
+
 	public final int max(){
-		return (int) max(power());
+		return Math.round(max(power()));
 	}
 
 	public float min(float lvl) {
