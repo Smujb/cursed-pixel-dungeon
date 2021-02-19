@@ -86,12 +86,12 @@ public class YogDzewa extends Boss {
 
 	private int phase = 0;
 	private float abilityCooldown;
-	private static final int MIN_ABILITY_CD = 10;
-	private static final int MAX_ABILITY_CD = 15;
+	private static final int MIN_ABILITY_CD = 30;
+	private static final int MAX_ABILITY_CD = 45;
 
 	private float summonCooldown;
-	private static final int MIN_SUMMON_CD = 10;
-	private static final int MAX_SUMMON_CD = 15;
+	private static final int MIN_SUMMON_CD = 20;
+	private static final int MAX_SUMMON_CD = 30;
 
 	private ArrayList<Class> fistSummons = new ArrayList<>();
 	{
