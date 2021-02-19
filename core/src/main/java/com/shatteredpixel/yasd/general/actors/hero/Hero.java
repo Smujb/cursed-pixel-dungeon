@@ -1455,7 +1455,7 @@ public class Hero extends Char {
 
 	@Contract(pure = true)
 	public static int maxExp(int lvl) {
-		return 5 + lvl * 5;
+		return 10 + lvl * 6;
 	}
 
 	public boolean isStarving() {
