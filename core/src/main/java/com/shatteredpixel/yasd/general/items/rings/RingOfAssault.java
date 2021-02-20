@@ -41,8 +41,8 @@ public class RingOfAssault extends HeroStatRing {
 		return new Evasion();
 	}
 
-	public static int statBonus(Char target) {
-		return statBonus(target, Evasion.class);
+	public static float hpDropOffReduction(Char target) {
+		return hpDropOffReduction(target, Evasion.class);
 	}
 
 	public class Evasion extends RingBuff {

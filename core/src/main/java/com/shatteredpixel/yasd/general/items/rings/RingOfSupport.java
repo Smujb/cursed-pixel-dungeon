@@ -41,8 +41,8 @@ public class RingOfSupport extends HeroStatRing {
 		return new Attunement();
 	}
 
-	public static int statBonus(Char target) {
-		return statBonus(target, Attunement.class);
+	public static float hpDropOffReduction(Char target) {
+		return hpDropOffReduction(target, Attunement.class);
 	}
 
 	public class Attunement extends RingBuff {

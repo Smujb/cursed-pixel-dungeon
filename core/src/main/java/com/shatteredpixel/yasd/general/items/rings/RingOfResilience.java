@@ -41,8 +41,8 @@ public class RingOfResilience extends HeroStatRing {
 		return new ExpertiseBuff();
 	}
 
-	public static int statBonus(Char target) {
-		return statBonus(target, ExpertiseBuff.class);
+	public static float hpDropOffReduction(Char target) {
+		return hpDropOffReduction(target, ExpertiseBuff.class);
 	}
 
 	public class ExpertiseBuff extends RingBuff {}

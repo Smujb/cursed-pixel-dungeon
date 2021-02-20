@@ -190,15 +190,12 @@ public enum HeroClass {
 		new DeveloperItem().collect();
 		new EtherealChains().identify().collect();
 
-		for (Class<?> itemClass : Generator.Category.WEAPON.classes) {
+		for (Class<?> itemClass : Generator.Category.RING.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);
 			if (item != null) {
 				item.random();
 				item.uncurse();
 				item.identify().level(59).collect();
-				while (item.statReq() < item.bestHeroStatValue(hero) && item.isUpgradable()) {
-					item.upgrade();
-				}
 			}
 		}
 	}

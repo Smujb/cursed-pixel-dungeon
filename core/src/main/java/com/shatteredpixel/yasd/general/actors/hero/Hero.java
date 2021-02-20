@@ -48,6 +48,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Combo;
 import com.shatteredpixel.yasd.general.actors.buffs.Focus;
 import com.shatteredpixel.yasd.general.actors.buffs.Foresight;
+import com.shatteredpixel.yasd.general.actors.buffs.HpLoss;
 import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.MindVision;
@@ -56,7 +57,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.MpRegen;
 import com.shatteredpixel.yasd.general.actors.buffs.Paralysis;
 import com.shatteredpixel.yasd.general.actors.buffs.ParryBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Preparation;
-import com.shatteredpixel.yasd.general.actors.buffs.HpLoss;
 import com.shatteredpixel.yasd.general.actors.buffs.SnipersMark;
 import com.shatteredpixel.yasd.general.actors.buffs.StaminaRegen;
 import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
@@ -145,20 +145,45 @@ public class Hero extends Char {
 
 	public enum HeroStat {
 		EXECUTION {
+			@Override
+			public float hpDropOffReduction(Char ch) {
+				return RingOfExecution.hpDropOffReduction(ch);
+			}
+		},
+		FOCUS {
 			{
 				baseBoost = 0.25f;
 			}
+
+			@Override
+			public float hpDropOffReduction(Char ch) {
+				return RingOfFocus.hpDropOffReduction(ch);
+			}
 		},
-		FOCUS,
 		RESILIENCE {
 			{
 				baseBoost = 0.35f;
 			}
+
+			@Override
+			public float hpDropOffReduction(Char ch) {
+				return RingOfResilience.hpDropOffReduction(ch);
+			}
 		},
-		ASSAULT,
+		ASSAULT {
+			@Override
+			public float hpDropOffReduction(Char ch) {
+				return RingOfAssault.hpDropOffReduction(ch);
+			}
+		},
 		SUPPORT {
 			{
 				baseBoost = 0.2f;
+			}
+
+			@Override
+			public float hpDropOffReduction(Char ch) {
+				return RingOfSupport.hpDropOffReduction(ch);
 			}
 		};
 
@@ -168,8 +193,12 @@ public class Hero extends Char {
 			return Messages.get(HeroStat.class, name());
 		}
 
-		public float hpBoost(int curLevel) {
-			return (float) (1 + (baseBoost * Math.pow(0.8f, Math.max(0, curLevel-1))));
+		public float hpBoost(int curLevel, Char ch) {
+			return (float) (1 + (baseBoost * Math.pow(0.8f + hpDropOffReduction(ch), Math.max(0, curLevel-1))));
+		}
+
+		public float hpDropOffReduction(Char ch) {
+			return 0f;
 		}
 
 		public int colour() {
@@ -282,7 +311,7 @@ public class Hero extends Char {
 		HT = 200 + HTBoost;
 		for (HeroStat stat : HeroStat.values()) {
 			for (int i = 1; i < getStat(stat); i++) {
-				HT *= stat.hpBoost(i);
+				HT *= stat.hpBoost(i, this);
 			}
 		}
 		heal(HT - preHT);
@@ -335,23 +364,23 @@ public class Hero extends Char {
 	;
 
 	public int getExecution() {
-		return execution + RingOfExecution.statBonus(this);
+		return execution;
 	}
 
 	public int getResilience() {
-		return resilience + RingOfResilience.statBonus(this);
+		return resilience;
 	}
 
 	public int getFocus() {
-		return focus + RingOfFocus.statBonus(this);
+		return focus;
 	}
 
 	public int getAssault() {
-		return assault + RingOfAssault.statBonus(this);
+		return assault;
 	}
 
 	public int getSupport() {
-		return support + RingOfSupport.statBonus(this);
+		return support;
 	}
 
 	public void setExecution(int execution) {

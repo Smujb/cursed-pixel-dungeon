@@ -41,8 +41,8 @@ public class RingOfFocus extends HeroStatRing {
 		return new FocusBuff();
 	}
 
-	public static int statBonus(Char target) {
-		return statBonus(target, FocusBuff.class);
+	public static float hpDropOffReduction(Char target) {
+		return hpDropOffReduction(target, FocusBuff.class);
 	}
 
 	public class FocusBuff extends RingBuff {}

@@ -169,7 +169,7 @@ public class WndHero extends WndTabbed {
 
 				RenderedTextBlock message = PixelScene.renderTextBlock(
 						Messages.get(this, "increase_stat_info",
-						Messages.format( "+%d%%", Math.round((stat.hpBoost(hero.getStat(stat))-1f)*100)),
+						Messages.format( "+%d%%", Math.round((stat.hpBoost(hero.getStat(stat), hero)-1f)*100)),
 						stat.getName()) + " " + Messages.get(this, stat.name()),
 						6 );
 				message.maxWidth(WIDTH);
