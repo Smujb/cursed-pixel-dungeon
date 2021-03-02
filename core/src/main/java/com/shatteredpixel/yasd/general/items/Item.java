@@ -136,7 +136,7 @@ public class Item implements Bundlable {
 	}
 
 	public Item curse() {
-		curseIntensity += randomCurseIntensity();
+		increaseCurseIntensity(randomCurseIntensity());
 		return this;
 	}
 
