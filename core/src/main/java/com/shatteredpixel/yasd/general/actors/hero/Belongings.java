@@ -273,7 +273,7 @@ public class Belongings implements Iterable<Item> {
 		backpack.clear();
 		backpack.restoreFromBundle( bundle );
 		miscs = new KindofMisc[owner.miscSlots()];
-		for (int i = 0; i < owner.miscSlots(); i++) {//Restore all miscs
+		for (int i = 0; i < miscs.length; i++) {//Restore all miscs
 			miscs[i] = (KindofMisc) bundle.get(MISC + i);
 			if (miscs[i] != null) {
 				miscs[i].activate( owner );
