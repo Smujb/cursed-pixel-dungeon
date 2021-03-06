@@ -16,8 +16,6 @@ import com.watabou.utils.Bundle;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-
 public class CloakOfShadows extends Relic {
 
     {
@@ -26,8 +24,6 @@ public class CloakOfShadows extends Relic {
 
         charge = Math.min(level()+3, 10);
 
-        defaultAction = AC_STEALTH;
-
         unique = true;
         bones = false;
     }
@@ -35,51 +31,34 @@ public class CloakOfShadows extends Relic {
     private boolean stealthed = false;
     private Buff stealth = null;
 
-    private static final int STEALTH_COOLDOWN = 10;
-
-    public static final String AC_STEALTH = "STEALTH";
-
     @Override
-    public ArrayList<String> actions(Hero hero ) {
-        ArrayList<String> actions = super.actions( hero );
-        if (isEquipped( hero ) && !cursed() && (charge > 0 || stealthed))
-            actions.add(AC_STEALTH);
-        return actions;
-    }
-
-    @Override
-    public void execute( Hero hero, String action ) {
-
-        super.execute(hero, action);
-
-        if (action.equals( AC_STEALTH )) {
-
-            if (!stealthed){
-                if (!isEquipped(hero)) GLog.info( Messages.get(Artifact.class, "need_to_equip") );
-                else if (cursed())       GLog.info( Messages.get(this, "cursed") );
-                else if (charge <= 0)  GLog.info( Messages.get(this, "no_charge") );
-                else {
-                    stealthed = true;
-                    hero.spend( 1f );
-                    hero.busy();
-                    Sample.INSTANCE.play(Assets.Sounds.MELD);
-                    stealth = new CloakStealth();
-                    stealth.attachTo(hero);
-                    if (hero.sprite.parent != null) {
-                        hero.sprite.parent.add(new AlphaTweener(hero.sprite, 0.4f, 0.4f));
-                    } else {
-                        hero.sprite.alpha(0.4f);
-                    }
-                    hero.sprite.operate(hero.pos);
+    protected void doActivate() {
+        if (!stealthed){
+            if (!isEquipped(curUser)) GLog.info( Messages.get(Artifact.class, "need_to_equip") );
+            else if (cursed())       GLog.info( Messages.get(this, "cursed") );
+            else if (charge <= 0)  GLog.info( Messages.get(this, "no_charge") );
+            else {
+                stealthed = true;
+                curUser.spend( 1f );
+                curUser.busy();
+                Sample.INSTANCE.play(Assets.Sounds.MELD);
+                stealth = new CloakStealth();
+                stealth.attachTo(curUser);
+                if (curUser.sprite.parent != null) {
+                    curUser.sprite.parent.add(new AlphaTweener(curUser.sprite, 0.4f, 0.4f));
+                } else {
+                    curUser.sprite.alpha(0.4f);
                 }
-            } else {
-                stealthed = false;
-                stealth.detach();
-                stealth = null;
-                hero.spend( 1f );
-                hero.sprite.operate( hero.pos );
+                curUser.sprite.operate(curUser.pos);
             }
-
+        } else {
+            stealthed = false;
+            stealth.detach();
+            stealth = null;
+            curUser.spend( 1f );
+            if (curUser instanceof Hero) {
+                curUser.sprite.operate(curUser.pos);
+            }
         }
     }
 

@@ -21,7 +21,7 @@ public abstract class Relic extends KindofMisc {
     {
         statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.SUPPORT));
 
-        defaultAction = AC_ACTIVATE;
+        defaultAction = AC_INFO;
     }
 
     protected static final float MAX_CHARGE = 100;
