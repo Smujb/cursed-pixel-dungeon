@@ -57,6 +57,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.powers.Blink;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
+import com.shatteredpixel.yasd.general.items.relics.CloakOfShadows;
 import com.shatteredpixel.yasd.general.items.relics.EtherealChains;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfLullaby;
@@ -189,6 +190,7 @@ public enum HeroClass {
 		new MegaStick().identify().collect();
 		new DeveloperItem().collect();
 		new EtherealChains().identify().collect();
+		new CloakOfShadows().identify().collect();
 
 		for (Class<?> itemClass : Generator.Category.RING.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);

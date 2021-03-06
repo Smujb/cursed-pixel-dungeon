@@ -1,11 +1,15 @@
 package com.shatteredpixel.yasd.general.items.relics;
 
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
+import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.scenes.CellSelector;
+import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
@@ -24,6 +28,7 @@ public abstract class Relic extends KindofMisc {
     protected float charge = MAX_CHARGE;
 
     protected float damageMultiplier = 1f;
+    protected float chargePerKill = 20f;
 
     private static final String AC_ACTIVATE = "activate";
     private static final String AC_FINISHER = "finisher";
@@ -53,12 +58,14 @@ public abstract class Relic extends KindofMisc {
                 public void call() {
                     attack(attacker, defender, false);
                     attacker.next();
+                    if (!defender.isAlive()) gainCharge(chargePerKill);
                 }
             });
             return false;
         } else {
             attack(attacker, defender, false);
             attacker.spend( 1f );
+            if (!defender.isAlive()) gainCharge(chargePerKill);
             attacker.next();
             return true;
         }
@@ -70,6 +77,30 @@ public abstract class Relic extends KindofMisc {
         damage = proc(attacker, enemy, damage);
         return attacker.attack(enemy, guaranteed, damage, src);
     }
+
+    private final CellSelector.Listener ATTACK = new CellSelector.Listener() {
+
+        @Override
+        public void onSelect(Integer cell) {
+            if (cell != null && curUser != null) {
+                Char ch = Actor.findChar(cell);
+                if (ch != null) {
+                    if (Dungeon.level.adjacent(curUser.pos, ch.pos)) {
+                        Relic.this.doAttack(curUser, ch);
+                    } else {
+                        GLog.info(Messages.get(Relic.this, "out_of_range"));
+                    }
+                } else {
+                    GLog.info(Messages.get(Relic.this, "no_enemy"));
+                }
+            }
+        }
+
+        @Override
+        public String prompt() {
+            return Messages.get(Relic.this, "select_cell");
+        }
+    };
 
     protected int damageRoll(float lvl) {
         return Math.round(Random.NormalFloat(min(lvl), max(lvl)));
@@ -88,11 +119,11 @@ public abstract class Relic extends KindofMisc {
     }
 
     public float min(float lvl) {
-        return 8 * lvl * damageMultiplier;    //level scaling
+        return 4 * lvl * damageMultiplier;    //level scaling
     }
 
     public float max(float lvl) {
-        return 20 * lvl * damageMultiplier;   //level scaling
+        return 10 * lvl * damageMultiplier;   //level scaling
     }
 
     final int defaultMin() {
@@ -112,6 +143,7 @@ public abstract class Relic extends KindofMisc {
 
     protected void doActivate() {
         useCharge(1);
+        GameScene.selectCell(ATTACK);
     }
 
     protected boolean canActivate() {
@@ -133,20 +165,5 @@ public abstract class Relic extends KindofMisc {
     @Override
     public String status() {
         return Messages.format( "%d%%", Math.round(charge) );
-    }
-
-    @Override
-    public void activate(Char ch) {
-        super.activate(ch);
-        new Charger().attachTo(ch);
-    }
-
-    public class Charger extends Buff {
-        @Override
-        public boolean act() {
-            gainCharge(0.25f*power());
-            spend(TICK);
-            return true;
-        }
     }
 }
