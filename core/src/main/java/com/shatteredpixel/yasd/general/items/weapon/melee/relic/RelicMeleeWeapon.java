@@ -211,13 +211,15 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
 
     public static class BtnRelicWeapon extends StyledButton {
 
+        public static int SIZE = 20;
+
         RelicMeleeWeapon weapon;
 
         public BtnRelicWeapon() {
             super(Chrome.Type.GREY_BUTTON_TR, "");
             icon(new ItemSprite(ItemSpriteSheet.WEAPON_HOLDER));
             this.weapon = null;
-            setRect(0, 0, 20, 20);
+            setRect(0, 0, SIZE, SIZE);
         }
 
         public BtnRelicWeapon(RelicMeleeWeapon weapon) {
@@ -225,7 +227,7 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
             icon(new ItemSprite(weapon.image()));
             weapon.cursedKnown = true;
             this.weapon = weapon;
-            setRect(0, 0, 20, 20);
+            setRect(0, 0, SIZE, SIZE);
             //Ensure it's clear whether it's unlocked
             alpha(1f);
         }

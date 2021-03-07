@@ -223,16 +223,10 @@ public class HeroSelectScene extends PixelScene {
 		add( btnExit );
 
 		int width = Camera.main.width;
-		Difficulty[] values = Difficulty.values();
-		DifficultyButton.reset();
-		for (int i = 0; i < values.length; i++) {
-			Difficulty difficulty = values[i];
-			DifficultyButton button = new DifficultyButton(difficulty);
-			button.setRect(width - DifficultyButton.WIDTH, btnExit.bottom() + 2 + DifficultyButton.HEIGHT*i, DifficultyButton.WIDTH, DifficultyButton.HEIGHT);
-			add(button);
-		}
 
-		int pos = 0;
+
+		int posX = 0;
+		int posY = 0;
 		for (Class<? extends RelicMeleeWeapon> weaponClass : RelicMeleeWeapon.weapons) {
 			RelicMeleeWeapon weapon = null;
 			if (weaponClass != null) {
@@ -247,11 +241,24 @@ public class HeroSelectScene extends PixelScene {
 			} else {
 				btnRelicWeapon = new RelicMeleeWeapon.BtnRelicWeapon(weapon);
 			}
-			btnRelicWeapon.setPos(pos,0);
-			pos += btnRelicWeapon.width();
+			posX += btnRelicWeapon.width();
+			if (posX + btnRelicWeapon.width() > width) {
+			    posX = 0;
+			    posY += btnRelicWeapon.height();
+            }
+			btnRelicWeapon.setPos(posX, posY);
 			relicButtons.add(btnRelicWeapon);
 			add(btnRelicWeapon);
 		}
+
+        Difficulty[] values = Difficulty.values();
+        DifficultyButton.reset();
+        for (int i = 0; i < values.length; i++) {
+            Difficulty difficulty = values[i];
+            DifficultyButton button = new DifficultyButton(difficulty);
+            button.setRect(width - DifficultyButton.WIDTH, posY + RelicMeleeWeapon.BtnRelicWeapon.SIZE + DifficultyButton.HEIGHT*i, DifficultyButton.WIDTH, DifficultyButton.HEIGHT);
+            add(button);
+        }
 
 		PointerArea fadeResetter = new PointerArea(0, 0, Camera.main.width, Camera.main.height){
 			@Override
