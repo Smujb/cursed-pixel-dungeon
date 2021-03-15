@@ -111,12 +111,11 @@ public class Earthroot extends Plant {
 			int block = Math.min( damage, blocking());
 			if (level <= block) {
 				detach();
-				return damage - block;
 			} else {
 				level -= block;
 				BuffIndicator.refreshHero();
-				return damage - block;
 			}
+			return damage - block;
 		}
 		
 		public void level( int value ) {

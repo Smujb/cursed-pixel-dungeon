@@ -29,6 +29,7 @@ public abstract class Relic extends KindofMisc {
 
     protected float damageMultiplier = 1f;
     protected float chargePerKill = 20f;
+    protected float chargePerUse = 10f;
 
     private static final String AC_ACTIVATE = "activate";
     private static final String AC_FINISHER = "finisher";
@@ -46,6 +47,8 @@ public abstract class Relic extends KindofMisc {
         super.execute(hero, action);
         if (action.equals(AC_ACTIVATE) && canActivate()) {
             doActivate();
+        } else if (action.equals(AC_FINISHER)) {
+            GameScene.selectCell(ATTACK);
         }
     }
 
@@ -141,9 +144,24 @@ public abstract class Relic extends KindofMisc {
         return damage;
     }
 
+    public String statsDesc() {
+        String desc = "";
+        if (isIdentified()) {
+            desc = Messages.get(this, "stats_desc", min(), max());
+        } else {
+            desc = Messages.get(this, "typical_stats_desc", defaultMin(), defaultMax());
+        }
+        desc += Messages.get(this, "crit_condition");
+        return desc;
+    }
+
+    @Override
+    public String desc() {
+        return statsDesc() + "\n\n" + super.desc();
+    }
+
     protected void doActivate() {
-        useCharge(1);
-        GameScene.selectCell(ATTACK);
+        useCharge(chargePerUse);
     }
 
     protected boolean canActivate() {

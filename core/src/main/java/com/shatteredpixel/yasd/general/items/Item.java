@@ -162,7 +162,7 @@ public class Item implements Bundlable {
 		return calcMobPower(level, null);
 	}
 
-	public static int calcMobPower(int level) {
+	public static int calcMobPower(int level)	 {
 		return calcMobPower(level, Dungeon.difficulty);
 	}
 
