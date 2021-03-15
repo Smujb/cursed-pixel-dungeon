@@ -158,23 +158,23 @@ public class Item implements Bundlable {
 		return Messages.format(baseText, str);
 	}
 
-	public static int calcItemPower(int level) {
+	public static float calcItemPower(int level) {
 		return calcMobPower(level, null);
 	}
 
-	public static int calcMobPower(int level)	 {
+	public static float calcMobPower(int level)	 {
 		return calcMobPower(level, Dungeon.difficulty);
 	}
 
-	public static int calcMobPower(int level, Difficulty difficulty) {
+	public static float calcMobPower(int level, Difficulty difficulty) {
 		float factor = Difficulty.EASY.mobScalingPower();
 		if (difficulty != null) {
 			factor = difficulty.mobScalingPower();
 		}
-		return (int) Math.pow(factor, level);
+		return (float) Math.pow(factor, level);
 	}
 
-	public int power() {
+	public float power() {
 		return calcItemPower(level());
 	}
 

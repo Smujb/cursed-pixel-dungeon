@@ -172,7 +172,7 @@ public class WandOfWarding extends DamageWand {
 	@Override
 	public void onHit(MagesStaff staff, Char attacker, Char defender, int damage) {
 
-		int level = Math.max( 0, staff.power() );
+		int level = Math.round(Math.max( 0, staff.power() ));
 
 		// lvl 0 - 20%
 		// lvl 1 - 33%
@@ -180,7 +180,7 @@ public class WandOfWarding extends DamageWand {
 		if (Random.Int( level + 5 ) >= 4) {
 			for (Char ch : Actor.chars()){
 				if (ch instanceof Ward){
-					((Ward) ch).wandHeal(staff.power());
+					((Ward) ch).wandHeal(level);
 					ch.sprite.emitter().burst(MagicMissile.WardParticle.UP, ((Ward) ch).tier);
 				}
 			}

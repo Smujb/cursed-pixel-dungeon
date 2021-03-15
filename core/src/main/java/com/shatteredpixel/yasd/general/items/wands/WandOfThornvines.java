@@ -232,7 +232,7 @@ public class WandOfThornvines extends Wand {
 
     @Override
     public void onHit(MagesStaff staff, Char attacker, Char defender, int damage) {
-        if (Random.Int( staff.power() + 3 ) >= 2) {
+        if (Random.Int( (int) staff.power() + 3 ) >= 2) {
 
             Buff.affect(defender, Bleeding.class).set(damage/3f);
             Splash.at( defender.sprite.center(), -PointF.PI / 2, PointF.PI / 6,

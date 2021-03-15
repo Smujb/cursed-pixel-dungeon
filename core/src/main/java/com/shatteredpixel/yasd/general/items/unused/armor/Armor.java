@@ -245,7 +245,7 @@ public class Armor extends KindofMisc {
 		return DRMax(power());
 	}
 
-	public int DRMax(int lvl){
+	public int DRMax(float lvl){
 		return Math.round(lvl * 7 * DRfactor);
 	}
 
@@ -253,7 +253,7 @@ public class Armor extends KindofMisc {
 		return DRMin(power());
 	}
 
-	public int DRMin(int lvl){
+	public int DRMin(float lvl){
 		return Math.round(lvl);
 	}
 
@@ -261,7 +261,7 @@ public class Armor extends KindofMisc {
 		return DRRoll(power());
 	}
 
-	public int DRRoll(int lvl) {
+	public int DRRoll(float lvl) {
 		return Random.NormalIntRange(DRMin(lvl), DRMax(lvl));
 	}
 

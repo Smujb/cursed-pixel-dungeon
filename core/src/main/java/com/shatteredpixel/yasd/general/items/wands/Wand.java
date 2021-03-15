@@ -212,7 +212,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	}
 
 	protected void processSoulMark(Char target, int chargesUsed){
-		processSoulMark(target, power(), chargesUsed);
+		processSoulMark(target,(int)  power(), chargesUsed);
 	}
 
 	protected static void processSoulMark(Char target, int wandLevel, int chargesUsed){

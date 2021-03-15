@@ -84,18 +84,18 @@ public class WandOfPrismaticLight extends DamageWand {
 	private void affectTarget(Char ch){
 
 		//three in (5+lvl) chance of failing
-		if (Random.Int(5 + power()) >= 3) {
+		if (Random.Int(5 + (int) power()) >= 3) {
 			Buff.prolong(ch, Blindness.class, 2f + (power() * 0.333f));
 			ch.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 6 );
 		}
 
 		if (ch.properties().contains(Char.Property.DEMONIC) || ch.properties().contains(Char.Property.UNDEAD)){
-			ch.sprite.emitter().start( ShadowParticle.UP, 0.05f, 10+power() );
+			ch.sprite.emitter().start( ShadowParticle.UP, 0.05f, (int) (10+power()) );
 			Sample.INSTANCE.play(Assets.Sounds.BURNING);
 
 			hit(ch);
 		} else {
-			ch.sprite.centerEmitter().burst( RainbowParticle.BURST, 10+power() );
+			ch.sprite.centerEmitter().burst( RainbowParticle.BURST, (int) (10+power()) );
 
 			hit(ch);
 		}

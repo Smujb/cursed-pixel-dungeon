@@ -95,7 +95,7 @@ public class WandOfDarkness extends Wand {
         // lvl 0 - 33%
         // lvl 1 - 50%
         // lvl 2 - 60%
-        if (Random.Int( power() + 3 ) >= 2) {
+        if (Random.Int( (int) power() + 3 ) >= 2) {
             Buff.affect( defender, Terror.class, 3 + staff.power() * 2);
         }
     }

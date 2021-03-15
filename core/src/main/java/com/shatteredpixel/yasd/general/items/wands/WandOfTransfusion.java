@@ -78,7 +78,7 @@ public class WandOfTransfusion extends DamageWand {
 		if (ch instanceof Mob){
 			
 			processSoulMark(ch, chargesPerCast());
-			int selfDmg = 3 * power();
+			int selfDmg = (int) (3 * power());
 			
 			//this wand does different things depending on the target.
 			
@@ -94,10 +94,10 @@ public class WandOfTransfusion extends DamageWand {
 				if (ch.properties().contains(Char.Property.UNDEAD)) {
 					//harms the undead
 					ch.damage(damageRoll(), new Char.DamageSrc(Element.LIGHT, this));
-					ch.sprite.emitter().start(ShadowParticle.UP, 0.05f, 2 * power());
+					ch.sprite.emitter().start(ShadowParticle.UP, 0.05f, (int) (2 * power()));
 					Sample.INSTANCE.play(Assets.Sounds.BURNING);
 				} else {
-					ch.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, 3 * power() );
+					ch.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, (int) (3 * power()) );
 				}
 				Buff.affect(ch, Charm.class, 3 * power()).object = curUser.id();
 			}
@@ -132,7 +132,7 @@ public class WandOfTransfusion extends DamageWand {
 		// lvl 0 - 10%
 		// lvl 1 - 18%
 		// lvl 2 - 25%
-		if (Random.Int( power() + 10 ) >= 9){
+		if (Random.Int( Math.round(Math.max( 0, staff.power() )) + 10 ) >= 9){
 			//grants a free use of the staff
 			freeCharge = true;
 			GLog.positive( Messages.get(this, "charged") );

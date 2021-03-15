@@ -212,7 +212,7 @@ public abstract class Mob extends Char {
 	}
 
 	protected static int normalHP(int level) {
-		return 16 * Item.calcMobPower(level);
+		return Math.round(16 * Item.calcMobPower(level));
 	}
 
 	protected static int normalAttackSkill(int level) {
@@ -236,18 +236,18 @@ public abstract class Mob extends Char {
 	}
 
 	protected static int normalMax(int level) {
-		return Item.calcMobPower(level) * 20;
+		return Math.round(Item.calcMobPower(level) * 20);
 	}
 
 	protected static int normalMin(int level) {
-		return Item.calcMobPower(level) * 10;
+		return Math.round(Item.calcMobPower(level) * 10);
 	}
 
 	private static final float MAX_PARRY_CHARGE = 100f;
 	private float parryCharge = MAX_PARRY_CHARGE;
 
 	protected static int normalMaxDefense(int level) {
-		return Item.calcMobPower(level) * 40;
+		return Math.round(Item.calcMobPower(level) * 40);
 	}
 
 	int findClosest(Char enemy, int pos) {

@@ -43,6 +43,6 @@ public class Staff extends MeleeWeapon {
 
 	@Override
 	public int defenseFactor( Char owner ) {
-		return power()/2;	//2*tier extra defence
+		return (int) power()/2;	//2*tier extra defence
 	}
 }

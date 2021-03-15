@@ -179,7 +179,7 @@ public class WandOfDisintegration extends DamageWand {
 	}
 
 	private int distance() {
-		return power()*2 + 6;
+		return (int) (power()*2) + 4;
 	}
 	
 	@Override

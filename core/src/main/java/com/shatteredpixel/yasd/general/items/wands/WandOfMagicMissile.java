@@ -64,7 +64,7 @@ public class WandOfMagicMissile extends DamageWand {
 			processSoulMark(ch, chargesPerCast());
 			hit(ch);
 
-			ch.sprite.burst(0xFFFFFFFF, power() / 2 + 2);
+			ch.sprite.burst(0xFFFFFFFF, (int) power() / 2 + 2);
 
 		} else {
 			Dungeon.level.pressCell(bolt.collisionPos);
