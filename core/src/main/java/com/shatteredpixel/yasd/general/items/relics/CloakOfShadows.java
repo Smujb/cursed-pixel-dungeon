@@ -21,9 +21,6 @@ public class CloakOfShadows extends Relic {
     {
         image = ItemSpriteSheet.ARTIFACT_CLOAK;
 
-
-        charge = Math.min(level()+3, 10);
-
         unique = true;
         bones = false;
     }
