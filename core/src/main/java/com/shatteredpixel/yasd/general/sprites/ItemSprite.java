@@ -139,8 +139,10 @@ public class ItemSprite extends MovieClip {
 	protected final void killEmitters() {
 		if (!emitters.isEmpty()) {
 			for (Emitter emitter : emitters.toArray(new Emitter[0])) {
-				emitter.killAndErase();
-				emitters.remove(emitter);
+				if (emitter != null) {
+					emitter.killAndErase();
+					emitters.remove(emitter);
+				}
 			}
 		}
 	}
