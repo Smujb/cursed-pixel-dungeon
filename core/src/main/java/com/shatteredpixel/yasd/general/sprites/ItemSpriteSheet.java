@@ -258,7 +258,7 @@ public class ItemSpriteSheet {
 		public static final int FALCHION		 = WEAPON_ROW_1 +28;
 		public static final int ESTOC			 = WEAPON_ROW_1 +29;
 		public static final int MIDNIGHT_CUTLASS = WEAPON_ROW_1 +30;
-		public static final int ARACHIA			 = WEAPON_ROW_1 +30;
+		public static final int ARACHIA			 = WEAPON_ROW_1 +31;
 
 		private static final int WEAPON_ROW_2 =                              xy(1, 40);
 		public static final int FOOLS_BLADE = WEAPON_ROW_2+0;
