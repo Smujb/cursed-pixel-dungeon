@@ -106,19 +106,22 @@ public class RenderedTextBlock extends Component {
 		
 		clear();
 		words = new ArrayList<>();
-		boolean highlighting = false;
+		Integer highlighting = null;
 		for (String str : tokens){
-			
 			if (str.equals("_") && highlightingEnabled){
-				highlighting = !highlighting;
+				if (highlighting == null) {
+					highlighting = 0xFFFF00;
+				} else {
+					highlighting = null;
+				}
 			} else if (str.equals("\n")){
 				words.add(NEWLINE);
 			} else if (str.equals(" ")){
 				words.add(SPACE);
 			} else {
 				RenderedText word = new RenderedText(str, size);
-				
-				if (highlighting) word.hardlight(hightlightColor);
+
+				if (highlighting != null) word.hardlight(highlighting);
 				else if (color != -1) word.hardlight(color);
 				word.scale.set(zoom);
 				
