@@ -225,40 +225,43 @@ public class ItemSpriteSheet {
 
 	public static class Weapons {
 
-		private static final int WEAPON      =                               xy(1, 39);
+		private static final int WEAPON_ROW_1 =                               xy(1, 39);
 
-		public static final int MAGES_STAFF 	 = WEAPON+0;
-		public static final int SWORD       	 = WEAPON+1;
-		public static final int SPEAR       	 = WEAPON+2;
-		public static final int GLOVE       	 = WEAPON+3;
-		public static final int AXE         	 = WEAPON+4;
-		public static final int SCIMITAR         = WEAPON+5;
-		public static final int SHORTSWORD		 = WEAPON+6;
-		public static final int GREATSWORD       = WEAPON+7;
-		public static final int CHAIN_WHIP		 = WEAPON+8;
-		public static final int WHIP 			 = WEAPON+9;
-		public static final int GREATAXE         = WEAPON+10;
-		public static final int MACE 			 = WEAPON+11;
-		public static final int FLAIL 			 = WEAPON+12;
-		public static final int DAGGER			 = WEAPON+13;
-		public static final int WAKIZASHI		 = WEAPON+14;
-		public static final int RUNIC_BLADE		 = WEAPON+15;
-		public static final int QUATERSTAFF		 = WEAPON+16;
-		public static final int ROYAL_HALBERD	 = WEAPON+17;
-		public static final int PLAIN_SWORD		 = WEAPON+18;
-		public static final int INSCRIBED_KNIFE  = WEAPON+19;
-		public static final int PITCHFORK		 = WEAPON+20;
-		public static final int SICKLE           = WEAPON+21;
-		public static final int HOE              = WEAPON+22;
-		public static final int RAPIER           = WEAPON+23;
-		public static final int BUTCHER_KNIFE    = WEAPON+24;
-		public static final int HERO_SWORD		 = WEAPON+25;
-		public static final int KATANA			 = WEAPON+26;
-		public static final int TACHI			 = WEAPON+27;
-		public static final int FALCHION		 = WEAPON+28;
-		public static final int ESTOC			 = WEAPON+29;
-		public static final int MIDNIGHT_CUTLASS = WEAPON+30;
-		public static final int ARACHIA			 = WEAPON+30;
+		public static final int MAGES_STAFF 	 = WEAPON_ROW_1 +0;
+		public static final int SWORD       	 = WEAPON_ROW_1 +1;
+		public static final int SPEAR       	 = WEAPON_ROW_1 +2;
+		public static final int GLOVE       	 = WEAPON_ROW_1 +3;
+		public static final int AXE         	 = WEAPON_ROW_1 +4;
+		public static final int SCIMITAR         = WEAPON_ROW_1 +5;
+		public static final int SHORTSWORD		 = WEAPON_ROW_1 +6;
+		public static final int GREATSWORD       = WEAPON_ROW_1 +7;
+		public static final int CHAIN_WHIP		 = WEAPON_ROW_1 +8;
+		public static final int WHIP 			 = WEAPON_ROW_1 +9;
+		public static final int GREATAXE         = WEAPON_ROW_1 +10;
+		public static final int MACE 			 = WEAPON_ROW_1 +11;
+		public static final int FLAIL 			 = WEAPON_ROW_1 +12;
+		public static final int DAGGER			 = WEAPON_ROW_1 +13;
+		public static final int WAKIZASHI		 = WEAPON_ROW_1 +14;
+		public static final int RUNIC_BLADE		 = WEAPON_ROW_1 +15;
+		public static final int QUATERSTAFF		 = WEAPON_ROW_1 +16;
+		public static final int ROYAL_HALBERD	 = WEAPON_ROW_1 +17;
+		public static final int PLAIN_SWORD		 = WEAPON_ROW_1 +18;
+		public static final int INSCRIBED_KNIFE  = WEAPON_ROW_1 +19;
+		public static final int PITCHFORK		 = WEAPON_ROW_1 +20;
+		public static final int SICKLE           = WEAPON_ROW_1 +21;
+		public static final int HOE              = WEAPON_ROW_1 +22;
+		public static final int RAPIER           = WEAPON_ROW_1 +23;
+		public static final int BUTCHER_KNIFE    = WEAPON_ROW_1 +24;
+		public static final int HERO_SWORD		 = WEAPON_ROW_1 +25;
+		public static final int KATANA			 = WEAPON_ROW_1 +26;
+		public static final int TACHI			 = WEAPON_ROW_1 +27;
+		public static final int FALCHION		 = WEAPON_ROW_1 +28;
+		public static final int ESTOC			 = WEAPON_ROW_1 +29;
+		public static final int MIDNIGHT_CUTLASS = WEAPON_ROW_1 +30;
+		public static final int ARACHIA			 = WEAPON_ROW_1 +30;
+
+		private static final int WEAPON_ROW_2 =                              xy(1, 40);
+		public static final int FOOLS_BLADE = WEAPON_ROW_2+0;
 	}
 
 	public static class Shields {

@@ -69,6 +69,7 @@ import com.shatteredpixel.yasd.general.items.unused.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
+import com.shatteredpixel.yasd.general.items.weapon.melee.FoolsBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.InscribedKnife;
@@ -191,6 +192,7 @@ public enum HeroClass {
 		new DeveloperItem().collect();
 		new EtherealChains().identify().collect();
 		new CloakOfShadows().identify().collect();
+		new FoolsBlade().identify().collect();
 
 		for (Class<?> itemClass : Generator.Category.RING.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);

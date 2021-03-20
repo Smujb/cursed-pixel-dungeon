@@ -222,6 +222,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Estoc;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Falchion;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
+import com.shatteredpixel.yasd.general.items.weapon.melee.FoolsBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.HeroSword;
@@ -583,10 +584,11 @@ public class Generator {
 					Wakizashi.class,
 					Tachi.class,
 					MidnightCutlass.class,
-					Arachia.class
+					Arachia.class,
+					FoolsBlade.class
 
 			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2, 2, 2, 2, 3, 2, 1, 3 };
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2, 2, 2, 2, 3, 2, 1, 3, 0.5f };
 
 			SHIELD.classes = new Class<?>[] {
 					RoundShield.class,
