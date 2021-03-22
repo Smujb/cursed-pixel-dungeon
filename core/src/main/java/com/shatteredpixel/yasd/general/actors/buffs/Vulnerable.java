@@ -41,8 +41,8 @@ public class Vulnerable extends FlavourBuff {
 		announced = true;
 	}
 
-	public float defenseFactor() {
-		return (float) Math.max(0.5f, Math.pow( 0.99, cooldown()));
+	public float enemyDamageIncrease() {
+		return (float) Math.min(2f, 1f + Math.pow( 0.98, cooldown()));
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class Vulnerable extends FlavourBuff {
 
 	@Override
 	public String desc() {
-		return Messages.get(this, "desc", dispTurns(), new DecimalFormat("#.##").format((1f-defenseFactor())*100f));
+		return Messages.get(this, "desc", dispTurns(), new DecimalFormat("#.##").format((1f- enemyDamageIncrease())*100f));
 	}
 }
 

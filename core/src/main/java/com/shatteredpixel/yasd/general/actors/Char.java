@@ -38,8 +38,6 @@ import com.shatteredpixel.yasd.general.actors.blobs.SacrificialFire;
 import com.shatteredpixel.yasd.general.actors.blobs.ToxicGas;
 import com.shatteredpixel.yasd.general.actors.buffs.Adrenaline;
 import com.shatteredpixel.yasd.general.actors.buffs.Aggression;
-import com.shatteredpixel.yasd.general.actors.buffs.ArcaneArmor;
-import com.shatteredpixel.yasd.general.actors.buffs.Barkskin;
 import com.shatteredpixel.yasd.general.actors.buffs.Barrier;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
 import com.shatteredpixel.yasd.general.actors.buffs.Bless;
@@ -94,7 +92,6 @@ import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast
 import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.wands.WandOfLivingEarth;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Blazing;
-import com.shatteredpixel.yasd.general.items.weapon.enchantments.Blocking;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Grim;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
@@ -608,24 +605,6 @@ public abstract class Char extends Actor {
 	}
 
 
-	protected final int affectDRRoll(Element element, int dr) {
-		if (element.isMagical()) {
-			if (buff(ArcaneArmor.class) != null){
-				dr += Random.NormalIntRange(0, buff(ArcaneArmor.class).level());
-			}
-		} else {
-			Barkskin bark = buff(Barkskin.class);
-			if (bark != null) dr += Random.NormalIntRange(0, bark.level());
-
-			Blocking.BlockBuff block = buff(Blocking.BlockBuff.class);
-			if (block != null) dr += block.blockingRoll();
-		}
-		Vulnerable vulnerable = buff(Vulnerable.class);
-		if (vulnerable != null) {
-			dr *= vulnerable.defenseFactor();
-		}
-		return dr;
-	}
 	//End of central code.
 	//##############################################################
 	//
@@ -749,6 +728,9 @@ public abstract class Char extends Actor {
 			sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "invulnerable"));
 			return;
 		}
+
+		Vulnerable vulnerable = buff(Vulnerable.class);
+		if (vulnerable != null) dmg *= vulnerable.enemyDamageIncrease();
 
 		BubbleShield.BubbleShieldBuff shield = buff(BubbleShield.BubbleShieldBuff.class);
 		if ( shield != null && !src.ignores() ) {
