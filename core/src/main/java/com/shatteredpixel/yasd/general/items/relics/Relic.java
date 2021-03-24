@@ -147,17 +147,25 @@ public abstract class Relic extends KindofMisc {
     public String statsDesc() {
         String desc = "";
         if (isIdentified()) {
-            desc = Messages.get(this, "stats_desc", min(), max());
+            desc = Messages.get(this, "stats_desc", min(), max(), (int) chargePerUse, (int) chargePerKill);
         } else {
-            desc = Messages.get(this, "typical_stats_desc", defaultMin(), defaultMax());
+            desc = Messages.get(this, "typical_stats_desc", defaultMin(), defaultMax(), (int) chargePerUse, (int) chargePerKill);
         }
         desc += Messages.get(this, "crit_condition");
+        String props = propsDesc();
+        if (!props.equals("")) {
+            desc += props;
+        }
         return desc;
+    }
+
+    public String propsDesc() {
+        return "";
     }
 
     @Override
     public String desc() {
-        return statsDesc() + "\n\n" + super.desc();
+        return super.desc() + "\n\n" + statsDesc();
     }
 
     protected void doActivate() {
