@@ -173,7 +173,7 @@ public abstract class Relic extends KindofMisc {
     }
 
     protected boolean canActivate() {
-        return curUser != null && isEquipped(curUser);
+        return curUser != null && isEquipped(curUser) && charge > chargePerUse;
     }
 
     public final void useCharge(float amount) {
