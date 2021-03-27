@@ -51,12 +51,12 @@ public class MeleeWeapon extends Weapon implements Attackable {
 
 	@Override
 	public int min(float lvl) {
-		return Math.round(8 * lvl * damageFactor);   //level scaling
+		return Math.round(10 * lvl * damageFactor);   //level scaling
 	}
 
 	@Override
 	public int max(float lvl) {
-		return Math.round(20 * lvl * damageFactor);   //level scaling
+		return Math.round(24 * lvl * damageFactor);   //level scaling
 	}
 
 	@Override
