@@ -132,8 +132,13 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
     }
 
     @Override
+    public int min(float lvl) {
+        return (int) (super.min(lvl)*0.6f);
+    }
+
+    @Override
     public int max(float lvl) {
-        return (int) (super.max(lvl)*0.7f);
+        return (int) (super.max(lvl)*0.6f);
     }
 
     public void activate( Char ch ) {
