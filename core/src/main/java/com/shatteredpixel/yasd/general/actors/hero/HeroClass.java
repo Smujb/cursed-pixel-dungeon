@@ -57,8 +57,6 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.powers.Blink;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
-import com.shatteredpixel.yasd.general.items.relics.CloakOfShadows;
-import com.shatteredpixel.yasd.general.items.relics.EtherealChains;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
@@ -190,16 +188,14 @@ public enum HeroClass {
 		new TomeOfMastery().collect();
 		new MegaStick().identify().collect();
 		new DeveloperItem().collect();
-		new EtherealChains().identify().collect();
-		new CloakOfShadows().identify().collect();
 		new FoolsBlade().identify().collect();
 
-		for (Class<?> itemClass : Generator.Category.RING.classes) {
+		for (Class<?> itemClass : Generator.Category.RELIC.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);
 			if (item != null) {
 				item.random();
 				item.uncurse();
-				item.identify().level(59).collect();
+				item.identify()./*level(59).*/collect();
 			}
 		}
 	}

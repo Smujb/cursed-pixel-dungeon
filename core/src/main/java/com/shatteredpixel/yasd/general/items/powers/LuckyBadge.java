@@ -356,7 +356,7 @@ public class LuckyBadge extends Power {
 					result = Generator.random(Generator.Category.WAND);
 					break;
 				case 3:
-					result = Generator.random(Generator.Category.DRAGON_PENDANT);
+					result = Generator.random(Generator.Category.RELIC);
 			}
 			result.randomHigh();
 			result.uncurse();

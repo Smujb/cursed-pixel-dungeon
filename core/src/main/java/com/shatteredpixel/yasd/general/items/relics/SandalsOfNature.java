@@ -13,7 +13,7 @@ public class SandalsOfNature extends Relic {
     {
         image = ItemSpriteSheet.ARTIFACT_SANDALS;
 
-        chargePerUse = 5;
+        chargePerUse = 10;
     }
 
     private static final float ROOT_DURATION = 5f;

@@ -27,17 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items;
 
-import com.shatteredpixel.yasd.general.items.allies.AirDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.DarkDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.DragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.EarthenDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.FireDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.GrassDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.IceDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.PoisonDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.StoneDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.VampiricDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.artifacts.AlchemistsToolkit;
 import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.artifacts.CapeOfThorns;
@@ -64,9 +53,9 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfLevitation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMana;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfPurity;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfToxicGas;
 import com.shatteredpixel.yasd.general.items.potions.brews.BlizzardBrew;
 import com.shatteredpixel.yasd.general.items.potions.brews.CausticBrew;
@@ -108,6 +97,10 @@ import com.shatteredpixel.yasd.general.items.powers.SpectralBlades;
 import com.shatteredpixel.yasd.general.items.powers.Surprise;
 import com.shatteredpixel.yasd.general.items.powers.Telekinesis;
 import com.shatteredpixel.yasd.general.items.powers.WaterPump;
+import com.shatteredpixel.yasd.general.items.relics.CupOfSuffering;
+import com.shatteredpixel.yasd.general.items.relics.GarbOfRetribution;
+import com.shatteredpixel.yasd.general.items.relics.Relic;
+import com.shatteredpixel.yasd.general.items.relics.WarpedPrayerBook;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfAssault;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
@@ -232,8 +225,8 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MidnightCutlass;
-import com.shatteredpixel.yasd.general.items.weapon.melee.Pitchfork;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MundaneSword;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Pitchfork;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Rapier;
 import com.shatteredpixel.yasd.general.items.weapon.melee.RoyalHalberd;
@@ -283,7 +276,7 @@ public class Generator {
 		WEAPON			( 3,    MeleeWeapon.class),
 		WAND			( 3,    Wand.class ),
 		RANGED 			( 3, 	  RangedWeapon.class),
-		DRAGON_PENDANT  ( 3,    DragonPendant.class ),
+		RELIC( 3,    Relic.class ),
 
 		RING	( 1,    Ring.class ),
 		ARTIFACT( 1,    Artifact.class),
@@ -336,23 +329,15 @@ public class Generator {
 					Gold.class};
 			GOLD.probs = new float[]{1};
 
-			DRAGON_PENDANT.classes = new Class<?>[]{
-					EarthenDragonPendant.class,
-					FireDragonPendant.class,
-					IceDragonPendant.class,
-					PoisonDragonPendant.class,
-					VampiricDragonPendant.class,
-					WaterDragonPendant.class,
-					AirDragonPendant.class,
-					DarkDragonPendant.class,
-					GrassDragonPendant.class,
-					StoneDragonPendant.class
+			RELIC.classes = new Class<?>[]{
+					com.shatteredpixel.yasd.general.items.relics.CloakOfShadows.class,
+					CupOfSuffering.class,
+					com.shatteredpixel.yasd.general.items.relics.EtherealChains.class,
+					GarbOfRetribution.class,
+					WarpedPrayerBook.class,
+					com.shatteredpixel.yasd.general.items.relics.SandalsOfNature.class
 			};
-			DRAGON_PENDANT.probs = new float[]{
-					1,
-					1,
-					1,
-					1,
+			RELIC.probs = new float[]{
 					1,
 					1,
 					1,

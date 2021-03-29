@@ -59,6 +59,7 @@ import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.allies.Soul;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
+import com.shatteredpixel.yasd.general.items.relics.CupOfSuffering;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Lucky;
@@ -873,6 +874,9 @@ public abstract class Mob extends Char {
 				
 				int exp = Dungeon.hero.lvl <= Dungeon.getScaleFactor() + 2 ? EXP : 0;
 				Dungeon.hero.earnExp(exp, getClass());
+
+				//If the hero is cursed, eliminate an enemy from the curse
+				CupOfSuffering.Cursed.eliminateEnemy(Dungeon.hero);
 			}
 		}
 	}

@@ -147,7 +147,7 @@ public abstract class Relic extends KindofMisc {
     public String statsDesc() {
         String desc = "";
         if (isIdentified()) {
-            desc = Messages.get(this, "stats_desc", min(), max(), (int) chargePerUse, (int) chargePerKill);
+            desc = Messages.get(this, "stats_desc", min(), max(), (int) chargePerKill, (int) chargePerUse);
         } else {
             desc = Messages.get(this, "typical_stats_desc", defaultMin(), defaultMax(), (int) chargePerUse, (int) chargePerKill);
         }

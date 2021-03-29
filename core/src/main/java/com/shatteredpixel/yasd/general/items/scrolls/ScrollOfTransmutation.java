@@ -195,7 +195,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 	private DragonPendant changePendant( DragonPendant d ) {
 		DragonPendant n;
 		do {
-			n = (DragonPendant) Generator.random(Generator.Category.DRAGON_PENDANT);
+			n = (DragonPendant) Generator.random(Generator.Category.RELIC);
 		} while (Challenges.isItemBlocked(n) || n.getClass() == d.getClass());
 		int level = d.trueLevel();
 		n.level(level);

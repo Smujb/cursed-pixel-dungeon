@@ -89,5 +89,5 @@ public class VaultRoom extends LockedRoom {
 			Arrays.asList(Generator.Category.WAND,
 					Generator.Category.RING,
 					Generator.Category.ARTIFACT,
-					Generator.Category.DRAGON_PENDANT));
+					Generator.Category.RELIC));
 }
