@@ -127,6 +127,42 @@ public class WndHero extends WndTabbed {
 		select( 0 );
 	}
 
+	private static class WndConfirmIncrease extends Window {
+
+		public WndConfirmIncrease(Hero.HeroStat stat) {
+			Hero hero = Dungeon.hero;
+			IconTitle title = new IconTitle();
+			title.icon( HeroSprite.avatar(hero.heroClass, hero.tier()) );
+			title.label( Messages.get(this, "title", stat.getName()));
+			title.color(Window.SHPX_COLOR);
+			title.setRect( 0, 0, WIDTH, 0 );
+			add(title);
+
+			RenderedTextBlock message = PixelScene.renderTextBlock(
+					Messages.get(this, "increase_stat_info",
+							Messages.format( "+%d%%", Math.round((stat.hpBoost(hero.getStat(stat), hero)-1f)*100)),
+							stat.getName()) + " " + Messages.get(this, stat.name()),
+					6 );
+			message.maxWidth(WIDTH);
+			message.setPos(0, title.bottom() + GAP);
+			add( message );
+
+			RedButton buttonConfirm = new RedButton(Messages.get(this, "confirm")) {
+				@Override
+				protected void onClick() {
+					super.onClick();
+					hero.increaseStat(stat);
+					hero.DistributionPoints--;
+					hide();
+				}
+			};
+			buttonConfirm.setRect(0, message.bottom() + GAP, WIDTH, BTN_HEIGHT);
+			add(buttonConfirm);
+
+			resize(WIDTH, (int) (buttonConfirm.bottom() + GAP));
+		}
+	}
+
 	private class AbilitiesTab extends Group {
 
 		private static final int GAP = 6;
@@ -149,46 +185,9 @@ public class WndHero extends WndTabbed {
 			protected void onClick() {
 				if (Dungeon.hero.DistributionPoints > 0) {
 					CPDGame.scene().addToFront(new WndConfirmIncrease(stat));
-					WndHero.this.hide();
 				} else {
 					GLog.warning(Messages.get(WndHero.class,"no_points"));
 				}
-			}
-		}
-
-		private class WndConfirmIncrease extends Window {
-
-			public WndConfirmIncrease(Hero.HeroStat stat) {
-				Hero hero = Dungeon.hero;
-				IconTitle title = new IconTitle();
-				title.icon( HeroSprite.avatar(hero.heroClass, hero.tier()) );
-				title.label( Messages.get(this, "title", stat.getName()));
-				title.color(Window.SHPX_COLOR);
-				title.setRect( 0, 0, WIDTH, 0 );
-				add(title);
-
-				RenderedTextBlock message = PixelScene.renderTextBlock(
-						Messages.get(this, "increase_stat_info",
-						Messages.format( "+%d%%", Math.round((stat.hpBoost(hero.getStat(stat), hero)-1f)*100)),
-						stat.getName()) + " " + Messages.get(this, stat.name()),
-						6 );
-				message.maxWidth(WIDTH);
-				message.setPos(0, title.bottom() + GAP);
-				add( message );
-
-				RedButton buttonConfirm = new RedButton(Messages.get(this, "confirm")) {
-					@Override
-					protected void onClick() {
-						super.onClick();
-						hero.increaseStat(stat);
-						hero.DistributionPoints--;
-						hide();
-					}
-				};
-				buttonConfirm.setRect(0, message.bottom() + GAP, WIDTH, BTN_HEIGHT);
-				add(buttonConfirm);
-
-				resize(WIDTH, (int) (buttonConfirm.bottom() + GAP));
 			}
 		}
 
