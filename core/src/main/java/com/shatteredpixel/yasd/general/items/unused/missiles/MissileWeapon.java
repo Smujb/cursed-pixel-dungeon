@@ -41,7 +41,6 @@ import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
-import com.shatteredpixel.yasd.general.items.rings.RingOfSharpshooting;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Projecting;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -97,7 +96,7 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 
 	@Override
 	public int max() {
-		return Math.max(0, max( power() + RingOfSharpshooting.levelDamageBonus(Dungeon.hero) ));
+		return Math.max(0, max( power()));
 	}
 	
 	@Override
@@ -265,8 +264,6 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 		
 		if (Dungeon.hero.heroClass == HeroClass.HUNTRESS)   usages *= 1.5f;
 		if (holster)                                        usages *= MagicalHolster.HOLSTER_DURABILITY_FACTOR;
-		
-		usages *= RingOfSharpshooting.durabilityMultiplier( Dungeon.hero );
 		
 		//when upgraded, items just last forever.
 		if (baseUses >= INFINITE_USES) return 0;

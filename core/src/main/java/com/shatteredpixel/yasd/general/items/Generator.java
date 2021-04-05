@@ -109,7 +109,7 @@ import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
 import com.shatteredpixel.yasd.general.items.rings.RingOfHaste;
 import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
-import com.shatteredpixel.yasd.general.items.rings.RingOfSharpshooting;
+import com.shatteredpixel.yasd.general.items.rings.RingOfFaithAndPower;
 import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
 import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
@@ -625,10 +625,10 @@ public class Generator {
 					RingOfHaste.class,
 					RingOfFocus.class,
 					RingOfExecution.class,
-					RingOfSharpshooting.class,
+					RingOfFaithAndPower.class,
 					RingOfTenacity.class,
 					RingOfWealth.class};
-			RING.defaultProbs = new float[]{1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1};
+			RING.defaultProbs = new float[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 			RING.probs = RING.defaultProbs.clone();
 
 			ARTIFACT.classes = new Class<?>[]{

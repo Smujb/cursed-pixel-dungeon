@@ -33,7 +33,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 import java.text.DecimalFormat;
 
-public class RingOfSharpshooting extends Ring {
+public class RingOfFaithAndPower extends Ring {
 
 	{
 		icon = ItemSpriteSheet.Icons.RING_SHARPSHOOT;
@@ -49,17 +49,17 @@ public class RingOfSharpshooting extends Ring {
 	
 	@Override
 	protected RingBuff buff( ) {
-		return new Aim();
+		return new FaithAndPower();
 	}
 	
-	public static float levelDamageBonus( Char target ){
-		return (int) (10 * multiplier(target, Aim.class));
+	public static float hpModifier( Char target ){
+		return 1 + 0.2f * multiplier(target, FaithAndPower.class);
 	}
 	
-	public static float durabilityMultiplier( Char target ){
-		return 1 + 5f * multiplier(target, Aim.class);
+	public static float mpModifier( Char target ){
+		return 1 + 0.3f * multiplier(target, FaithAndPower.class);
 	}
 
-	public class Aim extends RingBuff {
+	public class FaithAndPower extends RingBuff {
 	}
 }

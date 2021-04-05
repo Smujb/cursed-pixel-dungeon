@@ -58,7 +58,7 @@ import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
 import com.shatteredpixel.yasd.general.items.rings.RingOfHaste;
 import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
-import com.shatteredpixel.yasd.general.items.rings.RingOfSharpshooting;
+import com.shatteredpixel.yasd.general.items.rings.RingOfFaithAndPower;
 import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
@@ -187,7 +187,7 @@ public enum Catalog {
 		RINGS.seen.put( RingOfFuror.class,                  false );
 		RINGS.seen.put( RingOfHaste.class,                  false );
 		RINGS.seen.put( RingOfExecution.class,                  false );
-		RINGS.seen.put( RingOfSharpshooting.class,          false );
+		RINGS.seen.put( RingOfFaithAndPower.class,          false );
 		RINGS.seen.put( RingOfTenacity.class,               false );
 		RINGS.seen.put( RingOfWealth.class,                 false );
 	

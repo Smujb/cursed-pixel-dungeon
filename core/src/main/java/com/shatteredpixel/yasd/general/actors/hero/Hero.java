@@ -87,6 +87,7 @@ import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.rings.RingOfAssault;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfExecution;
+import com.shatteredpixel.yasd.general.items.rings.RingOfFaithAndPower;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
 import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
 import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
@@ -314,6 +315,7 @@ public class Hero extends Char {
 				HT *= stat.hpBoost(i, this);
 			}
 		}
+		HT *= RingOfFaithAndPower.hpModifier(this);
 		heal(HT - preHT);
 		super.updateHT(boostHP);
 	}
@@ -325,7 +327,7 @@ public class Hero extends Char {
 	}
 
 	public int maxMP() {
-		return maxMP;
+		return (int) (maxMP * RingOfFaithAndPower.mpModifier(this));
 	}
 
 	public boolean useMP(int amount) {

@@ -32,7 +32,6 @@ import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.effects.BadgeBanner;
 import com.shatteredpixel.yasd.general.items.DewVial;
 import com.shatteredpixel.yasd.general.items.Torch;
-import com.shatteredpixel.yasd.general.items.unused.armor.curses.Bulk;
 import com.shatteredpixel.yasd.general.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.yasd.general.items.artifacts.EtherealChains;
 import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
@@ -45,10 +44,10 @@ import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfExecution;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
 import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
-import com.shatteredpixel.yasd.general.items.rings.RingOfSharpshooting;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfAugmentation;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
+import com.shatteredpixel.yasd.general.items.unused.armor.curses.Bulk;
 import com.shatteredpixel.yasd.general.items.wands.WandOfCorrosion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfCorruption;
 import com.shatteredpixel.yasd.general.items.weapon.curses.Wayward;
@@ -383,7 +382,7 @@ public class v0_6_X_Changes {
 				"_-_ Curare darts are now paralytic darts, and paralyze for 5 turns, up from 3\n\n" +
 				"_-_ Alchemy interface now features a recipes button to show you what you can create."));
 		
-		changes.addButton( new ChangeButton( new ItemSprite(ItemSpriteSheet.RING_TOPAZ, null), Messages.get(RingOfSharpshooting.class, "name"),
+		changes.addButton( new ChangeButton( new ItemSprite(ItemSpriteSheet.RING_TOPAZ, null), "Ring of Sharpshooting",
 				"Ring of Sharpshooting overhauled\n\n" +
 				"_-_ No longer grants bonus accuracy\n\n" +
 				"_-_ Now increases ranged getWeapons durability, instead of giving a chance to not consume them\n\n" +
