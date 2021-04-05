@@ -88,6 +88,7 @@ import com.shatteredpixel.yasd.general.items.powers.BubbleShield;
 import com.shatteredpixel.yasd.general.items.powers.Greed;
 import com.shatteredpixel.yasd.general.items.relics.CupOfSuffering;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
+import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRetribution;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
@@ -799,6 +800,10 @@ public abstract class Char extends Actor {
 
 		if (buff( Paralysis.class ) != null) {
 			buff( Paralysis.class ).processDamage(dmg);
+		}
+
+		if (dmg >= HP) {
+			dmg *= RingOfTenacity.damageMultiplier(this);
 		}
 
 		int shielded = dmg;

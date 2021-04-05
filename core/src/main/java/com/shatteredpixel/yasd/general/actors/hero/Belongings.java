@@ -39,19 +39,18 @@ import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
-import com.shatteredpixel.yasd.general.items.unused.armor.Armor;
 import com.shatteredpixel.yasd.general.items.artifacts.CapeOfThorns;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.keys.Key;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
 import com.shatteredpixel.yasd.general.items.rings.RingOfHaste;
-import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
+import com.shatteredpixel.yasd.general.items.unused.armor.Armor;
+import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
-import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
@@ -206,8 +205,6 @@ public class Belongings implements Iterable<Item> {
 		if (thorns != null) {
 			damage = thorns.proc(damage, (src instanceof Char ? (Char) src : null), owner);
 		}
-
-		damage = (int) Math.ceil(damage * RingOfTenacity.damageMultiplier(owner));
 
 		return damage;
 	}
