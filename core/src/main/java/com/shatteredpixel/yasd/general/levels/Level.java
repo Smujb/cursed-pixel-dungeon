@@ -202,13 +202,7 @@ public abstract class Level implements Bundlable {
 
 	//By default, scales with hero level and has min value defined within the individual levels.
 	public int getScaleFactor() {
-		int level;
-		if (Dungeon.hero != null) {
-			level = Dungeon.hero.levelToScaleFactor();
-		} else {
-			level = 1;
-		}
-		return Math.max(minScaleFactor, level);
+		return Math.max(Dungeon.hero.lvl, Dungeon.depth);
 	}
 
 	public ArrayList<Integer> getTileLocations(Terrain terrain) {
