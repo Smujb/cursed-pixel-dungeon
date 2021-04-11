@@ -4,7 +4,6 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -31,7 +30,7 @@ public class CloakOfShadows extends Relic {
     @Override
     protected void doActivate() {
         if (!stealthed){
-            if (!isEquipped(curUser)) GLog.info( Messages.get(Artifact.class, "need_to_equip") );
+            if (!isEquipped(curUser)) GLog.info( Messages.get(Relic.class, "need_to_equip") );
             else if (cursed())       GLog.info( Messages.get(this, "cursed") );
             else if (charge <= 0)  GLog.info( Messages.get(this, "no_charge") );
             else {

@@ -32,13 +32,11 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.brews.Brew;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.Elixir;
 import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
-import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
 import com.shatteredpixel.yasd.general.items.relics.Relic;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
@@ -79,8 +77,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 				item instanceof Wand ||
 				item instanceof Plant.Seed ||
 				item instanceof Runestone ||
-				item instanceof DragonPendant ||
-				item instanceof Artifact;
+				item instanceof Relic;
 	}
 	
 	@Override

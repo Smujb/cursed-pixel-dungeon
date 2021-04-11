@@ -38,12 +38,12 @@ import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.ElmoParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
-import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.bombs.Bomb;
 import com.shatteredpixel.yasd.general.items.food.FrozenCarpaccio;
 import com.shatteredpixel.yasd.general.items.food.MysteryMeat;
 import com.shatteredpixel.yasd.general.items.journal.DocumentPage;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
+import com.shatteredpixel.yasd.general.items.relics.Relic;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -375,8 +375,8 @@ public class Heap implements Bundlable {
 			case LOCKED_CHEST:
 				return Messages.get(this, "locked_chest_desc");
 			case CRYSTAL_CHEST:
-				if (peek() instanceof Artifact)
-					return Messages.get(this, "crystal_chest_desc", Messages.get(this, "artifact") );
+				if (peek() instanceof Relic)
+					return Messages.get(this, "crystal_chest_desc", Messages.get(this, "relic") );
 				else if (peek() instanceof Wand)
 					return Messages.get(this, "crystal_chest_desc", Messages.get(this, "wand") );
 				else

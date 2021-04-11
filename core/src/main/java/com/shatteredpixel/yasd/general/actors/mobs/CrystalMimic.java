@@ -41,8 +41,7 @@ import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Honeypot;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
-import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
+import com.shatteredpixel.yasd.general.items.relics.Relic;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
@@ -78,17 +77,14 @@ public class CrystalMimic extends Mimic {
 		if (alignment == Alignment.NEUTRAL){
 			String desc = null;
 			for (Item i : items){
-				if (i instanceof Artifact){
-					desc = Messages.get(Heap.class, "crystal_chest_desc", Messages.get(Heap.class, "artifact"));
+				if (i instanceof Relic){
+					desc = Messages.get(Heap.class, "crystal_chest_desc", Messages.get(Heap.class, "relic"));
 					break;
 				} else if (i instanceof Ring){
 					desc = Messages.get(Heap.class, "crystal_chest_desc", Messages.get(Heap.class, "ring"));
 					break;
 				} else if (i instanceof Wand){
 					desc = Messages.get(Heap.class, "crystal_chest_desc", Messages.get(Heap.class, "wand"));
-					break;
-				} else if (i instanceof DragonPendant) {
-					desc = Messages.get(Heap.class, "crystal_chest_desc", Messages.get(Heap.class, "dragon_pendant"));
 					break;
 				}
 			}

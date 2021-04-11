@@ -31,8 +31,6 @@ import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
-import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -123,13 +121,6 @@ public class Hunger extends Buff implements Hero.Doom {
 	}
 
 	public void satisfy( float energy ) {
-
-		Artifact.ArtifactBuff buff = target.buff( HornOfPlenty.hornRecharge.class );
-		if (buff != null && buff.isCursed()){
-			energy *= 0.67f;
-			GLog.negative( Messages.get(this, "cursedhorn") );
-		}
-
 		reduceHunger( energy );
 	}
 

@@ -34,7 +34,6 @@ import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Generator.Category;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
@@ -67,8 +66,6 @@ public class WaterOfTransmutation extends WellWater {
 			item = changeWand( (Wand)item );
 		} else if (item instanceof Plant.Seed) {
 			item = changeSeed( (Plant.Seed)item );
-		} else if (item instanceof Artifact) {
-			item = changeArtifact( (Artifact)item );
 		} else {
 			item = null;
 		}
@@ -163,20 +160,6 @@ public class WaterOfTransmutation extends WellWater {
 		n.curseIntensity = r.curseIntensity;
 		
 		return n;
-	}
-
-	private Artifact changeArtifact( Artifact a ) {
-		Artifact n = Generator.randomArtifact();
-
-		if (n != null && n.canSpawn()){
-			n.cursedKnown = a.cursedKnown;
-			n.curseIntensity = a.curseIntensity;
-			n.levelKnown = a.levelKnown;
-			n.transferUpgrade(a.visiblyUpgraded());
-			return n;
-		}
-
-		return null;
 	}
 	
 	private Wand changeWand( Wand w ) {

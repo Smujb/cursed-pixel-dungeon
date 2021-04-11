@@ -38,7 +38,6 @@ import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.journal.GuidePage;
 import com.shatteredpixel.yasd.general.items.keys.GoldenKey;
 import com.shatteredpixel.yasd.general.journal.Document;
@@ -328,8 +327,7 @@ public abstract class RegularLevel extends Level {
 					break;
 			}
 
-			if ((toDrop instanceof Artifact && Random.Int(2) == 0) ||
-					(toDrop.isUpgradable() && Random.Int(4 - toDrop.level()) == 0)){
+			if ((toDrop.isUpgradable() && Random.Int(4 - toDrop.level()) == 0)){
 				if (Dungeon.depth > 1 && Random.Int(10) == 0 && findMob(cell) == null){
 					mobs.add(Mimic.spawnAt(cell, toDrop, GoldenMimic.class, this));
 				} else {

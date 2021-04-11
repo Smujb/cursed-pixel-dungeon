@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.bags.PotionBandolier;
 import com.shatteredpixel.yasd.general.items.bags.ScrollHolder;
@@ -418,11 +417,6 @@ public class Badges {
 		// 2) When an item is upgraded (ScrollOfUpgrade, ScrollOfWeaponUpgrade, ShortSword, WandOfMagicMissile)
 		// 3) When an item is identified
 
-		// Note that artifacts should never interact this badge as they are alternatively upgraded
-		if (!item.levelKnown || item instanceof Artifact) {
-			return;
-		}
-		
 		Badge badge = null;
 		if (!local.contains( Badge.ITEM_LEVEL_1 ) && item.level() >= 5) {
 			badge = Badge.ITEM_LEVEL_1;

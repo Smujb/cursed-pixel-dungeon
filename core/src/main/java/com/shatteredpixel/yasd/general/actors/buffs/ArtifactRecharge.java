@@ -29,7 +29,7 @@ package com.shatteredpixel.yasd.general.actors.buffs;
 
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
+import com.shatteredpixel.yasd.general.items.relics.Relic;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.noosa.Image;
@@ -51,8 +51,8 @@ public class ArtifactRecharge extends Buff {
 		if (target instanceof Hero){
 			Belongings b = ((Hero) target).belongings;
 			for (int i=0; i < b.miscs.length; i++) {//Add all equipped items.
-				if (b.miscs[i] instanceof Artifact){
-					((Artifact)b.miscs[i]).charge((Hero)target);
+				if (b.miscs[i] instanceof Relic){
+					((Relic)b.miscs[i]).gainCharge(2);
 				}
 			}
 		}
