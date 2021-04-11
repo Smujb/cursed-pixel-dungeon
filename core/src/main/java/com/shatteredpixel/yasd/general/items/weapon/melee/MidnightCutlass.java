@@ -1,5 +1,6 @@
 package com.shatteredpixel.yasd.general.items.weapon.melee;
 
+import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Terror;
@@ -21,6 +22,11 @@ public class MidnightCutlass extends Scimitar {
     public int proc(Char attacker, Char defender, int damage) {
         if (Random.Int(5) == 0) Buff.affect(defender, Terror.class, 10f);
         return super.proc(attacker, defender, damage);
+    }
+
+    @Override
+    public boolean canSpawn() {
+        return super.canSpawn() && Dungeon.checkNight();
     }
 
     @Override

@@ -109,6 +109,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -996,6 +997,11 @@ public class Dungeon {
 
 		return PathFinder.getStepBack( ch.pos, from, passable );
 
+	}
+
+	public static boolean checkNight(){
+		int hour= Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+		return (hour > 19 || hour < 7);
 	}
 
 }
