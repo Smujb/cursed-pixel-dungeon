@@ -31,8 +31,8 @@ public abstract class Relic extends KindofMisc {
     protected float chargePerKill = 20f;
     protected float chargePerUse = 10f;
 
-    private static final String AC_ACTIVATE = "activate";
-    private static final String AC_FINISHER = "finisher";
+    protected static final String AC_ACTIVATE = "activate";
+    protected static final String AC_FINISHER = "finisher";
 
     @Override
     public ArrayList<String> actions(Hero hero) {

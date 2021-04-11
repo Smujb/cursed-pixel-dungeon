@@ -87,6 +87,7 @@ import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.yasd.general.items.powers.BubbleShield;
 import com.shatteredpixel.yasd.general.items.powers.Greed;
 import com.shatteredpixel.yasd.general.items.relics.CupOfSuffering;
+import com.shatteredpixel.yasd.general.items.relics.GarbOfRetribution;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRetribution;
@@ -636,17 +637,20 @@ public abstract class Char extends Actor {
 				damage = belongings.defenseProc(enemy, damage);
 			}
 		}
-		if (elementalType().isMagical()) {
-			Earthroot.Armor armor = buff(Earthroot.Armor.class);
-			if (armor != null) {
-				damage = armor.absorb(damage);
-			}
-
-			WandOfLivingEarth.RockArmor rockArmor = buff(WandOfLivingEarth.RockArmor.class);
-			if (rockArmor != null) {
-				damage = rockArmor.absorb(damage);
-			}
+		Earthroot.Armor armor = buff(Earthroot.Armor.class);
+		if (armor != null) {
+			damage = armor.absorb(damage);
 		}
+
+		WandOfLivingEarth.RockArmor rockArmor = buff(WandOfLivingEarth.RockArmor.class);
+		if (rockArmor != null) {
+			damage = rockArmor.absorb(damage);
+		}
+
+		if (hasBelongings()) {
+			GarbOfRetribution.hit(this, enemy);
+		}
+
 		elementalType().defenseProc(damage, enemy, this);
 		return damage;
 	}
