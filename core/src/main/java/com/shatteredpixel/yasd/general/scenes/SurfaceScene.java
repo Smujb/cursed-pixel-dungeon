@@ -32,7 +32,7 @@ import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.hero.HeroClass;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
-import com.shatteredpixel.yasd.general.items.allies.DragonPendant;
+import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
 import com.shatteredpixel.yasd.general.items.wands.WandOfLivingEarth;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;

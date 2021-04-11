@@ -1,7 +1,7 @@
 package com.shatteredpixel.yasd.general.items.blueprints;
 
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.allies.DragonPendant;
+import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;

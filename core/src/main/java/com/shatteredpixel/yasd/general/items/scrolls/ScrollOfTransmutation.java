@@ -33,13 +33,14 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.allies.DragonPendant;
+import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
 import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.brews.Brew;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.Elixir;
 import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
+import com.shatteredpixel.yasd.general.items.relics.Relic;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
@@ -108,8 +109,8 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			result = changeArtifact( (Artifact)item );
 		} else if (item instanceof Shield) {
 			result = changeShield((Shield) item );
-		} else if (item instanceof DragonPendant) {
-			result = changePendant((DragonPendant) item);
+		} else if (item instanceof Relic) {
+			result = changeRelic((Relic) item);
 		} else {
 			result = null;
 		}
@@ -192,16 +193,16 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		return n;
 	}*/
 
-	private DragonPendant changePendant( DragonPendant d ) {
-		DragonPendant n;
+	private Relic changeRelic(Relic r ) {
+		Relic n;
 		do {
-			n = (DragonPendant) Generator.random(Generator.Category.RELIC);
-		} while (Challenges.isItemBlocked(n) || n.getClass() == d.getClass());
-		int level = d.trueLevel();
+			n = (Relic) Generator.random(Generator.Category.RELIC);
+		} while (Challenges.isItemBlocked(n) || n.getClass() == r.getClass());
+		int level = r.trueLevel();
 		n.level(level);
-		n.levelKnown = d.levelKnown;
-		n.cursedKnown = d.cursedKnown;
-		n.curseIntensity = d.curseIntensity;
+		n.levelKnown = r.levelKnown;
+		n.cursedKnown = r.cursedKnown;
+		n.curseIntensity = r.curseIntensity;
 		return n;
 	}
 	

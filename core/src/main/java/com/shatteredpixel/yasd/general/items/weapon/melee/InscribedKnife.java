@@ -19,7 +19,7 @@ import com.shatteredpixel.yasd.general.effects.Lightning;
 import com.shatteredpixel.yasd.general.effects.particles.EnergyParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
-import com.shatteredpixel.yasd.general.items.allies.DragonPendant;
+import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Grim;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.CellSelector;
@@ -91,7 +91,7 @@ public class InscribedKnife extends MeleeWeapon {
             Belongings b = ((Hero) attacker).belongings;
             for (KindofMisc misc : b.miscs) {
                 if (misc instanceof DragonPendant) {
-                    ((DragonPendant)misc).charge(1);
+                    ((DragonPendant)misc).gainCharge(1);
                 }
             }
         }

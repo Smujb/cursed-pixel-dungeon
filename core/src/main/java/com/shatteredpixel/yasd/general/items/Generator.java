@@ -101,6 +101,10 @@ import com.shatteredpixel.yasd.general.items.relics.CupOfSuffering;
 import com.shatteredpixel.yasd.general.items.relics.GarbOfRetribution;
 import com.shatteredpixel.yasd.general.items.relics.Relic;
 import com.shatteredpixel.yasd.general.items.relics.WarpedPrayerBook;
+import com.shatteredpixel.yasd.general.items.relics.dragonpendants.AirDragonPendant;
+import com.shatteredpixel.yasd.general.items.relics.dragonpendants.EarthenDragonPendant;
+import com.shatteredpixel.yasd.general.items.relics.dragonpendants.FireDragonPendant;
+import com.shatteredpixel.yasd.general.items.relics.dragonpendants.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfAssault;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
@@ -276,7 +280,7 @@ public class Generator {
 		WEAPON			( 3,    MeleeWeapon.class),
 		WAND			( 3,    Wand.class ),
 		RANGED 			( 3, 	  RangedWeapon.class),
-		RELIC( 3,    Relic.class ),
+		RELIC			( 3,    Relic.class ),
 
 		RING	( 1,    Ring.class ),
 		ARTIFACT( 1,    Artifact.class),
@@ -335,9 +339,17 @@ public class Generator {
 					com.shatteredpixel.yasd.general.items.relics.EtherealChains.class,
 					GarbOfRetribution.class,
 					WarpedPrayerBook.class,
-					com.shatteredpixel.yasd.general.items.relics.SandalsOfNature.class
+					com.shatteredpixel.yasd.general.items.relics.SandalsOfNature.class,
+					AirDragonPendant.class,
+					FireDragonPendant.class,
+					WaterDragonPendant.class,
+					EarthenDragonPendant.class
 			};
 			RELIC.probs = new float[]{
+					1,
+					1,
+					1,
+					1,
 					1,
 					1,
 					1,

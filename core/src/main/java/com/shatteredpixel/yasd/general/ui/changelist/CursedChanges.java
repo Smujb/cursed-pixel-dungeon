@@ -2,8 +2,8 @@ package com.shatteredpixel.yasd.general.ui.changelist;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.items.DewVial;
-import com.shatteredpixel.yasd.general.items.allies.PoisonDragonPendant;
-import com.shatteredpixel.yasd.general.items.allies.WaterDragonPendant;
+import com.shatteredpixel.yasd.general.items.relics.dragonpendants.PoisonDragonPendant;
+import com.shatteredpixel.yasd.general.items.relics.dragonpendants.WaterDragonPendant;
 import com.shatteredpixel.yasd.general.items.unused.armor.curses.Bulk;
 import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.AntiMagic;
 import com.shatteredpixel.yasd.general.items.potions.brews.BrewOfHolyWater;
