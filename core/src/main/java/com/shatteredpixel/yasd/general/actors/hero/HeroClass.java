@@ -42,8 +42,6 @@ import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
-import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
-import com.shatteredpixel.yasd.general.items.relics.dragonpendants.PoisonDragonPendant;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.bags.PotionBandolier;
 import com.shatteredpixel.yasd.general.items.bags.PowerHolder;
@@ -57,13 +55,14 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.powers.Blink;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
+import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
+import com.shatteredpixel.yasd.general.items.relics.dragonpendants.PoisonDragonPendant;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRage;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.shield.RoundShield;
-import com.shatteredpixel.yasd.general.items.unused.armor.ClothArmor;
 import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
@@ -143,11 +142,9 @@ public enum HeroClass {
 
 	private static void initCommon( Hero hero ) {
 		hero.belongings.miscs = new KindofMisc[hero.miscSlots()];
-		Item i = new ClothArmor().identify();
-		if (!Challenges.isItemBlocked(i))
 
-		i = new Food();
-		if (!Challenges.isItemBlocked(i)) i.collect();
+		Item i = new Food();
+		if (i.canSpawn()) i.collect();
 
 		if (Dungeon.isChallenged(Challenges.NO_FOOD)){
 			new SmallRation().collect();

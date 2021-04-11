@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.levels.rooms.special;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Heap;
@@ -80,7 +79,7 @@ public class CryptRoom extends SpecialRoom {
 		//1 floor set higher than normal
 		Shield prize = Generator.randomShield();
 
-		if (Challenges.isItemBlocked(prize)) {
+		if (!prize.canSpawn()) {
 			return new Gold().random();
 		}
 

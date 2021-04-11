@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.levels.rooms.special;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.actors.mobs.CrystalMimic;
 import com.shatteredpixel.yasd.general.actors.mobs.Mimic;
 import com.shatteredpixel.yasd.general.items.Generator;
@@ -80,7 +79,7 @@ public class VaultRoom extends LockedRoom {
 		Item prize;
 		do {
 			prize = Generator.random(cat);
-		} while (prize == null || Challenges.isItemBlocked(prize));
+		} while (prize == null || !prize.canSpawn());
 		prize.randomHigh();
 		return prize;
 	}

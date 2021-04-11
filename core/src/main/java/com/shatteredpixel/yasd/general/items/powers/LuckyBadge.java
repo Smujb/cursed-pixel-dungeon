@@ -3,7 +3,6 @@ package com.shatteredpixel.yasd.general.items.powers;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.CPDSettings;
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -284,7 +283,7 @@ public class LuckyBadge extends Power {
 				}
 
 			}
-		} while (Challenges.isItemBlocked(item));
+		} while (!item.canSpawn());
 
 		return item;
 	}

@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.items;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.CPDGame;
+import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Difficulty;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -437,6 +438,10 @@ public class Item implements Bundlable {
 	}
 
 	protected void onDetach(){}
+
+	public boolean canSpawn() {
+		return !Challenges.isItemBlocked(this);
+	}
 
 	//returns the true level of the item, only affected by modifiers which are persistent (e.g. curse infusion)
 	public final int trueLevel(){

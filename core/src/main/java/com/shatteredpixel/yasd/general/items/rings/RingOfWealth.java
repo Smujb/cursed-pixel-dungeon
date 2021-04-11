@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.rings;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.effects.Flare;
@@ -133,7 +132,7 @@ public class RingOfWealth extends Ring {
 				Item i;
 				do {
 					i = genEquipmentDrop(bonus - 1);
-				} while (Challenges.isItemBlocked(i));
+				} while (!i.canSpawn());
 				drops.add(i);
 				latestDropWasRare = true;
 				dropsToEquip = Random.NormalIntRange(5, 10);
@@ -141,7 +140,7 @@ public class RingOfWealth extends Ring {
 				Item i;
 				do {
 					i = genConsumableDrop(bonus - 1);
-				} while (Challenges.isItemBlocked(i));
+				} while (!i.canSpawn());
 				drops.add(i);
 				dropsToEquip--;
 			}

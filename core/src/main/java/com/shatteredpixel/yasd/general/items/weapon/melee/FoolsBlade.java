@@ -28,4 +28,13 @@ public class FoolsBlade extends MeleeWeapon {
         }
         return multiplier;
     }
+
+    @Override
+    public boolean canSpawn() {
+        final Calendar calendar = Calendar.getInstance();
+        if ((calendar.get(Calendar.MONTH) == Calendar.APRIL && calendar.get(Calendar.DAY_OF_MONTH) == 1) || calendar.get(Calendar.MONTH) == Calendar.MARCH) {
+            return super.canSpawn();
+        }
+        return false;
+    }
 }

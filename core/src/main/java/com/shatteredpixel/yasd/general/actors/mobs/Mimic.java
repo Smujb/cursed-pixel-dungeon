@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.actors.mobs;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -280,7 +279,7 @@ public class Mimic extends Mob {
 					reward = Generator.random(Generator.Category.RING);
 					break;
 			}
-		} while (reward == null || Challenges.isItemBlocked(reward));
+		} while (reward == null || !reward.canSpawn());
 		items.add(reward);
 	}
 }

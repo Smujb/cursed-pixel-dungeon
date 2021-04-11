@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.actors.mobs;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
@@ -153,7 +152,7 @@ public class Statue extends Mob implements Callback {
 					}
 					break;
 			}
-		} while (!con || Challenges.isItemBlocked(item));
+		} while (!con || !item.canSpawn());
 
 		item.level(0);
 		item.uncurse();

@@ -27,14 +27,13 @@
 
 package com.shatteredpixel.yasd.general.levels.rooms.special;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.keys.IronKey;
 import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
+import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 
@@ -81,7 +80,7 @@ public class PitRoom extends SpecialRoom {
 							Generator.Category.SHIELD));
 					break;
 			}
-		} while ( mainLoot == null || Challenges.isItemBlocked(mainLoot));
+		} while ( mainLoot == null || !mainLoot.canSpawn());
 		level.drop(mainLoot, remains);
 		
 		int n = Random.IntRange( 1, 2 );

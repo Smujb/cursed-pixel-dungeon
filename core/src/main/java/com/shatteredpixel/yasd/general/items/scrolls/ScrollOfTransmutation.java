@@ -27,30 +27,29 @@
 
 package com.shatteredpixel.yasd.general.items.scrolls;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
 import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
 import com.shatteredpixel.yasd.general.items.potions.brews.Brew;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.Elixir;
 import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
+import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
 import com.shatteredpixel.yasd.general.items.relics.Relic;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.stones.Runestone;
+import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
+import com.shatteredpixel.yasd.general.items.unused.missiles.darts.Dart;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
-import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
-import com.shatteredpixel.yasd.general.items.unused.missiles.darts.Dart;
 import com.shatteredpixel.yasd.general.journal.Catalog;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Plant;
@@ -149,7 +148,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			Wand n;
 			do {
 				n = (Wand) Generator.random(Generator.Category.WAND);
-			} while (Challenges.isItemBlocked(n) || n.getClass() == wandClass);
+			} while (!n.canSpawn() || n.getClass() == wandClass);
 			n.level(0);
 			n.identify();
 			staff.imbueWand(n, null);
@@ -197,7 +196,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		Relic n;
 		do {
 			n = (Relic) Generator.random(Generator.Category.RELIC);
-		} while (Challenges.isItemBlocked(n) || n.getClass() == r.getClass());
+		} while (!n.canSpawn() || n.getClass() == r.getClass());
 		int level = r.trueLevel();
 		n.level(level);
 		n.levelKnown = r.levelKnown;
@@ -215,7 +214,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			} else {
 				n = Generator.randomRanged();
 			}
-		} while (Challenges.isItemBlocked(n) || n.getClass() == w.getClass());
+		} while (!n.canSpawn() || n.getClass() == w.getClass());
 		
 		int level = w.level();
 		if (w.curseInfusionBonus) level -= Constants.CURSE_INFUSION_BONUS_AMT;
@@ -237,7 +236,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		Ring n;
 		do {
 			n = (Ring)Generator.random( Generator.Category.RING );
-		} while (Challenges.isItemBlocked(n) || n.getClass() == r.getClass());
+		} while (!n.canSpawn() || n.getClass() == r.getClass());
 		
 		n.level(0);
 		
@@ -258,7 +257,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 	private Artifact changeArtifact( Artifact a ) {
 		Artifact n = Generator.randomArtifact();
 		
-		if (n != null && !Challenges.isItemBlocked(n)){
+		if (n != null && n.canSpawn()){
 			n.cursedKnown = a.cursedKnown;
 			n.curseIntensity = a.curseIntensity;
 			n.levelKnown = a.levelKnown;
@@ -274,7 +273,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		Wand n;
 		do {
 			n = (Wand)Generator.random( Generator.Category.WAND );
-		} while ( Challenges.isItemBlocked(n) || n.getClass() == w.getClass());
+		} while ( !n.canSpawn() || n.getClass() == w.getClass());
 		
 		n.level( 0 );
 		int level = w.level();

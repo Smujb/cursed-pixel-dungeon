@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.actors.blobs;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.BlobEmitter;
@@ -108,7 +107,7 @@ public class WaterOfTransmutation extends WellWater {
 			Wand n;
 			do {
 				n = (Wand)Generator.random(Category.WAND);
-			} while (Challenges.isItemBlocked(n) || n.getClass() == wandClass);
+			} while (!n.canSpawn() || n.getClass() == wandClass);
 			n.level(0);
 			n.identify();
 			staff.imbueWand(n, null);
@@ -123,7 +122,7 @@ public class WaterOfTransmutation extends WellWater {
 
 		do {
 			n = Generator.randomWeapon();
-		} while (Challenges.isItemBlocked(n) || n.getClass() == w.getClass());
+		} while (!n.canSpawn() || n.getClass() == w.getClass());
 
 		int level = w.level();
 		if (w.curseInfusionBonus) level -= Constants.CURSE_INFUSION_BONUS_AMT;
@@ -148,7 +147,7 @@ public class WaterOfTransmutation extends WellWater {
 		Ring n;
 		do {
 			n = (Ring)Generator.random( Category.RING );
-		} while (Challenges.isItemBlocked(n) || n.getClass() == r.getClass());
+		} while (!n.canSpawn() || n.getClass() == r.getClass());
 		
 		n.level(0);
 		
@@ -169,7 +168,7 @@ public class WaterOfTransmutation extends WellWater {
 	private Artifact changeArtifact( Artifact a ) {
 		Artifact n = Generator.randomArtifact();
 
-		if (n != null && !Challenges.isItemBlocked(n)){
+		if (n != null && n.canSpawn()){
 			n.cursedKnown = a.cursedKnown;
 			n.curseIntensity = a.curseIntensity;
 			n.levelKnown = a.levelKnown;
@@ -185,7 +184,7 @@ public class WaterOfTransmutation extends WellWater {
 		Wand n;
 		do {
 			n = (Wand)Generator.random( Category.WAND );
-		} while ( Challenges.isItemBlocked(n) || n.getClass() == w.getClass());
+		} while ( !n.canSpawn() || n.getClass() == w.getClass());
 		
 		n.level( 0 );
 		int level = w.level();

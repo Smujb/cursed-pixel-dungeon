@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.levels.rooms.special;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.actors.mobs.Piranha;
 import com.shatteredpixel.yasd.general.items.Generator;
@@ -35,8 +34,8 @@ import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
+import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.watabou.utils.Random;
 
 public class PoolRoom extends SpecialRoom {
@@ -123,7 +122,7 @@ public class PoolRoom extends SpecialRoom {
 				prize = Generator.randomShield();
 
 			}
-		} while (prize.cursed() || Challenges.isItemBlocked(prize));
+		} while (prize.cursed() || !prize.canSpawn());
 		prize.cursedKnown = true;
 		
 		prize = prize.randomHigh();

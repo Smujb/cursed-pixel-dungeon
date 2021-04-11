@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.spells;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
@@ -72,7 +71,7 @@ public class Recycle extends InventorySpell {
 			} else {
 				result = Generator.random(Generator.Category.STONE);
 			}
-		} while (result.getClass() == item.getClass() || Challenges.isItemBlocked(result));
+		} while (result.getClass() == item.getClass() || !result.canSpawn());
 		
 		item.detach(curUser.belongings.backpack);
 		GLog.positive(Messages.get(this, "recycled", result.name()));

@@ -27,14 +27,13 @@
 
 package com.shatteredpixel.yasd.general.levels.rooms.secret;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.features.Maze;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
+import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
@@ -106,7 +105,7 @@ public class SecretMazeRoom extends SecretRoom {
 			} else {
 				prize = Generator.randomShield();
 			}
-		} while (prize.cursed() || Challenges.isItemBlocked(prize));
+		} while (prize.cursed() || !prize.canSpawn());
 		
 		//33% chance for an extra update.
 		if (Random.Int(3) == 0){

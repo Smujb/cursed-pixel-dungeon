@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.levels.rooms.special;
 
-import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.items.Generator;
@@ -35,8 +34,8 @@ import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLevitation;
 import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
+import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.traps.DisintegrationTrap;
 import com.shatteredpixel.yasd.general.levels.traps.ExplosiveTrap;
 import com.shatteredpixel.yasd.general.levels.traps.FlashingTrap;
@@ -136,7 +135,7 @@ public class TrapsRoom extends SpecialRoom {
 			} else {
 				prize = Generator.randomShield();
 			}
-		} while (prize.cursed() || Challenges.isItemBlocked(prize));
+		} while (prize.cursed() || !prize.canSpawn());
 		prize.cursedKnown = true;
 
 		prize = prize.randomHigh();
