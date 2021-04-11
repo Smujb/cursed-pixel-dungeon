@@ -273,10 +273,8 @@ public class RingOfWealth extends Ring {
 				result = s;
 				break;
 			case 3:
-				result = Generator.random(Generator.Category.RING);
-				break;
 			case 4:
-				result = Generator.random(Generator.Category.ARTIFACT);
+				result = Generator.random(Generator.Category.RING);
 				break;
 		}
 		//minimum level of sqrt(ringLvl)

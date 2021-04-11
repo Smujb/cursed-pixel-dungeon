@@ -269,7 +269,7 @@ public class ShopRoom extends SpecialRoom {
 					rare = Generator.random(Generator.Category.RING);
 					break;
 				case 2: default:
-					rare = Generator.random(Generator.Category.ARTIFACT);
+					rare = Generator.random(Generator.Category.RELIC);
 					break;
 			}
 			rare.uncurse();

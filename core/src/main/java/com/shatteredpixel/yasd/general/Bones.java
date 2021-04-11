@@ -28,15 +28,12 @@
 package com.shatteredpixel.yasd.general;
 
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Gold;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
 import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.FileUtils;
 import com.watabou.utils.Random;
-import com.watabou.utils.Reflection;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -137,27 +134,6 @@ public class Bones {
 				
 				if (item == null) return null;
 
-				//Enforces artifact uniqueness
-				if (item instanceof Artifact){
-					if (Generator.removeArtifact(((Artifact)item).getClass())) {
-						
-						//generates a new artifact of the same type, always +0
-						Artifact artifact = (Artifact) Reflection.newInstance(item.getClass());
-
-						if (artifact == null){
-							return new Gold(item.price());
-						}
-
-						artifact.curse();
-						artifact.cursedKnown = true;
-
-						return artifact;
-						
-					} else {
-						return new Gold(item.price());
-					}
-				}
-				
 				if (item.isUpgradable() && !(item instanceof MissileWeapon)) {
 					item.curse();
 					item.cursedKnown = true;

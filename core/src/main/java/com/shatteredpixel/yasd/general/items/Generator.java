@@ -27,19 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items;
 
-import com.shatteredpixel.yasd.general.items.artifacts.AlchemistsToolkit;
-import com.shatteredpixel.yasd.general.items.artifacts.Artifact;
-import com.shatteredpixel.yasd.general.items.artifacts.CapeOfThorns;
-import com.shatteredpixel.yasd.general.items.artifacts.ChaliceOfBlood;
-import com.shatteredpixel.yasd.general.items.artifacts.CloakOfShadows;
-import com.shatteredpixel.yasd.general.items.artifacts.EtherealChains;
-import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
-import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
-import com.shatteredpixel.yasd.general.items.artifacts.MasterThievesArmband;
-import com.shatteredpixel.yasd.general.items.artifacts.SandalsOfNature;
-import com.shatteredpixel.yasd.general.items.artifacts.TalismanOfForesight;
-import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
-import com.shatteredpixel.yasd.general.items.artifacts.UnstableSpellbook;
 import com.shatteredpixel.yasd.general.items.bags.Bag;
 import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.food.MysteryMeat;
@@ -109,11 +96,11 @@ import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfAssault;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfExecution;
+import com.shatteredpixel.yasd.general.items.rings.RingOfFaithAndPower;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFocus;
 import com.shatteredpixel.yasd.general.items.rings.RingOfFuror;
 import com.shatteredpixel.yasd.general.items.rings.RingOfHaste;
 import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
-import com.shatteredpixel.yasd.general.items.rings.RingOfFaithAndPower;
 import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
 import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
@@ -284,7 +271,6 @@ public class Generator {
 		RELIC			( 3,    Relic.class ),
 
 		RING	( 1,    Ring.class ),
-		ARTIFACT( 1,    Artifact.class),
 
 		FOOD	( 0,    Food.class ),
 
@@ -644,24 +630,6 @@ public class Generator {
 					RingOfWealth.class};
 			RING.defaultProbs = new float[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 			RING.probs = RING.defaultProbs.clone();
-
-			ARTIFACT.classes = new Class<?>[]{
-					CapeOfThorns.class,
-					ChaliceOfBlood.class,
-					CloakOfShadows.class,
-					HornOfPlenty.class,
-					MasterThievesArmband.class,
-					SandalsOfNature.class,
-					TalismanOfForesight.class,
-					TimekeepersHourglass.class,
-					UnstableSpellbook.class,
-					AlchemistsToolkit.class,
-					//DriedRose.class,
-					LloydsBeacon.class,
-					EtherealChains.class
-			};
-			ARTIFACT.defaultProbs = new float[]{0, 1, 1, 1, 1, 1, 1, 1, 1, 0, /*0,*/ 0, 1};
-			ARTIFACT.probs = ARTIFACT.defaultProbs.clone();
 		}
 	}
 
@@ -697,10 +665,6 @@ public class Generator {
 				return randomShield();
 			case WEAPON:
 				return randomWeapon();
-			case ARTIFACT:
-				Item item = randomArtifact();
-				//if we're out of artifacts, return a ring instead.
-				return item != null ? item : random(Category.RING);
 			default:
 				if (cat.probs == null) {
 					cat.probs = cat.defaultProbs;
@@ -743,33 +707,6 @@ public class Generator {
 
 	public static RangedWeapon randomRanged() {
 		return (RangedWeapon) random(Category.RANGED);
-	}
-
-	//enforces uniqueness of artifacts throughout a run.
-	public static Artifact randomArtifact() {
-
-		Category cat = Category.ARTIFACT;
-		int i = Random.chances( cat.probs );
-
-		//if no artifacts are left, return null
-		if (i == -1){
-			return null;
-		}
-
-		cat.probs[i]--;
-		return (Artifact) Reflection.newInstance((Class<? extends Artifact>) cat.classes[i]).random();
-
-	}
-
-	public static boolean removeArtifact(Class<?extends Artifact> artifact) {
-		Category cat = Category.ARTIFACT;
-		for (int i = 0; i < cat.classes.length; i++){
-			if (cat.classes[i].equals(artifact)) {
-				cat.probs[i] = 0;
-				return true;
-			}
-		}
-		return false;
 	}
 
 	private static final String GENERAL_PROBS = "general_probs";
@@ -816,18 +753,6 @@ public class Generator {
 				float[] probs = bundle.getFloatArray(cat.name().toLowerCase() + CATEGORY_PROBS);
 				if (cat.defaultProbs != null && probs.length == cat.defaultProbs.length){
 					cat.probs = probs;
-				}
-			}
-		}
-
-		//pre-0.8.1
-		if (bundle.contains("spawned_artifacts")) {
-			for (Class<? extends Artifact> artifact : bundle.getClassArray("spawned_artifacts")) {
-				Category cat = Category.ARTIFACT;
-				for (int i = 0; i < cat.classes.length; i++) {
-					if (cat.classes[i].equals(artifact)) {
-						cat.probs[i] = 0;
-					}
 				}
 			}
 		}

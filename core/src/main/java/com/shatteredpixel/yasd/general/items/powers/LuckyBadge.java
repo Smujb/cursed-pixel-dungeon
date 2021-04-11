@@ -346,8 +346,6 @@ public class LuckyBadge extends Power {
 			int random = Random.Int(4);
 			switch (random){
 				default:
-					result = Generator.random(Generator.Category.ARTIFACT);
-					break;
 				case 1:
 					result = Generator.random(Generator.Category.RING);
 					break;

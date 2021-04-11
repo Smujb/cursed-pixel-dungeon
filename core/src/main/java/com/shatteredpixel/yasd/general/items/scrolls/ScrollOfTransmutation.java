@@ -104,8 +104,6 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			result = changeSeed((Plant.Seed) item);
 		} else if (item instanceof Runestone) {
 			result = changeStone((Runestone) item);
-		} else if (item instanceof Artifact) {
-			result = changeArtifact( (Artifact)item );
 		} else if (item instanceof Shield) {
 			result = changeShield((Shield) item );
 		} else if (item instanceof Relic) {
@@ -252,20 +250,6 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		n.curseIntensity = r.curseIntensity;
 		
 		return n;
-	}
-	
-	private Artifact changeArtifact( Artifact a ) {
-		Artifact n = Generator.randomArtifact();
-		
-		if (n != null && n.canSpawn()){
-			n.cursedKnown = a.cursedKnown;
-			n.curseIntensity = a.curseIntensity;
-			n.levelKnown = a.levelKnown;
-			n.transferUpgrade(a.visiblyUpgraded());
-			return n;
-		}
-		
-		return null;
 	}
 	
 	private Wand changeWand( Wand w ) {
