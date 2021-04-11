@@ -28,6 +28,7 @@ public class GarbOfRetribution extends Relic {
     private void hit(Char enemy) {
         int dmg = Math.round(0.1f*damageRoll()*charge);
         enemy.damage(dmg, new Char.DamageSrc(Element.EARTH, this));
+        charge = 0;
     }
 
     @Override
