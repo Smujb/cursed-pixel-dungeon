@@ -1,22 +1,15 @@
 package com.shatteredpixel.yasd.general.items.relics;
 
-import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.Element;
-import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.items.KindofMisc;
+import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.shatteredpixel.yasd.general.scenes.CellSelector;
-import com.shatteredpixel.yasd.general.scenes.GameScene;
-import com.shatteredpixel.yasd.general.utils.GLog;
-import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class Relic extends KindofMisc {
+public abstract class Relic extends KindOfWeapon {
 
     {
         statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.SUPPORT));
@@ -32,13 +25,11 @@ public abstract class Relic extends KindofMisc {
     protected float chargePerUse = 10f;
 
     protected static final String AC_ACTIVATE = "activate";
-    protected static final String AC_FINISHER = "finisher";
 
     @Override
     public ArrayList<String> actions(Hero hero) {
         ArrayList<String> actions = super.actions(hero);
         actions.add(AC_ACTIVATE);
-        actions.add(AC_FINISHER);
         return actions;
     }
 
@@ -47,101 +38,47 @@ public abstract class Relic extends KindofMisc {
         super.execute(hero, action);
         if (action.equals(AC_ACTIVATE) && canActivate()) {
             doActivate();
-        } else if (action.equals(AC_FINISHER)) {
-            GameScene.selectCell(ATTACK);
         }
-    }
-
-    public boolean doAttack(Char attacker, Char defender) {
-        attacker.busy();
-        if (attacker.sprite != null && (attacker.sprite.visible || defender.sprite.visible)) {
-            attacker.spend( 1f );
-            attacker.sprite.attack(defender.pos, new Callback() {
-                @Override
-                public void call() {
-                    attack(attacker, defender, false);
-                    attacker.next();
-                    if (!defender.isAlive()) gainCharge(chargePerKill);
-                }
-            });
-            return false;
-        } else {
-            attack(attacker, defender, false);
-            attacker.spend( 1f );
-            if (!defender.isAlive()) gainCharge(chargePerKill);
-            attacker.next();
-            return true;
-        }
-    }
-
-    public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
-        Char.DamageSrc src = new Char.DamageSrc(Element.PHYSICAL, this);
-        int damage = damageRoll();
-        damage = proc(attacker, enemy, damage);
-        return attacker.attack(enemy, guaranteed, damage, src);
-    }
-
-    private final CellSelector.Listener ATTACK = new CellSelector.Listener() {
-
-        @Override
-        public void onSelect(Integer cell) {
-            if (cell != null && curUser != null) {
-                Char ch = Actor.findChar(cell);
-                if (ch != null) {
-                    if (Dungeon.level.adjacent(curUser.pos, ch.pos)) {
-                        Relic.this.doAttack(curUser, ch);
-                    } else {
-                        GLog.info(Messages.get(Relic.this, "out_of_range"));
-                    }
-                } else {
-                    GLog.info(Messages.get(Relic.this, "no_enemy"));
-                }
-            }
-        }
-
-        @Override
-        public String prompt() {
-            return Messages.get(Relic.this, "select_cell");
-        }
-    };
-
-    protected int damageRoll(float lvl) {
-        return Math.round(Random.NormalFloat(min(lvl), max(lvl)));
     }
 
     protected int damageRoll() {
         return Random.NormalIntRange(min(), max());
     }
 
+    @Override
     public final int min() {
         return Math.round(min(power()));
     }
 
+    @Override
     public final int max(){
         return Math.round(max(power()));
     }
 
-    public float min(float lvl) {
-        return 4 * lvl * damageMultiplier;    //level scaling
+    @Override
+    public int min(float lvl) {
+        return (int) (4 * lvl * damageMultiplier);    //level scaling
     }
 
-    public float max(float lvl) {
-        return 10 * lvl * damageMultiplier;   //level scaling
+    @Override
+    public int max(float lvl) {
+        return (int) (10 * lvl * damageMultiplier);   //level scaling
     }
 
     final int defaultMin() {
-        return (int) min(1f);
+        return min(1f);
     }
 
     final int defaultMax() {
-        return (int) max(1f);
+        return max(1f);
     }
 
     protected abstract boolean critCondition(Char enemy);
 
-    protected int proc(Char attacker, Char defender, int damage) {
+    @Override
+    public int proc(Char attacker, Char defender, int damage) {
         if (critCondition(defender) || damage*2 >= defender.HP) damage *= 2;
-        return damage;
+        return super.proc(attacker, defender, damage);
     }
 
     public String statsDesc() {

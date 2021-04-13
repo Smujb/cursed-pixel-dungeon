@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.items.weapon;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
-import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -63,8 +62,6 @@ import com.shatteredpixel.yasd.general.items.weapon.enchantments.Shocking;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Unstable;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Vampiric;
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.shatteredpixel.yasd.general.scenes.CellSelector;
-import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.particles.Emitter;
@@ -79,8 +76,6 @@ import java.util.Arrays;
 abstract public class Weapon extends KindOfWeapon implements Enchantable {
 
 	{
-		defaultAction = AC_ATTACK;
-
 		usesTargeting = true;
 	}
 
@@ -118,51 +113,6 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 	
 	public Enchantment enchantment;
 	public boolean curseInfusionBonus = false;
-
-	private static final String AC_ATTACK = "attack";
-
-	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions(hero);
-		actions.add(AC_ATTACK);
-		return actions;
-	}
-
-	@Override
-	public void execute(Hero hero, String action) {
-		super.execute(hero, action);
-		if (action.equals(AC_ATTACK)) {
-			if (isEquipped(curUser)) {
-				GameScene.selectCell(ATTACK);
-			} else {
-				GLog.info(Messages.get(Weapon.this, "not_equipped"));
-			}
-		}
-	}
-
-	private final CellSelector.Listener ATTACK = new CellSelector.Listener() {
-
-		@Override
-		public void onSelect(Integer cell) {
-			if (cell != null && curUser != null) {
-				Char ch = Actor.findChar(cell);
-				if (ch != null) {
-					if (Weapon.this.canAttack(cell)) {
-						Weapon.this.doAttack(curUser, ch);
-					} else {
-						GLog.info(Messages.get(Weapon.this, "out_of_range"));
-					}
-				} else {
-					GLog.info(Messages.get(Weapon.this, "no_enemy"));
-				}
-			}
-		}
-
-		@Override
-		public String prompt() {
-			return Messages.get(Weapon.this, "select_cell");
-		}
-	};
 	
 	@Override
 	public int proc( Char attacker, Char defender, int damage ) {
@@ -189,6 +139,24 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 			//gains enough uses to ID over 0.5 levels
 			availableUsesToID = Math.min(USES_TO_ID/2f, availableUsesToID + levelPercent * USES_TO_ID);
 		}
+	}
+
+	@Override
+	public int price() {
+		int price = 100;
+		if (hasGoodEnchant()) {
+			price *= 1.5;
+		}
+		if (cursedKnown && cursed()) {
+			price /= 2;
+		}
+		if (levelKnown && level() > 0) {
+			price *= (power() + 1);
+		}
+		if (price < 1) {
+			price = 1;
+		}
+		return price;
 	}
 
 	@Override

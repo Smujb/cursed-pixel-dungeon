@@ -176,24 +176,6 @@ public class MeleeWeapon extends Weapon implements Attackable {
 	}
 
 	@Override
-	public int price() {
-		int price = 100;
-		if (hasGoodEnchant()) {
-			price *= 1.5;
-		}
-		if (cursedKnown && cursed()) {
-			price /= 2;
-		}
-		if (levelKnown && level() > 0) {
-			price *= (power() + 1);
-		}
-		if (price < 1) {
-			price = 1;
-		}
-		return price;
-	}
-
-	@Override
 	public boolean cursed() {
 		return super.cursed() || hasCurseEnchant();
 	}

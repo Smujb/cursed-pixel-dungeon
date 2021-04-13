@@ -34,13 +34,23 @@ import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.messages.Messages;
+import com.shatteredpixel.yasd.general.scenes.CellSelector;
+import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.utils.BArray;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+
 abstract public class KindOfWeapon extends KindofMisc {
+
+	{
+		defaultAction = AC_ATTACK;
+	}
 
 	protected String hitSound = Assets.Sounds.HIT;
 	protected float hitSoundPitch = 1f;
@@ -60,6 +70,51 @@ abstract public class KindOfWeapon extends KindofMisc {
 	public int max(){
 		return max(power());
 	}
+
+	private static final String AC_ATTACK = "attack";
+
+	@Override
+	public ArrayList<String> actions(Hero hero) {
+		ArrayList<String> actions = super.actions(hero);
+		actions.add(AC_ATTACK);
+		return actions;
+	}
+
+	@Override
+	public void execute(Hero hero, String action) {
+		super.execute(hero, action);
+		if (action.equals(AC_ATTACK)) {
+			if (isEquipped(curUser)) {
+				GameScene.selectCell(ATTACK);
+			} else {
+				GLog.info(Messages.get(KindOfWeapon.this, "not_equipped"));
+			}
+		}
+	}
+
+	private final CellSelector.Listener ATTACK = new CellSelector.Listener() {
+
+		@Override
+		public void onSelect(Integer cell) {
+			if (cell != null && curUser != null) {
+				Char ch = Actor.findChar(cell);
+				if (ch != null) {
+					if (KindOfWeapon.this.canAttack(cell)) {
+						KindOfWeapon.this.doAttack(curUser, ch);
+					} else {
+						GLog.info(Messages.get(KindOfWeapon.this, "out_of_range"));
+					}
+				} else {
+					GLog.info(Messages.get(KindOfWeapon.this, "no_enemy"));
+				}
+			}
+		}
+
+		@Override
+		public String prompt() {
+			return Messages.get(KindOfWeapon.this, "select_cell");
+		}
+	};
 
 	public boolean doAttack(Char attacker, Char enemy) {
 		attacker.busy();
