@@ -326,7 +326,7 @@ public class Generator {
 					CupOfSuffering.class,
 					com.shatteredpixel.yasd.general.items.relics.EtherealChains.class,
 					GarbOfRetribution.class,
-					WarpedPrayerBook.class,
+					WarpedPrayerBook.class,//TODO add functionality
 					com.shatteredpixel.yasd.general.items.relics.SandalsOfNature.class,
 					LloydsBeacon.class,
 					AirDragonPendant.class,
@@ -339,7 +339,7 @@ public class Generator {
 					1,
 					1,
 					1,
-					1,
+					0,
 					1,
 					1,
 					1,

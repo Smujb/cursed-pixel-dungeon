@@ -4,6 +4,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public abstract class Relic extends KindOfWeapon {
     protected float chargePerUse = 10f;
 
     protected static final String AC_ACTIVATE = "activate";
+
+    private static final String CHARGE = "charge";
 
     @Override
     public ArrayList<String> actions(Hero hero) {
@@ -99,6 +102,12 @@ public abstract class Relic extends KindOfWeapon {
         return desc;
     }
 
+    @Override
+    protected void onEnemyDeath(Char ch) {
+        super.onEnemyDeath(ch);
+        gainCharge(chargePerKill);
+    }
+
     public String propsDesc() {
         return "";
     }
@@ -113,7 +122,7 @@ public abstract class Relic extends KindOfWeapon {
     }
 
     protected boolean canActivate() {
-        return curUser != null && isEquipped(curUser) && charge > chargePerUse;
+        return curUser != null && isEquipped(curUser) && charge >= chargePerUse;
     }
 
     public final void useCharge(float amount) {
@@ -131,5 +140,17 @@ public abstract class Relic extends KindOfWeapon {
     @Override
     public String status() {
         return Messages.format( "%d%%", Math.round(charge) );
+    }
+
+    @Override
+    public void storeInBundle(Bundle bundle) {
+        super.storeInBundle(bundle);
+        bundle.put(CHARGE, charge);
+    }
+
+    @Override
+    public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle(bundle);
+        charge = bundle.getInt(CHARGE);
     }
 }

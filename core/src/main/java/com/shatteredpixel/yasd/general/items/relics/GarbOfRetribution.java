@@ -26,9 +26,14 @@ public class GarbOfRetribution extends Relic {
     }
 
     private void hit(Char enemy) {
-        int dmg = Math.round(0.1f*damageRoll()*charge);
-        enemy.damage(dmg, new Char.DamageSrc(Element.EARTH, this));
-        charge = 0;
+        //Only use as much charge as is necessary to kill the enemy
+        int baseDamage = Math.round(0.25f*damageRoll());
+        //Round up
+        int chargeNeeded = (int) Math.ceil(enemy.HP/(float)baseDamage);
+        int chargeToUse = (int) Math.min(chargeNeeded, charge);
+        int dmg = chargeToUse*baseDamage;
+        enemy.damage(dmg, new Char.DamageSrc(Element.EARTH, this).ignoreDefense().ignoreBarrier());
+        charge -= chargeToUse;
     }
 
     @Override

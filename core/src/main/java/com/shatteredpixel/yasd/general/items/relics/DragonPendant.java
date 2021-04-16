@@ -31,8 +31,35 @@ public abstract class DragonPendant extends Relic {
 
     @Override
     protected void doActivate() {
-        super.doActivate();
-        doSummon(curUser);
+        if (charge < chargePerUse) {
+            GLog.warning(Messages.get(this, "no_charge"));
+            return;
+        }
+        if (getDragon() != null) {
+            GLog.warning("already_spawned");
+            return;
+        }
+        curUser.spend(1f);
+        ArrayList<Integer> neighbors = new ArrayList<>();
+        for (int offset : PathFinder.NEIGHBOURS9) {
+            int cell = curUser.pos + offset;
+            if (Dungeon.level.passable(cell) && Actor.findChar(cell) == null) {
+                neighbors.add(cell);
+            }
+        }
+
+        if (neighbors.size() > 0) {
+            DragonPendant.Dragon dragon = Mob.spawnAt(dragonType(), Random.element(neighbors));
+            if (dragon != null) {
+                dragon.updatePendant(this);
+                setDragon(dragon);
+                charge -= chargePerUse;
+                Item.updateQuickslot();
+                GLog.positive(Messages.get(this, "dragon_spawned"));
+            } else {
+                GLog.negative(Messages.get(this, "spawn_failed"));
+            }
+        }
     }
 
     @Override
@@ -46,38 +73,6 @@ public abstract class DragonPendant extends Relic {
         if (canTypicallyUse(hero)) return 1f;
         int missingAttunement = encumbrance();
         return (float) Math.pow(0.8f, missingAttunement);
-    }
-
-    private void doSummon(Char ch) {
-        if (charge < MAX_CHARGE) {
-            GLog.warning(Messages.get(this, "no_charge"));
-            return;
-        }
-        if (getDragon() != null) {
-            GLog.warning("already_spawned");
-            return;
-        }
-        ch.spend(1f);
-        ArrayList<Integer> neighbors = new ArrayList<>();
-        for (int offset : PathFinder.NEIGHBOURS9) {
-            int cell = ch.pos + offset;
-            if (Dungeon.level.passable(cell) && Actor.findChar(cell) == null) {
-                neighbors.add(cell);
-            }
-        }
-
-        if (neighbors.size() > 0) {
-            DragonPendant.Dragon dragon = Mob.spawnAt(dragonType(), Random.element(neighbors));
-            if (dragon != null) {
-                dragon.updatePendant(this);
-                setDragon(dragon);
-                charge = 0f;
-                Item.updateQuickslot();
-                GLog.positive(Messages.get(this, "dragon_spawned"));
-            } else {
-                GLog.negative(Messages.get(this, "spawn_failed"));
-            }
-        }
     }
 
     @Override
@@ -177,7 +172,7 @@ public abstract class DragonPendant extends Relic {
         private static final String RANGED_ATTK_COOLDOWN = "ranged_cooldown";
 
         private void updatePendant(@NotNull DragonPendant pen) {
-            level = 1 + pen.level();
+            level = pen.level();
             alignment = pen.curUser.alignment;
             updateHT(true);
         }

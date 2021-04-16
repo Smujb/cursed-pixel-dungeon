@@ -56,7 +56,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.powers.Blink;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
-import com.shatteredpixel.yasd.general.items.relics.dragonpendants.PoisonDragonPendant;
+import com.shatteredpixel.yasd.general.items.relics.dragonpendants.EarthenDragonPendant;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
@@ -283,7 +283,7 @@ public enum HeroClass {
 		} else {
 			knife.collect();
 		}
-		DragonPendant pendant = (DragonPendant) new PoisonDragonPendant().identify();
+		DragonPendant pendant = (DragonPendant) new EarthenDragonPendant().identify();
 		hero.belongings.miscs[1] = pendant;
 
 		Dungeon.quickslot.setSlot(1, pendant);

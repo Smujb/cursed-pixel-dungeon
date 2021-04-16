@@ -152,8 +152,11 @@ abstract public class KindOfWeapon extends KindofMisc {
 		if (attack) {
 			hitSound(Random.Float(0.87f, 1.15f));
 		}
+		if (!enemy.isAlive()) onEnemyDeath(enemy);
 		return attack;
 	}
+
+	protected void onEnemyDeath(Char ch) {}
 
 	protected boolean canAttack(int pos) {
 		return canReach(curUser, pos);
