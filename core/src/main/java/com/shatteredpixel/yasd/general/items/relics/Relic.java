@@ -84,11 +84,14 @@ public abstract class Relic extends KindOfWeapon {
     public String statsDesc() {
         String desc = "";
         if (isIdentified()) {
-            desc = Messages.get(this, "stats_desc", min(), max(), (int) chargePerKill, (int) chargePerUse);
+            desc = Messages.get(this, "stats_desc", min(), max());
         } else {
-            desc = Messages.get(this, "typical_stats_desc", defaultMin(), defaultMax(), (int) chargePerUse, (int) chargePerKill);
+            desc = Messages.get(this, "typical_stats_desc", defaultMin(), defaultMax());
         }
-        desc += Messages.get(this, "crit_condition");
+        String critCondition = Messages.get(this, "crit_condition");
+        if (!(critCondition.equals("") || critCondition.contains("missed_string"))) desc += " " + critCondition;
+        desc += " " + Messages.get(this, "charge_per_kill", (int) chargePerKill);
+        if (chargePerUse > 0) desc += " " + Messages.get(this, "charge_per_use", (int) chargePerUse);
         String props = propsDesc();
         if (!props.equals("")) {
             desc += props;

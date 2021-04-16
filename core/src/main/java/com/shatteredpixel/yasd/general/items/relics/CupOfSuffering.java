@@ -21,7 +21,7 @@ public class CupOfSuffering extends Relic {
     }
 
     @Override
-    protected int proc(Char attacker, Char defender, int damage) {
+    public int proc(Char attacker, Char defender, int damage) {
         Buff.affect(defender, Bleeding.class).set(damage/2f);
         return super.proc(attacker, defender, damage);
     }

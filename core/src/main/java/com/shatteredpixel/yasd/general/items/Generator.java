@@ -86,6 +86,7 @@ import com.shatteredpixel.yasd.general.items.powers.Telekinesis;
 import com.shatteredpixel.yasd.general.items.powers.WaterPump;
 import com.shatteredpixel.yasd.general.items.relics.CupOfSuffering;
 import com.shatteredpixel.yasd.general.items.relics.GarbOfRetribution;
+import com.shatteredpixel.yasd.general.items.relics.LloydsBeacon;
 import com.shatteredpixel.yasd.general.items.relics.Relic;
 import com.shatteredpixel.yasd.general.items.relics.WarpedPrayerBook;
 import com.shatteredpixel.yasd.general.items.relics.dragonpendants.AirDragonPendant;
@@ -327,12 +328,14 @@ public class Generator {
 					GarbOfRetribution.class,
 					WarpedPrayerBook.class,
 					com.shatteredpixel.yasd.general.items.relics.SandalsOfNature.class,
+					LloydsBeacon.class,
 					AirDragonPendant.class,
 					FireDragonPendant.class,
 					WaterDragonPendant.class,
 					EarthenDragonPendant.class
 			};
 			RELIC.probs = new float[]{
+					1,
 					1,
 					1,
 					1,
