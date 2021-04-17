@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public abstract class DragonPendant extends Relic {
 
     {
-        chargePerKill = 5;
+        chargePerKill = 10;
 
         chargePerUse = 100;
     }

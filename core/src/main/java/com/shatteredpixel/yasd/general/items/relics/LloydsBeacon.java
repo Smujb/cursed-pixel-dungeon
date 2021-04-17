@@ -19,7 +19,7 @@ public class LloydsBeacon extends Relic {
     {
         image = ItemSpriteSheet.ARTIFACT_BEACON;
 
-        chargePerKill = 10;
+        chargePerKill = 30;
 
         //Charge is consumed separately
         chargePerUse = 0;

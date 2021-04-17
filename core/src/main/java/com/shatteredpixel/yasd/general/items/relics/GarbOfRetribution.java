@@ -13,7 +13,6 @@ public class GarbOfRetribution extends Relic {
     {
         image = ItemSpriteSheet.ARTIFACT_CAPE;
 
-        chargePerKill = 10;
         chargePerUse = 0;
     }
 
