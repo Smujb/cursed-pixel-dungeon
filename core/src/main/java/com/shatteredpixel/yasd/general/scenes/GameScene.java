@@ -114,6 +114,7 @@ import com.watabou.noosa.Visual;
 import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
+import com.watabou.utils.Callback;
 import com.watabou.utils.GameMath;
 import com.watabou.utils.Random;
 
@@ -1010,7 +1011,7 @@ public class GameScene extends PixelScene {
 	
 	public static WndBag selectItem( WndBag.Listener listener, WndBag.Mode mode, String title ) {
 		cancelCellSelector();
-		
+
 		WndBag wnd =
 				mode == Mode.SEED ?
 					WndBag.getBag( VelvetPouch.class, listener, mode, title ) :
@@ -1021,8 +1022,13 @@ public class GameScene extends PixelScene {
 				mode == Mode.WAND ?
 					WndBag.getBag( MagicalHolster.class, listener, mode, title ) :
 				WndBag.lastBag( listener, mode, title );
-		
-		if (scene != null) scene.addToFront( wnd );
+
+		CPDGame.runOnRenderThread(new Callback() {
+			@Override
+			public void call() {
+				if (scene != null) scene.addToFront( wnd );
+			}
+		});
 		
 		return wnd;
 	}
