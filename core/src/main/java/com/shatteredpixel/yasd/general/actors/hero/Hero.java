@@ -906,8 +906,8 @@ public class Hero extends Char {
 			if (alch != null) {
 				Alchemy.alchPos = dst;
 				AlchemyScene.setProvider(alch);
+				CPDGame.switchScene(AlchemyScene.class);
 			}
-			CPDGame.switchScene(AlchemyScene.class);
 			return false;
 
 		} else if (getCloser(dst)) {
