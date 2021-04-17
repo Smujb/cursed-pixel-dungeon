@@ -143,18 +143,9 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 
 	@Override
 	public int price() {
-		int price = 100;
+		int price = super.price();
 		if (hasGoodEnchant()) {
 			price *= 1.5;
-		}
-		if (cursedKnown && cursed()) {
-			price /= 2;
-		}
-		if (levelKnown && level() > 0) {
-			price *= (power() + 1);
-		}
-		if (price < 1) {
-			price = 1;
 		}
 		return price;
 	}

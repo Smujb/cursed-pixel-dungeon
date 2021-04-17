@@ -408,12 +408,8 @@ public abstract class Wand extends KindofMisc implements Attackable {
 		if (cursed() && cursedKnown) {
 			price /= 2;
 		}
-		if (levelKnown) {
-			if (level() > 0) {
-				price *= (level() + 1);
-			} else if (level() < 0) {
-				price /= (1 - level());
-			}
+		if (levelKnown && level() > 0) {
+			price *= power();
 		}
 		if (price < 1) {
 			price = 1;

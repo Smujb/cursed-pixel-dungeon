@@ -322,7 +322,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
             price /= 2;
         }
         if (levelKnown && level() > 0) {
-            price *= (power() + 1);
+            price *= power();
         }
         if (price < 1) {
             price = 1;

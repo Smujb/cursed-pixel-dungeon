@@ -59,6 +59,21 @@ abstract public class KindOfWeapon extends KindofMisc {
 	public boolean sneakBenefit = false;
 	public boolean canBeParried = true;
 
+	@Override
+	public int price() {
+		int price = 100;
+		if (cursedKnown && cursed()) {
+			price /= 2;
+		}
+		if (levelKnown && level() > 0) {
+			price *= power();
+		}
+		if (price < 1) {
+			price = 1;
+		}
+		return price;
+	}
+
 	public boolean breaksArmor(Char owner) {
 		return false;
 	}
