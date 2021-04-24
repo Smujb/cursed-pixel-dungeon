@@ -120,6 +120,16 @@ public class GrindLevel extends TiledMapLevel {
 		private int lootAmt = 0;
 
 		@Override
+		public boolean attachTo(@NotNull Char target) {
+			boolean attach = super.attachTo(target);
+			//Attaching to a mob causes them to scale to the hero's level
+			if (attach && target instanceof Mob) {
+				((Mob)target).setLevel(Dungeon.hero.lvl);
+			}
+			return attach;
+		}
+
+		@Override
 		public boolean act() {
 			spend(TICK);
 			return true;

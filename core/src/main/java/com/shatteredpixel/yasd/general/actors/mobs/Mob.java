@@ -276,8 +276,7 @@ public abstract class Mob extends Char {
 			CPDGame.reportException(e);
 			throw new RuntimeException(e);
 		}
-		mob.level = level;
-		mob.updateHT(true);
+		mob.setLevel(level);
 		mob.onCreate();
 		if (mob.numTypes > 1) {
 			mob.type = Random.Int(mob.numTypes);
@@ -293,6 +292,11 @@ public abstract class Mob extends Char {
 
 	public static <T extends Mob> T create(Class<T> type) {
 		return create(type, Dungeon.level);
+	}
+
+	public void setLevel(int lvl) {
+		level = level;
+		updateHT(true);
 	}
 
 	protected void onCreate() {};
