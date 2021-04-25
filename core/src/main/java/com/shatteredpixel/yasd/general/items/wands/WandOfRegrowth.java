@@ -354,13 +354,15 @@ public class WandOfRegrowth extends Wand {
 			spriteClass = LotusSprite.class;
 
 			viewDistance = 1;
+			healthFactor = 4f;
 		}
 
 		private int wandLvl = 0;
 
-		private void setLevel( int lvl ){
+		@Override
+		public void setLevel( int lvl ){
 			wandLvl = lvl;
-			HP = HT = lvl*4;
+			setLevel(lvl);
 		}
 
 		public boolean inRange(int pos){
