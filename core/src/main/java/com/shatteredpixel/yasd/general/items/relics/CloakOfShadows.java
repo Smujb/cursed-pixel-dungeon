@@ -22,6 +22,8 @@ public class CloakOfShadows extends Relic {
 
         unique = true;
         bones = false;
+
+        statScaling.add(Hero.HeroStat.EXECUTION);
     }
 
     private boolean stealthed = false;

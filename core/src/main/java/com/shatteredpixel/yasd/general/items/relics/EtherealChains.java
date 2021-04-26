@@ -23,6 +23,8 @@ public class EtherealChains extends Relic {
 
     {
         image = ItemSpriteSheet.ARTIFACT_CHAINS;
+
+        statScaling.add(Hero.HeroStat.FOCUS);
     }
 
     @Override

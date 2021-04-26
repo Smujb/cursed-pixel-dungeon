@@ -14,6 +14,8 @@ public class GarbOfRetribution extends Relic {
         image = ItemSpriteSheet.ARTIFACT_CAPE;
 
         chargePerUse = 0;
+
+        statScaling.add(Hero.HeroStat.RESILIENCE);
     }
 
     public static void hit(Char user, Char enemy) {
