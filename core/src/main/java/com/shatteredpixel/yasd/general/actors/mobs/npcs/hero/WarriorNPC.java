@@ -41,7 +41,7 @@ public class WarriorNPC extends HeroNPC {
 				if (!questlineFlagCompleted(REASON_HERE_QUESTION)) {
 					options.put(Messages.get(WarriorNPC.this, "for_dungeon"), WndChat.asCallback(new ForDungeonResponse()));
 					options.put(Messages.get(WarriorNPC.this, "for_amulet"), WndChat.asCallback(new ForAmuletResponse()));
-					introduction += Messages.get(this, "why_here");
+					introduction += Messages.get(WarriorNPC.this, "why_here");
 				}
 				if (ch instanceof Hero) {
 					Hero h = (Hero) ch;
