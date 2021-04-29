@@ -49,7 +49,7 @@ public class LloydsBeacon extends Relic {
     }
 
     protected int getPos() {
-        if (!lastLvlKey.equals(Dungeon.level.key)) pos = -1;
+        if (lastLvlKey == null || !lastLvlKey.equals(Dungeon.level.key)) pos = -1;
         return pos;
     }
 
