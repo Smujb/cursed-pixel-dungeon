@@ -198,7 +198,7 @@ public class MagesStaff extends MeleeWeapon {
 
 		int targetLevel = getNewLevel(trueLevel(), wand.trueLevel());
 		if (owner instanceof Hero && wand.isEquipped(owner)) {
-			wand.doUnequip(((Hero)owner), false);
+			wand.doUnequip(owner, false);
 		}
 		level(targetLevel);
 		this.wand = wand;
@@ -220,6 +220,7 @@ public class MagesStaff extends MeleeWeapon {
 		
 		Badges.validateItemLevelAquired(this);
 		wand.imbued = true;
+		wand.curseIntensity = curseIntensity;
 
 		return this;
 	}

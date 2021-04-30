@@ -128,6 +128,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 				Catalog.setSeen(result.getClass());
 			}
 			result.timesUpgraded = item.timesUpgraded;
+			result.curseIntensity = item.curseIntensity;
 			//TODO visuals
 			GLog.positive( Messages.get(this, "morph") );
 		}
@@ -258,7 +259,6 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		
 		n.level( 0 );
 		int level = w.level();
-		if (w.curseInfusionBonus) level -= Constants.CURSE_INFUSION_BONUS_AMT;
 		n.upgrade( level );
 		
 		n.levelKnown = w.levelKnown;
