@@ -96,19 +96,12 @@ public class WaterOfTransmutation extends WellWater {
 	}
 
 	private MagesStaff changeStaff( MagesStaff staff ){
-		Class<?extends Wand> wandClass = staff.wandClass();
+		Wand wand = staff.getWand();
 
-		if (wandClass == null){
-			return null;
-		} else {
-			Wand n;
-			do {
-				n = (Wand)Generator.random(Category.WAND);
-			} while (!n.canSpawn() || n.getClass() == wandClass);
-			n.level(0);
-			n.identify();
-			staff.imbueWand(n, null);
-		}
+		Wand newWand = changeWand(wand);
+		newWand.level(0);
+		newWand.identify();
+		staff.imbueWand(newWand, null);
 
 		return staff;
 	}
