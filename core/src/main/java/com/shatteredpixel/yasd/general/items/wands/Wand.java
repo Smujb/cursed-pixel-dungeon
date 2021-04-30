@@ -326,7 +326,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	}
 	
 	public void updateLevel() {
-		maxCharges = initialCharges() + initialCharges()/5 * level();
+		maxCharges = Math.min((int) (initialCharges() * Math.pow(1.1, level())), 30);
 		curCharges = Math.min( curCharges, maxCharges );
 	}
 	
