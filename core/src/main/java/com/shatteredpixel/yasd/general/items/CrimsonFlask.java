@@ -30,6 +30,8 @@ import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class CrimsonFlask extends Item {
@@ -172,7 +174,7 @@ public class CrimsonFlask extends Item {
         }
 
         @Override
-        public boolean collect(Bag container, Char ch) {
+        public boolean collect(Bag container, @NotNull Char ch) {
             CrimsonFlask flask = ch.belongings.getItem(CrimsonFlask.class);
             if (flask != null) {
                 if (flask.gainCharge(quantity)) {

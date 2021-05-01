@@ -24,6 +24,8 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.Reflection;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -97,7 +99,7 @@ public abstract class RelicMeleeWeapon extends MeleeWeapon {
     }
 
     @Override
-    public boolean collect(Bag container, Char ch) {
+    public boolean collect(Bag container, @NotNull Char ch) {
         //CPDSettings.unlockRelicWep(getClass(), true);
         return super.collect(container, ch);
     }

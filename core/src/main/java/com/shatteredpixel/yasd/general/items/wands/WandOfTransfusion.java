@@ -92,7 +92,7 @@ public class WandOfTransfusion extends DamageWand {
 			} else {
 				if (ch.properties().contains(Char.Property.UNDEAD)) {
 					//harms the undead
-					ch.damage(damageRoll(), new Char.DamageSrc(Element.LIGHT, this));
+					hit(ch);
 					ch.sprite.emitter().start(ShadowParticle.UP, 0.05f, (int) (2 * power()));
 					Sample.INSTANCE.play(Assets.Sounds.BURNING);
 				} else {
@@ -142,9 +142,9 @@ public class WandOfTransfusion extends DamageWand {
 	@Override
 	public String statsDesc() {
 		if (levelKnown)
-			return Messages.get(this, "stats_desc", selfDMG(), healAmt(), 5+2*power(), 3+power()/2, 6+power());
+			return Messages.get(this, "stats_desc", selfDMG(), healAmt(), min(), max());
 		else
-			return Messages.get(this, "stats_desc", selfDMG(), healAmt(0), 5, 3, 6);
+			return Messages.get(this, "stats_desc", selfDMG(), healAmt(1), min(1), max(1));
 	}
 
 	protected int healAmt(float power) {
@@ -155,10 +155,8 @@ public class WandOfTransfusion extends DamageWand {
 		return healAmt(power());
 	}
 
-
 	private int selfDMG() {
-		if (curUser == null) return 0;
-		else return Math.round(curUser.HT*0.10f);
+		return Math.round(curUser.HT*0.10f);
 	}
 
 	@Override

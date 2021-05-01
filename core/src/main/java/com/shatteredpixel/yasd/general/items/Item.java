@@ -303,9 +303,10 @@ public class Item implements Bundlable {
 		return this;
 	}
 
-	public boolean collect( Bag container,  Char ch ) {
+	public boolean collect( Bag container, @NotNull Char ch ) {
 
 		if (quantity <= 0){
+			curUser = ch;
 			return true;
 		}
 

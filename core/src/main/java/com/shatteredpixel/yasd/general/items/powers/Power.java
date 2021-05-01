@@ -162,7 +162,7 @@ public abstract class Power extends Item {
 	}
 
 	@Override
-	public boolean collect(Bag container, Char ch) {
+	public boolean collect(Bag container, @NotNull Char ch) {
 		boolean collect = super.collect(container, ch);
 		if (collect && passiveBuff != null) {
 			Buff.affect(ch, passiveBuff);

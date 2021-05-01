@@ -42,6 +42,8 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class Gold extends Item {
@@ -67,7 +69,7 @@ public class Gold extends Item {
 	}
 
 	@Override
-	public boolean collect(Bag container, Char ch) {
+	public boolean collect(Bag container, @NotNull Char ch) {
 		Dungeon.gold += quantity;
 		Statistics.goldCollected += quantity;
 		Badges.validateGoldCollected();

@@ -43,6 +43,8 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -240,7 +242,7 @@ public class LuckyBadge extends Power {
 	}
 
 	@Override
-	public boolean collect(Bag container, Char ch) {
+	public boolean collect(Bag container, @NotNull Char ch) {
 		if (heroHP == -1 && ch instanceof Hero) {
 			heroHP = ch.HP;
 		}

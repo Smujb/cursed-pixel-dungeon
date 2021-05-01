@@ -35,6 +35,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class Dewdrop extends Item {
@@ -47,7 +48,7 @@ public class Dewdrop extends Item {
 	}
 
 	@Override
-	public boolean collect(Bag container, Char ch) {
+	public boolean collect(Bag container, @NotNull Char ch) {
 		if (ch.hasBelongings()) {
 			DewVial vial = ch.belongings.getItem( DewVial.class );
 

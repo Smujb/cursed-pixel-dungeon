@@ -49,6 +49,8 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -163,7 +165,7 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 	}
 	
 	@Override
-	public boolean collect( Bag container,  Char ch) {
+	public boolean collect(Bag container, @NotNull Char ch) {
 		if (container instanceof MagicalHolster) holster = true;
 		return super.collect(container, ch);
 	}

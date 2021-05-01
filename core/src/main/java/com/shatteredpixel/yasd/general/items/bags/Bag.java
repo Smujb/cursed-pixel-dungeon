@@ -38,6 +38,8 @@ import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -74,7 +76,7 @@ public class Bag extends Item implements Iterable<Item> {
 	}
 	
 	@Override
-	public boolean collect( Bag container,  Char ch) {
+	public boolean collect(Bag container, @NotNull Char ch) {
 
 		for (Item item : container.items.toArray( new Item[0] )) {
 			if (canHold( item )) {
@@ -91,7 +93,11 @@ public class Bag extends Item implements Iterable<Item> {
 
 		if (super.collect( container, ch )) {
 			
-			curUser = owner = container.owner;
+			curUser = owner = ch;
+
+			for (Item item : items) {
+				item.setUser(ch);
+			}
 			
 			Badges.validateAllBagsBought( this );
 			
@@ -163,11 +169,7 @@ public class Bag extends Item implements Iterable<Item> {
 		super.restoreFromBundle( bundle );
 		for (Bundlable item : bundle.getCollection( ITEMS )) {
 			if (item != null) {
-				if (owner != null) {
-					((Item) item).collect(this, owner);
-				} else {
-					((Item) item).collect(this, Dungeon.hero);
-				}
+				((Item) item).collect(this, owner);
 			}
 		}
 	}
