@@ -237,11 +237,11 @@ public abstract class Mob extends Char {
 	}
 
 	protected static int normalMax(int level) {
-		return Math.round(Item.calcMobPower(level) * 20);
+		return Math.round(Item.calcMobPower(level) * 35);
 	}
 
 	protected static int normalMin(int level) {
-		return Math.round(Item.calcMobPower(level) * 10);
+		return Math.round(Item.calcMobPower(level) * 20);
 	}
 
 	private static final float MAX_PARRY_CHARGE = 100f;
