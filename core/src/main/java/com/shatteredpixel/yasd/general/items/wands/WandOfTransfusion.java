@@ -78,14 +78,13 @@ public class WandOfTransfusion extends DamageWand {
 		if (ch instanceof Mob){
 			
 			processSoulMark(ch, chargesPerCast());
-			int selfDmg = (int) (3 * power());
 			
 			//this wand does different things depending on the target.
 			
 			//heals/shields an ally or a charmed enemy while damaging self
 			if (ch.alignment == Char.Alignment.ALLY || ch.buff(Charm.class) != null){
 				
-				float healing = selfDmg + 2 * power();
+				float healing = healAmt();
 
 				ch.heal((int) healing, true);
 
@@ -102,7 +101,7 @@ public class WandOfTransfusion extends DamageWand {
 				Buff.affect(ch, Charm.class, 3 * power()).object = curUser.id();
 			}
 			if (!freeCharge) {
-				damageHero(selfDmg);
+				damageHero(selfDMG());
 			} else {
 				freeCharge = false;
 			}
@@ -142,11 +141,24 @@ public class WandOfTransfusion extends DamageWand {
 
 	@Override
 	public String statsDesc() {
-		int selfDMG = Math.round(Dungeon.hero.HT*0.10f);
 		if (levelKnown)
-			return Messages.get(this, "stats_desc", selfDMG, selfDMG + 3*power(), 5+2*power(), 3+power()/2, 6+power());
+			return Messages.get(this, "stats_desc", selfDMG(), healAmt(), 5+2*power(), 3+power()/2, 6+power());
 		else
-			return Messages.get(this, "stats_desc", selfDMG, selfDMG, 5, 3, 6);
+			return Messages.get(this, "stats_desc", selfDMG(), healAmt(0), 5, 3, 6);
+	}
+
+	protected int healAmt(float power) {
+		return (int) (10*power);
+	}
+
+	protected final int healAmt() {
+		return healAmt(power());
+	}
+
+
+	private int selfDMG() {
+		if (curUser == null) return 0;
+		else return Math.round(curUser.HT*0.10f);
 	}
 
 	@Override
