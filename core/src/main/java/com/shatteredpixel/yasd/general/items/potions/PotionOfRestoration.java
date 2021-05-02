@@ -48,7 +48,7 @@ public class PotionOfRestoration extends Potion {
 		Char ch = Actor.findChar(cell);
 		if (ch == null) super.shatter(cell);
 		else {
-			Buff.affect(ch, Healing.class).setHeal((int) (ch.HT*0.75f), 0.005f, Math.round(ch.HT*0.05f));
+			Buff.affect(ch, Healing.class).setHeal((int) (ch.HT*0.75f), 0.01f, 0);
 		}
 	}
 
