@@ -85,7 +85,7 @@ public class Skeleton extends Mob {
 		for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
 			Char ch = findChar( pos + PathFinder.NEIGHBOURS8[i] );
 			if (ch != null && ch.isAlive()) {
-				int damage = damageRoll();
+				int damage = damageRoll()/2;
 				ch.damage( damage, new DamageSrc(Element.PHYSICAL, this));
 				if (ch == Dungeon.hero && !ch.isAlive()) {
 					heroKilled = true;
