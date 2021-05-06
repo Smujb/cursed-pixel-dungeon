@@ -7,7 +7,7 @@ public class GreatShield extends Shield {
     {
         image = ItemSpriteSheet.Shields.GREAT;
 
-        chargePerTurn = 0.5f;
+        chargePerTurn = 1f;
 
         defenseMultiplier = 1.75f;
         damageFactor = 1.5f;

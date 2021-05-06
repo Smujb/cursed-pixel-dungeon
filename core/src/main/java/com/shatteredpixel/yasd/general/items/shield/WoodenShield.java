@@ -8,7 +8,7 @@ public class WoodenShield extends Shield {
     {
         image = ItemSpriteSheet.Shields.WOODEN;
 
-        chargePerTurn = 4f;
+        chargePerTurn = 8f;
         defenseMultiplier = 0.75f;
     }
 

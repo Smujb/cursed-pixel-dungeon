@@ -213,7 +213,7 @@ public abstract class Mob extends Char {
 	}
 
 	protected static int normalHP(int level) {
-		return Math.round(20 * Item.calcMobPower(level));
+		return Math.round(16 * Item.calcMobPower(level));
 	}
 
 	protected static int normalAttackSkill(int level) {

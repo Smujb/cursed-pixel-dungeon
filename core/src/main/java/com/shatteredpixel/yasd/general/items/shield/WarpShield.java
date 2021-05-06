@@ -16,7 +16,6 @@ public class WarpShield extends Shield {
         image = ItemSpriteSheet.Shields.WARP;
 
         defenseMultiplier = 0.75f;
-        chargePerTurn = 1f;
 
         statScaling.add(Hero.HeroStat.SUPPORT);
     }

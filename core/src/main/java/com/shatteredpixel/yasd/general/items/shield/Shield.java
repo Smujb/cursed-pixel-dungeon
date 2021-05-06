@@ -72,7 +72,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     public static final float MAX_CHARGE = 100f;
     private float charge = MAX_CHARGE;
 
-    protected float chargePerTurn = 2f;
+    protected float chargePerTurn = 4f;
     protected float defenseMultiplier = 1f;
     protected float damageFactor = 1f;
 
