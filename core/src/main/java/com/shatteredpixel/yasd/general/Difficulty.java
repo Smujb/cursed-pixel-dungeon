@@ -51,11 +51,11 @@ public enum Difficulty {
 			case EASY:
 				return 1.15f;
 			case MEDIUM: default:
-				return 1.16f;
+				return 1.155f;
 			case HARD:
-				return 1.18f;
+				return 1.16f;
 			case IMPOSSIBLE:
-				return 1.2f;
+				return 1.7f;
 		}
 	}
 
