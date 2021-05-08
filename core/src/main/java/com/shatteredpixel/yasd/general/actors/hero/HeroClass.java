@@ -72,6 +72,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.InscribedKnife;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MegaStick;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.HeroSelectScene;
 import com.watabou.noosa.Image;
@@ -226,7 +227,7 @@ public enum HeroClass {
 		
 		new PotionOfRestoration().identify();
 		new ScrollOfRage().identify();
-		hero.increaseResilience();
+		hero.setResilience(3);
 	}
 
 	private static void initMage( Hero hero ) {
@@ -246,17 +247,19 @@ public enum HeroClass {
 		
 		new ScrollOfUpgrade().identify();
 		new PotionOfLiquidFlame().identify();
-		hero.increaseFocus();
+		hero.setFocus(3);
 	}
 
 	private static void initRogue( Hero hero ) {
 		if (hero.belongings.miscs[0] == null) {
 			hero.belongings.miscs[0] = (KindofMisc) new Dagger().identify();
 		}
+
+		hero.belongings.miscs[1] = (KindofMisc) new Whip().identify();
 		
 		new ScrollOfMagicMapping().identify();
 		new PotionOfInvisibility().identify();
-		hero.increaseExecution();
+		hero.setExecution(3);
 	}
 
 	private static void initHuntress( Hero hero ) {
@@ -272,7 +275,7 @@ public enum HeroClass {
 		new PotionOfMindVision().identify();
 		new ScrollOfLullaby().identify();
 
-		hero.increaseAssault();
+		hero.setAssault(3);
 	}
 
 	private static void initPriestess( Hero hero ) {
@@ -291,7 +294,7 @@ public enum HeroClass {
 		new PotionOfMindVision().identify();
 		new ScrollOfLullaby().identify();
 
-		hero.increaseSupport();
+		hero.setSupport(3);
 	}
 	
 	public String title() {
