@@ -90,7 +90,9 @@ public class NewTengu extends Boss {
 
 		HUNTING = new Hunting();
 
+		//Tengu is stat-wise weaker than most bosses by a considerable amount, however the fight is designed around this
 		healthFactor = 0.25f;
+		damageFactor = 0.5f;
 
 		flying = true; //doesn't literally fly, but he is fleet-of-foot enough to avoid hazards
 
