@@ -21,7 +21,7 @@ public abstract class Relic extends KindOfWeapon {
     protected static final float MAX_CHARGE = 100;
     protected float charge = MAX_CHARGE;
 
-    protected float damageMultiplier = 1f;
+    protected float damageFactor = 1f;
     protected float chargePerKill = 20f;
     protected float chargePerUse = 10f;
 
@@ -60,12 +60,12 @@ public abstract class Relic extends KindOfWeapon {
 
     @Override
     public int min(float lvl) {
-        return (int) (4 * lvl * damageMultiplier);    //level scaling
+        return (int) Math.max(0, (4 * lvl - damageReduction()) * damageFactor);   //level scaling
     }
 
     @Override
     public int max(float lvl) {
-        return (int) (10 * lvl * damageMultiplier);   //level scaling
+        return (int) Math.max(0, (10 * lvl - damageReduction()) * damageFactor);   //level scaling
     }
 
     final int defaultMin() {

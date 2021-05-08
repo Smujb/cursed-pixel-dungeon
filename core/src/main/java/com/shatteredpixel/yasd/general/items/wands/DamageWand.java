@@ -38,10 +38,10 @@ import com.watabou.utils.Random;
 //wands with AOE effects count here (e.g. fireblast, blast wave), but wands with indrect damage do not (e.g. corrosion, transfusion)
 public abstract class DamageWand extends Wand{
 
-	protected float damageMultiplier = 1f;
+	protected float damageFactor = 1f;
 
 	protected float damageMultiplier() {
-		return damageMultiplier;
+		return damageFactor;
 	}
 
 	public final int hit(Char enemy) {
@@ -77,11 +77,11 @@ public abstract class DamageWand extends Wand{
 	}
 
 	public float min(float lvl) {
-		return 8 * lvl * damageMultiplier();    //level scaling
+		return (int) Math.max(0, 8 * lvl - damageReduction()) * damageFactor;   //level scaling
 	}
 
 	public float max(float lvl) {
-		return 20 * lvl * damageMultiplier();   //level scaling
+		return (int) Math.max(0, 20 * lvl - damageReduction()) * damageFactor;   //level scaling
 	}
 
 	final int defaultMax() {

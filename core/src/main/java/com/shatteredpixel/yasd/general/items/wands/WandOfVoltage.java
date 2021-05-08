@@ -22,7 +22,7 @@ public class WandOfVoltage extends DamageWand {
     {
         image = ItemSpriteSheet.Wands.VOLTAGE;
 
-        damageMultiplier = 0.75f;
+        damageFactor = 0.75f;
 
         element = Element.SHOCK;
 

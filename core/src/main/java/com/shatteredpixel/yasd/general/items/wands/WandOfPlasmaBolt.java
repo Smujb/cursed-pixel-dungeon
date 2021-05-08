@@ -47,7 +47,7 @@ public class WandOfPlasmaBolt extends DamageWand {
 
         element = Element.PHYSICAL;
 
-        damageMultiplier = 1.6f;
+        damageFactor = 1.6f;
     }
 
     @Override

@@ -14,7 +14,7 @@ public class CupOfSuffering extends Relic {
     {
         image = ItemSpriteSheet.ARTIFACT_CHALICE1;
 
-        damageMultiplier = 0.5f;
+        damageFactor = 0.5f;
 
         //Uses 100% of charge to heal
         chargePerUse = MAX_CHARGE;

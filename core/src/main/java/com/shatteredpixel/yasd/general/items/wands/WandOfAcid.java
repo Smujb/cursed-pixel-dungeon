@@ -49,7 +49,7 @@ public class WandOfAcid extends DamageWand {
 
         element = Element.ACID;
 
-        damageMultiplier = 0.7f;
+        damageFactor = 0.7f;
     }
 
     @Override

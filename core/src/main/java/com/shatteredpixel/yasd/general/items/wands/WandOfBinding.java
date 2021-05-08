@@ -19,7 +19,7 @@ public class WandOfBinding extends DamageWand {
     {
         image = ItemSpriteSheet.Wands.BINDING;
 
-        damageMultiplier = 0.5f;
+        damageFactor = 0.5f;
 
         element = Element.MAGICAL;
 

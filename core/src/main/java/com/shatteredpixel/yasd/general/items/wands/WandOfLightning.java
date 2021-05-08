@@ -58,7 +58,7 @@ public class WandOfLightning extends DamageWand {
 
 		element = Element.SHOCK;
 
-		damageMultiplier = 1.4f;
+		damageFactor = 1.4f;
 	}
 	
 	private ArrayList<Char> affected = new ArrayList<>();

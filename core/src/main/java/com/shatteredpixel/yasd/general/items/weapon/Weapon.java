@@ -216,34 +216,20 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 	
 	@Override
 	public float accuracyFactor( Char owner ) {
-		
-		int encumbrance = 0;
-		
-		if( owner instanceof Hero ){
-			encumbrance = encumbrance();
-		}
-
 		if (hasEnchant(Wayward.class, owner))
 			return 0;
 
-		float ACC = this.ACC;
-
-		return encumbrance > 0 ? (float)(ACC / Math.pow( 1.5, encumbrance )) : ACC;
+		return this.ACC;
 	}
 	
 	@Override
 	public float speedFactor( Char owner ) {
 
-		int encumbrance = 0;
-		if (owner instanceof Hero) {
-			encumbrance = encumbrance();
-		}
-
 		float DLY = augment.delayFactor(this.DLY);
 
 		DLY *= RingOfFuror.attackDelayMultiplier(owner);
 
-		return (encumbrance > 0 ? (float)(DLY * Math.pow( 1.2, encumbrance )) : DLY);
+		return DLY;
 	}
 
 	@Override

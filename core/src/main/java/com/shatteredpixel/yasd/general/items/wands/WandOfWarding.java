@@ -59,7 +59,7 @@ public class WandOfWarding extends DamageWand {
 	{
 		image = ItemSpriteSheet.Wands.WARDING;
 
-		damageMultiplier = 1.2f;
+		damageFactor = 1.2f;
 
 		statScaling.add(Hero.HeroStat.RESILIENCE);
 	}

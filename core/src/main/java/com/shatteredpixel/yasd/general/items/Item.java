@@ -222,6 +222,10 @@ public class Item implements Bundlable {
 		return 0;
 	}
 
+	protected final int damageReduction() {
+		return Math.round(calcItemPower(level + encumbrance()*4)*5);
+	}
+
 	public Item replaceForAlchemy() {
 		return this;
 	}

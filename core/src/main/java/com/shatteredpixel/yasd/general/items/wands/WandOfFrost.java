@@ -49,7 +49,7 @@ public class WandOfFrost extends DamageWand {
 
 		element = Element.COLD;
 
-		damageMultiplier = 0.5f;
+		damageFactor = 0.5f;
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class Crossbow extends RangedWeapon {
 
         reloadTime = 3f;
         curAmmo = MAX_AMMO = 6;
-        damageMultiplier = 1.5f;
+        damageFactor = 1.5f;
     }
 
     @Override

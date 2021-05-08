@@ -9,7 +9,7 @@ public class Longbow extends Bow {
     {
         image = ItemSpriteSheet.Ranged.LONGBOW;
 
-        damageMultiplier = 0.6f;
+        damageFactor = 0.6f;
         curAmmo = MAX_AMMO = 6;
 
         statScaling.add(Hero.HeroStat.FOCUS);

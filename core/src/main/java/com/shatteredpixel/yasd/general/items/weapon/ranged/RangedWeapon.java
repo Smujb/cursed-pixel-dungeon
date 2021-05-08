@@ -134,18 +134,18 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
     }
 
     protected int range = 10;
-    protected float damageMultiplier = 1f;
+    protected float damageFactor = 1f;
 
     protected float reloadTime = 1f;
 
     @Override
     public int min(float lvl) {
-        return Math.round(8 * lvl * damageMultiplier);   //level scaling
+        return (int) Math.max(0, (8 * lvl - damageReduction()) * damageFactor);   //level scaling
     }
 
     @Override
     public int max(float lvl) {
-        return Math.round(16 * lvl * damageMultiplier);   //level scaling
+        return (int) Math.max(0, (16 * lvl - damageReduction()) * damageFactor);   //level scaling
     }
 
     protected int MAX_AMMO = 8;

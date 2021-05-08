@@ -11,7 +11,7 @@ public class ShredderCrossbow extends Crossbow {
     {
         image = ItemSpriteSheet.Ranged.SHREDDER_CROSSBOW;
 
-        damageMultiplier = 0.2f;
+        damageFactor = 0.2f;
 
         DLY = 0.4f;
 

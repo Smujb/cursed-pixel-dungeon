@@ -242,20 +242,20 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         return Math.round(40 * lvl);
     }
 
-    protected int maxDamage(float lvl) {
-        return Math.round(16 * lvl * damageFactor);
+    public int minDamage(float lvl) {
+        return (int) Math.max(0, (8 * lvl - damageReduction()) * damageFactor);   //level scaling
     }
 
-    protected int minDamage(float lvl) {
-        return Math.round(8 * lvl * damageFactor);
+    public int maxDamage(float lvl) {
+        return (int) Math.max(0, (16 * lvl - damageReduction()) * damageFactor);   //level scaling
     }
 
     public int maxDefense(float lvl) {
-        return Math.round(defaultMaxDefense(lvl) * defenseMultiplier);
+        return (int) Math.max(0, (defaultMaxDefense(lvl) - 2*damageReduction()) * defenseMultiplier);
     }
 
     public int minDefense(float lvl) {
-        return Math.round(4 * lvl * defenseMultiplier);
+        return (int) Math.max(0, (4 * lvl - damageReduction()) * defenseMultiplier);
     }
 
     public int curDefense(float lvl) {
@@ -297,8 +297,6 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
     public int absorbDamage(Char.DamageSrc src, int damage) {
         int defense = curDefense(power());
-        int enc = encumbrance();
-        if (enc > 0) damage *= Math.pow(1.2, enc);
         if (defense >= damage) {
             float chargeToLose = (damage / (float) maxDefense(power())) * MAX_CHARGE;
             decreaseCharge(chargeToLose);

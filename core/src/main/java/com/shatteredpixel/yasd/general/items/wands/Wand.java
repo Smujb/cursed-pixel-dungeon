@@ -477,22 +477,6 @@ public abstract class Wand extends KindofMisc implements Attackable {
 					return;
 				}
 
-				if (curUser instanceof Hero) {
-					Hero hero = ((Hero)curUser);
-					int diff = curWand.encumbrance();
-					float miscastChance = (float) Math.pow(0.8f, diff);
-					if (diff > 0 && (Random.Float() > miscastChance || curWand.cursed())) {
-						diff = Math.max(3, diff);
-						if (hero.useMP(diff * 3)) {
-							GLog.info( Messages.get(Wand.class, "miscast", curWand.name()) );
-						} else {
-							GLog.info( Messages.get(Wand.class, "backfire", curWand.name()) );
-							curWand.wandUsed();
-							return;
-						}
-					}
-				}
-
 				curUser.sprite.zap(cell);
 
 				//attempts to target the cell aimed at if something is there, otherwise targets the collision pos.

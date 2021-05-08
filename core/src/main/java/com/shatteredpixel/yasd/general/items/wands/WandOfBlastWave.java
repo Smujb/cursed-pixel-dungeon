@@ -62,7 +62,7 @@ public class WandOfBlastWave extends DamageWand {
 
 		statScaling.add(Hero.HeroStat.ASSAULT);
 
-		damageMultiplier = 0.3f;
+		damageFactor = 0.3f;
 	}
 
 	@Override

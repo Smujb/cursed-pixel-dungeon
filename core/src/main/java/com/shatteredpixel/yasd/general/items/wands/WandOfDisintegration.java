@@ -59,7 +59,7 @@ public class WandOfDisintegration extends DamageWand {
 
 		statScaling.add(Hero.HeroStat.ASSAULT);
 
-		damageMultiplier = 1.2f;
+		damageFactor = 1.2f;
 	}
 	
 	@Override

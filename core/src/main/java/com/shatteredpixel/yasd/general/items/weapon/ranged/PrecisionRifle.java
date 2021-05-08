@@ -8,7 +8,7 @@ public class PrecisionRifle extends Firearm {
     {
         image = ItemSpriteSheet.Ranged.PRESCISON_RIFLE;
 
-        damageMultiplier = 0.7f;
+        damageFactor = 0.7f;
         range = 12;
         sneakBenefit = true;
 

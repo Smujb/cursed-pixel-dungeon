@@ -19,7 +19,7 @@ public class Firearm extends RangedWeapon {
         range = 16;
 
         curAmmo = MAX_AMMO = 4;
-        damageMultiplier = 1.25f;
+        damageFactor = 1.25f;
         range = 8;
     }
 

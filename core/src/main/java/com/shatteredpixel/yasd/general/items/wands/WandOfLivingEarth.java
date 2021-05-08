@@ -62,7 +62,7 @@ public class WandOfLivingEarth extends DamageWand {
 
 		statScaling.add(Hero.HeroStat.RESILIENCE);
 
-		damageMultiplier = 0.35f;
+		damageFactor = 0.35f;
 	}
 	
 	@Override

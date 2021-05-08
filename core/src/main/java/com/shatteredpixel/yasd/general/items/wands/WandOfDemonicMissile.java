@@ -12,7 +12,7 @@ public class WandOfDemonicMissile extends WandOfMagicMissile {
 
         element = Element.SHADOW;
 
-        damageMultiplier = 1.5f;
+        damageFactor = 1.5f;
         slotsUsed = 2;
     }
 

@@ -54,7 +54,7 @@ public class WandOfFlow extends DamageWand {
 
         element = Element.WATER;
 
-        damageMultiplier = 0.8f;
+        damageFactor = 0.8f;
     }
 
     ConeAOE cone;

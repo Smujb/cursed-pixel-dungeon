@@ -10,7 +10,7 @@ public class ImpactCrossbow extends Crossbow {
     {
         image = ItemSpriteSheet.Ranged.IMPACT_CROSSBOW;
 
-        damageMultiplier = 1.8f;
+        damageFactor = 1.8f;
         range = 3;
         DLY = 1.5f;
 

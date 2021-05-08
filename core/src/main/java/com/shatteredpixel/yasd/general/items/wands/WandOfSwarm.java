@@ -37,7 +37,7 @@ public class WandOfSwarm extends DamageWand {
     {
         image = ItemSpriteSheet.Wands.SWARM;
 
-        damageMultiplier = 0.4f;
+        damageFactor = 0.4f;
     }
 
     @Override

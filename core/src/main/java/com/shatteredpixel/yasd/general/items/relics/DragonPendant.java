@@ -67,14 +67,6 @@ public abstract class DragonPendant extends Relic {
         return getDragon() != null;
     }
 
-    private float chargeFactor() {
-        if (curUser == null || !(curUser instanceof Hero)) return 1f;
-        Hero hero = (Hero) curUser;
-        if (canTypicallyUse(hero)) return 1f;
-        int missingAttunement = encumbrance();
-        return (float) Math.pow(0.8f, missingAttunement);
-    }
-
     @Override
     public String desc() {
         String desc = super.desc() + "\n\n";
@@ -194,13 +186,6 @@ public abstract class DragonPendant extends Relic {
 
         @Override
         public boolean canAttack(@NotNull Char enemy) {
-            //When the hero doesn't have enough strength for the pendant, the dragon may refuse to attack.
-            DragonPendant pendant = getPendant();
-            if (pendant != null) {
-                if (Random.Float() > pendant.chargeFactor()) {
-                    return false;
-                }
-            }
             if (rangedAttackCooldown > 0) {
                 range = 1;
                 hasMeleeAttack = true;

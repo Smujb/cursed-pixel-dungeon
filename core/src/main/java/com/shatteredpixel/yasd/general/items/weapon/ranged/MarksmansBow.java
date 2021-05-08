@@ -11,7 +11,7 @@ public class MarksmansBow extends Bow {
     {
         image = ItemSpriteSheet.Ranged.MARKSMAN_BOW;
 
-        damageMultiplier = 0.7f;
+        damageFactor = 0.7f;
 
         statScaling.add(Hero.HeroStat.SUPPORT);
     }

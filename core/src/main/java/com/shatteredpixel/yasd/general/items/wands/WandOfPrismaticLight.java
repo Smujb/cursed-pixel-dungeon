@@ -61,7 +61,7 @@ public class WandOfPrismaticLight extends DamageWand {
 
 		element = Element.LIGHT;
 
-		damageMultiplier = 0.6f;
+		damageFactor = 0.6f;
 	}
 
 	@Override
