@@ -411,6 +411,8 @@ public class Badges {
 	}
 	
 	public static void validateItemLevelAquired( Item item ) {
+		// If the hero doesn't have the stats to use the item, don't trigger the achievement.
+		if (!item.canTypicallyUse(Dungeon.hero)) return;
 		
 		// This method should be called:
 		// 1) When an item is obtained (Item.collect)
