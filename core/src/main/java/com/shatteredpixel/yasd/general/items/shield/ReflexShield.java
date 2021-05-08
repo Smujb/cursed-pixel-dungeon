@@ -2,6 +2,7 @@ package com.shatteredpixel.yasd.general.items.shield;
 
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.utils.Callback;
 
@@ -29,5 +30,10 @@ public class ReflexShield extends Shield {
     @Override
     public boolean canAffectEnemy(Char enemy) {
         return true;
+    }
+
+    @Override
+    protected String propsDesc() {
+        return super.propsDesc() + "\n" + Messages.get(this, "deflects_projectiles");
     }
 }

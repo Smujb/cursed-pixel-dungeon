@@ -2,6 +2,7 @@ package com.shatteredpixel.yasd.general.items.shield;
 
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
+import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class PanicShield extends Shield {
@@ -18,5 +19,10 @@ public class PanicShield extends Shield {
             ScrollOfTeleportation.teleportUser(curUser);
         }
         return super.proc(attacker, enemy, damage, parry);
+    }
+
+    @Override
+    protected String propsDesc() {
+        return super.propsDesc() + "\n" + Messages.get(this, "teleport_away");
     }
 }

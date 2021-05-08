@@ -4,6 +4,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicCharge;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class SorcererShield extends Shield {
@@ -22,5 +23,10 @@ public class SorcererShield extends Shield {
             Buff.affect(attacker, MagicCharge.class, MagicCharge.DURATION);
         }
         return super.proc(attacker, enemy, damage, parry);
+    }
+
+    @Override
+    protected String propsDesc() {
+        return super.propsDesc() + "\n" + Messages.get(this, "boosts_wands_3");
     }
 }

@@ -46,4 +46,9 @@ public class WarpShield extends Shield {
         }
         return super.proc(attacker, enemy, damage, parry);
     }
+
+    @Override
+    protected String propsDesc() {
+        return super.propsDesc() + "\n" + Messages.get(this, "warps_user");
+    }
 }

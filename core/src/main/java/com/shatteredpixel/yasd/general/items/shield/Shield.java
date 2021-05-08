@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
+import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.MagicImmune;
@@ -221,7 +222,16 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     @Override
     public String info() {
         String info = "\n\n" + Messages.get(this, "stats_desc", maxDefense(power()), minDefense(power()), minDamage(power()), maxDamage(power()));
+        String propsDesc = propsDesc();
+        if (!propsDesc.equals("")) info = "\n" + propsDesc() + info;
         return desc() + info + upgradableItemDesc();
+    }
+
+    protected String propsDesc() {
+        String props = "";
+        if (parryTime() != Actor.TICK) props +=  "\n" + Messages.get(this, "parry_time", parryTime());
+        if (slotsUsed > 1) props += "\n" + Messages.get(KindofMisc.class, "requires_slots", slotsUsed);
+        return props;
     }
 
     public float chargePercent() {
