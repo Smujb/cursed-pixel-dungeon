@@ -184,7 +184,8 @@ public abstract class Wand extends KindofMisc implements Attackable {
 			return false;
 		}
 
-		if ( curCharges >= (cursed() ? 1 : chargesPerCast())){
+		if ( (cursed() && curUser instanceof Hero && ((Hero)curUser).useMP(5*chargesPerCast()/initialCharges())) ||
+				curCharges >= chargesPerCast()){
 			return true;
 		} else {
 			GLog.warning(Messages.get(this, "fizzles"));
@@ -276,7 +277,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	
 	@Override
 	public String status() {
-		if (levelKnown) {
+		if (levelKnown && !visiblyCursed()) {
 			return (curChargeKnown ? curCharges : "?") + "/" + maxCharges;
 		} else {
 			return null;
@@ -361,7 +362,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 			}
 		}
 		
-		curCharges -= cursed() ? 1 : chargesPerCast();
+		curCharges -= cursed() ? 0 : chargesPerCast();
 
 		MagicCharge buff = curUser.buff(MagicCharge.class);
 		if (buff != null && buff.level() > super.level()){
@@ -492,22 +493,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 
 					Invisibility.dispel();
 					
-					if (curWand.cursed()){
-						if (!curWand.cursedKnown){
-							GLog.negative(Messages.get(Wand.class, "curse_discover", curWand.name()));
-						}
-						CursedWand.cursedZap(curWand,
-								curUser,
-								new Ballistica(curUser.pos, target, Ballistica.MAGIC_BOLT),
-								new Callback() {
-									@Override
-									public void call() {
-										curWand.wandUsed();
-									}
-								});
-					} else {
-						curWand.zap(target);
-					}
+					curWand.zap(target);
 					curWand.cursedKnown = true;
 					
 				}
