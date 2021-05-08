@@ -276,11 +276,11 @@ public class ItemSpriteSheet {
 		public static final int SORCERER		  = SHIELD+6;
 		public static final int LIGHT			  = SHIELD+7;
 		public static final int BARBED         	  = SHIELD+8;
-		public static final int WARP			  = SHIELD+9;//TODO: Now unused
+		public static final int WARP			  = SHIELD+9;
 		public static final int RUNIC	          = SHIELD+10;
 		public static final int REINFORCED        = SHIELD+11;
 		public static final int ROYAL             = SHIELD+12;
-		public static final int DEMONIC           = SHIELD+13;//TODO: Unused
+		public static final int DEMONIC           = SHIELD+13;
 		public static final int HERO              = SHIELD+14;
 		public static final int PESTILENT		  = SHIELD+15;
 		public static final int LACERATING        = SHIELD+16;

@@ -140,6 +140,7 @@ import com.shatteredpixel.yasd.general.items.shield.MidasShield;
 import com.shatteredpixel.yasd.general.items.shield.PanicShield;
 import com.shatteredpixel.yasd.general.items.shield.ParryingDagger;
 import com.shatteredpixel.yasd.general.items.shield.PestilentShield;
+import com.shatteredpixel.yasd.general.items.shield.ProphetShield;
 import com.shatteredpixel.yasd.general.items.shield.ReflexShield;
 import com.shatteredpixel.yasd.general.items.shield.ReinforcedShield;
 import com.shatteredpixel.yasd.general.items.shield.RoundShield;
@@ -597,9 +598,10 @@ public class Generator {
 					PestilentShield.class,
 					SorcererShield.class,
 					TitanShield.class,
-					ReflexShield.class
+					ReflexShield.class,
+					ProphetShield.class
 			};
-			SHIELD.probs = new float[] { 3, 2, 1, 2, 2, 2, 3, 2, 2, 3, 1, 2, 2, 3, 1, 2, 3, 1, 1 };
+			SHIELD.probs = new float[] { 3, 2, 1, 2, 2, 2, 3, 2, 2, 3, 1, 2, 2, 3, 1, 2, 3, 1, 1, 3 };
 
 			RANGED.classes = new Class<?>[] {
 					Bow.class,
