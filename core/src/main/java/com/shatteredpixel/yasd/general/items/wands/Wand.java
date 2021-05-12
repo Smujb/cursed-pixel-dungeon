@@ -180,7 +180,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	public boolean tryToZap(Char owner, int target ){
 
 		if (owner.buff(MagicImmune.class) != null){
-			GLog.warning( Messages.get(this, "no_magic") );
+			warnPlayer(owner, Messages.get(this, "no_magic"));
 			return false;
 		}
 
@@ -188,8 +188,14 @@ public abstract class Wand extends KindofMisc implements Attackable {
 				curCharges >= chargesPerCast()){
 			return true;
 		} else {
-			GLog.warning(Messages.get(this, "fizzles"));
+			warnPlayer(owner, Messages.get(this, "fizzles"));
 			return false;
+		}
+	}
+
+	private void warnPlayer(Char ch, String message) {
+		if (ch instanceof Hero) {
+			GLog.warning(message);
 		}
 	}
 	
