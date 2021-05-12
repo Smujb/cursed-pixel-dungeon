@@ -249,7 +249,6 @@ public class NewTengu extends Boss {
 
 				float fill = 0.9f - 0.5f*missingHPPercent();
 				level.placeTrapsInTenguCell(fill);
-				GLog.positive("3");
 
 				//otherwise, jump in a larger possible area, as the room is bigger
 			} else {
