@@ -27,6 +27,7 @@
 
 package com.shatteredpixel.yasd.general.actors.mobs.npcs;
 
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
@@ -107,12 +108,17 @@ public class Shopkeeper extends NPC {
 		return GameScene.selectItem( itemSelector, WndBag.Mode.FOR_SALE, Messages.get(Shopkeeper.class, "sell"));
 	}
 	
-	private static WndBag.Listener itemSelector = new WndBag.Listener() {
+	private static final WndBag.Listener itemSelector = new WndBag.Listener() {
 		@Override
 		public void onSelect( Item item ) {
 			if (item != null) {
 				WndBag parentWnd = sell();
-				GameScene.show( new WndTradeItem( item, parentWnd ) );
+				CPDGame.runOnRenderThread(new Callback() {
+					@Override
+					public void call() {
+						Game.scene().addToFront(new WndTradeItem( item, parentWnd ));
+					}
+				});
 			}
 		}
 	};

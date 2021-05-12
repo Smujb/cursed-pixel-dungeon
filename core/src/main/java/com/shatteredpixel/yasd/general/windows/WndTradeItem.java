@@ -93,7 +93,6 @@ public class WndTradeItem extends WndInfoItem {
 			pos = btnSellAll.bottom();
 
 		}
-
 		resize( width, (int)pos );
 	}
 
