@@ -21,9 +21,9 @@ public class WarpShield extends Shield {
     }
 
     @Override
-    public int proc(Char attacker, Char enemy, int damage, boolean parry) {
-        if (Dungeon.level.adjacent(attacker.pos, enemy.pos)) {
-            super.proc(attacker, enemy, damage, parry);
+    public void affectEnemy(Char enemy, boolean parry) {
+        if (canAffectEnemy(enemy)) {
+            super.affectEnemy(enemy, parry);
         } else {
             int closest = -1;
             boolean[] passable = Dungeon.level.passable();
@@ -31,20 +31,20 @@ public class WarpShield extends Shield {
             for (int n : PathFinder.NEIGHBOURS9) {
                 int c = enemy.pos + n;
                 if (passable[c] && Actor.findChar( c ) == null
-                        && (closest == -1 || (Dungeon.level.trueDistance(c, attacker.pos) < (Dungeon.level.trueDistance(closest, attacker.pos))))) {
+                        && (closest == -1 || (Dungeon.level.trueDistance(c, curUser.pos) < (Dungeon.level.trueDistance(closest, curUser.pos))))) {
                     closest = c;
                 }
             }
+
             if (closest == -1) {
                 GLog.negative(Messages.get(this, "cant_warp"));
             } else {
-                attacker.sprite.visible = true;
-                Blink.appear(attacker, closest);
+                curUser.sprite.visible = true;
+                Blink.appear(curUser, closest);
                 Dungeon.level.pressCell(closest);
                 Dungeon.observe();
             }
         }
-        return super.proc(attacker, enemy, damage, parry);
     }
 
     @Override
