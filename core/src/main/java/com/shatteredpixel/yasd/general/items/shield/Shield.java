@@ -118,6 +118,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     protected final void setCharge(float value) {
         charge = value;
         charge = GameMath.gate(0f, charge, MAX_CHARGE);
+        updateQuickslot();
     }
 
     protected final void increaseCharge(float value) {
@@ -438,6 +439,8 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         public boolean act() {
             //See Hero.ready(), detaches the buff when the hero can move again.
             spend(1f);
+            //Shields loose *all* charge on a failed parry!
+            shield.setCharge(0);
             return true;
         }
 
