@@ -13,6 +13,13 @@ import org.jetbrains.annotations.NotNull;
 public abstract class ParryBuff extends Buff {
 
     @Override
+    public boolean act() {
+        //See Hero.ready(), detaches the buff when the hero can move again.
+        spend(1f);
+        return true;
+    }
+
+    @Override
     public boolean attachTo(@NotNull Char target) {
         if (target instanceof Mob && target.sprite != null) target.sprite.showStatus(CharSprite.NEGATIVE, Messages.get(Shield.class, "parry_prep"));
         return super.attachTo(target);

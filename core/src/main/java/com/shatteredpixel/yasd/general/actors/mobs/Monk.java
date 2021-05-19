@@ -27,13 +27,12 @@
 
 package com.shatteredpixel.yasd.general.actors.mobs;
 
-import com.shatteredpixel.yasd.general.actors.buffs.Buff;
-import com.shatteredpixel.yasd.general.actors.buffs.Focus;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Imp;
 import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.food.Pasty;
 import com.shatteredpixel.yasd.general.sprites.MonkSprite;
 import com.shatteredpixel.yasd.general.sprites.SeniorSprite;
+import com.watabou.utils.Random;
 
 public class Monk extends Mob {
 
@@ -60,20 +59,10 @@ public class Monk extends Mob {
 		super.rollToDropLoot();
 	}
 
-	protected boolean act() {
-		boolean result = super.act();
-		if (buff(Focus.class) == null && state == HUNTING/* && focusCooldown <= 0*/) {
-			Buff.affect(this, Focus.class);
-		}
-		return result;
-	}
-
 	@Override
-	public void move(int step) {
-		// moving reduces cooldown by an additional 0.67, giving a total reduction of 1.67f.
-		// basically monks will become focused notably faster if you kite them.
-		Buff.affect(this, Focus.class).loseCooldown(0.67f);
-		super.move(step);
+	protected boolean canParry() {
+		//Randomly parry when charge >= 50%, with chance increasing with charge
+		return parryCharge/MAX_PARRY_CHARGE >= Random.Float(0.5f, 1f);
 	}
 
 	public static class Senior extends Monk {
@@ -84,15 +73,8 @@ public class Monk extends Mob {
 
 			loot = new Pasty();
 			lootChance = 0.2f;
+			//Parry god
+			maxParryDefenseFactor = 1.5f;
 		}
-
-		@Override
-		public void move( int step ) {
-			// on top of the existing move bonus, senior monks get a further 1.66 cooldown reduction
-			// for a total of 3.33, double the normal 1.67 for regular monks
-			Buff.affect(this, Focus.class).loseCooldown(1.33f);
-			super.move(step);
-		}
-
 	}
 }

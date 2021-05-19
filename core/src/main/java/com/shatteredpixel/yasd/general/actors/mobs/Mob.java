@@ -109,7 +109,6 @@ public abstract class Mob extends Char {
 	public float evasionFactor = 1f;
 	public float perceptionFactor = 1f;
 	public float stealthFactor = 1f;
-	protected boolean canParry = false;
 
 	public int range = 1;
 	public boolean hasMeleeAttack = true;
@@ -201,6 +200,10 @@ public abstract class Mob extends Char {
 		updateHT(true);
 	}
 
+	protected boolean canParry() {
+		return false;
+	}
+
 	@Override
 	public void updateHT(boolean boostHP) {
 		HP = HT = (int) (normalHP(level) * healthFactor);
@@ -244,11 +247,12 @@ public abstract class Mob extends Char {
 		return Math.round(Item.calcMobPower(level) * 12);	
 	}
 
-	private static final float MAX_PARRY_CHARGE = 100f;
-	private float parryCharge = MAX_PARRY_CHARGE;
+	protected static final float MAX_PARRY_CHARGE = 100f;
+	protected float parryCharge = MAX_PARRY_CHARGE;
+	protected float maxParryDefenseFactor = 1f;
 
 	protected static int normalMaxDefense(int level) {
-		return Math.round(Item.calcMobPower(level) * 40);
+		return Math.round(Item.calcMobPower(level) * 36);
 	}
 
 	int findClosest(Char enemy, int pos) {
@@ -295,7 +299,7 @@ public abstract class Mob extends Char {
 	}
 
 	public void setLevel(int lvl) {
-		level = level;
+		level = lvl;
 		updateHT(true);
 	}
 
@@ -351,7 +355,7 @@ public abstract class Mob extends Char {
 
 
 	public int maxDefense() {
-		return normalMaxDefense(level);
+		return (int) (normalMaxDefense(level) * maxParryDefenseFactor);
 	}
 
 	public int defense() {
@@ -1077,6 +1081,15 @@ public abstract class Mob extends Char {
 
 		private Mob mob;
 
+		@Override
+		public boolean act() {
+			super.act();
+
+			//All charge is lost on a failed parry
+			mob.parryCharge = 0;
+			return true;
+		}
+
 		private static final String MOB_ID = "mob-id";
 
 		public void setMob(Mob mob) {
@@ -1102,7 +1115,7 @@ public abstract class Mob extends Char {
 		@Override
 		public void affectEnemy(Char enemy, boolean parry) {
 			if (mob == null) return;
-			int damage = mob.damageRoll()/2;
+			int damage = (int) (mob.damageRoll()/(2*mob.attackDelay));
 			if (parry) damage *= 2;
 			enemy.damage(damage, mob);
 		}
@@ -1340,7 +1353,7 @@ public abstract class Mob extends Char {
 
 				target = enemy.pos;
 
-				if (Dungeon.level.adjacent(pos, enemy.pos) && canParry && Random.Float() < (parryCharge/MAX_PARRY_CHARGE)) {
+				if (Dungeon.level.adjacent(pos, enemy.pos) && canParry()) {
 					doParry();
 					return true;
 				}

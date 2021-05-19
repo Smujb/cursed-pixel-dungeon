@@ -433,16 +433,16 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
         private Shield shield;
 
-        private static final String SHIELD = "shield";
-
         @Override
         public boolean act() {
-            //See Hero.ready(), detaches the buff when the hero can move again.
-            spend(1f);
+            super.act();
+
             //Shields loose *all* charge on a failed parry!
             shield.setCharge(0);
             return true;
         }
+
+        private static final String SHIELD = "shield";
 
         public void setShield(Shield shield) {
             this.shield = shield;
