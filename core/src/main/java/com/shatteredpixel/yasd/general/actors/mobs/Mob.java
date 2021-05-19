@@ -62,8 +62,8 @@ import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.relics.CupOfSuffering;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
-import com.shatteredpixel.yasd.general.items.weapon.enchantments.Lucky;
 import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
+import com.shatteredpixel.yasd.general.items.weapon.enchantments.Lucky;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -1077,7 +1077,7 @@ public abstract class Mob extends Char {
 
 		private Mob mob;
 
-		private static final String MOB = "mob";
+		private static final String MOB_ID = "mob-id";
 
 		public void setMob(Mob mob) {
 			this.mob = mob;
@@ -1110,13 +1110,13 @@ public abstract class Mob extends Char {
 		@Override
 		public void storeInBundle(Bundle bundle) {
 			super.storeInBundle(bundle);
-			bundle.put(MOB, mob);
+			bundle.put(MOB_ID, mob.id());
 		}
 
 		@Override
 		public void restoreFromBundle(Bundle bundle) {
 			super.restoreFromBundle(bundle);
-			mob = (Mob) bundle.get(MOB);
+			mob = (Mob) Actor.findById(bundle.getInt(MOB_ID));
 		}
 	}
 
