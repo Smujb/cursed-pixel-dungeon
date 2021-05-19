@@ -33,6 +33,8 @@ import com.shatteredpixel.yasd.general.effects.Speck;
 import com.watabou.noosa.TextureFilm;
 
 public class SkeletonSprite extends MobSprite {
+
+	protected int offset = 0;
 	
 	public SkeletonSprite() {
 		super();
@@ -42,16 +44,16 @@ public class SkeletonSprite extends MobSprite {
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 		
 		idle = new Animation( 12, true );
-		idle.frames( frames, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3 );
+		idle.frames( frames, 0+offset, 0+offset, 0+offset, 0+offset, 0+offset, 0+offset, 0+offset, 0+offset, 0+offset, 0+offset, 0+offset, 0+offset, 0+offset, 1+offset, 2+offset, 3+offset );
 		
 		run = new Animation( 15, true );
-		run.frames( frames, 4, 5, 6, 7, 8, 9 );
+		run.frames( frames, 4+offset, 5+offset, 6+offset, 7+offset, 8+offset, 9+offset );
 		
 		attack = new Animation( 15, false );
-		attack.frames( frames, 14, 15, 16 );
+		attack.frames( frames, 14+offset, 15+offset, 16+offset );
 		
 		die = new Animation( 12, false );
-		die.frames( frames, 10, 11, 12, 13 );
+		die.frames( frames, 10+offset, 11+offset, 12+offset, 13+offset);
 		
 		play( idle );
 	}
@@ -67,5 +69,11 @@ public class SkeletonSprite extends MobSprite {
 	@Override
 	public int blood() {
 		return 0xFFcccccc;
+	}
+
+	public static class Old extends SkeletonSprite {
+		{
+			offset = 20;
+		}
 	}
 }
