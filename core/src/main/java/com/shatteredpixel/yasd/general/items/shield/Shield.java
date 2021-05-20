@@ -265,6 +265,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
     public static void successfulParry(Char ch) {
         ch.sprite.showStatus( CharSprite.POSITIVE, Messages.get(Shield.class, "parried") );
+        evoke(ch);
         Sample.INSTANCE.play(Assets.Sounds.HIT_PARRY, 1f, Random.Float(0.96f, 1.05f));
         CPDGame.shake(1f);
     }

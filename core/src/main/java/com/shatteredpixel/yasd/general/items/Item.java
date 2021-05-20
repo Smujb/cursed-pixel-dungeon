@@ -541,8 +541,8 @@ public class Item implements Bundlable {
 		//do nothing by default
 	}
 	
-	public static void evoke( Hero hero ) {
-		hero.sprite.emitter().burst( Speck.factory( Speck.EVOKE ), 5 );
+	public static void evoke( Char ch ) {
+		ch.sprite.emitter().burst( Speck.factory( Speck.EVOKE ), 5 );
 	}
 	
 	@Override
