@@ -66,7 +66,7 @@ public class JellyFish extends WaterMob {
 	}
 
 	public JellyFish(){
-		this(Random.Int(3), Dungeon.getScaleFactor());
+		this(Random.Int(3), Dungeon.getScaling());
 	}
 
 	private JellyFish(int colour, int depth){

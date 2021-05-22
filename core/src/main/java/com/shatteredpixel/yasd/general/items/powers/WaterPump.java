@@ -29,7 +29,7 @@ public class WaterPump extends Power {
 			if (PathFinder.distance[i] < Integer.MAX_VALUE) {
 				Char ch = Actor.findChar(i);
 				if (ch != null && ch.alignment == Char.Alignment.ENEMY) {
-					ch.damage(Random.IntRange(4 + Dungeon.getScaleFactor() * 2, 10 + Dungeon.getScaleFactor() * 6), new Char.DamageSrc(Element.WATER, this));
+					ch.damage(Random.IntRange(4 + Dungeon.getScaling() * 2, 10 + Dungeon.getScaling() * 6), new Char.DamageSrc(Element.WATER, this));
 				}
 				CellEmitter.get(i).burst(SewerLevel.WaterParticle.FACTORY, 10);
 			}

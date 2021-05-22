@@ -183,7 +183,7 @@ public abstract class Power extends Item {
 
 	@Override
 	public int price() {
-		return 60 + 20 * Dungeon.getScaleFactor();
+		return 60 + 20 * Dungeon.getScaling();
 	}
 
 	private static final String CHARGE = "charge";

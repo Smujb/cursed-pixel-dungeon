@@ -79,7 +79,7 @@ public class Dart extends MissileWeapon {
 	
 	@Override
 	public int min(float lvl) {
-		int base = 1 + Dungeon.getScaleFactor()/2;
+		int base = 1 + Dungeon.getScaling()/2;
 		if (getCrossbow() != null){
 			return  getCrossbow().min(lvl);  //+1 per level or bow level
 		} else {
@@ -90,7 +90,7 @@ public class Dart extends MissileWeapon {
 
 	@Override
 	public int max(float lvl) {
-		int base = 2 + Dungeon.getScaleFactor();
+		int base = 2 + Dungeon.getScaling();
 		if (getCrossbow() != null){
 			return getCrossbow().max(lvl);  //+3 per bow level, +2 per level (default scaling +2)
 		} else {

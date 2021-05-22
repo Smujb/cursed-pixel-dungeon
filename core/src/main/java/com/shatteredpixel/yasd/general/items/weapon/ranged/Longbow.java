@@ -2,7 +2,6 @@ package com.shatteredpixel.yasd.general.items.weapon.ranged;
 
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class Longbow extends Bow {
@@ -11,8 +10,6 @@ public class Longbow extends Bow {
 
         damageFactor = 0.6f;
         curAmmo = MAX_AMMO = 6;
-
-        statScaling.add(Hero.HeroStat.FOCUS);
     }
 
     @Override

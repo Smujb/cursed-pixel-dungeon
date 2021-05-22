@@ -161,7 +161,7 @@ public class Statue extends Mob implements Callback {
 	}
 
 	protected void upgradeItems() {
-		int sous = Dungeon.getScaleFactor()*5;
+		int sous = Dungeon.getScaling()*5;
 		EquipableItem item;
 		if (belongings.miscs.length > 0) {
 			do {

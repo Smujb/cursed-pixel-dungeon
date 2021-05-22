@@ -194,7 +194,7 @@ public enum Element {
 				Buff.affect(defender, Vertigo.class, Vertigo.DURATION);
 				break;
 			case TOXIC:
-				Buff.affect(defender, Poison.class).set(2 + Dungeon.getScaleFactor() / 3f);
+				Buff.affect(defender, Poison.class).set(2 + Dungeon.getScaling() / 3f);
 				break;
 		}
 		return damage;

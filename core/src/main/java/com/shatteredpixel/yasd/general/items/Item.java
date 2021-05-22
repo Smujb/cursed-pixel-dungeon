@@ -658,7 +658,7 @@ public class Item implements Bundlable {
 			do {
 				upgrade();
 				upgrade++;
-			} while (Random.Int((int) (level*1.5f)) <= Dungeon.getScaleFactor() && upgrade < 1000);
+			} while (Random.Int((int) (level*1.5f)) <= Dungeon.getScaling() && upgrade < 1000);
 			return this;
 		}
 		return random();

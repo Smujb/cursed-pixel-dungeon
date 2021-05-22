@@ -10,7 +10,7 @@ public class HolyWater extends Gas {
 
 	@Override
 	public void affectCell(int cell) {
-		int damage = 1 + Dungeon.getScaleFactor()/6;
+		int damage = 1 + Dungeon.getScaling()/6;
 		Char ch = Actor.findChar( cell );
 		if (ch != null && !ch.isImmune(this.getClass())) {
 			ch.heal( damage, true, true );

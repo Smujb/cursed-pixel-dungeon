@@ -44,7 +44,7 @@ public class ConfusionTrap extends Trap {
 	@Override
 	public void activate() {
 
-		GameScene.add(Blob.seed(pos, 300 + 20 * Dungeon.getScaleFactor(), ConfusionGas.class));
+		GameScene.add(Blob.seed(pos, 300 + 20 * Dungeon.getScaling(), ConfusionGas.class));
 		Sample.INSTANCE.play(Assets.Sounds.GAS);
 
 	}

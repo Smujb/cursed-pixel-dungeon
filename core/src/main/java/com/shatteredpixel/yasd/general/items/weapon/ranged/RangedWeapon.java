@@ -134,8 +134,6 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
     }
 
     protected int range = 10;
-    protected float damageFactor = 1f;
-
     protected float reloadTime = 1f;
 
     @Override

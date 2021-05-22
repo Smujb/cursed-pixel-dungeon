@@ -53,6 +53,6 @@ public class PotionOfCorrosiveGas extends ExoticPotion {
 			Sample.INSTANCE.play( Assets.Sounds.GAS );
 		}
 		
-		GameScene.add( Blob.seed( cell, 200, CorrosiveGas.class ).setStrength(Corrosion.defaultStrength(Dungeon.getScaleFactor())));
+		GameScene.add( Blob.seed( cell, 200, CorrosiveGas.class ).setStrength(Corrosion.defaultStrength(Dungeon.getScaling())));
 	}
 }

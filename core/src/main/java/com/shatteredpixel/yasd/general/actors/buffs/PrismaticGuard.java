@@ -112,7 +112,7 @@ public class PrismaticGuard extends Buff {
 		if (hero instanceof Hero) {
 			return 8 + (int) Math.floor(((Hero)hero).lvl * 2.5f);
 		} else {
-			return 8 + (int) Math.floor(Dungeon.getScaleFactor() * 2.5f);
+			return 8 + (int) Math.floor(Dungeon.getScaling() * 2.5f);
 		}
 	}
 	

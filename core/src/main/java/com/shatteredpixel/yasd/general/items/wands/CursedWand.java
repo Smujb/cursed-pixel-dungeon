@@ -225,7 +225,7 @@ public class CursedWand {
 							if (user instanceof Hero) {
 								damage = ((Hero)user).lvl * 2;
 							} else {
-								damage = Dungeon.getScaleFactor() * 2;
+								damage = Dungeon.getScaling() * 2;
 							}
 							if (Random.Int(2) == 0) {
 								user.HP = Math.min(user.HT, user.HP + damage);

@@ -329,7 +329,7 @@ public class WandOfWarding extends DamageWand {
 		@Override
 		public int defenseSkill(Char enemy) {
 			if (tier > 3){
-				defenseSkill = 4 + Dungeon.getScaleFactor();
+				defenseSkill = 4 + Dungeon.getScaling();
 			}
 			return super.defenseSkill(enemy);
 		}

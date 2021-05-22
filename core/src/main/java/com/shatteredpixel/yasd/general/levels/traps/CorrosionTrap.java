@@ -44,10 +44,10 @@ public class CorrosionTrap extends Trap {
 	@Override
 	public void activate() {
 
-		CorrosiveGas corrosiveGas = Blob.seed(pos, 80 + 5 * Dungeon.getScaleFactor(), CorrosiveGas.class);
+		CorrosiveGas corrosiveGas = Blob.seed(pos, 80 + 5 * Dungeon.getScaling(), CorrosiveGas.class);
 		Sample.INSTANCE.play(Assets.Sounds.GAS);
 
-		corrosiveGas.setStrength(1 + Dungeon.getScaleFactor() / 4);
+		corrosiveGas.setStrength(1 + Dungeon.getScaling() / 4);
 
 		GameScene.add(corrosiveGas);
 

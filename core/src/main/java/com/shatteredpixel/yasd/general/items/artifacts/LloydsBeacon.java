@@ -202,7 +202,7 @@ public class LloydsBeacon extends Artifact {
 			if (target == null) return;
 
 			Invisibility.dispel();
-			charge -= Dungeon.getScaleFactor() > 20 ? 2 : 1;
+			charge -= Dungeon.getScaling() > 20 ? 2 : 1;
 			updateQuickslot();
 
 			if (Actor.findChar(target) == curUser){

@@ -60,7 +60,7 @@ public class GuardianTrap extends Trap {
 
 		Sample.INSTANCE.play( Assets.Sounds.ALERT );
 
-		for (int i = 0; i < (Dungeon.getScaleFactor() - 5)/5; i++){
+		for (int i = 0; i < (Dungeon.getScaling() - 5)/5; i++){
 			Guardian guardian = Mob.create(Guardian.class);
 			guardian.state = guardian.WANDERING;
 			guardian.pos = Dungeon.level.randomRespawnCell(guardian);

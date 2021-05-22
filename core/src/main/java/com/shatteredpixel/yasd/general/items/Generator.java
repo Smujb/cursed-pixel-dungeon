@@ -235,6 +235,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Bow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Crossbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Firearm;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.HeavyPistol;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.ImpactCrossbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Longbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.MarksmansBow;
@@ -611,9 +612,10 @@ public class Generator {
 					ShredderCrossbow.class,
 					ImpactCrossbow.class,
 					Longbow.class,
-					PrecisionRifle.class
+					PrecisionRifle.class,
+					HeavyPistol.class
 			};
-			RANGED.probs = new float[]{3, 3, 3, 2, 1, 3, 2, 2};
+			RANGED.probs = new float[]{3, 3, 3, 2, 1, 3, 2, 2, 2};
 
 			FOOD.classes = new Class<?>[]{
 					Food.class,

@@ -30,7 +30,7 @@ public class PoisonBurst extends Power {
 		Char ch = Actor.findChar(shot.collisionPos);
 		if (ch != null && curUser instanceof Hero) {
 			ch.damage(Random.NormalIntRange(1, ((Hero) curUser).maxMP()), new Char.DamageSrc(Element.TOXIC, this));
-			Buff.affect(ch, Poison.class).set( 3 + Dungeon.getScaleFactor()/2f );
+			Buff.affect(ch, Poison.class).set( 3 + Dungeon.getScaling()/2f );
 		}
 	}
 
@@ -63,7 +63,7 @@ public class PoisonBurst extends Power {
 			Char ch = Actor.findChar(shot.collisionPos);
 			if (ch != null && curUser instanceof Hero) {
 				ch.damage(Random.NormalIntRange(1, ((Hero) curUser).maxMP()), new Char.DamageSrc(Element.TOXIC, this));
-				Buff.affect(ch, Poison.class).set( 6 + Dungeon.getScaleFactor() );
+				Buff.affect(ch, Poison.class).set( 6 + Dungeon.getScaling() );
 			}
 		}
 

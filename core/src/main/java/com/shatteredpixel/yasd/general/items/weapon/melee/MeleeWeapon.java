@@ -46,7 +46,6 @@ public class MeleeWeapon extends Weapon implements Attackable {
 		statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.EXECUTION));
 	}
 
-	public float damageFactor = 1f;
 	public float defenseMultiplier = 0f;
 
 	@Override

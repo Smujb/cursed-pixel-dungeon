@@ -82,6 +82,7 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 	public float    ACC = 1f;	// Accuracy modifier
 	public float	DLY	= 1f;	// Speed modifier
 	public int      RCH = 1;    // Reach modifier (only applies to melee hits)
+	protected float damageFactor = 1f;
 
 	public enum Augment {
 		SPEED   (0.7f, 0.6667f),
@@ -113,6 +114,10 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 	
 	public Enchantment enchantment;
 	public boolean curseInfusionBonus = false;
+
+	protected float damageFactor() {
+		return damageFactor;
+	}
 	
 	@Override
 	public int proc( Char attacker, Char defender, int damage ) {
@@ -279,7 +284,7 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 		//+0: 75% (3/4)
 		//+1: 20% (4/20)
 		//+2: 5%  (1/20)
-		int n = Dungeon.getScaleFactor()/2;
+		int n = Dungeon.getScaling()/2;
 		if (Random.Int(4) == 0) {
 			n++;
 			if (Random.Int(5) == 0) {

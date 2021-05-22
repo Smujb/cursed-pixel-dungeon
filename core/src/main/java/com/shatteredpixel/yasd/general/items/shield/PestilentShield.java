@@ -18,7 +18,7 @@ public class PestilentShield extends Shield {
 
     @Override
     public int proc(Char attacker, Char enemy, int damage, boolean parry) {
-        if (parry) Buff.affect(enemy, Poison.class).set(3 + Dungeon.getScaleFactor());
+        if (parry) Buff.affect(enemy, Poison.class).set(3 + Dungeon.getScaling());
         return super.proc(attacker, enemy, damage, parry);
     }
 

@@ -780,7 +780,7 @@ public class Dungeon {
 		}
 	}
 
-	public static int getScaleFactor() {
+	public static int getScaling() {
 		if (level != null) {
 			return level.getScaleFactor();
 		} else if (hero != null) {
@@ -788,6 +788,10 @@ public class Dungeon {
 		} else {
 			return 0;
 		}
+	}
+
+	public static float getScaleModifier() {
+		return Item.calcMobPower(getScaling());
 	}
 	
 	public static void deleteGame( int save, boolean deleteLevels ) {

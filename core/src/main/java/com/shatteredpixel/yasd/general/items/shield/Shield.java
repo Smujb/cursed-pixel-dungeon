@@ -190,7 +190,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         //+0: 75% (3/4)
         //+1: 20% (4/20)
         //+2: 5%  (1/20)
-        int n = Dungeon.getScaleFactor()/2;
+        int n = Dungeon.getScaling()/2;
         if (Random.Int(4) == 0) {
             n++;
             if (Random.Int(5) == 0) {

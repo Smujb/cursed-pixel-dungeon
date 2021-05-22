@@ -65,7 +65,7 @@ public class Shopkeeper extends NPC {
 
 	@Override
 	public float noticeSkill(Char enemy) {
-		return 5 + Dungeon.getScaleFactor();
+		return 5 + Dungeon.getScaling();
 	}
 
 	@Override

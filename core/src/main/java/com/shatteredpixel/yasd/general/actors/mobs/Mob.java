@@ -196,7 +196,7 @@ public abstract class Mob extends Char {
 	}
 
 	public Mob() {
-		level = Dungeon.getScaleFactor();
+		level = Dungeon.getScaling();
 		updateHT(true);
 	}
 
@@ -859,7 +859,7 @@ public abstract class Mob extends Char {
 
 		if (Dungeon.isChallenged(Challenges.CORROSION)) {
 			int amount = Math.min( (int) (100*((float)dmg/(float)HT)), 100);
-			GameScene.add(Blob.seed(this.pos, amount, DemonGas.class).setStrength(Corrosion.defaultStrength(Dungeon.getScaleFactor())));
+			GameScene.add(Blob.seed(this.pos, amount, DemonGas.class).setStrength(Corrosion.defaultStrength(Dungeon.getScaling())));
 		}
 		
 		super.damage( dmg, src);
@@ -880,7 +880,7 @@ public abstract class Mob extends Char {
 				Badges.validateMonstersSlain();
 				Statistics.qualifiedForNoKilling = false;
 				
-				int exp = Dungeon.hero.lvl <= Dungeon.getScaleFactor() + 2 ? EXP : 0;
+				int exp = Dungeon.hero.lvl <= Dungeon.getScaling() + 2 ? EXP : 0;
 				Dungeon.hero.earnExp(exp, getClass());
 
 				//If the hero is cursed, eliminate an enemy from the curse
@@ -983,7 +983,7 @@ public abstract class Mob extends Char {
 	}
 	
 	public void rollToDropLoot(){
-		if (Dungeon.hero.lvl > Dungeon.getScaleFactor() + 3) return;
+		if (Dungeon.hero.lvl > Dungeon.getScaling() + 3) return;
 		
 		float lootChance = this.lootChance;
 		lootChance *= RingOfWealth.dropChanceMultiplier( Dungeon.hero );
@@ -1008,7 +1008,7 @@ public abstract class Mob extends Char {
 		}
 		
 		//lucky enchant logic
-		if (Dungeon.hero.lvl <= Dungeon.getScaleFactor() + 1 && buff(Lucky.LuckProc.class) != null){
+		if (Dungeon.hero.lvl <= Dungeon.getScaling() + 1 && buff(Lucky.LuckProc.class) != null){
 			Dungeon.level.drop(Lucky.genLoot(), pos).sprite.drop();
 			Lucky.showFlare(sprite);
 		}

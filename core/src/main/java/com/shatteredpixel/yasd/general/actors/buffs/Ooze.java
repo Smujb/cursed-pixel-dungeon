@@ -106,8 +106,8 @@ public class Ooze extends Buff {
 	@Override
 	public boolean act() {
 		if (target.isAlive()) {
-			if (Dungeon.getScaleFactor() > 4)
-				target.damage( Dungeon.getScaleFactor()/Constants.CHAPTER_LENGTH, this);
+			if (Dungeon.getScaling() > 4)
+				target.damage( Dungeon.getScaling()/Constants.CHAPTER_LENGTH, this);
 			else if (Random.Int(2) == 0)
 				target.damage( 1, this );
 			if (!target.isAlive() && target == Dungeon.hero) {
