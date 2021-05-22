@@ -314,7 +314,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
     protected boolean canParry(int damage) {
         float chargeToLose = (damage / (float) maxDefense(power())) * MAX_CHARGE;
-        return charge > chargeToLose;
+        return charge >= chargeToLose;
     }
 
     @Override
