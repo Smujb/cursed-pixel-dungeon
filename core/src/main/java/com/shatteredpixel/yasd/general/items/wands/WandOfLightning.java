@@ -36,7 +36,7 @@ import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Lightning;
 import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Shocking;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
+import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;

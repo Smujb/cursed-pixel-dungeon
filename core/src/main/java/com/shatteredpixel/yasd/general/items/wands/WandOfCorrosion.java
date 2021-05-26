@@ -39,7 +39,7 @@ import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.CorrosionParticle;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
+import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;

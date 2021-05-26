@@ -39,7 +39,7 @@ import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.wands.Wand;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
+import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.PathFinder;

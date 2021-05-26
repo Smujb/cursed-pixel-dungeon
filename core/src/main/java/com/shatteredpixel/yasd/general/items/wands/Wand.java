@@ -46,7 +46,7 @@ import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
+import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.CellSelector;

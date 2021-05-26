@@ -101,7 +101,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Katana;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
+import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Polearm;
 import com.shatteredpixel.yasd.general.items.weapon.melee.RunicBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Scimitar;

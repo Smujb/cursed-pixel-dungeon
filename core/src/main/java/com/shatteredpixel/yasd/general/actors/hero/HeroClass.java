@@ -70,7 +70,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.FoolsBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.InscribedKnife;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
+import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MegaStick;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
 import com.shatteredpixel.yasd.general.messages.Messages;

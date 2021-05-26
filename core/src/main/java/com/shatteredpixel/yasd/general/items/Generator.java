@@ -217,7 +217,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.HeroSword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Hoe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Katana;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
+import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MidnightCutlass;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MundaneSword;

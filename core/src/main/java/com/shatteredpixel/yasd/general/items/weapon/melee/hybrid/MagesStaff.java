@@ -25,7 +25,7 @@
  *
  */
 
-package com.shatteredpixel.yasd.general.items.weapon.melee;
+package com.shatteredpixel.yasd.general.items.weapon.melee.hybrid;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
@@ -44,6 +44,7 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfDisintegration;
 import com.shatteredpixel.yasd.general.items.wands.WandOfLivingEarth;
 import com.shatteredpixel.yasd.general.items.wands.WandOfRegrowth;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
+import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;

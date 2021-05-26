@@ -36,7 +36,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Chill;
 import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Frost;
 import com.shatteredpixel.yasd.general.items.Heap;
-import com.shatteredpixel.yasd.general.items.weapon.melee.MagesStaff;
+import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.utils.PointF;
