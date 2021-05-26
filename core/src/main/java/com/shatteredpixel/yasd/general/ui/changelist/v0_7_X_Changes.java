@@ -856,7 +856,7 @@ public class v0_7_X_Changes {
 		changes.hardlight( CharSprite.WARNING );
 		changeInfos.add(changes);
 		
-		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.ARTIFACT_ARMBAND, null), "Spawn Rate Changes",
+		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.RELIC_BRACELET, null), "Spawn Rate Changes",
 				"_-_ Master Thieves' Armband is now a regularly dropping artifact.\n" +
 				"_-_ Thieves now rarely drop a random ring or artifact instead of the armband.\n\n" +
 				"_-_ Blandfruit seeds and wells of transmutation have been removed.\n" +

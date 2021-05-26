@@ -86,6 +86,7 @@ import com.shatteredpixel.yasd.general.items.powers.Telekinesis;
 import com.shatteredpixel.yasd.general.items.powers.WaterPump;
 import com.shatteredpixel.yasd.general.items.relics.CupOfSuffering;
 import com.shatteredpixel.yasd.general.items.relics.GarbOfRetribution;
+import com.shatteredpixel.yasd.general.items.relics.KarahBracelet;
 import com.shatteredpixel.yasd.general.items.relics.LloydsBeacon;
 import com.shatteredpixel.yasd.general.items.relics.Relic;
 import com.shatteredpixel.yasd.general.items.relics.WarpedPrayerBook;
@@ -233,12 +234,14 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Tachi;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Wakizashi;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Bow;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.CrescentMoonGreatbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Crossbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Firearm;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.HeavyPistol;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.ImpactCrossbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Longbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.MarksmansBow;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.OldSunCrossbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.PrecisionRifle;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.RangedWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.ShredderCrossbow;
@@ -322,33 +325,6 @@ public class Generator {
 			GOLD.classes = new Class<?>[]{
 					Gold.class};
 			GOLD.probs = new float[]{1};
-
-			RELIC.classes = new Class<?>[]{
-					com.shatteredpixel.yasd.general.items.relics.CloakOfShadows.class,
-					CupOfSuffering.class,
-					com.shatteredpixel.yasd.general.items.relics.EtherealChains.class,
-					GarbOfRetribution.class,
-					WarpedPrayerBook.class,//TODO add functionality
-					com.shatteredpixel.yasd.general.items.relics.SandalsOfNature.class,
-					LloydsBeacon.class,
-					AirDragonPendant.class,
-					FireDragonPendant.class,
-					WaterDragonPendant.class,
-					EarthenDragonPendant.class
-			};
-			RELIC.probs = new float[]{
-					1,
-					1,
-					1,
-					1,
-					0,
-					1,
-					1,
-					1,
-					1,
-					1,
-					1
-			};
 
 			POWER.classes = new Class<?>[] {
 					Alchemy.class,
@@ -613,9 +589,40 @@ public class Generator {
 					ImpactCrossbow.class,
 					Longbow.class,
 					PrecisionRifle.class,
-					HeavyPistol.class
+					HeavyPistol.class,
+					CrescentMoonGreatbow.class,
+					OldSunCrossbow.class
 			};
-			RANGED.probs = new float[]{3, 3, 3, 2, 1, 3, 2, 2, 2};
+			RANGED.probs = new float[]{3, 3, 3, 2, 1, 3, 2, 2, 2, 4, 1};
+
+			RELIC.classes = new Class<?>[]{
+					com.shatteredpixel.yasd.general.items.relics.CloakOfShadows.class,
+					CupOfSuffering.class,
+					com.shatteredpixel.yasd.general.items.relics.EtherealChains.class,
+					GarbOfRetribution.class,
+					WarpedPrayerBook.class,//TODO add functionality
+					com.shatteredpixel.yasd.general.items.relics.SandalsOfNature.class,
+					LloydsBeacon.class,
+					AirDragonPendant.class,
+					FireDragonPendant.class,
+					WaterDragonPendant.class,
+					EarthenDragonPendant.class,
+					KarahBracelet.class
+			};
+			RELIC.probs = new float[]{
+					1,
+					1,
+					1,
+					1,
+					0,
+					1,
+					1,
+					1,
+					1,
+					1,
+					1,
+					1
+			};
 
 			FOOD.classes = new Class<?>[]{
 					Food.class,

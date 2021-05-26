@@ -36,7 +36,7 @@ import com.watabou.utils.Random;
 public class MasterThievesArmband extends Artifact {
 
 	{
-		image = ItemSpriteSheet.ARTIFACT_ARMBAND;
+		image = ItemSpriteSheet.RELIC_BRACELET;
 
 		levelCap = 10;
 

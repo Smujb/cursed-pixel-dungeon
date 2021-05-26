@@ -352,6 +352,10 @@ public class ItemSpriteSheet {
 		public static final int MARKSMAN_BOW 			= RANGED_ROW_1+11;
 		public static final int SHREDDER_CROSSBOW 		= RANGED_ROW_1+13;
 		public static final int IMPACT_CROSSBOW 		= RANGED_ROW_1+14;
+		//..
+		public static final int SUN_CROSSBOW	 		= RANGED_ROW_1+16;
+		//..
+		public static final int CRESCENT_GREATBOW       = RANGED_ROW_1+27;
 
 
 		public static final int BOLT 			= RANGED_AMMO+0;
@@ -481,7 +485,7 @@ public class ItemSpriteSheet {
 
 	private static final int ARTIFACTS          =                            xy(1, 16);  //32 slots
 	public static final int ARTIFACT_CLOAK      = ARTIFACTS+0;
-	public static final int ARTIFACT_ARMBAND    = ARTIFACTS+1;
+	public static final int RELIC_BRACELET = ARTIFACTS+1;
 	public static final int ARTIFACT_CAPE       = ARTIFACTS+2;
 	public static final int ARTIFACT_TALISMAN   = ARTIFACTS+3;
 	public static final int ARTIFACT_HOURGLASS  = ARTIFACTS+4;
@@ -505,7 +509,7 @@ public class ItemSpriteSheet {
 	public static final int ARTIFACT_ROSE3      = ARTIFACTS+22;
 	static{
 		assignItemRect(ARTIFACT_CLOAK,      9,  15);
-		assignItemRect(ARTIFACT_ARMBAND,    16, 13);
+		assignItemRect(RELIC_BRACELET,    16, 13);
 		assignItemRect(ARTIFACT_CAPE,       16, 14);
 		assignItemRect(ARTIFACT_TALISMAN,   15, 13);
 		assignItemRect(ARTIFACT_HOURGLASS,  13, 16);
