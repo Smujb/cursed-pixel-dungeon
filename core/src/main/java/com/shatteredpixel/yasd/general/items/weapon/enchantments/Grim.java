@@ -28,11 +28,11 @@
 package com.shatteredpixel.yasd.general.items.weapon.enchantments;
 
 import com.shatteredpixel.yasd.general.Badges;
-import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Char;
-import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Enchantable;
+import com.shatteredpixel.yasd.general.items.wands.WandOfDamnation;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite.Glowing;
@@ -48,19 +48,12 @@ public class Grim extends Weapon.Enchantment {
 		int enemyHealth = defender.HP - damage;
 		if (enemyHealth <= 0) return damage; //no point in proccing if they're already dead.
 
-		float chance = ((float)(damage/2))/defender.HP;//Chance is now half of damage dealt out of enemy hp. This is a massive nerf for fast weapons but a smaller one for slow weapons.
+		if (!defender.isImmune(this.getClass())
+				&& Random.Int( weapon.enchPower()/2 + 15 ) > 12) {
 
-		if (Random.Float() < chance) {
-
-			defender.damage( defender.HP, new Char.DamageSrc(Element.SHADOW, this).ignoreDefense());
+			Buff.affect(defender, DeferredDeath.class, Math.max(10, 50-weapon.enchPower()));
 			int level = 0;
 			defender.sprite.emitter().burst( ShadowParticle.UP, 5 + level );
-
-			if (!defender.isAlive() && attacker instanceof Hero
-					//this prevents unstable from triggering grim achievement
-					&& weapon.hasEnchant(Grim.class, attacker)) {
-				Badges.validateGrimWeapon();
-			}
 		}
 
 		return damage;
@@ -71,4 +64,14 @@ public class Grim extends Weapon.Enchantment {
 		return BLACK;
 	}
 
+	public static class DeferredDeath extends WandOfDamnation.DeferredDeath {
+
+		@Override
+		protected void killTarget() {
+			super.killTarget();
+			if (!target.isAlive()) {
+				Badges.validateGrimWeapon();
+			}
+		}
+	}
 }
