@@ -44,8 +44,6 @@ public class DM100 extends Mob {
 
 		range = -1;
 		shotType = Ballistica.MAGIC_BOLT;
-		
-		EXP = 6;
 
         loot = Generator.Category.SCROLL;
 		lootChance = 0.25f;

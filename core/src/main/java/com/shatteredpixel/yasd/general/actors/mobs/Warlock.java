@@ -50,9 +50,7 @@ public class Warlock extends Mob {
 		range = -1;
 		shotType = Ballistica.MAGIC_BOLT;
 
-		EXP = 11;
-
-		attackDelay = 2f;
+        attackDelay = 2f;
 
 		lootChance = 0.5f;
 

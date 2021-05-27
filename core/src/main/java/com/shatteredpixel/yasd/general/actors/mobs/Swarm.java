@@ -54,8 +54,6 @@ public class Swarm extends Mob {
 		damageFactor = 0.5f;
 		//defenseSkill = 9;
 
-		EXP = 6;
-		
 		flying = true;
 
 		loot = new SmallRation();
@@ -73,18 +71,19 @@ public class Swarm extends Mob {
 		super.storeInBundle( bundle );
 		bundle.put( GENERATION, generation );
 	}
-	
+
 	@Override
 	public void restoreFromBundle( Bundle bundle ) {
 		super.restoreFromBundle( bundle );
 		generation = bundle.getInt( GENERATION );
-		if (generation > 0) EXP = 0;
+		if (generation > 0) {
+		}
 	}
-	
-	/*@Override
-	public int damageRoll() {
-		return Random.NormalIntRange( 1, 9 );
-	}*/
+
+	@Override
+	public int experience(int lvl) {
+		return generation > 0 ? 0 : super.experience();
+	}
 
 	@Override
 	public int attackProc(Char enemy, int damage) {
@@ -140,7 +139,6 @@ public class Swarm extends Mob {
 	private Swarm split() {
 		Swarm clone = Mob.create(Swarm.class);
 		clone.generation = generation + 1;
-		clone.EXP = 0;
 		if (buff( Burning.class ) != null) {
 			Buff.affect( clone, Burning.class ).reignite( clone );
 		}

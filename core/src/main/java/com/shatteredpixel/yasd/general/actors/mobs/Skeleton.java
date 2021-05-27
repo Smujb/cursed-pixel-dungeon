@@ -50,10 +50,8 @@ public class Skeleton extends Mob {
 		accuracyFactor = 1.25f;
 
 		numTypes = 2;
-		
-		EXP = 5;
 
-		loot = Generator.Category.WEAPON;
+        loot = Generator.Category.WEAPON;
 		lootChance = 0.1667f; //by default, see rollToDropLoot()
 
 		properties.add(Property.UNDEAD);

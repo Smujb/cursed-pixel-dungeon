@@ -42,9 +42,7 @@ public class Crab extends Mob {
 		perceptionFactor = 2f;
 		stealthFactor = 0.5f;
 
-		EXP = 4;
-
-		lootChance = 0.5f;
+        lootChance = 0.5f;
 
 		properties.add(Property.WATERY);//Can't drown.
 	}

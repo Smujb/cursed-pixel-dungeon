@@ -68,9 +68,7 @@ public class Mimic extends Mob {
 		accuracyFactor = 1.5f;
 		evasionFactor = 0.6f;
 
-		EXP = 0;
-
-		//mimics are neutral when hidden
+        //mimics are neutral when hidden
 		alignment = Alignment.NEUTRAL;
 		state = PASSIVE;
 	}

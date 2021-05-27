@@ -42,10 +42,8 @@ public class Piranha extends WaterMob {
 		damageFactor = 1f;
 
 		baseSpeed = 2f;
-		
-		EXP = 0;
 
-		loot = MysteryMeat.class;
+        loot = MysteryMeat.class;
 		lootChance = 1f;
 
 		state = SLEEPING;

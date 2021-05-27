@@ -61,8 +61,7 @@ public class OldTengu extends Boss {
 		spriteClass = TenguSprite.class;
 		
 		HP = HT = 120;
-		EXP = 20;
-		defenseSkill = 20;
+        defenseSkill = 20;
 
 		HUNTING = new  Hunting();
 

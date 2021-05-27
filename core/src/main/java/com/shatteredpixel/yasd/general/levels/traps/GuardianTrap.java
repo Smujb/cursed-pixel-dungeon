@@ -75,8 +75,7 @@ public class GuardianTrap extends Trap {
 		{
 			spriteClass = GuardianSprite.class;
 
-			EXP = 0;
-			state = WANDERING;
+            state = WANDERING;
 			lootChance = 0.5f;
 		}
 

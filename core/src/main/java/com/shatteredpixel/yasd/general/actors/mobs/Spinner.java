@@ -53,8 +53,6 @@ public class Spinner extends Mob {
 
 		healthFactor = 0.6f;
 
-		EXP = 9;
-
         loot = Reflection.newInstance(MysteryMeat.class);
 		lootChance = 0.125f;
 

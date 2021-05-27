@@ -159,7 +159,7 @@ public class Belongings implements Iterable<Item> {
 		} else {
 			int level = 0;
 			if (owner instanceof Mob) {
-				level = ((Mob) owner).EXP;
+				level = ((Mob) owner).experience();
 			} else if (owner instanceof Hero) {
 				level = ((Hero)owner).lvl/2;
 			}

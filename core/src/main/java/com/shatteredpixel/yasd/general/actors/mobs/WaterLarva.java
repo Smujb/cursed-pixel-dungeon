@@ -21,8 +21,6 @@ public class WaterLarva extends Mob {
         evasionFactor = 0.7f;
         damageFactor = 1.3f;
 
-        EXP = 1;
-
         SLEEPING = new Sleeping();
         WANDERING = new Wandering();
         state = SLEEPING;

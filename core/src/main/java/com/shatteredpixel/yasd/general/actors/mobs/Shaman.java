@@ -39,9 +39,8 @@ import com.watabou.utils.Random;
 public abstract class Shaman extends Mob {
 
 	{
-		EXP = 6;
 
-		damageFactor = 0.75f;
+        damageFactor = 0.75f;
 		baseSpeed = 1.5f;
 		accuracyFactor = 2f;
 

@@ -65,8 +65,7 @@ public class TestBoss extends Mob {
 		spriteClass = TestBossSprite.class;
 
 		HP = HT = 200;
-		EXP = 10;
-		defenseSkill = 5;
+        defenseSkill = 5;
 
 		viewDistance = 20;
 		state = HUNTING;
@@ -257,7 +256,6 @@ public class TestBoss extends Mob {
 			HP = HT = 600;
 			defenseSkill = 1000;
 
-			EXP = 0;
             state = PASSIVE;
 			properties.add(Property.IMMOVABLE);
 		}

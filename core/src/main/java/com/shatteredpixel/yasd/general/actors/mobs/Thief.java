@@ -45,10 +45,8 @@ public class Thief extends Mob {
 
 		evasionFactor = 1.2f;
 		range = 3;
-		
-		EXP = 2;
 
-		loot = Gold.class;
+        loot = Gold.class;
 		lootChance = 0.25f;
 
 		properties.add(Property.UNDEAD);

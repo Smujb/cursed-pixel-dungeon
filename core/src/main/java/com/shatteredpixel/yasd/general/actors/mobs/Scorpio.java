@@ -52,8 +52,6 @@ public class Scorpio extends Mob {
 		//HP = HT = 95;
 		range = viewDistance = Light.DISTANCE;
 		hasMeleeAttack = false;
-		
-		EXP = 14;
 
         baseSpeed = 0.8f;
 

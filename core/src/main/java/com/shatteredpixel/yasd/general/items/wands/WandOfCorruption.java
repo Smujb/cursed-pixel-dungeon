@@ -224,7 +224,7 @@ public class WandOfCorruption extends Wand {
 				if (enemy.alignment == Char.Alignment.ENEMY){
 					mob.rollToDropLoot();
 				}
-				hero.earnExp(Math.max(mob.EXP, 0), enemy.getClass());
+				hero.earnExp(Math.max(mob.experience(), 0), enemy.getClass());
 			}
 		} else {
 			Buff.affect(enemy, Doom.class);

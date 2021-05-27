@@ -58,9 +58,7 @@ public class Guard extends Mob {
 
 		elementaldrFactor = 1.5f;
 
-		EXP = 7;
-
-		loot = Generator.Category.SHIELD;
+        loot = Generator.Category.SHIELD;
 		lootChance = 0.2f; //by default, see rollToDropLoot()
 
 		properties.add(Property.UNDEAD);

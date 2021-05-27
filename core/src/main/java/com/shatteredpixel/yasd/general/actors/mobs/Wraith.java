@@ -58,7 +58,6 @@ public class Wraith extends Mob {
 	
 	{
 		spriteClass = WraithSprite.class;
-		EXP = 0;
 
         range = 4;
 		shotType = Ballistica.MAGIC_BOLT;

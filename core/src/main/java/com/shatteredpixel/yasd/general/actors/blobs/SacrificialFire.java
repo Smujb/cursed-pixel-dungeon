@@ -113,7 +113,7 @@ public class SacrificialFire extends Blob {
 
             int exp = 0;
             if (ch instanceof Mob) {
-                exp = ((Mob)ch).EXP * Random.IntRange( 1, 3 );
+                exp = ((Mob)ch).experience() * Random.IntRange( 1, 3 );
             } else if (ch instanceof Hero) {
                 exp = ((Hero)ch).maxExp();
             }

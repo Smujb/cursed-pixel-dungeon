@@ -59,9 +59,8 @@ import org.jetbrains.annotations.NotNull;
 public class Goo extends Boss {
 
 	{
-		EXP = 10;
 
-		damageFactor = 1.5f;
+        damageFactor = 1.5f;
 		healthFactor = 0.8f;
 		spriteClass = GooSprite.BossGoo.class;
 

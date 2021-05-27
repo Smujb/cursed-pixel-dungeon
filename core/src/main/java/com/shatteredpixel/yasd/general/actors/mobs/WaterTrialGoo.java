@@ -27,7 +27,6 @@ public class WaterTrialGoo extends Mob {
 
         properties.add(Property.DEMONIC);
         properties.add(Property.ACIDIC);
-        EXP = 3;
         baseSpeed = 2f;
         damageFactor = 2/3f;
         healthFactor = 2f;

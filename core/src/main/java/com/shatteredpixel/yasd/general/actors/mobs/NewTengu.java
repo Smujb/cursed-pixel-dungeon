@@ -86,9 +86,7 @@ public class NewTengu extends Boss {
 	{
 		spriteClass = TenguSprite.class;
 
-		EXP = 20;
-
-		HUNTING = new Hunting();
+        HUNTING = new Hunting();
 
 		//Tengu is stat-wise weaker than most bosses by a considerable amount, however the fight is designed around this
 		healthFactor = 0.25f;

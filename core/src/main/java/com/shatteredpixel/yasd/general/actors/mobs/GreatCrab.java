@@ -52,9 +52,7 @@ public class GreatCrab extends Crab {
 		healthFactor = 1.5f;
 		damageFactor = 1.2f;
 
-		EXP = 6;
-
-		state = WANDERING;
+        state = WANDERING;
 
 		properties.add(Property.MINIBOSS);
 	}

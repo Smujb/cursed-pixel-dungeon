@@ -34,10 +34,8 @@ public class Gnoll extends Mob {
 	
 	{
 		spriteClass = GnollSprite.class;
-		
-		EXP = 2;
-		
-		loot = Gold.class;
+
+        loot = Gold.class;
 		lootChance = 0.5f;
 	}
 }

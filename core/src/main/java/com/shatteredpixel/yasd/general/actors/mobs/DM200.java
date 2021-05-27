@@ -57,9 +57,7 @@ public class DM200 extends Mob {
 		damageFactor = 1.5f;
 		healthFactor = 2f;
 
-		EXP = 9;
-
-		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.SHIELD);
+        loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.SHIELD);
 		lootChance = 0.125f; //initially, see rollToDropLoot
 
 		properties.add(Property.INORGANIC);

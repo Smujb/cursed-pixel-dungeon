@@ -42,10 +42,8 @@ public class Snake extends Mob {
 		healthFactor = 0.4f;
 		numTypes = 2;
 		evasionFactor = 2f;
-		
-		EXP = 2;
-		
-		loot = Generator.random(Generator.Category.SEED);
+
+        loot = Generator.random(Generator.Category.SEED);
 		lootChance = 0.25f;
 	}
 

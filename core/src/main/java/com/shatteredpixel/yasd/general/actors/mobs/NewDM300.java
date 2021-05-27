@@ -50,9 +50,7 @@ public class NewDM300 extends Boss {
 		elementaldrFactor = 2f;
 		perceptionFactor = 3f;
 
-		EXP = 30;
-
-		properties.add(Property.BOSS);
+        properties.add(Property.BOSS);
 		properties.add(Property.INORGANIC);
 		properties.add(Property.LARGE);
 

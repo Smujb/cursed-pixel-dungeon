@@ -13,8 +13,6 @@ public class MagicCrab extends Mob {
         hasMeleeAttack = false;
         viewDistance = Light.DISTANCE;
 
-        EXP = 2;
-
         loot = new PotionOfFrost();
         lootChance = 0.2f;
 

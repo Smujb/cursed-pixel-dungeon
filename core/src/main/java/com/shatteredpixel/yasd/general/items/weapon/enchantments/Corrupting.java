@@ -80,7 +80,7 @@ public class Corrupting extends Weapon.Enchantment {
 			Statistics.enemiesSlain++;
 			Badges.validateMonstersSlain();
 			Statistics.qualifiedForNoKilling = false;
-			hero.earnExp(Math.max(enemy.EXP, 0), enemy.getClass());
+			hero.earnExp(Math.max(enemy.experience(), 0), enemy.getClass());
 			
 			return 0;
 		}

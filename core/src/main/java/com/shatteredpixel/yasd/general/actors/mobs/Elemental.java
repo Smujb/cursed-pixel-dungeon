@@ -68,9 +68,7 @@ public abstract class Elemental extends Mob {
 		healthFactor = 0.7f;
 		damageFactor = 1.3f;
 
-		EXP = 10;
-
-		flying = true;
+        flying = true;
 
 		loot = Reflection.newInstance(PotionOfLiquidFlame.class);
 		lootChance = 0.1f;
@@ -174,9 +172,7 @@ public abstract class Elemental extends Mob {
 
 			defenseSkill = 12;
 
-			EXP = 7;
-
-			loot = new Embers();
+            loot = new Embers();
 			lootChance = 1f;
 
 			properties.add(Property.MINIBOSS);
@@ -250,9 +246,7 @@ public abstract class Elemental extends Mob {
 		{
 			spriteClass = ElementalSprite.Water.class;
 
-			EXP = 2;
-
-			damageFactor = 0.7f;
+            damageFactor = 0.7f;
 			healthFactor = 2f;
 
 			//TODO loot?
@@ -327,8 +321,7 @@ public abstract class Elemental extends Mob {
 		private Elemental.Water split() {
 			Elemental.Water clone = new Elemental.Water();
 			clone.generation = generation + 1;
-			clone.EXP = 0;
-			if (buff( Burning.class ) != null) {
+            if (buff( Burning.class ) != null) {
 				Buff.affect( clone, Burning.class ).reignite( clone );
 			}
 			if (buff( Poison.class ) != null) {

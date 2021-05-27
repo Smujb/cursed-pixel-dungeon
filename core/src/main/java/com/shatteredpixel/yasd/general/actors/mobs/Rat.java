@@ -50,9 +50,8 @@ public class Rat extends Mob {
 			spriteClass = AlbinoSprite.class;
 
 			healthFactor = 1.2f;
-			EXP = 2;
 
-			loot = new MysteryMeat();
+            loot = new MysteryMeat();
 			lootChance = 1f;
 		}
 

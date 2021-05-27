@@ -52,9 +52,7 @@ public class RotHeart extends Mob {
 		evasionFactor = 0f;
 		healthFactor = 1.5f;
 
-		EXP = 4;
-
-		state = PASSIVE;
+        state = PASSIVE;
 
 		properties.add(Property.IMMOVABLE);
 		properties.add(Property.MINIBOSS);

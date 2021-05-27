@@ -52,9 +52,7 @@ public class GnollTrickster extends Gnoll {
 		//HP = HT = 20;
 		//defenseSkill = 5;
 
-		EXP = 5;
-
-		range = 4;
+        range = 4;
 		hasMeleeAttack = false;
 
 		state = WANDERING;

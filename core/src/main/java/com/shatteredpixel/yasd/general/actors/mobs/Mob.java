@@ -65,7 +65,6 @@ import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Lucky;
 import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.levels.features.Chasm;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Swiftthistle;
@@ -125,8 +124,16 @@ public abstract class Mob extends Char {
 	public Class<? extends CharSprite> spriteClass;
 	
 	protected int target = -1;
-	
-	public int EXP = 1;
+
+
+	//Bosses give 10x exp
+	public int experience(int lvl) {
+		return ((lvl + 1)/2) * (properties().contains(Property.BOSS) ? 10 : 1);
+	}
+
+	public final int experience() {
+		return experience(level);
+	}
 
 	protected Char enemy;
 	public boolean enemySeen;
@@ -880,7 +887,7 @@ public abstract class Mob extends Char {
 				Badges.validateMonstersSlain();
 				Statistics.qualifiedForNoKilling = false;
 				
-				int exp = Dungeon.hero.lvl <= Dungeon.getScaling() + 2 ? EXP : 0;
+				int exp = Dungeon.hero.lvl <= Dungeon.getScaling() + 2 ? experience() : 0;
 				Dungeon.hero.earnExp(exp, getClass());
 
 				//If the hero is cursed, eliminate an enemy from the curse
@@ -895,12 +902,6 @@ public abstract class Mob extends Char {
 		if (hitWithRanged) {
 			Statistics.thrownAssists++;
 			Badges.validateHuntressUnlock();
-		}
-
-		if (cause.getCause() == Chasm.class) {
-			//50% chance to round up, 50% to round down
-			if (EXP % 2 == 1) EXP += Random.Int(2);
-			EXP /= 2;
 		}
 
 		if (alignment == Alignment.ENEMY && Dungeon.hero != null) {
@@ -975,7 +976,7 @@ public abstract class Mob extends Char {
 			enemyResist = 1 + 5;
 		} else if (this instanceof Swarm){
 			//child swarms don't give exp, so we force this here.
-			enemyResist = 1 + new Swarm().EXP;
+			enemyResist = 1 + new Swarm().experience();
 		}
 		//100% health: 5x resist   75%: 3.25x resist   50%: 2x resist   25%: 1.25x resist
 		enemyResist *= 1 + 4*Math.pow(HP/(float)HT, 2);

@@ -173,8 +173,7 @@ public class GrindLevel extends TiledMapLevel {
 		{
 			spriteClass = StatueSprite.class;
 
-			EXP = 0;
-			state = WANDERING;
+            state = WANDERING;
 
 			immunities.add(ScrollOfPsionicBlast.class);
 		}

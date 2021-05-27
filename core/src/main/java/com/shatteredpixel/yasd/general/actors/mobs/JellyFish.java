@@ -47,9 +47,8 @@ public class JellyFish extends WaterMob {
 	private static final int PURPLE = 2;
 
 	{
-		EXP = 0;
 
-		damageFactor = 1.5f;
+        damageFactor = 1.5f;
 		healthFactor = 0.5f;
 
 		range = 4;
