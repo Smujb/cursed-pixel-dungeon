@@ -107,6 +107,8 @@ public enum Document {
 	
 	static {
 		ADVENTURERS_GUIDE.pages.put(GUIDE_INTRO_PAGE, 	DeviceCompat.isDebug());
+		ADVENTURERS_GUIDE.pages.put("lucky_badge", 		DeviceCompat.isDebug());
+		ADVENTURERS_GUIDE.pages.put("crimson_flask", 		DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put("Identifying", 		DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put(GUIDE_SEARCH_PAGE, 	DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put("Stats", 		DeviceCompat.isDebug());
@@ -116,6 +118,7 @@ public enum Document {
 		ADVENTURERS_GUIDE.pages.put("Dieing", 			DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put("Looting", 		    DeviceCompat.isDebug());
 		ADVENTURERS_GUIDE.pages.put("Ranged_Attacks", 			DeviceCompat.isDebug());
+		ADVENTURERS_GUIDE.pages.put("item_storage", 			DeviceCompat.isDebug());
 		
 		//sewers
 		ALCHEMY_GUIDE.pages.put("Potions",              DeviceCompat.isDebug());
