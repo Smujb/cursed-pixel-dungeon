@@ -20,9 +20,6 @@ public class CloakOfShadows extends Relic {
     {
         image = ItemSpriteSheet.ARTIFACT_CLOAK;
 
-        unique = true;
-        bones = false;
-
         statScaling.add(Hero.HeroStat.EXECUTION);
     }
 

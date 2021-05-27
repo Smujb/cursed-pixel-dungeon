@@ -39,16 +39,16 @@ public class WarriorNPC extends HeroNPC {
 			public void call() {
 				String introduction = Messages.get(WarriorNPC.this, "introduction", ch.name());
 				if (!questlineFlagCompleted(REASON_HERE_QUESTION)) {
-					options.put(Messages.get(WarriorNPC.this, "for_dungeon"), WndChat.asCallback(new ForDungeonResponse()));
-					options.put(Messages.get(WarriorNPC.this, "for_amulet"), WndChat.asCallback(new ForAmuletResponse()));
+					options.put(Messages.get(WarriorNPC.this, "for_dungeon"), WndChat.asCallback(ForDungeonResponse.class));
+					options.put(Messages.get(WarriorNPC.this, "for_amulet"), WndChat.asCallback(ForAmuletResponse.class));
 					introduction += Messages.get(WarriorNPC.this, "why_here");
 				}
 				if (ch instanceof Hero) {
 					Hero h = (Hero) ch;
 					if (new ArrayList<>(Arrays.asList(HeroClass.WARRIOR.subClasses())).contains(h.subClass) && !questlineFlagCompleted(SHIELD_GIVEN)) {
-						options.put(Messages.get(this, "training"), WndChat.asCallback(new Training()));
+						options.put(Messages.get(this, "training"), WndChat.asCallback(Training.class));
 					} else if (h.getResilience() > 6) {
-						options.put(Messages.get(this, "teach"), WndChat.asCallback(new Teacher()));
+						options.put(Messages.get(this, "teach"), WndChat.asCallback(Teacher.class));
 					}
 
 					if (h.heroClass == HeroClass.ROGUE) {

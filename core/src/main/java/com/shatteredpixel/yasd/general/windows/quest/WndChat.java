@@ -52,21 +52,19 @@ public class WndChat extends Window {
 		resize(width, bottom);
 	}
 
-	public static Callback asCallback(Window window) {
+	public static Callback asCallback(Class<? extends Window> windowClass) {
 		return new Callback() {
 			@Override
 			public void call() {
 				CPDGame.runOnRenderThread(new Callback() {
 					@Override
 					public void call() {
+						Window window = Reflection.newInstance(windowClass);
+						if (window == null) throw new RuntimeException("Attempted to instantiate window which is private or does not exist");
 						CPDGame.scene().addToFront(window);
 					}
 				});
 			}
 		};
-	}
-
-	public static Callback asCallback(Class<? extends Window> window) {
-		return asCallback(Reflection.newInstance(window));
 	}
 }
