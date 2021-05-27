@@ -39,16 +39,37 @@ public class WarriorNPC extends HeroNPC {
 			public void call() {
 				String introduction = Messages.get(WarriorNPC.this, "introduction", ch.name());
 				if (!questlineFlagCompleted(REASON_HERE_QUESTION)) {
-					options.put(Messages.get(WarriorNPC.this, "for_dungeon"), WndChat.asCallback(ForDungeonResponse.class));
-					options.put(Messages.get(WarriorNPC.this, "for_amulet"), WndChat.asCallback(ForAmuletResponse.class));
+					options.put(Messages.get(WarriorNPC.this, "for_dungeon"), WndChat.asCallback(ForDungeonResponse.class, new Callback() {
+						@Override
+						public void call() {
+							addQuestFlag(REASON_HERE_QUESTION);
+						}
+					}));
+					options.put(Messages.get(WarriorNPC.this, "for_amulet"), WndChat.asCallback(ForAmuletResponse.class, new Callback() {
+						@Override
+						public void call() {
+							addQuestFlag(REASON_HERE_QUESTION);
+						}
+					}));
 					introduction += Messages.get(WarriorNPC.this, "why_here");
 				}
 				if (ch instanceof Hero) {
 					Hero h = (Hero) ch;
 					if (new ArrayList<>(Arrays.asList(HeroClass.WARRIOR.subClasses())).contains(h.subClass) && !questlineFlagCompleted(SHIELD_GIVEN)) {
-						options.put(Messages.get(this, "training"), WndChat.asCallback(Training.class));
+						options.put(Messages.get(this, "training"), WndChat.asCallback(Training.class, new Callback() {
+							@Override
+							public void call() {
+								Dungeon.level.drop(new RoundShield().level(Dungeon.hero.getFocus()), Dungeon.hero.pos);
+								addQuestFlag(SHIELD_GIVEN);
+							}
+						}));
 					} else if (h.getResilience() > 6) {
-						options.put(Messages.get(this, "teach"), WndChat.asCallback(Teacher.class));
+						options.put(Messages.get(this, "teach"), WndChat.asCallback(Teacher.class, new Callback() {
+							@Override
+							public void call() {
+								addQuestFlag(IS_TEACHER);
+							}
+						}));
 					}
 
 					if (h.heroClass == HeroClass.ROGUE) {
@@ -62,38 +83,33 @@ public class WarriorNPC extends HeroNPC {
 					}
 				}
 				String finalIntroduction = introduction;
-				CPDGame.scene().addToFront(new WndHeroNPCChat(WarriorNPC.this, finalIntroduction, options));
+				CPDGame.scene().addToFront(new WndHeroNPCChat(WarriorNPC.class, finalIntroduction, options));
 			}
 		});
 		return super.interact(ch);
 	}
 
-	public final class ForDungeonResponse extends WndHeroNPCChat {
+	public static final class ForDungeonResponse extends WndHeroNPCChat {
 		public ForDungeonResponse() {
-			super(WarriorNPC.this, Messages.get(WarriorNPC.class, "for_dungeon_response"));
-			addQuestFlag(REASON_HERE_QUESTION);
+			super(WarriorNPC.class, Messages.get(WarriorNPC.class, "for_dungeon_response"));
 		}
 	}
 
-	public final class ForAmuletResponse extends WndHeroNPCChat {
+	public static final class ForAmuletResponse extends WndHeroNPCChat {
 		public ForAmuletResponse() {
-			super(WarriorNPC.this, Messages.get(WarriorNPC.class, "for_amulet_response"));
-			addQuestFlag(REASON_HERE_QUESTION);
+			super(WarriorNPC.class, Messages.get(WarriorNPC.class, "for_amulet_response"));
 		}
 	}
 
-	public final class Training extends WndHeroNPCChat {
+	public static final class Training extends WndHeroNPCChat {
 		public Training() {
-			super(WarriorNPC.this, Messages.get(WarriorNPC.class, "training_response"));
-			Dungeon.level.drop(new RoundShield().level(Dungeon.hero.getFocus()), Dungeon.hero.pos);
-			addQuestFlag(SHIELD_GIVEN);
+			super(WarriorNPC.class, Messages.get(WarriorNPC.class, "training_response"));
 		}
 	}
 
-	public final class Teacher extends WndHeroNPCChat {
+	public static final class Teacher extends WndHeroNPCChat {
 		public Teacher() {
-			super(WarriorNPC.this, Messages.get(WarriorNPC.class, "teach_response"));
-			addQuestFlag(IS_TEACHER);
+			super(WarriorNPC.class, Messages.get(WarriorNPC.class, "teach_response"));
 		}
 	}
 }

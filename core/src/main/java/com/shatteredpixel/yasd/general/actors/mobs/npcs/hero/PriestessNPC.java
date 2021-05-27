@@ -28,7 +28,7 @@ public class PriestessNPC extends HeroNPC {
 
 			@Override
 			public void call() {
-				GameScene.show(new WndHeroNPCChat(PriestessNPC.this, finalText, options));
+				GameScene.show(new WndHeroNPCChat(PriestessNPC.class, finalText, options));
 			}
 		});
 		return super.interact(ch);

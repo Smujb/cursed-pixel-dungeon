@@ -44,36 +44,45 @@ public class MageNPC extends HeroNPC {
 				if (ch instanceof Hero) {
 					Hero h = (Hero) ch;
 					if (new ArrayList<>(Arrays.asList(HeroClass.MAGE.subClasses())).contains(h.subClass) && !questlineFlagCompleted(WAND_GIVEN)) {
-						options.put(Messages.get(MageNPC.class, "ask_magic"), WndChat.asCallback(Magic.class));
+						options.put(Messages.get(MageNPC.class, "ask_magic"), WndChat.asCallback(Magic.class, new Callback() {
+							@Override
+							public void call() {
+								Dungeon.level.drop(new WandOfMagicMissile().level(Dungeon.hero.getFocus()), Dungeon.hero.pos);
+								addQuestFlag(WAND_GIVEN);
+							}
+						}));
 					} else if (h.getFocus() > 6) {
-						options.put(Messages.get(MageNPC.class, "ask_teach"), WndChat.asCallback(Teacher.class));
+						options.put(Messages.get(MageNPC.class, "ask_teach"), WndChat.asCallback(Teacher.class, new Callback() {
+							@Override
+							public void call() {
+								addQuestFlag(IS_TEACHER);
+							}
+						}));
 					}
 				}
 				options.put(Messages.get(MageNPC.this, "nothing"), WndChat.asCallback(NoResponse.class));
-				GameScene.show(new WndHeroNPCChat(MageNPC.this, Messages.get(MageNPC.this, "introduction", ch.name()), options));
+				GameScene.show(new WndHeroNPCChat(MageNPC.class, Messages.get(MageNPC.this, "introduction", ch.name()), options));
 			}
 		});
 		return super.interact(ch);
 	}
 
-	public final class NoResponse extends WndHeroNPCChat {
+	public static final class NoResponse extends WndHeroNPCChat {
 		public NoResponse() {
-			super(MageNPC.this, Messages.get(MageNPC.class, "no_response"));
+			super(MageNPC.class, Messages.get(MageNPC.class, "no_response"));
 		}
 	}
 
-	public final class Magic extends WndHeroNPCChat {
+	public static final class Magic extends WndHeroNPCChat {
 		public Magic() {
-			super(MageNPC.this, Messages.get(MageNPC.class, "magic_response"));
-			Dungeon.level.drop(new WandOfMagicMissile().level(Dungeon.hero.getFocus()), Dungeon.hero.pos);
-			addQuestFlag(WAND_GIVEN);
+			super(MageNPC.class, Messages.get(MageNPC.class, "magic_response"));
+
 		}
 	}
 
-	public final class Teacher extends WndHeroNPCChat {
+	public static final class Teacher extends WndHeroNPCChat {
 		public Teacher() {
-			super(MageNPC.this, Messages.get(MageNPC.class, "teach_response"));
-			addQuestFlag(IS_TEACHER);
+			super(MageNPC.class, Messages.get(MageNPC.class, "teach_response"));
 		}
 	}
 

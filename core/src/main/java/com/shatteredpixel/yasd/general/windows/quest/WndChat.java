@@ -53,6 +53,10 @@ public class WndChat extends Window {
 	}
 
 	public static Callback asCallback(Class<? extends Window> windowClass) {
+		return asCallback(windowClass, null);
+	}
+
+	public static Callback asCallback(Class<? extends Window> windowClass, Callback chain) {
 		return new Callback() {
 			@Override
 			public void call() {
@@ -62,6 +66,8 @@ public class WndChat extends Window {
 						Window window = Reflection.newInstance(windowClass);
 						if (window == null) throw new RuntimeException("Attempted to instantiate window which is private or does not exist");
 						CPDGame.scene().addToFront(window);
+						//Allow chaining callbacks into the window creation
+						if (chain != null) chain.call();
 					}
 				});
 			}
