@@ -129,7 +129,7 @@ public class WndHero extends WndTabbed {
 
 	private static class WndConfirmIncrease extends Window {
 
-		public WndConfirmIncrease(Hero.HeroStat stat) {
+		public WndConfirmIncrease(Hero.HeroStat stat, RenderedTextBlock block) {
 			Hero hero = Dungeon.hero;
 			IconTitle title = new IconTitle();
 			title.icon( HeroSprite.avatar(hero.heroClass, hero.tier()) );
@@ -153,6 +153,7 @@ public class WndHero extends WndTabbed {
 					super.onClick();
 					hero.increaseStat(stat);
 					hero.DistributionPoints--;
+					block.text(Integer.toString(hero.getStat(stat)));
 					hide();
 				}
 			};
@@ -173,18 +174,20 @@ public class WndHero extends WndTabbed {
 
 		private class StatIncreaseButton extends RedButton {
 
-			private Hero.HeroStat stat;
+			private final Hero.HeroStat stat;
+			private RenderedTextBlock block;
 
-			public StatIncreaseButton(Hero.HeroStat stat) {
+			public StatIncreaseButton(Hero.HeroStat stat, RenderedTextBlock block) {
 				super("+");
 				this.stat = stat;
+				this.block = block;
 				setRect(WIDTH*0.8f, pos-BTN_HEIGHT, BTN_WIDTH, BTN_HEIGHT);
 			}
 
 			@Override
 			protected void onClick() {
 				if (Dungeon.hero.DistributionPoints > 0) {
-					CPDGame.scene().addToFront(new WndConfirmIncrease(stat));
+					CPDGame.scene().addToFront(new WndConfirmIncrease(stat, block));
 				} else {
 					GLog.warning(Messages.get(WndHero.class,"no_points"));
 				}
@@ -208,14 +211,14 @@ public class WndHero extends WndTabbed {
 			pos += GAP;
 
 			for (Hero.HeroStat stat : Hero.HeroStat.values()) {
-				statSlot(stat.getName(), hero.getStat(stat), stat.colour());
-				StatIncreaseButton statBtn = new StatIncreaseButton(stat);
+				RenderedTextBlock textBlock = statSlot(stat.getName(), hero.getStat(stat), stat.colour());
+				StatIncreaseButton statBtn = new StatIncreaseButton(stat, textBlock);
 				add( statBtn );
 				pos += GAP;
 			}
 		}
 
-		private void statSlot( String label, String value, int colour ) {
+		private RenderedTextBlock statSlot( String label, String value, int colour ) {
 
 			RenderedTextBlock txt = PixelScene.renderTextBlock( label, 10 );
 			txt.setPos(0, pos);
@@ -228,10 +231,11 @@ public class WndHero extends WndTabbed {
 			add( txt );
 
 			pos += GAP + txt.height();
+			return txt;
 		}
 
-		private void statSlot( String label, int value, int colour ) {
-			statSlot( label, Integer.toString( value ), colour );
+		private RenderedTextBlock statSlot( String label, int value, int colour ) {
+			return statSlot( label, Integer.toString( value ), colour );
 		}
 
 		public float height() {
