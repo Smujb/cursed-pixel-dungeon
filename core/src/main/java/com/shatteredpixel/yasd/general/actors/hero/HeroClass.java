@@ -44,7 +44,6 @@ import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
 import com.shatteredpixel.yasd.general.items.bags.MagicalHolster;
 import com.shatteredpixel.yasd.general.items.bags.PotionBandolier;
-import com.shatteredpixel.yasd.general.items.bags.PowerHolder;
 import com.shatteredpixel.yasd.general.items.bags.ScrollHolder;
 import com.shatteredpixel.yasd.general.items.bags.VelvetPouch;
 import com.shatteredpixel.yasd.general.items.food.Food;
@@ -53,7 +52,6 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
-import com.shatteredpixel.yasd.general.items.powers.Blink;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.relics.DragonPendant;
 import com.shatteredpixel.yasd.general.items.relics.dragonpendants.EarthenDragonPendant;
@@ -70,9 +68,9 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.FoolsBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.InscribedKnife;
-import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MegaStick;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
+import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.HeroSelectScene;
 import com.watabou.noosa.Image;
@@ -167,8 +165,6 @@ public enum HeroClass {
 		new MagicalHolster().collect();
 		Dungeon.LimitedDrops.MAGICAL_HOLSTER.drop();
 
-		new PowerHolder().collect();
-
 		new LuckyBadge().collect();
 
 		new ScrollOfIdentify().identify().collect();
@@ -240,8 +236,6 @@ public enum HeroClass {
 		} else {
 			staff.collect();
 		}
-
-		new Blink().collect();
 
 		Dungeon.quickslot.setSlot(1, staff.getWand());
 		
