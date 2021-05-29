@@ -887,7 +887,7 @@ public abstract class Mob extends Char {
 				Badges.validateMonstersSlain();
 				Statistics.qualifiedForNoKilling = false;
 				
-				int exp = Dungeon.hero.lvl <= Dungeon.getScaling() + 2 ? experience() : 0;
+				int exp = Dungeon.hero.lvl <= level + 1 ? experience() : 0;
 				Dungeon.hero.earnExp(exp, getClass());
 
 				//If the hero is cursed, eliminate an enemy from the curse

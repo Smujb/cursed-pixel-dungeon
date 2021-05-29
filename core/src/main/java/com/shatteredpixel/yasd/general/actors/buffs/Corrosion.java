@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.actors.buffs;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.shatteredpixel.yasd.general.utils.GLog;
@@ -56,7 +57,7 @@ public class Corrosion extends Buff implements Hero.Doom {
 	}
 
 	public static float defaultStrength(int scale) {
-		return 2 * scale;
+		return 4 * Item.calcMobPower(scale);
 	}
 
 	@Override

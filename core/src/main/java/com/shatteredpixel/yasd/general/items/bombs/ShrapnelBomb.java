@@ -76,7 +76,7 @@ public class ShrapnelBomb extends Bomb {
 		
 		for (Char ch : affected){
 			//regular bomb damage, which falls off at a rate of 5% per tile of distance
-			int damage = Math.round(Random.NormalIntRange( Dungeon.getScaling() +5, 10 + Dungeon.getScaling() * 2 ));
+			int damage = Math.round(Random.NormalIntRange((int) (Dungeon.getScaleModifier() * 5), (int) (10 * Dungeon.getScaleModifier())));
 			damage = Math.round(damage * (1f - .05f*Dungeon.level.distance(cell, ch.pos)));
 			ch.damage(damage, new Char.DamageSrc(Element.PHYSICAL, this) );
 			if (ch == Dungeon.hero && !ch.isAlive()) {

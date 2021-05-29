@@ -75,6 +75,11 @@ public class Poison extends Buff implements Hero.Doom {
 		if (on) target.sprite.add( CharSprite.State.POISONED );
 		else if (target.invisible == 0) target.sprite.remove( CharSprite.State.POISONED );
 	}
+
+	//Linear scaling as poison damage is already exponential
+	public static int defaultStrength(int depth) {
+		return 6 + depth;
+	}
 	
 	public void set( float duration ) {
 		this.left = Math.max(duration, left);

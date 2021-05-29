@@ -31,6 +31,7 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.CorrosiveGas;
+import com.shatteredpixel.yasd.general.actors.buffs.Corrosion;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.watabou.noosa.audio.Sample;
 
@@ -47,7 +48,7 @@ public class CorrosionTrap extends Trap {
 		CorrosiveGas corrosiveGas = Blob.seed(pos, 80 + 5 * Dungeon.getScaling(), CorrosiveGas.class);
 		Sample.INSTANCE.play(Assets.Sounds.GAS);
 
-		corrosiveGas.setStrength(1 + Dungeon.getScaling() / 4);
+		corrosiveGas.setStrength(Corrosion.defaultStrength(Dungeon.getScaling()));
 
 		GameScene.add(corrosiveGas);
 

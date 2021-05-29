@@ -609,7 +609,7 @@ public class NewTengu extends Boss {
 
 							Char ch = Actor.findChar(cell);
 							if (ch != null && !(ch instanceof NewTengu)){
-								int dmg = Random.NormalIntRange(5 + Dungeon.getScaling(), 10 + Dungeon.getScaling() *2);
+								int dmg = Random.NormalIntRange((int) (5 * Dungeon.getScaleModifier()), (int) (10 * Dungeon.getScaleModifier()));
 
 								ch.damage(dmg, new DamageSrc(Element.PHYSICAL, this));
 
@@ -994,7 +994,7 @@ public class NewTengu extends Boss {
 
 							Char ch = Actor.findChar(cell);
 							if (ch != null && !(ch instanceof NewTengu)){
-								ch.damage(2 + Dungeon.getScaling()*2, Element.SHOCK);
+								ch.damage((int) (5*Dungeon.getScaleModifier()), Element.SHOCK);
 
 								if (ch == Dungeon.hero && !ch.isAlive()) {
 									Dungeon.fail(NewTengu.class);

@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.levels.traps;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.ConfusionGas;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -44,7 +43,7 @@ public class ConfusionTrap extends Trap {
 	@Override
 	public void activate() {
 
-		GameScene.add(Blob.seed(pos, 300 + 20 * Dungeon.getScaling(), ConfusionGas.class));
+		GameScene.add(Blob.seed(pos, 500, ConfusionGas.class));
 		Sample.INSTANCE.play(Assets.Sounds.GAS);
 
 	}

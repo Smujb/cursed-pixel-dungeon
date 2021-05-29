@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.levels.traps;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.ToxicGas;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -44,7 +43,7 @@ public class ToxicTrap extends Trap{
 	@Override
 	public void activate() {
 
-		GameScene.add( Blob.seed( pos, 300 + 20 * Dungeon.getScaling(), ToxicGas.class ) );
+		GameScene.add( Blob.seed( pos, 400, ToxicGas.class ) );
 		Sample.INSTANCE.play(Assets.Sounds.GAS);
 
 	}

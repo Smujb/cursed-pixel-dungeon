@@ -34,7 +34,6 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.items.Ankh;
-import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
@@ -160,20 +159,9 @@ public class Statue extends Mob implements Callback {
 	}
 
 	protected void upgradeItems() {
-		int sous = Dungeon.getScaling()*5;
-		EquipableItem item;
-		if (belongings.miscs.length > 0) {
-			do {
-				do {
-					item = null;
-					int slot = Random.Int(belongings.miscs.length);
-					if (slot < belongings.miscs.length) {
-						item = belongings.miscs[slot];
-					}
-				} while (item == null || !item.isUpgradable());//If the item is not upgradeable (An artifact or +3) chose another. Also, if it is null (nothing equipped in that slot)
-				item.upgrade();
-				sous--;
-			} while (sous > 0);
+		int upgrade = Dungeon.getScaling();
+		for (Item item : belongings.miscs) {
+			item.level(upgrade + Random.IntRange(-2, 3));
 		}
 	}
 

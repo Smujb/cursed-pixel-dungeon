@@ -75,7 +75,7 @@ public class HolyBomb extends Bomb {
 				ch.sprite.emitter().start( ShadowParticle.UP, 0.05f, 10 );
 				
 				//bomb deals an additional 67% damage to unholy enemies in a 5x5 range
-				int damage = Math.round(Random.NormalIntRange( Dungeon.getScaling() +5, 10 + Dungeon.getScaling() * 2 ) * 0.67f);
+				int damage = (int) (Math.round(Random.NormalIntRange((int) (Dungeon.getScaleModifier() * 5), (int) (10 * Dungeon.getScaleModifier()))) * 0.67f);
 				ch.damage(damage, new Char.DamageSrc(Element.LIGHT, this));
 			}
 		}

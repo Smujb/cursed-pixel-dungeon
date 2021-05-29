@@ -51,8 +51,8 @@ public class PoisonDartTrap extends Trap {
 		canBeHidden = false;
 	}
 	
-	protected int poisonAmount(){
-		return 8 + Math.round(2*Dungeon.getScaling() / 3f);
+	protected int poisonAmount() {
+		return Poison.defaultStrength(Dungeon.getScaling());
 	}
 	
 	protected boolean canTarget( Char ch ){

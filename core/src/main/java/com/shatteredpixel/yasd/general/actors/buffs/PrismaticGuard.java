@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.PrismaticImage;
+import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -109,11 +110,7 @@ public class PrismaticGuard extends Buff {
 	}
 	
 	public static int maxHP( Char hero ){
-		if (hero instanceof Hero) {
-			return 8 + (int) Math.floor(((Hero)hero).lvl * 2.5f);
-		} else {
-			return 8 + (int) Math.floor(Dungeon.getScaling() * 2.5f);
-		}
+		return (int) (50 * Item.calcMobPower(hero.level()));
 	}
 	
 	@Override

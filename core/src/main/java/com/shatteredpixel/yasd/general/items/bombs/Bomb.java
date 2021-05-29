@@ -186,7 +186,7 @@ public class Bomb extends Item {
 					continue;
 				}
 
-				int dmg = Random.NormalIntRange(5 + Dungeon.getScaling(), 10 + Dungeon.getScaling() *2);
+				int dmg = Math.round(Random.NormalIntRange((int) (Dungeon.getScaleModifier() * 5), (int) (10 * Dungeon.getScaleModifier())));
 
 				//those not at the center of the blast take less damage
 				if (ch.pos != cell){

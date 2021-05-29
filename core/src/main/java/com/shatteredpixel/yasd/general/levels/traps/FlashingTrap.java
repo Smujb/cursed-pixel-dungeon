@@ -63,7 +63,7 @@ public class FlashingTrap extends Trap {
 		Char c = Actor.findChar( pos );
 		
 		if (c != null) {
-			int damage = Math.max( 0,  (4 + Dungeon.getScaling()) );
+			int damage = (int) Math.max( 0,  (10 * Dungeon.getScaleModifier()) );
 			Buff.affect( c, Bleeding.class ).set( damage );
 			Buff.prolong( c, Blindness.class, Blindness.DURATION );
 			Buff.prolong( c, Cripple.class, Cripple.DURATION*2f );

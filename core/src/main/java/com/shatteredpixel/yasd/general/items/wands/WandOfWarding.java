@@ -270,6 +270,7 @@ public class WandOfWarding extends DamageWand {
 
 			wandHeal(0);
 
+			//TODO refactor for new health system
 			switch (tier){
 				case 1: case 2: default:
 					break; //do nothing
@@ -324,14 +325,6 @@ public class WandOfWarding extends DamageWand {
 
 			heal(heal);
 			if (sprite != null) sprite.showStatus(CharSprite.POSITIVE, Integer.toString(heal));
-		}
-
-		@Override
-		public int defenseSkill(Char enemy) {
-			if (tier > 3){
-				defenseSkill = 4 + Dungeon.getScaling();
-			}
-			return super.defenseSkill(enemy);
 		}
 
 		@Override

@@ -207,7 +207,7 @@ public class WndTradeItem extends WndInfoItem {
 	}
 
 	private int price( Item item ) {
-		return item.price() * 5 * (Dungeon.getScaling() / 6 + 1);
+		return item.price() * 10;
 	}
 
 	private void buy( Heap heap ) {
