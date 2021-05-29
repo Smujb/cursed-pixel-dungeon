@@ -2,8 +2,10 @@ package com.shatteredpixel.yasd.general.items.shield;
 
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
+import com.shatteredpixel.yasd.general.utils.GLog;
 
 public class TitanShield extends Shield {
 
@@ -17,8 +19,20 @@ public class TitanShield extends Shield {
 
     @Override
     public void doParry(Char ch) {
-        ch.spend(Actor.TICK);
-        super.doParry(ch);
+        if (isEquipped(ch)) {
+            new Buff() {
+                @Override
+                public boolean act() {
+                    Buff.affect(ch, Parry.class).setShield(TitanShield.this);
+                    detach();
+                    return true;
+                }
+            }.attachTo(ch);
+            ch.spendAndNext(Actor.TICK + parryTime());
+            ch.spendAndNext(parryTime());
+        } else {
+            GLog.negative(Messages.get(this, "not_equipped"));
+        }
     }
 
     @Override
