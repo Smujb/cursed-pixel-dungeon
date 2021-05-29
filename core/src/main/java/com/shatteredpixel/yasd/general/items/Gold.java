@@ -102,7 +102,7 @@ public class Gold extends Item {
 	}
 
 	public Item random(float factor) {
-		quantity = (int) (Random.Int( 30 + Dungeon.getScaling() * 10, 60 + Dungeon.getScaling() * 20 ) * factor);
+		quantity = (int) (Random.Int( 60 * Dungeon.getScaling(), 120 * Dungeon.getScaling() ) * factor);
 		return this;
 	}
 	

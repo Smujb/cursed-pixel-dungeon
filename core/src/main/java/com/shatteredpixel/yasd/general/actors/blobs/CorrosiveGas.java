@@ -38,7 +38,7 @@ import com.watabou.utils.Bundle;
 public class CorrosiveGas extends Gas {
 
 	//FIXME should have strength per-cell
-	private int strength = 0;
+	private float strength = 0;
 
 	@Override
 	protected void evolve() {
@@ -55,7 +55,7 @@ public class CorrosiveGas extends Gas {
 		if (ch != null &&!ch.isImmune(this.getClass())) Buff.affect(ch, Corrosion.class).set(2f, strength);
 	}
 
-	public CorrosiveGas setStrength(int str){
+	public CorrosiveGas setStrength(float str){
 		if (str > strength) {
 			strength = str;
 		}

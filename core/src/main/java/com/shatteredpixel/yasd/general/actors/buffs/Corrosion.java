@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.actors.buffs;
 
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
@@ -42,6 +41,9 @@ public class Corrosion extends Buff implements Hero.Doom {
 		element = Element.ACID;
 	}
 
+
+	private static final float FACTOR = 1.1f;
+
 	private float damage = 1;
 	protected float left;
 
@@ -53,8 +55,8 @@ public class Corrosion extends Buff implements Hero.Doom {
 		announced = true;
 	}
 
-	public static int defaultStrength(int scale) {
-		return 1 + scale*2 / Constants.CHAPTER_LENGTH;
+	public static float defaultStrength(int scale) {
+		return 2 * scale;
 	}
 
 	@Override
@@ -71,7 +73,7 @@ public class Corrosion extends Buff implements Hero.Doom {
 		left = bundle.getFloat( LEFT );
 	}
 
-	public void set(float duration, int damage) {
+	public void set(float duration, float damage) {
 		this.left = Math.max(duration, left);
 		if (this.damage < damage) this.damage = damage;
 	}
@@ -105,11 +107,7 @@ public class Corrosion extends Buff implements Hero.Doom {
 	public boolean act() {
 		if (target.isAlive()) {
 			target.damage((int)damage, this);
-			if (damage < (Dungeon.getScaling() /2f)+2) {
-				damage++;
-			} else {
-				damage += 0.5f;
-			}
+			damage *= FACTOR;
 			
 			spend( TICK );
 			if ((left -= TICK) <= 0) {
