@@ -76,13 +76,12 @@ public class Swarm extends Mob {
 	public void restoreFromBundle( Bundle bundle ) {
 		super.restoreFromBundle( bundle );
 		generation = bundle.getInt( GENERATION );
-		if (generation > 0) {
-		}
 	}
 
 	@Override
 	public int experience(int lvl) {
-		return generation > 0 ? 0 : super.experience();
+		int exp = super.experience(lvl);
+		return generation > 0 ? 0 : exp;
 	}
 
 	@Override
@@ -101,7 +100,7 @@ public class Swarm extends Mob {
 	@Override
 	public int defenseProc(Char enemy, int damage) {
 
-		if (HP >= damage + 2 && !enemy.elementalType().isMagical()) {
+		if (HP >= damage + 2) {
 			ArrayList<Integer> candidates = new  ArrayList<>();
 			boolean[] solid = Dungeon.level.solid();
 			
@@ -130,11 +129,6 @@ public class Swarm extends Mob {
 		
 		return super.defenseProc(enemy, damage);
 	}
-	
-	/*@Override
-	public int attackSkill( Char target ) {
-		return 12;
-	}*/
 	
 	private Swarm split() {
 		Swarm clone = Mob.create(Swarm.class);
