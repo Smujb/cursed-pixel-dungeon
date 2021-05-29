@@ -439,6 +439,9 @@ public abstract class Char extends Actor {
 				}
 			}
 
+
+			Invisibility.dispel(this);
+
 			return true;
 
 		} else {
