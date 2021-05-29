@@ -178,6 +178,11 @@ public class GrindLevel extends TiledMapLevel {
 			immunities.add(ScrollOfPsionicBlast.class);
 		}
 
+		@Override
+		public int experience(int lvl) {
+			return 0;
+		}
+
 		public Guardian() {
 			Buff.affect(this, LootBuff.class).setLoot(Math.round(3 + 2 * LuckyBadge.mobLevelBoost));
 		}

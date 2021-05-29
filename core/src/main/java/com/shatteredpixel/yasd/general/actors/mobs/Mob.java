@@ -1083,12 +1083,8 @@ public abstract class Mob extends Char {
 		private Mob mob;
 
 		@Override
-		public boolean act() {
-			super.act();
-
-			//All charge is lost on a failed parry
+		protected void emptyCharge() {
 			mob.parryCharge = 0;
-			return true;
 		}
 
 		private static final String MOB_ID = "mob-id";
@@ -1100,6 +1096,7 @@ public abstract class Mob extends Char {
 		@Override
 		public int absorbDamage(DamageSrc src, int damage) {
 			if (mob == null) return damage;
+			parried = true;
 			detach();
 			int defense = mob.defense();
 			if (defense >= damage) {

@@ -435,12 +435,8 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         private Shield shield;
 
         @Override
-        public boolean act() {
-            super.act();
-
-            //Shields loose *all* charge on a failed parry!
+        protected void emptyCharge() {
             shield.setCharge(0);
-            return true;
         }
 
         private static final String SHIELD = "shield";
@@ -450,6 +446,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         }
 
         public int absorbDamage(Char.DamageSrc src, int damage) {
+            parried = true;
             detach();
             if (shield == null || target == null || !shield.isEquipped(target)) {
                 return damage;

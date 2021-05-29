@@ -7,10 +7,13 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.noosa.Image;
+import com.watabou.utils.Bundle;
 
 import org.jetbrains.annotations.NotNull;
 
 public abstract class ParryBuff extends Buff {
+
+    protected boolean parried = false;
 
     @Override
     public boolean act() {
@@ -18,6 +21,14 @@ public abstract class ParryBuff extends Buff {
         spend(1f);
         return true;
     }
+
+    @Override
+    public void detach() {
+        super.detach();
+        if (!parried) emptyCharge();
+    }
+
+    protected abstract void emptyCharge();
 
     @Override
     public boolean attachTo(@NotNull Char target) {
@@ -38,5 +49,19 @@ public abstract class ParryBuff extends Buff {
     public void tintIcon(Image icon) {
         super.tintIcon(icon);
         icon.hardlight(0.5f, 0.5f, 0.5f);
+    }
+
+    public static final String PARRIED = "parried";
+
+    @Override
+    public void storeInBundle(Bundle bundle) {
+        super.storeInBundle(bundle);
+        bundle.put(PARRIED, parried);
+    }
+
+    @Override
+    public void restoreFromBundle(Bundle bundle) {
+        super.restoreFromBundle(bundle);
+        parried = bundle.getBoolean(PARRIED);
     }
 }
