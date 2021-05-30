@@ -2,6 +2,7 @@ package com.shatteredpixel.yasd.general.items.weapon.melee;
 
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Bless;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
@@ -11,6 +12,8 @@ public class HeroSword extends MeleeWeapon {
         image = ItemSpriteSheet.Weapons.HERO_SWORD;
 
         damageFactor = 2/3f;
+
+        statScaling.add(Hero.HeroStat.RESILIENCE);
     }
 
     @Override
