@@ -2,6 +2,7 @@ package com.shatteredpixel.yasd.general.levels;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDSettings;
+import com.shatteredpixel.yasd.general.Difficulty;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
@@ -176,6 +177,11 @@ public class GrindLevel extends TiledMapLevel {
             state = WANDERING;
 
 			immunities.add(ScrollOfPsionicBlast.class);
+		}
+
+		@Override
+		protected Difficulty difficulty() {
+			return Difficulty.EASY;
 		}
 
 		@Override

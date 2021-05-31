@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.actors.mobs;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Challenges;
+import com.shatteredpixel.yasd.general.Difficulty;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.Statistics;
@@ -252,6 +253,11 @@ public abstract class Mob extends Char {
 
 	protected static int normalMin(int level) {
 		return Math.round(Item.calcMobPower(level) * 12);	
+	}
+
+	//Allows mobs to specify difficulty overrides (such as guardians on grind depth)
+	protected Difficulty difficulty() {
+		return Dungeon.difficulty;
 	}
 
 	protected static final float MAX_PARRY_CHARGE = 100f;
