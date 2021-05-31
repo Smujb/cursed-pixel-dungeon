@@ -316,7 +316,7 @@ public class Hero extends Char {
 			}
 		}
 		HT *= RingOfFaithAndPower.hpModifier(this);
-		heal(HT - preHT);
+		if (boostHP) heal(HT - preHT);
 		super.updateHT(boostHP);
 	}
 
