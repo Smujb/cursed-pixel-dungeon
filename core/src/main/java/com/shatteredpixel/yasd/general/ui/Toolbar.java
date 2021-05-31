@@ -193,6 +193,7 @@ public class Toolbar extends Component {
 
 		for (int i = 0; i < btnQuick.length; i++) {
 			if (i < CPDSettings.quickslots()) {
+				if (btnQuick[i] == null) btnQuick[i] = new QuickslotTool(64, 0, 22, 24, i);
 				add(btnQuick[i]);
 			} else {
 				remove(btnQuick[i]);
