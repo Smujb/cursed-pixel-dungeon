@@ -139,15 +139,6 @@ public class Bones {
 					item.cursedKnown = true;
 				}
 				
-				if (item.isUpgradable()) {
-					//caps at +3
-					if (item.level() > 3) {
-						item.degrade( item.level() - 3 );
-					}
-					//thrown weapons are always IDed, otherwise set unknown
-					item.levelKnown = item instanceof MissileWeapon;
-				}
-				
 				item.reset();
 				
 				return item;
