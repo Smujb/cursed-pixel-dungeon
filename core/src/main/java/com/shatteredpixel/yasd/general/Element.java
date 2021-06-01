@@ -175,7 +175,7 @@ public enum Element {
 				Buff.affect(defender, Weakness.class, 5);
 				break;
 			case DRAIN:
-				int healed = damage / 2;
+				int healed = damage / 5;
 
 				if (healed > 0) {
 
