@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.items;
 
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
-import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Difficulty;
 import com.shatteredpixel.yasd.general.Dungeon;
@@ -704,7 +703,6 @@ public class Item implements Bundlable {
 		souCap = bundle.contains( MAX ) ? bundle.getInt( MAX ) : MAX_SOU;
 
 		int level = bundle.getInt( LEVEL );
-		if (Dungeon.version <= CPDGame.v0_4_8) level /= 2;
 		level(level);
 		
 		curseIntensity = bundle.contains(CURSE_INTENSITY) ? bundle.getInt(CURSE_INTENSITY) : 0;
