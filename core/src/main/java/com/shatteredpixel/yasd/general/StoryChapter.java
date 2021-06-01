@@ -19,8 +19,17 @@ public enum StoryChapter {
 			return true;
 		}
 	},
-	SECOND,
+	SECOND{
+		@Override
+		public int extraScale() {
+			return Trial.trialsBeaten();
+		}
+	},
 	THIRD;
+
+	public int extraScale() {
+		return 0;
+	}
 
 	public boolean finished() {
 		return false;
@@ -112,6 +121,10 @@ public enum StoryChapter {
 			} else {
 				return curTrial = NONE;
 			}
+		}
+
+		public static int trialsBeaten() {
+			return 0;
 		}
 
 		public static void setCurTrial(Trial trial) {

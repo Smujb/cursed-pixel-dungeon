@@ -129,6 +129,7 @@ public abstract class Mob extends Char {
 
 	//Bosses give 10x exp
 	public int experience(int lvl) {
+		if (lvl + 1 < Dungeon.hero.lvl) return 0;
 		return ((lvl + 1)/2) * (properties().contains(Property.BOSS) ? 10 : 1);
 	}
 
@@ -990,7 +991,7 @@ public abstract class Mob extends Char {
 	}
 	
 	public void rollToDropLoot(){
-		if (Dungeon.hero.lvl > Dungeon.getScaling() + 3) return;
+		if (experience() == 0) return;
 		
 		float lootChance = this.lootChance;
 		lootChance *= RingOfWealth.dropChanceMultiplier( Dungeon.hero );

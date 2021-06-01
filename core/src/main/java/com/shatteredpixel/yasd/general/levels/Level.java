@@ -202,7 +202,7 @@ public abstract class Level implements Bundlable {
 
 	//Return current depth
 	public int getScaleFactor() {
-		return Math.max(Dungeon.hero.lvl, Dungeon.depth);
+		return Dungeon.depth + CPDSettings.storyChapter().extraScale();
 	}
 
 	public ArrayList<Integer> getTileLocations(Terrain terrain) {
