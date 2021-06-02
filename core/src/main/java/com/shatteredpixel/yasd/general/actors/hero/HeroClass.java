@@ -60,8 +60,13 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRage;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.yasd.general.items.shield.ParryingDagger;
+import com.shatteredpixel.yasd.general.items.shield.ProphetShield;
+import com.shatteredpixel.yasd.general.items.shield.ReflexShield;
 import com.shatteredpixel.yasd.general.items.shield.RoundShield;
+import com.shatteredpixel.yasd.general.items.shield.SorcererShield;
 import com.shatteredpixel.yasd.general.items.wands.WandOfMagicMissile;
+import com.shatteredpixel.yasd.general.items.wands.WandOfTransfusion;
 import com.shatteredpixel.yasd.general.items.weapon.SpiritBow;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Dagger;
 import com.shatteredpixel.yasd.general.items.weapon.melee.FoolsBlade;
@@ -71,6 +76,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.InscribedKnife;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MegaStick;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
 import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
+import com.shatteredpixel.yasd.general.items.weapon.ranged.ImpactCrossbow;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.HeroSelectScene;
 import com.watabou.noosa.Image;
@@ -219,6 +225,10 @@ public enum HeroClass {
 		hero.belongings.miscs[1] = shield;
 		Dungeon.quickslot.setSlot(1, shield);
 
+		ImpactCrossbow crossbow = (ImpactCrossbow) new ImpactCrossbow().identify();
+		hero.belongings.miscs[2] = crossbow;
+		Dungeon.quickslot.setSlot(2, crossbow);
+
 		new BrokenSeal().collect();
 		
 		new PotionOfRestoration().identify();
@@ -238,6 +248,10 @@ public enum HeroClass {
 		}
 
 		Dungeon.quickslot.setSlot(1, staff.getWand());
+
+		SorcererShield shield = (SorcererShield) new SorcererShield().identify();
+		hero.belongings.miscs[1] = shield;
+		Dungeon.quickslot.setSlot(1, shield);
 		
 		new ScrollOfUpgrade().identify();
 		new PotionOfLiquidFlame().identify();
@@ -249,7 +263,13 @@ public enum HeroClass {
 			hero.belongings.miscs[0] = (KindofMisc) new Dagger().identify();
 		}
 
-		hero.belongings.miscs[1] = (KindofMisc) new Whip().identify();
+		Whip whip = (Whip) new Whip().identify();
+		hero.belongings.miscs[1] = whip;
+		Dungeon.quickslot.setSlot(1, whip);
+
+		ParryingDagger dagger = (ParryingDagger) new ParryingDagger().identify();
+		hero.belongings.miscs[2] = dagger;
+		Dungeon.quickslot.setSlot(2, dagger);
 		
 		new ScrollOfMagicMapping().identify();
 		new PotionOfInvisibility().identify();
@@ -261,10 +281,14 @@ public enum HeroClass {
 		if (hero.belongings.miscs[0] == null) {
 			hero.belongings.miscs[0] = (KindofMisc) new Glove().identify();
 		}
+
 		SpiritBow bow = (SpiritBow) new SpiritBow().identify();
 		hero.belongings.miscs[1] = bow;
-
 		Dungeon.quickslot.setSlot(1, bow);
+
+		ReflexShield shield = (ReflexShield) new ReflexShield().identify();
+		hero.belongings.miscs[2] = shield;
+		Dungeon.quickslot.setSlot(2, shield);
 		
 		new PotionOfMindVision().identify();
 		new ScrollOfLullaby().identify();
@@ -280,10 +304,18 @@ public enum HeroClass {
 		} else {
 			knife.collect();
 		}
+
 		DragonPendant pendant = (DragonPendant) new EarthenDragonPendant().identify();
 		hero.belongings.miscs[1] = pendant;
-
 		Dungeon.quickslot.setSlot(1, pendant);
+
+		ProphetShield shield = (ProphetShield) new ProphetShield().identify();
+		hero.belongings.miscs[2] = shield;
+		Dungeon.quickslot.setSlot(2, shield);
+
+		WandOfTransfusion wand = (WandOfTransfusion) new WandOfTransfusion().identify();
+		hero.belongings.miscs[3] = wand;
+		Dungeon.quickslot.setSlot(3, wand);
 
 		new PotionOfMindVision().identify();
 		new ScrollOfLullaby().identify();
