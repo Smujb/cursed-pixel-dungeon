@@ -14,7 +14,6 @@ public class TitanShield extends Shield {
 
         defenseMultiplier = 1.5f;
         damageFactor = 1.5f;
-        chargePerTurn = 6f;
     }
 
     @Override

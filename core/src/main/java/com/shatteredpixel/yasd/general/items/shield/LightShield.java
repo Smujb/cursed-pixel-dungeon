@@ -8,14 +8,9 @@ public class LightShield extends Shield {
     {
         image = ItemSpriteSheet.Shields.LIGHT;
 
-        defenseMultiplier = 0.5f;
+        defenseMultiplier = 0.6f;
         chargePerTurn = 10f;
 
         statScaling.add(Hero.HeroStat.ASSAULT);
-    }
-
-    @Override
-    protected float parryTime() {
-        return super.parryTime()/2f;
     }
 }

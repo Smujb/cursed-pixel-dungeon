@@ -11,7 +11,7 @@ public class HeroShield extends Shield {
     {
         image = ItemSpriteSheet.Shields.HERO;
 
-        damageFactor = 0.3f;
+        damageFactor = 0.6f;
 
         statScaling.add(Hero.HeroStat.EXECUTION);
     }

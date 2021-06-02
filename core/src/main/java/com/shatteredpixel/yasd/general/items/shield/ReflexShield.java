@@ -11,8 +11,7 @@ public class ReflexShield extends Shield {
     {
         image = ItemSpriteSheet.Shields.REFLEX;
 
-        defenseMultiplier = 0.8f;
-        damageFactor = 0.6f;
+        defenseMultiplier = 0.7f;
 
         statScaling.add(Hero.HeroStat.ASSAULT);
     }

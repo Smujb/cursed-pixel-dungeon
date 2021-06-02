@@ -12,7 +12,7 @@ public class MidasShield extends Shield {
     {
         image = ItemSpriteSheet.Shields.ROYAL;
 
-        defenseMultiplier = 0.7f;
+        defenseMultiplier = 0.8f;
 
         statScaling.add(Hero.HeroStat.FOCUS);
     }

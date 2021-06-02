@@ -12,8 +12,7 @@ public class SpiritualShield extends Shield {
     {
         image = ItemSpriteSheet.Shields.SPIRITUAL;
 
-        defenseMultiplier = 0.8f;
-        damageFactor = 0.5f;
+        damageFactor = 0.6f;
 
         statScaling.add(Hero.HeroStat.FOCUS);
     }

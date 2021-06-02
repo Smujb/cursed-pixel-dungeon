@@ -10,7 +10,7 @@ public class PanicShield extends Shield {
     {
         image = ItemSpriteSheet.Shields.PANIC;
 
-        damageFactor = 0.5f;
+        damageFactor = 0.6f;
     }
 
     @Override

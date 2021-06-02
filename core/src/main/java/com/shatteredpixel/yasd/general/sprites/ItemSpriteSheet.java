@@ -280,7 +280,7 @@ public class ItemSpriteSheet {
 		public static final int RUNIC	          = SHIELD+10;
 		public static final int REINFORCED        = SHIELD+11;
 		public static final int ROYAL             = SHIELD+12;
-		public static final int DEMONIC           = SHIELD+13;
+		public static final int PROPHET = SHIELD+13;
 		public static final int HERO              = SHIELD+14;
 		public static final int PESTILENT		  = SHIELD+15;
 		public static final int LACERATING        = SHIELD+16;

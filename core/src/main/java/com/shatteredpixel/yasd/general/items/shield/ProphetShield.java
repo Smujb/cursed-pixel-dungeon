@@ -9,9 +9,9 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class ProphetShield extends Shield {
     {
-        image = ItemSpriteSheet.Shields.DEMONIC;
+        image = ItemSpriteSheet.Shields.PROPHET;
 
-        damageFactor = 0.5f;
+        damageFactor = 0.8f;
         defenseMultiplier = 0.8f;
 
         statScaling.add(Hero.HeroStat.SUPPORT);

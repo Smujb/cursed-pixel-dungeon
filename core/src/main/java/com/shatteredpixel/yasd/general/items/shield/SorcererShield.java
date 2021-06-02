@@ -12,7 +12,7 @@ public class SorcererShield extends Shield {
         image = ItemSpriteSheet.Shields.SORCERER;
 
         defenseMultiplier = 0.8f;
-        damageFactor = 0.5f;
+        damageFactor = 0.8f;
 
         statScaling.add(Hero.HeroStat.FOCUS);
     }

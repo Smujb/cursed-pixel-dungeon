@@ -12,7 +12,6 @@ public class PestilentShield extends Shield {
     {
         image = ItemSpriteSheet.Shields.PESTILENT;
 
-        damageFactor = 0.7f;
         defenseMultiplier = 0.7f;
     }
 

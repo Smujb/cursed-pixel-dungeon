@@ -8,7 +8,7 @@ public class RunicShield extends Shield {
     {
         image = ItemSpriteSheet.Shields.RUNIC;
 
-        defenseMultiplier = 0.7f;
+        defenseMultiplier = 0.9f;
 
         statScaling.add(Hero.HeroStat.FOCUS);
     }
