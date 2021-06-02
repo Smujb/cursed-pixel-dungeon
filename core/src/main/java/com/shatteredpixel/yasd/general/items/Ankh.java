@@ -76,20 +76,23 @@ public class Ankh extends Item {
 		CrimsonFlask.cure(toRevive);
 		Buff.detach(toRevive, Paralysis.class);
 		toRevive.spend(-toRevive.cooldown());
+
 		if (Dungeon.hero.fieldOfView[toRevive.pos]) {
 			new Flare(8, 32).color(0xFFFF66, true).show(toRevive.sprite, 2f);
 			CellEmitter.get(toRevive.pos).start(Speck.factory(Speck.LIGHT), 0.2f, 3);
 		}
 
-		if (toRevive.hasBelongings() && ankh != null) {
-			ankh.detach(toRevive.belongings.backpack);
-			toRevive.belongings.uncurseEquipped();
-		}
+		if (ankh != null) {
+			if (toRevive.hasBelongings()) {
+				ankh.detach(toRevive.belongings.backpack);
+				toRevive.belongings.uncurseEquipped();
+			}
 
-		if (toRevive == Dungeon.hero) {
-			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
-			GLog.warning(Messages.get(Ankh.class, "revive"));
-			Statistics.ankhsUsed++;
+			if (toRevive == Dungeon.hero) {
+				Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
+				GLog.warning(Messages.get(Ankh.class, "revive"));
+				Statistics.ankhsUsed++;
+			}
 		}
 	}
 	
