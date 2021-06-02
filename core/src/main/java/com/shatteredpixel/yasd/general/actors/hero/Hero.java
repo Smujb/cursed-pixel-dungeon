@@ -41,6 +41,7 @@ import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.blobs.Alchemy;
+import com.shatteredpixel.yasd.general.actors.buffs.AdrenalineSurge;
 import com.shatteredpixel.yasd.general.actors.buffs.Amok;
 import com.shatteredpixel.yasd.general.actors.buffs.Awareness;
 import com.shatteredpixel.yasd.general.actors.buffs.Barkskin;
@@ -365,23 +366,23 @@ public class Hero extends Char {
 	;
 
 	public int getExecution() {
-		return execution;
+		return execution + AdrenalineSurge.statBoost(this);
 	}
 
 	public int getResilience() {
-		return resilience;
+		return resilience + AdrenalineSurge.statBoost(this);
 	}
 
 	public int getFocus() {
-		return focus;
+		return focus + AdrenalineSurge.statBoost(this);
 	}
 
 	public int getAssault() {
-		return assault;
+		return assault + AdrenalineSurge.statBoost(this);
 	}
 
 	public int getSupport() {
-		return support;
+		return support + AdrenalineSurge.statBoost(this);
 	}
 
 	public void setExecution(int execution) {

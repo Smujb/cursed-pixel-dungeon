@@ -27,40 +27,34 @@
 
 package com.shatteredpixel.yasd.general.actors.buffs;
 
+import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.watabou.utils.Bundle;
 
-public class AdrenalineSurge extends Buff {
+import org.jetbrains.annotations.NotNull;
+
+public class AdrenalineSurge extends FlavourBuff {
 
 	public static float DURATION = 800f;
 	
 	{
 		type = buffType.POSITIVE;
 	}
-	
-	private int boost;
-	private float interval;
-	
-	public void reset(int boost, float interval){
-		this.boost = boost;
-		this.interval = interval;
-		spend(interval - cooldown());
-	}
-	
-	public int boost(){
-		return boost;
-	}
-	
+
 	@Override
-	public boolean act() {
-		boost --;
-		if (boost > 0){
-			spend( interval );
-		} else {
-			detach();
-		}
-		return true;
+	public boolean attachTo(@NotNull Char target) {
+		boolean attach = super.attachTo(target);
+		if (attach) target.updateHT(true);
+		return attach;
+	}
+
+	private float interval;
+
+	public static int statBoost(Char ch) {
+		AdrenalineSurge surge = ch.buff(AdrenalineSurge.class);
+		if (surge != null) return 1;
+		return 0;
 	}
 	
 	@Override
@@ -80,24 +74,20 @@ public class AdrenalineSurge extends Buff {
 	
 	@Override
 	public String desc() {
-		return Messages.get(this, "desc", boost, dispTurns(visualcooldown()));
+		return Messages.get(this, "desc", dispTurns(visualcooldown()));
 	}
-	
-	private static final String BOOST	    = "boost";
+
 	private static final String INTERVAL	    = "interval";
 	
 	@Override
 	public void storeInBundle( Bundle bundle ) {
 		super.storeInBundle( bundle );
-		bundle.put( BOOST, boost );
 		bundle.put( INTERVAL, interval );
 	}
 	
 	@Override
 	public void restoreFromBundle( Bundle bundle ) {
 		super.restoreFromBundle( bundle );
-		boost = bundle.getInt( BOOST );
-		//pre-0.7.1
 		if (bundle.contains(INTERVAL)) {
 			interval = bundle.getFloat(INTERVAL);
 		} else {
