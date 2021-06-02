@@ -28,7 +28,6 @@ public class TitanShield extends Shield {
                 }
             }.attachTo(ch);
             ch.spendAndNext(Actor.TICK + parryTime());
-            ch.spendAndNext(parryTime());
         } else {
             GLog.negative(Messages.get(this, "not_equipped"));
         }
