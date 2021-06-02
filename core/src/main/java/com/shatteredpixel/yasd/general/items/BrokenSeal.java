@@ -38,6 +38,7 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndBag;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Bundle;
 
 import java.util.ArrayList;
 
@@ -74,7 +75,7 @@ public class BrokenSeal extends Item {
 
 	@Override
 	public boolean isUpgradable() {
-		return level() < 3;
+		return level() == 0;
 	}
 
 	private final WndBag.Listener shieldSelector = new WndBag.Listener(this) {
@@ -141,5 +142,11 @@ public class BrokenSeal extends Item {
 			}
 			return dmg;
 		}
+	}
+
+	@Override
+	public void restoreFromBundle(Bundle bundle) {
+		super.restoreFromBundle(bundle);
+		if (level() > 1) level(1);
 	}
 }
