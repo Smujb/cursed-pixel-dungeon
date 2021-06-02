@@ -119,7 +119,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 
 		if (action.equals(AC_ZAP)) {
 
-			if ((isEquipped(hero) || imbued)) execute(hero, AC_ZAP_OVERRIDE);
+			if ((isEquipped(hero) || isImbued())) execute(hero, AC_ZAP_OVERRIDE);
 
 		} else if (action.equals(AC_ZAP_OVERRIDE)) {//This is used by Mage's Staff as the Wand in the staff is never equipped.
 			curUser = hero;
@@ -128,7 +128,11 @@ public abstract class Wand extends KindofMisc implements Attackable {
 		}
 	}
 
-	public boolean imbued = false;
+	public MagesStaff imbuedStaff = null;
+
+	public boolean isImbued() {
+		return imbuedStaff != null;
+	}
 
 	@Override
 	public void activate(Char ch) {//When equipped, start charging
@@ -292,6 +296,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	
 	@Override
 	public int level() {
+		if (imbuedStaff != null) curUser = imbuedStaff.getUser();
 		if (!cursed() && curseInfusionBonus){
 			curseInfusionBonus = false;
 			updateLevel();

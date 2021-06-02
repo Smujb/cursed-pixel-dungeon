@@ -96,7 +96,7 @@ public class MagesStaff extends MeleeWeapon {
 		wand.identify();
 		wand.uncurse();
 		this.wand = wand;
-		wand.imbued = true;
+		wand.imbuedStaff = this;
 		updateWand(false);
 		wand.curCharges = wand.maxCharges;
 		name = Messages.get(wand, "staff_name");
@@ -194,7 +194,7 @@ public class MagesStaff extends MeleeWeapon {
 
 	public Item imbueWand(Wand wand, Char owner) {
 		//Ensure old wand can't still be used
-		this.wand.imbued = false;
+		this.wand.imbuedStaff = this;
 		Dungeon.quickslot.clearItem(this.wand);
 
 		this.wand = null;
@@ -222,7 +222,7 @@ public class MagesStaff extends MeleeWeapon {
 		}
 		
 		Badges.validateItemLevelAquired(this);
-		wand.imbued = true;
+		wand.imbuedStaff = this;
 		wand.curseIntensity = curseIntensity;
 
 		return this;
@@ -310,7 +310,7 @@ public class MagesStaff extends MeleeWeapon {
 		super.restoreFromBundle(bundle);
 		wand = (Wand) bundle.get(WAND);
 		if (wand != null) {
-			wand.imbued = true;
+			wand.imbuedStaff = this;
 			wand.updateLevel();
 			wand.maxCharges++;
 			name = Messages.get(wand, "staff_name");
