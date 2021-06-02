@@ -373,7 +373,7 @@ public class Generator {
 					PotionOfParalyticGas.class,
 					PotionOfPurity.class,
 					PotionOfExperience.class};
-			POTION.defaultProbs = new float[]{3, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 0.1f};
+			POTION.defaultProbs = new float[]{3, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 0};
 			POTION.probs = POTION.defaultProbs.clone();
 
 			POTION_EXOTIC.classes = new Class<?>[]{

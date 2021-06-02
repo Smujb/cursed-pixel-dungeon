@@ -30,20 +30,19 @@ package com.shatteredpixel.yasd.general.levels.rooms.secret;
 import com.shatteredpixel.yasd.general.actors.blobs.Alchemy;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.items.potions.Potion;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfFrost;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfHaste;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLevitation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfMindVision;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfPurity;
+import com.shatteredpixel.yasd.general.items.potions.PotionOfRestoration;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfToxicGas;
 import com.shatteredpixel.yasd.general.levels.Level;
-import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
+import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
@@ -64,7 +63,6 @@ public class SecretLaboratoryRoom extends SecretRoom {
 		potionChances.put(PotionOfLevitation.class,     4f);
 		potionChances.put(PotionOfParalyticGas.class,   4f);
 		potionChances.put(PotionOfPurity.class,         4f);
-		potionChances.put(PotionOfExperience.class,     6f);
 	}
 	
 	public void paint( Level level ) {

@@ -36,8 +36,8 @@ import com.shatteredpixel.yasd.general.items.Honeypot;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.bombs.Bomb;
 import com.shatteredpixel.yasd.general.items.potions.AlchemicalCatalyst;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.potions.exotic.ExoticPotion;
+import com.shatteredpixel.yasd.general.items.potions.exotic.PotionOfMagicalSight;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
@@ -247,7 +247,7 @@ public class RingOfWealth extends Ring {
 			case 1:
 				return new StoneOfEnchantment();
 			case 2:
-				return new PotionOfExperience();
+				return new PotionOfMagicalSight();
 			case 3:
 				return new ScrollOfTransmutation();
 		}

@@ -81,8 +81,6 @@ import com.shatteredpixel.yasd.general.items.keys.GoldenKey;
 import com.shatteredpixel.yasd.general.items.keys.IronKey;
 import com.shatteredpixel.yasd.general.items.keys.Key;
 import com.shatteredpixel.yasd.general.items.keys.SkeletonKey;
-import com.shatteredpixel.yasd.general.items.potions.Potion;
-import com.shatteredpixel.yasd.general.items.potions.PotionOfExperience;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.rings.RingOfAssault;
@@ -938,8 +936,7 @@ public class Hero extends Char {
 					} else {
 
 						boolean important =
-								(item instanceof ScrollOfUpgrade && ((Scroll) item).isKnown()) ||
-										(item instanceof PotionOfExperience && ((Potion) item).isKnown());
+								(item instanceof ScrollOfUpgrade && ((Scroll) item).isKnown());
 						if (important) {
 							GLog.positive(Messages.get(this, "you_now_have", item.name()));
 						} else {
@@ -1444,12 +1441,6 @@ public class Hero extends Char {
 
 		Berserk berserk = buff(Berserk.class);
 		if (berserk != null) berserk.recover(percent);
-
-		if (source != PotionOfExperience.class) {
-			for (Item i : belongings) {
-				i.onHeroGainExp(percent, this);
-			}
-		}
 
 		boolean levelUp = false;
 		while (this.exp >= maxExp() && lvl < Constants.HERO_LEVEL_CAP) {
