@@ -43,7 +43,7 @@ import com.shatteredpixel.yasd.general.windows.WndBag;
 public class StoneOfAugmentation extends InventoryStone {
 	
 	{
-		mode = WndBag.Mode.ENCHANTABLE;
+		mode = WndBag.Mode.WEAPON;
 		image = ItemSpriteSheet.STONE_AUGMENTATION;
 	}
 	
