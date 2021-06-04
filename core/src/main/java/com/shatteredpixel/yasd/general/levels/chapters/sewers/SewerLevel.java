@@ -136,7 +136,7 @@ public class SewerLevel extends RegularLevel {
 						Snake.class,
 						Gnoll.class,
 						Thief.class,
-						Crab.class,
+						Crab.class,//TODO rework Slimes
 						Slime.class};
 	}
 
@@ -148,7 +148,7 @@ public class SewerLevel extends RegularLevel {
 						4,
 						4,
 						2,
-						3};
+						0};
 	}
 
 	protected float[] connectionRoomChances() {

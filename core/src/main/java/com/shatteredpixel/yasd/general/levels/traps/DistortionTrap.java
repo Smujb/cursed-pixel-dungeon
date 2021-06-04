@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.levels.traps;
 
-import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
@@ -39,7 +38,6 @@ import com.shatteredpixel.yasd.general.actors.mobs.Monk;
 import com.shatteredpixel.yasd.general.actors.mobs.Piranha;
 import com.shatteredpixel.yasd.general.actors.mobs.Rat;
 import com.shatteredpixel.yasd.general.actors.mobs.Scorpio;
-import com.shatteredpixel.yasd.general.actors.mobs.Slime;
 import com.shatteredpixel.yasd.general.actors.mobs.Statue;
 import com.shatteredpixel.yasd.general.actors.mobs.Thief;
 import com.shatteredpixel.yasd.general.actors.mobs.Wraith;
@@ -63,7 +61,7 @@ public class DistortionTrap extends Trap{
 	private static final float DELAY = 2f;
 
 	private static final ArrayList<Class<?extends Mob>> RARE = new ArrayList<>(Arrays.asList(
-			Rat.Albino.class, Slime.CausticSlime.class,
+			Rat.Albino.class,// Slime.CausticSlime.class, TODO rework Slimes
 			Thief.Bandit.class,
 			Brute.ArmoredBrute.class,
 			Elemental.Chaos.class, Monk.Senior.class,
