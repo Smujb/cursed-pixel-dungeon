@@ -3,18 +3,18 @@ package com.shatteredpixel.yasd.general.items.relics;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.LockedFloor;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Beam;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.shatteredpixel.yasd.general.scenes.CellSelector;
-import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.tiles.DungeonTilemap;
+import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.utils.Bundle;
 
-public class LloydsBeacon extends Relic {
+public class LloydsBeacon extends SelectorRelic {
 
     {
         image = ItemSpriteSheet.ARTIFACT_BEACON;
@@ -35,13 +35,26 @@ public class LloydsBeacon extends Relic {
     private static final String POS = "pos";
 
     @Override
-    protected void doActivate() {
-        GameScene.selectCell(CHOOSE);
+    protected void onCellSelected(int cell) {
+        if (curUser != null && Ballistica.canHit(curUser, cell, Ballistica.PROJECTILE)) {
+            Char ch = Actor.findChar(cell);
+            if (ch == null) {
+                pos = cell;
+                lastLvlKey = Dungeon.level.key;
+            } else {
+                tpChar(ch);
+            }
+            curUser.sprite.parent.add(
+                    new Beam.LightRay(curUser.sprite.center(), DungeonTilemap.raisedTileCenterToWorld(cell)));
+        }
     }
 
     protected void tpChar(Char ch) {
         int posToTeleport = getPos();
-        if (posToTeleport == -1 || ch.properties().contains(Char.Property.IMMOVABLE)) return;
+        if (posToTeleport == -1 || ch.properties().contains(Char.Property.IMMOVABLE) || curUser.buff(LockedFloor.class) != null) {
+            GLog.negative(Messages.get(this, "cannot_teleport"));
+            return;
+        }
         ScrollOfTeleportation.teleportToLocation(ch, posToTeleport);
 
         //Teleporting yourself consumes more charge
@@ -52,29 +65,6 @@ public class LloydsBeacon extends Relic {
         if (lastLvlKey == null || !lastLvlKey.equals(Dungeon.level.key)) pos = -1;
         return pos;
     }
-
-    private final CellSelector.Listener CHOOSE = new CellSelector.Listener() {
-
-        @Override
-        public void onSelect(Integer cell) {
-            if (cell != null && curUser != null && Ballistica.canHit(curUser, cell, Ballistica.PROJECTILE)) {
-                Char ch = Actor.findChar(cell);
-                if (ch == null) {
-                    pos = cell;
-                    lastLvlKey = Dungeon.level.key;
-                } else {
-                    tpChar(ch);
-                }
-                curUser.sprite.parent.add(
-                        new Beam.LightRay(curUser.sprite.center(), DungeonTilemap.raisedTileCenterToWorld(cell)));
-            }
-        }
-
-        @Override
-        public String prompt() {
-            return Messages.get(LloydsBeacon.this, "select_cell_ability");
-        }
-    };
 
     @Override
     protected boolean critCondition(Char enemy) {
