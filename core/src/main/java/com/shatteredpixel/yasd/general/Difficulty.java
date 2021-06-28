@@ -49,11 +49,11 @@ public enum Difficulty {
 	public float mobScalingPower() {
 		switch (this) {
 			case EASY:
-				return 1.145f;
+				return 1.13f;
 			case MEDIUM: default:
-				return 1.15f;
+				return 1.14f;
 			case HARD:
-				return 1.155f;
+				return 1.15f;
 			case IMPOSSIBLE:
 				return 1.16f;
 		}
