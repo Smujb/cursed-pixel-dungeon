@@ -249,11 +249,11 @@ public abstract class Mob extends Char {
 	}
 
 	protected static int normalMax(int level) {
-		return Math.round(Item.calcMobPower(level) * 20);
+		return Math.round(Item.calcMobPower(level) * 16);
 	}
 
 	protected static int normalMin(int level) {
-		return Math.round(Item.calcMobPower(level) * 10);
+		return Math.round(Item.calcMobPower(level) * 8);
 	}
 
 	//Allows mobs to specify difficulty overrides (such as guardians on grind depth)
