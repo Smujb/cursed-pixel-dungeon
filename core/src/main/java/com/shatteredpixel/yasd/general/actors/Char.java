@@ -85,9 +85,9 @@ import com.shatteredpixel.yasd.general.effects.Wound;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.yasd.general.items.powers.BubbleShield;
-import com.shatteredpixel.yasd.general.items.powers.Greed;
 import com.shatteredpixel.yasd.general.items.relics.CupOfSuffering;
 import com.shatteredpixel.yasd.general.items.relics.GarbOfRetribution;
+import com.shatteredpixel.yasd.general.items.relics.TomeOfGreed;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
 import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRetribution;
@@ -558,7 +558,7 @@ public abstract class Char extends Actor {
 		if (weakness != null) {
 			damage *= weakness.damageFactor();
 		}
-		if (buff(Greed.GreedBuff.class) != null) {
+		if (buff(TomeOfGreed.GreedBuff.class) != null) {
 			damage *= 2;
 		}
 		return damage;
@@ -664,7 +664,7 @@ public abstract class Char extends Actor {
 		if ( buff( Stamina.class ) != null) speed *= 1.5f;
 		if ( buff( Adrenaline.class ) != null) speed *= 2f;
 		if ( buff( Haste.class ) != null) speed *= 3f;
-		if ( buff(Greed.GreedBuff.class) != null ) speed *= 2f;
+		if ( buff(TomeOfGreed.GreedBuff.class) != null ) speed *= 2f;
 		if (hasBelongings()) {
 			speed = belongings.affectSpeed(speed);
 		}
