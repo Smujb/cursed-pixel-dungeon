@@ -50,7 +50,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 
 	@Override
 	public int min(float lvl) {
-		return (int) Math.max(0, (10 * lvl - damageReduction()) * damageFactor);   //level scaling
+		return (int) Math.max(0, (18 * lvl - damageReduction()) * damageFactor);   //level scaling
 	}
 
 	@Override

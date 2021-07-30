@@ -60,12 +60,12 @@ public abstract class Relic extends KindOfWeapon {
 
     @Override
     public int min(float lvl) {
-        return (int) Math.max(0, (4 * lvl - damageReduction()) * damageFactor);   //level scaling
+        return (int) Math.max(0, (8 * lvl - damageReduction()) * damageFactor);   //level scaling
     }
 
     @Override
     public int max(float lvl) {
-        return (int) Math.max(0, (10 * lvl - damageReduction()) * damageFactor);   //level scaling
+        return (int) Math.max(0, (12 * lvl - damageReduction()) * damageFactor);   //level scaling
     }
 
     final int defaultMin() {

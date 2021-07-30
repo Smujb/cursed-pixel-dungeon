@@ -138,7 +138,7 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
 
     @Override
     public int min(float lvl) {
-        return (int) Math.max(0, (8 * lvl - damageReduction()) * damageFactor);   //level scaling
+        return (int) Math.max(0, (12 * lvl - damageReduction()) * damageFactor);   //level scaling
     }
 
     @Override
