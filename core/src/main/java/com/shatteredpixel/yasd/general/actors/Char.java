@@ -365,7 +365,7 @@ public abstract class Char extends Actor {
 
 			return false;
 
-		} else if (hit(this, enemy) || guaranteed) {
+		} else /*if (hit(this, enemy) || guaranteed)*/ {
 
 			Preparation prep = buff(Preparation.class);
 			if (prep != null) {
@@ -444,7 +444,7 @@ public abstract class Char extends Actor {
 
 			return true;
 
-		} else {
+		} /*else {
 
 			if (visibleFight) {
 				String defense = enemy.defenseVerb();
@@ -456,7 +456,7 @@ public abstract class Char extends Actor {
 
 			return false;
 
-		}
+		}*/
 	}
 
 	public static int INFINITE_ACCURACY = 1_000_000;
