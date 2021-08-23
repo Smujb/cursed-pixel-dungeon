@@ -58,6 +58,7 @@ abstract public class KindOfWeapon extends KindofMisc {
 	public boolean canSurpriseAttack = true;
 	public boolean sneakBenefit = false;
 	public boolean canBeParried = true;
+	protected Element damageType = Element.PHYSICAL;
 
 	@Override
 	public int price() {
@@ -156,8 +157,12 @@ abstract public class KindOfWeapon extends KindofMisc {
 		}
 	}
 
+	private Char.DamageSrc defaultSrc() {
+		return new Char.DamageSrc(damageType, this);
+	}
+
 	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
-		Char.DamageSrc src = new Char.DamageSrc(Element.PHYSICAL, this);
+		Char.DamageSrc src = defaultSrc();
 		if (breaksArmor(attacker)) src.ignoreDefense();
 		if (!canBeParried) src.breakShields();
 
