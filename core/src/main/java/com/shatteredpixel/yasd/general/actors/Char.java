@@ -28,11 +28,9 @@
 package com.shatteredpixel.yasd.general.actors;
 
 import com.shatteredpixel.yasd.general.Assets;
-import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
-import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.actors.blobs.Blob;
 import com.shatteredpixel.yasd.general.actors.blobs.SacrificialFire;
 import com.shatteredpixel.yasd.general.actors.blobs.ToxicGas;
@@ -40,7 +38,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Adrenaline;
 import com.shatteredpixel.yasd.general.actors.buffs.Aggression;
 import com.shatteredpixel.yasd.general.actors.buffs.Barrier;
 import com.shatteredpixel.yasd.general.actors.buffs.Bleeding;
-import com.shatteredpixel.yasd.general.actors.buffs.Bless;
 import com.shatteredpixel.yasd.general.actors.buffs.Blindness;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Burning;
@@ -57,7 +54,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Focus;
 import com.shatteredpixel.yasd.general.actors.buffs.Frost;
 import com.shatteredpixel.yasd.general.actors.buffs.FrostImbue;
 import com.shatteredpixel.yasd.general.actors.buffs.Haste;
-import com.shatteredpixel.yasd.general.actors.buffs.Hex;
 import com.shatteredpixel.yasd.general.actors.buffs.Invisibility;
 import com.shatteredpixel.yasd.general.actors.buffs.Levitation;
 import com.shatteredpixel.yasd.general.actors.buffs.LifeLink;
@@ -80,8 +76,6 @@ import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.actors.buffs.Wet;
 import com.shatteredpixel.yasd.general.actors.hero.Belongings;
 import com.shatteredpixel.yasd.general.effects.Speck;
-import com.shatteredpixel.yasd.general.effects.Surprise;
-import com.shatteredpixel.yasd.general.effects.Wound;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.yasd.general.items.powers.BubbleShield;
@@ -125,8 +119,6 @@ public abstract class Char extends Actor {
 
 	public CharSprite sprite;
 
-	public int defenseSkill = 0;
-	public int attackSkill = 0;
 	public int noticeSkill = 0;
 	public int sneakSkill = 0;
 
@@ -460,66 +452,10 @@ public abstract class Char extends Actor {
 	}
 
 	public static int INFINITE_ACCURACY = 1_000_000;
-	public static int INFINITE_EVASION = 1_000_000;
-
-	public static boolean hit(Char attacker, Char defender) {
-		float acuStat = attacker.attackSkill( defender );
-		float defStat = defender.defenseSkill( attacker );
-
-		//if accuracy or evasion are large enough, treat them as infinite.
-		//note that infinite evasion beats infinite accuracy
-		if (defStat >= INFINITE_EVASION){
-			return false;
-		} else if (acuStat >= INFINITE_ACCURACY){
-			return true;
-		}
-		float acuRoll = Random.Float(acuStat);
-		float defRoll = Random.Float(defStat);
-		if (attacker.buff(  Hex.class) != null) acuRoll *= 0.8f;
-		if (attacker.buff(Bless.class) != null) acuRoll *= 1.25f;
-		if (defender.buff(  Hex.class) != null) defRoll *= 0.8f;
-		if (defender.buff(Bless.class) != null) defRoll *= 1.25f;
-		if (attacker.elementalType().isMagical()) {
-			if (!Dungeon.level.adjacent(attacker.pos, defender.pos)) {
-				acuRoll *= 2;
-			}
-		}
-		if (defender.surprisedBy(attacker) && attacker.canSurpriseAttack()) {
-			Statistics.sneakAttacks++;
-			Badges.validateRogueUnlock();
-			Sample.INSTANCE.play(Assets.Sounds.HIT_STRONG);
-			if (defender.sprite.visible) {
-				if (attacker.buff(Preparation.class) != null) {
-					Wound.hit(defender);
-				} else {
-					Surprise.hit(defender);
-				}
-			}
-			return true;
-		}
-		return acuRoll >= defRoll;
-	}
 
 	public void spendAndNext(float time) {
 		spend(time);
 		next();
-	}
-
-	public int attackSkill(Char target) {
-		float accuracy = attackSkill;
-		if (hasBelongings()) {
-			accuracy = belongings.accuracyFactor(accuracy, target);
-		}
-		return affectAttackSkill(target, (int) accuracy);
-	}
-
-	public int defenseSkill(Char enemy) {
-		float evasion = defenseSkill;
-		if (hasBelongings()) {
-			evasion = belongings.affectEvasion(evasion);
-		}
-		if (buff(Shield.Parry.class) != null) return 0;
-		return affectDefenseSkill(enemy, Math.round(evasion));
 	}
 
 	public String defenseVerb() {
@@ -562,32 +498,6 @@ public abstract class Char extends Actor {
 			damage *= 2;
 		}
 		return damage;
-	}
-
-	protected final int affectAttackSkill(Char target, int attackSkill) {
-		Drunk drunk = buff(Drunk.class);
-		if (drunk != null) {
-			attackSkill *= drunk.accuracyFactor();
-		}
-		return attackSkill;
-	}
-
-	protected final int affectDefenseSkill(Char enemy, int evasion) {
-		if (buff(Wet.class) != null) {
-			evasion *= buff(Wet.class).evasionFactor();
-		}
-		if (paralysed > 0) {
-			evasion /= 2;
-		}
-		Drunk drunk = buff(Drunk.class);
-		if (drunk != null) {
-			evasion *= drunk.evasionFactor();
-		}
-		Focus f = buff(Focus.class);
-		if (f != null && f.parryReady()){
-			return INFINITE_EVASION;
-		}
-		return evasion;
 	}
 
 	protected final float affectNoticeSkill(Char enemy, float noticeSkill) {

@@ -53,7 +53,6 @@ public class PrismaticImage extends NPC {
 		spriteClass = PrismaticSprite.class;
 		
 		HP = HT = 8;
-		defenseSkill = 1;
 		
 		alignment = Alignment.ALLY;
 		intelligentAlly = true;
@@ -150,25 +149,7 @@ public class PrismaticImage extends NPC {
 	public int damageRoll() {
 		return Random.NormalIntRange( 1 + hero.lvl/8, 4 + hero.lvl/2 );
 	}
-	
-	@Override
-	public int attackSkill( Char target ) {
-		return hero.attackSkill(target);
-	}
-	
-	@Override
-	public int defenseSkill(Char enemy) {
-		if (hero != null) {
-			int baseEvasion = 4 + hero.lvl;
-			int heroEvasion = hero.defenseSkill(enemy);
-			
-			//if the hero has more/less evasion, 50% of it is applied
-			return super.defenseSkill(enemy) * (baseEvasion + heroEvasion) / 2;
-		} else {
-			return 0;
-		}
-	}
-	
+
 	@Override
 	public float speed() {
 		float speed = super.speed();

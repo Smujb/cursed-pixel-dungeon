@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.actors.mobs;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
-import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Cripple;
 import com.shatteredpixel.yasd.general.effects.Chains;
 import com.shatteredpixel.yasd.general.effects.Pushing;
@@ -114,11 +113,6 @@ public class Guard extends Mob {
 		}
 		chainsUsed = true;
 		return true;
-	}
-
-	@Override
-	public int attackSkill( Char target ) {
-		return 18;
 	}
 
     @Override

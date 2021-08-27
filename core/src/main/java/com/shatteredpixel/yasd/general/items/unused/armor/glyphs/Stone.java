@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.items.unused.armor.glyphs;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.items.unused.armor.Armor;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
-import com.watabou.utils.GameMath;
 
 public class Stone extends Armor.Glyph {
 
@@ -38,8 +37,8 @@ public class Stone extends Armor.Glyph {
 
 	@Override
 	public int proc(Armor armor, Char attacker, Char defender, int damage) {
-		
-		testing = true;
+
+		/*testing = true;
 		float evasion = defender.defenseSkill(attacker);
 		float accuracy = attacker.attackSkill(defender);
 		testing = false;
@@ -54,7 +53,7 @@ public class Stone extends Armor.Glyph {
 		// we clamp in case accuracy or evasion were negative
 		hitChance = GameMath.gate(0.25f, (1f + 3f*hitChance)/4f, 1f);
 		
-		damage = (int)Math.ceil(damage * hitChance);
+		damage = (int)Math.ceil(damage * hitChance);*/
 		
 		return damage;
 	}

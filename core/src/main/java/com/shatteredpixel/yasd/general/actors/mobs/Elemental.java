@@ -170,8 +170,6 @@ public abstract class Elemental extends Mob {
 
 			HP = HT/4; //32
 
-			defenseSkill = 12;
-
             loot = new Embers();
 			lootChance = 1f;
 

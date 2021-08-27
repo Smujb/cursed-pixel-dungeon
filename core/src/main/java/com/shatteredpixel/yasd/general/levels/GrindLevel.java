@@ -198,12 +198,7 @@ public class GrindLevel extends TiledMapLevel {
 			return Messages.get(Guardian.class,"desc") + "\n\n" + super.description();
 		}
 
-		@Override
-		public int defenseSkill(Char enemy) {
-			return 0;
-		}
-
-		@Override
+        @Override
 		protected boolean act() {
 			if (alignment != Dungeon.hero.alignment) {
 				beckon(Dungeon.hero.pos);

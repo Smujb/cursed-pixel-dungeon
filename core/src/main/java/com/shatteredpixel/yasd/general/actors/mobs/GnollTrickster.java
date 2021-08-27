@@ -66,12 +66,7 @@ public class GnollTrickster extends Gnoll {
 
 	private int combo = 0;
 
-	@Override
-	public int attackSkill( Char target ) {
-		return 16;
-	}
-
-	@Override
+    @Override
 	public int attackProc( Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		//The gnoll's attacks get more severe the more the player lets it hit them

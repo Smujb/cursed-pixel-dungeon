@@ -330,20 +330,17 @@ public class WandOfLivingEarth extends DamageWand {
 			return super.attackProc(enemy, damage);
 		}
 
-		private static final String DEFENSE = "defense";
 		private static final String WAND_LEVEL = "wand_level";
 
 		@Override
 		public void storeInBundle( Bundle bundle) {
 			super.storeInBundle(bundle);
-			bundle.put(DEFENSE, defenseSkill);
 			bundle.put(WAND_LEVEL, wandPower);
 		}
 
 		@Override
 		public void restoreFromBundle( Bundle bundle) {
 			super.restoreFromBundle(bundle);
-			defenseSkill = bundle.getInt(DEFENSE);
 			wandPower = bundle.getInt(WAND_LEVEL);
 		}
 

@@ -210,14 +210,7 @@ public class Mimic extends Mob {
 	}
 
 
-
-	@Override
-	public int attackSkill( Char target ) {
-
-		return alignment == Alignment.NEUTRAL ? INFINITE_ACCURACY : super.attackSkill(target);
-	}
-	
-	@Override
+    @Override
 	public void rollToDropLoot(){
 		
 		if (items != null) {

@@ -326,12 +326,7 @@ public class Necromancer extends Mob {
 			spend(TICK);
 		}
 
-		@Override
-		public int attackSkill(Char target) {
-			return (int) (super.attackSkill(target) * 1.5f);
-		}
-
-		public static class NecroSkeletonSprite extends SkeletonSprite{
+        public static class NecroSkeletonSprite extends SkeletonSprite{
 			
 			public NecroSkeletonSprite(){
 				super();

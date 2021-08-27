@@ -71,12 +71,7 @@ public class Ghost extends NPC {
 		return super.act();
 	}
 
-	@Override
-	public int defenseSkill( Char enemy ) {
-		return INFINITE_EVASION;
-	}
-	
-	@Override
+    @Override
 	public float speed() {
 		return Quest.processed() ? 2f : 0.5f;
 	}

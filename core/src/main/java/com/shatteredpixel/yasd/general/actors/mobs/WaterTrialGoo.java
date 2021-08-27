@@ -61,18 +61,6 @@ public class WaterTrialGoo extends Mob {
         if (pumpedUp > 0) dmg /= 2;
         super.damage(dmg, src);
     }
-    @Override
-    public int attackSkill( Char target ) {
-        int attack = 45;
-        if (HP*2 <= HT) attack = 15;
-        if (pumpedUp > 0) attack *= 2;
-        return attack;
-    }
-
-    @Override
-    public int defenseSkill(Char enemy) {
-        return 20;
-    }
 
     @Override
     public boolean act() {

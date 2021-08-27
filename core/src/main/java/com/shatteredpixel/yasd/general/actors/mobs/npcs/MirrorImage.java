@@ -52,7 +52,6 @@ public class MirrorImage extends NPC {
 		spriteClass = MirrorSprite.class;
 		
 		HP = HT = 1;
-		defenseSkill = 1;
 		
 		alignment = Alignment.ALLY;
 		state = HUNTING;
@@ -111,30 +110,7 @@ public class MirrorImage extends NPC {
 		int damage = user.damageRoll();
 		return (damage+1)/2; //half user damage, rounded up
 	}
-	
-	@Override
-	public int attackSkill( Char target ) {
-		return user.attackSkill(target);
-	}
-	
-	@Override
-	public int defenseSkill(Char enemy) {
-		if (user != null) {
-			int baseEvasion;
-			if (user instanceof Hero){
-				baseEvasion = 4 + ((Hero)user).lvl;
-			} else {
-				baseEvasion = 4 + Dungeon.depth;
-			}
-			int heroEvasion = user.defenseSkill(enemy);
-			
-			//if the user has more/less evasion, 50% of it is applied
-			return super.defenseSkill(enemy) * (baseEvasion + heroEvasion) / 2;
-		} else {
-			return 0;
-		}
-	}
-	
+
 	@Override
     public float attackDelay() {
 		return user.attackDelay(); //handles ring of furor

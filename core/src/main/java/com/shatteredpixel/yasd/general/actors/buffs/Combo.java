@@ -221,14 +221,7 @@ public class Combo extends Buff implements ActionIndicator.Action {
 
 			AttackIndicator.target(enemy);
 
-			if (enemy.defenseSkill(target) >= Char.INFINITE_EVASION){
-				enemy.sprite.showStatus( CharSprite.NEUTRAL, enemy.defenseVerb() );
-				Sample.INSTANCE.play(Assets.Sounds.MISS);
-				detach();
-				ActionIndicator.clearAction(Combo.this);
-				target.spendAndNext(target.attackDelay());
-				return;
-			} else if (enemy.isInvulnerable(target.getClass())) {
+			if (enemy.isInvulnerable(target.getClass())) {
 				enemy.sprite.showStatus(CharSprite.POSITIVE, Messages.get(Char.class, "invulnerable"));
 				Sample.INSTANCE.play(Assets.Sounds.MISS);
 				detach();

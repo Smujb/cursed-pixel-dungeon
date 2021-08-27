@@ -228,14 +228,6 @@ public abstract class Mob extends Char {
 		return Math.round(16 * Item.calcMobPower(level));
 	}
 
-	protected static int normalAttackSkill(int level) {
-		return 9 + (level);
-	}
-
-	protected static int normalDefenseSkill(int level) {
-		return 3 + (level);
-	}
-
 	protected static int normalPerception(int level) {
 		return 5 + (level);
 	}
@@ -325,24 +317,6 @@ public abstract class Mob extends Char {
 			return super.damageRoll();
 		} else {
 			return affectDamageRoll( (int) (normalDamageRoll(level) * damageFactor));
-		}
-	}
-
-	@Override
-	public int attackSkill(Char target) {
-		if (hasBelongings()) {
-			return super.attackSkill(target);
-		} else {
-			return affectAttackSkill(target, (int) (normalAttackSkill(level) * accuracyFactor));
-		}
-	}
-
-	@Override
-	public int defenseSkill(Char enemy) {
-		if (hasBelongings()) {
-			return super.defenseSkill(enemy);
-		} else {
-			return affectDefenseSkill(enemy, (int) (normalDefenseSkill(level) * evasionFactor));
 		}
 	}
 

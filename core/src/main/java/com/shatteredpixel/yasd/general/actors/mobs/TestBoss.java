@@ -65,7 +65,6 @@ public class TestBoss extends Mob {
 		spriteClass = TestBossSprite.class;
 
 		HP = HT = 200;
-        defenseSkill = 5;
 
 		viewDistance = 20;
 		state = HUNTING;
@@ -102,12 +101,7 @@ public class TestBoss extends Mob {
 		return false;
 	}
 
-	@Override
-	public int attackSkill( Char target ) {
-		return 16;
-	}
-
-	@Override
+    @Override
 	public void damage(int dmg,  DamageSrc src) {
 		if (src.getCause() instanceof Tower) {
 			super.damage(dmg, src);
@@ -254,7 +248,6 @@ public class TestBoss extends Mob {
 			spriteClass = LitTowerSprite.class;
 
 			HP = HT = 600;
-			defenseSkill = 1000;
 
             state = PASSIVE;
 			properties.add(Property.IMMOVABLE);
@@ -266,13 +259,7 @@ public class TestBoss extends Mob {
 		}
 
 
-		@Override
-		public int attackSkill(Char target) {
-			return 100;
-		}
-
-
-		@Override
+        @Override
 		public void damage(int dmg,  DamageSrc src) {
 		}
 

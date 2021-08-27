@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.actors.mobs;
 
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
-import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Burning;
 import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
 import com.watabou.utils.PathFinder;
@@ -55,17 +54,7 @@ public abstract class WaterMob extends Mob {
 		}
 	}
 
-	@Override
-	public int defenseSkill( Char enemy ) {
-		enemySeen = state != SLEEPING
-				&& this.enemy != null
-				&& fieldOfView != null
-				&& fieldOfView[this.enemy.pos]
-				&& this.enemy.invisible == 0;
-		return super.defenseSkill( enemy );
-	}
-
-	@Override
+    @Override
 	protected boolean getCloser( int target ) {
 
 		if (rooted) {

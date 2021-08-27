@@ -58,6 +58,7 @@ abstract public class KindOfWeapon extends KindofMisc {
 	public boolean canSurpriseAttack = true;
 	public boolean sneakBenefit = false;
 	public boolean canBeParried = true;
+	protected int staminaConsumption = 20;
 	protected Element damageType = Element.PHYSICAL;
 
 	@Override
@@ -167,6 +168,9 @@ abstract public class KindOfWeapon extends KindofMisc {
 		if (!canBeParried) src.breakShields();
 
 		int damage = damageRoll(attacker);
+		if (attacker instanceof Hero && !((Hero)attacker).useStamina(staminaConsumption)) {
+			damage *= 0.75;
+		}
 		damage = proc(attacker, enemy, damage);
 		boolean attack = attacker.attack(enemy, guaranteed, damage, src);
 		if (attack) {

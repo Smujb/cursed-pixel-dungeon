@@ -53,12 +53,7 @@ public class Portal extends NPC {
 	@Override
 	public void damage(int dmg, DamageSrc src) {}
 
-	@Override
-	public int defenseSkill(Char enemy) {
-		return Char.INFINITE_EVASION;
-	}
-
-	@Override
+    @Override
 	public String defenseVerb() {
 		return "";
 	}

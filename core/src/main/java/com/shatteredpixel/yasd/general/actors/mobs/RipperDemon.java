@@ -72,12 +72,7 @@ public class RipperDemon extends Mob {
 		return 0;
 	}
 
-	@Override
-	public int attackSkill( Char target ) {
-		return 35;
-	}
-
-	@Override
+    @Override
 	public float attackDelay() {
 		return super.attackDelay()*0.5f;
 	}

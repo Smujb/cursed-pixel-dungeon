@@ -39,11 +39,6 @@ public class TrialGiver extends NPC {
     }
 
     @Override
-    public int defenseSkill( Char enemy ) {
-        return 1000;
-    }
-
-    @Override
     public void damage( int dmg, DamageSrc src ) {
     }
 

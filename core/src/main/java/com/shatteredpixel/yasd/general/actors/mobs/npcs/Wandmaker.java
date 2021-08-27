@@ -70,13 +70,8 @@ public class Wandmaker extends NPC {
 		throwItem();
 		return super.act();
 	}
-	
-	@Override
-	public int defenseSkill( Char enemy ) {
-		return INFINITE_EVASION;
-	}
-	
-	@Override
+
+    @Override
 	public void damage(int dmg,  DamageSrc src) {
 	}
 	

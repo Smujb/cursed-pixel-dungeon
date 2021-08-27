@@ -252,13 +252,8 @@ public class Blacksmith extends NPC {
 
 		Notes.remove( Notes.Landmark.TROLL );
 	}
-	
-	@Override
-	public int defenseSkill( Char enemy ) {
-		return INFINITE_EVASION;
-	}
-	
-	@Override
+
+    @Override
 	public void damage(int dmg,  DamageSrc src) {
 	}
 	

@@ -139,8 +139,6 @@ public class Hero extends Char {
 
 		alignment = Alignment.ALLY;
 
-		attackSkill = 10;
-		defenseSkill = 4;
 		immunities.add(Amok.class);
 	}
 
@@ -277,8 +275,7 @@ public class Hero extends Char {
 	private int maxMP = 10;
 	public int mp = maxMP;
 
-	private int maxStamina = 10;
-	public float stamina = maxStamina;
+	public float stamina = maxStamina();
 
 	public int HTBoost = 0;
 
@@ -296,7 +293,6 @@ public class Hero extends Char {
 		HP = HT = 20;
 
 		updateMP();
-		updateStamina();
 		updateHT(true);
 
 		visibleEnemies = new ArrayList<>();
@@ -321,13 +317,19 @@ public class Hero extends Char {
 	}
 
 	private void updateMP() {
+		//Track initial maximum MP
 		int oldMax = maxMP;
-		maxMP = Math.round(10 + lvl*0.8f + getFocus());
+
+		//Recalculate
+		maxMP = Math.round(20 + lvl*0.8f + getFocus());
+		maxMP *= RingOfFaithAndPower.mpModifier(this);
+
+		//increase mp amount by the same amount max mp was increased by
 		mp += (maxMP - oldMax);
 	}
 
 	public int maxMP() {
-		return (int) (maxMP * RingOfFaithAndPower.mpModifier(this));
+		return maxMP;
 	}
 
 	public boolean useMP(int amount) {
@@ -339,31 +341,21 @@ public class Hero extends Char {
 		}
 	}
 
-	private void updateStamina() {
-		maxStamina = 10;
-	}
-
 	public int maxStamina() {
-		return maxStamina;
-	}
-
-	public boolean canUseStamina(float amount) {
-		return stamina - amount > 0;
+		return Math.round(100 + 5*(lvl * 0.8f + getResilience()));
 	}
 
 	public boolean useStamina(float amount) {
-		if (Dungeon.depth == 0) {
-			return true;
-		}
-		if (canUseStamina(amount)) {
-			stamina -= amount;
-			return true;
-		} else {
-			return false;
-		}
-	}
+		//Check if the hero has enough stamina
+		boolean enough = stamina > amount;
 
-	;
+		//Deduct stamina anyway; let context outside the function decide what to do with the information
+		stamina = Math.max(stamina-amount, 0);
+
+		//Immediately after using stamina, regen is blocked until re-enabled in Hero.ready()
+		StaminaRegen.regen = false;
+		return enough;
+	}
 
 	public int getExecution() {
 		return execution + AdrenalineSurge.statBoost(this);
@@ -507,9 +499,6 @@ public class Hero extends Char {
 		heroClass.storeInBundle(bundle);
 		subClass.storeInBundle(bundle);
 
-		bundle.put(ATTACK, attackSkill);
-		bundle.put(DEFENSE, defenseSkill);
-
 		bundle.put(LEVEL, lvl);
 		bundle.put(EXPERIENCE, exp);
 
@@ -518,7 +507,6 @@ public class Hero extends Char {
 		bundle.put(MANA, mp);
 		bundle.put(MAX_MANA, maxMP);
 		bundle.put(STAMINA, stamina);
-		bundle.put(MAX_STAMINA, maxStamina);
 
 		//Hero stats
 		bundle.put(POWER, execution);
@@ -537,9 +525,6 @@ public class Hero extends Char {
 		heroClass = HeroClass.restoreInBundle(bundle);
 		subClass = HeroSubClass.restoreInBundle(bundle);
 
-		attackSkill = bundle.getInt(ATTACK);
-		defenseSkill = bundle.getInt(DEFENSE);
-
 		lvl = bundle.getInt(LEVEL);
 		exp = bundle.getInt(EXPERIENCE);
 
@@ -548,7 +533,6 @@ public class Hero extends Char {
 		mp = bundle.getInt(MANA);
 		maxMP = bundle.getInt(MAX_MANA);
 		stamina = bundle.getInt(STAMINA);
-		maxStamina = bundle.getInt(MAX_STAMINA);
 
 		//Hero stats
 		execution = bundle.getInt(POWER);
@@ -630,18 +614,6 @@ public class Hero extends Char {
 	//TODO rework hero sprites
 	public int tier() {
 		return 6;
-	}
-
-	@Override
-	public int attackSkill(Char target) {
-		attackSkill = 9 + (int) (lvl * 0.8f) + getResilience();
-		return super.attackSkill(target);
-	}
-
-	@Override
-	public int defenseSkill(Char enemy) {
-		defenseSkill = 3 + (int) (lvl * 0.8f) + getSupport();
-		return super.defenseSkill(enemy);
 	}
 
 	@Override
@@ -777,6 +749,9 @@ public class Hero extends Char {
 		curAction = null;
 		damageInterrupt = true;
 		ready = true;
+
+		//Stamina regen only resumes once control is handed back to the player
+		StaminaRegen.regen = true;
 
 		AttackIndicator.updateStates();
 
@@ -1121,7 +1096,6 @@ public class Hero extends Char {
 				});
 			}
 		}
-
 
 		return damage;
 	}

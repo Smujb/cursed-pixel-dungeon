@@ -44,12 +44,7 @@ public abstract class HeroNPC extends NPC {
 		return true;
 	}
 
-	@Override
-	public int defenseSkill(Char enemy) {
-		return Char.INFINITE_EVASION;
-	}
-
-	@Override
+    @Override
 	public String defenseVerb() {
 		return "";
 	}

@@ -49,8 +49,6 @@ public class Spinner extends Mob {
 	{
 		spriteClass = SpinnerSprite.class;
 
-		defenseSkill = 14;
-
 		healthFactor = 0.6f;
 
         loot = Reflection.newInstance(MysteryMeat.class);

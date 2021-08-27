@@ -61,7 +61,6 @@ public class OldTengu extends Boss {
 		spriteClass = TenguSprite.class;
 		
 		HP = HT = 120;
-        defenseSkill = 20;
 
 		HUNTING = new  Hunting();
 
@@ -80,11 +79,6 @@ public class OldTengu extends Boss {
 	@Override
 	public int damageRoll() {
 		return Random.NormalIntRange( 6, 20 );
-	}
-	
-	@Override
-	public int attackSkill( Char target ) {
-		return 20;
 	}
 
     @Override

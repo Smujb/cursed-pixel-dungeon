@@ -32,11 +32,11 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.items.weapon.enchantments.Unstable;
 import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
-import com.shatteredpixel.yasd.general.sprites.CharSprite;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
@@ -50,6 +50,8 @@ public class WandOfPlasmaBolt extends DamageWand {
         damageFactor = 1.6f;
     }
 
+    public static final int STAMINA_COST = 30;
+
     @Override
     protected void fx(Ballistica bolt, Callback callback) {
         MagicMissile.boltFromChar(curUser.sprite.parent,
@@ -62,20 +64,15 @@ public class WandOfPlasmaBolt extends DamageWand {
 
     @Override
     public void onZap(Ballistica bolt) {
-        Char ch = Actor.findChar( bolt.collisionPos );
+        Char ch = Actor.findChar(bolt.collisionPos);
         if (ch != null) {
-            if (Char.hit(curUser,ch)) {
 
-                processSoulMark(ch, chargesPerCast());
-                hit(ch);
+            if (curUser instanceof Hero) ((Hero)curUser).useStamina(STAMINA_COST);
 
-                ch.sprite.burst(0xFFFFFFFF, (int) power() / 2 + 2);
-            } else {
-                String defense = ch.defenseVerb();
-                ch.sprite.showStatus( CharSprite.NEUTRAL, defense );
+            processSoulMark(ch, chargesPerCast());
+            hit(ch);
 
-                Sample.INSTANCE.play(Assets.Sounds.MISS);
-            }
+            ch.sprite.burst(0xFFFFFFFF, (int) power() / 2 + 2);
 
         } else {
             Dungeon.level.pressCell(bolt.collisionPos);

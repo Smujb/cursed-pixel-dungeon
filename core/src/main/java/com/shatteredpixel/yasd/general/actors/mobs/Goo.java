@@ -94,19 +94,6 @@ public class Goo extends Boss {
 	}
 
 	@Override
-	public int attackSkill( Char target ) {
-		int attack = super.attackSkill(target);
-		if (HP*2 <= HT) attack = 15;
-		if (pumpedUp > 0) attack *= 2;
-		return attack;
-	}
-
-	@Override
-	public int defenseSkill(Char enemy) {
-		return (int)(super.defenseSkill(enemy) * ((HP*2 <= HT)? 1.5 : 1));
-	}
-
-	@Override
 	public boolean act() {
 
 		//ensures goo warning blob acts at the correct times

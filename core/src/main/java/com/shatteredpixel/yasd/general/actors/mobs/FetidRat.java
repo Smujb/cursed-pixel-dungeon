@@ -51,11 +51,6 @@ public class FetidRat extends Rat {
 		properties.add(Property.DEMONIC);
 	}
 
-	@Override
-	public int attackSkill( Char target ) {
-		return 12;
-	}
-
     @Override
 	public int attackProc( Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );

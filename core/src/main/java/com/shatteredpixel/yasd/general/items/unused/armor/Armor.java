@@ -55,7 +55,6 @@ import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Flow;
 import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Obfuscation;
 import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Potential;
 import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Repulsion;
-import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Stone;
 import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Swiftness;
 import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Thorns;
 import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Viscosity;
@@ -566,7 +565,7 @@ public class Armor extends KindofMisc {
 				Obfuscation.class, Swiftness.class, Viscosity.class, Potential.class };
 		
 		private static final Class<?>[] uncommon = new Class<?>[]{
-				Brimstone.class, Stone.class, Entanglement.class,
+				Brimstone.class, /*Stone.class,*/ Entanglement.class,
 				Repulsion.class, Camouflage.class, Flow.class };
 		
 		private static final Class<?>[] rare = new Class<?>[]{

@@ -40,13 +40,8 @@ public class RatKing extends NPC {
 		
 		state = SLEEPING;
 	}
-	
-	@Override
-	public int defenseSkill( Char enemy ) {
-		return INFINITE_EVASION;
-	}
-	
-	@Override
+
+    @Override
 	public float speed() {
 		return 2f;
 	}

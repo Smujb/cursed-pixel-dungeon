@@ -115,11 +115,6 @@ public class RotHeart extends Mob {
 		return true;
 	}
 
-	@Override
-	public int attackSkill( Char target ) {
-		return 0;
-	}
-
     {
 		immunities.add( Paralysis.class );
 		immunities.add( Amok.class );

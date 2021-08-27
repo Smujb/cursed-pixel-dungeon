@@ -145,16 +145,6 @@ public class WandOfThornvines extends Wand {
             return (int) (Random.Int(2,(int) (3 + level))*charges);
         }
 
-        @Override
-        public int defenseSkill(Char enemy) {
-            return 0;
-        }
-        //Always hit, always hits
-        @Override
-        public int attackSkill(Char target) {
-            return Integer.MAX_VALUE;
-        }
-
         private int setHP() {
             return (int) ((10 + this.level*2));
         }

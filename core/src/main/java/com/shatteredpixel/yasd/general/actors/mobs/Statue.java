@@ -88,16 +88,6 @@ public class Statue extends Mob implements Callback {
 	}
 
 	@Override
-	public int attackSkill(Char target) {
-		return normalAttackSkill(level);
-	}
-
-	@Override
-	public int defenseSkill(Char enemy) {
-		return normalDefenseSkill(level);
-	}
-
-	@Override
 	public float sneakSkill(Char enemy) {
 		return normalStealth(level);
 	}
