@@ -31,8 +31,7 @@ public class LorsionsGreataxe extends RelicMeleeWeapon {
 	{
 		image = ItemSpriteSheet.LORSIONSGREATAXE;
 
-		ACC = 1.33f;
-		damageFactor = 1.2f;
+		damageFactor = 1.3f;
 		chargeToAdd = 1f;
 	}
 

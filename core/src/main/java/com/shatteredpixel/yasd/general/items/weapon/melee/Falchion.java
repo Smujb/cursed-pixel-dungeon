@@ -12,7 +12,7 @@ public class Falchion extends Scimitar {
     {
         image = ItemSpriteSheet.Weapons.FALCHION;
 
-        DLY = 1f;
+        attackDelay = 1f;
     }
 
     @Override

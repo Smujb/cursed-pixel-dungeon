@@ -10,7 +10,7 @@ public class Pitchfork extends MeleeWeapon {
         hitSound = Assets.Sounds.HIT_STAB;
 
         canBeParried = false;
-        RCH = 2;
+        reach = 2;
         damageFactor = 0.7f;
     }
 }

@@ -81,7 +81,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 	@Override
 	public int proc(Char attacker, Char defender, int damage) {
 		if (Dungeon.isChallenged(Challenges.BLOODLUST) && attacker instanceof Hero) {
-			attacker.heal(Math.round((attacker.HT/10f)*DLY), true, true);
+			attacker.heal(Math.round((attacker.HT/10f)* attackDelay), true, true);
 		}
 		return super.proc(attacker, defender, damage);
 	}
@@ -102,20 +102,14 @@ public class MeleeWeapon extends Weapon implements Attackable {
 
 	protected String propsDesc() {
 		String info = "";
-		if (DLY > 1f) {
-			info += "\n" + Messages.get(MeleeWeapon.class, "delay_increase", Math.round((DLY - 1f) * 100));
-		} else if (DLY < 1f) {
-			info += "\n" + Messages.get(MeleeWeapon.class, "delay_decrease", Math.round((1f - DLY) * 100));
+		if (attackDelay > 1f) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "delay_increase", Math.round((attackDelay - 1f) * 100));
+		} else if (attackDelay < 1f) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "delay_decrease", Math.round((1f - attackDelay) * 100));
 		}
 
-		if (ACC > 1f) {
-			info += "\n" + Messages.get(MeleeWeapon.class, "acc_increase", Math.round((ACC - 1f) * 100));
-		} else if (ACC < 1f) {
-			info += "\n" + Messages.get(MeleeWeapon.class, "acc_decrease", Math.round((1f - ACC) * 100));
-		}
-
-		if (RCH > 1) {
-			info += "\n" + Messages.get(MeleeWeapon.class, "reach_increase", RCH - 1);
+		if (reach > 1) {
+			info += "\n" + Messages.get(MeleeWeapon.class, "reach_increase", reach - 1);
 		}
 
 		if (breaksArmor(curUser)) {
@@ -148,7 +142,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", min(1f), max(1f));
 		}
 
-		info += Messages.get(KindOfWeapon.class, "critical_modifier", Math.round((critModifier-1)*100));
+		info += " " + Messages.get(KindOfWeapon.class, "critical_modifier_stamina", Math.round((critModifier-1)*100), staminaConsumption());
 
 		String props = propsDesc();
 		if (!props.isEmpty()) {

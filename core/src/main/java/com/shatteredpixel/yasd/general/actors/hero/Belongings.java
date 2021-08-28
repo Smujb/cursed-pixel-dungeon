@@ -143,10 +143,6 @@ public class Belongings implements Iterable<Item> {
 				accuracy *= 1.5f;
 			}
 		}
-
-		if (wep != null) {
-			accuracy *= wep.accuracyFactor(owner);
-		}
 		return accuracy;
 	}
 

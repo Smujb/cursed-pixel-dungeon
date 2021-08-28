@@ -43,8 +43,9 @@ public class Greataxe extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 0.7f;
 
-		DLY = 2f;
-		ACC = 1.5f;
+		attackDelay = 1.5f;
+		staminaConsumption = 50;
+		damageFactor = 1.25f;
 
 		statScaling.add(Hero.HeroStat.RESILIENCE);
 	}

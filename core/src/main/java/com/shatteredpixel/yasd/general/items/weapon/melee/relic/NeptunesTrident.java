@@ -7,10 +7,9 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class NeptunesTrident extends RelicMeleeWeapon {
     {
         image = ItemSpriteSheet.NEPTUNES_TRIDENT;
-        DLY = 1.5f;
-        ACC = 1.1f;
+        attackDelay = 1.5f;
         damageFactor = 1.6f;
-        RCH = 2;
+        reach = 2;
         chargeToAdd = 0.5f;//200 turns to charge.
     }
 

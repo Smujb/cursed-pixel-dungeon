@@ -16,8 +16,10 @@ public class Rapier extends MeleeWeapon {
         image = ItemSpriteSheet.Weapons.RAPIER;
 
         hitSound = Assets.Sounds.HIT_STAB;
+
         hitSoundPitch = 1.5f;
         damageFactor = 0.7f;
+        critModifier = 1.65f;
 
         statScaling.add(Hero.HeroStat.ASSAULT);
     }

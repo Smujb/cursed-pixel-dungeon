@@ -15,7 +15,7 @@ public class ButchersKnife extends MeleeWeapon {
         image = ItemSpriteSheet.Weapons.BUTCHER_KNIFE;
 
         hitSound = Assets.Sounds.HIT_CRUSH;
-        DLY = 1.5f;
+        attackDelay = 1.5f;
 
         statScaling.add(Hero.HeroStat.SUPPORT);
     }

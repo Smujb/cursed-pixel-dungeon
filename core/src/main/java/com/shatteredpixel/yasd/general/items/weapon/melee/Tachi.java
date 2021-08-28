@@ -7,8 +7,8 @@ public class Tachi extends Katana {
     {
         image = ItemSpriteSheet.Weapons.TACHI;
 
-        DLY = 1.5f;
+        attackDelay = 1.5f;
         damageFactor = 1.2f;
-        RCH = 2;
+        reach = 2;
     }
 }

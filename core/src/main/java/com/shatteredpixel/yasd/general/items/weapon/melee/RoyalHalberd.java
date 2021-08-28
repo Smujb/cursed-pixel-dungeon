@@ -12,8 +12,10 @@ public class RoyalHalberd extends MeleeWeapon {
         image = ItemSpriteSheet.Weapons.ROYAL_HALBERD;
         hitSound = Assets.Sounds.HIT_STAB;
 
-        RCH = 2;
-        damageFactor = 2/3f;
+        reach = 2;
+        damageFactor = 0.75f;
+        attackDelay = 1.2f;
+        staminaConsumption = 30;
     }
 
     @Override

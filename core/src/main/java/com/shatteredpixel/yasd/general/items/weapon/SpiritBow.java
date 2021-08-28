@@ -219,15 +219,6 @@ public class SpiritBow extends Weapon implements Attackable {
 		public float speedFactor(Char user) {
 			return SpiritBow.this.speedFactor(user);
 		}
-		
-		@Override
-		public float accuracyFactor(Char owner) {
-			if (sniperSpecial && SpiritBow.this.augment == Augment.DAMAGE){
-				return Float.POSITIVE_INFINITY;
-			} else {
-				return super.accuracyFactor(owner);
-			}
-		}
 
 		@Override
 		public int statReq(int level) {

@@ -37,7 +37,9 @@ public class Axe extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 0.9f;
 
-		ACC = 1.33f; //33% boost to accuracy
-		damageFactor = 0.80f;
+		staminaConsumption = 40;
+		critModifier = 1.3f;
+
+		damageFactor = 1.3f;
 	}
 }

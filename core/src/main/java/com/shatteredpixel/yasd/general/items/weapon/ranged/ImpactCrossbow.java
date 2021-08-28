@@ -12,7 +12,7 @@ public class ImpactCrossbow extends Crossbow {
 
         damageFactor = 1.8f;
         range = 3;
-        DLY = 1.5f;
+        attackDelay = 1.5f;
 
         statScaling.add(Hero.HeroStat.RESILIENCE);
     }

@@ -392,7 +392,8 @@ public abstract class Char extends Actor {
 			int critSkill = Random.Int(critSkill());
 			int critDef = Random.Int(enemy.critDef());
 
-			if (critSkill > critDef) {
+			//If a weapon has a critical modifier <= 1, they cannot deal critical hits.
+			if (src.getCriticalModifier() > 1 && critSkill > critDef) {
 				//Critical Hit!
 				dmg *= src.getCriticalModifier();
 				src.setCritical();

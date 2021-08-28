@@ -13,7 +13,7 @@ public class ShredderCrossbow extends Crossbow {
 
         damageFactor = 0.2f;
 
-        DLY = 0.4f;
+        attackDelay = 0.4f;
 
         curAmmo = MAX_AMMO = 10;
 

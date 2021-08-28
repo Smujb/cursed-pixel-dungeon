@@ -18,7 +18,7 @@ public class Sickle extends MeleeWeapon {
 
         damageFactor = 0.70f;
 
-        ACC = 0.7f;
+        critModifier = 1.6f;
 
         statScaling.add(Hero.HeroStat.SUPPORT);
     }

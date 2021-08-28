@@ -13,7 +13,7 @@ public class MidnightCutlass extends Scimitar {
     {
         image = ItemSpriteSheet.Weapons.MIDNIGHT_CUTLASS;
 
-        damageFactor = 0.5f;
+        damageFactor = 0.6f;
 
         statScaling.add(Hero.HeroStat.FOCUS);
     }

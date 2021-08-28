@@ -207,11 +207,7 @@ abstract public class KindOfWeapon extends KindofMisc {
 	public int affectDamage(int damage) {
 		return damage;
 	}
-	
-	public float accuracyFactor( Char owner ) {
-		return 1f;
-	}
-	
+
 	public float speedFactor( Char owner ) {
 		return 1f;
 	}

@@ -14,6 +14,9 @@ public class MegaStick extends MeleeWeapon {
         hitSound = Assets.Sounds.HIT_PARRY;
         hitSoundPitch = 1f;
 
+        critModifier = Float.MAX_VALUE;
+        staminaConsumption = 0;
+
         statScaling = new ArrayList<>(Arrays.asList(Hero.HeroStat.values()));
     }
 

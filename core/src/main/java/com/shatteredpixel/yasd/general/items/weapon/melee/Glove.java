@@ -37,7 +37,7 @@ public class Glove extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_CRUSH;
 		hitSoundPitch = 1.2f;
 
-		DLY = 0.5f; //2x speed
+		attackDelay = 0.5f; //2x speed
 		
 		bones = false;
 

@@ -37,8 +37,8 @@ public class Polearm extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 0.8f;
 
-		DLY = 1.5f;   //0.67x speed
-		RCH = 2;    //extra reach
+		attackDelay = 1.5f;   //0.67x speed
+		reach = 2;    //extra reach
 
 		damageFactor = 1.4f;
 	}

@@ -7,8 +7,8 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class MaracarsBlades extends RelicMeleeWeapon {
     {
         damageFactor = 0.64f;
-        ACC = 0.8f;
-        DLY = 0.5f;
+        critModifier = 1f;
+        attackDelay = 0.5f;
         image = ItemSpriteSheet.MARACARS_BLADES;
     }
 

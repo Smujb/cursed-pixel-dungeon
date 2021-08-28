@@ -10,7 +10,7 @@ public class OldSunCrossbow extends Crossbow {
     {
         image = ItemSpriteSheet.Ranged.SUN_CROSSBOW;
 
-        DLY = 2f;
+        attackDelay = 2f;
         damageFactor = 1.5f;
     }
 

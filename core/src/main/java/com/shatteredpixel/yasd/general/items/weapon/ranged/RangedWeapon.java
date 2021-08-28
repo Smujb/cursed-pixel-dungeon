@@ -98,7 +98,7 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
             info += Messages.get(this, "stats_unknown", min(1), max(1), range, Math.round(reloadTime));
         }
 
-        info += Messages.get(KindOfWeapon.class, "critical_modifier", Math.round((critModifier-1)*100));
+        info += Messages.get(KindOfWeapon.class, "critical_modifier_stamina", Math.round((critModifier-1)*100), staminaConsumption());
 
         return desc() + info + upgradableItemDesc();
     }

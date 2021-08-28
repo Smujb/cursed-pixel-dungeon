@@ -38,9 +38,11 @@ public class Whip extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1.1f;
 
-		RCH = 3;    //lots of extra reach
+		reach = 3;    //lots of extra reach
 
 		damageFactor = 0.6f;
+		critModifier = 1.2f;
+		staminaConsumption = 10;
 
 		statScaling.add(Hero.HeroStat.ASSAULT);
 	}

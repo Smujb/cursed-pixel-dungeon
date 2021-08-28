@@ -8,9 +8,10 @@ public class Estoc extends Rapier {
     {
         image = ItemSpriteSheet.Weapons.ESTOC;
 
-        RCH = 2;
+        reach = 2;
         damageFactor = 0.9f;
         slotsUsed = 2;
+        staminaConsumption = 25;
 
         statScaling.add(Hero.HeroStat.ASSAULT);
     }

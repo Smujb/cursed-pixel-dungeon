@@ -79,10 +79,9 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 		usesTargeting = true;
 	}
 
-	public float    ACC = 1f;	// Accuracy modifier
-	public float	DLY	= 1f;	// Speed modifier
-	public int      RCH = 1;    // Reach modifier (only applies to melee hits)
-	protected float damageFactor = 1f;
+	public float attackDelay = 1f;	// Speed modifier
+	public int reach = 1;    // Reach modifier (only applies to melee hits)
+	protected float damageFactor = 1f; //Percentage of regular damage that this weapon deals
 
 	public enum Augment {
 		SPEED   (0.7f, 0.6667f),
@@ -227,19 +226,11 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 		usesLeftToID = USES_TO_ID;
 		availableUsesToID = USES_TO_ID/2f;
 	}
-	
-	@Override
-	public float accuracyFactor( Char owner ) {
-		if (hasEnchant(Wayward.class, owner))
-			return 0;
 
-		return this.ACC;
-	}
-	
 	@Override
 	public float speedFactor( Char owner ) {
 
-		float DLY = augment.delayFactor(this.DLY);
+		float DLY = augment.delayFactor(this.attackDelay);
 
 		DLY *= RingOfFuror.attackDelayMultiplier(owner);
 
@@ -248,7 +239,7 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 
 	@Override
 	public int reachFactor(Char owner) {
-		return hasEnchant(Projecting.class, owner) ? RCH+1 : RCH;
+		return hasEnchant(Projecting.class, owner) ? reach +1 : reach;
 	}
 
 	@Override

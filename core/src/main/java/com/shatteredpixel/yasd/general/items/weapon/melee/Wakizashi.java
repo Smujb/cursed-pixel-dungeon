@@ -8,7 +8,7 @@ public class Wakizashi extends Katana {
         image = ItemSpriteSheet.Weapons.WAKIZASHI;
 
         slotsUsed = 1;
-        DLY = 0.7f;
+        attackDelay = 0.7f;
         damageFactor = 0.5f;
 
         statScaling.remove(Hero.HeroStat.RESILIENCE);

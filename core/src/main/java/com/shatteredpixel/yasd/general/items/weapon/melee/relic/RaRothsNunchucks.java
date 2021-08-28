@@ -7,9 +7,10 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class RaRothsNunchucks extends RelicMeleeWeapon {
     {
         image = ItemSpriteSheet.RA_ROTHS_NUNCHUCKS;
-        ACC = 0.7f;
-        RCH = 3;
-        DLY = 0.5f;
+
+        reach = 3;
+        attackDelay = 0.5f;
+        critModifier = 1.2f;
         damageFactor = 0.5f;
         canSurpriseAttack = false;
     }

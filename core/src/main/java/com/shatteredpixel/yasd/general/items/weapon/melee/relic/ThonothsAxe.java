@@ -7,8 +7,9 @@ import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 public class ThonothsAxe extends RelicMeleeWeapon {
     {
         image = ItemSpriteSheet.THONOTHS_AXE;
-        ACC = 2f;
-        damageFactor = 0.74f;
+
+        critModifier = 2f;
+        damageFactor = 0.75f;
     }
 
     @Override

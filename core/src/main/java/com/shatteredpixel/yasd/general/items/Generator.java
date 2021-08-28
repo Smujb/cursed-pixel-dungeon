@@ -202,7 +202,7 @@ import com.shatteredpixel.yasd.general.items.wands.WandOfThornvines;
 import com.shatteredpixel.yasd.general.items.wands.WandOfTransfusion;
 import com.shatteredpixel.yasd.general.items.wands.WandOfVoltage;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
-import com.shatteredpixel.yasd.general.items.weapon.Arachia;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Arachia;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Axe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.ButchersKnife;
 import com.shatteredpixel.yasd.general.items.weapon.melee.ChainWhip;
@@ -213,6 +213,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Flail;
 import com.shatteredpixel.yasd.general.items.weapon.melee.FoolsBlade;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Glove;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Greataxe;
+import com.shatteredpixel.yasd.general.items.weapon.melee.Greatsword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.HeroSword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Hoe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Katana;
@@ -551,10 +552,11 @@ public class Generator {
 					Tachi.class,
 					MidnightCutlass.class,
 					Arachia.class,
-					FoolsBlade.class
+					FoolsBlade.class,
+					Greatsword.class
 
 			};
-			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2, 2, 2, 2, 3, 2, 10, 3, 10 };
+			WEAPON.probs = new float[]{ 1, 1, 0, 4, 4, 4, 6, 5, 5, 4, 4, 6, 4, 3, 3, 2, 2, 3, 1, 1, 4, 2, 2, 2, 2, 3, 2, 10, 3, 10, 6 };
 
 			SHIELD.classes = new Class<?>[] {
 					RoundShield.class,

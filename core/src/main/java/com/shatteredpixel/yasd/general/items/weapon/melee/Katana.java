@@ -46,7 +46,7 @@ public class Katana extends MeleeWeapon {
 
 		slotsUsed = 2;
 
-		ACC = 1.2f;
+		critModifier = 1.7f;
 
 		statScaling.add(Hero.HeroStat.RESILIENCE);
 	}

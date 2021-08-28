@@ -16,8 +16,8 @@ public class ChainWhip extends Whip {
         hitSound = Assets.Sounds.HIT_CRUSH;
         hitSoundPitch = 1.5f;
 
-        ACC = 0.8f;
-        DLY = 1.5f;
+        critModifier = 1f;
+        attackDelay = 1.5f;
 
         statScaling.add(Hero.HeroStat.RESILIENCE);
     }
