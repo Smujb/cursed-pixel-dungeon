@@ -222,19 +222,15 @@ public class Belongings implements Iterable<Item> {
 	}
 
 
-	public float affectEvasion(float evasion) {
-		return evasion;
-	}
-
 	public float affectSpeed(float speed) {
 		return speed * RingOfHaste.speedMultiplier(owner);
 	}
 
-	public float affectStealth(float stealth) {
+	public float affectSneakSkill(float stealth) {
 		return stealth;
 	}
 
-	public float affectPerception(float perception) {
+	public float affectNoticeSkill(float perception) {
 		return perception;
 	}
 

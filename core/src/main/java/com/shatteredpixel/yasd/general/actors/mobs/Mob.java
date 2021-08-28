@@ -322,22 +322,12 @@ public abstract class Mob extends Char {
 
 	@Override
 	public float sneakSkill(Char enemy) {
-		if (hasBelongings()) {
-			return super.sneakSkill(enemy);
-		} else {
-			return (affectSneakSkill(normalStealth(level) * stealthFactor));
-		}
+		return affectSneakSkill(normalStealth(level) * stealthFactor);
 	}
 
 	@Override
 	public float noticeSkill(Char enemy) {
-		float perception;
-		if (hasBelongings()) {
-			perception = super.noticeSkill(enemy);
-		} else {
-			perception = affectNoticeSkill(enemy, normalPerception(level) * perceptionFactor);
-		}
-		return perception;
+		return affectNoticeSkill(normalPerception(level) * perceptionFactor);
 	}
 
 

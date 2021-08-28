@@ -119,11 +119,7 @@ public abstract class Char extends Actor {
 
 	public CharSprite sprite;
 
-	public int noticeSkill = 0;
-	public int sneakSkill = 0;
-
 	public Belongings belongings = null;
-	//public boolean hasBelongings = false;
 
 	protected int numTypes = 1;
 
@@ -500,13 +496,14 @@ public abstract class Char extends Actor {
 		return damage;
 	}
 
-	protected final float affectNoticeSkill(Char enemy, float noticeSkill) {
+	protected final float affectNoticeSkill(float noticeSkill) {
 		if (this.buff(MindVision.class) != null) {
 			noticeSkill *= 2;
 		}
 		if (buff(Blindness.class) != null) {
 			noticeSkill /= 2;
 		}
+		if (hasBelongings()) noticeSkill = belongings.affectNoticeSkill(noticeSkill);
 		return noticeSkill;
 	}
 
@@ -517,6 +514,7 @@ public abstract class Char extends Actor {
 		if (this.buff(SacrificialFire.Marked.class) != null) {
 			sneakSkill = 0;
 		}
+		if (hasBelongings()) sneakSkill = belongings.affectSneakSkill(sneakSkill);
 		return sneakSkill;
 	}
 
@@ -938,21 +936,9 @@ public abstract class Char extends Actor {
 		}
 	}
 
-	public float noticeSkill(Char enemy) {
-		float perception = this.noticeSkill;
-		if (hasBelongings()) {
-			perception = belongings.affectPerception(perception);
-		}
-		return affectNoticeSkill(enemy, perception);
-	}
+	public abstract float noticeSkill(Char enemy);
 
-	public float sneakSkill(Char enemy) {
-		float stealth = this.sneakSkill;
-		if (hasBelongings()) {
-			stealth = belongings.affectStealth(stealth);
-		}
-		return affectSneakSkill(stealth);
-	}
+	public abstract float sneakSkill(Char enemy);
 
 	public void move( int step ) {
 		Drunk drunk = buff(Drunk.class);
