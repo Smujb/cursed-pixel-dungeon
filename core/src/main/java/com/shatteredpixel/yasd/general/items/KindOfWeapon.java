@@ -33,7 +33,6 @@ import com.shatteredpixel.yasd.general.Element;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
-import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.CellSelector;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -55,9 +54,10 @@ abstract public class KindOfWeapon extends KindofMisc {
 	protected String hitSound = Assets.Sounds.HIT;
 	protected float hitSoundPitch = 1f;
 
+	//Properties
 	public boolean canSurpriseAttack = true;
-	public boolean sneakBenefit = false;
 	public boolean canBeParried = true;
+	protected float critModifier = 1.5f;
 	protected int staminaConsumption = 20;
 	protected Element damageType = Element.PHYSICAL;
 
@@ -168,12 +168,15 @@ abstract public class KindOfWeapon extends KindofMisc {
 
 	public boolean attack(Char attacker, Char enemy, boolean guaranteed) {
 		Char.DamageSrc src = defaultSrc();
+
+		//Set properties of attack to match properties of weapon
+		src.setCriticalModifier(critModifier);
 		if (breaksArmor(attacker)) src.ignoreDefense();
 		if (!canBeParried) src.breakShields();
 
 		int damage = damageRoll(attacker);
 		if (attacker instanceof Hero && !((Hero)attacker).useStamina(staminaConsumption())) {
-			damage *= 0.75;
+			damage *= 2/3f;
 		}
 		damage = proc(attacker, enemy, damage);
 		boolean attack = attacker.attack(enemy, guaranteed, damage, src);
@@ -202,24 +205,6 @@ abstract public class KindOfWeapon extends KindofMisc {
 	}
 
 	public int affectDamage(int damage) {
-		if (sneakBenefit) {
-			Char enemy = null;
-			float bonus = 0;
-			if (curUser instanceof Hero) {
-				enemy = ((Hero) curUser).enemy();
-			} else if (curUser instanceof Mob) {
-				enemy = ((Mob) curUser).getEnemy();
-			}
-			if (enemy != null) {
-				bonus = 1f-enemy.noticeChance(curUser);
-			}
-			if (enemy instanceof Mob && ((Mob) enemy).surprisedBy(curUser) && curUser.canSurpriseAttack()) {
-				damage *= (2 + bonus);
-				if (damage < max()) {
-					damage = max();
-				}
-			}
-		}
 		return damage;
 	}
 	

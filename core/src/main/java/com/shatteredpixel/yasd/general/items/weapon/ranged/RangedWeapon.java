@@ -8,6 +8,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.PinCushion;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.ammo.Ammo;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -96,6 +97,9 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
         } else {
             info += Messages.get(this, "stats_unknown", min(1), max(1), range, Math.round(reloadTime));
         }
+
+        info += Messages.get(KindOfWeapon.class, "critical_modifier", Math.round((critModifier-1)*100));
+
         return desc() + info + upgradableItemDesc();
     }
 

@@ -566,6 +566,16 @@ public class Hero extends Char {
 		return affectSneakSkill(5 + (int) (lvl * 0.8f) + getAssault());
 	}
 
+	@Override
+	public int critSkill() {
+		return Math.round(5 + 0.4f*lvl + 0.5f*getSupport());
+	}
+
+	@Override
+	public int critDef() {
+		return 10 + lvl;
+	}
+
 	public static void preview(GamesInProgress.Info info, Bundle bundle) {
 		info.level = bundle.getInt(LEVEL);
 		info.str = bundle.getInt(STRENGTH);

@@ -88,16 +88,6 @@ public class Statue extends Mob implements Callback {
 	}
 
 	@Override
-	public float sneakSkill(Char enemy) {
-		return normalStealth(level);
-	}
-
-	@Override
-	public float noticeSkill(Char enemy) {
-		return normalPerception(level);
-	}
-
-	@Override
 	public boolean canAttack(@NotNull Char enemy) {
 		if (Dungeon.level.adjacent( pos, enemy.pos )) {
 			return super.canAttack( enemy );

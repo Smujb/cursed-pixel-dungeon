@@ -28,6 +28,7 @@
 package com.shatteredpixel.yasd.general.actors;
 
 import com.shatteredpixel.yasd.general.Assets;
+import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.Element;
@@ -353,7 +354,7 @@ public abstract class Char extends Actor {
 
 			return false;
 
-		} else /*if (hit(this, enemy) || guaranteed)*/ {
+		} else {
 
 			Preparation prep = buff(Preparation.class);
 			if (prep != null) {
@@ -386,6 +387,19 @@ public abstract class Char extends Actor {
 			if (!enemy.isAlive()) {
 				return true;
 			}
+
+			//Process critical hits right before dealing damage to ensure they don't affect secondary effects such as bleeding
+			int critSkill = Random.Int(critSkill());
+			int critDef = Random.Int(enemy.critDef());
+
+			if (critSkill > critDef) {
+				//Critical Hit!
+				dmg *= src.getCriticalModifier();
+				src.setCritical();
+				CPDGame.shake(1f);
+				enemy.sprite.showStatus(CharSprite.WARNING, Messages.get(this, "critical_hit"));
+			}
+
 			enemy.damage( dmg, src );
 
 			if (visibleFight) {
@@ -432,19 +446,7 @@ public abstract class Char extends Actor {
 
 			return true;
 
-		} /*else {
-
-			if (visibleFight) {
-				String defense = enemy.defenseVerb();
-				enemy.sprite.showStatus(CharSprite.NEUTRAL, defense);
-
-				//TODO enemy.defenseSound? currently miss plays for monks/crab even when the parry
-				Sample.INSTANCE.play(Assets.Sounds.MISS);
-			}
-
-			return false;
-
-		}*/
+		}
 	}
 
 	public static int INFINITE_ACCURACY = 1_000_000;
@@ -732,9 +734,9 @@ public abstract class Char extends Actor {
 		HP -= dmg;
 
 		if (sprite != null) {
-			sprite.showStatus(HP > HT / 2 ?
-							CharSprite.WARNING :
-							CharSprite.NEGATIVE,
+			sprite.showStatus(src.isCriticalHit() ?
+							CharSprite.NEGATIVE :
+							CharSprite.WARNING,
 					Integer.toString(dmg + shielded));
 		}
 
@@ -940,6 +942,10 @@ public abstract class Char extends Actor {
 
 	public abstract float sneakSkill(Char enemy);
 
+	public abstract int critSkill();
+
+	public abstract int critDef();
+
 	public void move( int step ) {
 		Drunk drunk = buff(Drunk.class);
 		if (Dungeon.level.adjacent( step, pos ) && (buff( Vertigo.class ) != null || (drunk != null && drunk.stumbleChance()))) {
@@ -1142,11 +1148,16 @@ public abstract class Char extends Actor {
 	}
 
 	public static class DamageSrc {
-		private Object cause;
-		private Element element;
+		//Info on source
+		private final Object cause;
+		private final Element element;
+
+		//Properties
 		private boolean ignores = false;
 		private boolean ignoreBarrier = false;
 		private boolean breakShields = false;
+		private boolean criticalHit = false;
+		private float criticalModifier = 1.5f;
 
 		public DamageSrc(Element element) {
 			this(element, null);
@@ -1190,6 +1201,22 @@ public abstract class Char extends Actor {
 
 		public boolean ignores() {
 			return ignores;
+		}
+
+		public void setCritical() {
+			criticalHit = true;
+		}
+
+		public boolean isCriticalHit() {
+			return criticalHit;
+		}
+
+		public void setCriticalModifier(float modifier) {
+			criticalModifier = modifier;
+		}
+
+		public float getCriticalModifier() {
+			return criticalModifier;
 		}
 	}
 }

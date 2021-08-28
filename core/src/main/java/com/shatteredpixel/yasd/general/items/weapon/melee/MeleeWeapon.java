@@ -33,6 +33,7 @@ import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Attackable;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -129,10 +130,6 @@ public class MeleeWeapon extends Weapon implements Attackable {
 			info += "\n" + Messages.get(MeleeWeapon.class, "blocks", 0, defenseFactor(Dungeon.hero));
 		}
 
-		if (sneakBenefit) {
-			info += "\n" + Messages.get(MeleeWeapon.class, "sneak_benefit");
-		}
-
 		if (!canBeParried) info += "\n" + Messages.get(MeleeWeapon.class, "cant_be_parried");
 
 		if (slotsUsed > 1) info += "\n" + Messages.get(KindofMisc.class, "requires_slots", slotsUsed);
@@ -150,6 +147,8 @@ public class MeleeWeapon extends Weapon implements Attackable {
 		} else {
 			info += "\n\n" + Messages.get(MeleeWeapon.class, "stats_unknown", min(1f), max(1f));
 		}
+
+		info += Messages.get(KindOfWeapon.class, "critical_modifier", Math.round((critModifier-1)*100));
 
 		String props = propsDesc();
 		if (!props.isEmpty()) {

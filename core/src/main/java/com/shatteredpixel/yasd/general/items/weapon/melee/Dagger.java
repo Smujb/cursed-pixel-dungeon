@@ -38,6 +38,6 @@ public class Dagger extends MeleeWeapon {
 		hitSoundPitch = 0.9f;
 
 		damageFactor = 0.80f;
-		sneakBenefit = true;
+		critModifier = 2f;
 	}
 }

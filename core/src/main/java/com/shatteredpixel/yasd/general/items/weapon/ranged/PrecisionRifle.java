@@ -10,8 +10,8 @@ public class PrecisionRifle extends Firearm {
 
         damageFactor = 0.7f;
         range = 12;
-        sneakBenefit = true;
 
         statScaling.add(Hero.HeroStat.EXECUTION);
+        critModifier = 2f;
     }
 }

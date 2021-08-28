@@ -228,12 +228,20 @@ public abstract class Mob extends Char {
 		return Math.round(16 * Item.calcMobPower(level));
 	}
 
-	protected static int normalPerception(int level) {
+	protected static int normalNoticeSkill(int level) {
 		return 5 + (level);
 	}
 
-	protected static int normalStealth(int level) {
+	protected static int normalSneakSkill(int level) {
 		return 5 + (level);
+	}
+
+	protected static int normalCritSkill(int level) {
+		return Math.round(5 + 0.5f*level);
+	}
+
+	protected static int normalCritDef(int level) {
+		return 10 + level;
 	}
 
 	protected static int normalDamageRoll(int level) {
@@ -322,14 +330,24 @@ public abstract class Mob extends Char {
 
 	@Override
 	public float sneakSkill(Char enemy) {
-		return affectSneakSkill(normalStealth(level) * stealthFactor);
+		return affectSneakSkill(normalSneakSkill(level) * stealthFactor);
 	}
 
 	@Override
 	public float noticeSkill(Char enemy) {
-		return affectNoticeSkill(normalPerception(level) * perceptionFactor);
+		return affectNoticeSkill(normalNoticeSkill(level) * perceptionFactor);
 	}
 
+
+	@Override
+	public int critSkill() {
+		return normalCritSkill(level);
+	}
+
+	@Override
+	public int critDef() {
+		return normalCritDef(level);
+	}
 
 
 	public int maxDefense() {
