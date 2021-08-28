@@ -83,6 +83,7 @@ import com.shatteredpixel.yasd.general.items.relics.CupOfSuffering;
 import com.shatteredpixel.yasd.general.items.relics.GarbOfRetribution;
 import com.shatteredpixel.yasd.general.items.relics.TomeOfGreed;
 import com.shatteredpixel.yasd.general.items.rings.RingOfElements;
+import com.shatteredpixel.yasd.general.items.rings.RingOfFaithAndPower;
 import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRetribution;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfPsionicBlast;
@@ -200,8 +201,7 @@ public abstract class Char extends Actor {
 	public void updateHT(boolean boostHP) {
 		int curHT = HT;
 
-		//float multiplier = RingOfPower.HTMultiplier(this);
-		//HT = Math.round(multiplier * HT);
+		HT *= RingOfFaithAndPower.hpModifier(this);
 
 		if (buff(ElixirOfMight.HTBoost.class) != null) {
 			HT += buff(ElixirOfMight.HTBoost.class).boost();
