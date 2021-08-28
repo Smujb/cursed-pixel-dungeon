@@ -35,7 +35,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Recharging;
 import com.shatteredpixel.yasd.general.items.quest.MetalShard;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfMysticalEnergy;
-import com.shatteredpixel.yasd.general.items.wands.CursedWand;
+import com.shatteredpixel.yasd.general.items.wands.ChaosWand;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
@@ -55,7 +55,7 @@ public class WildEnergy extends TargetedSpell {
 	
 	@Override
 	protected void affectTarget(Ballistica bolt, final Char hero) {
-		CursedWand.cursedZap(this, hero, bolt, new Callback() {
+		ChaosWand.cursedZap(this, hero, bolt, new Callback() {
 			@Override
 			public void call() {
 				Sample.INSTANCE.play( Assets.Sounds.LIGHTNING );

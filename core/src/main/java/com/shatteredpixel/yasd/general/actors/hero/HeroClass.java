@@ -190,7 +190,7 @@ public enum HeroClass {
 		new DeveloperItem().collect();
 		new FoolsBlade().identify().collect();
 
-		for (Class<?> itemClass : Generator.Category.RELIC.classes) {
+		for (Class<?> itemClass : Generator.Category.WAND.classes) {
 			Item item = (Item) Reflection.newInstance(itemClass);
 			if (item != null) {
 				item.random();

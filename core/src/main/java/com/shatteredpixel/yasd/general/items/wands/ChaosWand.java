@@ -60,6 +60,7 @@ import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.bombs.Bomb;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
+import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.levels.terrain.KindOfTerrain;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.levels.traps.CursingTrap;
@@ -71,6 +72,7 @@ import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.plants.Plant;
 import com.shatteredpixel.yasd.general.plants.Swiftthistle;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
+import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.ui.TargetHealthIndicator;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.shatteredpixel.yasd.general.windows.WndOptions;
@@ -83,7 +85,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 //helper class to contain all the cursed wand zapping logic, so the main wand class doesn't get huge.
-public class CursedWand {
+public class ChaosWand extends Wand {
+	{
+		element = Element.CHAOS;
+
+		image = ItemSpriteSheet.Wands.WARPING;
+	}
 
 	private static float COMMON_CHANCE = 0.6f;
 	private static float UNCOMMON_CHANCE = 0.3f;
@@ -230,24 +237,24 @@ public class CursedWand {
 							if (Random.Int(2) == 0) {
 								user.HP = Math.min(user.HT, user.HP + damage);
 								user.sprite.emitter().burst(Speck.factory(Speck.HEALING), 3);
-								target.damage(damage, new Char.DamageSrc(Element.SHADOW, CursedWand.class));
+								target.damage(damage, new Char.DamageSrc(Element.SHADOW, ChaosWand.class));
 								target.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10);
 							} else {
-								user.damage(damage, new Char.DamageSrc(Element.SHADOW, CursedWand.class));
+								user.damage(damage, new Char.DamageSrc(Element.SHADOW, ChaosWand.class));
 								user.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10);
 								target.HP = Math.min(target.HT, target.HP + damage);
 								target.sprite.emitter().burst(Speck.factory(Speck.HEALING), 3);
 								Sample.INSTANCE.play(Assets.Sounds.CURSED);
 								if (!user.isAlive() && origin != null) {
 									Dungeon.fail(origin.getClass());
-									GLog.negative(Messages.get(CursedWand.class, "ondeath", origin.name()));
+									GLog.negative(Messages.get(ChaosWand.class, "ondeath", origin.name()));
 								}
 							}
 							afterZap.call();
 						}
 					});
 				} else {
-					GLog.info(Messages.get(CursedWand.class, "nothing"));
+					GLog.info(Messages.get(ChaosWand.class, "nothing"));
 					afterZap.call();
 				}
 				break;
@@ -300,7 +307,7 @@ public class CursedWand {
 							GameScene.add(sheep);
 							CellEmitter.get(sheep.pos).burst(Speck.factory(Speck.WOOL), 4);
 						} else {
-							GLog.info(Messages.get(CursedWand.class, "nothing"));
+							GLog.info(Messages.get(ChaosWand.class, "nothing"));
 						}
 						afterZap.call();
 					}
@@ -358,8 +365,8 @@ public class CursedWand {
 				} while (Random.Int(5) != 0);
 				new Flare(8, 32).color(0xFFFF66, true).show(user.sprite, 2f);
 				Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
-				GLog.positive(Messages.get(CursedWand.class, "grass"));
-				GLog.warning(Messages.get(CursedWand.class, "fire"));
+				GLog.positive(Messages.get(ChaosWand.class, "grass"));
+				GLog.warning(Messages.get(ChaosWand.class, "fire"));
 				afterZap.call();
 				break;
 
@@ -385,7 +392,7 @@ public class CursedWand {
 							mimic.items.add(reward);
 							GameScene.add(mimic);
 						} else {
-							GLog.info(Messages.get(CursedWand.class, "nothing"));
+							GLog.info(Messages.get(ChaosWand.class, "nothing"));
 						}
 						
 						afterZap.call();
@@ -405,7 +412,7 @@ public class CursedWand {
 					Dungeon.saveAll();
 					if(Messages.lang() != Languages.ENGLISH){
 						//Don't bother doing this joke to none-english speakers, I doubt it would translate.
-						GLog.info(Messages.get(CursedWand.class, "nothing"));
+						GLog.info(Messages.get(ChaosWand.class, "nothing"));
 						afterZap.call();
 					} else {
 						GameScene.show(
@@ -426,7 +433,7 @@ public class CursedWand {
 				} catch(IOException e){
 					CPDGame.reportException(e);
 					//oookay maybe don't kill the game if the save failed.
-					GLog.info(Messages.get(CursedWand.class, "nothing"));
+					GLog.info(Messages.get(ChaosWand.class, "nothing"));
 					afterZap.call();
 				}
 				break;
@@ -448,9 +455,9 @@ public class CursedWand {
 				result.cursedKnown = true;
 				result.curse();
 				if (origin instanceof Wand){
-					GLog.warning( Messages.get(CursedWand.class, "transmogrify_wand") );
+					GLog.warning( Messages.get(ChaosWand.class, "transmogrify_wand") );
 				} else {
-					GLog.warning( Messages.get(CursedWand.class, "transmogrify_other") );
+					GLog.warning( Messages.get(ChaosWand.class, "transmogrify_other") );
 				}
 				Dungeon.level.drop(result, user.pos).sprite.drop();
 				afterZap.call();
@@ -467,4 +474,21 @@ public class CursedWand {
 		Sample.INSTANCE.play( Assets.Sounds.ZAP );
 	}
 
+	@Override
+	public void onZap(Ballistica attack) {
+		cursedZap(this, curUser, attack, new Callback() {
+			@Override
+			public void call() {}
+		});
+	}
+
+	@Override
+	public void onHit(MagesStaff staff, Char attacker, Char defender, int damage) {
+		element.attackProc(damage, attacker, defender);
+	}
+
+	@Override
+	protected void fx(Ballistica bolt, Callback callback) {
+		cursedFX(curUser, bolt, callback);
+	}
 }

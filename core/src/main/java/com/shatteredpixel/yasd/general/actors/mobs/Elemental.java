@@ -45,7 +45,7 @@ import com.shatteredpixel.yasd.general.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.yasd.general.items.quest.Embers;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
-import com.shatteredpixel.yasd.general.items.wands.CursedWand;
+import com.shatteredpixel.yasd.general.items.wands.ChaosWand;
 import com.shatteredpixel.yasd.general.levels.features.Door;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -230,7 +230,7 @@ public abstract class Elemental extends Mob {
 
 		@Override
 		public int attackProc(Char enemy, int damage) {
-			CursedWand.cursedZap( null, this, new Ballistica( pos, enemy.pos, Ballistica.MAGIC_BOLT ), new Callback() {
+			ChaosWand.cursedZap( null, this, new Ballistica( pos, enemy.pos, Ballistica.MAGIC_BOLT ), new Callback() {
 				@Override
 				public void call() {
 					next();
