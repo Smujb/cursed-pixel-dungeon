@@ -88,6 +88,10 @@ abstract public class KindOfWeapon extends KindofMisc {
 		return max(power());
 	}
 
+	public int staminaConsumption() {
+		return staminaConsumption;
+	}
+
 	private static final String AC_ATTACK = "attack";
 
 	@Override
@@ -168,7 +172,7 @@ abstract public class KindOfWeapon extends KindofMisc {
 		if (!canBeParried) src.breakShields();
 
 		int damage = damageRoll(attacker);
-		if (attacker instanceof Hero && !((Hero)attacker).useStamina(staminaConsumption)) {
+		if (attacker instanceof Hero && !((Hero)attacker).useStamina(staminaConsumption())) {
 			damage *= 0.75;
 		}
 		damage = proc(attacker, enemy, damage);

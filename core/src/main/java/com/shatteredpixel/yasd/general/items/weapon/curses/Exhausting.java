@@ -30,7 +30,6 @@ package com.shatteredpixel.yasd.general.items.weapon.curses;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.buffs.Vulnerable;
-import com.shatteredpixel.yasd.general.actors.buffs.Weakness;
 import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.sprites.ItemSprite;
@@ -44,7 +43,6 @@ public class Exhausting extends Weapon.Enchantment {
 	public int proc(Enchantable weapon, Char attacker, Char defender, int damage ) {
 
 		if (Random.Int(5+weapon.enchPower()) <= weapon.enchPower()) {
-			Buff.affect(attacker, Weakness.class, Random.NormalIntRange(5, 20));
 			Buff.affect(defender, Vulnerable.class, Random.NormalIntRange(5, 20));
 		}
 

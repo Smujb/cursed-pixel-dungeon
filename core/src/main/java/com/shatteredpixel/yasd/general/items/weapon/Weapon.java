@@ -118,7 +118,16 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 	protected float damageFactor() {
 		return damageFactor;
 	}
-	
+
+	@Override
+	public int staminaConsumption() {
+		int cons = super.staminaConsumption();
+		if (hasEnchant(Exhausting.class, curUser)) {
+			cons *= 2;
+		}
+		return cons;
+	}
+
 	@Override
 	public int proc( Char attacker, Char defender, int damage ) {
 		
