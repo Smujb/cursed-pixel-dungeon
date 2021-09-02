@@ -1,5 +1,6 @@
 package com.shatteredpixel.yasd.general.actors.buffs;
 
+import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 
 public class StaminaRegen extends Buff {
@@ -9,23 +10,29 @@ public class StaminaRegen extends Buff {
 	}
 
 	//Track whether regen is enabled. Will need to improve this code if I add stamina for mobs.
-	public static boolean regen = true;
+	public boolean regen = true;
 
 	@Override
 	public boolean act() {
 		if (target.isAlive()) {
-			Hero hero = (Hero) target;
 
 			float increase = 4f;
-			if (hero.isStarving()) {
+			if (target instanceof Hero && ((Hero)target).isStarving()) {
 				increase /= 2f;
 			}
-			int max = hero.maxStamina();
-			if (hero.stamina < max) {
-				hero.stamina = Math.min(max, hero.stamina + increase);
+			int max = target.maxStamina();
+			if (target.stamina < max) {
+				target.stamina = Math.min(max, target.stamina + increase);
 			}
 		}
 		spend(TICK);
 		return true;
+	}
+
+	public static void toggleRegen(Char ch, boolean regen) {
+		StaminaRegen regenBuff = ch.buff(StaminaRegen.class);
+		if (regenBuff != null) {
+			regenBuff.regen = regen;
+		}
 	}
 }

@@ -70,6 +70,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.ShieldBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Slow;
 import com.shatteredpixel.yasd.general.actors.buffs.Speed;
 import com.shatteredpixel.yasd.general.actors.buffs.Stamina;
+import com.shatteredpixel.yasd.general.actors.buffs.StaminaRegen;
 import com.shatteredpixel.yasd.general.actors.buffs.Terror;
 import com.shatteredpixel.yasd.general.actors.buffs.Vertigo;
 import com.shatteredpixel.yasd.general.actors.buffs.Vulnerable;
@@ -129,6 +130,8 @@ public abstract class Char extends Actor {
 
 	public int HT;
 	public int HP;
+
+	public float stamina = maxStamina();
 
 	protected float baseSpeed = 1;
 	protected PathFinder.Path path;
@@ -197,6 +200,20 @@ public abstract class Char extends Actor {
 			}
 		}
 		return false;
+	}
+
+	public abstract int maxStamina();
+
+	public boolean useStamina(float amount) {
+		//Check if the hero has enough stamina
+		boolean enough = stamina > amount;
+
+		//Deduct stamina anyway; let context outside the function decide what to do with the information
+		stamina = Math.max(stamina-amount, 0);
+
+		//Immediately after using stamina, regen is blocked until re-enabled in Hero.ready() or Mob.act()
+		StaminaRegen.toggleRegen(this, false);
+		return enough;
 	}
 
 	public void updateHT(boolean boostHP) {
@@ -290,6 +307,7 @@ public abstract class Char extends Actor {
 	protected static final String BUFFS = "buffs";
 	protected static final String TYPE = "type";
 	protected static final String ALIGNMENT = "alignment";
+	private static final String STAMINA = "stamina";
 
 	@Override
 	public void storeInBundle( Bundle bundle) {
@@ -302,6 +320,7 @@ public abstract class Char extends Actor {
 		bundle.put(BUFFS, buffs);
 		bundle.put(TYPE, type);
 		bundle.put(ALIGNMENT, alignment);
+		bundle.put(STAMINA, stamina);
 
 		if (hasBelongings()) {
 			belongings.storeInBundle(bundle);
@@ -318,6 +337,7 @@ public abstract class Char extends Actor {
 		HT = bundle.getInt(TAG_HT);
 		type = bundle.getInt(TYPE);
 		alignment = bundle.getEnum(ALIGNMENT, Alignment.class);
+		stamina = bundle.getInt(STAMINA);
 
 		for (Bundlable b : bundle.getCollection(BUFFS)) {
 			if (b != null) {

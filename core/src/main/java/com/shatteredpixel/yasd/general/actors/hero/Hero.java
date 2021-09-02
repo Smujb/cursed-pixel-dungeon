@@ -275,8 +275,6 @@ public class Hero extends Char {
 	private int maxMP = 10;
 	public int mp = maxMP;
 
-	public float stamina = maxStamina();
-
 	public int HTBoost = 0;
 
 	private ArrayList<Mob> visibleEnemies;
@@ -340,20 +338,9 @@ public class Hero extends Char {
 		}
 	}
 
-	public int maxStamina() {
-		return Math.round(100 + 5*(lvl * 0.8f + getResilience()));
-	}
-
-	public boolean useStamina(float amount) {
-		//Check if the hero has enough stamina
-		boolean enough = stamina > amount;
-
-		//Deduct stamina anyway; let context outside the function decide what to do with the information
-		stamina = Math.max(stamina-amount, 0);
-
-		//Immediately after using stamina, regen is blocked until re-enabled in Hero.ready()
-		StaminaRegen.regen = false;
-		return enough;
+	@Override
+	public int maxStamina()  {
+		return Math.round(100 + 5*(level() * 0.8f + getResilience()));
 	}
 
 	public int getExecution() {
@@ -483,8 +470,6 @@ public class Hero extends Char {
 	private static final String HTBOOST = "htboost";
 	private static final String MANA = "mp";
 	private static final String MAX_MANA = "max_mp";
-	private static final String STAMINA = "stamina";
-	private static final String MAX_STAMINA = "max_stamina";
 	private static final String POWER = "power";
 	private static final String FOCUS = "focus";
 	private static final String PERCEPTION = "expertise";
@@ -505,7 +490,6 @@ public class Hero extends Char {
 
 		bundle.put(MANA, mp);
 		bundle.put(MAX_MANA, maxMP);
-		bundle.put(STAMINA, stamina);
 
 		//Hero stats
 		bundle.put(POWER, execution);
@@ -531,7 +515,6 @@ public class Hero extends Char {
 
 		mp = bundle.getInt(MANA);
 		maxMP = bundle.getInt(MAX_MANA);
-		stamina = bundle.getInt(STAMINA);
 
 		//Hero stats
 		execution = bundle.getInt(POWER);
@@ -758,7 +741,7 @@ public class Hero extends Char {
 		ready = true;
 
 		//Stamina regen only resumes once control is handed back to the player
-		StaminaRegen.regen = true;
+		StaminaRegen.toggleRegen(this, true);
 
 		AttackIndicator.updateStates();
 

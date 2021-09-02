@@ -51,6 +51,7 @@ import com.shatteredpixel.yasd.general.actors.buffs.Hunger;
 import com.shatteredpixel.yasd.general.actors.buffs.ParryBuff;
 import com.shatteredpixel.yasd.general.actors.buffs.Sleep;
 import com.shatteredpixel.yasd.general.actors.buffs.SoulMark;
+import com.shatteredpixel.yasd.general.actors.buffs.StaminaRegen;
 import com.shatteredpixel.yasd.general.actors.buffs.Terror;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.hero.HeroSubClass;
@@ -365,6 +366,7 @@ public abstract class Mob extends Char {
 	@Override
 	protected boolean act() {
 		for (ParryBuff buff : buffs(ParryBuff.class)) buff.detach();
+		StaminaRegen.toggleRegen(this, true);
 		super.act();
 		
 		if (Dungeon.level.liquid(pos) && elementalType() == Element.WATER) {
