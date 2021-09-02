@@ -52,6 +52,7 @@ public class AdrenalineSurge extends FlavourBuff {
 	private float interval;
 
 	public static int statBoost(Char ch) {
+		if (ch.buffs() == null) return 0;
 		AdrenalineSurge surge = ch.buff(AdrenalineSurge.class);
 		if (surge != null) return 1;
 		return 0;

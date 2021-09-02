@@ -386,6 +386,11 @@ public abstract class Mob extends Char {
 		return state.act( enemyInFOV, checkEnemy(enemy) );
 	}
 
+	@Override
+	public int maxStamina() {
+		return 100 + 5*level();
+	}
+
 	//FIXME this is sort of a band-aid correction for allies needing more intelligent behaviour
 	protected boolean intelligentAlly = false;
 

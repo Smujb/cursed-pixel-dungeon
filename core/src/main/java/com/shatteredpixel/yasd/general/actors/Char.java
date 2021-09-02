@@ -131,7 +131,7 @@ public abstract class Char extends Actor {
 	public int HT;
 	public int HP;
 
-	public float stamina = maxStamina();
+	public float stamina = 100;
 
 	protected float baseSpeed = 1;
 	protected PathFinder.Path path;

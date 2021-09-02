@@ -24,7 +24,7 @@ public class ParryingDagger extends Shield {
     @Override
     public int absorbDamage(Char.DamageSrc src, int damage) {
         if (!canParry(damage)) {
-            setCharge(0);
+            curUser.useStamina(curUser.stamina);
             return damage;
         }
         return super.absorbDamage(src, damage);

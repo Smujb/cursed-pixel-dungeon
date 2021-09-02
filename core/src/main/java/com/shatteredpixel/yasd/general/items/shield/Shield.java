@@ -51,7 +51,6 @@ import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Bundle;
-import com.watabou.utils.GameMath;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -70,8 +69,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
     private static final float PARRY_DURATION = 1f;
 
-    public static final float MAX_CHARGE = 100f;
-    private float charge = MAX_CHARGE;
+    public static final float DEFAULT_STABILITY = 100f;
 
     protected float chargePerTurn = 4f;
     protected float defenseMultiplier = 1f;
@@ -113,20 +111,6 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
     protected float parryTime() {
         return PARRY_DURATION;
-    }
-
-    protected final void setCharge(float value) {
-        charge = value;
-        charge = GameMath.gate(0f, charge, MAX_CHARGE);
-        updateQuickslot();
-    }
-
-    protected final void increaseCharge(float value) {
-        setCharge(charge + value);
-    }
-
-    protected final void decreaseCharge(float value) {
-        increaseCharge(-value);
     }
 
     public BrokenSeal checkSeal() {
@@ -176,15 +160,6 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         return super.upgrade();
     }
 
-    private Charger charger = null;
-
-    @Override
-    public void activate(Char ch) {
-        super.activate(ch);
-        charger = new Charger();
-        charger.attachTo(ch);
-    }
-
     @Override
     public Item random() {
         //+0: 75% (3/4)
@@ -212,15 +187,6 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     }
 
     @Override
-    public boolean doUnequip(Char hero, boolean collect, boolean single) {
-        boolean unequip = super.doUnequip(hero, collect, single);
-        if (unequip && charger != null) {
-            charger.detach();
-        }
-        return unequip;
-    }
-
-    @Override
     public String info() {
         String info = "\n\n" + Messages.get(this, "stats_desc", maxDefense(power()), minDefense(power()), minDamage(power()), maxDamage(power()));
         String propsDesc = propsDesc();
@@ -235,12 +201,8 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         return props;
     }
 
-    public float chargePercent() {
-        return charge/MAX_CHARGE;
-    }
-
     public static float defaultMaxDefense(float lvl) {
-        return Math.round(60 * lvl);
+        return Math.round(40 * lvl);
     }
 
     public int minDamage(float lvl) {
@@ -260,7 +222,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     }
 
     public int curDefense(float lvl) {
-        return Math.max(minDefense(lvl), Math.round(maxDefense(lvl) * chargePercent()));
+        return Math.max(minDefense(lvl), Math.round(maxDefense(lvl) * Math.min(1, curUser.stamina/DEFAULT_STABILITY)));
     }
 
     public static void successfulParry(Char ch) {
@@ -276,7 +238,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
             int damage;
             if (parry) {
                 damage = maxDamage(power());
-            } else if (charge <= 0) {
+            } else if (curUser.stamina <= 0) {
                 damage = minDamage(power());
             } else {
                 damage = Random.NormalIntRange(minDamage(power()), maxDamage(power()));
@@ -300,29 +262,19 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     public int absorbDamage(Char.DamageSrc src, int damage) {
         int defense = curDefense(power());
         if (defense >= damage) {
-            float chargeToLose = (damage / (float) maxDefense(power())) * MAX_CHARGE;
-            decreaseCharge(chargeToLose);
-            Item.updateQuickslot();
+            float staminaToLose = (damage / (float) maxDefense(power())) * DEFAULT_STABILITY;
+            curUser.useStamina(staminaToLose);
             return 0;
         } else {
             damage -= defense;
-            charge = 0;
-            Item.updateQuickslot();
+            curUser.useStamina(curUser.stamina);
             return damage;
         }
     }
 
     protected boolean canParry(int damage) {
-        float chargeToLose = (damage / (float) maxDefense(power())) * MAX_CHARGE;
-        return charge >= chargeToLose;
-    }
-
-    @Override
-    public String status() {
-        if (!isIdentified()){
-            return null;
-        }
-        return Messages.format( "%d%%", Math.round(charge) );
+        float chargeToLose = (damage / (float) maxDefense(power())) * DEFAULT_STABILITY;
+        return curUser.stamina >= chargeToLose;
     }
 
     @Override
@@ -348,7 +300,6 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     public void storeInBundle(Bundle bundle) {
         super.storeInBundle(bundle);
         bundle.put(SEAL, seal);
-        bundle.put(CHARGE, charge);
         bundle.put(ENCHANTMENT, enchantment);
     }
 
@@ -356,7 +307,6 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     public void restoreFromBundle(Bundle bundle) {
         super.restoreFromBundle(bundle);
         seal = (BrokenSeal) bundle.get(SEAL);
-        charge = bundle.getFloat(CHARGE);
         enchantment = (Weapon.Enchantment) bundle.get(ENCHANTMENT);
     }
 
@@ -436,7 +386,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
         @Override
         protected void emptyCharge() {
-            shield.setCharge(0);
+            target.useStamina(target.stamina);
         }
 
         private static final String SHIELD = "shield";
@@ -471,17 +421,6 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         public void restoreFromBundle(Bundle bundle) {
             super.restoreFromBundle(bundle);
             shield = (Shield) bundle.get(SHIELD);
-        }
-    }
-
-    public class Charger extends Buff {
-
-        @Override
-        public boolean act() {
-            increaseCharge(chargePerTurn);
-            spend(TICK);
-            updateQuickslot();
-            return true;
         }
     }
 }
