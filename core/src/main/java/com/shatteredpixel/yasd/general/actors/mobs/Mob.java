@@ -262,8 +262,6 @@ public abstract class Mob extends Char {
 		return Dungeon.difficulty;
 	}
 
-	protected static final float MAX_PARRY_CHARGE = 100f;
-	protected float parryCharge = MAX_PARRY_CHARGE;
 	protected float maxParryDefenseFactor = 1f;
 
 	protected static int normalMaxDefense(int level) {
@@ -356,7 +354,7 @@ public abstract class Mob extends Char {
 	}
 
 	public int defense() {
-		return Math.round(maxDefense() * (parryCharge/MAX_PARRY_CHARGE));
+		return Math.round(maxDefense() * (stamina/maxStamina()));
 	}
 
 	public CharSprite sprite() {
@@ -1080,7 +1078,7 @@ public abstract class Mob extends Char {
 
 		@Override
 		protected void emptyCharge() {
-			mob.parryCharge = 0;
+			mob.useStamina(mob.stamina);
 		}
 
 		private static final String MOB_ID = "mob-id";
@@ -1096,12 +1094,12 @@ public abstract class Mob extends Char {
 			detach();
 			int defense = mob.defense();
 			if (defense >= damage) {
-				float chargeToLose = (damage / (float) defense) * MAX_PARRY_CHARGE;
-				mob.parryCharge -= chargeToLose;
+				float chargeToLose = (damage / (float) defense) * 120;
+				mob.useStamina(chargeToLose);
 				return 0;
 			} else {
 				damage -= defense;
-				mob.parryCharge = 0;
+				emptyCharge();
 				return damage;
 			}
 		}
