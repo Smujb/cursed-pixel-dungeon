@@ -60,7 +60,7 @@ public class Monk extends Mob {
 	@Override
 	protected boolean canParry() {
 		//Randomly parry when charge >= 50%, with chance increasing with charge
-		return parryCharge/MAX_PARRY_CHARGE >= Random.Float(0.5f, 1f);
+		return stamina/maxStamina() >= Random.Float(0.5f, 1f);
 	}
 
 	public static class Senior extends Monk {
