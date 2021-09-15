@@ -33,6 +33,11 @@ public class GrindLevel extends TiledMapLevel {
 		viewDistance = 20;
 	}
 
+	@Override
+	public int getScaleFactor() {
+		return Dungeon.hero.lvl;
+	}
+
 	public int spawn;
 	public static String SPAWN = "spawn";
 
