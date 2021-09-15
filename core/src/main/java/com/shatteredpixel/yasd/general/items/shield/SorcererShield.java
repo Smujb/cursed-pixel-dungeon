@@ -20,7 +20,7 @@ public class SorcererShield extends Shield {
     @Override
     public int proc(Char attacker, Char enemy, int damage, boolean parry) {
         if (parry) {
-            Buff.affect(attacker, MagicCharge.class, MagicCharge.DURATION);
+            Buff.affect(attacker, MagicCharge.class, MagicCharge.DURATION).setLevel(3);
         }
         return super.proc(attacker, enemy, damage, parry);
     }
