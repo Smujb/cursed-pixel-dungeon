@@ -193,7 +193,7 @@ public class Hero extends Char {
 		}
 
 		public float hpBoost(int curLevel, Char ch) {
-			return (float) (1 + (baseBoost * Math.pow(0.8f + hpDropOffReduction(ch), Math.max(0, curLevel-1))));
+			return (float) (1 + (baseBoost * Math.pow(0.85f + hpDropOffReduction(ch), Math.max(0, curLevel-1))));
 		}
 
 		public float hpDropOffReduction(Char ch) {
