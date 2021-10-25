@@ -340,12 +340,12 @@ public abstract class Mob extends Char {
 
 	@Override
 	public int critSkill() {
-		return normalCritSkill(level);
+		return affectCritDef(normalCritSkill(level));
 	}
 
 	@Override
 	public int critDef() {
-		return normalCritDef(level);
+		return affectCritDef(normalCritDef(level));
 	}
 
 

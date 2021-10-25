@@ -413,7 +413,8 @@ public abstract class Char extends Actor {
 			int critDef = Random.Int(enemy.critDef());
 
 			//If a weapon has a critical modifier <= 1, they cannot deal critical hits.
-			if (src.getCriticalModifier() > 1 && critSkill > critDef) {
+			//Cannot crit when out of stamina
+			if (src.getCriticalModifier() > 1 && critSkill > critDef && stamina > 0) {
 				//Critical Hit!
 				dmg *= src.getCriticalModifier();
 				src.setCritical();
@@ -539,6 +540,15 @@ public abstract class Char extends Actor {
 		}
 		if (hasBelongings()) sneakSkill = belongings.affectSneakSkill(sneakSkill);
 		return sneakSkill;
+	}
+
+	public int affectCritSkill(int critSkill) {
+		return critSkill;
+	}
+
+	public int affectCritDef(int critDef) {
+		if (stamina <= 0) critDef /= 2;
+		return critDef;
 	}
 
 
