@@ -1091,7 +1091,6 @@ public abstract class Mob extends Char {
 		public int absorbDamage(DamageSrc src, int damage) {
 			if (mob == null) return damage;
 			parried = true;
-			detach();
 			int defense = mob.defense();
 			if (defense >= damage) {
 				float chargeToLose = (damage / (float) defense) * 120;

@@ -397,7 +397,6 @@ public abstract class Shield extends KindofMisc implements Enchantable {
 
         public int absorbDamage(Char.DamageSrc src, int damage) {
             parried = true;
-            detach();
             if (shield == null || target == null || !shield.isEquipped(target)) {
                 return damage;
             } else {
