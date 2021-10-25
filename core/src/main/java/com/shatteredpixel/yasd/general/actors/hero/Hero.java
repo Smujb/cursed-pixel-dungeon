@@ -1443,7 +1443,7 @@ public class Hero extends Char {
 
 	@Contract(pure = true)
 	public static int maxExp(int lvl) {
-		return (lvl + 1) * 8;
+		return (lvl + 1) * 7;
 	}
 
 	public boolean isStarving() {
