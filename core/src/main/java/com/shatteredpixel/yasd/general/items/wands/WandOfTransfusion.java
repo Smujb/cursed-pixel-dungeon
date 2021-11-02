@@ -141,10 +141,11 @@ public class WandOfTransfusion extends DamageWand {
 
 	@Override
 	public String statsDesc() {
-		if (levelKnown)
-			return Messages.get(this, "stats_desc", selfDMG(), healAmt(), min(), max());
+		if (levelKnown) //Always show self damage for the hero, not for cur user
+						//This fixes issues when the wand is on the floor (has no cur user) or is owned by a statue
+			return Messages.get(this, "stats_desc", selfDMG(Dungeon.hero), healAmt(), min(), max());
 		else
-			return Messages.get(this, "stats_desc", selfDMG(), healAmt(1), min(1), max(1));
+			return Messages.get(this, "stats_desc", selfDMG(Dungeon.hero), healAmt(1), min(1), max(1));
 	}
 
 	protected int healAmt(float power) {
@@ -155,8 +156,12 @@ public class WandOfTransfusion extends DamageWand {
 		return healAmt(power());
 	}
 
+	private int selfDMG(Char ch) {
+		return Math.round(ch.HT*0.10f);
+	}
+
 	private int selfDMG() {
-		return Math.round(curUser.HT*0.10f);
+		return selfDMG(curUser);
 	}
 
 	@Override
