@@ -27,6 +27,8 @@
 
 package com.shatteredpixel.yasd.general.levels.chapters.sewers;
 
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WALL_DECO;
+
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.mobs.Crab;
@@ -38,23 +40,13 @@ import com.shatteredpixel.yasd.general.actors.mobs.Thief;
 import com.shatteredpixel.yasd.general.actors.mobs.npcs.Ghost;
 import com.shatteredpixel.yasd.general.effects.CPDEmitter;
 import com.shatteredpixel.yasd.general.effects.Ripple;
-import com.shatteredpixel.yasd.general.items.DewVial;
 import com.shatteredpixel.yasd.general.items.powers.Alchemy;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.RegularLevel;
 import com.shatteredpixel.yasd.general.levels.painters.Painter;
 import com.shatteredpixel.yasd.general.levels.painters.SewerPainter;
 import com.shatteredpixel.yasd.general.levels.terrain.Terrain;
-import com.shatteredpixel.yasd.general.levels.traps.AlarmTrap;
-import com.shatteredpixel.yasd.general.levels.traps.ChillingTrap;
-import com.shatteredpixel.yasd.general.levels.traps.ConfusionTrap;
-import com.shatteredpixel.yasd.general.levels.traps.FlockTrap;
-import com.shatteredpixel.yasd.general.levels.traps.OozeTrap;
-import com.shatteredpixel.yasd.general.levels.traps.ShockingTrap;
-import com.shatteredpixel.yasd.general.levels.traps.SummoningTrap;
-import com.shatteredpixel.yasd.general.levels.traps.TeleportationTrap;
-import com.shatteredpixel.yasd.general.levels.traps.ToxicTrap;
-import com.shatteredpixel.yasd.general.levels.traps.WornDartTrap;
+import com.shatteredpixel.yasd.general.levels.traps.GuardianTrap;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.tiles.DungeonTilemap;
@@ -65,8 +57,6 @@ import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.ColorMath;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
-
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WALL_DECO;
 
 public class SewerLevel extends RegularLevel {
 
@@ -115,18 +105,18 @@ public class SewerLevel extends RegularLevel {
 
 	@Override
 	protected Class<?>[] trapClasses() {
-		return new Class<?>[]{
+		return new Class<?>[] {GuardianTrap.class};/*new Class<?>[]{
 						ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, WornDartTrap.class,
 						AlarmTrap.class, OozeTrap.class,
-						ConfusionTrap.class, FlockTrap.class, SummoningTrap.class, TeleportationTrap.class };
+						ConfusionTrap.class, FlockTrap.class, SummoningTrap.class, TeleportationTrap.class };*/
 	}
 
 	@Override
 	protected float[] trapChances() {
-		return new float[]{
+		return new float[] { 1 }; /*new float[]{
 						4, 4, 4, 4,
 						2, 2,
-						1, 1, 1, 1};
+						1, 1, 1, 1};*/
 	}
 
 	@Override
@@ -170,7 +160,8 @@ public class SewerLevel extends RegularLevel {
 	@Override
 	protected void createItems() {
 		if (!Dungeon.LimitedDrops.DEW_VIAL.dropped()) {
-			addItemToSpawn( new DewVial() );
+			//Dew Vial removed until I can find a good use for it
+			//addItemToSpawn( new DewVial() );
 			addItemToSpawn( new Alchemy() );
 			Dungeon.LimitedDrops.DEW_VIAL.drop();
 		}
