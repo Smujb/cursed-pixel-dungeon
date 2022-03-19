@@ -150,12 +150,7 @@ public class Item implements Bundlable {
 	private static final String TXT_TYPICAL_REQ = "%d+";
 
 	public String topRightStatus(boolean known) {
-		if (statScaling.isEmpty()) {
-			return null;
-		}
-		String baseText = known ? TXT_REQ : TXT_TYPICAL_REQ;
-		int str = known ? statReq() : statReq(0);
-		return Messages.format(baseText, str);
+		return null;
 	}
 
 	public static float calcItemPower(int level) {
@@ -175,27 +170,32 @@ public class Item implements Bundlable {
 	}
 
 	public float power() {
-		return calcItemPower(level());
+		return calcItemPower(getLevel());
+	}
+
+	public int getLevel() {
+		int largest = 0;
+		if (curUser instanceof Hero) {
+			for (Hero.HeroStat stat : statScaling) {
+				int statLvl = ((Hero) curUser).getStat(stat);
+				if (statLvl >= largest) {
+					largest = statLvl;
+				}
+			}
+		}
+		return largest;
 	}
 
 	public boolean canTypicallyUse(Char ch) {
-		if (ch instanceof Hero) {
-			for (Hero.HeroStat stat : statScaling) {
-				if (((Hero) ch).getStat(stat) >= statReq()) {
-					return true;
-				}
-			}
-			return false;
-		}
 		return true;
 	}
 
-	public int statReq(int level) {
+	public int curBonusLvl(int level) {
 		return level;
 	}
 
-	public final int statReq() {
-		return statReq(trueLevel());
+	public final int curBonusLvl() {
+		return curBonusLvl(trueLevel());
 	}
 
 	public int bestHeroStatValue(Hero hero) {
@@ -216,7 +216,7 @@ public class Item implements Bundlable {
 
 	public int encumbrance() {
 		if (curUser instanceof Hero) {
-			return Math.max(0, statReq() - bestHeroStatValue((Hero) curUser));
+			return Math.max(0, curBonusLvl() - bestHeroStatValue((Hero) curUser));
 		}
 		return 0;
 	}
@@ -604,13 +604,13 @@ public class Item implements Bundlable {
 		if (!statScaling.isEmpty()) {
 			desc += "\n\n";
 			if (statScaling.equals(Arrays.asList(Hero.HeroStat.values()))) {
-				desc += Messages.get(this, "scales_any", statReq());
+				desc += Messages.get(this, "scales_any", curBonusLvl());
 			} else {
 				//Currently only supports requiring 1 or 2 stats. Might want to support 3, but I have no reason to support more. This code could be improved though.
 				if (statScaling.size() == 1) {
-					desc += Messages.get(this, "requires_stats_1", statReq(), statScaling.get(0).getName());
+					desc += Messages.get(this, "requires_stats_1", curBonusLvl(), statScaling.get(0).getName());
 				} else {
-					desc += Messages.get(this, "requires_stats_2", statReq(), statScaling.get(0).getName(), statScaling.get(1).getName());
+					desc += Messages.get(this, "requires_stats_2", curBonusLvl(), statScaling.get(0).getName(), statScaling.get(1).getName());
 				}
 			}
 		}
@@ -651,18 +651,6 @@ public class Item implements Bundlable {
 		return this;
 	}
 
-	public Item randomHigh() {
-		if (isUpgradable()) {
-			int upgrade = 0;
-			do {
-				upgrade();
-				upgrade++;
-			} while (Random.Int((int) (level*1.5f)) <= Dungeon.getScaling() && upgrade < 1000);
-			return this;
-		}
-		return random();
-	}
-	
 	public String status() {
 		return quantity != 1 ? Integer.toString( quantity ) : null;
 	}

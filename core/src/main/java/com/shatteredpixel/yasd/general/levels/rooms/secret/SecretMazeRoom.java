@@ -107,11 +107,6 @@ public class SecretMazeRoom extends SecretRoom {
 			}
 		} while (prize.cursed() || !prize.canSpawn());
 		
-		//33% chance for an extra update.
-		if (Random.Int(3) == 0){
-			prize.upgrade();
-		}
-		
 		level.drop(prize, level.pointToCell(bestDistP)).type = Heap.Type.CHEST;
 		
 		PathFinder.setMapSize(level.width(), level.height());

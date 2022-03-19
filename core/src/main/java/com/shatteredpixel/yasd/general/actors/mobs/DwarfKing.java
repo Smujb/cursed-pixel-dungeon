@@ -46,8 +46,6 @@ import com.shatteredpixel.yasd.general.effects.particles.ElmoParticle;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Viscosity;
-import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
 import com.shatteredpixel.yasd.general.items.powers.HeroicLeap;
 import com.shatteredpixel.yasd.general.items.powers.MoltenEarth;
 import com.shatteredpixel.yasd.general.items.powers.RaiseDead;
@@ -55,6 +53,7 @@ import com.shatteredpixel.yasd.general.items.powers.SmokeBomb;
 import com.shatteredpixel.yasd.general.items.powers.SpectralBlades;
 import com.shatteredpixel.yasd.general.items.quest.MetalShard;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
+import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Viscosity;
 import com.shatteredpixel.yasd.general.levels.chapters.city.NewCityBossLevel;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -452,11 +451,6 @@ public class DwarfKing extends Boss {
 
 		for (Mob m : getSubjects()){
 			m.die(new DamageSrc(Element.META));
-		}
-
-		LloydsBeacon beacon = Dungeon.hero.belongings.getItem(LloydsBeacon.class);
-		if (beacon != null) {
-			beacon.upgrade();
 		}
 
 		yell( Messages.get(this, "defeated") );

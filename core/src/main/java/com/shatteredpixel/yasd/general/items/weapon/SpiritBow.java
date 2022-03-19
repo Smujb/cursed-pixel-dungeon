@@ -221,8 +221,8 @@ public class SpiritBow extends Weapon implements Attackable {
 		}
 
 		@Override
-		public int statReq(int level) {
-			return SpiritBow.this.statReq(level);
+		public int curBonusLvl(int level) {
+			return SpiritBow.this.curBonusLvl(level);
 		}
 
 		@Override

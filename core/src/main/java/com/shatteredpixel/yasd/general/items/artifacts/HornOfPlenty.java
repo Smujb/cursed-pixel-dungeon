@@ -191,7 +191,7 @@ public class HornOfPlenty extends Artifact {
 		if (storedFoodEnergy >= Hunger.HUNGRY){
 			int upgrades = storedFoodEnergy / (int)Hunger.HUNGRY;
 			upgrades = Math.min(upgrades, 10 - level());
-			upgrade(upgrades);
+			//upgrade(upgrades);
 			storedFoodEnergy -= upgrades * Hunger.HUNGRY;
 			if (level() == 10){
 				storedFoodEnergy = 0;

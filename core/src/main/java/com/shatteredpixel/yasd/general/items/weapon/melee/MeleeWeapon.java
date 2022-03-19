@@ -32,12 +32,10 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.items.Attackable;
-import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
-import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -89,15 +87,6 @@ public class MeleeWeapon extends Weapon implements Attackable {
 	@Override
 	public int damageRoll(Char owner) {
 		return augment.damageFactor(super.damageRoll( owner ));
-	}
-
-	@Override
-	public Item randomHigh() {
-		super.randomHigh();
-		if (Random.Int(2) == 0) {
-			enchant();
-		}
-		return this;
 	}
 
 	protected String propsDesc() {

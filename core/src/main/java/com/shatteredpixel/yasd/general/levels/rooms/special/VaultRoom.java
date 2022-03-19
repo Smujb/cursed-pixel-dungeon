@@ -80,7 +80,6 @@ public class VaultRoom extends LockedRoom {
 		do {
 			prize = Generator.random(cat);
 		} while (prize == null || !prize.canSpawn());
-		prize.randomHigh();
 		return prize;
 	}
 	

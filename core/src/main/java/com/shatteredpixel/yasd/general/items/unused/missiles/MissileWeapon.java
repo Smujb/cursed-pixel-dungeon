@@ -211,18 +211,6 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 	public Item random() {
 		if (!stackable) return this;
 
-		//+0: 75% (3/4)
-		//+1: 20% (4/20)
-		//+2: 5%  (1/20)
-		int n = Dungeon.getScaling()/2;
-		if (Random.Int(4) == 0) {
-			n++;
-			if (Random.Int(5) == 0) {
-				n++;
-			}
-		}
-		level(n);
-
 		//3: 66.67% (2/3)
 		//4: 26.67% (4/15)
 		//5: 6.67%  (1/15)

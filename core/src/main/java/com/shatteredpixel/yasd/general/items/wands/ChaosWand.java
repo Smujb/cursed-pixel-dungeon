@@ -451,7 +451,6 @@ public class ChaosWand extends Wand {
 					result = Generator.random(Random.oneOf(Generator.Category.WEAPON, Generator.Category.SHIELD,
 							Generator.Category.RING, Generator.Category.RELIC, Generator.Category.WAND, Generator.Category.RANGED));
 				} while (result.cursed());
-				if (result.isUpgradable()) result.upgrade();
 				result.cursedKnown = true;
 				result.curse();
 				if (origin instanceof Wand){

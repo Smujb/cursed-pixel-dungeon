@@ -392,19 +392,6 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	
 	@Override
 	public Item random() {
-		//+0: 66.67% (2/3)
-		//+1: 26.67% (4/15)
-		//+2: 6.67%  (1/15)
-		int n = Dungeon.getScaling()/2;
-		if (Random.Int(3) == 0) {
-			n++;
-			if (Random.Int(5) == 0){
-				n++;
-			}
-		}
-		level(n);
-
-		curCharges += n;
 		
 		//30% chance to be cursed
 		if (Random.Float() < 0.5f) {

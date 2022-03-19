@@ -137,8 +137,6 @@ public class TrapsRoom extends SpecialRoom {
 			}
 		} while (prize.cursed() || !prize.canSpawn());
 		prize.cursedKnown = true;
-
-		prize = prize.randomHigh();
 		
 		return prize;
 	}

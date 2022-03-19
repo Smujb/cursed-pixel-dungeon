@@ -18,7 +18,6 @@ import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.EarthParticle;
 import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
-import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
 import com.shatteredpixel.yasd.general.items.quest.MetalShard;
 import com.shatteredpixel.yasd.general.items.wands.WandOfBlastWave;
 import com.shatteredpixel.yasd.general.levels.chapters.caves.NewCavesBossLevel;
@@ -460,11 +459,6 @@ public class NewDM300 extends Boss {
 		}
 
 		Badges.validateBossSlain();
-
-		LloydsBeacon beacon = Dungeon.hero.belongings.getItem(LloydsBeacon.class);
-		if (beacon != null) {
-			beacon.upgrade();
-		}
 
 		yell( Messages.get(this, "defeated") );
 	}

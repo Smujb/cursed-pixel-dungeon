@@ -82,9 +82,6 @@ public class CryptRoom extends SpecialRoom {
 		if (!prize.canSpawn()) {
 			return new Gold().random();
 		}
-
-		//if it isn't already cursed, give it a free upgrade
-		prize.randomHigh();
 		//curse the armor, unless it has a glyph
 		//if (!prize.hasGoodGlyph()){
 		//	prize.inscribe(Armor.Glyph.randomCurse());

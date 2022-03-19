@@ -72,28 +72,11 @@ public class ScrollOfUpgrade extends InventoryScroll {
 			} else if (w.cursedKnown && w.curseIntensity < oldCurseIntensity){
 				weakenCurse( Dungeon.hero );
 			}
-			if (hadGoodEnchant && !w.hasGoodEnchant()){
+			if (hadGoodEnchant && !w.hasGoodEnchant()) {
 				GLog.warning( Messages.get(Weapon.class, "incompatible") );
 			}
 
-		} /*else if (item instanceof Armor){
-			Armor a = (Armor) item;
-			boolean wasCursed = a.cursed;
-			boolean hadCursedGlyph = a.hasCurseGlyph();
-			boolean hadGoodGlyph = a.hasGoodGlyph();
-
-			a.upgrade();
-
-			if (a.cursedKnown && hadCursedGlyph && !a.hasCurseGlyph()){
-				removeCurse( Dungeon.hero );
-			} else if (a.cursedKnown && wasCursed && !a.cursed){
-				weakenCurse( Dungeon.hero );
-			}
-			if (hadGoodGlyph && !a.hasGoodGlyph()){
-				GLog.warning( Messages.get(Armor.class, "incompatible") );
-			}
-
-		}*/ else if (item instanceof Wand || item instanceof Ring) {
+		} else if (item instanceof Wand || item instanceof Ring) {
 			boolean wasCursed = item.cursed();
 
 			item.upgrade();

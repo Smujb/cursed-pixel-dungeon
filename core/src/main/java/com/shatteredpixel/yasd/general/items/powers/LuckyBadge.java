@@ -116,14 +116,15 @@ public class LuckyBadge extends Power {
 	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = new ArrayList<>();
-		if (Dungeon.key.equals(AC_GRIND) || rematchLevels.contains(Dungeon.key)) {
+		//FIXME Removing the grind depth option for now, commenting out in case I want to revert this
+		/*if (Dungeon.key.equals(AC_GRIND) || rematchLevels.contains(Dungeon.key)) {
 			actions.add(AC_RETURN);
 		} else {
 			if (type == Type.GRIND) {
 				actions.add(AC_GRIND);
 			}
 			if (!rematchLevels.isEmpty()) actions.add(AC_REMATCH);
-		}
+		}*/
 		return actions;
 	}
 
@@ -357,21 +358,18 @@ public class LuckyBadge extends Power {
 				case 3:
 					result = Generator.random(Generator.Category.RELIC);
 			}
-			result.randomHigh();
 			result.uncurse();
 			result.cursedKnown = true;
 			return result;
 		} else { //10% chance
 			if (Random.Int(3) != 0){
 				Weapon weapon = Generator.randomWeapon();
-				weapon.randomHigh();
 				weapon.enchant(Weapon.Enchantment.random());
 				weapon.uncurse();
 				weapon.cursedKnown = true;
 				return weapon;
 			} else {
 				Shield shield = (Shield) Generator.random(Generator.Category.SHIELD);
-				shield.randomHigh();
 				//shield.inscribe(Armor.Glyph.random());
 				shield.uncurse();
 				shield.cursedKnown = true;

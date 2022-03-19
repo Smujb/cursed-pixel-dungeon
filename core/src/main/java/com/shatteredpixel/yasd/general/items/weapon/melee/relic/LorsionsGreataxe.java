@@ -55,9 +55,4 @@ public class LorsionsGreataxe extends RelicMeleeWeapon {
 	public RelicEnchantment enchantment() {
 		return new Damning();
 	}
-
-	@Override
-	public int statReq(int level) {
-		return super.statReq(level)+2;
-	}
 }

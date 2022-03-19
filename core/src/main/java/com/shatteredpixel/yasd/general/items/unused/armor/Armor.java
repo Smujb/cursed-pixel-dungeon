@@ -167,15 +167,6 @@ public class Armor extends KindofMisc {
 	}
 
 	@Override
-	public Item randomHigh() {
-		super.randomHigh();
-		if (Random.Int(2) == 0) {
-			inscribe();
-		}
-		return this;
-	}
-
-	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions(hero);
 		if (seal != null) actions.add(AC_DETACH);
@@ -471,14 +462,14 @@ public class Armor extends KindofMisc {
 		//+0: 75% (3/4)
 		//+1: 20% (4/20)
 		//+2: 5%  (1/20)
-		int n = Dungeon.getScaling()/2;
+		/*int n = Dungeon.getScaling()/2;
 		if (Random.Int(4) == 0) {
 			n++;
 			if (Random.Int(5) == 0) {
 				n++;
 			}
 		}
-		level(n);
+		level(n);*/
 		
 		//30% chance to be cursed
 		//15% chance to be inscribed

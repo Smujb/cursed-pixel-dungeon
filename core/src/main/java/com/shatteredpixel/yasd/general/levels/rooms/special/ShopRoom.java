@@ -205,7 +205,6 @@ public class ShopRoom extends SpecialRoom {
 					break;
 			}
 			toAdd.level(0);
-			toAdd.randomHigh();
 			toAdd.identify();
 			if (toAdd.cursed()) {
 				toAdd.uncurse();
@@ -275,7 +274,6 @@ public class ShopRoom extends SpecialRoom {
 			rare.uncurse();
 			rare.cursedKnown = true;
 			rare.levelKnown = true;
-			rare.randomHigh();
 			itemsToSpawn.add(rare);
 		}
 

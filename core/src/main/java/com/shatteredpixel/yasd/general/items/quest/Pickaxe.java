@@ -83,7 +83,7 @@ public class Pickaxe extends Weapon {
 	}
 
 	@Override
-	public int statReq(int level) {
+	public int curBonusLvl(int level) {
 		return 8;
 	}
 
@@ -143,11 +143,6 @@ public class Pickaxe extends Weapon {
 			GLog.warning( Messages.get(this, "no_vein") );
 			
 		}
-	}
-	
-	@Override
-	public boolean isUpgradable() {
-		return false;
 	}
 	
 	@Override

@@ -176,11 +176,6 @@ public class Dart extends MissileWeapon {
 	}
 	
 	@Override
-	public boolean isUpgradable() {
-		return false;
-	}
-	
-	@Override
 	public int price() {
 		return super.price()/2; //half normal value
 	}

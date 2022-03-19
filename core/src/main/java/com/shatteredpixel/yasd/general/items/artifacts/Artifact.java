@@ -110,18 +110,8 @@ public class Artifact extends KindofMisc {
 	}
 
 	@Override
-	public boolean isUpgradable() {
-		return false;
-	}
-
-	@Override
 	public int visiblyUpgraded() {
 		return levelKnown ? Math.round((level()*10)/(float)levelCap): 0;
-	}
-
-	//transfers upgrades from another artifact, transfer level will equal the displayed level
-	public void transferUpgrade(int transferLvl) {
-		upgrade(Math.round((float)(transferLvl*levelCap)/10));
 	}
 
 	@Override

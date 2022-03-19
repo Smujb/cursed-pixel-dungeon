@@ -152,27 +152,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     }
 
     @Override
-    public Item upgrade() {
-        if (seal != null && seal.isUpgradable()) {
-            seal.upgrade();
-            return this;
-        }
-        return super.upgrade();
-    }
-
-    @Override
     public Item random() {
-        //+0: 75% (3/4)
-        //+1: 20% (4/20)
-        //+2: 5%  (1/20)
-        int n = Dungeon.getScaling()/2;
-        if (Random.Int(4) == 0) {
-            n++;
-            if (Random.Int(5) == 0) {
-                n++;
-            }
-        }
-        level(n);
 
         //30% chance to be cursed
         //10% chance to be enchanted

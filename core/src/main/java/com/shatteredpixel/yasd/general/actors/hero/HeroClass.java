@@ -133,16 +133,6 @@ public enum HeroClass {
 		if (CPDSettings.storyChapter() == StoryChapter.SECOND) {
 			new Amulet.EmptyAmulet().collect();
 		}
-
-		for (KindofMisc misc : hero.belongings.miscs) {
-			if (misc != null) {
-				misc.activate(hero);
-				misc.upgrade();
-				while (misc.statReq() < misc.bestHeroStatValue(hero) && misc.isUpgradable()) {
-					misc.upgrade();
-				}
-			}
-		}
 	}
 
 	private static void initCommon( Hero hero ) {

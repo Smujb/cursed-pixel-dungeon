@@ -234,15 +234,6 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			n = (Ring)Generator.random( Generator.Category.RING );
 		} while (!n.canSpawn() || n.getClass() == r.getClass());
 		
-		n.level(0);
-		
-		int level = r.level();
-		if (level > 0) {
-			n.upgrade( level );
-		} else if (level < 0) {
-			n.degrade( -level );
-		}
-		
 		n.levelKnown = r.levelKnown;
 		n.cursedKnown = r.cursedKnown;
 		n.curseIntensity = r.curseIntensity;
@@ -256,11 +247,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		do {
 			n = (Wand)Generator.random( Generator.Category.WAND );
 		} while ( !n.canSpawn() || n.getClass() == w.getClass());
-		
-		n.level( 0 );
-		int level = w.level();
-		n.upgrade( level );
-		
+
 		n.levelKnown = w.levelKnown;
 		n.cursedKnown = w.cursedKnown;
 		n.curseIntensity = w.curseIntensity;

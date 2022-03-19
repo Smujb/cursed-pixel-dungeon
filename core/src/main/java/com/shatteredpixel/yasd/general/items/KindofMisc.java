@@ -40,6 +40,11 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class KindofMisc extends EquipableItem {
 
+	@Override
+	public boolean isUpgradable() {
+		return false;
+	}
+
 	private static final float TIME_TO_EQUIP = 1f;
 
 	public int slotsUsed = 1;

@@ -54,7 +54,6 @@ import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
 import com.shatteredpixel.yasd.general.items.Heap;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.TomeOfMastery;
-import com.shatteredpixel.yasd.general.items.artifacts.LloydsBeacon;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.chapters.prison.NewPrisonBossLevel;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
@@ -189,11 +188,6 @@ public class NewTengu extends Boss {
 		super.die( cause );
 
 		Badges.validateBossSlain();
-
-		LloydsBeacon beacon = Dungeon.hero.belongings.getItem(LloydsBeacon.class);
-		if (beacon != null) {
-			beacon.upgrade();
-		}
 
 		yell( Messages.get(this, "defeated") );
 	}
