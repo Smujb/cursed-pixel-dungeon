@@ -6,6 +6,7 @@ import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.LevelHandler;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.actors.buffs.FlavourBuff;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.actors.mobs.Boss;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
@@ -29,6 +30,7 @@ import com.shatteredpixel.yasd.general.scenes.GameScene;
 import com.shatteredpixel.yasd.general.scenes.PixelScene;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.sprites.MissileSprite;
+import com.shatteredpixel.yasd.general.ui.BuffIndicator;
 import com.shatteredpixel.yasd.general.ui.OptionSlider;
 import com.shatteredpixel.yasd.general.ui.RedButton;
 import com.shatteredpixel.yasd.general.ui.RenderedTextBlock;
@@ -41,6 +43,7 @@ import com.watabou.noosa.tweeners.Delayer;
 import com.watabou.noosa.ui.Button;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
+import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 import org.jetbrains.annotations.NotNull;
@@ -388,6 +391,49 @@ public class LuckyBadge extends Power {
 				return Generator.random(Generator.Category.ELIXIR);
 			case 3:
 				return new MeatPie();
+		}
+	}
+
+	public static void dropItem(Char ch, int quantity) {
+		ArrayList<Integer> positions = new ArrayList<>();
+		//Build a list of all passable squares adjacent to the mob
+		for (int j = 0; j < 8; j++) {
+			int pos = ch.pos + PathFinder.NEIGHBOURS8[j];
+			if (Dungeon.level.passable(pos)) {
+				positions.add(pos);
+			}
+		}
+
+		for (int i = 0; i < quantity; i++) {
+			Dungeon.level.drop(LuckyBadge.tryForBonusDrop(), Random.element(positions)).sprite.drop(ch.pos);
+		}
+	}
+
+	public static class LuckBuff extends FlavourBuff {
+
+		public static final float DURATION = 100f;
+
+		{
+			type = buffType.POSITIVE;
+		}
+
+		@Override
+		public int icon() {
+			return BuffIndicator.LIGHT;
+		}
+
+		public int nDrops() {
+			return Math.round(10*(cooldown()/DURATION));
+		}
+
+		@Override
+		public String desc() {
+			return Messages.get(this, "desc", dispTurns());
+		}
+
+		@Override
+		public float iconFadePercent() {
+			return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 		}
 	}
 

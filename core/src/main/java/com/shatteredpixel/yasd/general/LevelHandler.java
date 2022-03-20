@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.actors.mobs.Mob;
+import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.levels.DeadEndLevel;
 import com.shatteredpixel.yasd.general.levels.Level;
 import com.shatteredpixel.yasd.general.levels.features.Chasm;
@@ -289,6 +290,8 @@ public class LevelHandler {
 		Dungeon.level = null;
 		Actor.clear();
 		if (level == null) {
+
+			Buff.affect(Dungeon.hero, LuckyBadge.LuckBuff.class, LuckyBadge.LuckBuff.DURATION);
 
 			if (depth > Statistics.deepestFloor) {
 				Statistics.deepestFloor = depth;

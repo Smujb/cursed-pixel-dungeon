@@ -61,6 +61,7 @@ import com.shatteredpixel.yasd.general.items.Generator;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.allies.Soul;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
+import com.shatteredpixel.yasd.general.items.powers.LuckyBadge;
 import com.shatteredpixel.yasd.general.items.relics.CupOfSuffering;
 import com.shatteredpixel.yasd.general.items.rings.Ring;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
@@ -1010,6 +1011,12 @@ public abstract class Mob extends Char {
 		//Cultist subclass logic
 		if (Dungeon.hero.subClass == HeroSubClass.CULTIST && Random.Int(3) == 0 && !(this.properties().contains(Property.BOSS) || this.properties().contains(Property.INORGANIC))) {
 			Dungeon.level.drop(new Soul().setMob(this), pos).sprite.drop();
+		}
+
+		LuckyBadge.LuckBuff buff = Dungeon.hero.buff(LuckyBadge.LuckBuff.class);
+		//Lucky badge logic
+		if (buff != null) {
+			LuckyBadge.dropItem(this, buff.nDrops());
 		}
 	}
 	

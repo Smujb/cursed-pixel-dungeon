@@ -145,14 +145,8 @@ public class GrindLevel extends TiledMapLevel {
 		public void detach() {
 			super.detach();
 			if (target != null && !target.isAlive()) {
-				for (int i = 0; i < lootAmt; i++) {
-					int pos;
-					do {
-						pos = Dungeon.level.randomRespawnCell();
-					} while (Random.Int(Dungeon.level.distance(pos, target.pos)) != 0);
-					Dungeon.level.drop(LuckyBadge.tryForBonusDrop(), pos).sprite.drop(target.pos);
-					LuckyBadge.score++;
-				}
+				LuckyBadge.dropItem(target, lootAmt);
+				LuckyBadge.score += lootAmt;
 			}
 			if (CPDSettings.validateGrindingHighScore(LuckyBadge.score)) {
 				LuckyBadge.scoreBeaten = true;
