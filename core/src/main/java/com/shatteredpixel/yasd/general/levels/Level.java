@@ -27,6 +27,19 @@
 
 package com.shatteredpixel.yasd.general.levels;
 
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.CHASM;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.DOOR;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMBERS;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY_DECO;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY_SP;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.FURROWED_GRASS;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.GRASS;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.HIGH_GRASS;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WALL;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WALL_DECO;
+import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WATER;
+
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.CPDGame;
 import com.shatteredpixel.yasd.general.CPDSettings;
@@ -67,7 +80,6 @@ import com.shatteredpixel.yasd.general.items.artifacts.TalismanOfForesight;
 import com.shatteredpixel.yasd.general.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.yasd.general.items.food.SmallRation;
 import com.shatteredpixel.yasd.general.items.potions.PotionOfLevitation;
-import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfIntuition;
 import com.shatteredpixel.yasd.general.items.wands.WandOfRegrowth;
@@ -146,19 +158,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.CHASM;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.DOOR;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMBERS;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY_DECO;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.EMPTY_SP;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.FURROWED_GRASS;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.GRASS;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.HIGH_GRASS;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WALL;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WALL_DECO;
-import static com.shatteredpixel.yasd.general.levels.terrain.Terrain.WATER;
 
 public abstract class Level implements Bundlable {
 	
@@ -480,11 +479,6 @@ public abstract class Level implements Bundlable {
 
 			if (Dungeon.isChallenged(Challenges.DARKNESS)){
 				addItemToSpawn( new Torch() );
-			}
-
-			if (Dungeon.souNeeded()) {
-				addItemToSpawn( new ScrollOfUpgrade() );
-				Dungeon.LimitedDrops.UPGRADE_SCROLLS.count++;
 			}
 
 			if (Dungeon.esNeeded()) {

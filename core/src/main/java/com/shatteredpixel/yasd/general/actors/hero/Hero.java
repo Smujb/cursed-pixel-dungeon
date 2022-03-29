@@ -93,7 +93,7 @@ import com.shatteredpixel.yasd.general.items.rings.RingOfResilience;
 import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
-import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.Viscosity;
 import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.items.wands.WandOfWarding;
@@ -902,7 +902,7 @@ public class Hero extends Char {
 					} else {
 
 						boolean important =
-								(item instanceof ScrollOfUpgrade && ((Scroll) item).isKnown());
+								(item instanceof ExoticScroll && ((Scroll) item).isKnown());
 						if (important) {
 							GLog.positive(Messages.get(this, "you_now_have", item.name()));
 						} else {

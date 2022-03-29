@@ -35,10 +35,10 @@ import com.shatteredpixel.yasd.general.actors.buffs.Buff;
 import com.shatteredpixel.yasd.general.items.BrokenSeal;
 import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.unused.armor.Armor;
 import com.shatteredpixel.yasd.general.items.quest.DarkGold;
 import com.shatteredpixel.yasd.general.items.quest.Pickaxe;
-import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.yasd.general.items.stones.StoneOfAugmentation;
+import com.shatteredpixel.yasd.general.items.unused.armor.Armor;
 import com.shatteredpixel.yasd.general.items.unused.missiles.MissileWeapon;
 import com.shatteredpixel.yasd.general.journal.Notes;
 import com.shatteredpixel.yasd.general.levels.rooms.Room;
@@ -216,7 +216,7 @@ public class Blacksmith extends NPC {
 		}
 
 		Sample.INSTANCE.play( Assets.Sounds.EVOKE );
-		ScrollOfUpgrade.upgrade( Dungeon.hero );
+		StoneOfAugmentation.fx( Dungeon.hero );
 		Item.evoke( Dungeon.hero );
 
 		if (second.isEquipped( Dungeon.hero )) {

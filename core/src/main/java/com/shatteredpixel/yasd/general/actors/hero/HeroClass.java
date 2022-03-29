@@ -59,7 +59,6 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRage;
-import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.shield.ParryingDagger;
 import com.shatteredpixel.yasd.general.items.shield.ProphetShield;
 import com.shatteredpixel.yasd.general.items.shield.ReflexShield;
@@ -242,8 +241,7 @@ public enum HeroClass {
 		SorcererShield shield = (SorcererShield) new SorcererShield().identify();
 		hero.belongings.miscs[1] = shield;
 		Dungeon.quickslot.setSlot(1, shield);
-		
-		new ScrollOfUpgrade().identify();
+
 		new PotionOfLiquidFlame().identify();
 		hero.setFocus(3);
 	}

@@ -34,7 +34,6 @@ import com.shatteredpixel.yasd.general.items.artifacts.ChaliceOfBlood;
 import com.shatteredpixel.yasd.general.items.artifacts.HornOfPlenty;
 import com.shatteredpixel.yasd.general.items.food.Food;
 import com.shatteredpixel.yasd.general.items.food.SmallRation;
-import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 
 public class Challenges {
 
@@ -44,12 +43,11 @@ public class Challenges {
 	public static final int NO_HERBALISM		= 4;
 	public static final int SWARM_INTELLIGENCE	= 8;
 	public static final int DARKNESS			= 16;
-	public static final int NO_SCROLLS		    = 32;
-	public static final int COLLAPSING_FLOOR    = 64;
-	public static final int CORROSION			= 128;
-	public static final int BLOODLUST			= 256;
+	public static final int COLLAPSING_FLOOR    = 32;
+	public static final int CORROSION			= 64;
+	public static final int BLOODLUST			= 128;
 
-	public static final int MAX_VALUE           = 511;
+	public static final int MAX_VALUE           = 255;
 
 	public static final String[] NAME_IDS = {
 			"no_food",
@@ -57,14 +55,13 @@ public class Challenges {
 			"no_herbalism",
 			"swarm_intelligence",
 			"darkness",
-			"no_scrolls",
 			"collapsing_floor",
 			"corrosion",
 			"bloodlust"
 	};
 
 	public static final int[] MASKS = {
-			NO_FOOD, NO_HEALING, NO_HERBALISM, SWARM_INTELLIGENCE, DARKNESS, NO_SCROLLS, COLLAPSING_FLOOR, CORROSION, BLOODLUST
+			NO_FOOD, NO_HEALING, NO_HERBALISM, SWARM_INTELLIGENCE, DARKNESS, COLLAPSING_FLOOR, CORROSION, BLOODLUST
 	};
 
 	public static boolean isItemBlocked( Item item ){
@@ -86,10 +83,6 @@ public class Challenges {
 			if (item instanceof Dewdrop) {
 				return true;
 			}
-		}
-
-		if (Dungeon.isChallenged(NO_SCROLLS)) {
-			return item instanceof ScrollOfUpgrade;
 		}
 
 		if (Dungeon.isChallenged(BLOODLUST)) {

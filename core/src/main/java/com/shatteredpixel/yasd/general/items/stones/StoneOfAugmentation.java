@@ -27,8 +27,9 @@
 
 package com.shatteredpixel.yasd.general.items.stones;
 
+import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Item;
-import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.scenes.GameScene;
@@ -58,8 +59,12 @@ public class StoneOfAugmentation extends InventoryStone {
 		
 		weapon.augment = augment;
 		useAnimation();
-		ScrollOfUpgrade.upgrade(curUser);
+		fx(curUser);
 		
+	}
+
+	public static void fx( Char hero ) {
+		hero.sprite.emitter().start( Speck.factory( Speck.UP ), 0.2f, 3 );
 	}
 	
 	@Override

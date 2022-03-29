@@ -107,6 +107,7 @@ import com.shatteredpixel.yasd.general.items.rings.RingOfSupport;
 import com.shatteredpixel.yasd.general.items.rings.RingOfTenacity;
 import com.shatteredpixel.yasd.general.items.rings.RingOfWealth;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
+import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfGreed;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfMagicMapping;
@@ -118,7 +119,6 @@ import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfRetribution;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTerror;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
-import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfAffection;
 import com.shatteredpixel.yasd.general.items.scrolls.exotic.ScrollOfAntiMagic;
@@ -219,7 +219,6 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.HeroSword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Hoe;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Katana;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Mace;
-import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MidnightCutlass;
 import com.shatteredpixel.yasd.general.items.weapon.melee.MundaneSword;
@@ -235,6 +234,7 @@ import com.shatteredpixel.yasd.general.items.weapon.melee.Sword;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Tachi;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Wakizashi;
 import com.shatteredpixel.yasd.general.items.weapon.melee.Whip;
+import com.shatteredpixel.yasd.general.items.weapon.melee.hybrid.MagesStaff;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Bow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.CrescentMoonGreatbow;
 import com.shatteredpixel.yasd.general.items.weapon.ranged.Crossbow;
@@ -445,7 +445,7 @@ public class Generator {
 			SPELL.probs = SPELL.defaultProbs.clone();
 
 			SCROLL.classes = new Class<?>[]{
-					ScrollOfUpgrade.class, //3 drop every chapter, see Dungeon.souNeeded()
+					ScrollOfGreed.class,
 					ScrollOfIdentify.class,
 					ScrollOfRemoveCurse.class,
 					ScrollOfMirrorImage.class,
@@ -458,7 +458,7 @@ public class Generator {
 					ScrollOfTerror.class,
 					ScrollOfTransmutation.class
 			};
-			SCROLL.defaultProbs = new float[]{0, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1};
+			SCROLL.defaultProbs = new float[]{1, 6, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1};
 			SCROLL.probs = SCROLL.defaultProbs.clone();
 
 			SCROLL_EXOTIC.classes = new Class<?>[]{

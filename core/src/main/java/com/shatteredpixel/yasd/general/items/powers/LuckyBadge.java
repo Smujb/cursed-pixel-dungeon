@@ -20,7 +20,6 @@ import com.shatteredpixel.yasd.general.items.food.MeatPie;
 import com.shatteredpixel.yasd.general.items.food.MysteryMeat;
 import com.shatteredpixel.yasd.general.items.food.SmallRation;
 import com.shatteredpixel.yasd.general.items.scrolls.Scroll;
-import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.shield.Shield;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
@@ -48,7 +47,6 @@ import com.watabou.utils.Random;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -83,10 +81,8 @@ public class LuckyBadge extends Power {
 
 	//Testing
 	public Type type = Type.GRIND;
-	private static final float INCREASE_PER_DROP = 25;
 
 	private static int dropsToRare = 0;
-	private static float dropsToUpgrade = INCREASE_PER_DROP;
 
 	private static final String RETURN_POS = "returnPos";
 	private static final String RETURN_DEPTH = "returnDepth";
@@ -260,11 +256,7 @@ public class LuckyBadge extends Power {
 
 	public String statsInfo() {
 		if (isIdentified()) {
-			float dropChance = 100f * (1 / dropsToUpgrade);
-			if (dropsToUpgrade <= 0) {//Display 100% chance if the value goes negative, as a scroll is guaranteed
-				dropChance = 100f;
-			}
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(dropChance));
+			return Messages.get(this, "stats");
 		} else {
 			return Messages.get(this, "typical_stats");
 		}
@@ -273,21 +265,13 @@ public class LuckyBadge extends Power {
 	public static Item tryForBonusDrop() {
 		Item item;
 		do {
-			if ((dropsToUpgrade < 1) || (Random.Int((int) dropsToUpgrade) == 0)) {
-				item = new ScrollOfUpgrade();
-				dropsToUpgrade += INCREASE_PER_DROP;
+			if ((dropsToRare <= 0 || Random.Int(dropsToRare) == 0) & !latestDropWasRare) {// 1/10 chance
+				item = genRareDrop();
+				latestDropWasRare = true;
+				dropsToRare += 10;
 			} else {
-				if ((dropsToRare <= 0 || Random.Int(dropsToRare) == 0) & !latestDropWasRare) {// 1/10 chance
-					item = genRareDrop();
-					latestDropWasRare = true;
-					dropsToUpgrade -= 3;
-					dropsToRare += 10;
-				} else {
-					item = genStandardDrop();
-					dropsToUpgrade--;
-					dropsToRare--;
-				}
-
+				item = genStandardDrop();
+				dropsToRare--;
 			}
 		} while (!item.canSpawn());
 
@@ -315,7 +299,7 @@ public class LuckyBadge extends Power {
 			Scroll scroll;
 			do {
 				scroll = (Scroll) Generator.random(Generator.Category.SCROLL);
-			} while (scroll == null || scroll instanceof ScrollOfUpgrade);
+			} while (scroll == null);
 			return scroll;
 		} else if (roll < 0.6f){ //20% chance to drop a minor food item
 			return Random.Int(2) == 0 ? new SmallRation() : new MysteryMeat();
@@ -423,7 +407,7 @@ public class LuckyBadge extends Power {
 		}
 
 		public int nDrops() {
-			return Math.round(10*(cooldown()/DURATION));
+			return Math.max(1, Math.round(10*(cooldown()/DURATION)));
 		}
 
 		@Override

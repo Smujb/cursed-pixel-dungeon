@@ -29,7 +29,6 @@ package com.shatteredpixel.yasd.general.levels;
 
 import com.shatteredpixel.yasd.general.actors.mobs.Eye;
 import com.shatteredpixel.yasd.general.items.Generator;
-import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.levels.chapters.sewers.SewerLevel;
 
 public class LootLevel extends SewerLevel {
@@ -37,7 +36,6 @@ public class LootLevel extends SewerLevel {
     @Override
     protected void createItems() {
         for (int i = 1; i < 5; i++) {
-            addItemToSpawn(new ScrollOfUpgrade());
             addItemToSpawn(Generator.randomWeapon().identify());
             addItemToSpawn(Generator.randomShield().identify());
             addItemToSpawn(Generator.randomRanged());

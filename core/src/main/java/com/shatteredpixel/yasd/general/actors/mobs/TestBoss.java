@@ -39,7 +39,6 @@ import com.shatteredpixel.yasd.general.effects.CellEmitter;
 import com.shatteredpixel.yasd.general.effects.MagicMissile;
 import com.shatteredpixel.yasd.general.effects.particles.SparkParticle;
 import com.shatteredpixel.yasd.general.items.keys.SkeletonKey;
-import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.yasd.general.items.wands.WandOfBlastWave;
 import com.shatteredpixel.yasd.general.mechanics.Ballistica;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -54,7 +53,6 @@ import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
-import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -206,17 +204,6 @@ public class TestBoss extends Mob {
 
 		GameScene.bossSlain();
 		Dungeon.level.drop( new  SkeletonKey( Dungeon.key ), pos ).sprite.drop();
-
-		//60% chance of 2 shards, 30% chance of 3, 10% chance for 4. Average of 2.5
-		int blobs = Random.chances(new  float[]{0, 0, 6, 3, 1});
-		for (int i = 0; i < blobs; i++){
-			int ofs;
-			do {
-				ofs = PathFinder.NEIGHBOURS8[Random.Int(8)];
-			} while (!Dungeon.level.passable(pos + ofs));
-			Dungeon.level.drop( new  ScrollOfUpgrade(), pos + ofs ).sprite.drop( pos );
-		}
-
 
 		Badges.validateBossSlain();
 
