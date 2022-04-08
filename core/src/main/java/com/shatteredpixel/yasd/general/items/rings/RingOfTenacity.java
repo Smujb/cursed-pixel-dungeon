@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.rings;
 
-import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
@@ -40,11 +39,7 @@ public class RingOfTenacity extends Ring {
 	}
 	
 	public String statsInfo() {
-		if (isIdentified()){
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (0.6f * soloMultiplier())));
-		} else {
-			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(100f * (0.6f * multiplier(0))));
-		}
+		return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (1 - damageMultiplier())));
 	}
 
 	@Override
@@ -52,8 +47,8 @@ public class RingOfTenacity extends Ring {
 		return new Tenacity();
 	}
 	
-	public static float damageMultiplier( Char t ){
-		return 1f - (0.6f * multiplier(t, Tenacity.class));
+	public static float damageMultiplier() {
+		return 0.4f;
 	}
 
 	public class Tenacity extends RingBuff {

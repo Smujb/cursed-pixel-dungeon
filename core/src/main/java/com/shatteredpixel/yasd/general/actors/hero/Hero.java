@@ -146,7 +146,7 @@ public class Hero extends Char {
 		EXECUTION {
 			@Override
 			public float hpDropOffReduction(Char ch) {
-				return RingOfExecution.hpDropOffReduction(ch);
+				return RingOfExecution.hpDropOffReduction();
 			}
 		},
 		FOCUS {
@@ -156,7 +156,7 @@ public class Hero extends Char {
 
 			@Override
 			public float hpDropOffReduction(Char ch) {
-				return RingOfFocus.hpDropOffReduction(ch);
+				return RingOfFocus.hpDropOffReduction();
 			}
 		},
 		RESILIENCE {
@@ -166,13 +166,13 @@ public class Hero extends Char {
 
 			@Override
 			public float hpDropOffReduction(Char ch) {
-				return RingOfResilience.hpDropOffReduction(ch);
+				return RingOfResilience.hpDropOffReduction();
 			}
 		},
 		ASSAULT {
 			@Override
 			public float hpDropOffReduction(Char ch) {
-				return RingOfAssault.hpDropOffReduction(ch);
+				return RingOfAssault.hpDropOffReduction();
 			}
 		},
 		SUPPORT {
@@ -182,7 +182,7 @@ public class Hero extends Char {
 
 			@Override
 			public float hpDropOffReduction(Char ch) {
-				return RingOfSupport.hpDropOffReduction(ch);
+				return RingOfSupport.hpDropOffReduction();
 			}
 		};
 
@@ -319,7 +319,7 @@ public class Hero extends Char {
 
 		//Recalculate
 		maxMP = Math.round(20 + lvl*0.8f + getFocus());
-		maxMP *= RingOfFaithAndPower.mpModifier(this);
+		maxMP *= RingOfFaithAndPower.mpModifier();
 
 		//increase mp amount by the same amount max mp was increased by
 		mp += (maxMP - oldMax);
@@ -1094,7 +1094,7 @@ public class Hero extends Char {
 	public int defenseProc(@NotNull Char enemy, int damage) {
 
 		if (enemy.elementalType().isMagical()) {
-			damage *= RingOfElements.resist(enemy);
+			damage *= RingOfElements.resist();
 		}
 
 		if (damage > 0 && subClass == HeroSubClass.BERSERKER) {

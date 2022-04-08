@@ -42,11 +42,7 @@ public class RingOfFaithAndPower extends Ring {
 	}
 	
 	public String statsInfo() {
-		if (isIdentified()){
-			return Messages.get(this, "stats", (int) (10 * soloMultiplier()), new DecimalFormat("#.##").format(100f * (5f * soloMultiplier())));
-		} else {
-			return Messages.get(this, "typical_stats", (int) (10 * multiplier(0)), new DecimalFormat("#.##").format(100f * (5f * multiplier(0))));
-		}
+		return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (hpModifier()-1)), new DecimalFormat("#.##").format(100f * (mpModifier()-1)));
 	}
 	
 	@Override
@@ -54,12 +50,12 @@ public class RingOfFaithAndPower extends Ring {
 		return new FaithAndPower();
 	}
 	
-	public static float hpModifier( Char target ){
-		return 1 + 0.2f * multiplier(target, FaithAndPower.class);
+	public static float hpModifier(){
+		return 1.2f;
 	}
 	
-	public static float mpModifier( Char target ){
-		return 1 + 0.3f * multiplier(target, FaithAndPower.class);
+	public static float mpModifier(){
+		return 1.3f;
 	}
 
 	@Override

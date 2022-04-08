@@ -9,15 +9,11 @@ import java.text.DecimalFormat;
 
 public abstract class HeroStatRing extends Ring {
 	public String statsInfo() {
-		if (isIdentified()){
-			return Messages.get(this, "stats", new DecimalFormat("#.###").format(soloMultiplier() * 0.1));
-		} else {
-			return Messages.get(this, "typical_stats", new DecimalFormat("#.###").format(multiplier(0) * 0.1));
-		}
+		return Messages.get(this, "stats", new DecimalFormat("#.###").format(hpDropOffReduction() * 0.1));
 	}
 
-	public static float hpDropOffReduction(Char target, Class<? extends RingBuff> buffClass) {
-		return 0.1f * multiplier(target, buffClass);
+	public static float hpDropOffReduction() {
+		return 0.1f;
 	}
 
 	@Override

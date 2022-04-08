@@ -219,7 +219,7 @@ public abstract class Char extends Actor {
 	public void updateHT(boolean boostHP) {
 		int curHT = HT;
 
-		HT *= RingOfFaithAndPower.hpModifier(this);
+		HT *= RingOfFaithAndPower.hpModifier();
 
 		if (buff(ElixirOfMight.HTBoost.class) != null) {
 			HT += buff(ElixirOfMight.HTBoost.class).boost();
@@ -751,7 +751,7 @@ public abstract class Char extends Actor {
 		}
 
 		if (dmg >= HP) {
-			dmg *= RingOfTenacity.damageMultiplier(this);
+			dmg *= RingOfTenacity.damageMultiplier();
 		}
 
 		int shielded = dmg;
@@ -1081,7 +1081,7 @@ public abstract class Char extends Actor {
 		}
 
 		if (effect.isMagical()) {
-			result *= RingOfElements.resist(this);
+			result *= RingOfElements.resist();
 		}
 		return result;
 	}

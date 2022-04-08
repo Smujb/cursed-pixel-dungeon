@@ -28,7 +28,6 @@
 package com.shatteredpixel.yasd.general.items.rings;
 
 
-import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
 public class RingOfExecution extends HeroStatRing {
@@ -40,11 +39,6 @@ public class RingOfExecution extends HeroStatRing {
 	@Override
 	protected RingBuff buff( ) {
 		return new PowerBuff();
-	}
-
-
-	public static float hpDropOffReduction(Char target ){
-		return hpDropOffReduction(target, PowerBuff.class);
 	}
 
 	public class PowerBuff extends RingBuff {}

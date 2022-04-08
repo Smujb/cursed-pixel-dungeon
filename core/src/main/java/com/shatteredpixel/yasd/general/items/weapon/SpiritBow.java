@@ -168,9 +168,9 @@ public class SpiritBow extends Weapon implements Attackable {
 				case NONE: default:
 					return 0f;
 				case SPEED:
-					return 1f * RingOfFuror.attackDelayMultiplier(owner);
+					return 1f * RingOfFuror.attackDelayMultiplier();
 				case DAMAGE:
-					return 2f * RingOfFuror.attackDelayMultiplier(owner);
+					return 2f * RingOfFuror.attackDelayMultiplier();
 			}
 		} else {
 			return super.speedFactor(owner);

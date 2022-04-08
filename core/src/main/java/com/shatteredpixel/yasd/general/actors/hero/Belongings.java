@@ -213,13 +213,13 @@ public class Belongings implements Iterable<Item> {
 			//Normally putting furor speed on unarmed attacks would be unnecessary
 			//But there's going to be that one guy who gets a furor+force ring combo
 			//This is for that one guy, you shall get your fists of fury!
-			return RingOfFuror.attackDelayMultiplier(owner);
+			return RingOfFuror.attackDelayMultiplier();
 		}
 	}
 
 
 	public float affectSpeed(float speed) {
-		return speed * RingOfHaste.speedMultiplier(owner);
+		return speed * RingOfHaste.speedMultiplier();
 	}
 
 	public float affectSneakSkill(float stealth) {

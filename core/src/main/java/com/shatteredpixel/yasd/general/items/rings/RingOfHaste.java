@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.rings;
 
-import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
@@ -40,11 +39,7 @@ public class RingOfHaste extends Ring {
 	}
 	
 	public String statsInfo() {
-		if (isIdentified()){
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (2f * soloMultiplier())));
-		} else {
-			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format((2f * multiplier(0))));
-		}
+		return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (speedMultiplier() - 1f)));
 	}
 	
 	@Override
@@ -52,8 +47,8 @@ public class RingOfHaste extends Ring {
 		return new Haste();
 	}
 	
-	public static float speedMultiplier( Char target ){
-		return 1 + 2f * multiplier(target, Haste.class);
+	public static float speedMultiplier(){
+		return 1.5f;
 	}
 	
 	public class Haste extends RingBuff {

@@ -67,11 +67,7 @@ public class RingOfWealth extends Ring {
 	public static boolean latestDropWasRare = false;
 
 	public String statsInfo() {
-		if (isIdentified()) {
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (30f * soloMultiplier())));
-		} else {
-			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(100f * (30f * multiplier(0))));
-		}
+		return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (dropChanceMultiplier())));
 	}
 
 	private static final String TRIES_TO_DROP = "tries_to_drop";
@@ -96,14 +92,12 @@ public class RingOfWealth extends Ring {
 		return new Wealth();
 	}
 
-	public static float dropChanceMultiplier(Char target) {
-		return 1 + 30f * multiplier(target, Wealth.class);
+	public static float dropChanceMultiplier() {
+		return 20f;
 	}
 
 	public static ArrayList<Item> tryForBonusDrop(Char target, int tries) {
-		int bonus = getBonus(target, Wealth.class);
-
-		if (bonus <= 0) return null;
+		int bonus = 1 + Dungeon.hero.lvl/2;
 
 		HashSet<Wealth> buffs = target.buffs(Wealth.class);
 		float triesToDrop = Float.MIN_VALUE;

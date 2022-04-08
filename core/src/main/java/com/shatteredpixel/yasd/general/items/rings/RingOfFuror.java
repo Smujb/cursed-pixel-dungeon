@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.rings;
 
-import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 
@@ -40,11 +39,7 @@ public class RingOfFuror extends Ring {
 	}
 
 	public String statsInfo() {
-		if (isIdentified()){
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (2f * soloMultiplier())));
-		} else {
-			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format((2f * multiplier(0))));
-		}
+		return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * ((1 / attackDelayMultiplier()) - 1)));
 	}
 
 	@Override
@@ -52,8 +47,8 @@ public class RingOfFuror extends Ring {
 		return new Furor();
 	}
 	
-	public static float attackDelayMultiplier(Char target ){
-		return 1 - (1 / 2f * multiplier(target, Furor.class));
+	public static float attackDelayMultiplier() {
+		return 0.75f;
 	}
 
 	public class Furor extends RingBuff {

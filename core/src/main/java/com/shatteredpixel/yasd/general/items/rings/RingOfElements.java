@@ -27,7 +27,6 @@
 
 package com.shatteredpixel.yasd.general.items.rings;
 
-import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.items.unused.armor.glyphs.AntiMagic;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
@@ -43,11 +42,7 @@ public class RingOfElements extends Ring {
 
 
 	public String statsInfo() {
-		if (isIdentified()){
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (0.5f * soloMultiplier())));
-		} else {
-			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(20f));
-		}
+		return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (1f - resist())));
 	}
 	
 	@Override
@@ -60,10 +55,8 @@ public class RingOfElements extends Ring {
 		RESISTS.addAll(AntiMagic.RESISTS);
 	}
 
-	public static float resist(Char target){
-		if (getBonus(target, Resistance.class) == 0) return 1f;
-
-		return 1f - (0.5f * multiplier(target, Resistance.class));
+	public static float resist() {
+		return 0.6f;
 	}
 	
 	public class Resistance extends RingBuff {

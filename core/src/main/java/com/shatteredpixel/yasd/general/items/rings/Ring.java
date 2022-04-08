@@ -298,35 +298,11 @@ public class Ring extends KindofMisc {
 		}
 	}
 
-	public static int getBonus(Char target, Class<?extends RingBuff> type){
-		int bonus = 0;
-		for (RingBuff buff : target.buffs(type)) {
-			bonus += buff.level();
-		}
-		return bonus;
+	public static boolean hasRing(Char target, Class<?extends RingBuff> type){
+		return target.buffs(type) != null;
 	}
 
-	protected static float multiplier(int level) {
-		return (float) (1f - Math.pow(0.9f, level));
-	}
-
-	protected static float multiplier(Char target, Class<?extends RingBuff> type) {
-		return multiplier(getBonus(target, type));
-	}
-
-	protected final float soloMultiplier() {
-		return multiplier(soloBonus());
-	}
-	
-	public int soloBonus(){
-		if (cursed()){
-			return Math.min( 0, Ring.this.level()-2 );
-		} else {
-			return Ring.this.level()+1;
-		}
-	}
-
-	public class RingBuff extends Buff {
+	public static class RingBuff extends Buff {
 		
 		@Override
 		public boolean act() {
@@ -335,10 +311,5 @@ public class Ring extends KindofMisc {
 			
 			return true;
 		}
-
-		public int level(){
-			return Ring.this.soloBonus();
-		}
-
 	}
 }

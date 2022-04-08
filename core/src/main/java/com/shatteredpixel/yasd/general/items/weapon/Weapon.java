@@ -232,7 +232,7 @@ abstract public class Weapon extends KindOfWeapon implements Enchantable {
 
 		float DLY = augment.delayFactor(this.attackDelay);
 
-		DLY *= RingOfFuror.attackDelayMultiplier(owner);
+		DLY *= RingOfFuror.attackDelayMultiplier();
 
 		return DLY;
 	}
