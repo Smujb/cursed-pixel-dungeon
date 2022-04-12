@@ -186,6 +186,9 @@ public class Dungeon {
 	public static Hero hero;
 	public static Level level;
 
+	//Necessary for ensuring that changing the chapter on the title screen does not impact the levels loaded in existing save files
+	public static StoryChapter storyChapter;
+
 	public static QuickSlot quickslot = new QuickSlot();
 	
 	public static int depth;
@@ -246,6 +249,7 @@ public class Dungeon {
 
 		droppedItems = new SparseArray<>();
 		portedItems = new SparseArray<>();
+		storyChapter = CPDSettings.storyChapter();
 
 		for (LimitedDrops a : LimitedDrops.values())
 			a.count = 0;
@@ -335,7 +339,7 @@ public class Dungeon {
 		StoryChapter.Trial curTrial = StoryChapter.Trial.getCurTrial();
 		if (depth <= 0) {
 			 return SURFACE_ID;
-		} else if (CPDSettings.storyChapter() == StoryChapter.FIRST) {
+		} else if (storyChapter == StoryChapter.FIRST) {
 			if (depth <= Constants.CHAPTER_LENGTH) {
 				key = SEWERS_ID;
 			} else if (depth <= Constants.CHAPTER_LENGTH * 2) {
@@ -349,7 +353,7 @@ public class Dungeon {
 			} else if (depth == Constants.MAX_DEPTH) {
 				return LAST_ID;
 			}
-		} else if (CPDSettings.storyChapter() == StoryChapter.SECOND) {
+		} else if (storyChapter == StoryChapter.SECOND) {
 			if (curTrial != null) {
 				key = curTrial.key();
 			} else {
@@ -550,12 +554,14 @@ public class Dungeon {
 	private static final String KEY 		= "key";
 	private static final String TESTING 	= "testing";
 	private static final String PORTALS 	= "portals";
+	private static final String CHAPTER 	= "chapter";
 
 	public static void saveGame( int save ) {
 		try {
 			Bundle bundle = new Bundle();
 
 			version = Game.versionCode;
+			bundle.put( CHAPTER, storyChapter );
 			bundle.put( VERSION, version );
 			bundle.put( SEED, seed );
 			bundle.put( CHALLENGES, challenges );
@@ -659,6 +665,8 @@ public class Dungeon {
 		testing = bundle.contains(TESTING) ? CPDSettings.testing() : bundle.getBoolean(TESTING);
 
 		key = bundle.contains(KEY) ? bundle.getString(KEY) : keyForDepth();
+
+		storyChapter = bundle.contains(CHAPTER) ? bundle.getEnum(CHAPTER, StoryChapter.class) : CPDSettings.storyChapter();
 
 		StoryChapter.Trial.restoreFromBundle(bundle);
 

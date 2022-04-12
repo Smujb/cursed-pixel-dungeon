@@ -31,7 +31,6 @@ import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Bones;
 import com.shatteredpixel.yasd.general.CPDGame;
-import com.shatteredpixel.yasd.general.CPDSettings;
 import com.shatteredpixel.yasd.general.Challenges;
 import com.shatteredpixel.yasd.general.Constants;
 import com.shatteredpixel.yasd.general.Dungeon;
@@ -297,7 +296,7 @@ public class Hero extends Char {
 	}
 
 	public int levelToScaleFactor() {
-		return lvl + CPDSettings.storyChapter().extraScale();
+		return lvl + Dungeon.storyChapter.extraScale();
 	}
 
 	@Override

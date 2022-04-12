@@ -73,7 +73,7 @@ public class Lore {
 
 		String key = CHAPTERS.get(levelClass);
 		if (levelClass == SurfaceLevel.class || levelClass == LastLevel.class) {
-			key += "_" + CPDSettings.storyChapter().name();
+			key += "_" + Dungeon.storyChapter.name();
 		}
 		String text = Messages.get(Lore.class, key);
 		if ((!CPDSettings.watchedCutscene(key) || CPDSettings.cutscenes()) && !text.contains("missed_string") && !text.equals("TODO")) {
