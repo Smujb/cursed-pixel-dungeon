@@ -40,6 +40,7 @@ import com.shatteredpixel.yasd.general.actors.hero.Hero;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.BrokenSeal;
 import com.shatteredpixel.yasd.general.items.Enchantable;
+import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.KindofMisc;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
@@ -103,6 +104,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     public void doParry(Char ch) {
         if (isEquipped(ch)) {
             Buff.affect(ch, Parry.class).setShield(this);
+            useDurability();
             ch.spendAndNext(parryTime());
         } else {
             GLog.negative(Messages.get(this, "not_equipped"));
@@ -186,11 +188,19 @@ public abstract class Shield extends KindofMisc implements Enchantable {
     }
 
     public int minDamage(float lvl) {
-        return (int) Math.max(0, (12 * lvl - damageReduction()) * damageFactor);   //level scaling
+        int damage = (int) Math.max(0, (12 * lvl - damageReduction()) * damageFactor);
+        if (broken()) {
+            damage *= EquipableItem.BROKEN_DAMAGE_MODIFIER;
+        }
+        return damage;
     }
 
     public int maxDamage(float lvl) {
-        return (int) Math.max(0, (16 * lvl - damageReduction()) * damageFactor);   //level scaling
+        int damage = (int) Math.max(0, (16 * lvl - damageReduction()) * damageFactor);
+        if (broken()) {
+            damage *= EquipableItem.BROKEN_DAMAGE_MODIFIER;
+        }
+        return damage;
     }
 
     public int maxDefense(float lvl) {

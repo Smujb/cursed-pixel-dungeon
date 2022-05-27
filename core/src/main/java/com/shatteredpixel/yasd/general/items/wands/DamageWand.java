@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.items.wands;
 import com.shatteredpixel.yasd.general.Assets;
 import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Char;
+import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -98,7 +99,11 @@ public abstract class DamageWand extends Wand{
 	}
 
 	public int damageRoll(float lvl){
-		return Random.NormalIntRange((int)min(lvl), (int)max(lvl));
+		int damage = Random.NormalIntRange((int)min(lvl), (int)max(lvl));
+		if (broken()) {
+			damage *= EquipableItem.BROKEN_DAMAGE_MODIFIER;
+		}
+		return damage;
 	}
 
 	@Override

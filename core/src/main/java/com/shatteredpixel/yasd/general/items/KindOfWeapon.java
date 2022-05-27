@@ -183,6 +183,7 @@ abstract public class KindOfWeapon extends KindofMisc {
 		if (attack) {
 			hitSound(Random.Float(0.87f, 1.15f));
 		}
+		useDurability();
 		if (!enemy.isAlive()) onEnemyDeath(enemy);
 		return attack;
 	}
@@ -201,7 +202,11 @@ abstract public class KindOfWeapon extends KindofMisc {
 	abstract public int max(float lvl);
 
 	public int damageRoll( Char owner ) {
-		return affectDamage(Random.NormalIntRange(min(), max()));
+		int damage = Random.NormalIntRange(min(), max());
+		if (broken()) {
+			damage *= EquipableItem.BROKEN_DAMAGE_MODIFIER;
+		}
+		return affectDamage(damage);
 	}
 
 	public int affectDamage(int damage) {

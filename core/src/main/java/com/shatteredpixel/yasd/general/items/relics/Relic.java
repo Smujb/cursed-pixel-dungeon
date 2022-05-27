@@ -2,6 +2,7 @@ package com.shatteredpixel.yasd.general.items.relics;
 
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.KindOfWeapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.watabou.utils.Bundle;
@@ -45,7 +46,11 @@ public abstract class Relic extends KindOfWeapon {
     }
 
     protected int damageRoll() {
-        return Random.NormalIntRange(min(), max());
+        int damage = Random.NormalIntRange(min(), max());
+        if (broken()) {
+            damage *= EquipableItem.BROKEN_DAMAGE_MODIFIER;
+        }
+        return affectDamage(damage);
     }
 
     @Override
@@ -60,12 +65,12 @@ public abstract class Relic extends KindOfWeapon {
 
     @Override
     public int min(float lvl) {
-        return (int) Math.max(0, (8 * lvl - damageReduction()) * damageFactor);   //level scaling
+        return (int) Math.max(0, (8 * lvl - damageReduction()) * damageFactor);
     }
 
     @Override
     public int max(float lvl) {
-        return (int) Math.max(0, (12 * lvl - damageReduction()) * damageFactor);   //level scaling
+        return (int) Math.max(0, (12 * lvl - damageReduction()) * damageFactor);
     }
 
     final int defaultMin() {
@@ -129,6 +134,8 @@ public abstract class Relic extends KindOfWeapon {
         charge -= amount;
         if (charge < 0) charge = 0;
         updateQuickslot();
+        //Relics lose durability based on usage of the ability, rather than only by attacking
+        reduceDurability((int) (amount/2));
     }
 
     public final void gainCharge(float amount) {

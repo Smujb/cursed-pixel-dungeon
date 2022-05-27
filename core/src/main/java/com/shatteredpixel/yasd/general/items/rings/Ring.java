@@ -47,6 +47,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Ring extends KindofMisc {
+
+	{
+		canDegrade = false;
+	}
 	
 	protected Buff buff;
 	

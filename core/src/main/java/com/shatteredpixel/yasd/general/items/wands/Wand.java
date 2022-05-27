@@ -375,6 +375,8 @@ public abstract class Wand extends KindofMisc implements Attackable {
 		
 		curCharges -= cursed() ? 0 : chargesPerCast();
 
+		useDurability();
+
 		MagicCharge buff = curUser.buff(MagicCharge.class);
 		if (buff != null && buff.level() > super.level()){
 			buff.detach();
