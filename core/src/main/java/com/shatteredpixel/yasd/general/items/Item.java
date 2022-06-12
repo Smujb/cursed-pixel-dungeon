@@ -102,9 +102,7 @@ public class Item implements Bundlable {
 		return curseIntensity > 0;
 	}
 
-	public static final int MAX_SOU = 10;
 	public int timesUpgraded = 0;
-	public int souCap = MAX_SOU;
 	
 	// Unique items persist through revival
 	public boolean unique = false;
@@ -120,6 +118,47 @@ public class Item implements Bundlable {
 			return Generator.Category.order( lhs ) - Generator.Category.order( rhs );
 		}
 	};
+
+	public final static float BROKEN_DAMAGE_MODIFIER = 0.6f;
+
+	protected boolean canDegrade = false;
+
+	public static final int MAX_DURABILITY = 1000;
+
+	private int durability = MAX_DURABILITY;
+
+	public boolean broken() {
+		//An item can't be broken if it can't degrade
+		return durability <= 0 && canDegrade();
+	}
+
+	public int getDurability() {
+		return durability;
+	}
+
+	public void reduceDurability(int amount) {
+		//Should use the other function to add durability
+		assert amount > 0;
+		durability -= amount;
+		if (durability < 0) durability = 0;
+	}
+
+	public void restoreDurability(int amount) {
+		//Should use the other function to reduce durability
+		assert amount > 0;
+		durability += amount;
+		if (durability > MAX_DURABILITY) durability = MAX_DURABILITY;
+	}
+
+	//1 durability is consumed by default on most actions
+	public void useDurability() {
+		reduceDurability(1);
+	}
+
+	//Cursed items cannot degrade
+	public boolean canDegrade() {
+		return canDegrade && !cursed();
+	}
 
 	protected int randomCurseIntensity() {
 		return 1 + Random.Int(4);
@@ -509,14 +548,6 @@ public class Item implements Bundlable {
 		return true;
 	}
 
-	public boolean limitReached() {
-		if (unique) {
-			return false;
-		} else {
-			return timesUpgraded >= souCap;
-		}
-	}
-
 	public boolean isIdentified() {
 		return levelKnown && cursedKnown;
 	}
@@ -596,10 +627,10 @@ public class Item implements Bundlable {
 
 	//If the item is upgradeable, append the desc showing stat scaling, upgrades out of cap, and curse intensity
 	public String info() {
-		return desc() + (isUpgradable() ? upgradableItemDesc() : "");
+		return desc() + (isUpgradable() ? equipableItemDesc() : "");
 	}
 
-	public String upgradableItemDesc() {
+	public String equipableItemDesc() {
 		String desc = "";
 		if (!statScaling.isEmpty()) {
 			desc += "\n\n";
@@ -616,6 +647,7 @@ public class Item implements Bundlable {
 		}
 		if (visiblyCursed()) desc += "\n\n" + Messages.get(this, "curse_intensity", curseIntensity);
 		else if (cursedKnown) desc += "\n\n" + Messages.get(this, "free_of_curse");
+		if (canDegrade()) desc += "\n\n" + Messages.get(this, "cur_durability", Math.round(((float) durability / MAX_DURABILITY))*100);
 		return desc;
 	}
 	
@@ -665,6 +697,7 @@ public class Item implements Bundlable {
 	private static final String QUICKSLOT		= "quickslotpos";
 	private static final String TIMES           = "times_upgraded";
 	private static final String MAX           = "max_sou";
+	public static final String DURABILITY = "DURABILITY";
 	
 	@Override
 	public void storeInBundle(  Bundle bundle ) {
@@ -673,8 +706,7 @@ public class Item implements Bundlable {
 		bundle.put( LEVEL_KNOWN, levelKnown );
 		bundle.put(CURSE_INTENSITY, curseIntensity);
 		bundle.put( CURSED_KNOWN, cursedKnown );
-		bundle.put( TIMES, timesUpgraded );
-		bundle.put( MAX, souCap );
+		bundle.put(DURABILITY, durability);
 		if (Dungeon.quickslot.contains(this)) {
 			bundle.put( QUICKSLOT, Dungeon.quickslot.getSlot(this) );
 		}
@@ -685,8 +717,7 @@ public class Item implements Bundlable {
 		quantity	= bundle.getInt( QUANTITY );
 		levelKnown	= bundle.getBoolean( LEVEL_KNOWN );
 		cursedKnown	= bundle.getBoolean( CURSED_KNOWN );
-		timesUpgraded = bundle.contains( TIMES ) ? bundle.getInt( TIMES ) : 0;
-		souCap = bundle.contains( MAX ) ? bundle.getInt( MAX ) : MAX_SOU;
+		if (bundle.contains(DURABILITY)) durability = bundle.getInt(DURABILITY);
 
 		int level = bundle.getInt( LEVEL );
 		level(level);

@@ -153,7 +153,7 @@ public class MeleeWeapon extends Weapon implements Attackable {
 			info += " " + Messages.get(enchantment, "desc");
 		}
 		
-		return info + upgradableItemDesc();
+		return info + equipableItemDesc();
 	}
 
 	@Override

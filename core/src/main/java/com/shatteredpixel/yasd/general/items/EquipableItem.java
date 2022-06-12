@@ -36,7 +36,6 @@ import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.utils.GLog;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Bundle;
 
 import java.util.ArrayList;
 
@@ -47,34 +46,8 @@ public abstract class EquipableItem extends Item {
 
 	{
 		bones = true;
+		canDegrade = true;
 		defaultAction = AC_EQUIP;
-	}
-
-	public final static float BROKEN_DAMAGE_MODIFIER = 0.7f;
-
-	protected boolean canDegrade = true;
-
-	public int maxDurability() {
-		return 100;
-	}
-
-	private int durability = maxDurability();
-
-	public boolean broken() {
-		return durability <= 0;
-	}
-
-	public int getDurability() {
-		return durability;
-	}
-
-	public void reduceDurability(int amount) {
-		durability -= amount;
-		if (durability < 0) durability = 0;
-	}
-
-	public void useDurability() {
-		reduceDurability(1);
 	}
 
 	@Override
@@ -130,13 +103,6 @@ public abstract class EquipableItem extends Item {
 		Sample.INSTANCE.play(Assets.Sounds.CURSED);
 	}
 
-	@Override
-	public String upgradableItemDesc() {
-		String desc = super.upgradableItemDesc();
-		if (canDegrade) desc += "\n\n" + Messages.get(this, "cur_durability", Math.round(((float) durability / maxDurability()))*100);
-		return desc;
-	}
-
 	protected float time2equip(Char hero) {
 		return 1;
 	}
@@ -173,20 +139,5 @@ public abstract class EquipableItem extends Item {
 
 	public void activate(Char ch) {
 		curUser = ch;
-	}
-
-
-	public static final String DURABILITY = "DURABILITY";
-
-	@Override
-	public void storeInBundle(Bundle bundle) {
-		super.storeInBundle(bundle);
-		bundle.put(DURABILITY, durability);
-	}
-
-	@Override
-	public void restoreFromBundle(Bundle bundle) {
-		super.restoreFromBundle(bundle);
-		if (bundle.contains(DURABILITY)) durability = bundle.getInt(DURABILITY);
 	}
 }

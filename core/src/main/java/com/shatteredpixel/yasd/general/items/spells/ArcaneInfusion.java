@@ -6,6 +6,7 @@ import com.shatteredpixel.yasd.general.effects.Enchanting;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.Item;
+import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfGreed;
 import com.shatteredpixel.yasd.general.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.yasd.general.items.weapon.Weapon;
 import com.shatteredpixel.yasd.general.messages.Messages;
@@ -24,7 +25,12 @@ public class ArcaneInfusion extends InventorySpell {
 	@Override
 	protected void onItemSelected( Item item ) {
 
-		item.upgrade();
+		//Restore a bit of durability on highly damaged items
+		int restore = (int) (0.2*MAX_DURABILITY);
+		restore -= item.getDurability();
+		if (restore > 0) {
+			item.restoreDurability(restore);
+		}
 
 		if (item instanceof Enchantable) {
 			((Enchantable) item).enchant(Random.Int(2) == 0 ? Weapon.Enchantment.randomUncommon() : Weapon.Enchantment.randomRare());
@@ -48,7 +54,7 @@ public class ArcaneInfusion extends InventorySpell {
 	public static class Recipe extends com.shatteredpixel.yasd.general.items.Recipe.SimpleRecipe {
 
 		{
-			inputs =  new Class[]{SafeUpgrade.class, StoneOfEnchantment.class};
+			inputs =  new Class[]{ScrollOfGreed.class, StoneOfEnchantment.class};
 			inQuantity = new int[]{1, 1};
 
 			cost = 4;

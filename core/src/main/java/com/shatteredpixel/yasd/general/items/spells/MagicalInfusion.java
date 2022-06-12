@@ -30,6 +30,7 @@ package com.shatteredpixel.yasd.general.items.spells;
 import com.shatteredpixel.yasd.general.Badges;
 import com.shatteredpixel.yasd.general.Statistics;
 import com.shatteredpixel.yasd.general.effects.Speck;
+import com.shatteredpixel.yasd.general.items.Enchantable;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfGreed;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfTransmutation;
@@ -47,9 +48,10 @@ public class MagicalInfusion extends InventorySpell {
 	@Override
 	protected void onItemSelected( Item item ) {
 
-		item.souCap += 5;
+		//Specify in terms of max durability constant so I can tweak durability speed without messing with repair/degrade amounts
+		item.restoreDurability((int) (MAX_DURABILITY*0.3f));
 
-		removeUpgrades(item);
+		curseChance(item);
 
 		GLog.positive( Messages.get(this, "infuse", item.name()) );
 
@@ -59,10 +61,14 @@ public class MagicalInfusion extends InventorySpell {
 		Statistics.upgradesUsed++;
 	}
 
-	protected void removeUpgrades(Item item) {
-		int toRemove = Random.Int(0, item.timesUpgraded/2);
-		item.degrade(toRemove);
-		item.timesUpgraded -= toRemove;
+	protected void curseChance(Item item) {
+		int risk = 3;
+		if (item instanceof Enchantable && ((Enchantable) item).getEnchantment() != null) {
+			risk = 5;
+		}
+		if (Random.Int(10) < risk) {
+			item.curse();
+		}
 	}
 
 	@Override

@@ -100,7 +100,7 @@ public abstract class RangedWeapon extends Weapon implements Attackable {
 
         info += Messages.get(KindOfWeapon.class, "critical_modifier_stamina", Math.round((critModifier-1)*100), staminaConsumption());
 
-        return desc() + info + upgradableItemDesc();
+        return desc() + info + equipableItemDesc();
     }
 
     //Regular throw speed is 240f. Arrows, bolts and bullets should be faster than that.

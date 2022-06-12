@@ -405,7 +405,7 @@ abstract public class MissileWeapon extends Weapon implements Attackable {
 		}
 		
 		
-		return info + upgradableItemDesc();
+		return info + equipableItemDesc();
 	}
 	
 	@Override

@@ -273,7 +273,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 
 	@Override
 	public String info() {
-		return desc() + "\n\n" + statsDesc() + upgradableItemDesc();
+		return desc() + "\n\n" + statsDesc() + equipableItemDesc();
 	}
 
 	public String statsDesc(){

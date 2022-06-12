@@ -25,8 +25,6 @@ public class Storage {
 
     //"Resets" the item. To prevent the storage being too powerful, enchantments and upgrade levels are not preserved.
     private static Item resetItem(Item item) {
-        item.timesUpgraded = 0;
-        item.souCap = Item.MAX_SOU;
         item.identify();
         item.level(0);
         item.uncurse();

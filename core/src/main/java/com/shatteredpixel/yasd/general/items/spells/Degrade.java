@@ -1,21 +1,28 @@
 package com.shatteredpixel.yasd.general.items.spells;
 
+import com.shatteredpixel.yasd.general.items.EquipableItem;
 import com.shatteredpixel.yasd.general.items.Item;
 import com.shatteredpixel.yasd.general.items.scrolls.ScrollOfGreed;
 import com.shatteredpixel.yasd.general.messages.Messages;
 import com.shatteredpixel.yasd.general.sprites.ItemSpriteSheet;
 import com.shatteredpixel.yasd.general.utils.GLog;
+import com.shatteredpixel.yasd.general.windows.WndBag;
 
 public class Degrade extends InventorySpell {
 
 	{
 		image = ItemSpriteSheet.DEGRADE;
+
+		mode = WndBag.Mode.EQUIPMENT;
 	}
 
 	@Override
 	protected void onItemSelected(Item item) {
-		item.degrade();
-		GLog.negative( Messages.get(this, "degrade", item.name()) );
+		if (item instanceof EquipableItem) {
+			//Specify in terms of max durability constant so I can tweak durability speed without messing with repair/degrade amounts
+			item.reduceDurability((int) (Item.MAX_DURABILITY*0.3f));
+			GLog.negative(Messages.get(this, "degrade", item.name()));
+		}
 	}
 
 	@Override

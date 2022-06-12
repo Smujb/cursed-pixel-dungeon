@@ -65,7 +65,6 @@ import com.shatteredpixel.yasd.general.items.spells.PhaseShift;
 import com.shatteredpixel.yasd.general.items.spells.ReclaimTrap;
 import com.shatteredpixel.yasd.general.items.spells.Recycle;
 import com.shatteredpixel.yasd.general.items.spells.SafeInfusion;
-import com.shatteredpixel.yasd.general.items.spells.SafeUpgrade;
 import com.shatteredpixel.yasd.general.items.spells.WildEnergy;
 import com.watabou.utils.Reflection;
 
@@ -220,7 +219,6 @@ public abstract class Recipe {
 		new ExoticScroll.ScrollToExotic(),
 		new StewedMeat.threeMeat(),
 		new MeatPie.Recipe(),
-		new SafeUpgrade.Recipe(),
 		new SafeInfusion.Recipe(),
 		new MagicalInfusion.Recipe()
 	};

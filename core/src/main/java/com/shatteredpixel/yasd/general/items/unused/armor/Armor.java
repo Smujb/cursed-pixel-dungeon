@@ -438,7 +438,7 @@ public class Armor extends KindofMisc {
 			info += "\n\n" + Messages.get(Armor.class, "seal_attached");
 		}
 		
-		return info + upgradableItemDesc();
+		return info + equipableItemDesc();
 	}
 
 	@Override

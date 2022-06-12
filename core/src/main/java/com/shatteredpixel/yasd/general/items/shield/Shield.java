@@ -173,7 +173,7 @@ public abstract class Shield extends KindofMisc implements Enchantable {
         String info = "\n\n" + Messages.get(this, "stats_desc", maxDefense(power()), minDefense(power()), minDamage(power()), maxDamage(power()));
         String propsDesc = propsDesc();
         if (!propsDesc.equals("")) info = "\n" + propsDesc() + info;
-        return desc() + info + upgradableItemDesc();
+        return desc() + info + equipableItemDesc();
     }
 
     protected String propsDesc() {

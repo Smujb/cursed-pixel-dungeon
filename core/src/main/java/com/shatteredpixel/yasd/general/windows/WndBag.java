@@ -89,7 +89,7 @@ public class WndBag extends WndTabbed {
 		UNIDENTIFED,
 		UNCURSABLE,
 		CURSABLE,
-		UPGRADEABLE,
+		BREAKABLE,
 		QUICKSLOT,
 		FOR_SALE,
 		WEAPON,
@@ -422,7 +422,7 @@ public class WndBag extends WndTabbed {
 				} else {
 					enable(
 							mode == Mode.FOR_SALE && !item.unique && (item.price() > 0) && (!item.isEquipped(Dungeon.hero) || !item.cursed()) ||
-									mode == Mode.UPGRADEABLE && item.isUpgradable() && !item.limitReached() ||
+									mode == Mode.BREAKABLE && item.canDegrade() ||
 									mode == Mode.UNIDENTIFED && !item.isIdentified() ||
 									mode == Mode.UNCURSABLE && ScrollOfRemoveCurse.uncursable(item) ||
 									mode == Mode.CURSABLE && ((item instanceof EquipableItem && !(item instanceof MissileWeapon)) || item instanceof Wand) ||
