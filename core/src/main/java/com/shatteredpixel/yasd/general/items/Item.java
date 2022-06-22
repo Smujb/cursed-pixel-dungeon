@@ -35,6 +35,7 @@ import com.shatteredpixel.yasd.general.Dungeon;
 import com.shatteredpixel.yasd.general.actors.Actor;
 import com.shatteredpixel.yasd.general.actors.Char;
 import com.shatteredpixel.yasd.general.actors.hero.Hero;
+import com.shatteredpixel.yasd.general.actors.mobs.Mob;
 import com.shatteredpixel.yasd.general.effects.CPDEmitter;
 import com.shatteredpixel.yasd.general.effects.Speck;
 import com.shatteredpixel.yasd.general.effects.particles.ShadowParticle;
@@ -221,6 +222,9 @@ public class Item implements Bundlable {
 					largest = statLvl;
 				}
 			}
+		} else if (curUser instanceof Mob) {
+			//Used by mobs using gear such as animated statues
+			largest = curUser.level();
 		}
 		return largest;
 	}

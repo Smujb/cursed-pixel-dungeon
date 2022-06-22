@@ -510,7 +510,7 @@ public abstract class Wand extends KindofMisc implements Attackable {
 	public class Charger extends Buff {
 		
 		private static final float BASE_CHARGE_DELAY = 10f;
-		private static final float SCALING_CHARGE_ADDITION = 40f;
+		private static final float SCALING_CHARGE_ADDITION = 20f;
 		private static final float NORMAL_SCALE_FACTOR = 0.875f;
 
 		private static final float CHARGE_BUFF_BONUS = 0.25f;

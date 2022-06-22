@@ -83,8 +83,6 @@ public class Statue extends Mob implements Callback {
 			belongings.miscs[i] = newItem();
 			belongings.miscs[i].activate(this);
 		}
-
-		upgradeItems();
 	}
 
 	@Override
@@ -136,13 +134,6 @@ public class Statue extends Mob implements Callback {
 		item.uncurse();
 		item.identify();
 		return item;
-	}
-
-	protected void upgradeItems() {
-		int upgrade = Dungeon.getScaling();
-		for (Item item : belongings.miscs) {
-			item.level(upgrade + Random.IntRange(-2, 3));
-		}
 	}
 
 	private Wand wand = null;
