@@ -83,9 +83,6 @@ public class GuardianTrap extends Trap {
 		public void dropGear() {}
 
 		@Override
-		protected void upgradeItems() {}
-
-		@Override
 		public void beckon(int cell) {
 			//Beckon works on these ones, unlike their superclass.
 			notice();
