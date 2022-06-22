@@ -287,22 +287,6 @@ public class Ghost extends NPC {
 				shield = (Shield) Generator.random(Generator.Category.SHIELD);
 				weapon = Generator.randomWeapon();
 
-
-				//50%:+0, 30%:+1, 15%:+2, 5%:+3
-				float itemLevelRoll = Random.Float();
-				int itemLevel;
-				if (itemLevelRoll < 0.5f){
-					itemLevel = 0;
-				} else if (itemLevelRoll < 0.8f){
-					itemLevel = 1;
-				} else if (itemLevelRoll < 0.95f){
-					itemLevel = 2;
-				} else {
-					itemLevel = 3;
-				}
-				weapon.level(itemLevel);
-				shield.level(itemLevel);
-
 				if (Random.Int(4) == 0 || weapon.cursed() || shield.cursed()){
 					weapon.uncurse();
 					shield.uncurse();

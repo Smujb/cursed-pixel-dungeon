@@ -237,8 +237,8 @@ public class Blacksmith extends NPC {
 		if (first instanceof MissileWeapon && first.quantity() > 1){
 			first = first.split(1);
 		}
-		int level = first.trueLevel();
-		first.level(level+1); //prevents on-upgrade effects like enchant/glyph removal
+		//Fully repair the item
+		first.restoreDurability(Item.MAX_DURABILITY);
 		if (first instanceof MissileWeapon && !Dungeon.hero.belongings.contains(first)) {
 			if (!first.collect()){
 				Dungeon.level.drop( first, Dungeon.hero.pos );

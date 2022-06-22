@@ -72,7 +72,6 @@ public class Slime extends Mob {
 		Dungeon.LimitedDrops.SLIME_WEP.increaseCount();
 		MeleeWeapon w = Generator.randomWeapon();
 		w.random();
-		w.level(0);
 		return w;
 	}
 

@@ -59,7 +59,7 @@ public class WarriorNPC extends HeroNPC {
 						options.put(Messages.get(this, "training"), WndChat.asCallback(Training.class, new Callback() {
 							@Override
 							public void call() {
-								Dungeon.level.drop(new RoundShield().level(Dungeon.hero.getFocus()), Dungeon.hero.pos);
+								Dungeon.level.drop(new RoundShield(), Dungeon.hero.pos);
 								addQuestFlag(SHIELD_GIVEN);
 							}
 						}));

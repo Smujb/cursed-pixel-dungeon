@@ -271,12 +271,6 @@ public class RingOfWealth extends Ring {
 				result = Generator.random(Generator.Category.RING);
 				break;
 		}
-		//minimum level of sqrt(ringLvl)
-		if (result.isUpgradable()) {
-			if (result.level() < Math.floor(Math.sqrt(level))) {
-				result.level((int) Math.floor(Math.sqrt(level)));
-			}
-		}
 		result.uncurse();
 		result.cursedKnown = true;
 		if (result.level() >= 2) {

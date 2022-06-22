@@ -47,7 +47,7 @@ public class MageNPC extends HeroNPC {
 						options.put(Messages.get(MageNPC.class, "ask_magic"), WndChat.asCallback(Magic.class, new Callback() {
 							@Override
 							public void call() {
-								Dungeon.level.drop(new WandOfMagicMissile().level(Dungeon.hero.getFocus()), Dungeon.hero.pos);
+								Dungeon.level.drop(new WandOfMagicMissile(), Dungeon.hero.pos);
 								addQuestFlag(WAND_GIVEN);
 							}
 						}));

@@ -129,8 +129,6 @@ public class Statue extends Mob implements Callback {
 					break;
 			}
 		} while (!con || !item.canSpawn());
-
-		item.level(0);
 		item.uncurse();
 		item.identify();
 		return item;

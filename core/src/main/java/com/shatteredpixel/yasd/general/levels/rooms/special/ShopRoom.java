@@ -204,7 +204,6 @@ public class ShopRoom extends SpecialRoom {
 					toAdd = Generator.random(Generator.Category.RELIC);
 					break;
 			}
-			toAdd.level(0);
 			toAdd.identify();
 			if (toAdd.cursed()) {
 				toAdd.uncurse();
