@@ -124,7 +124,7 @@ public class Item implements Bundlable {
 
 	protected boolean canDegrade = false;
 
-	public static final int MAX_DURABILITY = 1000;
+	public static final int MAX_DURABILITY = 500;
 
 	private int durability = MAX_DURABILITY;
 
